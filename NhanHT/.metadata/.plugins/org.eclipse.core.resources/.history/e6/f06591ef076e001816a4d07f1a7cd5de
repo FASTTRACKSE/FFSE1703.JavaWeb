@@ -1,0 +1,102 @@
+package Model;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+public class QuanLiSinhVienSQL {
+	static ArrayList<QuanLiSinhVienModel> arrQlSinhVien = new ArrayList<>();
+	final static Connection conn = GetConnectDB.getConnect("localhost", "admin", "admin123", "123456");
+
+	public static ArrayList<QuanLiSinhVienModel> selectAll() {
+		arrQlSinhVien.clear();
+		try {
+			Statement statement = conn.createStatement();
+			ResultSet result = statement.executeQuery("select * from QLSinhVien");
+			while (result.next()) {
+				int id = result.getInt("id");
+				String maSv = result.getString("MaSv");
+				String hoDem = result.getString("HoDem");
+				String tenSv = result.getString("Ten");
+				String ngaySinh = result.getString("NgaySinh");
+				String queQuan = result.getString("QueQuan");
+				String gioiTinh = result.getString("GioiTinh");
+				String lopSv = result.getString("Lop");
+
+				QuanLiSinhVienModel quanLiSinhVienModel = new QuanLiSinhVienModel(id, maSv,hoDem, tenSv, ngaySinh,queQuan,gioiTinh,lopSv);
+				arrQlSinhVien.add(quanLiSinhVienModel);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		return arrQlSinhVien;
+	}
+
+	public static boolean insert(QuanLiSinhVienModel sinhVien) throws SQLException {
+		String sql = "INSERT INTO QLSinhVien (id, MaSv, TenSv,TuoiSv,LopSv) VALUES (?, ?, ?, ?, ?)";
+
+		PreparedStatement statement = conn.prepareStatement(sql);
+		statement.setInt(1, sinhVien.getId());
+		statement.setString(2, sinhVien.getMaSv());
+		statement.setString(3, sinhVien.getTenSv());
+		statement.setString(4, sinhVien.getTuoiSv());
+		statement.setString(5, sinhVien.getLopSv());
+
+		boolean rowInserted = statement.executeUpdate() > 0;
+		statement.close();
+		return rowInserted;
+	}
+
+	public static boolean delete(QuanLiSinhVienModel delete) throws SQLException {
+		String sql = "DELETE FROM QLSinhVien where id = ?";
+		PreparedStatement statement = conn.prepareStatement(sql);
+		statement.setInt(1, delete.getId());
+
+		boolean rowDeleted = statement.executeUpdate() > 0;
+		statement.close();
+		return rowDeleted;
+	}
+	public static boolean update(QuanLiSinhVienModel update) throws SQLException {
+        String sql = "UPDATE QLSinhVien SET MaSv = ?, TenSv = ?,TuoiSv = ?,LopSv = ?";
+        sql += " WHERE id = ?";
+         
+        PreparedStatement statement = conn.prepareStatement(sql);
+        statement.setString(1, update.getMaSv());
+        statement.setString(2, update.getTenSv());
+        statement.setString(3, update.getTuoiSv());
+        statement.setString(4, update.getLopSv());
+        statement.setInt(5, update.getId());
+         
+        boolean rowUpdated = statement.executeUpdate() > 0;
+        statement.close();
+        return rowUpdated;     
+    }
+
+	public static QuanLiSinhVienModel getSinhVien(int idSv) throws SQLException {
+		QuanLiSinhVienModel sv = null;
+		String sql = "SELECT * FROM QLSinhVien WHERE id = ?";
+
+		PreparedStatement statement = conn.prepareStatement(sql);
+		statement.setInt(1, idSv);
+
+		ResultSet resultSet = statement.executeQuery();
+
+		if (resultSet.next()) {
+			int id = resultSet.getInt("id");
+			String maSv = resultSet.getString("MaSv");
+			String tenSv = resultSet.getString("TenSv");
+			String tuoiSv = resultSet.getString("TuoiSv");
+			String lopSv = resultSet.getString("LopSv");
+
+			sv = new QuanLiSinhVienModel(id, maSv, tenSv, tuoiSv,lopSv);
+		}
+
+		resultSet.close();
+		statement.close();
+
+		return sv;
+	}
+}

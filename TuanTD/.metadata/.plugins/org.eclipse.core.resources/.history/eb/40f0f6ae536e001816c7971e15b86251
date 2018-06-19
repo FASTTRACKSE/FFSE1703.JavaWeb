@@ -1,0 +1,109 @@
+package students;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+public class StudentDAO {
+	Connection conn = (Connection) ConnectDB.getConnect(); // <--Kết nối database-->
+	
+	    public boolean insertStudent(Student student) throws SQLException {
+	        String sql = "INSERT INTO student (Name, Class, Address, Age, Author) VALUES (?, ?, ?, ?, ?)";
+	         
+	        PreparedStatement statement = conn.prepareStatement(sql);
+	        statement.setString(1, student.getName());
+	        statement.setString(2, student.getClas());
+	        statement.setString(3, student.getAddress());
+	        statement.setInt(4, student.getAge());
+	        statement.setInt(5, student.getAuthor());
+	         
+	        boolean rowInserted = statement.executeUpdate() > 0;
+	        statement.close();
+	        return rowInserted;
+	    }
+	     
+	    public List<Student> listAllStudents() throws SQLException {
+	        List<Student> listStudent = new ArrayList<>();
+	         
+	        String sql = "SELECT * FROM `student`";
+	         
+	        Statement statement = conn.createStatement();
+	        ResultSet resultSet = statement.executeQuery(sql);
+	         
+	        while (resultSet.next()) {
+	            int id = resultSet.getInt("id");
+	            String name = resultSet.getString("Name");
+	            String clas = resultSet.getString("Class");
+	            String address = resultSet.getString("Address");
+	            int age = resultSet.getInt("Age");
+	            int author = resultSet.getInt("Author");
+	            
+	            Student student = new Student(id, name, clas, address, age, author);
+	            listStudent.add(student);
+	        }
+	         
+	        resultSet.close();
+	        statement.close();
+	         
+	        return listStudent;
+	    }
+
+		
+	    public boolean deleteStudent(Student student) throws SQLException {
+	        String sql = "DELETE FROM `student` WHERE id=?";
+	         
+	        PreparedStatement statement = conn.prepareStatement(sql);
+	        statement.setInt(1, student.getId());
+	         
+	        boolean rowDeleted = statement.executeUpdate() > 0;
+	        statement.close();
+	        return rowDeleted;     
+	    }
+	     
+	    public boolean updateStudent(Student student) throws SQLException {
+	        String sql = "UPDATE `student` SET `Name`=?,`Class`=?,`Address`=?,`Age`=?,`Author`=?";
+	        sql += " WHERE id = ?";
+	    
+	        PreparedStatement statement = conn.prepareStatement(sql);
+	        statement.setString(1, student.getName());
+	        statement.setString(2, student.getClas());
+	        statement.setString(3, student.getAddress());
+	        statement.setInt(4, student.getAge());
+	        statement.setInt(5, student.getAuthor());
+            statement.setInt(6, student.getId());
+	         
+	        boolean rowUpdated = statement.executeUpdate() > 0;
+	        statement.close();
+	        return rowUpdated;     
+	    }
+	     
+	    public Student getStudent(int id) throws SQLException {
+	        Student student = null;
+	        String sql = "SELECT * FROM student WHERE id = ?";
+	         
+	        PreparedStatement statement = conn.prepareStatement(sql);
+	        statement.setInt(1, id);
+	         
+	        ResultSet resultSet = statement.executeQuery();
+	         
+	        if (resultSet.next()) {
+	        	String name = resultSet.getString("Name");
+	            String clas = resultSet.getString("Class");
+	            String address = resultSet.getString("Address");
+	            int age = resultSet.getInt("Age");
+	            int author = resultSet.getInt("Author");
+	             
+	            student = new Student(id, name, clas, address, age, author);
+	        }
+	         
+	        resultSet.close();
+	        statement.close();
+	         
+	        return student;
+	    }
+	}
+

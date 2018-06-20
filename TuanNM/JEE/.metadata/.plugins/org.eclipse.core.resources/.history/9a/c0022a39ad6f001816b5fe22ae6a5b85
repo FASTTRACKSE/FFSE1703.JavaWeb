@@ -1,0 +1,141 @@
+<%@ page language="java" contentType="text/html;charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@page import="java.util.*" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
+<fmt:setLocale value="${lang}" />
+<fmt:setBundle basename="javaweb.resources.${lang}" />
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="container">
+	<div class="dropdown" style="width: 20%; float: right; text-align: center">
+		  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		   Languages
+		  </button>
+		  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+		    <a class="dropdown-item" href="student?lang=mesagers">English</a>
+		    <a class="dropdown-item" href="studnet?lang=resousces_vn_VN">Vietnam</a>
+		  </div>
+		</div>
+		<h2 style="text-align: center;"><fmt:message key="title"/></h2>
+		<a style="background: green" href="new" class="btn btn-info"
+			role="button"><fmt:message key="add"/></a>
+
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th scope="col"><fmt:message key="code"/></th>
+					<th scope="col"><fmt:message key="name"/></th>
+					<th scope="col"><fmt:message key="age"/></th>
+					<th scope="col"><fmt:message key="class"/></th>
+					<th scope="col"><fmt:message key="sex"/></th>
+					<th scope="col"><fmt:message key="country"/></th>
+					<th scope="col">Lp1</th>
+					<th scope="col">Lp2</th>
+					<th scope="col"><fmt:message key="medium"/></th>
+					<th scope="col"><fmt:message key="sort"/></th>
+					<th scope="col"><fmt:message key="action"/></th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="Student" items="${listStudent}">
+					<tr>
+						<td><c:out value="${Student.code}" /></td>
+						<td><c:out value="${Student.name}" /></td>
+						<td><c:out value="${Student.age}" /></td>
+						<td><c:out value="${Student.classSt}" /></td>
+						<td><c:out value="${Student.sex}" /></td>
+						<td><c:out value="${Student.country}" /></td>
+						<td><c:out value="${Student.lp1}" /></td>
+						<td><c:out value="${Student.lp2}" /></td>
+						<td><c:out value="${Student.getDTB()}" /></td>
+						<td><c:out value="${Student.getXepLoai()}" /></td>
+						<td><a href="edit?code=<c:out value='${Student.code}' />"
+							title="" class="btn btn-primary"> <i
+								class="glyphicon glyphicon-pencil"></i></a>
+							<button data-href="delete?code=<c:out value='${Student.code}' />"
+								class="btn btn-danger" data-toggle="modal" data-target="#xoa_pr">
+								<i class="glyphicon glyphicon-remove"></i>
+							</button></td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</div>
+	
+                       
+                   
+		<div class="panel-footer container">
+			<div class="row">
+				<div class="col col-xs-4">
+					<fmt:message key="number_page"/>
+					<c:out value="${total+1}" />
+				</div>
+				<div class="col col-xs-8">
+					<ul class="pagination hidden-xs pull-right">
+						<c:forEach var="i" begin="1" end="${total+1}">
+							<li><a href="Student?page=${i}"><c:out value="${i}" /></a></li>
+						</c:forEach>
+					</ul>
+					<ul class="pagination visible-xs pull-right">
+						<li><a href="#">«</a></li>
+						<li><a href="#">»</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	
+
+	<div class="modal fade" id="xoa_pr" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">Xác nhận</h4>
+				</div>
+				<div class="modal-body">
+					<p>Bạn muốn xóa sinh viên!!</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+					<a class="btn btn-primary del_pr">Xóa</a>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<script type="text/javascript">
+		$('#xoa_pr').on(
+				'show.bs.modal',
+				function(e) {
+					// var test = $(e.relatedTarget).data('href'); console.log(test);
+					$(this).find('.del_pr').attr('href',
+							$(e.relatedTarget).data('href'));
+				});
+	</script>
+
+
+
+</body>
+<script type="text/javascript">
+	function deletes() {
+		return confirm('bạn có muốn xóa sinh!!');
+	}
+</script>
+</html>

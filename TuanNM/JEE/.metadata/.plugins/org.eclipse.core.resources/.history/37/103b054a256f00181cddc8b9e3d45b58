@@ -1,0 +1,6 @@
+package javaweb.resources;
+
+public class Snippet {
+	<fmt:setBundle basename="namdv.resources.messages" />
+}
+

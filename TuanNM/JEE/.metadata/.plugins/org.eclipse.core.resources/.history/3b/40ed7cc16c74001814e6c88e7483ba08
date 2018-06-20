@@ -1,0 +1,33 @@
+code = Code cmm
+
+add = Add Student
+
+name = Fullname
+
+age = Age
+
+country =Country
+
+sex = Sex
+
+medium = Medium score
+
+sort = Sort
+
+action = Action
+
+class = Class
+
+number_page = Pages from 1 to
+
+title = List student
+
+language = Language
+
+title_add = Add Student
+
+title_up = Update Student
+
+submit = Submit
+
+delete = Language

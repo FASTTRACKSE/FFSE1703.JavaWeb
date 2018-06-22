@@ -1,0 +1,17 @@
+language=Select Language
+languageVN=Vietnamese
+languageEN=English
+serialNumber=SN
+Image=Image
+CodeStudent=Student Code
+Fullname=Fullname
+Class=Class
+ScoreLp1=LP1 Score
+ScoreLp2=LP2 Score
+ScoreAvg=AVG Score
+rate=Rate
+Action=Action
+Edit=Sửa
+View=Xem
+Delete=Xóa
+AddStudent=Thêm Sinh Viên

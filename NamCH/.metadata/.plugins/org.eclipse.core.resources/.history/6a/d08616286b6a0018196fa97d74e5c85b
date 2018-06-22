@@ -1,0 +1,13 @@
+package student.bean;
+
+public class Student {
+	private String fullname,code,classStudent;
+	private int old;
+	private float lp1,lp2;
+	public Student() {
+		
+	}
+	public Student() {
+		
+	}
+}

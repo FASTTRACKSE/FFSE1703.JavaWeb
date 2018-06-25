@@ -1,0 +1,9 @@
+INDEX VERSION 1.4+D:\FFSE1703.JavaWeb\Thach\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+3660908332.index
+1523944572.index
+4158930808.index
+593550269.index
+4219279280.index
+3897841538.index
+679148566.index
+1500368644.index

@@ -1,0 +1,9 @@
+127.0.0.1 - - [22/Jun/2018:14:06:17 +0700] "GET / HTTP/1.1" 404 1073
+0:0:0:0:0:0:0:1 - - [22/Jun/2018:14:06:22 +0700] "GET /CRUD_SinhVien/SinhVienServlet/* HTTP/1.1" 200 5291
+0:0:0:0:0:0:0:1 - - [22/Jun/2018:14:06:28 +0700] "GET /CRUD_SinhVien/SinhVienServlet/listsv?trang=2&lang=Resource_vn_VN HTTP/1.1" 200 4107
+0:0:0:0:0:0:0:1 - - [22/Jun/2018:14:06:31 +0700] "GET /CRUD_SinhVien/SinhVienServlet/edit?maSv=zzz HTTP/1.1" 200 2596
+127.0.0.1 - - [22/Jun/2018:15:50:08 +0700] "GET / HTTP/1.1" 404 1073
+0:0:0:0:0:0:0:1 - - [22/Jun/2018:15:50:14 +0700] "GET /CRUD_SinhVien/SinhVienServlet/* HTTP/1.1" 200 5291
+0:0:0:0:0:0:0:1 - - [22/Jun/2018:15:51:09 +0700] "GET /CRUD_SinhVien/SinhVienServlet/* HTTP/1.1" 200 5291
+0:0:0:0:0:0:0:1 - - [22/Jun/2018:16:25:32 +0700] "GET /CRUD_SinhVien/SinhVienServlet/edit?maSv=FFSE1703010 HTTP/1.1" 200 2635
+0:0:0:0:0:0:0:1 - - [22/Jun/2018:16:25:55 +0700] "GET /CRUD_SinhVien/SinhVienServlet/add HTTP/1.1" 200 2548

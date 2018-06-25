@@ -100,8 +100,10 @@ public class test extends HttpServlet {
 					if (!item.isFormField()) {
 						String fileName = new File(item.getName()).getName();
 						String filePath = uploadPath + File.separator + fileName;
+						
 						File storeFile = new File(filePath);
 						System.out.println(filePath);
+						System.out.println(fileName);
 						// saves the file on disk
 						item.write(storeFile);
 						request.setAttribute("message",

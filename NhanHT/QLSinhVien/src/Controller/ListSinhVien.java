@@ -26,7 +26,6 @@ public class ListSinhVien extends HttpServlet {
 	 */
 	public ListSinhVien() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -77,7 +76,6 @@ public class ListSinhVien extends HttpServlet {
 		arrQLSinhVien = QuanLiSinhVienSQL.selectAll(start, soLuongHienThi);
 		double countSv = QuanLiSinhVienSQL.countSv();
 		double soTrang = countSv / soLuongHienThi;
-
 		// đa ngôn ngữ
 		String lang = request.getParameter("lang");
 		if (request.getParameter("lang") == null) {

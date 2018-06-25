@@ -1,0 +1,9 @@
+INDEX VERSION 1.4+D:\Thach\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+1613309756.index
+2574545206.index
+4219279280.index
+3516288330.index
+1718784849.index
+3660908332.index
+1523944572.index
+3765285928.index

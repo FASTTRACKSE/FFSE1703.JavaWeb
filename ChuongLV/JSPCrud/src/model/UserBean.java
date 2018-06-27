@@ -1,4 +1,4 @@
- package net.roseindia.bean;
+package model;
 
 public class UserBean {
 

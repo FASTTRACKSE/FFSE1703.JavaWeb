@@ -1,4 +1,4 @@
-package net.roseindia.dao;
+package model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,8 +10,8 @@ import java.util.List;
 
 import org.omg.CORBA.Request;
 
-import net.roseindia.bean.UserBean;
-import net.roseindia.dbconnection.ConnectionProvider;
+import model.UserBean;
+import model.ConnectionProvider;
 
 public class UserDao {
 

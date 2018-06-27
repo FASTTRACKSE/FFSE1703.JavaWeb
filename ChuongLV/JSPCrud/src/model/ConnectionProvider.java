@@ -1,4 +1,4 @@
-package net.roseindia.dbconnection;
+package model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

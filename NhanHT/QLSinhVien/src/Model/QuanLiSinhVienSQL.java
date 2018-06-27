@@ -11,11 +11,12 @@ public class QuanLiSinhVienSQL {
 	static ArrayList<QuanLiSinhVienModel> arrQlSinhVien = new ArrayList<>();
 	final static Connection conn = GetConnectDB.getConnect("localhost", "admin", "admin123", "123456");
 
-	public static ArrayList<QuanLiSinhVienModel> selectAll( int start ,int soLuongHienThi ) {
+	public static ArrayList<QuanLiSinhVienModel> selectAll(int start, int soLuongHienThi) {
 		arrQlSinhVien.clear();
 		try {
 			Statement statement = conn.createStatement();
-			ResultSet result = statement.executeQuery("select * from QLSinhVien LIMIT "+ start+", "+soLuongHienThi+"");
+			ResultSet result = statement
+					.executeQuery("select * from QLSinhVien LIMIT " + start + ", " + soLuongHienThi + "");
 			while (result.next()) {
 				int id = result.getInt("id");
 				String hoDem = result.getString("HoDem");
@@ -27,8 +28,8 @@ public class QuanLiSinhVienSQL {
 				double lp0 = result.getDouble("LP0");
 				double lp1 = result.getDouble("LP1");
 
-				QuanLiSinhVienModel quanLiSinhVienModel = new QuanLiSinhVienModel(id, hoDem, tenSv, ngaySinh,
-						queQuan, gioiTinh, lopSv, lp0, lp1);
+				QuanLiSinhVienModel quanLiSinhVienModel = new QuanLiSinhVienModel(id, hoDem, tenSv, ngaySinh, queQuan,
+						gioiTinh, lopSv, lp0, lp1);
 				arrQlSinhVien.add(quanLiSinhVienModel);
 			}
 		} catch (Exception ex) {
@@ -104,7 +105,7 @@ public class QuanLiSinhVienSQL {
 			double lp0 = resultSet.getDouble("LP0");
 			double lp1 = resultSet.getDouble("LP1");
 
-			sv = new QuanLiSinhVienModel(id, hoDem, tenSv, ngaySinh,queQuan,gioiTinh,lopSv,lp0,lp1);
+			sv = new QuanLiSinhVienModel(id, hoDem, tenSv, ngaySinh, queQuan, gioiTinh, lopSv, lp0, lp1);
 		}
 
 		resultSet.close();
@@ -112,6 +113,7 @@ public class QuanLiSinhVienSQL {
 
 		return sv;
 	}
+
 	public static double countSv() throws SQLException {
 		double total = 0;
 		Statement statement = conn.createStatement();
@@ -119,8 +121,8 @@ public class QuanLiSinhVienSQL {
 		while (result.next()) {
 			total = result.getDouble("COUNT(*)");
 		}
-			
+
 		return total;
-		
+
 	}
 }

@@ -2,6 +2,21 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page import="java.util.*" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%> 
+<c:choose>
+    <c:when test="${not empty param.theLocale}">
+        <c:set var="theLocale" value="${param.theLocale}" scope="session" /> 
+    </c:when>    
+    <c:otherwise>
+		<c:if test="${empty theLocale}">
+		    <c:set var="theLocale" value="${pageContext.request.locale}" scope="session" />
+		</c:if>
+    </c:otherwise>
+</c:choose>
+
+<fmt:setLocale value="${theLocale}" />
+
+<fmt:setBundle basename="resources.Resource" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,12 +24,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%
-Locale.setDefault(new Locale("vn","VN"));
-ResourceBundle resourcebundle = ResourceBundle.getBundle("resources/Resource_en_US");
-%>
 	<center>
-        <h1>Books Management</h1>
+        <h1>Sinh Viên Management</h1>
         <h2>
             <a href="new">Add New Sinh Viên</a>
             &nbsp;&nbsp;&nbsp;
@@ -23,21 +34,23 @@ ResourceBundle resourcebundle = ResourceBundle.getBundle("resources/Resource_en_
         </h2>
     </center>
     <div align="center">
+    <a href="http://localhost:8080/quanlisinhvien1/list?page=1&theLocale=vi_VN">Tiếng Việt</a>
+    <a href="http://localhost:8080/quanlisinhvien1/list?page=1&theLocale=en_US">English</a>
         <table border="1" cellpadding="5">
-            <caption><h2>List of Books</h2></caption>
+            <caption><h2>List of Students</h2></caption>
             <tr>
                 <th>ID</th>
-                <th>Mã Sinh Viên</th>
-                <th><%= resourcebundle.getString("Name") %></th>
-                <th>Ngày Sinh</th>
-                <th>Quê Quán</th>
-                <th>Giới Tính</th>
-                <th>Lớp</th>
-                <th>Điểm Lp1</th>
-                <th>Điểm Lp2</th>
-                <th>Điểm TB</th>
-                <th>Xếp Loại</th>
-                <th>Actions</th>
+                <th><fmt:message key="Code Student" /></th>
+                <th><fmt:message key="name" /></th>
+                <th><fmt:message key="Birthday" /></th>
+                <th><fmt:message key="Country" /></th>
+                <th><fmt:message key="Sex" /></th>
+                <th><fmt:message key="Class" /></th>
+                <th><fmt:message key="Mark Lp1" /></th>
+                <th><fmt:message key="Mark Lp2" /></th>
+                <th><fmt:message key="Medium Score" /></th>
+                <th><fmt:message key="Classification" /></th>
+                <th><fmt:message key="Actions" /></th>
             </tr>
             <c:forEach var="Sv" items="${listSinhVien}">
                 <tr>
@@ -63,7 +76,7 @@ ResourceBundle resourcebundle = ResourceBundle.getBundle("resources/Resource_en_
        	<ul style="text-align: center; list-style-type: none;">
        	<c:if test="${allpage != null }"></c:if>
        		<c:forEach var="page" begin="1" end="${allpage }">
-       		<li><a href="${pageContext.request.contextPath}/list?page=<c:out value="${page}"/>"><c:out value="${page}"/></a></li>
+       		<li><a href="${pageContext.request.contextPath}/list?page=<c:out value='${page}'/> &lang="><c:out value="${page}"/></a></li>
        		</c:forEach>
        	</ul>
     </div>   

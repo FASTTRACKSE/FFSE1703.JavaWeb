@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.DAO;
 import model.SinhVien;
@@ -58,10 +59,22 @@ public class ListSV extends HttpServlet {
 		case "/update":
 			updateBook(request, response);
 			break;
+		case "/DaNgonNgu":
+			lang(request, response);
+			break;
 		default:
 			listSinhVien(request, response);
 			break;
 		}
+	}
+
+	private void lang(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String lang = request.getParameter("Lang");
+		System.out.println(lang);
+		HttpSession session = request.getSession();
+		session.setAttribute("lang", lang);
+		response.sendRedirect("Form.jsp");
+
 	}
 
 	private void phanTrang(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

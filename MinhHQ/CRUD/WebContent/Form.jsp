@@ -25,6 +25,7 @@
 				<th><fmt:message key="Gender" /></th>
 				<th><fmt:message key="Date" /></th>
 				<th><fmt:message key="Class" /></th>
+				<th><fmt:message key="Address" /></th>
 				<th><fmt:message key="Action" /></th>
 
 			</tr>

@@ -30,8 +30,8 @@ public class UserDao {
 						rs.getString("que_quan"), rs.getString("gioi_tinh"), rs.getString("lop"));
 
 				SinhVien.add(SV);
-
 			}
+			ps.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -51,6 +51,7 @@ public class UserDao {
 		statement.setString(6, SV.getLop());
 
 		boolean rowInserted = statement.executeUpdate() > 0;
+		statement.close();
 		return rowInserted;
 	}
 
@@ -89,7 +90,6 @@ public class UserDao {
 			SV = new SinhVien(maSinhVien, ten, tuoi, diaChi, gioiTinh, lop);
 		}
 
-		resultSet.close();
 		statement.close();
 
 		return SV;
@@ -129,7 +129,7 @@ public class UserDao {
 
 				list.add(e);
 			}
-			conn.close();
+			ps.close();
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -146,6 +146,7 @@ public class UserDao {
 			soTrang = rs.getInt("count(userid)");
 			break;
 		}
+		statement.close();
 		return soTrang;
 	}
 }

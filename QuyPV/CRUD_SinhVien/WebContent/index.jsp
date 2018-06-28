@@ -83,12 +83,22 @@
   			</li>
   			<li>
   				<a href="listsv?trang=${prev}"><i class="fa fa-angle-double-left" style="font-size:20px"></i></a>
+  			
+  			
   			</li>
-			<c:forEach var = "i" begin = "1" end = "${soTrang}">
+  			
 				<li>
-         			<a href="listsv?trang=${i}&lang=${lang}"> <c:out value = "${i}"/> </a> <!-- listsv không trùng với case ở servlet nên tự nhảy vào case default, lang để khi chuyển trang thì ngôn ngữ vẫn ko đổi -->
+					<c:if test="${trang  > 1}">	
+         				<a href="listsv?trang=${trang - 1}&lang=${lang}"> ${trang - 1} </a>
+					</c:if>
+					<a href="listsv?trang=${trang}&lang=${lang}"> ${trang} </a> <!-- listsv không trùng với case ở servlet nên tự nhảy vào case default, lang để khi chuyển trang thì ngôn ngữ vẫn ko đổi --> 
+					<c:if test="${trang < soTrang}">	
+         				<a href="listsv?trang=${trang + 1}&lang=${lang}"> ${trang + 1} </a>
+					</c:if>
+					
+					
         		</li>
-     	 	</c:forEach>
+     	 	
      	 	<li> 
      	 		<a href="listsv?trang=${next}"><i class="fa fa-angle-double-right" style="font-size:20px"></i></a>
      	 	</li>

@@ -104,7 +104,6 @@ public class SinhVienServlet extends HttpServlet {
 			
 		}
 		
-		
 						// phần prev
 		int prev = 0;
         if (trang == 1) {
@@ -136,9 +135,11 @@ public class SinhVienServlet extends HttpServlet {
 	
 		request.setAttribute("sinhVienList", arrSinhVienList);
 		request.setAttribute("soTrang", Math.ceil(soTrang));
+		request.setAttribute("trang", trang);
 		request.setAttribute("prev", prev);
 		request.setAttribute("next", next);
 		request.setAttribute("lang", lang); // chuyển source ngôn ngữ qua list sinh viên
+		
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
 		dispatcher.forward(request, response);

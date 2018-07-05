@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+<title>JSF</title>
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</h:head>
+<body>
+	<div class="container">
+		<h:form class="form-group">
+			<div>
+
+				<h:inputText value="#{helloBean.name}" class="form-control" />
+				<br />
+			</div>
+			<div>
+				<label for="name">Password</label>
+				<h:inputSecret value="#{helloBean.password}" class="form-control" />
+				<br />
+			</div>
+
+			<div class="form-check">
+				<label for="name">Gender</label>
+				<h:selectOneRadio value="#{helloBean.gender}">
+					<f:selectItem itemValue="male" itemLabel="male" />
+					<f:selectItem itemValue="female" itemLabel="female" />
+				</h:selectOneRadio>
+				<br />
+			</div>
+			<div>
+				<label for="name">Favorites</label>
+				<h:selectManyCheckbox value="#{helloBean.favorites}">
+					<f:selectItem itemValue="Design" itemLabel="Design" />
+					<f:selectItem itemValue="Coding" itemLabel="Coding" />
+					<f:selectItem itemValue="Music" itemLabel="Music" />
+					<f:selectItem itemValue="Food" itemLabel="Food" />
+					<f:selectItem itemValue="Sport" itemLabel="Sport" />
+				</h:selectManyCheckbox>
+				<br />
+			</div>
+			<div>
+				<label for="name">Skills</label>
+				<h:selectOneMenu value="#{helloBean.skills}">
+					<f:selectItem itemValue="Java" itemLabel="Java" />
+					<f:selectItem itemValue="SQL" itemLabel="SQL" />
+					<f:selectItem itemValue="AWS" itemLabel="AWS" />
+					<f:selectItem itemValue="C#" itemLabel="C#" />
+					<f:selectItem itemValue="Python" itemLabel="Python" />
+				</h:selectOneMenu>
+				<br />
+			</div>
+			<div>
+				<label for="name">Title</label>
+				<h:selectOneMenu value="#{helloBean.title}">
+					<f:selectItem itemValue="Dev" itemLabel="Dev" />
+					<f:selectItem itemValue="QA" itemLabel="QA" />
+					<f:selectItem itemValue="Tester" itemLabel="Tester" />
+					<f:selectItem itemValue="BA" itemLabel="BA" />
+				</h:selectOneMenu>
+				<br />
+			</div>
+
+
+			<h:commandButton class="btn btn-success"
+				action="#{helloBean.submit()}" value="Submit" />
+		</h:form>
+
+	</div>
+</body>
+</html>

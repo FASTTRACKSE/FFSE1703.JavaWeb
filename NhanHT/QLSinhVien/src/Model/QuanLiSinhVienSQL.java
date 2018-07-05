@@ -121,7 +121,6 @@ public class QuanLiSinhVienSQL {
 		while (result.next()) {
 			total = result.getDouble("COUNT(*)");
 		}
-
 		return total;
 
 	}

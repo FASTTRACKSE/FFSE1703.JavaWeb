@@ -25,4 +25,10 @@
 <fullyQualifiedTypeName name="com.sun.java.util.jar.pack.Package.File"/>
 <fullyQualifiedTypeName name="java.io.File"/>
 <fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="javax.faces.bean.ManagedProperty"/>
+<fullyQualifiedTypeName name="bean.HelloService"/>
+<fullyQualifiedTypeName name="service.HelloService"/>
+<fullyQualifiedTypeName name="javax.annotation.ManagedBean"/>
+<fullyQualifiedTypeName name="javax.faces.bean.SessionScoped"/>
+<fullyQualifiedTypeName name="javax.faces.bean.ManagedBean"/>
 </qualifiedTypeNameHistroy>

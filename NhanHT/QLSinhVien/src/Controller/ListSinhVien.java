@@ -145,7 +145,6 @@ public class ListSinhVien extends HttpServlet {
 		request.setAttribute("sinhVien", existing);
 		request.setAttribute("lang", lang);
 		dispatcher.forward(request, response);
-
 	}
 
 	private void update(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {

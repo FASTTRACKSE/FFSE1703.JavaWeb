@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"></link>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+</h:head>
+<h:body class="container">
+	<div>
+		<center>
+			<p class="h1">Danh sách sinh viên</p>
+		</center>
+	</div>
+	<div>
+		<p class="h3">
+			<a href="FormInsert.xhtml">Thêm sinh viên</a>
+		</p>
+	</div>
+	<h:form>
+		<h:dataTable class="table table-striped table-hover table-bordered"
+			binding="#{table}" value="#{sinhVien.listSinhVien}" var="sv">
+			<h:column>
+				<f:facet name="header">ID</f:facet>
+				<h:outputText value="#{table.rowIndex + 1}"></h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Họ đệm</f:facet>
+				<h:outputText value="#{sv.hoDem}"></h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Tên</f:facet>
+				<h:outputText value="#{sv.ten}"></h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Năm sinh</f:facet>
+				<h:outputText value="#{sv.namSinh}"></h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Giới tính</f:facet>
+				<h:outputText value="#{sv.gioiTinh}"></h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Email</f:facet>
+				<h:outputText value="#{sv.email}"></h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Số điện thoại</f:facet>
+				<h:outputText value="#{sv.sdt}"></h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Địa chỉ</f:facet>
+				<h:outputText value="#{sv.diaChi}"></h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Lớp học</f:facet>
+				<h:outputText value="#{sv.lop}"></h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Hành động</f:facet>
+				<h:commandButton action="#{sinhVien.editSinhVien(sv.id)}"
+					styleClass="btn btn-success" value="Sửa" />
+				<h:commandButton action="#{sinhVien.deleteSinhVien(sv.id)}"
+					styleClass="btn btn-danger" value="Xóa" />
+			</h:column>
+		</h:dataTable>
+	</h:form>
+</h:body>
+</html>

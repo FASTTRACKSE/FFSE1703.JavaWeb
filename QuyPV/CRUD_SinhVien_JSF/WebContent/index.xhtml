@@ -72,48 +72,49 @@
 					<h:commandButton class="btn btn-danger"
 						action="#{sinhVien_Bean.deleteSinhVien(sinhVien.maSv)}"
 						value="Xóa" onclick="return function1()"></h:commandButton>
-					<h:outputText value="             " escape="false" /><!-- tạo khoảng trắng -->
-					<h:commandButton class="btn btn-primary" action="#{sinhVien_Bean.editSinhVienRecord(sinhVien.maSv)}" value="Sửa"></h:commandButton>
+					<h:outputText value="             " escape="false" />
+					<!-- tạo khoảng trắng -->
+					<h:commandButton class="btn btn-primary"
+						action="#{sinhVien_Bean.editSinhVienRecord(sinhVien.maSv)}"
+						value="Sửa: #{sinhVien.maSv}"></h:commandButton>
 				</h:column>
 			</h:dataTable>
 			<ul class="pagination">
 				<!-- Nếu trang bằng 1 thì ẩn nút prev -->
 				<c:if test="#{sinhVien_Bean.trang gt 1}">
-					<li>
-						<h:commandLink value="prev" action="#{sinhVien_Bean.init()}">
-    					<f:param name="trang" value="#{sinhVien_Bean.prev}"></f:param>
+					<li><h:commandLink value="prev"
+							action="#{sinhVien_Bean.init()}">
+							<f:param name="trang" value="#{sinhVien_Bean.prev}"></f:param>
+						</h:commandLink></li>
+				</c:if>
+
+				<li><c:if test="#{sinhVien_Bean.trang gt 1}">
+						<h:commandLink value="#{sinhVien_Bean.trang - 1}"
+							action="#{sinhVien_Bean.init()}">
+							<f:param name="trang" value="#{sinhVien_Bean.trang - 1}"></f:param>
 						</h:commandLink>
-					</li>
-				</c:if>
-			
-				<li>
-				<c:if test="#{sinhVien_Bean.trang gt 1}">
-					<h:commandLink value="#{sinhVien_Bean.trang - 1}" action="#{sinhVien_Bean.init()}">
-    				<f:param name="trang" value="#{sinhVien_Bean.trang - 1}"></f:param>
-					</h:commandLink>
-				</c:if>
-			<h:commandLink value="#{sinhVien_Bean.trang}" action="#{sinhVien_Bean.init()}">
-    			<f:param name="trang" value="#{sinhVien_Bean.trang}"></f:param>
-			</h:commandLink>
-			<c:if test="#{sinhVien_Bean.trang lt sinhVien_Bean.soTrang}">
-				<h:commandLink value="#{sinhVien_Bean.trang + 1}" action="#{sinhVien_Bean.init()}">
-    				<f:param name="trang" value="#{sinhVien_Bean.trang + 1}"></f:param>
-				</h:commandLink>
-			</c:if>
-				</li>
+					</c:if> 
+					<h:commandLink value="#{sinhVien_Bean.trang}"
+						action="#{sinhVien_Bean.init()}" style="background-color: rgb(131,199,93)">
+						<f:param name="trang" value="#{sinhVien_Bean.trang}"></f:param>
+					</h:commandLink> <c:if test="#{sinhVien_Bean.trang lt sinhVien_Bean.soTrang}">
+						<h:commandLink value="#{sinhVien_Bean.trang + 1}"
+							action="#{sinhVien_Bean.init()}">
+							<f:param name="trang" value="#{sinhVien_Bean.trang + 1}"></f:param>
+						</h:commandLink>
+					</c:if></li>
 				<c:if test="#{sinhVien_Bean.trang lt sinhVien_Bean.soTrang}">
-					<li>
-						<h:commandLink value="next" action="#{sinhVien_Bean.init()}">
-    					<f:param name="trang" value="#{sinhVien_Bean.next}"></f:param>
-						</h:commandLink>
-					</li>
+					<li><h:commandLink value="next"
+							action="#{sinhVien_Bean.init()}">
+							<f:param name="trang" value="#{sinhVien_Bean.next}"></f:param>
+						</h:commandLink></li>
 				</c:if>
 				<h:outputText value="Trang: #{sinhVien_Bean.trang}"></h:outputText>
 			</ul>
-			
+
 		</h:form>
 	</div>
-	
+
 	<script>
 		function function1() {
 			return confirm("Bạn có muốn xóa không?");

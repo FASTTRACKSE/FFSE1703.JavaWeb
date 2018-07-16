@@ -1,21 +1,47 @@
 package bean;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
-import dao.SinhVienDAO;
-
-
-@ManagedBean(name = "sinhVien")
+@ManagedBean(name = "studentBean")
 @RequestScoped
 public class SinhVien {
+
 	private int id;
 	private String hoDem, ten, namSinh, gioiTinh, email, sdt, diaChi, lop;
-	private SinhVienDAO sinhVienDAO = new SinhVienDAO();
-	private ArrayList<SinhVien> listSinhVien = new ArrayList<SinhVien>();
+
+	public SinhVien() {
+
+	}
+
+	public SinhVien(int id) {
+		this.id = id;
+	}
+
+	public SinhVien(String hoDem, String ten, String namSinh, String gioiTinh, String email, String sdt, String diaChi,
+			String lop) {
+		this.hoDem = hoDem;
+		this.ten = ten;
+		this.namSinh = namSinh;
+		this.gioiTinh = gioiTinh;
+		this.email = email;
+		this.sdt = sdt;
+		this.diaChi = diaChi;
+		this.lop = lop;
+	}
+
+	public SinhVien(int id, String hoDem, String ten, String namSinh, String gioiTinh, String email, String sdt,
+			String diaChi, String lop) {
+		this.id = id;
+		this.hoDem = hoDem;
+		this.ten = ten;
+		this.namSinh = namSinh;
+		this.gioiTinh = gioiTinh;
+		this.email = email;
+		this.sdt = sdt;
+		this.diaChi = diaChi;
+		this.lop = lop;
+	}
 
 	public int getId() {
 		return id;
@@ -88,40 +114,5 @@ public class SinhVien {
 	public void setLop(String lop) {
 		this.lop = lop;
 	}
-	
-	public ArrayList<SinhVien> getListSinhVien() throws SQLException {
-		this.listSinhVien = sinhVienDAO.listSinhVien();
-		return listSinhVien;
-	}
 
-	public void setListSinhVien(ArrayList<SinhVien> listSinhVien) {
-		this.listSinhVien = listSinhVien;
-	}
-
-	public String editSinhVien(int ID) throws SQLException {
-		return sinhVienDAO.getSinhVien(ID); 
-	}
-	
-	public String insertSinhVien(SinhVien sv) throws SQLException {
-		String page = "";
-		if (sinhVienDAO.insertSinhVien(sv) == true) {
-			page = "index?faces-redirect=true";
-		}
-		return page;
-	}
-	public String updateSinhVien(SinhVien sv) throws SQLException {
-		String page = "";
-		if (sinhVienDAO.updateSinhVien(sv) == true) {
-			page = "index?faces-redirect=true";
-		}
-		return page;
-	}
-	public String deleteSinhVien(int ID) throws SQLException {
-		String page = "";
-		if (sinhVienDAO.deleteSinhVien(ID) == true) {
-			page = "index?faces-redirect=true";
-		}
-		return page;
-	}
-	
 }

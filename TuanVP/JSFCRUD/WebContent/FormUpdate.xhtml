@@ -21,6 +21,7 @@
 	</p>
 
 	<h:form>
+		<h:inputHidden value="#{extSV.id}"  />
 		<div class="form-group">
 			<label>Họ đệm</label>
 			<h:inputText id="hodem" styleClass="form-control"
@@ -31,9 +32,8 @@
 		</div>
 		<div class="form-group">
 			<label>Tên</label>
-			<h:inputText id="ten" styleClass="form-control"
-				value="#{extSV.ten}" requiredMessage="Vui lòng nhập tên"
-				required="true">
+			<h:inputText id="ten" styleClass="form-control" value="#{extSV.ten}"
+				requiredMessage="Vui lòng nhập tên" required="true">
 			</h:inputText>
 			<h:message for="ten" style="color:red;"></h:message>
 		</div>
@@ -60,11 +60,10 @@
 		</div>
 		<div class="form-group">
 			<label>Số điện thoại</label>
-			<h:inputText id="sdt" styleClass="form-control"
-				value="#{extSV.sdt}"
+			<h:inputText id="sdt" styleClass="form-control" value="#{extSV.sdt}"
 				validatorMessage="Số điện thoại phải có 10 đến 11 chữ số"
 				requiredMessage="Vui lòng nhập tuổi" required="true">
-				<f:validateLength minimum="10" maximum="11"></f:validateLength>
+				<f:validateRegex pattern="(\+84|0)[0-9]{9,10}" />
 			</h:inputText>
 			<h:message for="sdt" style="color:red;"></h:message>
 		</div>
@@ -101,7 +100,8 @@
 			<h:message for="lophoc" style="color:red;"></h:message>
 		</div>
 		<h:commandButton styleClass="btn btn-primary"
-			action="#{sinhVien.updateSinhVien(extSV)}" value="Nhập" />
+			action="#{studentController.updateSinhVien(extSV)}" value="Nhập" />
+		<h:button styleClass="btn btn-success" outcome="index" value="Trở lại"></h:button>
 	</h:form>
 </h:body>
 </html>

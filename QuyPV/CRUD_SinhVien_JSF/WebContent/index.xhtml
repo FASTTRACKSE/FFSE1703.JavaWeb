@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<title>Danh Sách Sinh Viên</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1"
+		http-equiv="X-UA-Conpatible" />
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</h:head>
+
+<h:body>
+	<div class="container">
+		<center>
+			<h2>
+				<h:outputText value="Danh sách sinh viên" />
+			</h2>
+		</center>
+		<h:form id="studentForm">
+			<h:commandButton class="btn btn-success" value="Thêm sinh viên"
+				action="create.xhtml?faces-redirect=true"></h:commandButton>
+			<h:dataTable id="studentTable"
+				class="table table-striped table-hover" binding="#{table}"
+				value="#{sinhVien_Bean.sinhVienList()}" var="sinhVien">
+				<h:column>
+					<f:facet name="header">Stt</f:facet>
+					<h:outputText value="#{table.rowIndex + 1}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Mã sv</f:facet>
+					<h:outputText value="#{sinhVien.maSv}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Họ tên</f:facet>
+					<h:outputText value="#{sinhVien.hoTen}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Năm sinh</f:facet>
+					<h:outputText value="#{sinhVien.namSinh}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Quê quán</f:facet>
+					<h:outputText value="#{sinhVien.queQuan}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Giới tính</f:facet>
+					<h:outputText value="#{sinhVien.gioiTinh}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Email</f:facet>
+					<h:outputText value="#{sinhVien.email}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Điện thoại</f:facet>
+					<h:outputText value="#{sinhVien.dienThoai}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Mã lớp</f:facet>
+					<h:outputText value="#{sinhVien.maLop}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Chức năng</f:facet>
+					<h:commandButton class="btn btn-danger"
+						action="#{sinhVien_Bean.deleteSinhVien(sinhVien.maSv)}"
+						value="Xóa" onclick="return function1()"></h:commandButton>
+					<h:outputText value="             " escape="false" />
+					<!-- tạo khoảng trắng -->
+					<h:commandButton class="btn btn-primary"
+						action="#{sinhVien_Bean.editSinhVienRecord(sinhVien.maSv)}"
+						value="Sửa: #{sinhVien.maSv}"></h:commandButton>
+				</h:column>
+			</h:dataTable>
+			<ul class="pagination">
+				<!-- Nếu trang bằng 1 thì ẩn nút prev -->
+				<c:if test="#{sinhVien_Bean.trang gt 1}">
+					<li><h:commandLink value="prev"
+							action="#{sinhVien_Bean.init()}">
+							<f:param name="trang" value="#{sinhVien_Bean.prev}"></f:param>
+						</h:commandLink></li>
+				</c:if>
+
+				<li><c:if test="#{sinhVien_Bean.trang gt 1}">
+						<h:commandLink value="#{sinhVien_Bean.trang - 1}"
+							action="#{sinhVien_Bean.init()}">
+							<f:param name="trang" value="#{sinhVien_Bean.trang - 1}"></f:param>
+						</h:commandLink>
+					</c:if> 
+					<h:commandLink value="#{sinhVien_Bean.trang}"
+						action="#{sinhVien_Bean.init()}" style="background-color: rgb(131,199,93)">
+						<f:param name="trang" value="#{sinhVien_Bean.trang}"></f:param>
+					</h:commandLink> <c:if test="#{sinhVien_Bean.trang lt sinhVien_Bean.soTrang}">
+						<h:commandLink value="#{sinhVien_Bean.trang + 1}"
+							action="#{sinhVien_Bean.init()}">
+							<f:param name="trang" value="#{sinhVien_Bean.trang + 1}"></f:param>
+						</h:commandLink>
+					</c:if></li>
+				<c:if test="#{sinhVien_Bean.trang lt sinhVien_Bean.soTrang}">
+					<li><h:commandLink value="next"
+							action="#{sinhVien_Bean.init()}">
+							<f:param name="trang" value="#{sinhVien_Bean.next}"></f:param>
+						</h:commandLink></li>
+				</c:if>
+				<h:outputText value="Trang: #{sinhVien_Bean.trang}"></h:outputText>
+			</ul>
+
+		</h:form>
+	</div>
+
+	<script>
+		function function1() {
+			return confirm("Bạn có muốn xóa không?");
+		}
+	</script>
+
+</h:body>
+
+</html>

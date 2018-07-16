@@ -94,19 +94,39 @@ public class SinhVienServlet extends HttpServlet {
 //		PrintWriter pw = response.getWriter();
 //		pw.println(sv.check());
 		//response.setCharacterEncoding("UTF-8");
-		int trang = 1; // mặc định trang đầu tiên là trang 1 vì lúc đầu request.getParameter("trang") = null
 		
+		int trang = 1; // mặc định trang đầu tiên là trang 1 vì lúc đầu request.getParameter("trang") = null
+		double tongSinhVien = sinhVienStatement.countSinhVien();
+		double soBanGhiMotTrang = 4.0; // tổng số bản ghi hiển thị trên 1 trang
+		double soTrang = tongSinhVien/soBanGhiMotTrang ; // tính tổng số trang dựa vào số bản ghi để gửi sang view
 		if(request.getParameter("trang") != null) {
 			trang = Integer.parseInt(request.getParameter("trang")); // trang số trang mà người dùng chọn 1,2,....
+			
 		}
+		
+						// phần prev
+		int prev = 0;
+        if (trang == 1) {
+            prev = 1;//Luon la trang 1
+        } else {
+            prev = trang - 1;//Neu trang tu 2 tro len thi back tru 1
+        }
+        
+        
+        				// phần next
+		int next = 0;
+		if(trang < soTrang) {
+			next = trang + 1;
+		} else if(trang >= soTrang) {
+			next = trang;
+		}
+		
 		 
 		int start = (trang - 1) * 4; // lấy start để limit
 		int end = 4; // lấy end để limit
 		//System.out.println(start);
 		arrSinhVienList = sinhVienStatement.SinhVienList(start, end);
-		double tongSinhVien = sinhVienStatement.countSinhVien();
-		double soBanGhiMotTrang = 4.0; // tổng số bản ghi hiển thị trên 1 trang
-		double soTrang = tongSinhVien/soBanGhiMotTrang ; // tính tổng số trang dựa vào số bản ghi để gửi sang view
+		
 		
 		lang = request.getParameter("lang"); // lấy request ngôn ngữ
 		if(request.getParameter("lang") == null) {
@@ -115,7 +135,11 @@ public class SinhVienServlet extends HttpServlet {
 	
 		request.setAttribute("sinhVienList", arrSinhVienList);
 		request.setAttribute("soTrang", Math.ceil(soTrang));
+		request.setAttribute("trang", trang);
+		request.setAttribute("prev", prev);
+		request.setAttribute("next", next);
 		request.setAttribute("lang", lang); // chuyển source ngôn ngữ qua list sinh viên
+		
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
 		dispatcher.forward(request, response);

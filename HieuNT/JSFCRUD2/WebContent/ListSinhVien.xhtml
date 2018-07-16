@@ -1,0 +1,164 @@
+<!DOCTYPE HTML>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+<h:head>
+	<meta charset="utf-8" name="viewport"
+		content="width=device-width, initial-scale=1"
+		http-equiv="X-UA-Conpatible" />
+
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+
+
+
+
+	<title>JSF CRUD Example</title>
+
+	<style type="text/css">
+	.ui-selectonemenu {
+	width: 280px !important;
+}
+
+.ui-selectonemenu-label {
+	width: 280px !important;
+}
+
+.ui-selectonemenu-panel {
+	width: 280px !important;
+}
+	
+.tableUpdated {
+	color: blue;
+	width: 90% !important;
+	margin: 17px 58px 0 !important;
+}
+
+.btnSpace {
+	margin: 17px;
+}
+
+body {
+	background-image: url(/JSFCRUD2/resources/image/lisa.jpg);
+ background-filter: blur(5px);		/* Center and scale the image nicely */
+
+}
+</style>
+
+</h:head>
+
+<h:body>
+
+	<center>
+		<h2>
+			<h:outputText value="SINH VIÊN FASTTRACK SE" />
+		</h2>
+	</center>
+
+	<h:form id="studentForm">
+
+		<h:dataTable id="studentTable" binding="#{table}"
+			value="#{sinhVienBean.studentList}" var="student"
+			class="table table-striped table-hover table-bordered tableUpdated">
+
+			<h:column>
+
+				<f:facet name="header">MÃ SINH VIÊN</f:facet>
+
+				<h:outputText value="#{student.maSinhVien}" />
+
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">TÊN SINH VIÊN</f:facet>
+
+				<h:outputText value="#{student.name}" />
+
+			</h:column>
+
+			<h:column>
+
+				<f:facet name="header">GIỚI TÍNH</f:facet>
+
+				<h:outputText value="#{student.sex}" />
+
+			</h:column>
+
+			<h:column>
+
+				<f:facet name="header">TUỔI</f:facet>
+
+				<h:outputText value="#{student.age}" />
+
+			</h:column>
+
+			<h:column>
+
+				<f:facet name="header">LỚP</f:facet>
+
+				<h:outputText value="#{student.lop}" />
+
+			</h:column>
+
+			<h:column>
+
+				<f:facet name="header">ĐỊA CHỈ</f:facet>
+
+				<h:outputText value="#{student.dress}" />
+
+			</h:column>
+
+			<h:column>
+
+				<f:facet name="header">UPDATE</f:facet>
+
+				<h:commandButton
+					action="#{sinhVienBean.editStudentRecord(student.maSinhVien)}"
+					value="Update" class="btn btn-primary" />
+
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">DELETE</f:facet>
+
+				<h:commandButton
+					action="#{sinhVienBean.deleteStudentRecord(student.maSinhVien)}"
+					value="Delete" class="btn btn-danger" />
+
+			</h:column>
+
+		</h:dataTable>
+
+		<center>
+
+			<h:commandButton action="createSinhVien.xhtml?faces-redirect=true"
+				value="Create New User" class="btn btn-success btnSpace" />
+		</center>
+
+			<nav aria-label="Page navigation example">
+			<ul class="pagination justify-content-center">
+				<li class="page-item"><h:commandLink
+						value="&lt;&lt; Frist Page" action="#{sinhVienBean.firstPage()}"
+						class="page-link" /></li>
+				<li class="page-item"><h:commandLink
+						value="#{sinhVienBean.pagination.pageIndex - 1}"
+						action="#{sinhVienBean.prev()}"
+						class="page-link #{studentBean.pagination.pageIndex == 1 ? 'd-none' : ''}" />
+				</li>
+				<li class="page-item active"><a class="page-link">#{sinhVienBean.pagination.pageIndex}</a></li>
+				<li class="page-item"><h:commandLink
+						value="#{sinhVienBean.pagination.pageIndex + 1}"
+						action="#{sinhVienBean.next()}"
+						class="page-link #{sinhVienBean.pagination.pageIndex == sinhVienBean.pagination.pages ? 'd-none' : ''}" />
+				</li>
+				<li class="page-item"><h:commandLink value="Last Page &gt;&gt;"
+						action="#{sinhVienBean.lastPage()}" class="page-link" /></li>
+			</ul>
+		</nav>
+	</h:form>
+
+</h:body>
+
+</html>

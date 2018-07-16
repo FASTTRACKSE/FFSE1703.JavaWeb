@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <html>
@@ -24,8 +24,8 @@
 			<span class="caret"></span>
 		</button>
 		<ul class="dropdown-menu">
-			<li><a href="List?lang=Resource_en_US">English</a></li>
 			<li><a href="List?lang=Resource_vi_VN">Vietnamese</a></li>
+			<li><a href="List?lang=Resource_en_US">English</a></li>
 		</ul>
 	</div>
 	<div class="container">
@@ -67,7 +67,7 @@
 						<td><c:out value="${x.getDTB()}" /></td>
 						<td><c:out value="${x.xepLoai}" /></td>
 						<td><a class="btn btn-info" role="button"
-							href="edit?id=<c:out value='${x.id}' />&lang=${lang}"><fmt:message
+							href="edit?id=<c:out value='${x.id}'/>&lang=${lang}"><fmt:message
 									key="edit" /></a> &nbsp;&nbsp;&nbsp;&nbsp; <a
 							class="btn btn-danger" role="button"
 							href="delete?id=<c:out value='${x.id}' />"><fmt:message
@@ -85,6 +85,5 @@
 			</c:forEach>
 		</ul>
 	</div>
-
 </body>
 </html>

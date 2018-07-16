@@ -1,4 +1,4 @@
-package model;
+package svOperation;
 
 import java.sql.SQLException;
 import java.util.Properties;
@@ -14,11 +14,9 @@ public class ConnectDB {
 		pro.put("user", strUser);
 		pro.put("password", strPwd);
 		try {
-			com.mysql.jdbc.Driver driver = new Driver();
+			Driver driver = new Driver();
 			conn = (Connection) driver.connect(strConnect, pro);
-			System.out.println("1");
 		} catch (SQLException ex) {
-			System.out.println("dsad");
 			ex.printStackTrace();
 		}
 		return conn;

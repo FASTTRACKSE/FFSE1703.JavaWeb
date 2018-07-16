@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<meta charset="utf-8" name="viewport"
+		content="width=device-width, initial-scale=1"
+		http-equiv="X-UA-Conpatible" />
+	<h:outputStylesheet library="css" name="bootstrap.min(1).css" />
+	<title>JSF Demo Example</title>
+	<style type="text/css">
+.btnWidth {
+	width: 80px;
+}
+</style>
+</h:head>
+<h:body>
+	<h:form id="createStudentForm" class="form-horizontal">
+		<div class="form-group">
+			<div class="col-sm-4"></div>
+			<div class="col-sm-4">
+				<h2>Create Student Record</h2>
+			</div>
+		</div>
+		<hr />
+		<div class="form-group">
+			<h:outputLabel for="username" class="control-label col-sm-4">User Name:</h:outputLabel>
+			<div class="col-sm-4">
+				<h:inputText id="input-name" value="#{helloBean.name}" label="name"
+					required="true">
+					<f:validateLength minimum="5" maximum="8" />
+				</h:inputText>
+				<h:message for="input-name" style="color: red" />
+			</div>
+		</div>
+		<div class="form-group">
+			<h:outputLabel for="email" class="control-label col-sm-4">Email:</h:outputLabel>
+			<div class="col-sm-4">
+				<h:inputText id="input-email" value="#{helloBean.email}"
+					label="email" required="true">
+					<f:validateRegex
+						pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+				</h:inputText>
+				<h:message for="input-email" style="color: red" />
+			</div>
+		</div>
+		<div class="form-group">
+            <h:outputLabel for="age" class="control-label col-sm-4">Age:</h:outputLabel>
+            <div class="col-sm-4">
+                <h:inputTextarea id="address-id" value="#{helloBean.age}" class="form-control" validatorMessage="Address is required">
+                    <f:validateRequired/>
+                </h:inputTextarea>
+            </div>
+        </div>
+		<div class="form-group">
+			<h:outputLabel for="address" class="control-label col-sm-4">Address:</h:outputLabel>
+			<div class="col-sm-4">
+				<h:inputText id="input-address" value="#{helloBean.address}"
+					label="address" required="true">
+					<f:validateLength minimum="5" maximum="50" />
+				</h:inputText>
+				<h:message for="input-address" style="color: red" />
+			</div>
+		</div>
+		<div class="form-group">
+			<h:outputLabel for="gender" class="control-label col-sm-4">Gender:</h:outputLabel>
+			<div class="col-sm-4">
+				<h:selectOneRadio value="#{helloBean.gender}">
+					<f:selectItem itemValue="male" itemLabel="male" />
+					<f:selectItem itemValue="female" itemLabel="female" />
+				</h:selectOneRadio>
+				<h:message for="input-gender" style="color: red" />
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-4"></div>
+			<div class="col-sm-4">
+				<div class="col-sm-2">
+					<h:commandButton value="Save" action="#{helloBean.sayHello()}"></h:commandButton>
+				</div>
+			</div>
+		</div>
+	</h:form>
+</h:body>
+</html>

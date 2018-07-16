@@ -16,18 +16,20 @@
 	<div class="container">
 		<h:form class="form-group">
 			<div>
-
-				<h:inputText value="#{helloBean.name}" class="form-control" />
+				<label for="name">Name</label>
+				<h:inputText id="name" required="true" value="#{helloBean.name}" class="form-control" requiredMessage="Name Khong Duoc De Trong" />
+				<h:message for="name" style="color :red"></h:message>
 				<br />
 			</div>
 			<div>
-				<label for="name">Password</label>
-				<h:inputSecret value="#{helloBean.password}" class="form-control" />
+				<label for="pws">Password</label>
+				<h:inputSecret id="password" required="true" requiredMessage="Password Khong Duoc De Trong" value="#{helloBean.password}" class="form-control" />
+				<h:message for="password" style="color :red"></h:message>
 				<br />
 			</div>
 
 			<div class="form-check">
-				<label for="name">Gender</label>
+				<label for="sex">Gender</label>
 				<h:selectOneRadio value="#{helloBean.gender}">
 					<f:selectItem itemValue="male" itemLabel="male" />
 					<f:selectItem itemValue="female" itemLabel="female" />
@@ -46,8 +48,8 @@
 				<br />
 			</div>
 			<div>
-				<label for="name">Skills</label>
-				<h:selectOneMenu value="#{helloBean.skills}">
+				<label for="name" >Skills</label>
+				<h:selectOneMenu value="#{helloBean.skills}" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
 					<f:selectItem itemValue="Java" itemLabel="Java" />
 					<f:selectItem itemValue="SQL" itemLabel="SQL" />
 					<f:selectItem itemValue="AWS" itemLabel="AWS" />
@@ -58,7 +60,7 @@
 			</div>
 			<div>
 				<label for="name">Title</label>
-				<h:selectOneMenu value="#{helloBean.title}">
+				<h:selectOneMenu value="#{helloBean.title}" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
 					<f:selectItem itemValue="Dev" itemLabel="Dev" />
 					<f:selectItem itemValue="QA" itemLabel="QA" />
 					<f:selectItem itemValue="Tester" itemLabel="Tester" />

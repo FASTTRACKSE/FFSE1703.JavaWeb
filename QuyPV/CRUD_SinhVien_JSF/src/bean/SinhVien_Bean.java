@@ -8,6 +8,8 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
@@ -15,11 +17,11 @@ import javax.servlet.http.HttpServletRequest;
 
 
 @ManagedBean(name= "sinhVien_Bean")
-@RequestScoped
+@SessionScoped
 public class SinhVien_Bean implements Serializable {
 	private String maSv, hoTen, namSinh, queQuan, gioiTinh, email, dienThoai, maLop;
 	private double soTrang;
-	private int trang, prev, next;
+	private int trang, prev, next, start, end;
 	public ArrayList<SinhVien_Bean> arrSinhVien = new ArrayList<>();
 	public DAO sinhVienDAO = new DAO();
 
@@ -168,13 +170,14 @@ public class SinhVien_Bean implements Serializable {
 			this.next = this.trang;
 		}
 		 
-		int start = (this.trang - 1) * 2;
-		int end = 2;
+		 start = (this.trang - 1) * 2;
+		 end = 2;
 		
 		arrSinhVien = sinhVienDAO.sinhVienList(start, end);
 	}
 	
 	public ArrayList<SinhVien_Bean> sinhVienList(){
+		arrSinhVien = sinhVienDAO.sinhVienList(start, end);
 		return arrSinhVien;
 	}
 	
@@ -190,6 +193,7 @@ public class SinhVien_Bean implements Serializable {
 	
 	public String editSinhVienRecord(String maSv) throws SQLException {
 		sinhVienDAO.editSinhVienRecord(maSv);
+		System.out.println("Mã sinh viên: " + maSv);
 		return "edit?faces-redirect=true";
 	}
 	
@@ -210,4 +214,5 @@ public class SinhVien_Bean implements Serializable {
 			throw new ValidatorException(msg);
 		}
 	}
+	
 }

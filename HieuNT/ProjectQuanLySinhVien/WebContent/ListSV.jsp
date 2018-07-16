@@ -19,7 +19,7 @@ body {
 	color: white;
 }
 </style>
-<body background="ME/p.jpg">
+<body>
 	<center>
 		<h1>QUẢN LÝ SINH VIÊN</h1>
 		<h2>
@@ -29,7 +29,7 @@ body {
 
 
 	</center>
-	<div align="center">
+	<%-- <div align="center">
 		<table border="1" cellpadding="5">
 			<caption>DANH SÁCH SINH VIÊN</caption>
 			<tr>
@@ -74,6 +74,6 @@ body {
 						+ "</a>");
 			}
 		%>
-	</div>
+	</div> --%>
 </body>
 </html>

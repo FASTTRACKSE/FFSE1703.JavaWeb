@@ -11,7 +11,7 @@ public class HelloBean {
 	
 	private String name, password, description, gender, title,skills;
 	private String[] favorites;
-
+	
 	public String submit() {
 		return "result";
 	}

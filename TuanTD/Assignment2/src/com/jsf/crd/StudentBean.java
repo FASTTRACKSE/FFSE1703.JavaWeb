@@ -2,21 +2,28 @@ package com.jsf.crd;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import com.jsf.crd.Paginator;
+import com.jsf.crud.db.operations.DatabaseOperation;
 
 import javax.annotation.PostConstruct;
 //import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+//import javax.faces.bean.RequestScoped;
+//import javax.faces.bean.SessionScoped;
 //import javax.faces.component.UIComponent;
 //import javax.faces.component.UIInput;
 //import javax.faces.context.FacesContext;
 
-import com.jsf.crud.db.operations.DatabaseOperation;
+
 
 @ManagedBean
 @RequestScoped
 public class StudentBean implements Serializable {
 
+	@ManagedProperty(value= "#{paginator}")
+	Paginator paginator;
 	/**
 	 * 
 	 */
@@ -32,11 +39,17 @@ public class StudentBean implements Serializable {
 	private String gender;
 	@SuppressWarnings("rawtypes")
 	private ArrayList studentsListFromDB;
-
+	
+	DatabaseOperation databaseOperation =new DatabaseOperation();
 	@PostConstruct
 	public void init() {
-		studentsListFromDB = DatabaseOperation.getStudentsListFromDB();
+		double tongSv = databaseOperation.count();
+		System.out.println("count:" + tongSv);
+		paginator.pagination(tongSv);
+		studentsListFromDB = databaseOperation.getStudentsListFromDB(paginator.start(),paginator.end);
 	}
+	
+	
 
 	public int getId() {
 		return id;
@@ -119,25 +132,62 @@ public class StudentBean implements Serializable {
 //		}
 //
 //	}
+//	Phân Trang
 
+		
+	public void next() {
+		paginator.next();
+		studentsListFromDB = databaseOperation.getStudentsListFromDB(paginator.start(),paginator.end);
+		System.out.println(paginator.start());
+	}
+	
+	public Paginator getPaginator() {
+		return paginator;
+	}
+
+
+
+	public void setPaginator(Paginator paginator) {
+		this.paginator = paginator;
+	}
+
+
+
+	public void prev() {
+		paginator.prev();
+		studentsListFromDB = databaseOperation.getStudentsListFromDB(paginator.start(),paginator.end);
+		System.out.println(paginator.start());
+		
+	}
+	
+	public void first() {
+		paginator.first();
+		studentsListFromDB = databaseOperation.getStudentsListFromDB(paginator.start(),paginator.end);
+	}
+	
+	public void last() {
+		paginator.last();
+		studentsListFromDB = databaseOperation.getStudentsListFromDB(paginator.start(),paginator.end);
+	}
+	
 	@SuppressWarnings("rawtypes")
 	public ArrayList studentsList() {
 		return studentsListFromDB;
 	}
 
 	public String saveStudentDetails(StudentBean newStudentObj) {
-		return DatabaseOperation.saveStudentDetailsInDB(newStudentObj);
+		return databaseOperation.saveStudentDetailsInDB(newStudentObj);
 	}
 
 	public String editStudentRecord(int studentId) {
-		return DatabaseOperation.editStudentRecordInDB(studentId);
+		return databaseOperation.editStudentRecordInDB(studentId);
 	}
 
 	public String updateStudentDetails(StudentBean updateStudentObj) {
-		return DatabaseOperation.updateStudentDetailsInDB(updateStudentObj);
+		return databaseOperation.updateStudentDetailsInDB(updateStudentObj);
 	}
 
 	public String deleteStudentRecord(int studentId) {
-		return DatabaseOperation.deleteStudentRecordInDB(studentId);
+		return databaseOperation.deleteStudentRecordInDB(studentId);
 	}
 }

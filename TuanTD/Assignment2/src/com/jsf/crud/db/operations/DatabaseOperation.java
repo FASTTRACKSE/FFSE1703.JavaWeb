@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Map;
@@ -14,12 +15,13 @@ import com.jsf.crd.StudentBean;
 
 public class DatabaseOperation {
 
-	public static Statement stmtObj;
-	public static Connection connObj;
-	public static ResultSet resultSetObj;
-	public static PreparedStatement pstmt;
+	public  Statement stmtObj;
+	public  Connection connObj;
+	public  ResultSet resultSetObj;
+	public  PreparedStatement pstmt;
+	double total;
 
-	public static Connection getConnection() {
+	public  Connection getConnection() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			String db_url = "jdbc:mysql://" + "localhost" + "/" + "student"
@@ -32,11 +34,13 @@ public class DatabaseOperation {
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public static ArrayList getStudentsListFromDB() {
+	public  ArrayList getStudentsListFromDB(int start, int end) {
 		ArrayList studentsList = new ArrayList();
 		try {
-			stmtObj = getConnection().createStatement();
-			resultSetObj = stmtObj.executeQuery("select * from student");
+			PreparedStatement ps = getConnection().prepareStatement("select * from student limit ?,?");
+			ps.setInt(1, start);
+			ps.setInt(2, end);
+			ResultSet resultSetObj=ps.executeQuery();
 			while (resultSetObj.next()) {
 				StudentBean stuObj = new StudentBean();
 				stuObj.setId(resultSetObj.getInt("id"));
@@ -57,7 +61,7 @@ public class DatabaseOperation {
 		return studentsList;
 	}
 
-	public static String saveStudentDetailsInDB(StudentBean newStudentObj) {
+	public  String saveStudentDetailsInDB(StudentBean newStudentObj) throws SQLException{
 		int saveResult = 0;
 		String navigationResult = "";
 		try {
@@ -84,7 +88,23 @@ public class DatabaseOperation {
 		return navigationResult;
 	}
 
-	public static String editStudentRecordInDB(int studentId) {
+	public int checkExist(String name) {
+		int exist = 0;
+		try {
+			String sql = "select count(*) from student where name= ?";
+			PreparedStatement ps = getConnection().prepareStatement(sql);
+			ps.setString(1, name);
+			ResultSet result= ps.executeQuery();
+			while(result.next())
+			{
+				exist = result.getInt("COUNT(*)");
+			}
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+		return exist;
+	}
+	public  String editStudentRecordInDB(int studentId) {
 		StudentBean editRecord = null;
 		System.out.println("editStudentRecordInDB() : Student Id: " + studentId);
 
@@ -114,7 +134,7 @@ public class DatabaseOperation {
 		return "/editStudent.xhtml?faces-redirect=true";
 	}
 
-	public static String updateStudentDetailsInDB(StudentBean updateStudentObj) {
+	public  String updateStudentDetailsInDB(StudentBean updateStudentObj) {
 		try {
 			pstmt = getConnection().prepareStatement(
 					"update student set name=?, class=?, email=?, phone=?, address=?, age=?, author=? where id=?");
@@ -134,7 +154,7 @@ public class DatabaseOperation {
 		return "/studentsList.xhtml?faces-redirect=true";
 	}
 
-	public static String deleteStudentRecordInDB(int studentId) {
+	public  String deleteStudentRecordInDB(int studentId) {
 		System.out.println("deleteStudentRecordInDB() : Student Id: " + studentId);
 		try {
 			pstmt = getConnection().prepareStatement("delete from student where id = " + studentId);
@@ -144,5 +164,21 @@ public class DatabaseOperation {
 			sqlException.printStackTrace();
 		}
 		return "/studentsList.xhtml?faces-redirect=true";
+	}
+	
+	public double count() {
+		try {
+			String sql = "select count(*) AS total from student";
+			PreparedStatement ps = getConnection().prepareStatement(sql);
+			ResultSet result= ps.executeQuery();
+			while(result.next())
+			{
+				total = result.getDouble("total");
+			}
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+		
+		return total;
 	}
 }

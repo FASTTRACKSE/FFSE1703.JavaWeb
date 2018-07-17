@@ -6,65 +6,58 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Map;
-
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-import javax.faces.context.FacesContext;
-
 import bean.SinhVien;
 import connection.ConnectionDB;
 
-@ManagedBean(name = "sinhVienDAO")
-@RequestScoped
 public class SinhVienDAO {
 	final static Connection connection = ConnectionDB.getConnect("localhost", "ffse1703014", "admin", "123456");
 
-	public ArrayList<SinhVien> listSinhVien() throws SQLException {
+	public ArrayList<SinhVien> listSinhVien(int start, int maxItems) throws SQLException {
 		ArrayList<SinhVien> listSinhVien = new ArrayList<SinhVien>();
-		String sql = "SELECT * FROM sinhvien";
-		Statement st = connection.createStatement();
-		ResultSet rs = st.executeQuery(sql);
-		while (rs.next()) {
-			SinhVien sv = new SinhVien();
-			sv.setId(rs.getInt("id"));
-			sv.setHoDem(rs.getString("HoDem"));
-			sv.setTen(rs.getString("Ten"));
-			sv.setNamSinh(rs.getString("NamSinh"));
-			sv.setGioiTinh(rs.getString("GioiTinh"));
-			sv.setEmail(rs.getString("Email"));
-			sv.setSdt(rs.getString("SDT"));
-			sv.setDiaChi(rs.getString("DiaChi"));
-			sv.setLop(rs.getString("Lop"));
-			listSinhVien.add(sv);
-		}
-		return listSinhVien;
-	}
-
-	public String getSinhVien(int id) throws SQLException {
-		Map<String, Object> sessionObj = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-		SinhVien sv = new SinhVien();
-		String sql = "SELECT * FROM sinhvien WHERE id = ?";
+		String sql = "SELECT * FROM sinhvien LIMIT ?,?";
 		PreparedStatement ps = connection.prepareStatement(sql);
-		ps.setInt(1, id);
+		ps.setInt(1, start);
+		ps.setInt(2, maxItems);
 		ResultSet rs = ps.executeQuery();
 		while (rs.next()) {
-			sv.setId(rs.getInt("id"));
-			sv.setHoDem(rs.getString("HoDem"));
-			sv.setTen(rs.getString("Ten"));
-			sv.setNamSinh(rs.getString("NamSinh"));
-			sv.setGioiTinh(rs.getString("GioiTinh"));
-			sv.setEmail(rs.getString("Email"));
-			sv.setSdt(rs.getString("SDT"));
-			sv.setDiaChi(rs.getString("DiaChi"));
-			sv.setLop(rs.getString("Lop"));
+			int id = rs.getInt("ID");
+			String hoDem = rs.getString("HoDem");
+			String ten = rs.getString("Ten");
+			String namSinh = rs.getString("NamSinh");
+			String gioiTinh = rs.getString("GioiTinh");
+			String email = rs.getString("Email");
+			String sdt = rs.getString("SDT");
+			String diaChi = rs.getString("DiaChi");
+			String lop = rs.getString("Lop");
+			SinhVien sv = new SinhVien(id, hoDem, ten, namSinh, gioiTinh, email, sdt, diaChi, lop);
+			listSinhVien.add(sv);
 		}
 		rs.close();
 		ps.close();
+		return listSinhVien;
+	}
 
-		
-		sessionObj.put("extSV", sv);
-		return "FormUpdate?faces-redirect=true";
+	public SinhVien getSinhVien(SinhVien sv) throws SQLException {
+		SinhVien extSV = null;
+		String sql = "SELECT * FROM sinhvien WHERE id = ?";
+		PreparedStatement ps = connection.prepareStatement(sql);
+		ps.setInt(1, sv.getId());
+		ResultSet rs = ps.executeQuery();
+		while (rs.next()) {
+			int id = rs.getInt("ID");
+			String hoDem = rs.getString("HoDem");
+			String ten = rs.getString("Ten");
+			String namSinh = rs.getString("NamSinh");
+			String gioiTinh = rs.getString("GioiTinh");
+			String email = rs.getString("Email");
+			String sdt = rs.getString("SDT");
+			String diaChi = rs.getString("DiaChi");
+			String lop = rs.getString("Lop");
+			extSV = new SinhVien(id, hoDem, ten, namSinh, gioiTinh, email, sdt, diaChi, lop);
+		}
+		rs.close();
+		ps.close();
+		return extSV;
 	}
 
 	public boolean insertSinhVien(SinhVien sv) throws SQLException {
@@ -78,13 +71,14 @@ public class SinhVienDAO {
 		ps.setString(6, sv.getSdt());
 		ps.setString(7, sv.getDiaChi());
 		ps.setString(8, sv.getLop());
-		
+
 		boolean rowUpdate = ps.executeUpdate() > 0;
 		ps.close();
 		return rowUpdate;
 	}
+
 	public boolean updateSinhVien(SinhVien sv) throws SQLException {
-		String sql = "UPDATE sinhvien SET Hodem = ?, Ten = ?, NamSinh = ?, GioiTinh = ?, Email = ?, SDT = ?, DiaChi = ?, Lop = ?";
+		String sql = "UPDATE sinhvien SET Hodem = ?, Ten = ?, NamSinh = ?, GioiTinh = ?, Email = ?, SDT = ?, DiaChi = ?, Lop = ? WHERE ID = ?";
 		PreparedStatement ps = connection.prepareStatement(sql);
 		ps.setString(1, sv.getHoDem());
 		ps.setString(2, sv.getTen());
@@ -94,18 +88,33 @@ public class SinhVienDAO {
 		ps.setString(6, sv.getSdt());
 		ps.setString(7, sv.getDiaChi());
 		ps.setString(8, sv.getLop());
-		
+		ps.setInt(9, sv.getId());
+
 		boolean rowUpdate = ps.executeUpdate() > 0;
 		ps.close();
 		return rowUpdate;
 	}
+
 	public boolean deleteSinhVien(int id) throws SQLException {
 		String sql = "DELETE FROM sinhvien WHERE id = ?";
 		PreparedStatement ps = connection.prepareStatement(sql);
 		ps.setInt(1, id);
-		
+
 		boolean rowUpadate = ps.executeUpdate() > 0;
 		return rowUpadate;
 	}
 
+	public int rowCount() throws SQLException {
+		int row = 0;
+		String sql = "SELECT COUNT(*) FROM sinhvien";
+		Statement st = connection.createStatement();
+		ResultSet rs = st.executeQuery(sql);
+		while (rs.next()) {
+			row = rs.getInt("COUNT(*)");
+		}
+		rs.close();
+		st.close();
+
+		return row;
+	}
 }

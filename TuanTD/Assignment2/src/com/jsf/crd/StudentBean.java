@@ -1,20 +1,19 @@
 package com.jsf.crd;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import com.jsf.crd.Paginator;
 import com.jsf.crud.db.operations.DatabaseOperation;
 
 import javax.annotation.PostConstruct;
-//import javax.faces.application.FacesMessage;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
-//import javax.faces.bean.RequestScoped;
-//import javax.faces.bean.SessionScoped;
-//import javax.faces.component.UIComponent;
-//import javax.faces.component.UIInput;
-//import javax.faces.context.FacesContext;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 
 
 
@@ -115,23 +114,17 @@ public class StudentBean implements Serializable {
 		this.gender = gender;
 	}
 	
-//	public void validateModelNo(FacesContext context, UIComponent comp,
-//			Object value) {
-//
-//		System.out.println("inside validate method");
-//
-//		String name = (String) value;
-//
-//		if (name.length() < 10) {
-//			((UIInput) comp).setValid(false);
-//
-//			FacesMessage message = new FacesMessage(
-//					"Vui Lòng Nhập tên?");
-//			context.addMessage(comp.getClientId(context), message);
-//
-//		}
-//
-//	}
+//	// validate trùng mã sinh viên
+	public void validate(FacesContext facesContext, UIComponent component, Object value) throws ValidatorException {
+		int exist = databaseOperation.checkExist(value.toString());
+		if(exist == 1) {
+//			System.out.println(sinhVienDao.checkExist(value.toString()) + "là số lượng");
+//			System.out.println(value.toString());
+			FacesMessage msg = new FacesMessage("Mã sinh viên đã tồn tại. Vui lòng nhập lại");
+			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+			throw new ValidatorException(msg);
+		}
+	}
 //	Phân Trang
 
 		
@@ -175,7 +168,7 @@ public class StudentBean implements Serializable {
 		return studentsListFromDB;
 	}
 
-	public String saveStudentDetails(StudentBean newStudentObj) {
+	public String saveStudentDetails(StudentBean newStudentObj) throws SQLException {
 		return databaseOperation.saveStudentDetailsInDB(newStudentObj);
 	}
 

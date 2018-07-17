@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Map;
@@ -60,7 +61,7 @@ public class DatabaseOperation {
 		return studentsList;
 	}
 
-	public  String saveStudentDetailsInDB(StudentBean newStudentObj) {
+	public  String saveStudentDetailsInDB(StudentBean newStudentObj) throws SQLException{
 		int saveResult = 0;
 		String navigationResult = "";
 		try {
@@ -87,6 +88,22 @@ public class DatabaseOperation {
 		return navigationResult;
 	}
 
+	public int checkExist(String name) {
+		int exist = 0;
+		try {
+			String sql = "select count(*) from student where name= ?";
+			PreparedStatement ps = getConnection().prepareStatement(sql);
+			ps.setString(1, name);
+			ResultSet result= ps.executeQuery();
+			while(result.next())
+			{
+				exist = result.getInt("COUNT(*)");
+			}
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+		return exist;
+	}
 	public  String editStudentRecordInDB(int studentId) {
 		StudentBean editRecord = null;
 		System.out.println("editStudentRecordInDB() : Student Id: " + studentId);

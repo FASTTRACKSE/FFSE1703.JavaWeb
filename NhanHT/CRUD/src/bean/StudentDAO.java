@@ -36,6 +36,7 @@ public class StudentDAO {
 
 	public String insertStudentDetailsInDB(String hoDem, String ten, String namSinh, String gioiTinh, String email,
 			String dienThoai, String diaChi, String lop) {
+	
 		int insertResult = 0;
 		String navigationResult = "";
 		try {
@@ -50,7 +51,7 @@ public class StudentDAO {
 			st.setString(7, diaChi);
 			st.setString(8, lop);
 			insertResult = st.executeUpdate();
-
+			studentList.clear();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -105,9 +106,6 @@ public class StudentDAO {
 			sessionMapObj.put("editRecordObj", sv);
 		}
 
-		resultSet.close();
-		statement.close();
-
 		return "editStudent.xhtml";
 	}
 	public String updateStudentDetailsInDB(StudentBean updateStudentObj) throws SQLException {
@@ -126,6 +124,9 @@ public class StudentDAO {
 		statement.setString(8, updateStudentObj.getLop());
 		statement.setInt(9, updateStudentObj.getId());
 		statement.executeUpdate();
+		
+		
+		
 		return "index.xhtml";
 	}
 	public double countSv() throws SQLException {

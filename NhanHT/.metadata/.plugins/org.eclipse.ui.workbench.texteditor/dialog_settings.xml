@@ -12,10 +12,12 @@
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="user"/>
 			<item value="test"/>
 			<item value="final"/>
 		</list>
 		<list key="replacehistory">
+			<item value="studentBean"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

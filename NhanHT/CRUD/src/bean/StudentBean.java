@@ -5,13 +5,12 @@ import java.util.ArrayList;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class StudentBean {
 	private int id;
 	private String hoDem, ten, namSinh, gioiTinh, email, dienThoai, diaChi, lop;
@@ -20,7 +19,9 @@ public class StudentBean {
 	public ArrayList<StudentBean> studentsListFromDB;
 
 	public StudentDAO studentDAO = new StudentDAO();
-
+	@ManagedProperty(value= "#{paginator}")
+	Paginator paginator;
+	
 	public StudentBean(int id, String hoDem, String ten, String namSinh, String gioiTinh, String email,
 			String dienThoai, String diaChi, String lop) {
 		super();
@@ -130,26 +131,48 @@ public class StudentBean {
 	@PostConstruct
 	public void init() {
 		try {
+			double tongSv = studentDAO.countSv();
+			paginator.paginator(tongSv);
+			studentsListFromDB = studentDAO.getStudentsListFromDB(paginator.start(),paginator.end);
 			
-			HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-			this.trang = 1;
-			if(request.getParameter("trang")!=null) {
-				this.trang = Integer.parseInt(request.getParameter("trang"));
-			}
-			int start = (this.trang - 1) * 4;
-			int end = 4;
-			
-			double countSv = studentDAO.countSv();
-			this.soTrang =  Math.ceil(countSv / 4.0);
-			
-			studentDAO = new StudentDAO();
-			studentsListFromDB = studentDAO.getStudentsListFromDB(start,end);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
+	
+	public Paginator getPaginator() {
+		return paginator;
+	}
+
+	public void setPaginator(Paginator paginator) {
+		this.paginator = paginator;
+	}
+
+	public void next() throws SQLException {
+		paginator.next();
+		studentsListFromDB = studentDAO.getStudentsListFromDB(paginator.start(),paginator.end);
+	}
+	
+	public void prev() throws SQLException {
+		paginator.prev();
+		studentsListFromDB = studentDAO.getStudentsListFromDB(paginator.start(),paginator.end);
+		
+	}
+	
+	public void first() throws SQLException {
+		paginator.first();
+		studentsListFromDB = studentDAO.getStudentsListFromDB(paginator.start(),paginator.end);
+	}
+	
+	public void last() throws SQLException {
+		paginator.last();
+		studentsListFromDB = studentDAO.getStudentsListFromDB(paginator.start(),paginator.end);
+	}
+	
+	
 	public ArrayList<StudentBean> studentsList() throws SQLException {
+		studentsListFromDB = studentDAO.getStudentsListFromDB(paginator.start(),paginator.end);
 		return studentsListFromDB;
 	}
 

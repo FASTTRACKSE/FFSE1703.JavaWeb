@@ -2,28 +2,53 @@ package controller;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Map;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-
-import bean.SinhVien;
+import bean.SinhVienBean;
 import dao.SinhVienDAO;
 
 @ManagedBean(name = "studentController")
 @SessionScoped
 public class SinhVienController {
 	private int pageCurrent, pageTotal, pageLimit, pageStart;
-	public ArrayList<SinhVien> listSinhVien;
+	public ArrayList<SinhVienBean> listSinhVien;
+	public Locale locale = FacesContext.getCurrentInstance().getViewRoot().getLocale();
 	private SinhVienDAO studentDAO = new SinhVienDAO();
 	public Map<String, Object> sessionObj = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
 
-	public SinhVienController() {
+	public SinhVienController() throws SQLException {
+		listSinhVien = new ArrayList<SinhVienBean>();
 		this.pageCurrent = 1;
 		this.pageTotal = 1;
 		this.pageStart = 1;
 		this.pageLimit = 1;
+		locale = new Locale("vi");
+		FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
+		loadStudent();
+	}
+
+	public Locale getLocale() {
+		return locale;
+	}
+
+	public void setLocale(Locale locale) {
+		this.locale = locale;
+	}
+	
+	public void changeLanguage(String language) {
+		locale = new Locale(language);
+		FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
+	}
+	
+	public void countStudent() throws SQLException {
+		int totalStudent = studentDAO.rowCount();
+		pageTotal = (int) Math.ceil(totalStudent / pageLimit);
+		if (pageCurrent > pageTotal) {
+			pageCurrent = pageTotal;
+		}
 	}
 
 	public void firstPage() throws SQLException {
@@ -69,8 +94,7 @@ public class SinhVienController {
 		this.pageCurrent = pageCurrent;
 	}
 
-	public int getPageTotal() throws SQLException {
-		pageTotal = (int) Math.ceil(studentDAO.rowCount() / pageLimit);
+	public int getPageTotal() {
 		return pageTotal;
 	}
 
@@ -95,39 +119,40 @@ public class SinhVienController {
 	}
 
 	public void loadStudent() throws SQLException {
+		listSinhVien.clear();
+		countStudent();
 		pageStart = (pageCurrent - 1) * pageLimit;
 		listSinhVien = studentDAO.listSinhVien(pageStart, pageLimit);
 	}
 
-	public ArrayList<SinhVien> getListSinhVien() throws SQLException {
-		listSinhVien = studentDAO.listSinhVien(pageStart, pageLimit);
+	public ArrayList<SinhVienBean> getListSinhVien() {
 		return listSinhVien;
 	}
 
-	public void setListSinhVien(ArrayList<SinhVien> listSinhVien) {
+	public void setListSinhVien(ArrayList<SinhVienBean> listSinhVien) {
 		this.listSinhVien = listSinhVien;
 	}
-	
-	public String insertSinhVien(SinhVien sv) throws SQLException {
+
+	public String insertSinhVien(SinhVienBean sv) throws SQLException {
 		studentDAO.insertSinhVien(sv);
 		return "index.xhtml?faces-redirect=true";
 	}
-	
+
 	public String editSinhVien(int id) throws SQLException {
-		SinhVien sv = new SinhVien(id);
-		SinhVien extSV = studentDAO.getSinhVien(sv);
+		SinhVienBean sv = new SinhVienBean(id);
+		SinhVienBean extSV = studentDAO.getSinhVien(sv);
 		sessionObj.put("extSV", extSV);
 		return "FormUpdate.xhtml?faces-redirect=true";
 	}
-	
-	public String updateSinhVien(SinhVien sv) throws SQLException {
+
+	public String updateSinhVien(SinhVienBean sv) throws SQLException {
 		studentDAO.updateSinhVien(sv);
 		return "index.xhtml?faces-redirect=true";
 	}
-	
-	public String deleteSinhVien(int id) throws SQLException {
+
+	public void deleteSinhVien(int id) throws SQLException {
 		studentDAO.deleteSinhVien(id);
-		return "index.xhtml?faces-redirect=true";
+		loadStudent();
 	}
 
 }

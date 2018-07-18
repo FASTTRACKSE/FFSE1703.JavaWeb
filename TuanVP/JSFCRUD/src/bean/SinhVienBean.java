@@ -5,20 +5,20 @@ import javax.faces.bean.RequestScoped;
 
 @ManagedBean(name = "studentBean")
 @RequestScoped
-public class SinhVien {
+public class SinhVienBean {
 
 	private int id;
 	private String hoDem, ten, namSinh, gioiTinh, email, sdt, diaChi, lop;
 
-	public SinhVien() {
+	public SinhVienBean() {
 
 	}
 
-	public SinhVien(int id) {
+	public SinhVienBean(int id) {
 		this.id = id;
 	}
 
-	public SinhVien(String hoDem, String ten, String namSinh, String gioiTinh, String email, String sdt, String diaChi,
+	public SinhVienBean(String hoDem, String ten, String namSinh, String gioiTinh, String email, String sdt, String diaChi,
 			String lop) {
 		this.hoDem = hoDem;
 		this.ten = ten;
@@ -30,7 +30,7 @@ public class SinhVien {
 		this.lop = lop;
 	}
 
-	public SinhVien(int id, String hoDem, String ten, String namSinh, String gioiTinh, String email, String sdt,
+	public SinhVienBean(int id, String hoDem, String ten, String namSinh, String gioiTinh, String email, String sdt,
 			String diaChi, String lop) {
 		this.id = id;
 		this.hoDem = hoDem;

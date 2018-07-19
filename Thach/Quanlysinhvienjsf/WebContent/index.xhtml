@@ -63,7 +63,7 @@
             </h:column>
             <h:column>
                 <f:facet name="header">Delete</f:facet>
-                <h:commandButton action="#{student.deleteStudent(student.id)}" value="Xóa" class="btn btn-danger" />
+                <h:commandButton action="#{student.xoaStudent(student.id)}" value="Xóa" class="btn btn-danger" />
             </h:column>
         </h:dataTable>
         <center>
@@ -77,14 +77,16 @@
 				<li>
 					<c:if test="#{student.paginator.trang gt 1}">
 							<h:commandLink value="first" action="#{student.first}"></h:commandLink>
-							<h:commandLink value="#{student.trang - 1}" action="#{student.prev}"></h:commandLink>
+							<h:commandLink value="prev" action="#{student.prev}"></h:commandLink>
+							<h:commandLink value="#{student.paginator.trang - 1}" action="#{student.prev}"></h:commandLink>
 					</c:if>
 				</li>
 				<li><a style="background-color: rgb(131,199,93)">#{student.paginator.trang}</a></li>
 				<li>
-					<c:if test="#{student.paginator.trang lt studnet.paginator.soTrang}">
+					<c:if test="#{student.paginator.trang lt student.paginator.soTrang}">
 						<h:commandLink value="#{student.paginator.trang + 1}" action="#{student.next}"></h:commandLink>
-						<h:commandLink value="last" action="#{student.paginator.last}"></h:commandLink>
+						<h:commandLink value="next" action="#{student.next}"></h:commandLink>
+						<h:commandLink value="last" action="#{student.last}"></h:commandLink>
 					</c:if>
 				</li>
 			</ul>

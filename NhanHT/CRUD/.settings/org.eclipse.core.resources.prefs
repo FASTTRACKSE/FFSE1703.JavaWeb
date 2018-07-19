@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
 encoding//WebContent/index.xhtml=UTF-8
 encoding//src/bean/ConnectDB.java=UTF-8
-encoding//src/bean/StudentDAO.java=UTF-8
+encoding//src/dao/ConnectDB.java=UTF-8
+encoding//src/dao/StudentDAO.java=UTF-8

@@ -1,4 +1,4 @@
-package bean;
+package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,13 +10,17 @@ import java.util.Map;
 
 import javax.faces.context.FacesContext;
 
+import bean.ConnectDB;
+import bean.StudentController;
+import bean.StudentBean;
+
 public class StudentDAO {
 	final static Connection conn = ConnectDB.getConnect("localhost", "admin", "admin", "admin");
-	public static ArrayList<StudentBean> studentList = new ArrayList<>();
-	public static ArrayList<StudentCrud> studentCrud = new ArrayList<>();
+	public static ArrayList<StudentController> studentList = new ArrayList<>();
+	public static ArrayList<StudentBean> studentCrud = new ArrayList<>();
 
 	public ArrayList<StudentBean> getStudentsListFromDB(int start,int end) throws SQLException {
-		studentList.clear();
+		studentCrud.clear();
 		Statement statement = conn.createStatement();
 		ResultSet result = statement.executeQuery("select * from Student LIMIT " + start + ", " + end + "");
 		while (result.next()) {
@@ -30,27 +34,26 @@ public class StudentDAO {
 			stu.setDienThoai(result.getString("DienThoai"));
 			stu.setDiaChi(result.getString("DiaChi"));
 			stu.setLop(result.getString("Lop"));
-			studentList.add(stu);
+			studentCrud.add(stu);
 		}
-		return studentList;
+		return studentCrud;
 	}
 
-	public String insertStudentDetailsInDB(String hoDem, String ten, String namSinh, String gioiTinh, String email,
-			String dienThoai, String diaChi, String lop) {
+	public String insertStudentDetailsInDB(StudentBean stu) {
 	
 		int insertResult = 0;
 		String navigationResult = "";
 		try {
 			String sql = "insert into Student(HoDem,Ten,NamSinh,GioiTinh,Email,DienThoai,DiaChi,Lop) values (?,?,?,?,?,?,?,?)";
 			PreparedStatement st = conn.prepareStatement(sql);
-			st.setString(1, hoDem);
-			st.setString(2, ten);
-			st.setString(3, namSinh);
-			st.setString(4, gioiTinh);
-			st.setString(5, email);
-			st.setString(6, dienThoai);
-			st.setString(7, diaChi);
-			st.setString(8, lop);
+			st.setString(1, stu.getHoDem());
+			st.setString(2, stu.getTen());
+			st.setString(3, stu.getNamSinh());
+			st.setString(4, stu.getGioiTinh());
+			st.setString(5, stu.getEmail());
+			st.setString(6, stu.getDienThoai());
+			st.setString(7, stu.getDiaChi());
+			st.setString(8, stu.getLop());
 			insertResult = st.executeUpdate();
 			studentCrud.clear();
 		} catch (Exception ex) {
@@ -85,7 +88,7 @@ public class StudentDAO {
 
 	public String editStudentRecordInDB(int idst) throws SQLException {
 
-		StudentCrud sv = null;
+		StudentBean sv = null;
 		Map<String, Object> sessionMapObj = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
 		String sql = "SELECT * FROM Student WHERE id = ?";
 		PreparedStatement statement = conn.prepareStatement(sql);
@@ -103,13 +106,13 @@ public class StudentDAO {
 			String diaChi = resultSet.getString("DiaChi");
 			String lop = resultSet.getString("Lop");
 
-			sv = new StudentCrud(id,hoDem, ten, namSinh, gioiTinh, email, dienThoai, diaChi, lop);
+			sv = new StudentBean(id,hoDem, ten, namSinh, gioiTinh, email, dienThoai, diaChi, lop);
 			sessionMapObj.put("editRecordObj", sv);
 		}
 
 		return "editStudent.xhtml";
 	}
-	public String updateStudentDetailsInDB(StudentCrud updateStudentObj) throws SQLException {
+	public String updateStudentDetailsInDB(StudentBean updateStudentObj) throws SQLException {
 		
 		String sql = "UPDATE Student SET HoDem = ?, Ten = ?,NamSinh = ?,GioiTinh = ?, Email = ?,DienThoai = ?,DiaChi = ?,Lop = ?";
 		sql += " WHERE id = ?";

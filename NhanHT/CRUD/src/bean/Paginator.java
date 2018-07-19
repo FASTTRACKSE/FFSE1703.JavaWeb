@@ -11,12 +11,19 @@ public class Paginator {
 	public double tongSv,soHocSinhMotTrang;
 	
 	public void paginator(double tongSv){
-		this.trang = 1;
+		if(this.trang == 0) {
+			this.trang = 1;
+		}
+		
 		this.tongSv = tongSv;
 		soHocSinhMotTrang = 4.0;
 		
 		this.end = (int) soHocSinhMotTrang;
-		this.soTrang =  (int) Math.ceil(tongSv / 4.0);
+		this.soTrang =  (int) Math.ceil(tongSv / soHocSinhMotTrang);
+		System.out.println("so tran la " + this.soTrang);
+		if(this.trang > this.soTrang) {
+			this.trang = this.soTrang;
+		}
 		
 	}
 	

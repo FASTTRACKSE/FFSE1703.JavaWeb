@@ -61,13 +61,13 @@
 			<h:column>
 				<f:facet name="header">Update</f:facet>
 				<h:commandButton
-					action="#{studentBean.editStudentRecord(student.id)}"
+					action="#{studentCrud.editStudentRecord(student.id)}"
 					value="Update" class="btn btn-primary" />
 			</h:column>
 			<h:column>
 				<f:facet name="header">Delete</f:facet>
 				<h:commandButton
-					action="#{studentBean.deleteStudentRecord(student.id)}"
+					action="#{studentCrud.deleteStudentRecord(student.id)}"
 					value="Delete" class="btn btn-danger" />
 			</h:column>
 		</h:dataTable>
@@ -75,26 +75,31 @@
 			<h:commandButton action="createStudent.xhtml?faces-redirect=true"
 				value="Create New User" class="btn btn-success btnSpace" />
 		</center>
+		<div>
+		<h:outputText style="color :red" value="Page #{studentBean.paginator.trang}"></h:outputText>
+		</div>
 		<div class="container">
 			<ul class="pagination">
-				<c:if test="#{studentBean.trang gt 1}">
-					<h:commandButton value="#{studentBean.trang - 1}"
-						action="#{studentBean.init()}">
-						<f:param name="trang" value="#{studentBean.trang - 1}"></f:param>
-					</h:commandButton>
-				</c:if>
-				<h:commandButton value="#{studentBean.trang}"
-					action="#{studentBean.init()}">
-					<f:param name="trang" value="#{studentBean.trang}"></f:param>
-				</h:commandButton>
-				<c:if test="#{studentBean.trang lt studentBean.soTrang}">
-					<h:commandButton value="#{studentBean.trang + 1}"
-						action="#{studentBean.init()}">
-						<f:param name="trang" value="#{studentBean.trang + 1}"></f:param>
-					</h:commandButton>
-				</c:if>
+			
+
+				
+				<li>
+					<c:if test="#{studentBean.paginator.trang gt 1}">
+							<h:commandLink value="First" action="#{studentBean.paginator.first}"></h:commandLink>
+							<h:commandLink value="#{studentBean.paginator.trang - 1}" action="#{studentBean.prev}"></h:commandLink>
+					</c:if>
+				</li>
+				<li><a style="background-color:black">#{studentBean.paginator.trang}</a></li>
+				<li>
+					<c:if test="#{studentBean.paginator.trang lt studentBean.paginator.soTrang}">
+						<h:commandLink value="#{studentBean.paginator.trang + 1}" action="#{studentBean.next}"></h:commandLink>
+						<h:commandLink value="Last" action="#{studentBean.paginator.last}"></h:commandLink>
+					</c:if>
+				</li>
+
 			</ul>
 		</div>
+		
 	</h:form>
 </h:body>
 </html>

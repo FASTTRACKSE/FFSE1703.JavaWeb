@@ -116,9 +116,7 @@ public class StudentDao {
 	}
 
 	public static String deleteStudent(int studentId) {
-		System.out.println("deleteStudent() : Student Id: " + studentId);
 		try {
-
 			String sql = "DELETE FROM quanlysinhvien2 where id =  " + studentId;
 			PreparedStatement ps = conn.prepareStatement(sql);
 			int x = ps.executeUpdate(sql);
@@ -134,7 +132,7 @@ public class StudentDao {
 	}
 	public double count() {
 		try {
-			String sql = "select count(*) from Sinh_vien";
+			String sql = "select count(*) from quanlysinhvien2";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet result= ps.executeQuery();
 			while(result.next())

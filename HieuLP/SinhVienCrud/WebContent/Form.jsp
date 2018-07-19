@@ -12,7 +12,7 @@ if(lang!=null){
 	show=new NgonNguDAO().ThailandLanguage();
 	}
 }else{
-	show=new NgonNguDAO().ThailandLanguage();
+	show=new NgonNguDAO().VietNamLanguage();
 
 }
 

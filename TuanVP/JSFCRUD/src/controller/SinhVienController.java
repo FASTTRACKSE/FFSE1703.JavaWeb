@@ -25,8 +25,7 @@ public class SinhVienController {
 		this.pageTotal = 1;
 		this.pageStart = 1;
 		this.pageLimit = 1;
-		locale = new Locale("vi");
-		FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
+		FacesContext.getCurrentInstance().getViewRoot().setLocale(new Locale("vi"));
 		loadStudent();
 	}
 
@@ -135,6 +134,9 @@ public class SinhVienController {
 
 	public String insertSinhVien(SinhVienBean sv) throws SQLException {
 		studentDAO.insertSinhVien(sv);
+		countStudent();
+		pageCurrent = pageTotal;
+		loadStudent();
 		return "index.xhtml?faces-redirect=true";
 	}
 

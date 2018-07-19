@@ -175,21 +175,4 @@ public class StudentBean {
 		studentsListFromDB = studentDAO.getStudentsListFromDB(paginator.start(),paginator.end);
 		return studentsListFromDB;
 	}
-
-	public String deleteStudentRecord(int studentId) {
-		return studentDAO.deleteStudentRecordInDB(studentId);
-	}
-
-	public String saveStudentDetails(StudentBean newStudentObj) {
-		return studentDAO.insertStudentDetailsInDB(hoDem, ten, namSinh, gioiTinh, email, dienThoai, diaChi, lop);
-	}
-
-	public String editStudentRecord(int studentId) throws SQLException {
-		return studentDAO.editStudentRecordInDB(studentId);
-	}
-
-	public String updateStudentDetails(StudentBean updateStudentObj) throws SQLException {
-		return studentDAO.updateStudentDetailsInDB(updateStudentObj);
-	}
-
 }

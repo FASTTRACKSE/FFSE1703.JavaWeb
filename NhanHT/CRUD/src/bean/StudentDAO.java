@@ -13,6 +13,7 @@ import javax.faces.context.FacesContext;
 public class StudentDAO {
 	final static Connection conn = ConnectDB.getConnect("localhost", "admin", "admin", "admin");
 	public static ArrayList<StudentBean> studentList = new ArrayList<>();
+	public static ArrayList<StudentCrud> studentCrud = new ArrayList<>();
 
 	public ArrayList<StudentBean> getStudentsListFromDB(int start,int end) throws SQLException {
 		studentList.clear();
@@ -51,7 +52,7 @@ public class StudentDAO {
 			st.setString(7, diaChi);
 			st.setString(8, lop);
 			insertResult = st.executeUpdate();
-			studentList.clear();
+			studentCrud.clear();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -84,7 +85,7 @@ public class StudentDAO {
 
 	public String editStudentRecordInDB(int idst) throws SQLException {
 
-		StudentBean sv = null;
+		StudentCrud sv = null;
 		Map<String, Object> sessionMapObj = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
 		String sql = "SELECT * FROM Student WHERE id = ?";
 		PreparedStatement statement = conn.prepareStatement(sql);
@@ -102,13 +103,13 @@ public class StudentDAO {
 			String diaChi = resultSet.getString("DiaChi");
 			String lop = resultSet.getString("Lop");
 
-			sv = new StudentBean(id,hoDem, ten, namSinh, gioiTinh, email, dienThoai, diaChi, lop);
+			sv = new StudentCrud(id,hoDem, ten, namSinh, gioiTinh, email, dienThoai, diaChi, lop);
 			sessionMapObj.put("editRecordObj", sv);
 		}
 
 		return "editStudent.xhtml";
 	}
-	public String updateStudentDetailsInDB(StudentBean updateStudentObj) throws SQLException {
+	public String updateStudentDetailsInDB(StudentCrud updateStudentObj) throws SQLException {
 		
 		String sql = "UPDATE Student SET HoDem = ?, Ten = ?,NamSinh = ?,GioiTinh = ?, Email = ?,DienThoai = ?,DiaChi = ?,Lop = ?";
 		sql += " WHERE id = ?";

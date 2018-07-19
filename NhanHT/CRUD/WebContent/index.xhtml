@@ -61,13 +61,13 @@
 			<h:column>
 				<f:facet name="header">Update</f:facet>
 				<h:commandButton
-					action="#{studentBean.editStudentRecord(student.id)}"
+					action="#{studentCrud.editStudentRecord(student.id)}"
 					value="Update" class="btn btn-primary" />
 			</h:column>
 			<h:column>
 				<f:facet name="header">Delete</f:facet>
 				<h:commandButton
-					action="#{studentBean.deleteStudentRecord(student.id)}"
+					action="#{studentCrud.deleteStudentRecord(student.id)}"
 					value="Delete" class="btn btn-danger" />
 			</h:column>
 		</h:dataTable>

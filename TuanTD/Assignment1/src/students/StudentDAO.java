@@ -33,7 +33,7 @@ public class StudentDAO {
 		List<Student> listStudent = new ArrayList<>();
 		
 		String sql = "SELECT * FROM `student` limit ?,?";
-		PreparedStatement ps = conn.prepareStatement(sql);
+		PreparedStatement ps = conn.prepareCall(sql);
 		ps.setInt(1, start);
 		ps.setInt(2, end);
 		ResultSet resultSet=ps.executeQuery();

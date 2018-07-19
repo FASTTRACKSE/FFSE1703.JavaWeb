@@ -83,6 +83,7 @@ public class ListSVController extends HttpServlet {
 //		response.setCharacterEncoding("utf-8");
 //		String pageid = request.getParameter("page");
 //		int pid = 0;
+		// mathcell(lấy số nguyên +1)
 //		int total = 1;
 //		if (request.getParameter("page") != null) {
 //			pid = (Integer.parseInt(pageid) - 1) * total;

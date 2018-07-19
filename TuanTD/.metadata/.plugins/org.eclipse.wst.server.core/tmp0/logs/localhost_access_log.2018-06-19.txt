@@ -110,3 +110,5 @@
 0:0:0:0:0:0:0:1 - - [19/Jun/2018:16:06:09 +0700] "GET /Assignment1/listsv?trang=1 HTTP/1.1" 200 4011
 0:0:0:0:0:0:0:1 - - [19/Jun/2018:16:06:12 +0700] "GET /Assignment1/listsv?trang=1&theLocale=vi_VN HTTP/1.1" 200 4046
 0:0:0:0:0:0:0:1 - - [19/Jun/2018:16:06:13 +0700] "GET /Assignment1/listsv?trang=1&theLocale=en_US HTTP/1.1" 200 4018
+127.0.0.1 - - [19/Jun/2018:16:46:42 +0700] "GET / HTTP/1.1" 404 1073
+0:0:0:0:0:0:0:1 - - [19/Jun/2018:16:46:45 +0700] "GET /Assignment1/ HTTP/1.1" 200 4023

@@ -62,8 +62,7 @@
 			<button type="submit" class="btn btn-default">
 				<fmt:message key="add" />
 			</button>
-			<a href="list?lang=${lang }" class="btn btn-warning" role="button"><fmt:message
-					key="list" /></a>
+			<a href="list?lang=${lang }" class="btn btn-warning" role="button"><fmt:message key="list" /></a>
 		</form>
 	</div>
 </body>

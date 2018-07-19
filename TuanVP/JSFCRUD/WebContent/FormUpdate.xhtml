@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"></link>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+</h:head>
+<h:body class="container">
+	<p style="text-align: center;">
+		<h:outputText styleClass="h1" value="Cập nhật thông tin sinh viên"></h:outputText>
+	</p>
+
+	<h:form>
+		<h:inputHidden value="#{extSV.id}"  />
+		<div class="form-group">
+			<label>Họ đệm</label>
+			<h:inputText id="hodem" styleClass="form-control"
+				value="#{extSV.hoDem}" requiredMessage="Vui lòng nhập tên"
+				required="true">
+			</h:inputText>
+			<h:message for="hodem" style="color:red;"></h:message>
+		</div>
+		<div class="form-group">
+			<label>Tên</label>
+			<h:inputText id="ten" styleClass="form-control" value="#{extSV.ten}"
+				requiredMessage="Vui lòng nhập tên" required="true">
+			</h:inputText>
+			<h:message for="ten" style="color:red;"></h:message>
+		</div>
+		<div class="form-group">
+			<label>Năm sinh</label>
+			<h:inputText id="namsinh" styleClass="form-control"
+				value="#{extSV.namSinh}"
+				validatorMessage="Năm sinh nhập vào phải bắt đầu từ năm 1980"
+				requiredMessage="Vui lòng nhập tuổi" required="true">
+				<f:validateLongRange minimum="1980" />
+			</h:inputText>
+			<h:message for="namsinh" style="color:red;"></h:message>
+		</div>
+		<div class="form-group">
+			<label>Giới tính</label>
+			<h:selectOneRadio id="gioitinh" value="#{extSV.gioiTinh}"
+				requiredMessage="Vui lòng chọn giới tính" required="true">
+				<f:selectItem itemValue="Nam" noSelectionOption="false"
+					itemLabel="Nam" />
+				<f:selectItem itemValue="Nữ" itemLabel="Nữ" />
+				<f:selectItem itemValue="Khác" itemLabel="Khác" />
+			</h:selectOneRadio>
+			<h:message for="gioitinh" style="color:red;"></h:message>
+		</div>
+		<div class="form-group">
+			<label>Số điện thoại</label>
+			<h:inputText id="sdt" styleClass="form-control" value="#{extSV.sdt}"
+				validatorMessage="Số điện thoại phải có 10 đến 11 chữ số"
+				requiredMessage="Vui lòng nhập tuổi" required="true">
+				<f:validateRegex pattern="(\+84|0)[0-9]{9,10}" />
+			</h:inputText>
+			<h:message for="sdt" style="color:red;"></h:message>
+		</div>
+		<div class="form-group">
+			<label>Email</label>
+			<h:inputText id="email" styleClass="form-control"
+				value="#{extSV.email}"
+				validatorMessage="Vui lòng nhập đúng địa chỉ email"
+				requiredMessage="Vui lòng nhập email" required="true">
+				<f:validateRegex
+					pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]"></f:validateRegex>
+			</h:inputText>
+			<h:message for="email" style="color:red;"></h:message>
+		</div>
+		<div class="form-group">
+			<label>Địa chỉ</label>
+			<h:inputText id="diachi" styleClass="form-control"
+				value="#{extSV.diaChi}" requiredMessage="Vui lòng nhập địa chỉ"
+				required="true" />
+			<h:message for="diachi" style="color:red;"></h:message>
+		</div>
+		<div class="form-group">
+			<label>Lớp học</label>
+			<h:selectOneMenu id="lophoc" styleClass="form-control"
+				value="#{extSV.lop}" requiredMessage="Vui lòng chọn lớp học"
+				required="true">
+				<f:selectItem noSelectionOption="true" itemLabel="Chọn lớp học" />
+				<f:selectItem itemValue="FFSE1701" itemLabel="FFSE1701" />
+				<f:selectItem itemValue="FFSE1702" itemLabel="FFSE1702" />
+				<f:selectItem itemValue="FFSE1703" itemLabel="FFSE1703" />
+				<f:selectItem itemValue="FFSE1704" itemLabel="FFSE1704" />
+				<f:selectItem itemValue="FFSE1801" itemLabel="FFSE1801" />
+			</h:selectOneMenu>
+			<h:message for="lophoc" style="color:red;"></h:message>
+		</div>
+		<h:commandButton styleClass="btn btn-primary"
+			action="#{studentController.updateSinhVien(extSV)}" value="Nhập" />
+		<h:button styleClass="btn btn-success" outcome="index" value="Trở lại"></h:button>
+	</h:form>
+</h:body>
+</html>
+

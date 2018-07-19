@@ -22,36 +22,51 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset='UTF-8'">
 <title>Insert title here</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </head>
 <body>
 	<center>
-        <h1>Sinh Viên Management</h1>
+        <h1><fmt:message key="StudentsManagement" /></h1>
         <h2>
-            <a href="new">Add New Sinh Viên</a>
+        <!-- Thêm -->
+            <a class="btn btn-primary" href="new"><fmt:message key="AddNewStudents" /></a>
             &nbsp;&nbsp;&nbsp;
-            <a href="list">List All Sinh Viên</a>
-             
+            <a class="btn btn-primary" href="list"><fmt:message key="ListAllStudents" /></a>
+             <!-- Ngôn Ngữ -->
         </h2>
     </center>
-    <div align="center">
-    <a href="http://localhost:8080/quanlisinhvien1/list?page=1&theLocale=vi_VN">Tiếng Việt</a>
-    <a href="http://localhost:8080/quanlisinhvien1/list?page=1&theLocale=en_US">English</a>
-        <table border="1" cellpadding="5">
+     <div class="dropdown container" style="float:center">
+    <button style="background-color: #60D94A" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><fmt:message key="Language" />
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      <li><a href="http://localhost:8080/quanlisinhvien1/list?page=1&theLocale=vi_VN">Tiếng Việt</a></li>
+      <li>  <a href="http://localhost:8080/quanlisinhvien1/list?page=1&theLocale=en_US">English</a></li>
+    </ul>
+  </div>
+    <div align="center" class="container">
+    
+        <table class="table table-striped">
             <caption><h2>List of Students</h2></caption>
-            <tr>
+            <thead>
+            <tr style="background-color: #60D94A">
                 <th>ID</th>
-                <th><fmt:message key="Code Student" /></th>
+                <th><fmt:message key="CodeStudent" /></th>
                 <th><fmt:message key="name" /></th>
                 <th><fmt:message key="Birthday" /></th>
                 <th><fmt:message key="Country" /></th>
                 <th><fmt:message key="Sex" /></th>
                 <th><fmt:message key="Class" /></th>
-                <th><fmt:message key="Mark Lp1" /></th>
-                <th><fmt:message key="Mark Lp2" /></th>
-                <th><fmt:message key="Medium Score" /></th>
+                <th><fmt:message key="MarkLp1" /></th>
+                <th><fmt:message key="MarkLp2" /></th>
+                <th><fmt:message key="MediumScore" /></th>
                 <th><fmt:message key="Classification" /></th>
                 <th><fmt:message key="Actions" /></th>
             </tr>
+            </thead>
+            <tbody>
             <c:forEach var="Sv" items="${listSinhVien}">
                 <tr>
                     <td><c:out value="${Sv.id}" /></td>
@@ -65,18 +80,21 @@
                     <td><c:out value="${Sv.lp2}" /></td>
                     <td><c:out value="${Sv.tinhTrungBinh()}" /></td>
                     <td><c:out value="${Sv.xepLoai()}" /></td>
+                    <!-- Sửa Xóa -->
                     <td>
-                        <a href="${pageContext.request.contextPath}/edit?id=<c:out value='${Sv.id}' />">Edit</a>
+                        <a class="btn btn-info" href="${pageContext.request.contextPath}/edit?id=<c:out value='${Sv.id}' />"><fmt:message key="Edit" /></a>
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="${pageContext.request.contextPath}/delete?id=<c:out value='${Sv.id}' />">Delete</a>                     
+                        <a class="btn btn-danger" href="${pageContext.request.contextPath}/delete?id=<c:out value='${Sv.id}' />"><fmt:message key="Delete" /></a>                     
                     </td>
                 </tr>
             </c:forEach>
+            </tbody>
         </table>
-       	<ul style="text-align: center; list-style-type: none;">
+       	<ul class="pagination active" style="text-align: left; list-style-type: none;">
+       	
        	<c:if test="${allpage != null }"></c:if>
        		<c:forEach var="page" begin="1" end="${allpage }">
-       		<li><a href="${pageContext.request.contextPath}/list?page=<c:out value='${page}'/> &lang="><c:out value="${page}"/></a></li>
+       		<li><a href="${pageContext.request.contextPath}/list?page=<c:out value='${page}'/>"><c:out value="${page}"/></a></li>
        		</c:forEach>
        	</ul>
     </div>   

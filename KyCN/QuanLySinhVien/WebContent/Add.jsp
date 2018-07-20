@@ -16,7 +16,7 @@
             <a href="/CRUD/CRUDSinhVien/">LIST SINH VIÊN</a>
              
         </h2>
-    </center>
+    </center> 
     <div align="center">
             <form action="/CRUD/CRUDSinhVien/insert" method="post">
         <table border="1" cellpadding="5">

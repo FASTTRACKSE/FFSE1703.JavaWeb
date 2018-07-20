@@ -24,7 +24,7 @@
 				Mã sinh viên:
 				<h:inputText id="maSinhVienText" class="form-control"
 					value="#{sinhVien_Bean.maSv}" required="true"
-					requiredMessage="Bạn Phải nhập mã sinh viên" validator="#{sinhVien_Bean.validate}">
+					requiredMessage="Bạn Phải nhập mã sinh viên" validator="#{sinhVien_Controller.validate}">
 					<!-- <f:validator validatorId="validator.validatorMaSv"></f:validator> -->
 				</h:inputText>
 				<h:message for="maSinhVienText" style="color: red"></h:message>
@@ -88,7 +88,7 @@
 				</h:selectOneMenu>
 			</div>
 			<h:commandButton class="btn btn-success" value="Lưu"
-				action="#{sinhVien_Bean.insertSinhVien(sinhVien_Bean)}"></h:commandButton>
+				action="#{sinhVien_Controller.insertSinhVien(sinhVien_Bean)}"></h:commandButton>
 				
 			<!-- tạo khoảng trắng -->	
 			<h:outputText value="             " escape="false" />

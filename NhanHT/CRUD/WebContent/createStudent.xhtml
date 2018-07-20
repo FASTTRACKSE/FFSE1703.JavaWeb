@@ -26,7 +26,7 @@
 			<h:outputLabel for="firtname" class="control-label col-sm-4">Họ Đệm</h:outputLabel>
 			<div class="col-sm-4">
 				<h:inputText id="firtname" required="true"
-					requiredMessage="Không Được Để Trống" value="#{studentCrud.hoDem}"
+					requiredMessage="Không Được Để Trống" value="#{studentBean.hoDem}"
 					class="form-control">
 				</h:inputText>
 				<h:message for="firtname" style="color :red"></h:message>
@@ -36,7 +36,7 @@
 			<h:outputLabel for="name" class="control-label col-sm-4">Tên</h:outputLabel>
 			<div class="col-sm-4">
 				<h:inputText id="name" required="true"
-					requiredMessage="Không Được Để Trống" value="#{studentCrud.ten}"
+					requiredMessage="Không Được Để Trống" value="#{studentBean.ten}"
 					class="form-control">
 				</h:inputText>
 				<h:message for="name" style="color :red"></h:message>
@@ -47,7 +47,7 @@
 			<div class="col-sm-4">
 				<h:inputText id="birthday" required="true"
 					requiredMessage="Không Được Để Trống"
-					value="#{studentCrud.namSinh}" class="form-control">
+					value="#{studentBean.namSinh}" class="form-control">
 				</h:inputText>
 				<h:message for="birthday" style="color :red"></h:message>
 			</div>
@@ -57,7 +57,7 @@
 			<div class="col-sm-4">
 				<h:selectOneRadio id="gender" required="true"
 					requiredMessage="Vui lòng Chọn Giới Tính"
-					value="#{studentCrud.gioiTinh}"
+					value="#{studentBean.gioiTinh}"
 					validatorMessage="Gender is required">
 					<f:selectItem itemValue="Nam" itemLabel="Male" />
 					<f:selectItem itemValue="Nữ" itemLabel="Female" />
@@ -70,7 +70,7 @@
 			<h:outputLabel for="email" class="control-label col-sm-4">Email</h:outputLabel>
 			<div class="col-sm-4">
 				<h:inputText id="email" required="true"
-					requiredMessage="Không Được Để Trống" value="#{studentCrud.email}"
+					requiredMessage="Không Được Để Trống" value="#{studentBean.email}"
 					class="form-control">
 				</h:inputText>
 				<h:message for="email" style="color :red"></h:message>
@@ -81,7 +81,7 @@
 			<div class="col-sm-4">
 				<h:inputText id="phone" required="true"
 					requiredMessage="Không Được Để Trống"
-					value="#{studentCrud.dienThoai}" class="form-control">
+					value="#{studentBean.dienThoai}" class="form-control">
 				</h:inputText>
 				<h:message for="phone" style="color :red"></h:message>
 			</div>
@@ -90,7 +90,7 @@
 			<h:outputLabel for="address" class="control-label col-sm-4">Địa Chỉ</h:outputLabel>
 			<div class="col-sm-4">
 				<h:inputText id="address" required="true"
-					requiredMessage="Không Được Để Trống" value="#{studentCrud.diaChi}"
+					requiredMessage="Không Được Để Trống" value="#{studentBean.diaChi}"
 					class="form-control">
 				</h:inputText>
 				<h:message for="address" style="color :red"></h:message>
@@ -100,7 +100,7 @@
 			<h:outputLabel for="class" class="control-label col-sm-4">Lớp</h:outputLabel>
 			<div class="col-sm-4">
 				<h:selectOneMenu required="true"
-					requiredMessage="Không Được Để Trống" value="#{studentCrud.lop}"
+					requiredMessage="Không Được Để Trống" value="#{studentBean.lop}"
 					class="btn btn-default dropdown-toggle" type="button"
 					data-toggle="dropdown">
 					<f:selectItem itemValue="FFSE1701" itemLabel="FFSE1701" />
@@ -117,7 +117,7 @@
 			<div class="col-sm-4">
 				<div class="col-sm-2">
 					<h:commandButton value="Save"
-						action="#{studentCrud.saveStudentDetails(studentCrud)}"
+						action="#{studentController.saveStudentDetails(studentBean)}"
 						class="btn btn-success btnWidth" />
 				</div>
 				<div class="col-sm-1"></div>

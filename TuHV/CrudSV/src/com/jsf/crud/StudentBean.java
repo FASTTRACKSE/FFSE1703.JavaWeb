@@ -100,7 +100,7 @@ public class StudentBean {
 		// studentsListFromDB = DatabaseOperation.getStudentsListFromDB();
 	}
 
-	public ArrayList<StudentBean> studentsList() {
+	public ArrayList<StudentBean> getStudentsListFromDB() {
 		return studentsListFromDB;
 	}
 

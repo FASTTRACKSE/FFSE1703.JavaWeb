@@ -4,10 +4,23 @@
 	</section>
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
+			<item value="sinhvien"/>
+			<item value="tinhtong"/>
+			<item value="s"/>
+			<item value="a"/>
+			<item value="demophuongtrinhbac1"/>
+			<item value="helloworld"/>
 		</list>
 		<list key="name">
 		</list>
 		<list key="artifactId">
+			<item value="SinhVienJSF"/>
+			<item value="TongHaiSo"/>
+			<item value="s"/>
+			<item value="aaaa"/>
+			<item value="DemoPhuongTrinhBac1"/>
+			<item value="DemoJSFHello"/>
+			<item value="DemoJSF"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
@@ -57,6 +70,8 @@
 	</section>
 	<section name="MavenProjectWizardLocationPage">
 		<list key="location">
+			<item value="D:\FFSE1703.JavaWeb\NamCH\JSFDemo"/>
+			<item value="D:\FFSE1703.JavaWeb\NamCH\DemoPhuongTrinhBac1\pom.xml"/>
 			<item value="D:\Java EE\NamCH\StudentAll\src\student\properties"/>
 		</list>
 		<list key="projectNameTemplate">

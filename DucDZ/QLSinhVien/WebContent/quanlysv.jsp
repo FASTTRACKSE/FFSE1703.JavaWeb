@@ -1,4 +1,4 @@
-<%@page import="model.SinhVien"%>
+<%@page import="bean.SinhVien"%>
 <%@page import="java.util.ArrayList"%>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>

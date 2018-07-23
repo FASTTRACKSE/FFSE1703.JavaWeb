@@ -1,3 +1,5 @@
 INDEX VERSION 1.130
+D:\FFSE1703.JavaWeb\TuanTD\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3955195841.index
+\Assignment1\src
 D:\JavaWeb\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3955195841.index
 \Assignment1\src

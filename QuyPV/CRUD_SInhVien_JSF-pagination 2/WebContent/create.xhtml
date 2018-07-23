@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<title>Thêm sinh viên</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1"
+		http-equiv="X-UA-Conpatible" />
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</h:head>
+<h:body>
+	<div class="container">
+		<h2 style="text-align: center">Thêm sinh viên</h2>
+
+		<h:form class="form-horizontal">
+			<div class="form-group">
+				Mã sinh viên:
+				<h:inputText id="maSinhVienText" class="form-control"
+					value="#{sinhVien_Bean.maSv}" required="true"
+					requiredMessage="Bạn Phải nhập mã sinh viên" validator="#{sinhVien_Controller.validate}">
+					<!-- <f:validator validatorId="validator.validatorMaSv"></f:validator> -->
+				</h:inputText>
+				<h:message for="maSinhVienText" style="color: red"></h:message>
+			</div>
+			<div class="form-group">
+				Họ tên:
+				<h:inputText id="hoTenText" class="form-control"
+					value="#{sinhVien_Bean.hoTen}" required="true"
+					requiredMessage="Bạn Phải nhập họ tên"></h:inputText>
+				<h:message for="hoTenText" style="color: red"></h:message>
+			</div>
+			<div class="form-group">
+				Năm sinh:
+				<h:inputText id="namSinhText" class="form-control"
+					value="#{sinhVien_Bean.namSinh}" required="true"
+					requiredMessage="Bạn Phải nhập năm sinh"></h:inputText>
+				<h:message for="namSinhText" style="color: red"></h:message>
+			</div>
+			<div class="form-group">
+				Quê quán:
+				<h:inputText id="queQuanText" class="form-control"
+					value="#{sinhVien_Bean.queQuan}" required="true"
+					requiredMessage="Bạn Phải nhập quê quán"></h:inputText>
+				<h:message for="queQuanText" style="color: red"></h:message>
+			</div>
+			<div class="form-group">
+				Giới tính:
+				<h:selectOneRadio id="gioiTinhSelect" value="#{sinhVien_Bean.gioiTinh}"
+					class="form-check" required="true" requiredMessage="Bạn phải chọn giới tính">
+					<f:selectItem itemValue="Nam" itemLabel="Nam"></f:selectItem>
+					<f:selectItem itemValue="nữ" itemLabel="Nữ"></f:selectItem>
+				</h:selectOneRadio>
+				<h:message for="gioiTinhSelect" style="color: red"></h:message>
+			</div>
+			<div class="form-group">
+				Email:
+				<h:inputText id="emailText" class="form-control"
+					value="#{sinhVien_Bean.email}" required="true"
+					requiredMessage="Bạn Phải nhập Email" validatorMessage="Email không đúng dạng">
+					<f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+				</h:inputText>
+				<h:message for="emailText" style="color: red"></h:message>
+			</div>
+			<div class="form-group">
+				Điện thoại:
+				<h:inputText id="dienThoaiText" class="form-control"
+					value="#{sinhVien_Bean.dienThoai}" required="true"
+					requiredMessage="Bạn Phải nhập số điện thoại" validatorMessage="số điện thoại phải có ít nhất từ 10-11 số">
+					<f:validateRegex pattern="^[0-9]{11}$"></f:validateRegex>
+				</h:inputText>
+				<h:message for="dienThoaiText" style= "color:red"></h:message>
+			</div>
+			<div class="form-group">
+				Mã lớp:
+				<h:selectOneMenu id="maLopText" class="form-control"
+					value="#{sinhVien_Bean.maLop}">
+					<f:selectItem itemValue="FFSE1701"></f:selectItem>
+					<f:selectItem itemValue="FFSE1702"></f:selectItem>
+					<f:selectItem itemValue="FFSE1703"></f:selectItem>
+					<f:selectItem itemValue="FFSE1704"></f:selectItem>
+				</h:selectOneMenu>
+			</div>
+			<h:commandButton class="btn btn-success" value="Lưu"
+				action="#{sinhVien_Controller.insertSinhVien(sinhVien_Bean)}"></h:commandButton>
+				
+			<!-- tạo khoảng trắng -->	
+			<h:outputText value="             " escape="false" />
+		
+			<h:button class="btn btn-default" value="Quay về"
+				outcome="index.xhtml?faces-redirect=true"></h:button>
+		</h:form>
+		
+	</div>
+
+</h:body>
+</html>

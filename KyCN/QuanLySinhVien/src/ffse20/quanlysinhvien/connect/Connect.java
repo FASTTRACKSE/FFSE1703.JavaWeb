@@ -5,8 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Connect {
-
-    private static Connection con = null;
+	private static Connection con = null;
 
     public static Connection getConnection() {
         if (con != null)

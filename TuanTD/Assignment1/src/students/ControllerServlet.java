@@ -102,6 +102,7 @@ public class ControllerServlet extends HttpServlet {
 
 	private void insertStudent(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
+		
 		request.setCharacterEncoding("utf-8");
 		String name = request.getParameter("Name");
 		String clas = request.getParameter("Class");
@@ -110,24 +111,6 @@ public class ControllerServlet extends HttpServlet {
 		int author = Integer.parseInt(request.getParameter("Author"));
 		double diemlp1 = Double.parseDouble(request.getParameter("Diemlp1"));
 		double diemlp2 = Double.parseDouble(request.getParameter("Diemlp2"));
-        
-		if(name.isEmpty()) {
-			String ero = "Bạn chưa nhập họ tên";
-			request.setAttribute("eroName", ero); // gửi lỗi sang jsp
-			RequestDispatcher dispatcher = request.getRequestDispatcher("StudentForm.jsp");
-			dispatcher.forward(request, response);
-		} else if(clas.isEmpty()) {
-			String ero = "Bạn chưa nhập Lớp";
-			request.setAttribute("eroClass", ero);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("StudentForm.jsp");
-			dispatcher.forward(request, response);
-		} else if(address.isEmpty()) {
-			String ero = "Bạn chưa nhập địa chỉ";
-			request.setAttribute("eroAddress", ero);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("StudentForm.jsp");
-			dispatcher.forward(request, response);
-		} 
-		else { }
 		Student newStudent = new Student(name, clas, address, age, author, diemlp1, diemlp2);
 		studentDAO.insertStudent(newStudent);
 		response.sendRedirect("list");
@@ -145,11 +128,11 @@ public class ControllerServlet extends HttpServlet {
 		int author = Integer.parseInt(request.getParameter("Author"));
 		double diemlp1 = Double.parseDouble(request.getParameter("Diemlp1"));
 		double diemlp2 = Double.parseDouble(request.getParameter("Diemlp2"));
-
-
+		
 		Student student = new Student(id, name, clas, address, age, author, diemlp1, diemlp2);
 		studentDAO.updateStudent(student);
 		response.sendRedirect("list");
+		 
 	}
 
 	//

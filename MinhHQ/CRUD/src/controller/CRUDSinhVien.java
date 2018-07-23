@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -75,12 +74,8 @@ public class CRUDSinhVien extends HttpServlet {
 			if (request.getParameter("page") != null) {
 			pid = (Integer.parseInt(pageid) - 1) * total;
 			}
-			int soTrang = 0;
-			if (UserDao.soTrang() % total == 0) {
-			soTrang = UserDao.soTrang() / total;
-			} else {
-			soTrang = UserDao.soTrang() / total + 1;
-			}
+			int soTrang = (int) Math.ceil((double) UserDao.soTrang() /(double) total);
+			
 			List<SinhVien> SV = UserDao.getRecords(pid, total);
 			request.setAttribute("SoTrang", soTrang);
 			request.setAttribute("SinhVien", SV);

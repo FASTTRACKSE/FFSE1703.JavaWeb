@@ -4,124 +4,151 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
 import ffse20.quanlysinhvien.connect.*;
-import ffse20.quanlysinhvien.model.*;
-
-
+import ffse20.quanlysinhvien.modle.*;
 
 public class SinhVienDao {
-	private Connection conn;
-	
-    public SinhVienDao() {
-    	conn = Connect.getConnection();
-    }
-    
-    public List<SinhVienModel> getAllUsers() {
-        List SV = new ArrayList();
-        try {
-        	String sql = "SELECT * FROM sinhvien_javaweb";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                SinhVienModel SVmodel = new SinhVienModel();
-                SVmodel.setId(rs.getInt("id"));
-                SVmodel.setHoDem(rs.getString("hoDem"));
-                SVmodel.setTen(rs.getString("ten"));
-                SVmodel.setNgaySinh(rs.getString("ngaySinh")); 
-                SVmodel.setQueQuan(rs.getString("queQuan")); 
-                SVmodel.setGioiTinh(rs.getString("gioiTinh")); 
-                SVmodel.setLop(rs.getString("lop")); 
-                SV.add(SVmodel);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+	public static List<SinhVienModle> getAllUsers() {
+		Connection conn = Connect.getConnection();
+		String sql = "SELECT * FROM users";
+		List<SinhVienModle> SinhVien = new ArrayList<SinhVienModle>();
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				SinhVienModle sv = new SinhVienModle();
+				sv.setId(rs.getString("userid"));
+				sv.setName(rs.getString("ten"));
+				sv.setNgaysinh(rs.getString("ngay_sinh"));
+				sv.setQuequan(rs.getString("que_quan"));
+				sv.setGioitinh(rs.getString("gioi_tinh"));
+				sv.setLop(rs.getString("lop"));
+				SinhVienModle SV = new SinhVienModle(rs.getString("userid"), rs.getString("ten"), rs.getString("ngay_sinh"),
+						rs.getString("que_quan"), rs.getString("gioi_tinh"), rs.getString("lop"));
 
-        return SV;
-    }
+				SinhVien.add(SV);
 
-	public void addUser(SinhVienModel user) {
-		// TODO Auto-generated method stub
-        try {
-        	String sql = "INSERT INTO sinhvien_javaweb(id, hoDem,ten,ngaySinh,queQuan,gioiTinh,lop)" +
-    		" VALUES (?, ?, ?, ? , ? ,? )";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            
-            ps.setInt(1, user.getId());
-            ps.setString(2, user.getHoDem());
-            ps.setString(3, user.getTen());
-            ps.setString(4, user.getNgaySinh());
-            ps.setString(5, user.getQueQuan());
-            ps.setString(6, user.getGioiTinh()); 
-            ps.setString(7, user.getLop());             
-            ps.executeUpdate();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-		
+			}
+			ps.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return SinhVien;
 	}
 
-	public void removeUser(int userId) {
-		// TODO Auto-generated method stub
-        try {
-        	String sql = "DELETE FROM sinhvien_javaweb WHERE id=?";
-            PreparedStatement ps = conn
-                    .prepareStatement(sql);
-            ps.setInt(1, userId);
-            ps.executeUpdate();
+	public static boolean insertBook(SinhVienModle SV) throws SQLException {
+		Connection conn = Connect.getConnection();
+		String sql = "INSERT INTO users(userid, ten, ngay_sinh, que_quan, gioi_tinh, lop) VALUES (?, ?, ?, ?, ?, ?)";
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-		
+		PreparedStatement statement = conn.prepareStatement(sql);
+		statement.setString(1, SV.getId());
+		statement.setString(2, SV.getName());
+		statement.setString(3, SV.getNgaysinh());
+		statement.setString(4, SV.getQuequan());
+		statement.setString(5, SV.getGioitinh());
+		statement.setString(6, SV.getLop());
+
+		boolean rowInserted = statement.executeUpdate() > 0;
+		statement.close();
+		return rowInserted;
 	}
 
-    public void editUser(SinhVienModel userBean) {    	
-    	try {
-    		String sql = "UPDATE sinhvien_javaweb SET hoDem=?, ten=? ,ngaySinh=? ,queQuan=? ,gioiTinh=? ,lop=?" +
-            " WHERE id=?";
-            PreparedStatement ps = conn
-                    .prepareStatement(sql);
-            ps.setInt(1, userBean.getId());
-            ps.setString(2, userBean.getHoDem());
-            ps.setString(3, userBean.getTen());
-            ps.setString(4, userBean.getNgaySinh());
-            ps.setString(5, userBean.getQueQuan());
-            ps.setString(6, userBean.getGioiTinh()); 
-            ps.setString(7, userBean.getLop()); 
-            
-            ps.executeUpdate();            
+	public static boolean deleteBook(String maSinhVien) throws SQLException {
+		Connection conn = Connect.getConnection();
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-    public SinhVienModel getUserById(int userId) {
-    	SinhVienModel userBean = new SinhVienModel();
-        try {
-        	String sql = "SELECT * FROM sinhvien_javaweb WHERE id=?";
-            PreparedStatement ps = conn.
-                    prepareStatement(sql);
-            ps.setInt(1, userId);
-            ResultSet rs = ps.executeQuery();
+		String sql = "DELETE FROM users WHERE userid=?";
 
-            if (rs.next()) {
-            	userBean.setId(rs.getInt("id"));
-            	userBean.setHoDem(rs.getString("hoDem"));
-            	userBean.setTen(rs.getString("ten"));
-            	userBean.setNgaySinh(rs.getString("ngaySinh")); 
-            	userBean.setQueQuan(rs.getString("queQuan")); 
-            	userBean.setGioiTinh(rs.getString("gioiTinh")); 
-            	userBean.setLop(rs.getString("lop"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return userBean;
-    }
-    
+		PreparedStatement statement = conn.prepareStatement(sql);
+		statement.setString(1, maSinhVien);
+
+		boolean rowDeleted = statement.executeUpdate() > 0;
+		statement.close();
+		return rowDeleted;
+	}
+
+	public static SinhVienModle getBook(String maSV) throws SQLException {
+		Connection conn = Connect.getConnection();
+
+		SinhVienModle SV = null;
+		String sql = "SELECT * FROM users WHERE userid=?";
+
+		PreparedStatement statement = conn.prepareStatement(sql);
+		statement.setString(1, maSV);
+
+		ResultSet resultSet = statement.executeQuery();
+
+		if (resultSet.next()) {
+
+			String maSinhVien = resultSet.getString("userid");
+			String ten = resultSet.getString("ten");
+			String gioiTinh = resultSet.getString("gioi_tinh");
+			String tuoi = resultSet.getString("ngay_sinh");
+			String lop = resultSet.getString("que_quan");
+			String diaChi = resultSet.getString("lop");
+			SV = new SinhVienModle(maSinhVien, ten, tuoi, diaChi, gioiTinh, lop);
+		}
+
+		statement.close();
+
+		return SV;
+	}
+
+	public static boolean updateBook(SinhVienModle SV) throws SQLException {
+		Connection conn = Connect.getConnection();
+
+		String sql = "UPDATE users SET ten =?, ngay_sinh =?, que_quan =?, gioi_tinh =?, lop =? WHERE userid=?";
+		PreparedStatement statement = conn.prepareStatement(sql);
+		statement.setString(1, SV.getName());
+		statement.setString(2, SV.getNgaysinh());
+		statement.setString(3, SV.getQuequan());
+		statement.setString(4, SV.getGioitinh());
+		statement.setString(5, SV.getLop());
+		statement.setString(6, SV.getId());
+
+		boolean rowUpdated = statement.executeUpdate() > 0;
+		statement.close();
+		return rowUpdated;
+	}
+
+	public static List<SinhVienModle> getRecords(int start, int total) {
+		List<SinhVienModle> list = new ArrayList<SinhVienModle>();
+		try {
+			Connection conn = Connect.getConnection();
+			PreparedStatement ps = conn.prepareStatement("select * from users limit " + start + "," + total);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				SinhVienModle e = new SinhVienModle();
+				e.setId(rs.getString(2));
+				e.setName(rs.getString(3));
+				e.setNgaysinh(rs.getString(4));
+				e.setQuequan(rs.getString(5));
+				e.setGioitinh(rs.getString(6));
+				e.setLop(rs.getString(7));
+
+				list.add(e);
+			}
+			ps.close();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return list;
+	}
+
+	public static int soTrang() throws SQLException {
+		int soTrang = 0;
+		Connection conn = Connect.getConnection();
+		String sql = "select count(userid) from users";
+		PreparedStatement statement = conn.prepareStatement(sql);
+		ResultSet rs = statement.executeQuery();
+		while (rs.next()) {
+			soTrang = rs.getInt("count(userid)");
+			break;
+		}
+		statement.close();
+		return soTrang;
+	}
+
 }

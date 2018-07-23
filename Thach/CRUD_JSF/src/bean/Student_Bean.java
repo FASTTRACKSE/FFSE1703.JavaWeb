@@ -3,21 +3,20 @@ package bean;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
-@ManagedBean(name= "student_Bean")
+@ManagedBean(name = "student_Bean")
 @RequestScoped
 public class Student_Bean {
-private String hoDem, ten, namSinh, gioiTinh, email, sdt, diaChi, maLop;
+	private String hoDem, ten, namSinh, gioiTinh, email, sdt, diaChi, maLop;
 
+	private int id;
 
-private int id;
-	
 	public Student_Bean() {
-		//		
+		//
 	}
-	
+
 	public Student_Bean(int id, String hoDem, String ten, String namSinh, String gioiTinh, String email, String sdt,
 			String diaChi, String maLop) {
-		this.id =  id;
+		this.id = id;
 		this.hoDem = hoDem;
 		this.ten = ten;
 		this.namSinh = namSinh;
@@ -76,7 +75,6 @@ private int id;
 		this.namSinh = namSinh;
 	}
 
-
 	public String getGioiTinh() {
 		return gioiTinh;
 	}
@@ -93,7 +91,6 @@ private int id;
 		this.email = email;
 	}
 
-	
 	public String getMaLop() {
 		return maLop;
 	}

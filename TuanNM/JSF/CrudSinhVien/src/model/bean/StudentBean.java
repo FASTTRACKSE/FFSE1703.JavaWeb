@@ -6,11 +6,13 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 
 import model.dao.StudentDAO;
 
@@ -23,7 +25,7 @@ public class StudentBean implements Serializable {
 	private ArrayList<Student> studentsList;
 	private int totalStudent;
 
-	private Locale locale = FacesContext.getCurrentInstance().getViewRoot().getLocale();
+	private Locale locale;
 
 	@ManagedProperty(value = "#{paginator}")
 	private Paginator paginator;
@@ -38,6 +40,7 @@ public class StudentBean implements Serializable {
 
 	@PostConstruct
 	public void init() {
+		locale = FacesContext.getCurrentInstance().getExternalContext().getRequestLocale();
 		totalStudent = StudentDAO.totalStudent();
 		paginator.setUserLists(totalStudent);
 		setUsersList();
@@ -54,7 +57,7 @@ public class StudentBean implements Serializable {
 
 	public void changeLanguage(String language) {
 		locale = new Locale(language);
-		FacesContext.getCurrentInstance().getViewRoot().setLocale(new Locale(language));
+		FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
 	}
 
 	// Pagination
@@ -79,6 +82,7 @@ public class StudentBean implements Serializable {
 	}
 
 	public ArrayList<Student> getStudentsList() {
+
 		setUsersList();
 		return studentsList;
 	}
@@ -87,20 +91,20 @@ public class StudentBean implements Serializable {
 		studentsList = StudentDAO.getStudentList(paginator.getFromIndex(), paginator.getLimits());
 	}
 
-	
-
 	// Crud
 	public String deleteStudent(int id) throws SQLException {
-		setUsersList();
-		return StudentDAO.deleteStudent(id);
+		String rs = StudentDAO.deleteStudent(id);
+		totalStudent = StudentDAO.totalStudent();
+		paginator.setUserLists(totalStudent);
+		return rs;
 	}
 
 	public String insertStudent(Student student) throws SQLException {
-		
+
+		String result = StudentDAO.insertStudent(student);
 		totalStudent = StudentDAO.totalStudent();
 		paginator.setUserLists(totalStudent);
-		setUsersList();
-		return StudentDAO.insertStudent(student);
+		return result;
 	}
 
 	public String updateStudent(int id) {
@@ -110,5 +114,6 @@ public class StudentBean implements Serializable {
 	public String editStudent(Student st) throws SQLException {
 		return StudentDAO.editStudent(st);
 	}
+
 
 }

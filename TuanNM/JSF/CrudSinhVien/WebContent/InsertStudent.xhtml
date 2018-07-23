@@ -10,6 +10,7 @@
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<f:view locale="#{studentBean.locale}" />
 </h:head>
 <h:body>
 	<h:form id="createStudentForm" class="form-horizontal">
@@ -69,7 +70,7 @@
 			<div class="col-sm-4">
 				<h:inputText id="email-id" value="#{student.email}" cols="50"
 					rows="5" class="form-control"
-					required = "true" requiredMessage=" Vui long nhập email!!" validatorMessage="Email nhập chưa đúng">
+					required = "true" requiredMessage=" Vui long nhập email!!" validatorMessage="Email đã tồn tại hoặc không hơp lệ." validator="#{validator.checkEmail}">
 					<f:validateRegex
  					 pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
 					<f:validateRequired />

@@ -1,0 +1,4 @@
+127.0.0.1 - - [20/Jun/2018:15:07:45 +0700] "GET / HTTP/1.1" 404 1073
+0:0:0:0:0:0:0:1 - - [20/Jun/2018:15:07:49 +0700] "GET /quanlysinhvien/SuaSv.jsp HTTP/1.1" 200 887
+0:0:0:0:0:0:0:1 - - [20/Jun/2018:15:07:50 +0700] "GET /quanlysinhvien/QuanLySV/* HTTP/1.1" 200 1696
+0:0:0:0:0:0:0:1 - - [20/Jun/2018:15:08:28 +0700] "GET /quanlysinhvien/QuanLySV/upload HTTP/1.1" 200 793

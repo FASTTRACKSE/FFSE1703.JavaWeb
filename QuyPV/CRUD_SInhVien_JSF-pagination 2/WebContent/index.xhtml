@@ -15,30 +15,31 @@
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<!-- lưu ngôn ngữ người dùng chọn và lấy ngôn ngữ mặc định -->
+	<f:view locale="#{sinhVien_Controller.locale}" />
+
 </h:head>
 
 <h:body>
 	<div class="container">
+
 		<h:form>
 			<div class="dropdown">
-				<button class="btn btn-primary dropdown-toggle" type="button"
-					>#{msg["languageSelect"]}</button>
-				<ul class="dropdown-menu">
-					<li>
-						<a>
-							<h:commandButton action="#{sinhVien_Controller.changeLanguage('')}"
-						 value="Việt nam"></h:commandButton>
-						</a>
-						
-					</li>
-					<li>
-						<a>
-							<h:commandButton action="#{sinhVien_Controller.changeLanguage('en')}"
-						 value="English"></h:commandButton>
-						</a>
-					</li>	
-				
+
+				<button class="dropdown-toggle btn btn-btndefault" id="drop6"
+					data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false"> Ngôn ngữ <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu" id="menu3" aria-labelledby="drop6">
+					<li><h:commandLink
+							action="#{sinhVien_Controller.changeLanguage('')}"
+							value="Việt nam"></h:commandLink></li>
+					<li><h:commandLink
+							action="#{sinhVien_Controller.changeLanguage('en')}"
+							value="English"></h:commandLink></li>
 				</ul>
+
 			</div>
 		</h:form>
 
@@ -48,7 +49,8 @@
 			</h2>
 		</center>
 		<h:form id="studentForm">
-			<h:commandButton class="btn btn-success" value="#{msg['createButton']}"
+			<h:commandButton class="btn btn-success"
+				value="#{msg['createButton']}"
 				action="create.xhtml?faces-redirect=true"></h:commandButton>
 			<h:dataTable id="studentTable"
 				class="table table-striped table-hover" binding="#{table}"
@@ -103,7 +105,8 @@
 						value="#{msg['editButton']}"></h:commandButton>
 				</h:column>
 			</h:dataTable>
-			<h:outputText value="trangzzz: #{sinhVien_Controller.paginator.soTrang}"></h:outputText>
+			<h:outputText
+				value="trangzzz: #{sinhVien_Controller.paginator.soTrang}"></h:outputText>
 
 
 			<ul class="pagination">

@@ -1,7 +1,10 @@
 package pagination;
 
+import java.util.Locale;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 @ManagedBean(name = "pagination")
 @SessionScoped
@@ -11,9 +14,28 @@ public class Pagination {
 	private int recordsTotal;
 	private int pageIndex = 1;
 	private int pages;
+	public Locale locale = FacesContext.getCurrentInstance().getViewRoot().getLocale();
 
 	public void setStudentList(int countRecords) {
 		this.recordsTotal = countRecords;
+		FacesContext.getCurrentInstance().getViewRoot().setLocale(new Locale("vi"));
+		
+	}
+
+
+	public Locale getLocale() {
+		return locale;
+	}
+
+	public void setLocale(Locale locale) {
+		this.locale = locale;
+	}
+	
+	public void changeLanguage(String language) {
+		locale = new Locale(language);
+		FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
+	
+		
 
 		if (records > 0) {
 			pages = recordsTotal / records;
@@ -75,5 +97,6 @@ public class Pagination {
 	public void setPageIndex(int pageIndex) {
 		this.pageIndex = pageIndex;
 	}
+	
 
 }

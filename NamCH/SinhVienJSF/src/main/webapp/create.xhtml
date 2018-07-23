@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<title>Thêm Sinh Viên</title>
+	<style>
+input[type=text], select {
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+
+input[type=submit] {
+	width: 100%;
+	background-color: #4CAF50;
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+#form {
+	border-radius: 5px;
+	background-color: #f2f2f2;
+	padding: 20px;
+}
+</style>
+</h:head>
+<h:body>
+	<center>
+		<h1>Thêm Sinh Viên</h1>
+	</center>
+	<div id="form">
+		<h:form>
+			<h:outputLabel>Họ Và Tên :</h:outputLabel>
+			<h:inputText id="fullname" value="#{controllerBean.name}"
+				required="true" requiredMessage="Bạn Phải nhập tên sinh viên"
+				validator="#{controllerBean.validate}">
+				</h:inputText>
+			<br />
+			<h:message for="fullname" style="color: red"></h:message>
+			<br />
+			<h:outputLabel>Năm Sinh :</h:outputLabel>
+			<h:inputText id="year" value="#{controllerBean.year}"
+				required="true" requiredMessage="Bạn Phải nhập năm sinh"></h:inputText>
+			<br />
+			<h:message for="year" style="color: red"></h:message>
+			<br />
+			<h:outputLabel>Giới Tính :</h:outputLabel>
+			<h:selectOneRadio id="sex" value="#{controllerBean.sex}" required="true" requiredMessage="Bạn Phải chọn giới tính">
+				<f:selectItem itemValue="Nam" itemLabel="Nam" />
+				<f:selectItem itemValue="Nữ" itemLabel="Nữ" />
+			</h:selectOneRadio>
+			<br />
+			<h:message for="sex" style="color: red"></h:message>
+			<br />
+			<h:outputLabel>Email :</h:outputLabel>
+			<h:inputText id="email" value="#{controllerBean.email}" required="true" requiredMessage="Bạn Phải nhập email"
+				validatorMessage="Email không đúng dạng">
+				<f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" /></h:inputText>
+			<br />
+			<h:message for="email" style="color: red"></h:message>
+			<br />
+			<h:outputLabel>Điện Thoại :</h:outputLabel>
+			<h:inputText id="phone" value="#{controllerBean.phone}" required="true"
+					requiredMessage="Bạn Phải nhập số điện thoại" validatorMessage="số điện thoại phải có ít nhất từ 10-11 số">
+					<f:validateRegex pattern="^[0-9]{11}$"></f:validateRegex></h:inputText>
+			<br />
+			<h:message for="phone" style="color: red"></h:message>
+			<br />
+			<h:outputLabel>Địa Chỉ :</h:outputLabel>
+			<h:inputText id="adress" value="#{controllerBean.adress}" required="true"
+					requiredMessage="Bạn Phải nhập địa chỉ"></h:inputText>
+			<br />
+			<h:message for="adress" style="color: red"></h:message>
+			<br />
+			<h:outputLabel>Lớp :</h:outputLabel>
+			<h:selectOneMenu value="#{controllerBean.classes}">
+				<f:selectItem itemValue="FFSE1701" itemLabel="FFSE1701" />
+				<f:selectItem itemValue="FFSE1702" itemLabel="FFSE1702" />
+				<f:selectItem itemValue="FFSE1703" itemLabel="FFSE1703" />
+				<f:selectItem itemValue="FFSE1704" itemLabel="FFSE1704" />
+			</h:selectOneMenu>
+			<h:commandButton action="#{controllerBean.addOk()}"
+				value="Thêm Sinh Viên"></h:commandButton>
+		</h:form>
+	</div>
+</h:body>
+</html>

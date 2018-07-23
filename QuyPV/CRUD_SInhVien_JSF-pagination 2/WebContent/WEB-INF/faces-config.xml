@@ -6,17 +6,15 @@
     version="2.2">
     
     <application>
-    	<locale-config>
-    		<default-locale>vi</default-locale>
-    		<supported-locale>en</supported-locale>
-    	</locale-config>
-    	
-    	
-    	<resource-bundle>
-      		<base-name>languages.messages</base-name>
-      		<var>lang</var>
-    	</resource-bundle>
-    
-    </application>
+   <locale-config>
+      <default-locale>vi</default-locale>
+      <supported-locale>en</supported-locale>
+   </locale-config>
+   
+   <resource-bundle>
+      <base-name>languages.messages</base-name>
+      <var>msg</var>
+   </resource-bundle>
+</application>
     
 </faces-config>

@@ -8,6 +8,7 @@
         <locale-config>
             <default-locale>en</default-locale>
             <supported-locale>vi</supported-locale>
+             <supported-locale>tq</supported-locale>
         </locale-config>
         <resource-bundle>
             <base-name>model.resources.messages</base-name>

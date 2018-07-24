@@ -10,9 +10,8 @@ import java.util.Map;
 
 import javax.faces.context.FacesContext;
 
-import bean.ConnectDB;
-import bean.StudentController;
 import bean.StudentBean;
+import controller.StudentController;
 
 public class StudentDAO {
 	final static Connection conn = ConnectDB.getConnect("localhost", "admin", "admin", "admin");

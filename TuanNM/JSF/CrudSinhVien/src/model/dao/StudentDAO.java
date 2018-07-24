@@ -98,7 +98,6 @@ public class StudentDAO {
 			Statement statement = (Statement) conn.createStatement();
 			String sql = "select * from Student where id = '" + id + "'";
 			ResultSet rs = statement.executeQuery(sql);
-
 			while (rs.next()) {
 				st = new Student();	
 				st.setId(rs.getInt("id"));
@@ -111,7 +110,6 @@ public class StudentDAO {
 				st.setSdt(rs.getString("sdt"));
 				st.setClassSv(rs.getString("class"));
 				sessionMapObj.put("student", st);
-
 			}
 			rs.close();
 			statement.close();
@@ -137,5 +135,19 @@ public class StudentDAO {
 
 		return "index.xhtml?faces-redirect=true";
 	}
-	
+	public static int checkEmail(String email) {
+		try {
+			int total = 0;
+			String sql = "select COUNT(*) from Student WHERE email= '"+email+"'";
+			Statement statement = (Statement) conn.createStatement();
+			ResultSet rs = statement.executeQuery(sql);
+			while (rs.next()) {
+				total = rs.getInt("COUNT(*)");
+			}
+			return total;
+		} catch (SQLException e) {			
+			e.printStackTrace();
+		}
+		return 0;
+	}
 }

@@ -1,30 +1,34 @@
-package ffse20.jsf.bean;
+package ffse20.project_jsfcrud.bean;
 
 import java.util.ArrayList;
-
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 
-import ffse20.jsf.connect.*;
-import ffse20.jsf.pagination.*;
+import ffse20.project_jsfcrud.connect.*;
+import ffse20.project_jsfcrud.pagination.*;
 
-@ManagedBean @RequestScoped
+@ManagedBean
+@RequestScoped
 public class StudentBean {
 
 	private int id;  
-	private String name;  
+	private String name; 
+	private String lop;
 	private String email;  
-	private String lop;  
+	private String date;  
 	private String gender;  
 	private String address;
-	private String date;
 
-	public ArrayList studentsListFromDB;
+	public ArrayList<StudentBean> studentsListFromDB;
+	
+	public StudentBean() {
+		super();
+	}
 
 	public int getId() {
-		return id;	
+		return id;
 	}
 
 	public void setId(int id) {
@@ -39,6 +43,14 @@ public class StudentBean {
 		this.name = name;
 	}
 
+	public String getLop() {
+		return lop;
+	}
+
+	public void setLop(String lop) {
+		this.lop = lop;
+	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -47,13 +59,14 @@ public class StudentBean {
 		this.email = email;
 	}
 
-	public String getLop() {
-		return lop;
+	public String getDate() {
+		return date;
 	}
 
-	public void setLop(String lop) {
-		this.lop = lop;
+	public void setDate(String date) {
+		this.date = date;
 	}
+
 
 	public String getGender() {
 		return gender;
@@ -70,21 +83,29 @@ public class StudentBean {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	
-	public String getDate() {
-		return date;
-	}
 
-	public void setDate(String date) {
-		this.date = date;
-	}
-	
 	@ManagedProperty(value = "#{Database}")
 	private DatabaseOperation studentDao;
-	
+
 	@ManagedProperty(value = "#{pagination}")
-	private StudentPagin pagination;
-	
+	private Pagination pagination;
+
+	@PostConstruct
+	public void init() {
+		try {
+			int countRecords = studentDao.count();
+			pagination.setStudentList(countRecords);
+			setStudentList();
+		} catch (Exception e) {
+
+		}
+		// studentsListFromDB = DatabaseOperation.getStudentsListFromDB();
+	}
+
+	public ArrayList<StudentBean> getStudentsListFromDB() {
+		return studentsListFromDB;
+	}
+
 	public DatabaseOperation getStudentDao() {
 		return studentDao;
 	}
@@ -116,41 +137,27 @@ public class StudentBean {
 	public void setStudentList() {
 		this.studentsListFromDB = studentDao.getRecords(pagination.getFromIndex(), pagination.getRecords());
 	}
-	
-	public StudentPagin getPagination() {
+
+	public Pagination getPagination() {
 		return pagination;
 	}
 
-	public void setPagination(StudentPagin pagination) {
+	public void setPagination(Pagination pagination) {
 		this.pagination = pagination;
 	}
-	
-	@PostConstruct
-	public void init() {
-		
-		int countRecords = studentDao.count();
-		pagination.setStudentList(countRecords);
-		setStudentList();
-		
-		//studentsListFromDB = DatabaseOperation.getStudentsListFromDB();
-	}
 
-	public ArrayList studentsList() {
-		return studentsListFromDB;
-	}
-	
 	public String saveStudentDetails(StudentBean newStudentObj) {
 		return DatabaseOperation.saveStudentDetailsInDB(newStudentObj);
 	}
-	
+
 	public String editStudentRecord(int studentId) {
 		return DatabaseOperation.editStudentRecordInDB(studentId);
 	}
-	
+
 	public String updateStudentDetails(StudentBean updateStudentObj) {
 		return DatabaseOperation.updateStudentDetailsInDB(updateStudentObj);
 	}
-	
+
 	public String deleteStudentRecord(int studentId) {
 		return DatabaseOperation.deleteStudentRecordInDB(studentId);
 	}

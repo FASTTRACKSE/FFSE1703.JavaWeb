@@ -1,19 +1,41 @@
-package ffse20.jsf.pagination;
+package ffse20.project_jsfcrud.pagination;
+
+import java.util.Locale;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 @ManagedBean(name = "pagination")
 @SessionScoped
-public class StudentPagin {
+public class Pagination {
 
-	private int records = 2;
+	private int records = 3;
 	private int recordsTotal;
 	private int pageIndex = 1;
 	private int pages;
+	public Locale locale = FacesContext.getCurrentInstance().getViewRoot().getLocale();
 
 	public void setStudentList(int countRecords) {
 		this.recordsTotal = countRecords;
+		FacesContext.getCurrentInstance().getViewRoot().setLocale(new Locale("vi"));
+		
+	}
+
+
+	public Locale getLocale() {
+		return locale;
+	}
+
+	public void setLocale(Locale locale) {
+		this.locale = locale;
+	}
+	
+	public void changeLanguage(String language) {
+		locale = new Locale(language);
+		FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
+	
+		
 
 		if (records > 0) {
 			pages = recordsTotal / records;
@@ -25,10 +47,11 @@ public class StudentPagin {
 			if (pages == 0) {
 				pages = 1;
 			}
-		} else {
-			records = 1;
-			pages = 1;
 		}
+		// else {
+		// records = 1;
+		// pages = 1;
+		// }
 	}
 
 	public void next() {

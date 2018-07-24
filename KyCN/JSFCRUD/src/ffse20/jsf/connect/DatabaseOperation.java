@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
@@ -14,9 +13,10 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import ffse20.jsf.bean.*;
-@ManagedBean(name ="Database")
+
+@ManagedBean(name = "Database")
 @SessionScoped
-public class Connect {
+public class DatabaseOperation {
 
 	public static Statement stmtObj;
 	public static Connection connObj;
@@ -44,12 +44,12 @@ public class Connect {
 			while(resultSetObj.next()) {  
 				StudentBean stuObj = new StudentBean(); 
 				stuObj.setId(resultSetObj.getInt("student_id"));  
-				stuObj.setName(resultSetObj.getString("student_name")); 
-				stuObj.setLop(resultSetObj.getString("student_class"));
+				stuObj.setName(resultSetObj.getString("student_name"));  
 				stuObj.setEmail(resultSetObj.getString("student_email"));  
-				stuObj.setDate(resultSetObj.getString("student_date"));  
+				stuObj.setLop(resultSetObj.getString("student_class"));  
 				stuObj.setGender(resultSetObj.getString("student_gender"));  
 				stuObj.setAddress(resultSetObj.getString("student_address"));  
+				stuObj.setDate(resultSetObj.getString("student_date")); 
 				studentsList.add(stuObj);  
 			}   
 			System.out.println("Total Records Fetched: " + studentsList.size());
@@ -64,7 +64,7 @@ public class Connect {
 		int saveResult = 0;
 		String navigationResult = "";
 		try {      
-			pstmt = getConnection().prepareStatement("insert into student_record (student_name,student_class, student_email, student_date, student_gender, student_address) values (?,?, ?, ?, ?, ?)");			
+			pstmt = getConnection().prepareStatement("insert into student_record (student_name, student_class, student_email, student_date, student_gender, student_address) values (?, ?, ?, ?, ?, ?)");			
 			pstmt.setString(1, newStudentObj.getName());
 			pstmt.setString(2, newStudentObj.getLop());
 			pstmt.setString(3, newStudentObj.getEmail());
@@ -99,10 +99,10 @@ public class Connect {
 				editRecord = new StudentBean(); 
 				editRecord.setId(resultSetObj.getInt("student_id"));
 				editRecord.setName(resultSetObj.getString("student_name"));
-				editRecord.setLop(resultSetObj.getString("student_class"));
 				editRecord.setEmail(resultSetObj.getString("student_email"));
 				editRecord.setGender(resultSetObj.getString("student_gender"));
 				editRecord.setAddress(resultSetObj.getString("student_address"));
+				editRecord.setLop(resultSetObj.getString("student_class")); 
 				editRecord.setDate(resultSetObj.getString("student_date")); 
 			}
 			sessionMapObj.put("editRecordObj", editRecord);
@@ -115,14 +115,13 @@ public class Connect {
 
 	public static String updateStudentDetailsInDB(StudentBean updateStudentObj) {
 		try {
-			pstmt = getConnection().prepareStatement("update student_record set student_name=?,student_class=?, student_email=?, student_date=?, student_gender=?, student_address=? where student_id=?");    
-			pstmt.setString(1,updateStudentObj.getName());  
-			pstmt.setString(2,updateStudentObj.getLop());
-			pstmt.setString(3,updateStudentObj.getEmail());  
-			pstmt.setString(4,updateStudentObj.getDate());  
-			pstmt.setString(5,updateStudentObj.getGender());  
-			pstmt.setString(6,updateStudentObj.getAddress());  
-			pstmt.setInt(7,updateStudentObj.getId());  
+			pstmt = getConnection().prepareStatement("update student_record set student_name=? , student_class=?, student_email=? , student_date=?, student_gender=?, student_address=? where student_id=?");    
+			pstmt.setString(1, updateStudentObj.getName());
+			pstmt.setString(2, updateStudentObj.getLop());
+			pstmt.setString(3, updateStudentObj.getEmail());
+			pstmt.setString(4, updateStudentObj.getDate());
+			pstmt.setString(5, updateStudentObj.getGender());
+			pstmt.setString(6, updateStudentObj.getAddress());
 			pstmt.executeUpdate();
 			connObj.close();			
 		} catch(Exception sqlException) {
@@ -143,43 +142,41 @@ public class Connect {
 		return "/studentsList.xhtml?faces-redirect=true";
 	}
 	
-//	public int countRecords() {
-//		try {
-//			PreparedStatement ps = getConnection().prepareStatement("select count(*) from student_record");
-//			ResultSet rs = ps.executeQuery();
-//			rs.next();
-//			int count = rs.getInt("count(*)");
-//			ps.close();
-//			return count;
-//		} catch (Exception e) {
-//			System.out.println(e);
-//		}
-//		return 0;
-//	}
+	public int count() {
+		try {
+			PreparedStatement ps = getConnection().prepareStatement("select count(*) from student_record");
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			int count = rs.getInt("count(*)");
+			ps.close();
+			return count;
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return 0;
+	}
 	
-//	public List<StudentBean> getRecords(int fromIndex, int records) {
-//		StudentBean u = null;
-//		List<StudentBean> list = new ArrayList<StudentBean>();
-//		try {
-//			PreparedStatement ps = getConnection()
-//					.prepareStatement("select * from student_record limit " + (fromIndex) + "," + records);
-//			ResultSet rs = ps.executeQuery();
-//
-//			while (rs.next()) {
-//				u = new StudentBean(); 
-//				u.setId(rs.getInt("student_id"));
-//				u.setName(rs.getString("student_name"));
-//				u.setLop(rs.getString("student_class"));
-//				u.setEmail(rs.getString("student_email"));
-//				u.setGender(rs.getString("student_gender"));
-//				u.setAddress(rs.getString("student_address"));
-//				u.setDate(rs.getString("student_date")); 
-//				list.add(u);
-//			}
-//			connObj.close();
-//		} catch (Exception e) {
-//			System.out.println(e);
-//		}
-//		return list;
-//	}
+	public ArrayList<StudentBean> getRecords(int fromIndex, int records) {
+		ArrayList<StudentBean> list = new ArrayList<StudentBean>();
+		try {
+			PreparedStatement ps = getConnection().prepareStatement("select * from student_record limit " + (fromIndex) + "," + records);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				StudentBean u = new StudentBean();
+				u.setId(rs.getInt("student_id"));
+				u.setName(rs.getString("student_name"));
+				u.setLop(rs.getString("student_class"));
+				u.setDate(rs.getString("student_date"));
+				u.setGender(rs.getString("student_gender"));
+				u.setEmail(rs.getString("student_email"));
+				u.setAddress(rs.getString("student_address"));  
+				
+				list.add(u);
+			}
+			ps.close();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return list;
+	}
 }

@@ -16,90 +16,102 @@
 <h:body>
 	<center>
 		<h2>
-			<h:outputText value="Student Records" />
+			<h:outputText value="#{msg['title']}" />
 		</h2>
 	</center>
 	<h:form id="studentForm" class="container">
-		<h:dataTable id="studentTable" binding="#{table}" value="#{studentBean.studentsList()}" var="student"
+		<div class="dropdown">
+		 <button class="btn btn-basic dropdown-toggle" type="button" data-toggle="dropdown">#{msg['language']}
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+			<li><h:commandLink action="#{studentController.changeLanguage('')}"
+				value="English" 
+				style="width: 150px" /></li>
+			<li><h:commandLink action="#{studentController.changeLanguage('vi')}"
+				value="Tiếng việt" 
+				style="width: 150px" /></li>
+				</ul>
+		</div>
+		<br/>
+		<h:dataTable id="studentTable" binding="#{table}"
+			value="#{studentController.studentsList()}" var="student"
 			class="table table-striped table-hover table-bordered tableUpdated">
 			<h:column>
 				<f:facet name="header">ID</f:facet>
 				<h:outputText value="#{table.rowIndex + 1}" />
 			</h:column>
 			<h:column>
-				<f:facet name="header">Họ Đệm</f:facet>
-				<h:outputText value="#{student.hoDem}" />
+				<f:facet name="header">#{msg['first_name']}</f:facet>
+				<h:outputText value="#{student.hoDem} " />
 			</h:column>
 			<h:column>
-				<f:facet name="header">Tên</f:facet>
+				<f:facet name="header">#{msg['name']}</f:facet>
 				<h:outputText value="#{student.ten}" />
 			</h:column>
 			<h:column>
-				<f:facet name="header">Năm Sinh</f:facet>
+				<f:facet name="header">#{msg['year']}</f:facet>
 				<h:outputText value="#{student.namSinh}" />
 			</h:column>
 			<h:column>
-				<f:facet name="header">Giới Tính</f:facet>
+				<f:facet name="header">#{msg['gender']}</f:facet>
 				<h:outputText value="#{student.gioiTinh}" />
 			</h:column>
 			<h:column>
-				<f:facet name="header">Email</f:facet>
+				<f:facet name="header">#{msg['email']}</f:facet>
 				<h:outputText value="#{student.email}" />
 			</h:column>
 			<h:column>
-				<f:facet name="header">Điện Thoại</f:facet>
+				<f:facet name="header">#{msg['phone']}</f:facet>
 				<h:outputText value="#{student.dienThoai}" />
 			</h:column>
 			<h:column>
-				<f:facet name="header">Địa Chỉ</f:facet>
+				<f:facet name="header">#{msg['address']}</f:facet>
 				<h:outputText value="#{student.diaChi}" />
 			</h:column>
 			<h:column>
-				<f:facet name="header">Lớp</f:facet>
+				<f:facet name="header">#{msg['class']}</f:facet>
 				<h:outputText value="#{student.lop}" />
 			</h:column>
 			<h:column>
-				<f:facet name="header">Update</f:facet>
+				<f:facet name="header">#{msg['action']}</f:facet>
 				<h:commandButton
-					action="#{studentCrud.editStudentRecord(student.id)}"
-					value="Update" class="btn btn-primary" />
+					action="#{studentController.editStudentRecord(student.id)}"
+					value="#{msg['update']}" class="btn btn-primary" />
 			</h:column>
 			<h:column>
-				<f:facet name="header">Delete</f:facet>
+				<f:facet name="header">#{msg['action']}</f:facet>
 				<h:commandButton
-					action="#{studentCrud.deleteStudentRecord(student.id)}"
-					value="Delete" class="btn btn-danger" />
+					action="#{studentController.deleteStudentRecord(student.id)}"
+					value="#{msg['delete']}" class="btn btn-danger" />
 			</h:column>
 		</h:dataTable>
 		<center>
 			<h:commandButton action="createStudent.xhtml?faces-redirect=true"
-				value="Create New User" class="btn btn-success btnSpace" />
+				value="#{msg['add']}" class="btn btn-success btnSpace" />
 		</center>
 		<div>
-		<h:outputText style="color :red" value="Page #{studentBean.paginator.trang}"></h:outputText>
+			<h:outputText style="color :red"
+				value="#{msg['page']} #{studentController.paginator.trang} "></h:outputText>
 		</div>
 		<div class="container">
 			<ul class="pagination">
-			
 
-				
-				<li>
-					<c:if test="#{studentBean.paginator.trang gt 1}">
-							<h:commandLink value="First" action="#{studentBean.paginator.first}"></h:commandLink>
-							<h:commandLink value="#{studentBean.paginator.trang - 1}" action="#{studentBean.prev}"></h:commandLink>
-					</c:if>
-				</li>
-				<li><a style="background-color:black">#{studentBean.paginator.trang}</a></li>
-				<li>
-					<c:if test="#{studentBean.paginator.trang lt studentBean.paginator.soTrang}">
-						<h:commandLink value="#{studentBean.paginator.trang + 1}" action="#{studentBean.next}"></h:commandLink>
-						<h:commandLink value="Last" action="#{studentBean.paginator.last}"></h:commandLink>
-					</c:if>
-				</li>
-
+				<li><c:if test="#{studentController.paginator.trang gt 1}">
+						<h:commandLink value="#{msg['first']}"
+							action="#{studentController.paginator.first}"></h:commandLink>
+						<h:commandLink value="#{studentController.paginator.trang - 1}"
+							action="#{studentController.prev}"></h:commandLink>
+					</c:if></li>
+				<li><a style="background-color: black">#{studentController.paginator.trang}</a></li>
+				<li><c:if
+						test="#{studentController.paginator.trang lt studentController.paginator.soTrang}">
+						<h:commandLink value="#{studentController.paginator.trang + 1} "
+							action="#{studentController.next}"></h:commandLink>
+						<h:commandLink value="#{msg['last']}"
+							action="#{studentController.paginator.last}"></h:commandLink>
+					</c:if></li>
 			</ul>
 		</div>
-		
 	</h:form>
 </h:body>
 </html>

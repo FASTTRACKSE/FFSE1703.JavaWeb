@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<title>Tổng hai số</title>
+</h:head>
+<h:body>
+	Tính tổng 2 số a + b = ? <br/>
+	<h:form>
+		Nhập Hệ Số a : <h:inputText value="#{tongBean.soA}"></h:inputText><br/>
+		Nhập Hệ Số b : <h:inputText value="#{tongBean.soB}" ></h:inputText><br/>
+		<h:commandButton value="Tính tổng" action="#{tongBean.submit()}" ></h:commandButton>
+	</h:form> 
+</h:body>
+</html>

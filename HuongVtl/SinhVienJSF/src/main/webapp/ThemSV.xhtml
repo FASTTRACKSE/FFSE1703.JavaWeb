@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<style>
+input[type=text], select {
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+
+input[type=submit] {
+	width: 100%;
+	background-color: #4CAF50;
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+#form {
+	border-radius: 5px;
+	background-color: #f2f2f2;
+	padding: 20px;
+}
+</style>
+</h:head>
+<h:body>
+	<h2>Thêm Sinh Viên</h2>
+	<div id="form">
+	<h:form>
+		<h:outputLabel>Họ và tên</h:outputLabel>
+		<h:inputText value = "#{quanLyBean.hoTen}"></h:inputText><br/>
+		<h:outputLabel >Năm Sinh</h:outputLabel>
+		<h:inputText value = "#{quanLyBean.namSinh}"></h:inputText><br/>
+		<h:outputLabel>Giới tính</h:outputLabel>
+		<h:selectOneRadio value = "#{quanLyBean.gioiTinh}"> 
+  		 <f:selectItem itemValue = "nam" itemLabel = "nam " /> 
+  		 <f:selectItem itemValue = "nữ" itemLabel = "nữ" />
+		</h:selectOneRadio>
+		<h:outputLabel>Email</h:outputLabel>
+		<h:inputText value = "#{quanLyBean.email}"></h:inputText><br/>
+		<h:outputLabel>Điện thoại</h:outputLabel>
+		<h:inputText value = "#{quanLyBean.sdt}"></h:inputText><br/>
+		<h:outputLabel>Địa chỉ</h:outputLabel>
+		<h:inputText value = "#{quanLyBean.diaChi}"></h:inputText><br/>
+		<h:outputLabel>Lớp</h:outputLabel>
+		
+		<h:selectOneMenu value = "#{quanLyBean.lop}"> 
+		   <f:selectItem itemValue = "FFSE1701" itemLabel = "FFSE1701" /> 
+		   <f:selectItem itemValue = "FFSE1702" itemLabel = "FFSE1702" /> 
+		   <f:selectItem itemValue = "FFSE1703" itemLabel = "FFSE1703" /> 
+		   <f:selectItem itemValue = "FFSE1704" itemLabel = "FFSE1704" /> 
+		</h:selectOneMenu>
+	<h:commandButton action="#{quanLyBean.add()}" value= "Thêm Sinh Viên"></h:commandButton>
+	</h:form>
+	</div>
+</h:body>
+</html>

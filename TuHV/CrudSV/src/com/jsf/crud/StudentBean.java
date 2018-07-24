@@ -1,6 +1,5 @@
 package com.jsf.crud;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -59,8 +58,6 @@ public class StudentBean {
 		this.date = date;
 	}
 
-	
-
 	public String getLop() {
 		return lop;
 	}
@@ -92,18 +89,18 @@ public class StudentBean {
 	private Pagination pagination;
 
 	@PostConstruct
-	public void init(){
-		try{
-		int countRecords = studentDao.count();
-		pagination.setStudentList(countRecords);
-		setStudentList();
-		}catch(Exception e) {
-			
+	public void init() {
+		try {
+			int countRecords = studentDao.count();
+			pagination.setStudentList(countRecords);
+			setStudentList();
+		} catch (Exception e) {
+
 		}
 		// studentsListFromDB = DatabaseOperation.getStudentsListFromDB();
 	}
 
-	public ArrayList<StudentBean> studentsList() {
+	public ArrayList<StudentBean> getStudentsListFromDB() {
 		return studentsListFromDB;
 	}
 
@@ -136,7 +133,7 @@ public class StudentBean {
 	}
 
 	public void setStudentList() {
-		this.studentsListFromDB =  studentDao.getRecords(pagination.getFromIndex(), pagination.getRecords());
+		this.studentsListFromDB = studentDao.getRecords(pagination.getFromIndex(), pagination.getRecords());
 	}
 
 	public Pagination getPagination() {

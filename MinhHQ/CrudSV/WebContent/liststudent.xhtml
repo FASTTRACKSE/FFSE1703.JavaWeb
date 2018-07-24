@@ -1,12 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE HTML>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" 
 	xmlns:h="http://java.sun.com/jsf/html" 
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 	
 <h:head>
+	<f:view locale="#{languageBean.getLocale()}"></f:view>
     <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1" http-equiv="X-UA-Conpatible" />
     <h:outputStylesheet library="css" name="bootstrap.min.css" />     
-    <title>JSF CRUD Example</title>
+    <title>#{msg['title']}</title>
     <style type="text/css">
         .tableUpdated {
         	width: 90% !important;
@@ -18,47 +20,47 @@
     </style>
 </h:head>
 <h:body>
-    <center><h2><h:outputText value="Student Records"/></h2></center>
+    <center><h2><h:outputText value="#{msg['title']}"/></h2></center>
     <h:form id="studentForm">
         <h:dataTable id="studentTable" binding="#{table}" value="#{studentBean.studentsList()}" var="student" class="table table-striped table-hover table-bordered tableUpdated">
             <h:column>
-                <f:facet name="header">Id</f:facet>
+                <f:facet name="header">#{msg['id']}</f:facet>
                 <h:outputText value="#{table.rowIndex + 1}" />
             </h:column>
             <h:column>
-                <f:facet name="header">Student Name</f:facet>
+                <f:facet name="header">#{msg['name']}</f:facet>
                 <h:outputText value="#{student.name}" />
             </h:column>
             <h:column>
-                <f:facet name="header">Date</f:facet>
+                <f:facet name="header">#{msg['date']}</f:facet>
                 <h:outputText value="#{student.date}" />
             </h:column>
             <h:column>
-                <f:facet name="header">Gender</f:facet>
+                <f:facet name="header">#{msg['gt']}</f:facet>
                 <h:outputText value="#{student.gender}" />
             </h:column>
             <h:column>
-                <f:facet name="header">Email Address</f:facet>
+                <f:facet name="header">#{msg['mail']}</f:facet>
                 <h:outputText value="#{student.email}" />
             </h:column>
             <h:column>
-                <f:facet name="header">Phone</f:facet>
+                <f:facet name="header">#{msg['dt']}</f:facet>
                 <h:outputText value="#{student.phone}" />
             </h:column>
             <h:column>
-                <f:facet name="header">Address</f:facet>
+                <f:facet name="header">#{msg['dc']}</f:facet>
                 <h:outputText value="#{student.address}" />
             </h:column>
             <h:column>
-                <f:facet name="header">Class</f:facet>
+                <f:facet name="header">#{msg['class']}</f:facet>
                 <h:outputText value="#{student.lop}" />
             </h:column>
             <h:column>
-                <f:facet name="header">Update</f:facet>
+                <f:facet name="header">#{msg['up']}</f:facet>
                 <h:commandButton action="#{studentBean.editStudentRecord(student.id)}" value="Update" class="btn btn-primary" />
             </h:column>
             <h:column>
-                <f:facet name="header">Delete</f:facet>
+                <f:facet name="header">#{msg['del']}</f:facet>
                 <h:commandButton action="#{studentBean.deleteStudentRecord(student.id)}" value="Delete" class="btn btn-danger" />
             </h:column>
         </h:dataTable>
@@ -66,7 +68,7 @@
  <center><nav aria-label="Page navigation example">
 			<ul class="pagination justify-content-center">
 				<li class="page-item"><h:commandLink
-						value="&lt;&lt; Frist Page" action="#{studentBean.firstPage}"
+						value="&lt;&lt; #{msg['first']}" action="#{studentBean.firstPage}"
 						class="page-link" /></li>
 				<li class="page-item"><h:commandLink
 						value="#{studentBean.pagination.pageIndex - 1}"
@@ -79,7 +81,7 @@
 						action="#{studentBean.next}"
 						class="page-link #{studentBean.pagination.pageIndex == studentBean.pagination.pages ? 'd-none' : ''}" />
 				</li>
-				<li class="page-item"><h:commandLink value="Last Page &gt;&gt;"
+				<li class="page-item"><h:commandLink value="#{msg['last']} &gt;&gt;"
 						action="#{studentBean.lastPage}" class="page-link" /></li>
 			</ul>
 		</nav></center>
@@ -87,6 +89,18 @@
         <center>
             <h:commandButton action="creatstudent.xhtml?faces-redirect=true" value="Create New User" class="btn btn-success btnSpace" />
         </center>
+         <h3>
+      <h:outputText value="#{msg['hello']}" />
+    </h3>
+    <h:panelGrid columns="2"> 
+            Language : 
+            <h:selectOneMenu value="#{languageBean.locale}"
+        onchange="submit()"
+        valueChangeListener="#{languageBean.localeChanged}">
+        <f:selectItems value="#{languageBean.countries}" />
+      </h:selectOneMenu>
+    </h:panelGrid>
+        
     </h:form>
 </h:body>
 </html>

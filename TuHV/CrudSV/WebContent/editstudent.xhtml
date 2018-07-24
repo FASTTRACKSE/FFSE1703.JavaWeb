@@ -22,19 +22,19 @@
             </div>
             <hr/>
             <div class="form-group">
-                <h:outputLabel for="username" class="control-label col-sm-2">User Name:</h:outputLabel>
+                <h:outputLabel for="username" class="control-label col-sm-2">#{msg['ten']}:</h:outputLabel>
                 <div class="col-sm-4">
                     <h:inputText id="name-id" value="#{editRecordObj.name}" class="form-control"/>
                 </div>
             </div>
             <div class="form-group">
-                <h:outputLabel for="email" class="control-label col-sm-2">Email:</h:outputLabel>
+                <h:outputLabel for="email" class="control-label col-sm-2">#{msg['mail']}:</h:outputLabel>
                 <div class="col-sm-4">
                     <h:inputText id="email-id" value="#{editRecordObj.email}" class="form-control"/>
                 </div>
             </div>
             <div class="form-group">
-                <h:outputLabel for="lop" class="control-label col-sm-2">Class:</h:outputLabel>
+                <h:outputLabel for="lop" class="control-label col-sm-2">#{msg['cla']}:</h:outputLabel>
                 <div class="col-sm-4">
                  <h:selectOneMenu value="#{editRecordObj.lop}">
 				   	<f:selectItem itemValue="FFSE1702" itemLabel="FFSE1702" />
@@ -45,19 +45,19 @@
                 </div>
             </div>
              <div class="form-group">
-                <h:outputLabel for="date" class="control-label col-sm-2">Date:</h:outputLabel>
+                <h:outputLabel for="date" class="control-label col-sm-2">#{msg['date']}:</h:outputLabel>
                 <div class="col-sm-4">
                     <h:inputText id="date-id" value="#{editRecordObj.date}" class="form-control"/>
                 </div>
             </div>
              <div class="form-group">
-                <h:outputLabel for="dienthoai" class="control-label col-sm-2">Phone:</h:outputLabel>
+                <h:outputLabel for="dienthoai" class="control-label col-sm-2">#{msg['dt']}:</h:outputLabel>
                 <div class="col-sm-4">
                     <h:inputText id="dienthoai-id" value="#{editRecordObj.dienthoai}" class="form-control"/>
                 </div>
             </div>
             <div class="form-group">
-                <h:outputLabel for="gender" class="control-label col-sm-2">Gender:</h:outputLabel>
+                <h:outputLabel for="gender" class="control-label col-sm-2">#{msg['gt']}:</h:outputLabel>
                 <div class="col-sm-4">
                     <h:selectOneRadio value="#{editRecordObj.gender}">
                         <f:selectItem itemValue="Boy" itemLabel="Male" /><f:selectItem itemValue="Girl" itemLabel="Female" />
@@ -65,7 +65,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <h:outputLabel for="address" class="control-label col-sm-2">Address:</h:outputLabel>
+                <h:outputLabel for="address" class="control-label col-sm-2">#{msg['dc']}:</h:outputLabel>
                 <div class="col-sm-4">
                     <h:inputTextarea value="#{editRecordObj.address}" cols="50" rows="5" class="form-control"/>
                 </div>

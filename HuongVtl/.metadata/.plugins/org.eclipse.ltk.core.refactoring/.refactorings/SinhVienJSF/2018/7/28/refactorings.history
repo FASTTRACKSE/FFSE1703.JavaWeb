@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;SinhVienJSF/src/main/webapp/update&apos; to &apos;update.xhtml&apos;" description="Rename resource &apos;update&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/main/webapp/update" name="update.xhtml" stamp="1531295745220" updateReferences="true"/>
+</session>

@@ -4,6 +4,7 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
+	<f:view locale="#{languageBean.getLocale()}"></f:view>
     <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1" http-equiv="X-UA-Conpatible" />
     <h:outputStylesheet library="css" name="bootstrap.min.css" />
     <title>JSF CRUD Example</title>
@@ -18,12 +19,12 @@
         <div class="form-group">
             <div class="col-sm-4"></div>
             <div class="col-sm-4">
-                <h2>Create Student Record</h2>
+                <h2>#{msg['ttAdd']}</h2>
             </div>
         </div>
         <hr/>
         <div class="form-group">
-            <h:outputLabel for="username" class="control-label col-sm-4">Name:</h:outputLabel>
+            <h:outputLabel for="username" class="control-label col-sm-4">#{msg['name']}:</h:outputLabel>
             <div class="col-sm-4">
                 <h:inputText id="name-id" value="#{studentBean.name}" class="form-control" required="true" 
                 validatorMessage="Bạn nhập chưa đúng vui lòng nhập lại tên của bạn" requiredMessage="chưa nhập tên của bạn">
@@ -32,7 +33,7 @@
             </div>
         </div>
         <div class="form-group">
-            <h:outputLabel for="email" class="control-label col-sm-4">Email:</h:outputLabel>
+            <h:outputLabel for="email" class="control-label col-sm-4">#{msg['mail']}:</h:outputLabel>
             <div class="col-sm-4">
                 <h:inputText id="email-id" value="#{studentBean.email}" class="form-control" required="true" 
                 validatorMessage="Bạn nhập chưa đúng vui lòng nhập lại email" requiredMessage="chưa nhập email">
@@ -42,7 +43,7 @@
             </div>
         </div>
         <div class="form-group">
-            <h:outputLabel for="date" class="control-label col-sm-4">Date:</h:outputLabel>
+            <h:outputLabel for="date" class="control-label col-sm-4">#{msg['date']}:</h:outputLabel>
             <div class="col-sm-4">
                 <h:inputText id="date-id" value="#{studentBean.date}" class="form-control" required="true" 
                 validatorMessage="Bạn nhập chưa đúng vui lòng nhập lại ngày sinh" requiredMessage="chưa nhập ngày sinh">
@@ -51,7 +52,7 @@
             </div>
         </div>
         <div class="form-group">
-            <h:outputLabel for="phone" class="control-label col-sm-4">Phone:</h:outputLabel>
+            <h:outputLabel for="phone" class="control-label col-sm-4">#{msg['dt']}:</h:outputLabel>
             <div class="col-sm-4">
                 <h:inputText id="phone-id" value="#{studentBean.phone}" class="form-control" required="true" 
                 validatorMessage="Bạn nhập chưa đúng vui lòng nhập lại số điện thoại" requiredMessage="chưa nhập số điện thoại">
@@ -61,7 +62,7 @@
             </div>
         </div>
         <div class="form-group">
-            <h:outputLabel for="class" class="control-label col-sm-4">Class:</h:outputLabel>
+            <h:outputLabel for="class" class="control-label col-sm-4">#{msg['class']}:</h:outputLabel>
             <div class="col-sm-4">
                 <h:selectOneMenu value="#{studentBean.lop}">
    					<f:selectItem itemValue="FFSE1702" itemLabel="FFSE1702" />
@@ -71,7 +72,7 @@
             </div>
         </div>
         <div class="form-group">
-            <h:outputLabel for="gender" class="control-label col-sm-4">Gender:</h:outputLabel>
+            <h:outputLabel for="gender" class="control-label col-sm-4">#{msg['gt']}:</h:outputLabel>
             <div class="col-sm-4">
                 <h:selectOneRadio id="gender-id" value="#{studentBean.gender}" required="true" 
                 validatorMessage="..." requiredMessage="chưa chọn giới tính">
@@ -81,7 +82,7 @@
             </div>
         </div>
         <div class="form-group">
-            <h:outputLabel for="address" class="control-label col-sm-4">Address:</h:outputLabel>
+            <h:outputLabel for="address" class="control-label col-sm-4">#{msg['dc']}:</h:outputLabel>
             <div class="col-sm-4">
                 <h:inputTextarea id="address-id" value="#{studentBean.address}" cols="50" rows="5" class="form-control" required="true" 
                 validatorMessage="Bạn nhập chưa đúng vui lòng nhập lại địa chỉ" requiredMessage="chưa nhập địa chỉ">

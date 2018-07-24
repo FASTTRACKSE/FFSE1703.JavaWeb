@@ -7,7 +7,7 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class Pagination {
 
-	private int records = 3;
+	private int records = 2;
 	private int recordsTotal;
 	private int pageIndex = 1;
 	private int pages;

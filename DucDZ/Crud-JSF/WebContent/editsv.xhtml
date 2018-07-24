@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<title>Tran Duc</title>
+</h:head>
+<h:body>
+	<h:form id="editSV" class="form-horizontal">
+		<div class="form-group">
+			<center>
+				<h2 style="text-align: center" class="col-sm-4">Edit User</h2>
+			</center>
+		</div>
+		<hr />
+		<div class="form-group">
+			<h:outputLabel for="username" class="control-label col-sm-2">User Name:</h:outputLabel>
+			<div class="col-sm-4">
+				<h:inputText id="name-edit" value="#{existSV.name}"
+					class="form-control" />
+			</div>
+		</div>
+		<div class="form-group">
+			<h:outputLabel for="email" class="control-label col-sm-2">Email:</h:outputLabel>
+			<div class="col-sm-4">
+				<h:inputText id="email-edit" value="#{existSV.email}"
+					class="form-control" />
+			</div>
+		</div>
+		<div class="form-group">
+			<h:outputLabel for="password" class="control-label col-sm-2">Password:</h:outputLabel>
+			<div class="col-sm-4">
+				<h:inputText id="password-edit" value="#{existSV.password}"
+					class="form-control" />
+			</div>
+		</div>
+		<div class="form-group">
+			<h:outputLabel for="gender" class="control-label col-sm-2">Gender:</h:outputLabel>
+			<div class="col-sm-4">
+				<h:selectOneRadio value="#{existSV.gender}">
+					<f:selectItem itemValue="Male" itemLabel="Male" />
+					<f:selectItem itemValue="Female" itemLabel="Female" />
+				</h:selectOneRadio>
+			</div>
+		</div>
+		<div class="form-group">
+			<h:outputLabel for="address" class="control-label col-sm-2">Address:</h:outputLabel>
+			<div class="col-sm-4">
+				<h:inputText id="address-edit" value="#{existSV.address}"
+					class="form-control" />
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-2"></div>
+			<div class="col-sm-4">
+				<div class="col-sm-2">
+					<h:commandButton value="Update"
+						action="#{svBean.updateSVDetails(existSV)}"
+						class="btn btn-success updateBtnStyle" />
+				</div>
+				<div class="col-sm-2">
+					<h:link outcome="listsv" value="Back"
+						class="btn btn-primary" />
+				</div>
+			</div>
+		</div>
+	</h:form>
+</h:body>
+</html>

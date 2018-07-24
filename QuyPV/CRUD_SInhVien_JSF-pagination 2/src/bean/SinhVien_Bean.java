@@ -1,33 +1,14 @@
 package bean;
 
-import java.io.Serializable;
-import java.sql.SQLException;
-import java.util.ArrayList;
-
-import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
-import javax.faces.validator.ValidatorException;
-import bean.Paginator;
 
+import javax.faces.bean.RequestScoped;
 
 @ManagedBean(name= "sinhVien_Bean")
-@SessionScoped
-public class SinhVien_Bean implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+@RequestScoped
+public class SinhVien_Bean {
+
 	private String maSv, hoTen, namSinh, queQuan, gioiTinh, email, dienThoai, maLop;
-	public ArrayList<SinhVien_Bean> arrSinhVien = new ArrayList<>();
-	public DAO sinhVienDAO = new DAO();
-	
-	@ManagedProperty(value= "#{paginator}")
-	Paginator paginator;
 	
 	public SinhVien_Bean() {
 		//		
@@ -44,44 +25,8 @@ public class SinhVien_Bean implements Serializable {
 		this.dienThoai = dienThoai;
 		this.maLop = maLop;
 	}
-	
-	
-	//	Phân Trang
 
-	public Paginator getPaginator() {
-		return paginator;
-		
-	}
-
-	public void setPaginator(Paginator paginator) {
-		this.paginator = paginator;
-	}
 	
-	public void next() {
-		paginator.next();
-		arrSinhVien = sinhVienDAO.sinhVienList(paginator.start(),paginator.end);
-		System.out.println(paginator.start());
-	}
-	
-	public void prev() {
-		paginator.prev();
-		arrSinhVien = sinhVienDAO.sinhVienList(paginator.start(),paginator.end);
-		System.out.println(paginator.start());
-		
-	}
-	
-	public void first() {
-		paginator.first();;
-		arrSinhVien = sinhVienDAO.sinhVienList(paginator.start(),paginator.end);
-	}
-	
-	public void last() {
-		paginator.last();
-		arrSinhVien = sinhVienDAO.sinhVienList(paginator.start(),paginator.end);
-	}
-	
-	// CRUD
-
 	public String getMaSv() {
 		return maSv;
 	}
@@ -145,52 +90,5 @@ public class SinhVien_Bean implements Serializable {
 	public void setMaLop(String maLop) {
 		this.maLop = maLop;
 	}
-	
-	
-	@PostConstruct
-	public void init() {
-		double tongSv = sinhVienDAO.count();
-		paginator.pagination(tongSv);
-		arrSinhVien = sinhVienDAO.sinhVienList(paginator.start(),paginator.end);
-	}
-	
-	public ArrayList<SinhVien_Bean> sinhVienList(){
-		arrSinhVien = sinhVienDAO.sinhVienList(paginator.start(),paginator.end);
-		return arrSinhVien;
-	}
-	
-	public String deleteSinhVien(String maSv) {
-		sinhVienDAO.delete(maSv);
-		return "index?faces-redirect=true";
-	}
-	
-	public String insertSinhVien(SinhVien_Bean sinhVien) throws SQLException {
-		sinhVienDAO.insert(sinhVien);
-		return "index?faces-redirect=true";
-	}
-	
-	public String editSinhVienRecord(String maSv) throws SQLException {
-		sinhVienDAO.editSinhVienRecord(maSv);
-		System.out.println("Mã sinh viên: " + maSv);
-		return "edit?faces-redirect=true";
-	}
-	
-	public String updateSinhVien(SinhVien_Bean sinhVien) throws SQLException {
-		sinhVienDAO.update(sinhVien);
-		
-		return "index?faces-redirect=true";
-	}
-	
-	// validate trùng mã sinh viên
-	public void validate(FacesContext facesContext, UIComponent component, Object value) throws ValidatorException {
-		int exist = sinhVienDAO.checkExist(value.toString());
-		if(exist == 1) {
-//			System.out.println(sinhVienDao.checkExist(value.toString()) + "là số lượng");
-//			System.out.println(value.toString());
-			FacesMessage msg = new FacesMessage("Mã sinh viên đã tồn tại. Vui lòng nhập lại");
-			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
-			throw new ValidatorException(msg);
-		}
-	}
-	
+
 }

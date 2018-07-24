@@ -4,9 +4,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
+
 import bean.SinhVienBean;
 import dao.SinhVienDAO;
 
@@ -14,10 +21,10 @@ import dao.SinhVienDAO;
 @SessionScoped
 public class SinhVienController {
 	private int pageCurrent, pageTotal, pageLimit, pageStart;
-	public ArrayList<SinhVienBean> listSinhVien;
-	public Locale locale = FacesContext.getCurrentInstance().getViewRoot().getLocale();
+	private ArrayList<SinhVienBean> listSinhVien;
+	private Locale locale;
 	private SinhVienDAO studentDAO = new SinhVienDAO();
-	public Map<String, Object> sessionObj = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+	private Map<String, Object> sessionObj = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
 
 	public SinhVienController() throws SQLException {
 		listSinhVien = new ArrayList<SinhVienBean>();
@@ -25,8 +32,7 @@ public class SinhVienController {
 		this.pageTotal = 1;
 		this.pageStart = 1;
 		this.pageLimit = 1;
-		locale = new Locale("vi");
-		FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
+		this.locale = new Locale("vi");
 		loadStudent();
 	}
 
@@ -37,12 +43,12 @@ public class SinhVienController {
 	public void setLocale(Locale locale) {
 		this.locale = locale;
 	}
-	
+
 	public void changeLanguage(String language) {
 		locale = new Locale(language);
 		FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
 	}
-	
+
 	public void countStudent() throws SQLException {
 		int totalStudent = studentDAO.rowCount();
 		pageTotal = (int) Math.ceil(totalStudent / pageLimit);
@@ -135,6 +141,9 @@ public class SinhVienController {
 
 	public String insertSinhVien(SinhVienBean sv) throws SQLException {
 		studentDAO.insertSinhVien(sv);
+		countStudent();
+		pageCurrent = pageTotal;
+		loadStudent();
 		return "index.xhtml?faces-redirect=true";
 	}
 
@@ -153,6 +162,27 @@ public class SinhVienController {
 	public void deleteSinhVien(int id) throws SQLException {
 		studentDAO.deleteSinhVien(id);
 		loadStudent();
+	}
+	
+	public void validateEmail(FacesContext fc, UIComponent uc, Object value) throws ValidatorException {
+		Pattern pt = Pattern.compile("[\\w\\.-]*[a-zA-Z0-9_]@[\\w\\.-]*[a-zA-Z0-9]\\.[a-zA-Z][a-zA-Z\\.]*[a-zA-Z]");
+		Matcher mc = pt.matcher(value.toString());
+		if (!mc.matches()) {
+			FacesMessage msg = new FacesMessage("Vui lòng nhập đúng định dạng email!!~_~");
+			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+			throw new ValidatorException(msg);
+		}
+			
+	}
+	public void validatePhone(FacesContext fc, UIComponent uc, Object value) throws ValidatorException {
+		Pattern pt = Pattern.compile("(\\+84|0084|0)[0-9]{9,10}");
+		Matcher mc = pt.matcher(value.toString());
+		if (!mc.matches()) {
+			FacesMessage msg = new FacesMessage("Số điện thoại phải có từ 10 đến 11 số!!~_~");
+			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+			throw new ValidatorException(msg);
+		}
+			
 	}
 
 }

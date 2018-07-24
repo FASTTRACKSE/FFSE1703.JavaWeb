@@ -7,9 +7,10 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class Student {
 	private int id;
 	private String hodem;
@@ -23,7 +24,7 @@ public class Student {
 	public StudentDao studentDao = new StudentDao();
 	public ArrayList<Student> arrStudent;
 
-	@ManagedProperty(value= "#{paginator}")
+	//@ManagedProperty(value= "#{paginator}")
 	Paginator paginator;
 	
 	/** Creates a new instance of LophocBean */
@@ -44,17 +45,6 @@ public class Student {
 		this.diachi = diachi;
 		this.lop = lop;
 	}
-
-	
-	
-	public Paginator getPaginator() {
-		return paginator;
-	}
-
-	public void setPaginator(Paginator paginator) {
-		this.paginator = paginator;
-	}
-
 	public String getHodem() {
 		return hodem;
 	}
@@ -130,26 +120,77 @@ public class Student {
 	@PostConstruct
 	public void init() {
 		try {
+			paginator = new Paginator();
+			double tongSv = studentDao.count();
+			paginator.pagination(tongSv);
 			arrStudent = studentDao.listAllStudent(paginator.start(), paginator.end);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+	public Paginator getPaginator() {
+		return paginator;
+	}
 
-	public ArrayList<Student> allStudent() throws SQLException {
+	public void setPaginator(Paginator paginator) {
+		this.paginator = paginator;
+	}
+	public void next() throws SQLException {
+		paginator.next();
 		arrStudent = studentDao.listAllStudent(paginator.start(), paginator.end);
-		System.out.println(arrStudent);
+		System.out.println(paginator.start());
+	}
+	
+	public void prev() throws SQLException {
+		paginator.prev();
+		arrStudent = studentDao.listAllStudent(paginator.start(), paginator.end);
+		System.out.println(paginator.start());
+	}
+	
+	public void first() throws SQLException {
+		paginator.first();;
+		arrStudent = studentDao.listAllStudent(paginator.start(), paginator.end);
+	}
+	
+	public void last() throws SQLException {
+		paginator.last();
+		arrStudent = studentDao.listAllStudent(paginator.start(), paginator.end);
+	}
+	
+	public StudentDao getStudentDao() {
+		return studentDao;
+	}
+
+	public void setStudentDao(StudentDao studentDao) {
+		this.studentDao = studentDao;
+	}
+
+	public ArrayList<Student> getArrStudent() {
 		return arrStudent;
 	}
 
-	public String deleteStudent(int studentId) {
-		StudentDao.deleteStudent(studentId);
-		return "index";
+	public void setArrStudent(ArrayList<Student> arrStudent) {
+		this.arrStudent = arrStudent;
+	}
+
+	public ArrayList<Student> allStudent() throws SQLException {
+		arrStudent = studentDao.listAllStudent(paginator.start(), paginator.end);
+		return arrStudent;
+	}
+
+	public String deleteStudent(int studentId) throws SQLException {
+		String st = StudentDao.deleteStudent(studentId);
+		double tongSv = studentDao.count();
+		paginator.pagination(tongSv);
+		return st;
 	}
 
 	public String saveStudent(Student newStudent) throws SQLException {
-		return StudentDao.addSt(newStudent);
+		 String st= StudentDao.addSt(newStudent);
+		 double tongSv = studentDao.count();
+		 paginator.pagination(tongSv);
+		 return st;
 	}
 
 	public String editStudent(int studentId) throws SQLException {

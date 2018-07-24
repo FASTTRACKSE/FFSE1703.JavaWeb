@@ -14,64 +14,65 @@
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 	<script
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	<f:view locale="#{studentController.locale}"></f:view>
 </h:head>
 <h:body class="container">
 	<p style="text-align: center;">
-		<h:outputText styleClass="h1" value="Nhập thông tin sinh viên"></h:outputText>
+		<h:outputText styleClass="h1" value="#{msg['them']}"></h:outputText>
 	</p>
 
 	<h:form>
 		<div class="form-group">
-			<label>Họ đệm</label>
+			<label>#{msg['hodem']}</label>
 			<h:inputText id="hodem" styleClass="form-control"
-				value="#{sinhVien.hoDem}" requiredMessage="Vui lòng nhập tên"
+				value="#{studentBean.hoDem}" requiredMessage="Vui lòng nhập tên"
 				required="true">
 			</h:inputText>
 			<h:message for="hodem" style="color:red;"></h:message>
 		</div>
 		<div class="form-group">
-			<label>Tên</label>
+			<label>#{msg['ten']}</label>
 			<h:inputText id="ten" styleClass="form-control"
-				value="#{sinhVien.ten}" requiredMessage="Vui lòng nhập tên"
+				value="#{studentBean.ten}" requiredMessage="Vui lòng nhập tên"
 				required="true">
 			</h:inputText>
 			<h:message for="ten" style="color:red;"></h:message>
 		</div>
 		<div class="form-group">
-			<label>Năm sinh</label>
+			<label>#{msg['namsinh']}</label>
 			<h:inputText id="namsinh" styleClass="form-control"
-				value="#{sinhVien.namSinh}"
+				value="#{studentBean.namSinh}"
 				validatorMessage="Năm sinh nhập vào phải bắt đầu từ năm 1980"
-				requiredMessage="Vui lòng nhập tuổi" required="true">
+				requiredMessage="Vui lòng nhập năm sinh" required="true">
 				<f:validateLongRange minimum="1980" />
 			</h:inputText>
 			<h:message for="namsinh" style="color:red;"></h:message>
 		</div>
 		<div class="form-group">
-			<label>Giới tính</label>
-			<h:selectOneRadio id="gioitinh" value="#{sinhVien.gioiTinh}"
+			<label>#{msg['gioitinh']}</label>
+			<h:selectOneRadio id="gioitinh" value="#{studentBean.gioiTinh}"
 				requiredMessage="Vui lòng chọn giới tính" required="true">
-				<f:selectItem itemValue="Nam" noSelectionOption="false"
-					itemLabel="Nam" />
-				<f:selectItem itemValue="Nữ" itemLabel="Nữ" />
-				<f:selectItem itemValue="Khác" itemLabel="Khác" />
+				<f:selectItem itemValue="Nam" itemLabel="#{msg['nam']}" />
+				<f:selectItem itemValue="Nữ" itemLabel="#{msg['nu']}" />
 			</h:selectOneRadio>
 			<h:message for="gioitinh" style="color:red;"></h:message>
 		</div>
 		<div class="form-group">
-			<label>Số điện thoại</label>
+			<label>#{msg['sdt']}</label>
 			<h:inputText id="sdt" styleClass="form-control"
-				value="#{sinhVien.sdt}"
-				validatorMessage="Số điện thoại phải có 10 đến 11 chữ số"
-				requiredMessage="Vui lòng nhập tuổi" required="true">
-				<f:validateLength minimum="10" maximum="11"></f:validateLength>
+				value="#{studentBean.sdt}"
+				validator="#{studentController.validatePhone}"
+				validatorMessage="Vui lòng nhập đúng số điện thoại"
+				requiredMessage="Vui lòng nhập số điện thoại" required="true">
+				<f:validateRegex pattern="(\+84|0084|0)[0-9]{9,10}" />
 			</h:inputText>
 			<h:message for="sdt" style="color:red;"></h:message>
 		</div>
 		<div class="form-group">
-			<label>Email</label>
+			<label>#{msg['email']}</label>
 			<h:inputText id="email" styleClass="form-control"
-				value="#{sinhVien.email}"
+				value="#{studentBean.email}"
+				validator="#{studentController.validateEmail}"
 				validatorMessage="Vui lòng nhập đúng địa chỉ email"
 				requiredMessage="Vui lòng nhập email" required="true">
 				<f:validateRegex
@@ -80,18 +81,18 @@
 			<h:message for="email" style="color:red;"></h:message>
 		</div>
 		<div class="form-group">
-			<label>Địa chỉ</label>
+			<label>#{msg['diachi']}</label>
 			<h:inputText id="diachi" styleClass="form-control"
-				value="#{sinhVien.diaChi}" requiredMessage="Vui lòng nhập địa chỉ"
-				required="true" />
+				value="#{studentBean.diaChi}"
+				requiredMessage="Vui lòng nhập địa chỉ" required="true" />
 			<h:message for="diachi" style="color:red;"></h:message>
 		</div>
 		<div class="form-group">
-			<label>Lớp học</label>
+			<label>#{msg['lophoc']}</label>
 			<h:selectOneMenu id="lophoc" styleClass="form-control"
-				value="#{sinhVien.lop}" requiredMessage="Vui lòng chọn lớp học"
+				value="#{studentBean.lop}" requiredMessage="Vui lòng chọn lớp học"
 				required="true">
-				<f:selectItem noSelectionOption="true" itemLabel="Chọn lớp học" />
+				<f:selectItem noSelectionOption="true" itemLabel="#{msg['chonlop']}" />
 				<f:selectItem itemValue="FFSE1701" itemLabel="FFSE1701" />
 				<f:selectItem itemValue="FFSE1702" itemLabel="FFSE1702" />
 				<f:selectItem itemValue="FFSE1703" itemLabel="FFSE1703" />
@@ -101,8 +102,11 @@
 			<h:message for="lophoc" style="color:red;"></h:message>
 		</div>
 		<h:commandButton styleClass="btn btn-primary"
-			action="#{sinhVien.insertSinhVien(sinhVien)}" value="Nhập" />
+			action="#{studentController.insertSinhVien(studentBean)}"
+			value="#{msg['btnthem']}" />
+		<h:button styleClass="btn btn-success" outcome="index" value="#{msg['btnback']}"></h:button>
 	</h:form>
+
 </h:body>
 </html>
 

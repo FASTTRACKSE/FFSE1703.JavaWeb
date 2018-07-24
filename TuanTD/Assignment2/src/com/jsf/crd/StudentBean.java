@@ -1,22 +1,28 @@
 package com.jsf.crd;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import com.jsf.crd.Paginator;
+import com.jsf.crud.db.operations.DatabaseOperation;
 
 import javax.annotation.PostConstruct;
-//import javax.faces.application.FacesMessage;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
-//import javax.faces.component.UIComponent;
-//import javax.faces.component.UIInput;
-//import javax.faces.context.FacesContext;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 
-import com.jsf.crud.db.operations.DatabaseOperation;
+
 
 @ManagedBean
 @RequestScoped
 public class StudentBean implements Serializable {
 
+	@ManagedProperty(value= "#{paginator}")
+	Paginator paginator;
 	/**
 	 * 
 	 */
@@ -32,11 +38,17 @@ public class StudentBean implements Serializable {
 	private String gender;
 	@SuppressWarnings("rawtypes")
 	private ArrayList studentsListFromDB;
-
+	
+	DatabaseOperation databaseOperation =new DatabaseOperation();
 	@PostConstruct
 	public void init() {
-		studentsListFromDB = DatabaseOperation.getStudentsListFromDB();
+		double tongSv = databaseOperation.count();
+		System.out.println("count:" + tongSv);
+		paginator.pagination(tongSv);
+		studentsListFromDB = databaseOperation.getStudentsListFromDB(paginator.start(),paginator.end);
 	}
+	
+	
 
 	public int getId() {
 		return id;
@@ -102,42 +114,73 @@ public class StudentBean implements Serializable {
 		this.gender = gender;
 	}
 	
-//	public void validateModelNo(FacesContext context, UIComponent comp,
-//			Object value) {
-//
-//		System.out.println("inside validate method");
-//
-//		String name = (String) value;
-//
-//		if (name.length() < 10) {
-//			((UIInput) comp).setValid(false);
-//
-//			FacesMessage message = new FacesMessage(
-//					"Vui Lòng Nhập tên?");
-//			context.addMessage(comp.getClientId(context), message);
-//
-//		}
-//
-//	}
+//	// validate trùng mã sinh viên
+	public void validate(FacesContext facesContext, UIComponent component, Object value) throws ValidatorException {
+		int exist = databaseOperation.checkExist(value.toString());
+		if(exist == 1) {
+//			System.out.println(sinhVienDao.checkExist(value.toString()) + "là số lượng");
+//			System.out.println(value.toString());
+			FacesMessage msg = new FacesMessage("Mã sinh viên đã tồn tại. Vui lòng nhập lại");
+			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+			throw new ValidatorException(msg);
+		}
+	}
+//	Phân Trang
 
+		
+	public void next() {
+		paginator.next();
+		studentsListFromDB = databaseOperation.getStudentsListFromDB(paginator.start(),paginator.end);
+		System.out.println(paginator.start());
+	}
+	
+	public Paginator getPaginator() {
+		return paginator;
+	}
+
+
+
+	public void setPaginator(Paginator paginator) {
+		this.paginator = paginator;
+	}
+
+
+
+	public void prev() {
+		paginator.prev();
+		studentsListFromDB = databaseOperation.getStudentsListFromDB(paginator.start(),paginator.end);
+		System.out.println(paginator.start());
+		
+	}
+	
+	public void first() {
+		paginator.first();
+		studentsListFromDB = databaseOperation.getStudentsListFromDB(paginator.start(),paginator.end);
+	}
+	
+	public void last() {
+		paginator.last();
+		studentsListFromDB = databaseOperation.getStudentsListFromDB(paginator.start(),paginator.end);
+	}
+	
 	@SuppressWarnings("rawtypes")
 	public ArrayList studentsList() {
 		return studentsListFromDB;
 	}
 
-	public String saveStudentDetails(StudentBean newStudentObj) {
-		return DatabaseOperation.saveStudentDetailsInDB(newStudentObj);
+	public String saveStudentDetails(StudentBean newStudentObj) throws SQLException {
+		return databaseOperation.saveStudentDetailsInDB(newStudentObj);
 	}
 
 	public String editStudentRecord(int studentId) {
-		return DatabaseOperation.editStudentRecordInDB(studentId);
+		return databaseOperation.editStudentRecordInDB(studentId);
 	}
 
 	public String updateStudentDetails(StudentBean updateStudentObj) {
-		return DatabaseOperation.updateStudentDetailsInDB(updateStudentObj);
+		return databaseOperation.updateStudentDetailsInDB(updateStudentObj);
 	}
 
 	public String deleteStudentRecord(int studentId) {
-		return DatabaseOperation.deleteStudentRecordInDB(studentId);
+		return databaseOperation.deleteStudentRecordInDB(studentId);
 	}
 }

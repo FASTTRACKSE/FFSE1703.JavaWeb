@@ -8,7 +8,7 @@
     <locale-config>
       <default-locale>en</default-locale>
       <supported-locale>vi</supported-locale>
-      <supported-locale>fr</supported-locale>
+      <supported-locale>ja</supported-locale>
     </locale-config>
     <resource-bundle>
       <base-name>messages</base-name>

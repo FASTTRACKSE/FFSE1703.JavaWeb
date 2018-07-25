@@ -13,6 +13,7 @@
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<f:view locale="#{studentBean.locale}" />
 </h:head>
 <h:body>
 	<h:form id="studentForm" class="container">
@@ -27,6 +28,9 @@
 						style="width: 150px" /></li>
 				<li><h:commandButton
 						action="#{studentBean.changeLanguage('vi')}" value="Tiếng việt"
+						class="btn btn-success btnSpace" style="width: 150px" /></li>
+				<li><h:commandButton
+						action="#{studentBean.changeLanguage('tq')}" value="China"
 						class="btn btn-success btnSpace" style="width: 150px" /></li>
 			</ul>
 		</div>
@@ -87,6 +91,7 @@
 					value="#{msg['del']}" class="btn btn-danger" />
 			</h:column>
 		</h:dataTable>
+		<c:if test="${studentBean.paginator.totalPages > 1}">
 		<nav aria-label="Page navigation example">
 		<ul class="pagination justify-content-center">
 			<c:if test="${studentBean.paginator.pageIndex > 1}">
@@ -108,10 +113,10 @@
 						value="#{msg['last_page']} &gt;&gt;"
 						action="#{studentBean.lastPage}" class="page-link" /></li>
 			</c:if>
-
+		
 		</ul>
 		</nav>
-
+</c:if>
 
 	</h:form>
 	<script type="text/javascript">

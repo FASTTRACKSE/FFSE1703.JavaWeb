@@ -137,13 +137,15 @@ public class SinhVienOperations {
 	}
 
 	public static String deleteSvInDB(int studentId) {
-		try {
-			pstmt = getConnection().prepareStatement("delete from student where id = " + studentId);
-			pstmt.executeUpdate();
-			connObj.close();
-		} catch (Exception sqlException) {
-			sqlException.printStackTrace();
+			try {
+				pstmt = getConnection().prepareStatement("delete from student where id = " + studentId);
+				pstmt.executeUpdate();
+				connObj.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
+		
 		return "/listSinhvien.xhtml?faces-redirect=true";
 	}
 

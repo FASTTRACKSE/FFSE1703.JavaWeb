@@ -21,7 +21,7 @@ public class Student {
 		this.sdt = sdt;
 		this.diaChi = diaChi;
 		this.classSv = classSv;
-		this.id = id;
+		this.id = id; 
 	}
 	
 	public Student() {

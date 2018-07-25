@@ -16,10 +16,25 @@ public class Paginator {
 	private int totalPages;
 
 	public void setUserLists(int countRecords) {
-		this.limits = 2;
+		this.limits = 4;
 		this.pageIndex = 1;
 		totalStudent = countRecords;
-		this.totalPages = (int) Math.ceil(totalStudent / limits);
+
+        if (limits > 0) {
+            totalPages = limits <= 0 ? 1 : totalStudent / limits;
+
+            if (totalStudent % limits > 0) {
+                totalPages++;
+            }
+
+            if (totalPages == 0) {
+            	totalPages = 1;
+            }
+        } else {
+            limits = 1;
+            totalPages = 1;
+        }
+
 	}
 
 	public void next() {

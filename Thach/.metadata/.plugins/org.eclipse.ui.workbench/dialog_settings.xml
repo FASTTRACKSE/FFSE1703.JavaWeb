@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="WorkbenchPreferenceDialogSettings">
-		<item value="586" key="DIALOG_X_ORIGIN"/>
+		<item value="451" key="DIALOG_X_ORIGIN"/>
 		<item value="32" key="DIALOG_Y_ORIGIN"/>
 	</section>
 	<section name="org.eclipse.ui.preferences.keysPreferencePage">
@@ -28,10 +28,6 @@
 			<item value="org.eclipse.jpt.jaxb"/>
 			<item value="org.eclipse.jpt.jpa"/>
 			<item value="org.eclipse.jpt.jpa/org.eclipse.jpt.jpa.eclipselink"/>
-			<item value="org.eclipse.pde.PDE"/>
-			<item value="com.essiembre.eclipse.i18n.resourcebundle"/>
-			<item value="org.eclipse.datatools.sql"/>
-			<item value="org.eclipse.pde.userAssistance"/>
 		</list>
 	</section>
 </section>

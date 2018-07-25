@@ -18,7 +18,7 @@ public class Paginator {
 		}
 
 		this.tongSv = tongSv;
-		soBanGhiMotTrang = 2.0;
+		soBanGhiMotTrang = 4.0;
 
 		this.end = (int) soBanGhiMotTrang;
 

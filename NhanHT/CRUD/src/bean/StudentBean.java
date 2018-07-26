@@ -3,15 +3,12 @@ package bean;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
-import dao.StudentDAO;
-
 
 @ManagedBean
 @RequestScoped
 public class StudentBean {
 	private int id;
 	private String hoDem, ten, namSinh, gioiTinh, email, dienThoai, diaChi, lop;
-	public StudentDAO studentDAO = new StudentDAO();
 	public StudentBean(int id, String hoDem, String ten, String namSinh, String gioiTinh, String email,
 			String dienThoai, String diaChi, String lop) {
 		super();

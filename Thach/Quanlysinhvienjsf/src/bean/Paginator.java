@@ -10,7 +10,7 @@ public class Paginator {
 	public double tongSv;
 	public int trang, soTrang;
 	public double soBanGhiMotTrang;
-	private static final int DEFAULT_PAGE_INDEX = 1;
+	private static final int  DEFAULT_PAGE_INDEX = 1;
 	
 	
 	public void pagination(double tongSv) {
@@ -27,8 +27,14 @@ public class Paginator {
 	}
 	public void next() {
 		if(this.trang < this.soTrang) {
-			this.trang += 1;
-		} 
+			this.trang = 1+trang;
+		}
+	}
+	public void addTrang() {
+		this.tongSv +=1;
+	}
+	public void delTrang() {
+		this.tongSv -=1;
 	}
 	public void prev() {
 		if(this.trang > 1) {

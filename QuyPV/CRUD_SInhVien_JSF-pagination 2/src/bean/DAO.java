@@ -1,6 +1,7 @@
 package bean;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,10 +11,36 @@ import javax.faces.context.FacesContext;
 
 
 
-import connector.GetConnect;
+//import connector.GetConnect;
 
 public class DAO {
-	static final  Connection conn= (new GetConnect()).getConnect("localhost", "Quan_Li_Sinh_Vien_JSF", "phamquy481", "a0163763123");
+	//static final  Connection conn= (new GetConnect()).getConnect("localhost", "Quan_Li_Sinh_Vien_JSF", "phamquy481", "a0163763123");
+	
+	
+	// kết nối Database
+	private String jdbcURL = "jdbc:mysql://localhost:3306/Quan_Li_Sinh_Vien_JSF?useUnicode=true&characterEncoding=utf-8";
+	private String jdbcUsername = "phamquy481";
+	private String jdbcPassword = "a0163763123";
+	private Connection conn;
+
+	protected void connect() throws SQLException {
+		if (conn == null || conn.isClosed()) {
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+			} catch (ClassNotFoundException e) {
+				throw new SQLException(e);
+			}
+			conn = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
+		}
+	}
+
+	protected void disconnect() throws SQLException {
+		if (conn != null && !conn.isClosed()) {
+			conn.close();
+		}
+	}
+	
+	
 	ArrayList<SinhVien_Bean> arrSinhVienDB = new ArrayList<>();
 	double total;
 	
@@ -21,6 +48,7 @@ public class DAO {
 	public ArrayList<SinhVien_Bean> sinhVienList(int start, int end){
 		arrSinhVienDB.clear();
 		try {
+		connect();
 		String sql = "select * from Sinh_vien limit ?,?";
 		PreparedStatement ps = conn.prepareStatement(sql);
 		ps.setInt(1, start);
@@ -39,6 +67,7 @@ public class DAO {
 			
 			arrSinhVienDB.add(new SinhVien_Bean(maSv, hoTen, namSinh, queQuan, gioiTinh, email, dienThoai, maLop));
 		}
+		disconnect();
 		
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -49,17 +78,20 @@ public class DAO {
 	
 	public void delete(String maSv) {
 		try {
+			connect();
 			String sql="delete from Sinh_vien where Masv= ?" ;
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, maSv);
 			ps.executeUpdate();
+			disconnect();
 		} catch(Exception e){
 			e.printStackTrace();
 		}
 		
 	}
 	
-	public int insert(SinhVien_Bean sinhVien) throws SQLException {
+	public void insert(SinhVien_Bean sinhVien) throws SQLException {
+		connect();
 		String sql = "INSERT INTO Sinh_vien (Masv, Hoten, Namsinh, Quequan, Gioitinh, Email, Dienthoai, MaLop) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 		PreparedStatement ps = conn.prepareStatement(sql);
 		
@@ -71,13 +103,16 @@ public class DAO {
 		ps.setString(6, sinhVien.getEmail());
 		ps.setString(7, sinhVien.getDienThoai());
 		ps.setString(8, sinhVien.getMaLop());
-	
-		return ps.executeUpdate();
+		ps.executeUpdate();
+		disconnect();
+		
+		
 	}
 	
 	public int checkExist(String maSv) {
 		int exist = 0;
 		try {
+			connect();
 			String sql = "select count(*) from Sinh_vien where Masv= ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, maSv);
@@ -86,26 +121,25 @@ public class DAO {
 			{
 				exist = result.getInt("COUNT(*)");
 			}
+			disconnect();
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
 		return exist;
 	}
 	
-	public void editSinhVienRecord(String maSv) throws SQLException {
+	public SinhVien_Bean editSinhVienRecord(String maSv) throws SQLException {
+		connect();
 		SinhVien_Bean editRecord = new SinhVien_Bean();
 
-		java.util.Map<String, Object> sessionMapObj = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-		
 		String sql = "SELECT * FROM Sinh_vien WHERE Masv = ?";
 		PreparedStatement ps = conn.prepareStatement(sql);
 		
 		ps.setString(1, maSv);
 		
 		ResultSet result=ps.executeQuery();
+			result.next();
 		
-		while(result.next())
-		{
 			editRecord.setMaSv(result.getString("Masv"));
 			editRecord.setHoTen(result.getString("Hoten"));
 			editRecord.setNamSinh(result.getString("Namsinh"));
@@ -115,11 +149,13 @@ public class DAO {
 			editRecord.setDienThoai(result.getString("Dienthoai"));
 			editRecord.setMaLop(result.getString("Malop"));
 			
-		}
-		sessionMapObj.put("editRecordObj", editRecord);
+			disconnect();
+		
+			return editRecord;
 	}
 	
 	public void update(SinhVien_Bean sinhVien) throws SQLException {
+		 connect();
 		 String sql = "UPDATE Sinh_vien SET Hoten = ?, Namsinh = ?, Quequan = ?, Gioitinh = ?, Email = ?, Dienthoai = ?, Malop = ?";
 	        sql += " WHERE Masv = ?";
 	        PreparedStatement ps = conn.prepareStatement(sql);
@@ -134,22 +170,46 @@ public class DAO {
 	        ps.setString(8, sinhVien.getMaSv());
 	        
 	        ps.executeUpdate();
+	        disconnect();
 	}
 	
 	public double count() {
 		try {
+			connect();
 			String sql = "select count(*) from Sinh_vien";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet result= ps.executeQuery();
 			while(result.next())
 			{
 				total = result.getDouble("COUNT(*)");
+				
 			}
+			disconnect();
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
 		
 		return total;
+	}
+	
+	public int checkLogin(String user, String pass) {
+		int kt = 0;
+		try {
+			connect();
+			String sql = "select count(*) from User where User_name = ? and Pass = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, user);
+			ps.setString(2, pass);
+			ResultSet result= ps.executeQuery();
+			while(result.next())
+			{
+				kt = result.getInt("COUNT(*)");
+			}
+			disconnect();
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+		return kt;
 	}
 	
 }

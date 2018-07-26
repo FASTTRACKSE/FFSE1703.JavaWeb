@@ -15,98 +15,122 @@
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<!-- lưu ngôn ngữ người dùng chọn và lấy ngôn ngữ mặc định -->
+	<f:view locale="#{sinhVien_Controller.locale}" />
+	
+
 </h:head>
 
 <h:body>
 	<div class="container">
+
+		<h:form>
+			<h:commandButton value="logout" action="#{sinhVien_Controller.logout}"></h:commandButton>
+			<div class="dropdown">
+
+				<button class="dropdown-toggle btn btn-btndefault" id="drop6"
+					data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false"> Ngôn ngữ <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu" id="menu3" aria-labelledby="drop6">
+					<li><h:commandLink
+							action="#{sinhVien_Controller.changeLanguage('')}"
+							value="Việt nam"></h:commandLink></li>
+					<li><h:commandLink
+							action="#{sinhVien_Controller.changeLanguage('en')}"
+							value="English"></h:commandLink></li>
+				</ul>
+
+			</div>
+		</h:form>
+
 		<center>
 			<h2>
-				<h:outputText value="Danh sách sinh viên" />
+				<h:outputText value="#{msg['studentList']}" />
 			</h2>
 		</center>
 		<h:form id="studentForm">
-			<h:commandButton class="btn btn-success" value="Thêm sinh viên"
+			<h:commandButton class="btn btn-success"
+				value="#{msg['createButton']}"
 				action="create.xhtml?faces-redirect=true"></h:commandButton>
 			<h:dataTable id="studentTable"
 				class="table table-striped table-hover" binding="#{table}"
-				value="#{sinhVien_Bean.sinhVienList()}" var="sinhVien">
+				value="#{sinhVien_Controller.sinhVienList()}" var="sinhVien">
 				<h:column>
-					<f:facet name="header">Stt</f:facet>
+					<f:facet name="header">#{msg["no"]}</f:facet>
 					<h:outputText value="#{table.rowIndex + 1}" />
 				</h:column>
 
 				<h:column>
-					<f:facet name="header">Mã sv</f:facet>
+					<f:facet name="header">#{msg["studentId"]}</f:facet>
 					<h:outputText value="#{sinhVien.maSv}" />
 				</h:column>
 				<h:column>
-					<f:facet name="header">Họ tên</f:facet>
+					<f:facet name="header">#{msg["name"]}</f:facet>
 					<h:outputText value="#{sinhVien.hoTen}" />
 				</h:column>
 				<h:column>
-					<f:facet name="header">Năm sinh</f:facet>
+					<f:facet name="header">#{msg["yearOfBirth"]}</f:facet>
 					<h:outputText value="#{sinhVien.namSinh}" />
 				</h:column>
 				<h:column>
-					<f:facet name="header">Quê quán</f:facet>
+					<f:facet name="header">#{msg["country"]}</f:facet>
 					<h:outputText value="#{sinhVien.queQuan}" />
 				</h:column>
 				<h:column>
-					<f:facet name="header">Giới tính</f:facet>
+					<f:facet name="header">#{msg["gender"]}</f:facet>
 					<h:outputText value="#{sinhVien.gioiTinh}" />
 				</h:column>
 				<h:column>
-					<f:facet name="header">Email</f:facet>
+					<f:facet name="header">#{msg["email"]}</f:facet>
 					<h:outputText value="#{sinhVien.email}" />
 				</h:column>
 				<h:column>
-					<f:facet name="header">Điện thoại</f:facet>
+					<f:facet name="header">#{msg["phone"]}</f:facet>
 					<h:outputText value="#{sinhVien.dienThoai}" />
 				</h:column>
 				<h:column>
-					<f:facet name="header">Mã lớp</f:facet>
+					<f:facet name="header">#{msg["classId"]}</f:facet>
 					<h:outputText value="#{sinhVien.maLop}" />
 				</h:column>
 				<h:column>
-					<f:facet name="header">Chức năng</f:facet>
+					<f:facet name="header">#{msg["function"]}</f:facet>
 					<h:commandButton class="btn btn-danger"
-						action="#{sinhVien_Bean.deleteSinhVien(sinhVien.maSv)}"
-						value="Xóa" onclick="return function1()"></h:commandButton>
+						action="#{sinhVien_Controller.deleteSinhVien(sinhVien.maSv)}"
+						value="#{msg['deleteButton']}"
+						onclick="if (!confirm('#{msg['messDelete']}')) return false"></h:commandButton>
 					<h:outputText value="             " escape="false" />
 					<!-- tạo khoảng trắng -->
 					<h:commandButton class="btn btn-primary"
-						action="#{sinhVien_Bean.editSinhVienRecord(sinhVien.maSv)}"
-						value="Sửa: #{sinhVien.maSv}"></h:commandButton>
+						action="#{sinhVien_Controller.editSinhVienRecord(sinhVien.maSv)}"
+						value="#{msg['editButton']}"></h:commandButton>
 				</h:column>
 			</h:dataTable>
-			<h:outputText value="trangzzz: #{sinhVien_Bean.paginator.soTrang}"></h:outputText>
-			
-			
+			<h:outputText
+				value="trangzzz: #{sinhVien_Controller.paginator.soTrang}"></h:outputText>
+
+
 			<ul class="pagination">
 
-				<li>
-					<c:if test="#{sinhVien_Bean.paginator.trang gt 1}">
-							<h:commandLink value="first" action="#{sinhVien_Bean.paginator.first}"></h:commandLink>
-							<h:commandLink value="#{sinhVien_Bean.paginator.trang - 1}" action="#{sinhVien_Bean.prev}"></h:commandLink>
-					</c:if>
-				</li>
-				<li><a style="background-color: rgb(131,199,93)">#{sinhVien_Bean.paginator.trang}</a></li>
-				<li>
-					<c:if test="#{sinhVien_Bean.paginator.trang lt sinhVien_Bean.paginator.soTrang}">
-						<h:commandLink value="#{sinhVien_Bean.paginator.trang + 1}" action="#{sinhVien_Bean.next}"></h:commandLink>
-						<h:commandLink value="last" action="#{sinhVien_Bean.paginator.last}"></h:commandLink>
-					</c:if>
-				</li>
+				<li><c:if test="#{sinhVien_Controller.paginator.trang gt 1}">
+						<h:commandLink value="first"
+							action="#{sinhVien_Controller.paginator.first}"></h:commandLink>
+						<h:commandLink value="#{sinhVien_Controller.paginator.trang - 1}"
+							action="#{sinhVien_Controller.prev}"></h:commandLink>
+					</c:if></li>
+				<li><a style="background-color: rgb(131, 199, 93)">#{sinhVien_Controller.paginator.trang}</a></li>
+				<li><c:if
+						test="#{sinhVien_Controller.paginator.trang lt sinhVien_Controller.paginator.soTrang}">
+						<h:commandLink value="#{sinhVien_Controller.paginator.trang + 1}"
+							action="#{sinhVien_Controller.next}"></h:commandLink>
+						<h:commandLink value="last"
+							action="#{sinhVien_Controller.paginator.last}"></h:commandLink>
+					</c:if></li>
 			</ul>
-			
+
 		</h:form>
 	</div>
-
-	<script>
-		function function1() {
-			return confirm("Bạn có muốn xóa không?");
-		}
-	</script>
 
 </h:body>
 

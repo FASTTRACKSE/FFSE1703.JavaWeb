@@ -2,10 +2,12 @@ package ffse20.jsf.pagination;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-@ManagedBean(name ="pagination")
+
+@ManagedBean(name = "pagination")
 @SessionScoped
 public class StudentPagin {
-	private int records = 3;
+
+	private int records = 2;
 	private int recordsTotal;
 	private int pageIndex = 1;
 	private int pages;
@@ -66,10 +68,12 @@ public class StudentPagin {
 	}
 
 	public int getFromIndex() {
-		return (pageIndex * records) - records;
+		return (pageIndex - 1) * records;
 	}
 
 	public void setPageIndex(int pageIndex) {
 		this.pageIndex = pageIndex;
 	}
+	
+
 }

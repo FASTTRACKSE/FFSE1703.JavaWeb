@@ -49,7 +49,7 @@ public class SinhVienDAO {
     	}
 		return soTrang;
     }
-	public static List<SinhVien> listAllSV() {
+	public static List<SinhVien> listAllSV() throws SQLException  {
 		List<SinhVien> listSV = new ArrayList<>();
 		try {
 			connect();
@@ -63,9 +63,8 @@ public class SinhVienDAO {
 			}
 			rs.close();
 			stm.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} finally {
+			conn.close();
 		}
 		return listSV;
 	}

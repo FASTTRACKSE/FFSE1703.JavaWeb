@@ -2,6 +2,7 @@
     <wb-module deploy-name="JSFCRUD">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/resources"/>
         <property name="context-root" value="JSFCRUD"/>
         <property name="java-output-path" value="/JSFCRUD/build/classes"/>
     </wb-module>

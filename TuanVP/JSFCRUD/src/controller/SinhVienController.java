@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -13,25 +14,24 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
-
-import bean.SinhVienBean;
-import dao.SinhVienDAO;
+import bean.*;
+import dao.*;
 
 @ManagedBean(name = "studentController")
 @SessionScoped
 public class SinhVienController {
+	private String admin;
 	private int pageCurrent, pageTotal, pageLimit, pageStart;
 	private ArrayList<SinhVienBean> listSinhVien;
 	private Locale locale;
 	private SinhVienDAO studentDAO = new SinhVienDAO();
-	private Map<String, Object> sessionObj = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
 
-	public SinhVienController() throws SQLException {
+	public SinhVienController() throws SQLException, IOException {
 		listSinhVien = new ArrayList<SinhVienBean>();
 		this.pageCurrent = 1;
 		this.pageTotal = 1;
 		this.pageStart = 1;
-		this.pageLimit = 1;
+		this.pageLimit = 3;
 		this.locale = new Locale("vi");
 		loadStudent();
 	}
@@ -51,7 +51,7 @@ public class SinhVienController {
 
 	public void countStudent() throws SQLException {
 		int totalStudent = studentDAO.rowCount();
-		pageTotal = (int) Math.ceil(totalStudent / pageLimit);
+		pageTotal = (int) Math.ceil( (double) totalStudent / (double) pageLimit);
 		if (pageCurrent > pageTotal) {
 			pageCurrent = pageTotal;
 		}
@@ -124,6 +124,14 @@ public class SinhVienController {
 		this.pageStart = pageStart;
 	}
 
+	public String getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(String admin) {
+		this.admin = admin;
+	}
+
 	public void loadStudent() throws SQLException {
 		listSinhVien.clear();
 		countStudent();
@@ -139,6 +147,21 @@ public class SinhVienController {
 		this.listSinhVien = listSinhVien;
 	}
 
+	public String adminLogin(AdminBean adBean) {
+		String page = "";
+		if (adBean.getAdmin().equals("admin") && adBean.getPassword().equals("123456")) {
+			admin = adBean.getAdmin();
+			page = "index.xhtml?faces-redirect=true";
+		}
+		return page;
+
+	}
+
+	public String logout() {
+		admin = null;
+		return "login.xhtml?faces-redirect=true";
+	}
+
 	public String insertSinhVien(SinhVienBean sv) throws SQLException {
 		studentDAO.insertSinhVien(sv);
 		countStudent();
@@ -148,6 +171,7 @@ public class SinhVienController {
 	}
 
 	public String editSinhVien(int id) throws SQLException {
+		Map<String, Object> sessionObj = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
 		SinhVienBean sv = new SinhVienBean(id);
 		SinhVienBean extSV = studentDAO.getSinhVien(sv);
 		sessionObj.put("extSV", extSV);
@@ -156,6 +180,7 @@ public class SinhVienController {
 
 	public String updateSinhVien(SinhVienBean sv) throws SQLException {
 		studentDAO.updateSinhVien(sv);
+		loadStudent();
 		return "index.xhtml?faces-redirect=true";
 	}
 
@@ -163,7 +188,7 @@ public class SinhVienController {
 		studentDAO.deleteSinhVien(id);
 		loadStudent();
 	}
-	
+
 	public void validateEmail(FacesContext fc, UIComponent uc, Object value) throws ValidatorException {
 		Pattern pt = Pattern.compile("[\\w\\.-]*[a-zA-Z0-9_]@[\\w\\.-]*[a-zA-Z0-9]\\.[a-zA-Z][a-zA-Z\\.]*[a-zA-Z]");
 		Matcher mc = pt.matcher(value.toString());
@@ -172,8 +197,9 @@ public class SinhVienController {
 			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
 			throw new ValidatorException(msg);
 		}
-			
+
 	}
+
 	public void validatePhone(FacesContext fc, UIComponent uc, Object value) throws ValidatorException {
 		Pattern pt = Pattern.compile("(\\+84|0084|0)[0-9]{9,10}");
 		Matcher mc = pt.matcher(value.toString());
@@ -182,7 +208,7 @@ public class SinhVienController {
 			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
 			throw new ValidatorException(msg);
 		}
-			
+
 	}
 
 }

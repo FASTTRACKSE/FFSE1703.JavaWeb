@@ -192,4 +192,24 @@ public class DAO {
 		return total;
 	}
 	
+	public int checkLogin(String user, String pass) {
+		int kt = 0;
+		try {
+			connect();
+			String sql = "select count(*) from User where User_name = ? and Pass = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, user);
+			ps.setString(2, pass);
+			ResultSet result= ps.executeQuery();
+			while(result.next())
+			{
+				kt = result.getInt("COUNT(*)");
+			}
+			disconnect();
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+		return kt;
+	}
+	
 }

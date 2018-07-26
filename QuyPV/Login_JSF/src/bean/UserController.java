@@ -15,13 +15,18 @@ import dao.DAO;
 @SessionScoped
 public class UserController {
 	DAO userDao = new DAO();
-	
+	private  FacesContext facesContex;
+	public  HttpSession session;
 	public String checkLogin(String user, String pass) {
 		int kt = userDao.check(user, pass);
 		
 		if(kt == 1) {
-			HttpSession session = SessionUtils.getSession();
+
+			facesContex = FacesContext.getCurrentInstance();
+			session = (HttpSession) facesContex.getExternalContext().getSession(false);
+			
 			session.setAttribute("userName", user);
+			System.out.println("session " + session.getAttribute("userName"));
 			return "admin?faces-redirect=true";
 		} else {
 			FacesContext faceContext = FacesContext.getCurrentInstance();
@@ -35,8 +40,13 @@ public class UserController {
 	}
 	
 	public String logout() {
-		HttpSession session = SessionUtils.getSession(); // gọi phương thức getSession trong class SessionUtil
+		
 		session.invalidate();
 		return "index?faces-redirect=true";
+	}
+	
+	public String go() {
+		System.out.println("session " + session.getAttribute("userName"));
+		return "a?faces-redirect=true";
 	}
 }

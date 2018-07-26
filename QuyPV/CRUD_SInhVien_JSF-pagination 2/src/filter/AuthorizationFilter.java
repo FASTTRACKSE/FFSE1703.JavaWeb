@@ -1,6 +1,7 @@
-package bean;
+package filter;
 
 import java.io.IOException;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -33,15 +34,14 @@ public class AuthorizationFilter implements Filter {
 			HttpSession ses = reqt.getSession(false);
 
 			String reqURI = reqt.getRequestURI();
-			if (reqURI.indexOf("/index.xhtml") >= 0
+			if (reqURI.indexOf("/login.xhtml") >= 0
 					|| (ses != null && ses.getAttribute("userName") != null)
 					|| reqURI.indexOf("/public/") >= 0
 					|| reqURI.contains("javax.faces.resource")) {
 				chain.doFilter(request, response); 
-				
 				}
 			else {
-				resp.sendRedirect(reqt.getContextPath() + "/faces/index.xhtml");
+				resp.sendRedirect(reqt.getContextPath() + "/login.xhtml");
 				}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -53,3 +53,4 @@ public class AuthorizationFilter implements Filter {
 
 	}
 }
+

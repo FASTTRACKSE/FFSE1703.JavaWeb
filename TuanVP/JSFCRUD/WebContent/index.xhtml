@@ -1,12 +1,15 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:head>
+	<c:if test="#{studentController.admin == null}">
+		<meta http-equiv="refresh" content="0;URL=login.xhtml" />
+	</c:if>
 	<link rel="stylesheet"
 		href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"></link>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -15,64 +18,116 @@
 	<script
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 </h:head>
-<h:body class="container">
+<c:if test="#{studentController.locale !=null}">
+	<f:view locale="#{studentController.locale}" />
+</c:if>
+<body class="container">
+	<div class="dropdown">
+		<button class="btn btn-success dropdown-toggle" type="button"
+			id="dropdownMenuButton" data-toggle="dropdown">#{msg['ngonngu']}</button>
+		<div class="dropdown-menu">
+			<h:form>
+				<h:commandButton styleClass="dropdown-item"
+					actionListener="#{studentController.changeLanguage('vi')}"
+					value="#{msg['tiengviet']}" />
+				<h:commandButton styleClass="dropdown-item"
+					actionListener="#{studentController.changeLanguage('en')}"
+					value="#{msg['tienganh']}" />
+			</h:form>
+		</div>
+		<div style="float: right;">
+			<h:form>
+				<h:commandButton styleClass="btn btn-danger" value="Logout"
+					action="#{studentController.logout}" />
+			</h:form>
+		</div>
+	</div>
+
 	<div>
 		<center>
-			<p class="h1">Danh sách sinh viên</p>
+			<p class="h1">#{msg['tentrang']}</p>
 		</center>
 	</div>
 	<div>
 		<p class="h3">
-			<a href="FormInsert.xhtml">Thêm sinh viên</a>
+			<a href="FormInsert.xhtml">#{msg['them']}</a>
 		</p>
 	</div>
 	<h:form>
 		<h:dataTable class="table table-striped table-hover table-bordered"
-			binding="#{table}" value="#{sinhVien.listSinhVien}" var="sv">
+			binding="#{table}" value="#{studentController.listSinhVien}" var="sv">
 			<h:column>
-				<f:facet name="header">ID</f:facet>
-				<h:outputText value="#{table.rowIndex + 1}"></h:outputText>
+				<f:facet name="header">#{msg['id']}</f:facet>
+				<h:outputText
+					value="#{(studentController.pageCurrent -1) * studentController.pageLimit + table.rowIndex + 1}"></h:outputText>
 			</h:column>
 			<h:column>
-				<f:facet name="header">Họ đệm</f:facet>
+				<f:facet name="header">#{msg['hodem']}</f:facet>
 				<h:outputText value="#{sv.hoDem}"></h:outputText>
 			</h:column>
 			<h:column>
-				<f:facet name="header">Tên</f:facet>
+				<f:facet name="header">#{msg['ten']}</f:facet>
 				<h:outputText value="#{sv.ten}"></h:outputText>
 			</h:column>
 			<h:column>
-				<f:facet name="header">Năm sinh</f:facet>
+				<f:facet name="header">#{msg['namsinh']}</f:facet>
 				<h:outputText value="#{sv.namSinh}"></h:outputText>
 			</h:column>
 			<h:column>
-				<f:facet name="header">Giới tính</f:facet>
+				<f:facet name="header">#{msg['gioitinh']}</f:facet>
 				<h:outputText value="#{sv.gioiTinh}"></h:outputText>
 			</h:column>
 			<h:column>
-				<f:facet name="header">Email</f:facet>
+				<f:facet name="header">#{msg['email']}</f:facet>
 				<h:outputText value="#{sv.email}"></h:outputText>
 			</h:column>
 			<h:column>
-				<f:facet name="header">Số điện thoại</f:facet>
+				<f:facet name="header">#{msg['sdt']}</f:facet>
 				<h:outputText value="#{sv.sdt}"></h:outputText>
 			</h:column>
 			<h:column>
-				<f:facet name="header">Địa chỉ</f:facet>
+				<f:facet name="header">#{msg['diachi']}</f:facet>
 				<h:outputText value="#{sv.diaChi}"></h:outputText>
 			</h:column>
 			<h:column>
-				<f:facet name="header">Lớp học</f:facet>
+				<f:facet name="header">#{msg['lophoc']}</f:facet>
 				<h:outputText value="#{sv.lop}"></h:outputText>
 			</h:column>
 			<h:column>
-				<f:facet name="header">Hành động</f:facet>
-				<h:commandButton action="#{sinhVien.editSinhVien(sv.id)}"
-					styleClass="btn btn-success" value="Sửa" />
-				<h:commandButton action="#{sinhVien.deleteSinhVien(sv.id)}"
-					styleClass="btn btn-danger" value="Xóa" />
+				<f:facet name="header">#{msg['hanhdong']}</f:facet>
+				<h:commandButton action="#{studentController.editSinhVien(sv.id)}"
+					styleClass="btn btn-success" value="#{msg['sua']}" />
+				<h:commandButton action="#{studentController.deleteSinhVien(sv.id)}"
+					styleClass="btn btn-danger" value="#{msg['xoa']}" />
 			</h:column>
 		</h:dataTable>
 	</h:form>
-</h:body>
+	<div>
+		<h:form>
+			<ul class="pagination">
+				<li class="page-item"><h:commandLink value="#{msg['trangdau']}"
+						class="page-link" actionListener="#{studentController.firstPage}">
+					</h:commandLink></li>
+				<li class="page-item"><h:commandLink
+						rendered="#{studentController.pageCurrent gt 1}"
+						value="#{studentController.pageCurrent - 1}" class="page-link"
+						actionListener="#{studentController.prevPage()}">
+					</h:commandLink></li>
+				<li class="page-item"><h:commandLink class="page-link"
+						style="color:black;">
+						<h:outputText value="#{studentController.pageCurrent}" />
+					</h:commandLink></li>
+				<li class="page-item"><h:commandLink
+						rendered="#{studentController.pageCurrent lt studentController.pageTotal}"
+						value="#{studentController.pageCurrent + 1}" class="page-link"
+						actionListener="#{studentController.nextPage()}">
+					</h:commandLink></li>
+				<li class="page-item"><h:commandLink
+						value="#{msg['trangcuoi']}" class="page-link"
+						actionListener="#{studentController.lastPage}">
+					</h:commandLink></li>
+			</ul>
+		</h:form>
+	</div>
+</body>
 </html>

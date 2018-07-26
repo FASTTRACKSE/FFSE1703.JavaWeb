@@ -1,0 +1,135 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+  	<title>JSF</title>
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<f:view locale="#{studentBean.locale}" />
+</h:head>
+<h:body>
+	<h:form id="createStudentForm" class="form-horizontal">
+		<div class="form-group">
+			<div class="col-sm-4"></div>
+			<div class="col-sm-4">
+				<h2>#{msg['insert']}</h2>
+			</div>
+		</div>
+		<hr />
+		
+		<div class="form-group">
+			<h:outputLabel for="first" class="control-label col-sm-4">#{msg['first_name']}</h:outputLabel>
+			<div class="col-sm-4">
+				<h:inputText id="first-id" value="#{student.firstName}"
+					class="form-control" required = "true" requiredMessage=" Họ đệm bắt buộc nhập">
+					<f:validateRequired />
+				</h:inputText>
+				<h:message for = "first-id" style = "color:red" />
+			</div>
+		</div>
+		<div class="form-group">
+			<h:outputLabel for="last" class="control-label col-sm-4">#{msg['last_name']}</h:outputLabel>
+			<div class="col-sm-4">
+				<h:inputText id="last-id" value="#{student.lastName}"
+					class="form-control" required = "true" requiredMessage=" Tên bắt buộc nhập">
+					<f:validateRequired />
+				</h:inputText>
+				<h:message for = "last-id" style = "color:red" />
+			</div>
+		</div>
+		<div class="form-group">
+			<h:outputLabel for="birthYear" class="control-label col-sm-4">#{msg['birth_year']}</h:outputLabel>
+			<div class="col-sm-4">
+				<h:inputText id="birthYear-id" value="#{student.birthYear}"
+					class="form-control" required = "true" requiredMessage=" Vui long nhập sinh viên!!">
+					<f:validateRequired />
+				</h:inputText>
+				<h:message for = "birthYear-id" style = "color:red" />
+			</div>
+
+		</div>
+		<div class="form-group">
+			<h:outputLabel for="gender" class="control-label col-sm-4">#{msg['gender']}</h:outputLabel>
+			<div class="col-sm-4">
+				<h:selectOneRadio id="gender-id" value="#{student.gender}"
+					required = "true" requiredMessage=" Bạn chưa chọn Giới tính!!">
+					<f:selectItem itemValue="Nam" itemLabel="Male" />
+					<f:selectItem itemValue="Nữ" itemLabel="Female" />
+					<f:validateRequired />
+				</h:selectOneRadio>
+				<h:message for = "gender-id" style = "color:red" />
+			</div>
+		</div>
+		<div class="form-group">
+			<h:outputLabel for="email" class="control-label col-sm-4">email:</h:outputLabel>
+			<div class="col-sm-4">
+				<h:inputText id="email-id" value="#{student.email}" cols="50"
+					rows="5" class="form-control"
+					required = "true" requiredMessage=" Vui long nhập email!!" validatorMessage="Email đã tồn tại hoặc không hơp lệ." validator="#{validator.checkEmail}">
+					<f:validateRegex
+ 					 pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
+					<f:validateRequired />
+				</h:inputText>
+				<h:message for = "email-id" style = "color:red" />
+			</div>
+		</div>
+		<div class="form-group">
+			<h:outputLabel for="sdt" class="control-label col-sm-4">#{msg['sdt']}</h:outputLabel>
+			<div class="col-sm-4">
+				<h:inputText id="sdt-id" value="#{student.sdt}" cols="50"
+					rows="5" class="form-control"
+					required = "true" requiredMessage=" Vui long nhập số điện thoại!!" validatorMessage="Số điên thoại của bạn không đúng">
+					<f:validateRegex pattern="^[0-9-]{10,11}$" />
+					<f:validateRequired />
+				</h:inputText>
+				<h:message for = "sdt-id" style = "color:red" />
+			</div>
+		</div>
+		<div class="form-group">
+			<h:outputLabel for="class" class="control-label col-sm-4">#{msg['class']}:</h:outputLabel>
+			<div class="col-sm-4">
+				<h:selectOneMenu id="class-id" value="#{student.classSv}"
+					required = "true" requiredMessage=" Vui lòng chọn lớp!!">
+					<f:selectItem itemValue="FFSE1701" itemLabel="FFSE1701" />
+					<f:selectItem itemValue="FFSE1702" itemLabel="FFSE1702" />
+					<f:selectItem itemValue="FFSE1703" itemLabel="FFSE1703" />
+					<f:selectItem itemValue="FFSE1704" itemLabel="FFSE1704" />
+					<f:validateRequired />
+				</h:selectOneMenu>
+					<h:message for = "class-id" style = "color:red" />
+			</div>
+		</div>
+		<div class="form-group">
+			<h:outputLabel for="address" class="control-label col-sm-4">#{msg['address']}:</h:outputLabel>
+			<div class="col-sm-4">
+				<h:inputText id="address-id" value="#{student.diaChi}" cols="50"
+					rows="5" class="form-control"
+					required = "true" requiredMessage=" Vui lòng nhập địa chỉ!!">
+					<f:validateRequired />
+				</h:inputText>
+				<h:message for = "address-id" style = "color:red"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-4"></div>
+			<div class="col-sm-4">
+				<div class="col-sm-2">
+					<h:commandButton value="#{msg['save']}"
+						action="#{studentBean.insertStudent(student)}"
+						class="btn btn-success btnWidth" />
+				</div>
+				<div class="col-sm-1"></div>
+				<div class="col-sm-2">
+					<h:link outcome="index.xhtml" value="#{msg['back']}"
+						class="btn btn-primary" />
+				</div>
+			</div>
+		</div>
+	</h:form>
+</h:body>
+</html>

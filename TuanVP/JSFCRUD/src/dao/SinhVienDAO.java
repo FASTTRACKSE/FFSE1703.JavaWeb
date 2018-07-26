@@ -1,75 +1,108 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Map;
+import bean.SinhVienBean;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-import javax.faces.context.FacesContext;
-
-import bean.SinhVien;
-import connection.ConnectionDB;
-
-@ManagedBean(name = "sinhVienDAO")
-@RequestScoped
 public class SinhVienDAO {
-	final static Connection connection = ConnectionDB.getConnect("localhost", "ffse1703014", "admin", "123456");
+	private String jdbcURL;
+	private String jdbcUsername;
+	private String jdbcPassword;
+	private Connection jdbcConnection;
 
-	public ArrayList<SinhVien> listSinhVien() throws SQLException {
-		ArrayList<SinhVien> listSinhVien = new ArrayList<SinhVien>();
-		String sql = "SELECT * FROM sinhvien";
-		Statement st = connection.createStatement();
-		ResultSet rs = st.executeQuery(sql);
+	public SinhVienDAO() {
+		this.jdbcURL = "jdbc:mysql://localhost:3306/ffse1703014?useUnicode=true&characterEncoding=utf-8";
+		this.jdbcUsername = "admin";
+		this.jdbcPassword = "123456";
+	}
+
+	protected void connect() throws SQLException {
+		if (jdbcConnection == null || jdbcConnection.isClosed()) {
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+			} catch (ClassNotFoundException e) {
+				throw new SQLException(e);
+			}
+			jdbcConnection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
+		}
+	}
+
+	protected void disconnect() throws SQLException {
+		if (jdbcConnection != null && !jdbcConnection.isClosed()) {
+			jdbcConnection.close();
+		}
+	}
+
+	public ArrayList<SinhVienBean> listSinhVien(int start, int maxItems) throws SQLException {
+		ArrayList<SinhVienBean> listSinhVien = new ArrayList<SinhVienBean>();
+		String sql = "SELECT * FROM sinhvien LIMIT ?,?";
+
+		connect();
+
+		PreparedStatement ps = jdbcConnection.prepareStatement(sql);
+		ps.setInt(1, start);
+		ps.setInt(2, maxItems);
+		ResultSet rs = ps.executeQuery();
 		while (rs.next()) {
-			SinhVien sv = new SinhVien();
-			sv.setId(rs.getInt("id"));
-			sv.setHoDem(rs.getString("HoDem"));
-			sv.setTen(rs.getString("Ten"));
-			sv.setNamSinh(rs.getString("NamSinh"));
-			sv.setGioiTinh(rs.getString("GioiTinh"));
-			sv.setEmail(rs.getString("Email"));
-			sv.setSdt(rs.getString("SDT"));
-			sv.setDiaChi(rs.getString("DiaChi"));
-			sv.setLop(rs.getString("Lop"));
+			int id = rs.getInt("ID");
+			String hoDem = rs.getString("HoDem");
+			String ten = rs.getString("Ten");
+			String namSinh = rs.getString("NamSinh");
+			String gioiTinh = rs.getString("GioiTinh");
+			String email = rs.getString("Email");
+			String sdt = rs.getString("SDT");
+			String diaChi = rs.getString("DiaChi");
+			String lop = rs.getString("Lop");
+			SinhVienBean sv = new SinhVienBean(id, hoDem, ten, namSinh, gioiTinh, email, sdt, diaChi, lop);
 			listSinhVien.add(sv);
 		}
+
+		rs.close();
+		ps.close();
+		disconnect();
+
 		return listSinhVien;
 	}
 
-	public String getSinhVien(int id) throws SQLException {
-		Map<String, Object> sessionObj = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-		SinhVien sv = new SinhVien();
+	public SinhVienBean getSinhVien(SinhVienBean sv) throws SQLException {
+		SinhVienBean extSV = null;
 		String sql = "SELECT * FROM sinhvien WHERE id = ?";
-		PreparedStatement ps = connection.prepareStatement(sql);
-		ps.setInt(1, id);
+
+		connect();
+
+		PreparedStatement ps = jdbcConnection.prepareStatement(sql);
+		ps.setInt(1, sv.getId());
 		ResultSet rs = ps.executeQuery();
 		while (rs.next()) {
-			sv.setId(rs.getInt("id"));
-			sv.setHoDem(rs.getString("HoDem"));
-			sv.setTen(rs.getString("Ten"));
-			sv.setNamSinh(rs.getString("NamSinh"));
-			sv.setGioiTinh(rs.getString("GioiTinh"));
-			sv.setEmail(rs.getString("Email"));
-			sv.setSdt(rs.getString("SDT"));
-			sv.setDiaChi(rs.getString("DiaChi"));
-			sv.setLop(rs.getString("Lop"));
+			int id = rs.getInt("ID");
+			String hoDem = rs.getString("HoDem");
+			String ten = rs.getString("Ten");
+			String namSinh = rs.getString("NamSinh");
+			String gioiTinh = rs.getString("GioiTinh");
+			String email = rs.getString("Email");
+			String sdt = rs.getString("SDT");
+			String diaChi = rs.getString("DiaChi");
+			String lop = rs.getString("Lop");
+			extSV = new SinhVienBean(id, hoDem, ten, namSinh, gioiTinh, email, sdt, diaChi, lop);
 		}
+
 		rs.close();
 		ps.close();
-
-		
-		sessionObj.put("extSV", sv);
-		return "FormUpdate?faces-redirect=true";
+		disconnect();
+		return extSV;
 	}
 
-	public boolean insertSinhVien(SinhVien sv) throws SQLException {
+	public boolean insertSinhVien(SinhVienBean sv) throws SQLException {
 		String sql = "INSERT INTO sinhvien VALUES(null, ?, ?, ?, ?, ?, ?, ?, ?)";
-		PreparedStatement ps = connection.prepareStatement(sql);
+
+		connect();
+
+		PreparedStatement ps = jdbcConnection.prepareStatement(sql);
 		ps.setString(1, sv.getHoDem());
 		ps.setString(2, sv.getTen());
 		ps.setString(3, sv.getNamSinh());
@@ -78,14 +111,21 @@ public class SinhVienDAO {
 		ps.setString(6, sv.getSdt());
 		ps.setString(7, sv.getDiaChi());
 		ps.setString(8, sv.getLop());
-		
+
 		boolean rowUpdate = ps.executeUpdate() > 0;
+
 		ps.close();
+		disconnect();
+
 		return rowUpdate;
 	}
-	public boolean updateSinhVien(SinhVien sv) throws SQLException {
-		String sql = "UPDATE sinhvien SET Hodem = ?, Ten = ?, NamSinh = ?, GioiTinh = ?, Email = ?, SDT = ?, DiaChi = ?, Lop = ?";
-		PreparedStatement ps = connection.prepareStatement(sql);
+
+	public boolean updateSinhVien(SinhVienBean sv) throws SQLException {
+		String sql = "UPDATE sinhvien SET Hodem = ?, Ten = ?, NamSinh = ?, GioiTinh = ?, Email = ?, SDT = ?, DiaChi = ?, Lop = ? WHERE ID = ?";
+
+		connect();
+
+		PreparedStatement ps = jdbcConnection.prepareStatement(sql);
 		ps.setString(1, sv.getHoDem());
 		ps.setString(2, sv.getTen());
 		ps.setString(3, sv.getNamSinh());
@@ -94,18 +134,48 @@ public class SinhVienDAO {
 		ps.setString(6, sv.getSdt());
 		ps.setString(7, sv.getDiaChi());
 		ps.setString(8, sv.getLop());
-		
+		ps.setInt(9, sv.getId());
+
 		boolean rowUpdate = ps.executeUpdate() > 0;
+		
 		ps.close();
+		disconnect();
+		
 		return rowUpdate;
 	}
+
 	public boolean deleteSinhVien(int id) throws SQLException {
 		String sql = "DELETE FROM sinhvien WHERE id = ?";
-		PreparedStatement ps = connection.prepareStatement(sql);
-		ps.setInt(1, id);
 		
+		connect();
+		
+		PreparedStatement ps = jdbcConnection.prepareStatement(sql);
+		ps.setInt(1, id);
+
 		boolean rowUpadate = ps.executeUpdate() > 0;
+		
+		ps.close();
+		disconnect();
+		
 		return rowUpadate;
 	}
 
+	public int rowCount() throws SQLException {
+		int row = 0;
+		String sql = "SELECT COUNT(*) FROM sinhvien";
+		
+		connect();
+		
+		Statement st = jdbcConnection.createStatement();
+		ResultSet rs = st.executeQuery(sql);
+		while (rs.next()) {
+			row = rs.getInt("COUNT(*)");
+		}
+		
+		rs.close();
+		st.close();
+		disconnect();
+
+		return row;
+	}
 }

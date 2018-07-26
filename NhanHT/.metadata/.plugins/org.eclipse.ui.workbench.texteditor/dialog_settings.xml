@@ -6,16 +6,23 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="test" key="selection"/>
+		<item value="StudentDAO" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="studentDAO"/>
+			<item value="first_name"/>
+			<item value="messages"/>
+			<item value="changeLanguage"/>
+			<item value="init"/>
+			<item value="user"/>
 			<item value="test"/>
 			<item value="final"/>
 		</list>
 		<list key="replacehistory">
+			<item value="studentBean"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

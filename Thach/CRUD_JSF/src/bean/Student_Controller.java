@@ -74,6 +74,7 @@ public class Student_Controller {
 
 	@PostConstruct
 	public void init() {
+		locale = FacesContext.getCurrentInstance().getExternalContext().getRequestLocale();
 		tongSv = studentDao.count();
 		paginator.pagination(tongSv);
 		arrStudent = studentDao.studentList(paginator.start(), paginator.end);

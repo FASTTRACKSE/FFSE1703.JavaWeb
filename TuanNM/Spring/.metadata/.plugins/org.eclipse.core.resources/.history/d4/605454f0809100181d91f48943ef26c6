@@ -1,0 +1,19 @@
+package model;
+
+public class MonLy implements MonHoc {
+	private String monLy;
+
+	public String getMonLy() {
+		return monLy;
+	}
+
+	public void setMonLy(String monLy) {
+		this.monLy = monLy;
+	}
+
+	@Override
+	public void mangSachDiHoc() {
+		
+	}
+	
+}

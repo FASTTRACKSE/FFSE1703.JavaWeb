@@ -1,0 +1,9 @@
+package model;
+
+public class MonLy implements MonHoc {
+
+	public void mangSachDiHoc() {
+		System.out.println("Mang sách Lý  đi học!!");
+	}
+	
+}

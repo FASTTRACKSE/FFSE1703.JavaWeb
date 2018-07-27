@@ -1,0 +1,113 @@
+package sinhvien.service;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
+import sinhvien.bean.QuanLyBean;
+
+public class SinhVienDB {
+	static Connection conn = ConnectDB.getConnect("localhost", "sinhvienjsf", "huong", "12345");
+	public static int themSV(SinhVien sv) {
+		try {
+			String sql = "insert into sinhvien (id, ho_ten, gioi_tinh, email,dia_chi, lop, dien_thoai, nam_sinh) "
+					+ " values (?, ?, ?, ?, ?, ?, ?, ?)";
+			PreparedStatement stm = (PreparedStatement) conn.prepareStatement(sql);
+			stm.setInt(1, sv.getId());
+			stm.setString(2, sv.getHoTen());
+			stm.setString(3, sv.getGioiTinh());
+			stm.setString(4, sv.getEmail());
+			stm.setString(5, sv.getDiaChi());
+			stm.setString(6, sv.getLop());
+			stm.setString(7, sv.getSdt());
+			stm.setInt(8, sv.getNamSinh());
+			int i = stm.executeUpdate();						
+			return i;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		}
+	}
+	
+	public static ArrayList<SinhVien> SinhVien() {
+		ArrayList<SinhVien> arrSv = new ArrayList<SinhVien>();
+		try {
+			String sql = "select * from sinhvien ";
+			PreparedStatement preparedStatement = (PreparedStatement) conn.prepareStatement(sql);
+			ResultSet rs = preparedStatement.executeQuery();
+			while (rs.next()) {
+				SinhVien sv = new SinhVien();
+				sv.setHoTen(rs.getString("ho_ten"));
+				sv.setGioiTinh(rs.getString("gioi_tinh"));
+				sv.setEmail(rs.getString("email"));
+				sv.setDiaChi(rs.getString("dia_chi"));
+				sv.setLop(rs.getString("lop"));
+				sv.setSdt(rs.getString("dien_thoai"));
+				sv.setNamSinh(rs.getInt("nam_sinh"));
+				arrSv.add(sv);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return arrSv;
+	}
+	
+	public static ArrayList<SinhVien> selectSv(int id){
+		ArrayList<SinhVien> arrSv=new ArrayList<SinhVien>();
+		try {
+			String sql ="select * from sinhvien where id = ? ";
+			PreparedStatement preparedStatement = (PreparedStatement) conn.prepareStatement(sql);
+			preparedStatement.setInt(1, id );
+			ResultSet rs = preparedStatement.executeQuery();
+			while(rs.next())
+			{
+				SinhVien sv = new SinhVien();
+				sv.setHoTen(rs.getString("ho_ten"));
+				sv.setGioiTinh(rs.getString("gioi_tinh"));
+				sv.setEmail(rs.getString("email"));
+				sv.setDiaChi(rs.getString("dia_chi"));
+				sv.setLop(rs.getString("lop"));
+				sv.setSdt(rs.getString("dien_thoai"));
+				sv.setNamSinh(rs.getInt("nam_sinh"));
+				arrSv.add(sv);
+			}
+			} catch (Exception e) {
+			e.printStackTrace();
+			}
+		return arrSv;
+		
+	}	
+	
+	public static int update(SinhVien sv) {
+		try {
+			String sql = "update sinhvien set ho_ten = ? , gioi_tinh = ?, email=?, dia_chi=?, lop=? ,"
+					+ "dien_thoai = ?, nam_sinh = ? where id = ?";
+			PreparedStatement stm = (PreparedStatement) conn.prepareStatement(sql);
+			stm.setString(1, sv.getHoTen());
+			stm.setString(2, sv.getGioiTinh());
+			stm.setString(3, sv.getEmail());
+			stm.setString(4, sv.getDiaChi());
+			stm.setString(5, sv.getLop());
+			stm.setString(6, sv.getSdt());
+			stm.setInt(7, sv.getNamSinh());
+			return stm.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		}
+	}
+	
+	public static int deleteSv(String ma) {
+		try {
+			String sql = "DELETE FROM sinhvien WHERE id = ?";
+			PreparedStatement stm = (PreparedStatement) conn.prepareStatement(sql);
+			stm.setString(1, ma);
+
+			return stm.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		}
+	}
+}

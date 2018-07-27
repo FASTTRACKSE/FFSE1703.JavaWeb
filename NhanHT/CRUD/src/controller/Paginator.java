@@ -24,9 +24,8 @@ public class Paginator {
 		if(this.trang > this.soTrang) {
 			this.trang = this.soTrang;
 		}
-		
 	}
-	
+		
 	
 	public void next() {
 		if(this.trang < this.soTrang) {
@@ -47,10 +46,7 @@ public class Paginator {
 	public void last() {
 		this.trang = this.soTrang;
 	}
-	
-	
-	
-	
+	//
 	public int getTrang() {
 		return trang;
 	}

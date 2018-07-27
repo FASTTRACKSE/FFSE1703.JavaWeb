@@ -27,7 +27,8 @@ public class SinhVienBean {
 	public void init() {
 		int countRecords = svDao.countRecords();
 		pagination.setSVList(countRecords);
-		this.svListFromDB = svDao.getSVListFromDB(pagination.getFromIndex(),pagination.getRecord());
+		this.svListFromDB = svDao.getSVListFromDB(pagination.getFromIndex(),
+				pagination.getRecord());
 	}
 	public SinhVienBean () {
 	}
@@ -75,17 +76,14 @@ public class SinhVienBean {
 		pagination.next();
 		this.svListFromDB = svDao.getSVListFromDB(pagination.getFromIndex(),pagination.getRecord());
 	}
-
 	public void prev() {
 		pagination.prev();
 		this.svListFromDB = svDao.getSVListFromDB(pagination.getFromIndex(),pagination.getRecord());
 	}
-
 	public void firstPage() {
 		pagination.firstPage();
 		this.svListFromDB = svDao.getSVListFromDB(pagination.getFromIndex(),pagination.getRecord());
 	}
-
 	public void lastPage() {
 		pagination.lastPage();
 		this.svListFromDB = svDao.getSVListFromDB(pagination.getFromIndex(),pagination.getRecord());

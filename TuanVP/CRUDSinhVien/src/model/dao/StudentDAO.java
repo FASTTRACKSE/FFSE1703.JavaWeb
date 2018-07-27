@@ -38,39 +38,41 @@ public class StudentDAO {
 	        jdbcConnection.close();
 	    }
 	}
-	public List<SinhVien> listSinhVien() throws SQLException {
+	public List<SinhVien> listSinhVien(int start, int perPage) throws SQLException {
 		List<SinhVien> listSinhVien = new ArrayList<>();
-		String sql = "SELECT * FROM sinhvien";
+		String sql = "SELECT * FROM sinhvien1 LIMIT ?, ?";
 		
 		connect();
 		
-		Statement st = jdbcConnection.createStatement();
-		ResultSet rs = st.executeQuery(sql);
+		PreparedStatement ps = jdbcConnection.prepareStatement(sql);
+		ps.setInt(1, start);
+		ps.setInt(2, perPage);
+		ResultSet rs = ps.executeQuery();
 		while (rs.next()) {
-			int id = rs.getInt("id");
-			String hodem = rs.getString("hodem");
-			String ten = rs.getString("ten");
-			String ngaysinh = rs.getString("ngaysinh");
-			String gioitinh = rs.getString("gioitinh");
-			String quequan = rs.getString("quequan");
-			String lop = rs.getString("lop");
-			float diemlp1 = rs.getFloat("diemlp1");
-			float diemlp2 = rs.getFloat("diemlp2");
-			float diemtb = rs.getFloat("diemtb");
-			String xeploai = rs.getString("xeploai");
+			int id = rs.getInt("Id");
+			String hodem = rs.getString("HoDem");
+			String ten = rs.getString("Ten");
+			String ngaysinh = rs.getString("NgaySinh");
+			String gioitinh = rs.getString("GioiTinh");
+			String quequan = rs.getString("QueQuan");
+			String lop = rs.getString("LopHoc");
+			float diemlp1 = rs.getFloat("DiemLP1");
+			float diemlp2 = rs.getFloat("DiemLP2");
+			float diemtb = rs.getFloat("DiemTB");
+			String xeploai = rs.getString("XepLoai");
 			
 			SinhVien sv = new SinhVien(id, hodem, ten, ngaysinh, gioitinh, quequan, lop, diemlp1, diemlp2, diemtb, xeploai);
 			listSinhVien.add(sv);
 		}
 		
 		rs.close();
-		st.close();
+		ps.close();
 		disconnect();
 		
 		return listSinhVien;
 	}
 	public boolean insertStudent(SinhVien sv) throws SQLException {
-		String sql = "INSERT INTO sinhvien VALUES (null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO sinhvien1 VALUES (null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		connect();
 		
@@ -95,7 +97,7 @@ public class StudentDAO {
 	}
 	public SinhVien getSinhVien(SinhVien sv) throws SQLException {
 		SinhVien extsv = null;
-		String sql = "SELECT * FROM sinhvien WHERE id =? ";
+		String sql = "SELECT * FROM sinhvien1 WHERE id =? ";
 		
 		connect();
 		
@@ -104,15 +106,15 @@ public class StudentDAO {
 		ResultSet rs = ps.executeQuery();
 		
 		while (rs.next()) {
-			int id = rs.getInt("id");
-			String hodem = rs.getString("hodem");
-			String ten = rs.getString("ten");
-			String ngaysinh = rs.getString("ngaysinh");
-			String gioitinh = rs.getString("gioitinh");
-			String quequan = rs.getString("quequan");
-			String lop = rs.getString("lop");
-			float diemlp1 = rs.getFloat("diemlp1");
-			float diemlp2 = rs.getFloat("diemlp2");
+			int id = rs.getInt("Id");
+			String hodem = rs.getString("HoDem");
+			String ten = rs.getString("Ten");
+			String ngaysinh = rs.getString("NgaySinh");
+			String gioitinh = rs.getString("GioiTinh");
+			String quequan = rs.getString("QueQuan");
+			String lop = rs.getString("LopHoc");
+			float diemlp1 = rs.getFloat("DiemLP1");
+			float diemlp2 = rs.getFloat("DiemLP2");
 			
 			extsv = new SinhVien(id, hodem, ten, ngaysinh, gioitinh, quequan, lop, diemlp1, diemlp2);
 		}
@@ -124,7 +126,7 @@ public class StudentDAO {
 		return extsv;
 	}
 	public boolean updateStudent(SinhVien sv) throws SQLException {
-		String sql = "UPDATE sinhvien SET hodem = ?, ten = ?, ngaysinh = ?, gioitinh = ?, quequan = ?, lop = ?, diemlp1 = ?, diemlp2 = ?, diemtb = ?, xeploai = ? WHERE id = ?";
+		String sql = "UPDATE sinhvien1 SET HoDem = ?, Ten = ?, NgaySinh = ?, GioiTinh = ?, QueQuan = ?, LopHoc = ?, DiemLP1 = ?, DiemLP2 = ?, DiemTB = ?, XepLoai = ? WHERE Id = ?";
 		
 		connect();
 		
@@ -149,7 +151,7 @@ public class StudentDAO {
 		return rowUpdate;
 	}
 	public boolean deleteStudent(SinhVien sv) throws SQLException {
-		String sql = "DELETE FROM sinhvien WHERE id = ?";
+		String sql = "DELETE FROM sinhvien1 WHERE id = ?";
 		
 		connect();
 		
@@ -161,5 +163,22 @@ public class StudentDAO {
 		disconnect();
 		
 		return rowUpdate;
+	}
+	
+	public int rowCount() throws SQLException {
+		String sql = "SELECT COUNT(*) FROM sinhvien1";
+		int rowCount = 0;
+		connect();
+		
+		Statement st = jdbcConnection.createStatement();
+		ResultSet rs = st.executeQuery(sql);
+		while (rs.next()) {
+			rowCount = rs.getInt("COUNT(*)");
+		}
+		
+		rs.close();
+		st.close();
+		disconnect();
+		return rowCount;
 	}
 }

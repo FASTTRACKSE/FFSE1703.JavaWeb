@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Tran Duc</title>
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+</h:head>
+<h:body>
+	<div class="container">
+		<h:form id="updateForm" class="form-horizontal">
+		<h2>Update Sinh Vien</h2>
+		<h:inputHidden value="#{sv.id}" />
+			<div class="form-group">
+				<h:outputLabel for="username" class="control-label col-sm-2">
+					User Name:</h:outputLabel>
+				<div class="col-sm-4">
+					<h:inputText id="name-edit" value="#{sv.name}" class="form-control" />
+				</div>
+			</div>
+			<div class="form-group">
+				<h:outputLabel for="email" class="control-label col-sm-2">
+					Email:</h:outputLabel>
+				<div class="col-sm-4">
+					<h:inputText id="email-edit" value="#{sv.email}"
+						class="form-control" />
+				</div>
+			</div>
+			<div class="form-group">
+				<h:outputLabel for="password" class="control-label col-sm-2">
+					Password:</h:outputLabel>
+				<div class="col-sm-4">
+					<h:inputText id="password-edit" value="#{sv.password}"
+						class="form-control" />
+				</div>
+			</div>
+			<div class="form-group">
+				<h:outputLabel for="gender" class="control-label col-sm-2">
+					Gender:</h:outputLabel>
+				<div class="col-sm-4">
+					<h:selectOneRadio value="#{sv.gender}">
+						<f:selectItem itemValue="Male" itemLabel="Male" />
+						<f:selectItem itemValue="Female" itemLabel="Female" />
+					</h:selectOneRadio>
+				</div>
+			</div>
+			<div class="form-group">
+				<h:outputLabel for="address" class="control-label col-sm-2">
+					Address:</h:outputLabel>
+				<div class="col-sm-4">
+					<h:inputText id="address-edit" value="#{sv.address}"
+						class="form-control" />
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-2"></div>
+				<div class="col-sm-4">
+					<div class="col-sm-2">
+						<h:commandButton value="Update" action="#{svControl.updateSV(sv)}"
+							class="btn btn-success updateBtnStyle" />
+					</div>
+					<div class="col-sm-8">
+						<h:link outcome="listSV" value="Back" class="btn btn-primary" />
+					</div>
+				</div>
+			</div>
+		</h:form>
+	</div>
+</h:body>
+</html>

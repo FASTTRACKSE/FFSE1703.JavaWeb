@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Tran Duc</title>
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+</h:head>
+<h:body>
+	<div class="container">
+		<center>
+			<h2>Create User</h2>
+		</center>
+		<h:form id="form" style="margin-top:10px;" class="form-horizontal">
+			<div class="form-group">
+				<h:outputLabel for="id" class="control-label col-sm-4">
+					ID User:</h:outputLabel>
+				<div class="col-sm-4">
+					<h:inputText id="idsv" value="#{svBean.id}" class="form-control"
+						required="true">
+						<f:validateLength minium="1" maxium="4" />
+					</h:inputText>
+					<h:message for="idsv" style="color:red;" />
+				</div>
+			</div>
+			<div class="form-group">
+				<h:outputLabel for="username" class="control-label col-sm-4">
+					User Name:</h:outputLabel>
+				<div class="col-sm-4">
+					<h:inputText id="name-id" value="#{svBean.name}"
+						class="form-control" required="true">
+						<f:validateLength minimum="3"></f:validateLength>
+					</h:inputText>
+					<h:message for="name-id" style="color:red;" />
+				</div>
+			</div>
+			<div class="form-group">
+				<h:outputLabel for="email" class="control-label col-sm-4">
+					Email:</h:outputLabel>
+				<div class="col-sm-4">
+					<h:inputText id="email-id" value="#{svBean.email}"
+						class="form-control" required="true">
+						<f:validateRegex
+							pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+					</h:inputText>
+					<h:message for="email-id" style="color:red;" />
+				</div>
+			</div>
+			<div class="form-group">
+				<h:outputLabel for="password" class="control-label col-sm-4">
+					Password:</h:outputLabel>
+				<div class="col-sm-4">
+					<h:inputSecret id="password-id" value="#{svBean.password}"
+						class="form-control" required="true">
+						<f:validateLength minium="3"/>
+						</h:inputSecret>
+						<h:message for="password-id" style="color:red;"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<h:outputLabel for="gender" class="control-label col-sm-4">
+					Gender:</h:outputLabel>
+				<div class="col-sm-4">
+					<h:selectOneRadio id="gender-id" value="#{svBean.gender}"
+						validatorMessage="Gender is required" required="true">
+						<f:selectItem itemValue="Male" itemLabel="Male" />
+						<f:selectItem itemValue="Female" itemLabel="Female" />
+					</h:selectOneRadio>
+					<h:message for="gender-id" style="color:red;" />
+				</div>
+			</div>
+			<div class="form-group">
+				<h:outputLabel for="address" class="control-label col-sm-4">
+					Address:</h:outputLabel>
+				<div class="col-sm-4">
+					<h:inputText id="address-id" value="#{svBean.address}"
+						class="form-control" required="true">
+						<f:validateLength minium="3" />
+					</h:inputText>
+					<h:message for="address-id" style="color:red;" />
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-4"></div>
+				<div class="col-sm-4">
+					<div class="col-sm-2">
+						<h:commandButton value="Save" action="#{svControl.addSV(svBean)}"
+							class="btn btn-success btnWidth" />
+					</div>
+					<div class="col-sm-1"></div>
+					<div class="col-sm-2">
+						<h:link outcome="listSV" value="Back" class="btn btn-primary" />
+					</div>
+				</div>
+			</div>
+		</h:form>
+	</div>
+</h:body>
+</html>

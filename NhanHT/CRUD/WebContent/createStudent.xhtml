@@ -2,9 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	>
-	
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	<f:view locale="#{studentController.locale}" />
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Create New User</title>
@@ -73,7 +72,8 @@
 			<div class="col-sm-4">
 				<h:inputText id="email" required="true"
 					requiredMessage="Không Được Để Trống" value="#{studentBean.email}"
-					class="form-control">
+					class="form-control" validatorMessage="Sai Định Dạng Email">
+					 <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
 				</h:inputText>
 				<h:message for="email" style="color :red"></h:message>
 			</div>
@@ -83,7 +83,8 @@
 			<div class="col-sm-4">
 				<h:inputText id="phone" required="true"
 					requiredMessage="Không Được Để Trống"
-					value="#{studentBean.dienThoai}" class="form-control">
+					value="#{studentBean.dienThoai}" class="form-control" validatorMessage="Sai Định Dạng Số Điện Thoại">
+					 <f:validateRegex pattern="^[+]?[0-9]+$" />
 				</h:inputText>
 				<h:message for="phone" style="color :red"></h:message>
 			</div>

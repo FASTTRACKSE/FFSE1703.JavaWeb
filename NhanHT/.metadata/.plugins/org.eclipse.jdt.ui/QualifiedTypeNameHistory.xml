@@ -48,7 +48,6 @@
 <fullyQualifiedTypeName name="javax.faces.bean.SessionScoped"/>
 <fullyQualifiedTypeName name="javax.faces.bean.RequestScoped"/>
 <fullyQualifiedTypeName name="bean.ConnectDB"/>
-<fullyQualifiedTypeName name="bean.StudentBean"/>
 <fullyQualifiedTypeName name="bean.StudentCrud"/>
 <fullyQualifiedTypeName name="dao.StudentDAO"/>
 <fullyQualifiedTypeName name="java.io.Serializable"/>
@@ -57,4 +56,5 @@
 <fullyQualifiedTypeName name="java.util.LinkedHashMap"/>
 <fullyQualifiedTypeName name="javax.faces.event.ValueChangeEvent"/>
 <fullyQualifiedTypeName name="javax.faces.context.FacesContext"/>
+<fullyQualifiedTypeName name="bean.StudentBean"/>
 </qualifiedTypeNameHistroy>

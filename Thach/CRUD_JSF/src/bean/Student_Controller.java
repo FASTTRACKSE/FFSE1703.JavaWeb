@@ -2,6 +2,7 @@ package bean;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -17,6 +18,7 @@ public class Student_Controller {
 	public double tongSv;
 	public ArrayList<Student_Bean> arrStudent = new ArrayList<>();
 	public StudentDao studentDao = new StudentDao();
+	public Locale locale;
 
 	@ManagedProperty(value = "#{paginator}")
 	Paginator paginator;
@@ -55,9 +57,24 @@ public class Student_Controller {
 		paginator.last();
 		arrStudent = studentDao.studentList(paginator.start(), paginator.end);
 	}
+	// Đa ngữ
+
+		public Locale getLocale() {
+			return locale;
+		}
+
+		public String getLanguage() {
+			return locale.getLanguage();
+		}
+
+		public void changeLanguage(String language) {
+			locale = new Locale(language);
+			FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
+		}
 
 	@PostConstruct
 	public void init() {
+		locale = FacesContext.getCurrentInstance().getExternalContext().getRequestLocale();
 		tongSv = studentDao.count();
 		paginator.pagination(tongSv);
 		arrStudent = studentDao.studentList(paginator.start(), paginator.end);
@@ -85,12 +102,11 @@ public class Student_Controller {
 
 	public String editStudent(int id) throws SQLException {
 		System.out.println("Mã sinh viên: " + id);
-		
+
 		Student_Bean editRecord = new Student_Bean();
 
 		java.util.Map<String, Object> sessionMapObj = FacesContext.getCurrentInstance().getExternalContext()
 				.getSessionMap();
-
 
 		editRecord = studentDao.getEditRecord(id);
 		sessionMapObj.put("editRecord", editRecord);

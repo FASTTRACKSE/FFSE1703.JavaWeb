@@ -14,6 +14,8 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
+import javax.servlet.http.HttpSession;
+import sessionLogin.*;
 
 @ManagedBean(name = "sinhVien_Controller")
 @SessionScoped
@@ -124,6 +126,32 @@ public class SinhVien_Controller {
 
 		return "index?faces-redirect=true";
 	}
+	
+	// Login
+	public String checkLogin(String user, String pass) {
+		int kt = sinhVienDAO.checkLogin(user, pass);
+		
+		if(kt == 1) {
+			HttpSession session = SessionUtils.getSession();
+			session.setAttribute("userName", user);
+			return "index?faces-redirect=true";
+		} else {
+			FacesContext faceContext = FacesContext.getCurrentInstance();
+			FacesMessage facemessage = new FacesMessage("Sai tên Tài khoản hoặc mật khẩu");
+			faceContext.addMessage(null, facemessage);
+	
+			return "login?faces-redirect=true";
+		}
+	
+	}
+	
+	public String logout() {
+		HttpSession session = SessionUtils.getSession(); // gọi phương thức getSession trong class SessionUtil
+		session.invalidate();
+		return "login?faces-redirect=true";
+	}
+	
+	
 
 	// validate trùng mã sinh viên
 	public void validate(FacesContext facesContext, UIComponent component, Object value) throws ValidatorException {

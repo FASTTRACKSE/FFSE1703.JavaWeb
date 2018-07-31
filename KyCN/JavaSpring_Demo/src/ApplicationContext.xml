@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc 
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+	<bean id="monToan" class="ffse20.entity.MonToan"></bean>
+	<bean id="monHoa" class="ffse20.entity.MonHoa"></bean>
+	<bean id="monLy" class="ffse20.entity.MonLy"></bean>
+	<bean id="heDaoTaoDaiHan" class="ffse20.entity.DaoTaoDaiHan"></bean>
+	<bean id="heDaoTaoNganHan" class="ffse20.entity.DaoTaoNganHan"></bean>
+
+
+	<bean id="sinhvien1" class="ffse20.entity.SinhVienSpring">
+		<property name="heDaoTao" ref="heDaoTaoDaiHan"></property>
+		<property name="monHoc">
+			<list>
+				<ref bean="monToan" />
+				<ref bean="monLy" />
+				<ref bean="monHoa"/>
+			</list>
+		</property>
+
+	</bean>
+</beans>

@@ -15,7 +15,6 @@
 <fullyQualifiedTypeName name="java.sql.ResultSet"/>
 <fullyQualifiedTypeName name="service.HelloService"/>
 <fullyQualifiedTypeName name="java.lang.ArrayIndexOutOfBoundsException"/>
-<fullyQualifiedTypeName name="bean.Student"/>
 <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
 <fullyQualifiedTypeName name="connectdb.ConnectDb"/>
 <fullyQualifiedTypeName name="java.lang.String"/>
@@ -43,6 +42,12 @@
 <fullyQualifiedTypeName name="java.util.Map"/>
 <fullyQualifiedTypeName name="java.util.LinkedHashMap"/>
 <fullyQualifiedTypeName name="javax.faces.event.ValueChangeEvent"/>
-<fullyQualifiedTypeName name="javax.faces.context.FacesContext"/>
 <fullyQualifiedTypeName name="java.util.Locale"/>
+<fullyQualifiedTypeName name="javax.faces.context.FacesContext"/>
+<fullyQualifiedTypeName name="org.apache.catalina.core.ApplicationContext"/>
+<fullyQualifiedTypeName name="org.springframework.context.support.ClassPathXmlApplicationContext"/>
+<fullyQualifiedTypeName name="java.util.Scanner"/>
+<fullyQualifiedTypeName name="bean.Student"/>
+<fullyQualifiedTypeName name="bean.MonToan"/>
+<fullyQualifiedTypeName name="bean.MonHoa"/>
 </qualifiedTypeNameHistroy>

@@ -87,11 +87,11 @@
             </div>
             <div class="form-group">
               <div class="col-sm-2">   </div>
-                <div class="col-sm-4">
-                    <h:commandButton value="Update" action="#{sinhVienController.updateStudentDetails(editRecordObj)}" class="btn btn-primary updateBtnStyle" />
+                <div class="col-sm-2">
+                    <h:commandButton value="#{msg['up']}" action="#{sinhVienController.updateStudentDetails(editRecordObj)}" class="btn btn-primary updateBtnStyle" />
                 </div>
                  <div class="col-sm-2">
-                    <h:link outcome="liststudent" value="Quay lại" class="btn btn-primary" />
+                    <h:link outcome="liststudent" value="#{msg['back']}" class="btn btn-primary" />
                 </div>
             </div>
         </h:form>

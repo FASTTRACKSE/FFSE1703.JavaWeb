@@ -58,11 +58,11 @@
             </h:column>
             <h:column>
                 <f:facet name="header">#{msg['up']}</f:facet>
-                <h:commandButton action="#{sinhVienController.editStudentRecord(student.id)}" value="Update" class="btn btn-primary" />
+                <h:commandButton action="#{sinhVienController.editStudentRecord(student.id)}" value="#{msg['up']}" class="btn btn-primary" />
             </h:column>
             <h:column>
                 <f:facet name="header">#{msg['del']}</f:facet>
-                <h:commandButton action="#{sinhVienController.deleteStudentRecord(student.id)}" value="Delete" class="btn btn-danger" />
+                <h:commandButton action="#{sinhVienController.deleteStudentRecord(student.id)}" value="#{msg['del']}" class="btn btn-danger" />
             </h:column>
         </h:dataTable>
    
@@ -103,7 +103,7 @@
       <h:outputText value="#{msg['hello']}" />
     </h3>
     <h:panelGrid columns="2"> 
-            Language : 
+           <h:outputText value="#{msg['lag']}" />
             <h:selectOneMenu value="#{languageBean.locale}"
         onchange="submit()"
         valueChangeListener="#{languageBean.localeChanged}">

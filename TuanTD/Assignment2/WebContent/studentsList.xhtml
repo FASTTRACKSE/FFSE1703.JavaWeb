@@ -19,6 +19,10 @@
 .btnSpace {
 	margin: 17px;
 }
+.pagination {
+padding: 20px;
+margin-bottom: 20px;
+}
 </style>
 </h:head>
 <h:body>
@@ -28,12 +32,10 @@
 				<h:outputText value="#{msg['student']}" />
 			</h2>
 			<h:panelGrid columns="2">
-
-		Language : 
-		<h:selectOneMenu value="#{language.localeCode}" onchange="submit()"
+		<h:selectOneRadio value="#{language.localeCode}" onchange="submit()"
 					valueChangeListener="#{language.countryLocaleCodeChanged}">
 					<f:selectItems value="#{language.countriesInMap}" />
-				</h:selectOneMenu>
+				</h:selectOneRadio>
 
 			</h:panelGrid>
 		</center>
@@ -89,22 +91,23 @@
 			<h:commandButton action="createStudent.xhtml?faces-redirect=true"
 				value="Create New User" class="btn btn-success btnSpace" />
 		</center>
-			<ul class="pagination">
-
-				<li><c:if test="#{studentBean.paginator.trang gt 1}">
-						<h:commandLink value="first"
-							action="#{studentBean.paginator.first}"></h:commandLink>
-						<h:commandLink value="#{studentBean.paginator.trang - 1}"
-							action="#{studentBean.prev}"></h:commandLink>
-					</c:if></li>
-				<li><a style="background-color: rgb(131, 199, 93)">#{studentBean.paginator.trang}</a></li>
-				<li><c:if
-						test="#{studentBean.paginator.trang lt studentBean.paginator.soTrang}">
-						<h:commandLink value="#{studentBean.paginator.trang + 1}"
-							action="#{studentBean.next}"></h:commandLink>
-						<h:commandLink value="last" action="#{studentBean.last}"></h:commandLink>
-					</c:if></li>
-			</ul>
+		<div class="pagination">
+		<ul class="pagination">
+			<li><c:if test="#{studentBean.paginator.trang gt 1}">
+					<h:commandLink value="first"
+						action="#{studentBean.paginator.first}"></h:commandLink>
+					<h:commandLink value="#{studentBean.paginator.trang - 1}"
+						action="#{studentBean.prev}"></h:commandLink>
+				</c:if></li>
+			<li><a style="background-color: rgb(131, 199, 93)">#{studentBean.paginator.trang}</a></li>
+			<li><c:if
+					test="#{studentBean.paginator.trang lt studentBean.paginator.soTrang}">
+					<h:commandLink value="#{studentBean.paginator.trang + 1}"
+						action="#{studentBean.next}"></h:commandLink>
+					<h:commandLink value="last" action="#{studentBean.last}"></h:commandLink>
+				</c:if></li>
+		</ul>
+		</div>
 	</h:form>
 	<script>
 		function canhbao() {

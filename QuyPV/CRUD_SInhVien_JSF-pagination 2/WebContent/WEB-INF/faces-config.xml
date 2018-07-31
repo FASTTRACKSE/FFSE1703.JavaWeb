@@ -5,7 +5,7 @@
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
     version="2.2">
     
-    <application>
+<application>
    <locale-config>
       <default-locale>vi</default-locale>
       <supported-locale>en</supported-locale>
@@ -16,5 +16,13 @@
       <var>msg</var>
    </resource-bundle>
 </application>
+
+<navigation-rule>
+		<from-view-id>/login.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>index</from-outcome>
+			<to-view-id>/index.xhtml</to-view-id>
+		</navigation-case>
+</navigation-rule>
     
 </faces-config>

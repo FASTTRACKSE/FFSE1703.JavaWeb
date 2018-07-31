@@ -6,10 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Map;
-
-import javax.faces.context.FacesContext;
-
 import bean.StudentBean;
 import controller.StudentController;
 
@@ -85,10 +81,10 @@ public class StudentDAO {
 		return "index.xhtml";
 	}
 
-	public String editStudentRecordInDB(int idst) throws SQLException {
+	public StudentBean editStudentRecordInDB(int idst) throws SQLException {
 
 		StudentBean sv = null;
-		Map<String, Object> sessionMapObj = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+		
 		String sql = "SELECT * FROM Student WHERE id = ?";
 		PreparedStatement statement = conn.prepareStatement(sql);
 		statement.setInt(1, idst);
@@ -106,10 +102,10 @@ public class StudentDAO {
 			String lop = resultSet.getString("Lop");
 
 			sv = new StudentBean(id,hoDem, ten, namSinh, gioiTinh, email, dienThoai, diaChi, lop);
-			sessionMapObj.put("editRecordObj", sv);
+			
 		}
 
-		return "editStudent.xhtml";
+		return sv;
 	}
 	public String updateStudentDetailsInDB(StudentBean updateStudentObj) throws SQLException {
 		
@@ -129,7 +125,6 @@ public class StudentDAO {
 		statement.executeUpdate();
 		
 		
-		
 		return "index.xhtml";
 	}
 	public double countSv() throws SQLException {
@@ -140,6 +135,5 @@ public class StudentDAO {
 			total = result.getDouble("COUNT(*)");
 		}
 		return total;
-
 	}
 }

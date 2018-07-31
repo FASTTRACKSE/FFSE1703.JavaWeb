@@ -2,7 +2,7 @@
     <wb-module deploy-name="JFSCRUDSV">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/lid"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/resources"/>
         <property name="context-root" value="JFSCRUDSV"/>
         <property name="java-output-path" value="/JFSCRUDSV/build/classes"/>
     </wb-module>

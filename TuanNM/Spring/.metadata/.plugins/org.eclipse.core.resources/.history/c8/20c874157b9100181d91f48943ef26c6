@@ -1,0 +1,14 @@
+package model;
+
+public class MonLy {
+	private String monLy;
+
+	public String getMonLy() {
+		return monLy;
+	}
+
+	public void setMonLy(String monLy) {
+		this.monLy = monLy;
+	}
+	
+}

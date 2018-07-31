@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -21,16 +22,13 @@ public class StudentController implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private int trang;
-	private double soTrang;
 	public ArrayList<StudentBean> studentsListFromDB;
 	public StudentDAO studentDAO = new StudentDAO();
 	public double tongSv;
 	@ManagedProperty(value = "#{paginator}")
 	Paginator paginator;
 	// 
-	private Locale locale = FacesContext.getCurrentInstance().getViewRoot().getLocale();
-
+	private Locale locale ;
 	public Locale getLocale() {
 		return locale;
 	}
@@ -59,32 +57,22 @@ public class StudentController implements Serializable {
 	}
 
 	public String editStudentRecord(int studentId) throws SQLException {
-		return studentDAO.editStudentRecordInDB(studentId);
+		StudentBean sv = new StudentBean();
+		
+		Map<String, Object> sessionMapObj = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+		sv = studentDAO.editStudentRecordInDB(studentId);
+		sessionMapObj.put("editRecordObj", sv);
+		return "editStudent.xhtml";
 	}
 
 	public String updateStudentDetails(StudentBean updateStudentObj) throws SQLException {
 		return studentDAO.updateStudentDetailsInDB(updateStudentObj);
 	}
 
-	public int getTrang() {
-		return trang;
-	}
-
-	public void setTrang(int trang) {
-		this.trang = trang;
-	}
-
-	public double getSoTrang() {
-		return soTrang;
-	}
-
-	public void setSoTrang(double soTrang) {
-		this.soTrang = soTrang;
-	}
-
 	@PostConstruct
 	public void init() {
 		try {
+			locale = FacesContext.getCurrentInstance().getExternalContext().getRequestLocale();
 			tongSv = studentDAO.countSv();
 			paginator.paginator(tongSv);
 			studentsListFromDB = studentDAO.getStudentsListFromDB(paginator.start(), paginator.end);

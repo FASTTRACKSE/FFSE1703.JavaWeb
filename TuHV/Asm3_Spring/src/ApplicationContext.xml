@@ -10,36 +10,39 @@
         http://www.springframework.org/schema/mvc/spring-mvc.xsd
         http://www.springframework.org/schema/context 
         http://www.springframework.org/schema/context/spring-context.xsd">
-
+	<context:component-scan
+		base-package="fasttrackse.entity"></context:component-scan>
 	<bean id="monToan" class="fasttrackse.entity.MonToan"></bean>
 	<bean id="monLy" class="fasttrackse.entity.MonLy"></bean>
 	<bean id="monEnglish" class="fasttrackse.entity.MonEnglish"></bean>
 	<bean id="monHoa" class="fasttrackse.entity.MonHoa"></bean>
 
-	 <bean id="daotaodaihan" class="fasttrackse.entity.DaoTaoDaiHan"></bean>
-	 <bean id="daotaonganhan" class="fasttrackse.entity.DaoTaoNganHan"></bean>
+	<bean id="daotaodaihan" class="fasttrackse.entity.DaoTaoDaiHan"></bean>
+	<bean id="daotaonganhan" class="fasttrackse.entity.DaoTaoNganHan"></bean>
 
-	<bean id="sinhvien1" class="fasttrackse.entity.SinhVienVersion1" scope="prototype">
+	<bean id="sinhvien1" class="fasttrackse.entity.SinhVienVersion1"
+		scope="prototype">
 		<property name="hoTen" value="Hồ Viết Tú"></property>
 		<property name="heDaoTao" ref="daotaodaihan"></property>
 		<property name="monHoc">
 			<list>
-				<ref bean ="monToan"/>
-				<ref bean ="monLy"/>
-				<ref bean ="monHoa"/>
+				<ref bean="monToan" />
+				<ref bean="monLy" />
+				<ref bean="monHoa" />
 			</list>
-		</property>	
+		</property>
 	</bean>
-	
-	<bean id="sinhvien2" class="fasttrackse.entity.SinhVienVersion1" scope="prototype">
-	<property name="hoTen" value="Lê Thị Thu Lan"></property>
+
+	<bean id="sinhvien2" class="fasttrackse.entity.SinhVienVersion1"
+		scope="prototype">
+		<property name="hoTen" value="Lê Thị Thu Lan"></property>
 		<property name="heDaoTao" ref="daotaonganhan"></property>
 		<property name="monHoc">
 			<list>
-				<ref bean ="monToan"/>
-				<ref bean ="monEnglish"/>
+				<ref bean="monToan" />
+				<ref bean="monEnglish" />
 			</list>
-		</property>	
+		</property>
 	</bean>
 </beans>
  

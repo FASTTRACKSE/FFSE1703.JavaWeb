@@ -6,8 +6,11 @@ import org.springframework.stereotype.Component;
 public class MonToan implements MonHoc{
 	@Override
   public String mangSachDiHoc() {
-	  return "Mang sách Toán đi học";
+	  return "Mang sách Toán đi học ";
 
 }
+	public String giangVien() {
+		return "Thầy Thành dạy";
+	}
 
 }

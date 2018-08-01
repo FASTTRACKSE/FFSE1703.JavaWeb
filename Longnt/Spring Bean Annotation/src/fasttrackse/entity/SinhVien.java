@@ -61,7 +61,8 @@ public class SinhVien {
 		result += "\n" + heDaoTao.getGioHoc();
 		
 		for (MonHoc x : monHoc) {
-			result += "\n\t- " + x.mangSachDiHoc();
+			result += "\n\t- " + x.mangSachDiHoc() + x.giangVien();
+			
 		}
 		
 		return result;

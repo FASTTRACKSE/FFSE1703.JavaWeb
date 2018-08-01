@@ -7,6 +7,9 @@ public class MonHoa implements MonHoc {
 	@Override
 	public String mangSachDiHoc() {
 		// TODO Auto-generated method stub
-		return "Mang sách Hóa đi học";
+		return "Mang sách Hóa đi học ";
+	}
+	public String giangVien() {
+		return "Thầy Hùng dạy";
 	}
 }

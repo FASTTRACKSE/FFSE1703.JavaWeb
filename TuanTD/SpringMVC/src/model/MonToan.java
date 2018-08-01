@@ -7,6 +7,8 @@ public class MonToan implements MonHoc {
 	public String mangSachDiHoc() {
 		return "Mang Sách Toán đi học";
 	}
-
+	public String giangVien() {
+		return "Cô Tâm";
+	}
 	
 }

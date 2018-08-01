@@ -10,37 +10,5 @@
         http://www.springframework.org/schema/mvc/spring-mvc.xsd
         http://www.springframework.org/schema/context 
         http://www.springframework.org/schema/context/spring-context.xsd">
-
 	<context:component-scan base-package="model"></context:component-scan>
-
-	<bean id="monToan" class="model.MonToan"></bean>
-	<bean id="monLy" class="model.MonLy"></bean>
-	<bean id="monVan" class="model.MonVan"></bean>
-	<bean id="daoTaoDaiHan" class="model.DaoTaoDaiHan"></bean>
-	<bean id="daoTaoNganHan" class="model.DaoTaoNganHan"></bean>
-
-
-	<bean id="sinhvien1" class="model.SinhVienVersion2"
-		scope="prototype">
-		<property name="monHoc">
-			<list>
-				<ref bean="monToan" />
-				<ref bean="monLy" />
-			</list>
-		</property>
-		<property name="heDaoTao" ref="daoTaoDaiHan"></property>
-	</bean>
-
-	<bean id="sinhvien2" class="model.SinhVienVersion2"
-		scope="prototype">
-		<property name="monHoc">
-			<list>
-				<ref bean="monVan" />
-				<ref bean="monLy" />
-			</list>
-		</property>
-		<property name="heDaoTao" ref="daoTaoNganHan"></property>
-	</bean>
-
-
 </beans>

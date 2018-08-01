@@ -91,15 +91,13 @@ public class StudentDAO {
 		
 		return redirect;
 	}
-	public static String getStudent(int id) {
-		Student st = null;
-		 Map<String,Object> sessionMapObj = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+	public static Student getStudent(int id) {
+		Student st = new Student();	
 		try {
 			Statement statement = (Statement) conn.createStatement();
 			String sql = "select * from Student where id = '" + id + "'";
 			ResultSet rs = statement.executeQuery(sql);
-			while (rs.next()) {
-				st = new Student();	
+			if (rs.next()) {	
 				st.setId(rs.getInt("id"));
 				st.setFirstName(rs.getString("first_name"));
 				st.setLastName(rs.getString("last_name"));
@@ -108,15 +106,14 @@ public class StudentDAO {
 				st.setEmail(rs.getString("email"));
 				st.setDiaChi(rs.getString("address"));
 				st.setSdt(rs.getString("sdt"));
-				st.setClassSv(rs.getString("class"));
-				sessionMapObj.put("student", st);
+				st.setClassSv(rs.getString("class"));			
 			}
 			rs.close();
 			statement.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "updateStudent.xhtml?faces-redirect=true";
+		return st;
 	}
 	public static String editStudent(Student st) throws SQLException {
 	
@@ -149,5 +146,22 @@ public class StudentDAO {
 			e.printStackTrace();
 		}
 		return 0;
+	}
+	public static boolean checkLogin(String userName, String pass) {
+		try {
+			String sql = "select * from user where username = ? and passworld = ?";
+			PreparedStatement stm = (PreparedStatement) conn.prepareStatement(sql);
+			stm.setString(1, userName);
+			stm.setString(2, pass);
+			ResultSet result = stm.executeQuery();
+			if (!result.next()) {
+				return false;
+			} else {
+				return true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();			
+			return false;
+		}
 	}
 }

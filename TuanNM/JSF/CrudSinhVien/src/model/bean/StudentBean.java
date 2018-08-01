@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -108,7 +109,11 @@ public class StudentBean implements Serializable {
 	}
 
 	public String updateStudent(int id) {
-		return StudentDAO.getStudent(id);
+		 Map<String,Object> sessionMapObj = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+		 Student st = new Student();
+		 st = StudentDAO.getStudent(id);
+		 sessionMapObj.put("student", st);
+		return "updateStudent.xhtml?faces-redireect=true";
 	}
 
 	public String editStudent(Student st) throws SQLException {

@@ -81,6 +81,6 @@ public class Paginator {
 
 	public void setPageIndex(int pageIndex) {
 		this.pageIndex = pageIndex;
-	}
+	}	
 }
 	

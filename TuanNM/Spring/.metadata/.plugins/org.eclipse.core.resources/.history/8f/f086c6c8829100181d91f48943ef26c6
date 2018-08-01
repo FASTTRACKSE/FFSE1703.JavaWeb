@@ -1,0 +1,9 @@
+package model;
+
+public class MonSinh implements MonHoc {
+
+	public void mangSachDiHoc() {
+		System.out.println("Mang sách SINH  đi học!!");
+	}
+	
+}

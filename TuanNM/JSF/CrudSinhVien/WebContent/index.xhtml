@@ -87,7 +87,7 @@
 				<h:commandButton action="#{studentBean.updateStudent(student.id)}"
 					value="#{msg['update']}" class="btn btn-primary"
 					style="margin-right: 15px" />
-				<h:commandButton  action="#{studentBean.deleteStudent(student.id)}"
+				<h:commandButton onclick="if (!confirm('Are you sure?')) return false" action="#{studentBean.deleteStudent(student.id)}"
 					value="#{msg['del']}" class="btn btn-danger" />
 			</h:column>
 		</h:dataTable>

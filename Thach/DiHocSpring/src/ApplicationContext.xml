@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc 
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<bean id="monHoc1" class="bean.MonToan"></bean>
+	<bean id="monHoc2" class="bean.MonLy"></bean>
+	<bean id="monHoc3" class="bean.MonHoa"></bean>
+	
+	<bean id="nganHan" class="bean.KhoaHocNganHan"></bean>
+	<bean id="daiHan" class="bean.KhoaHocDaiHan"></bean>
+	
+	<bean id="sinhvien1" class="bean.Student"
+		scope="prototype">
+		
+		<property name="monHoc">
+				<list>
+						<ref bean="monHoc1"></ref>
+						<ref bean="monHoc2"></ref>
+						<ref bean="monHoc3"></ref>
+				</list>
+		</property>
+		<property name="khoaHoc" ref="daiHan"></property>
+	</bean>
+	
+</beans>

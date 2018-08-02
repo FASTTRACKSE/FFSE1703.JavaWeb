@@ -1,5 +1,5 @@
 package fasttrackse.entity;
 
 public interface HeDaoTao {
-	public String getGioHoc();
+public String getDaoTao();
 }

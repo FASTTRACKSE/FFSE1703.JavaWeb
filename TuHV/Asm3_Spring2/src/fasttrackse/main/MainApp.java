@@ -33,7 +33,7 @@ public class MainApp {
               List<MonHoc> monHoc1 = new ArrayList<MonHoc>();
               monHoc1.add(monToan);
               monHoc1.add(monEnglish);
-              monHoc1.add(monEnglish);
+              monHoc1.add(monLy);
               
               List<MonHoc> monHoc2 = new ArrayList<MonHoc>();
               monHoc2.add(monToan);

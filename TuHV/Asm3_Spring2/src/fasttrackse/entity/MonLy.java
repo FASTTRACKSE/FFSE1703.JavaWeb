@@ -7,7 +7,11 @@ public class MonLy implements MonHoc {
 
 	public String mangSachDiHoc() {
 
-		return "mang sÃ¡ch LÃ½ Ä‘i há»�c";
+		return "mang sách Lý đi học";
+	}
+	public String giangVienDay() {
+
+		return "do thầy Thành dạy";
 	}
 
 }

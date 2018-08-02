@@ -1,8 +1,5 @@
 package fasttrackse.entity;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public class SinhVien {
 	private String hoTen;
 

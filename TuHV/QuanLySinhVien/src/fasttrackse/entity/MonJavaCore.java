@@ -12,5 +12,8 @@ public class MonJavaCore implements MonHoc{
 	public String giangVien() {
 		return "Giáo sư Thành dạy ";
 	}
+	public String soDienThoai() {
+		return" 0935177852";
+	}
 
 }

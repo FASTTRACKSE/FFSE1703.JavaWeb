@@ -12,6 +12,9 @@ public class MonHTML5 implements MonHoc{
 	public String giangVien() {
 		return "Giảng viên Thủy dạy";
 	}
+	public String soDienThoai() {
+		return" 0935177852";
+	}
 	
 
 }

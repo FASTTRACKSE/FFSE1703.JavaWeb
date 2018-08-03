@@ -12,5 +12,8 @@ public class MonJavaWeb implements MonHoc{
 	public String giangVien() {
 		return "Giảng viên Lâm dạy ";
 		}
+	public String soDienThoai() {
+		return" 0935177852";
+	}
 
 }

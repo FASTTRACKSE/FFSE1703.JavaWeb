@@ -70,12 +70,8 @@ public class LopHoc {
 		st += "  " + heDaoTao.thongTinHeDaoTao() + "\n";
 		st += "  " + hocKi.tenHocKi() + "\n";
 		st += "  Danh sách môn học: \n";
-		for (int i = 0; i< monHoc.size();i++) {
-			for (int j = 0; j< giangVien.size(); j++) {
-				if (i == j) {
-					st += "    - " + monHoc.get(i).mangSachDiHoc() +giangVien.get(j).giangVienDay()+ "\n";
-				}
-			}
+		for (int i = 0; i < monHoc.size(); i++) {
+			st += "    - " + monHoc.get(i).mangSachDiHoc() + giangVien.get(i).giangVienDay() + "\n";
 		}
 		st += "  Danh sách sinh viên: \n";
 		for (SinhVien sv : sinhVien) {

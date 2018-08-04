@@ -14,5 +14,8 @@ public class MonMysql implements MonHoc {
 
 		return "Giảng viên Thắng dạy";
 	}
+	public String soDienThoai() {
+		return" 0935177852";
+	}
 
 }

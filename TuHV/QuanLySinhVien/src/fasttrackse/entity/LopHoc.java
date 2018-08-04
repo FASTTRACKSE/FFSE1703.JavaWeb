@@ -53,7 +53,7 @@ public class LopHoc {
 		
 		kqua +="\n " + "DANH SÁCH MÔN HỌC :";
 		for (MonHoc x : monHoc) {
-			kqua += "\n\t* " + x.monHoc()+ x.giangVien();
+			kqua += "\n\t* " + x.monHoc()+ x.giangVien() +".SĐT :"+ x.soDienThoai();
 		}
 		kqua +="\n " + "DANH SÁCH SINH VIÊN :";
 		for (SinhVien x : sinhVien) {

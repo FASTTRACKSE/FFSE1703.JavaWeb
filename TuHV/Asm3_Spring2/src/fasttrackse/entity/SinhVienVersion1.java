@@ -18,6 +18,7 @@ public class SinhVienVersion1 {
 	@Qualifier("daoTaoDaiHan")
 	private HeDaoTao heDaoTao;
 
+
 	public String getHoTen() {
 		return hoTen;
 	}
@@ -57,11 +58,12 @@ public class SinhVienVersion1 {
 	}
 
 	public String mangSachDiHoc() {
-		String kqua = "Bạn " + hoTen + ":";
-		kqua += "\n" + heDaoTao.getGioHoc();
+		String kqua = "Ban " + hoTen + ":";
+		kqua += "\n" + heDaoTao.getGioHoc() ;
+	
 
 		for (MonHoc x : monHoc) {
-			kqua += "\n\t- " + x.mangSachDiHoc();
+			kqua += "\n\t- " + x.mangSachDiHoc()+x.giangVienDay();
 
 		}
 		return kqua;

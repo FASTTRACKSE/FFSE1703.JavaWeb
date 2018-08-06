@@ -15,7 +15,7 @@ public class MonThucTap implements MonHoc {
 	
 	@Override
 	public String monHoc() {
-		return "+" +noiThucTap + "\n \t " + giangVienPhuTrach.giangVien();
+		return "+" +noiThucTap + "\n \t " + "Giảng viên phụ trách: " + giangVienPhuTrach.giangVien();
 	}
 
 }

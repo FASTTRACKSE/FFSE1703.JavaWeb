@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc 
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<bean id="monToan" class="fasttrackse.entity.MonToan"></bean>
+	<bean id="monLy" class="fasttrackse.entity.MonLy"></bean>
+	<bean id="monHoa" class="fasttrackse.entity.MonHoa"></bean>
+	
+	<bean id="heDaoTaoDaiHan" class="fasttrackse.entity.DaoTaoDaiHan"></bean>
+	<bean id="heDaoTaoNganHan" class="fasttrackse.entity.DaoTaoNganHan"></bean>
+
+	<bean id="sinhvien1" class="fasttrackse.entity.SinhVien"
+		scope="prototype">
+		<property name="heDaoTao" ref="heDaoTaoDaiHan"></property>
+		<property name="monHoc">
+			<list>
+				<ref bean="monToan" />
+				<ref bean="monLy" />
+				<ref bean="monHoa" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="sinhvien2" class="fasttrackse.entity.SinhVien"
+		scope="prototype">
+		<property name="hoTen" value="Kiều Mi"></property>
+		<property name="heDaoTao" ref="heDaoTaoNganHan"></property>
+		<property name="monHoc">
+			<list>
+				<ref bean="monToan" />
+				<ref bean="monLy" />
+				<ref bean="monHoa" />
+			</list>
+		</property>
+	</bean>
+</beans>

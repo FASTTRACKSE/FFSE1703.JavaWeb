@@ -6,22 +6,14 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class HocKyJava implements HocKy {
-	public List<MonCongNghe> monCongNghe;
+	public List<MonHoc> monCongNghe;
 
 	public HocKyJava() {
 		super();
 	}
 
-	public HocKyJava(List<MonCongNghe> monCongNghe) {
+	public HocKyJava(List<MonHoc> monCongNghe) {
 		super();
-		this.monCongNghe = monCongNghe;
-	}
-
-	public List<MonCongNghe> getMonCongNghe() {
-		return monCongNghe;
-	}
-
-	public void setMonCongNghe(List<MonCongNghe> monCongNghe) {
 		this.monCongNghe = monCongNghe;
 	}
 
@@ -30,7 +22,7 @@ public class HocKyJava implements HocKy {
 		String st = "Tên học kỳ: Java Development \n";
 		st += " Danh sách môn học: \n";
 		st += " * Môn công nghê: \n";
-		for (MonCongNghe mH : monCongNghe) {
+		for (MonHoc mH : monCongNghe) {
 			st += mH.thongTinMonHoc();
 		}
 		return st;

@@ -22,7 +22,7 @@ public class MonThucTap implements MonHoc {
 	@Override
 	public String thongTinMonHoc() {
 		String st = "  - Nơi thực tập: "+noiThucTap+"\n";
-		st+="   + Giảng viên chính: "+giangVienPhuTrach.thongTinGiangVien()+"\n";
+		st+="   + Giảng viên phụ trách: "+giangVienPhuTrach.thongTinGiangVien()+"\n";
 		return st;
 	}
 

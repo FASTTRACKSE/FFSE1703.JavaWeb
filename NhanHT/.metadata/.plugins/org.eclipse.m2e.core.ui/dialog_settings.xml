@@ -4,12 +4,10 @@
 	</section>
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
-			<item value="abc"/>
 		</list>
 		<list key="name">
 		</list>
 		<list key="artifactId">
-			<item value="Abc"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
@@ -34,6 +32,7 @@
 		</list>
 	</section>
 	<section name="MavenProjectWizardArchetypePage">
+		<item value="All Catalogs" key="catalog"/>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
 			<item value="[artifactId]-TRUNK"/>
@@ -45,11 +44,13 @@
 	</section>
 	<section name="wizardPage">
 		<list key="groupId">
+			<item value="HellloworldSpring"/>
 			<item value="QLSinhVien"/>
 		</list>
 		<list key="name">
 		</list>
 		<list key="artifactId">
+			<item value="HellloworldSpring"/>
 			<item value="QLSinhVien"/>
 		</list>
 		<list key="version">

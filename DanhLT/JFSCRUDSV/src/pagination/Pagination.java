@@ -1,14 +1,17 @@
 package pagination;
 
+import java.util.Locale;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 @ManagedBean(name = "pagination")
 @SessionScoped
 public class Pagination {
 
-	private int records = 3;
+
+	private int records = 2;
 	private int recordsTotal;
 	private int pageIndex = 1;
 	private int pages;
@@ -26,11 +29,10 @@ public class Pagination {
 			if (pages == 0) {
 				pages = 1;
 			}
+		} else {
+			records = 1;
+			pages = 1;
 		}
-		// else {
-		// records = 1;
-		// pages = 1;
-		// }
 	}
 
 	public void next() {
@@ -76,4 +78,6 @@ public class Pagination {
 	public void setPageIndex(int pageIndex) {
 		this.pageIndex = pageIndex;
 	}
+	
+
 }

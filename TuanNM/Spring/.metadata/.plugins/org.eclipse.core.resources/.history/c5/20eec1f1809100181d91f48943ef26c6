@@ -1,0 +1,18 @@
+package model;
+
+public class MonSinh implements MonHoc {
+	private String monSinh;
+
+	public String getMonSinh() {
+		return monSinh;
+	}
+
+	public void setMonSinh(String monSinh) {
+		this.monSinh = monSinh;
+	}
+
+	@Override
+	public void mangSachDiHoc() {
+	}
+	
+}

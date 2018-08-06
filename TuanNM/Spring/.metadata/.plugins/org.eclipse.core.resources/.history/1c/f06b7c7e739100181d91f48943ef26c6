@@ -1,0 +1,53 @@
+package main;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import bean.Student;
+
+public class StudentMain {
+	private static String name;
+	private static String subject;
+	public static Scanner myScanner = new Scanner(System.in);
+	static ArrayList<Student> arrSinhVien = new ArrayList<Student>();
+	static Student st = new Student();
+
+	public static void main(String[] args) {
+		nhapName();
+	}
+
+	public static void nhapName() {
+		
+		System.out.print("Nhập vào tên của bạn : ");
+		name = myScanner.nextLine();
+		st.setHoTen(name);
+		if (name.isEmpty()) {
+			System.out.println("Vui lòng nhập tên");
+		} else {
+			listSubject();
+		}
+		System.out.println("Bạn "+name+" hãy mang sách "+subject+" đi học");
+	}
+	
+	public static void listSubject() {
+		System.out.println("+------BẠN MUỐN HỌC MÔN GÌ-----+");
+		System.out.println("| 1. TOÁN                      |");
+		System.out.println("| 2.LÍ                         |");
+		System.out.println("| 3.SINH                       |");
+		System.out.println("================================");
+
+		int option = myScanner.nextInt();
+		if (option == 1) {
+			subject = "Toán";
+			st.setMangToan(subject);
+		} else if (option == 2) {
+			subject= "Lý";
+			st.setMangToan(subject);
+		}	else if (option == 3) {
+			subject= "Sinh vật";
+			st.setMangToan(subject);
+		}
+		
+	}
+
+}

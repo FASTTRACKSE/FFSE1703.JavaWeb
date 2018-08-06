@@ -7,7 +7,7 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class Paginator {
 	public int end;
-	public double tongSv;
+	public int tongSv;
 	public int trang, soTrang;
 	public double soBanGhiMotTrang;
 	private static final int DEFAULT_PAGE_INDEX = 1;
@@ -16,8 +16,8 @@ public class Paginator {
 
 	public void pagination(double tongSv) {
 		this.trang = DEFAULT_PAGE_INDEX;
-		this.tongSv = tongSv;
-		soBanGhiMotTrang = 2.0;
+		this.tongSv = (int) tongSv;
+		soBanGhiMotTrang = 2;
 		
 		this.end = (int)soBanGhiMotTrang;
 		
@@ -64,16 +64,12 @@ public class Paginator {
 	}
 
 	public void setTongSv(double tongSv) {
-		this.tongSv = tongSv;
+		this.tongSv = (int) tongSv;
 	}
-	
-
-	public int start() {
+	//số thứ tự trên bảng ghi
+	public int start()  {
 		return (this.trang - 1) * (int)soBanGhiMotTrang;
 	}
-
-	
-
 	public int getEnd() {
 		return end;
 	}
@@ -85,8 +81,4 @@ public class Paginator {
 	public double getTongSv() {
 		return tongSv;
 	}
-
-	
-	
-	
 }

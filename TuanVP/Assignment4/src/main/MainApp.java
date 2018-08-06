@@ -16,12 +16,12 @@ public class MainApp {
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		List<LopHoc> lopHoc = new ArrayList<>();
 		List<HocKy> hocKy = new ArrayList<>();
-		GiangVienChinh giangVienChinhCN = new GiangVienChinh("Thầy Thành", "thanhcl@fasttrack.edu.vn");
-		TroGiang troGiangCN =  new TroGiang("Thầy Lâm", "lamnt@fasttrack.edu.vn");
-		Mentor mentor = new Mentor("Thầy Thắng", "thangtm@fasttrack.edu.vn"); 
+		GiangVien giangVienChinhCN = new GiangVien("Thầy Thành", "thanhcl@fasttrack.edu.vn");
+		GiangVien troGiangCN =  new GiangVien("Thầy Lâm", "lamnt@fasttrack.edu.vn");
+		GiangVien mentor = new GiangVien("Thầy Thắng", "thangtm@fasttrack.edu.vn"); 
 		
-		GiangVienChinh giangVienChinhTA = new GiangVienChinh("Cô Hồng", "hongltm@fasttrack.edu.vn"); 
-		TroGiang troGiangTA = new TroGiang("Cô Hà", "hattd@fasttrack.edu.vn");
+		GiangVien giangVienChinhTA = new GiangVien("Cô Hồng", "hongltm@fasttrack.edu.vn"); 
+		GiangVien troGiangTA = new GiangVien("Cô Hà", "hattd@fasttrack.edu.vn");
 		
 		monCongNghe = new ArrayList<>();
 		monTiengAnh = new ArrayList<>();
@@ -59,8 +59,8 @@ public class MainApp {
 		monCongNghe = new ArrayList<>();
 
 		List<MonThucTap> monThucTap = new ArrayList<>();
-		monThucTap.add(new MonThucTap("F-COMPLEX", new GiangVienChinh("Thầy Thành", "thanhcl@gmail.com")));
-		monThucTap.add(new MonThucTap("GAMELOFT", new GiangVienChinh("Thầy Thành", "thanhcl@gmail.com")));
+		monThucTap.add(new MonThucTap("F-COMPLEX", new GiangVien("Thầy Thành", "thanhcl@gmail.com")));
+		monThucTap.add(new MonThucTap("GAMELOFT", new GiangVien("Thầy Nghiêm", "nghiemfe@gmail.com")));
 
 		hocKy.add(new HocKy4(monThucTap));
 

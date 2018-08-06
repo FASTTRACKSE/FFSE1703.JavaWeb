@@ -1,20 +1,18 @@
 package entity;
 
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component
-@Scope("prototype")
 public class MonTiengAnh implements MonHoc {
 	public String tenMonHoc, trinhDo;
-	public GiangVienChinh giangVienChinh;
-	public TroGiang troGiang;
+	public GiangVien giangVienChinh;
+	public GiangVien troGiang;
 
 	public MonTiengAnh() {
 		super();
 	}
 
-	public MonTiengAnh(String tenMonHoc, String trinhDo, GiangVienChinh giangVienChinh, TroGiang troGiang) {
+	public MonTiengAnh(String tenMonHoc, String trinhDo, GiangVien giangVienChinh, GiangVien troGiang) {
 		super();
 		this.tenMonHoc = tenMonHoc;
 		this.trinhDo = trinhDo;
@@ -25,8 +23,8 @@ public class MonTiengAnh implements MonHoc {
 	@Override
 	public String thongTinMonHoc() {
 		String st = "  - Tên môn học: " + tenMonHoc + " - " + trinhDo + "\n";
-		st += "   + " + giangVienChinh.thongTinGiangVien();
-		st += "   + " + troGiang.thongTinGiangVien();
+		st += "   + Giảng viên chính: " + giangVienChinh.thongTinGiangVien() + "\n";
+		st += "   + Trợ giảng: " + troGiang.thongTinGiangVien() + "\n";
 		return st;
 	}
 

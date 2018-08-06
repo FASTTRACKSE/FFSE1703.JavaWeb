@@ -2,11 +2,10 @@ package entity;
 
 import java.util.List;
 
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component
-@Scope("prototype")
+
 public class HocKy3 implements HocKy {
 	public List<MonCongNghe> monCongNghe;
 

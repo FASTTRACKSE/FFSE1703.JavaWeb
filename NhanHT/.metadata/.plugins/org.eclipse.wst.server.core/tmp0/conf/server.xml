@@ -149,7 +149,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="E:\FFSE1703.JavaWeb\NhanHT\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="E:\FFSE1703.JavaWeb\NhanHT\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\CRUD" path="/CRUD" reloadable="true" source="org.eclipse.jst.jee.server:CRUD"/><Context docBase="E:\FFSE1703.JavaWeb\NhanHT\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\JfsForm" path="/JfsForm" reloadable="true" source="org.eclipse.jst.jee.server:JfsForm"/></Host>
+      <Context docBase="E:\FFSE1703.JavaWeb\NhanHT\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="E:\FFSE1703.JavaWeb\NhanHT\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\CRUD" path="/CRUD" reloadable="true" source="org.eclipse.jst.jee.server:CRUD"/><Context docBase="E:\FFSE1703.JavaWeb\NhanHT\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\JfsForm" path="/JfsForm" reloadable="true" source="org.eclipse.jst.jee.server:JfsForm"/><Context docBase="E:\FFSE1703.JavaWeb\NhanHT\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\HellloworldSpring" path="/HellloworldSpring" reloadable="true" source="org.eclipse.jst.jee.server:HellloworldSpring"/></Host>
     </Engine>
   </Service>
 </Server>

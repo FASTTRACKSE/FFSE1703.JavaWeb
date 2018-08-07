@@ -12,28 +12,45 @@ public class MainApp {
 	public static void main(String[] args) {
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		LopHoc lopHoc1 = context.getBean("lopHoc", LopHoc.class);
-		List<MonHoc> monHoc = new ArrayList<>();
-		monHoc.add(new MangSachMonHoc("Java Core"));
-		monHoc.add(new MangSachMonHoc("Java Web"));
-		monHoc.add(new MangSachMonHoc("Nhập môn lập trình"));
-		
-		List<GiangVien> giangVien = new ArrayList<>();
-		giangVien.add(new GiangVienFE("Thầy Thành"));
-		giangVien.add(new GiangVienFE("Thầy Lâm"));
-		giangVien.add(new GiangVienFE("Thầy Thắng"));
-		
+		LopHoc lopHoc2 = context.getBean("lopHoc", LopHoc.class);
+
+		List<MonHoc> monHoc2 = new ArrayList<>();
+		monHoc2.add(new MangSachMonHoc("Nhập môn lập trình", new GiangVienFE("Thầy Lâm")));
+		monHoc2.add(new MangSachMonHoc("Java Core", new GiangVienFE("Thầy Thành")));
+		monHoc2.add(new MangSachMonHoc("Java Web", new GiangVienFE("Thầy Thắng")));
+
+		List<MonHoc> monHoc1 = new ArrayList<>();
+		monHoc1.add(new MangSachMonHoc("HTML", new GiangVienFE("Thầy Thành")));
+		monHoc1.add(new MangSachMonHoc("CSS", new GiangVienFE("Thầy Thắng")));
+		monHoc1.add(new MangSachMonHoc("PHP", new GiangVienFE("Thầy Lâm")));
+
 		List<SinhVien> sinhVien = new ArrayList<>();
-		sinhVien.add(new SinhVien("Võ Phi Tuấn"));
-		sinhVien.add(new SinhVien("Hồ Thanh Nhân"));
-		sinhVien.add(new SinhVien("Phạm Văn Quý"));
+		sinhVien.add(new SinhVien("Nguyễn Văn A"));
+		sinhVien.add(new SinhVien("Nguyễn Văn B"));
+		sinhVien.add(new SinhVien("Nguyễn Văn C"));
+
+		List<SinhVien> sinhVien1 = new ArrayList<>();
+		sinhVien1.add(new SinhVien("Nguyễn Văn D"));
+		sinhVien1.add(new SinhVien("Nguyễn Văn E"));
+		sinhVien1.add(new SinhVien("Nguyễn Văn G"));
+
+		List<HocKi> hocKiNganHan = new ArrayList<>(2);
+		List<HocKi> hocKiDaiHan = new ArrayList<>(4);
+		hocKiDaiHan.add(new HocKiFS("Học kì 1", monHoc1));
+		hocKiDaiHan.add(new HocKiFS("Học kì 2", monHoc2));
+		hocKiNganHan.add(new HocKiFS("Học kì 1", monHoc1));
+		hocKiNganHan.add(new HocKiFS("Học kì 2", monHoc2));
 
 		lopHoc1.setLopHoc("Lớp 1703");
-		lopHoc1.setHocKi(new HocKiFS("Học kì 1"));
-		lopHoc1.setGiangVien(giangVien);
-		lopHoc1.setMonHoc(monHoc);
 		lopHoc1.setSinhVien(sinhVien);
-		lopHoc1.setHeDaoTao(new DaoTaoDaiHan());
+		lopHoc1.setHeDaoTao(new DaoTaoDaiHan(hocKiDaiHan));
+
+		lopHoc2.setLopHoc("Lớp 1704");
+		lopHoc2.setSinhVien(sinhVien1);
+		lopHoc2.setHeDaoTao(new DaoTaoDaiHan(hocKiDaiHan));
+
 		System.out.println(lopHoc1.thongTinLopHoc());
+		System.out.println(lopHoc2.thongTinLopHoc());
 	}
 
 }

@@ -4,80 +4,54 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MonCongNghe implements MonHoc {
-	private GiangVien giangVienChinh , giangVienPhuTrach,mentor;
+	private GiangVienSV giangVienChinh,troGiang,mentor;
 	private String tenMonHoc;
 	public MonCongNghe() {
 		super();
 	}
 
-
-
-	
-	public MonCongNghe(GiangVien giangVienChinh, GiangVien giangVienPhuTrach, GiangVien mentor, String tenMonHoc) {
+	public MonCongNghe(GiangVienSV giangVienChinh, GiangVienSV troGiang, GiangVienSV mentor, String tenMonHoc) {
 		super();
 		this.giangVienChinh = giangVienChinh;
-		this.giangVienPhuTrach = giangVienPhuTrach;
+		this.troGiang = troGiang;
 		this.mentor = mentor;
 		this.tenMonHoc = tenMonHoc;
 	}
 
-
-
-
-	public GiangVien getGiangVienChinh() {
+	public GiangVienSV getGiangVienChinh() {
 		return giangVienChinh;
 	}
 
-
-
-
-	public void setGiangVienChinh(GiangVien giangVienChinh) {
+	public void setGiangVienChinh(GiangVienSV giangVienChinh) {
 		this.giangVienChinh = giangVienChinh;
 	}
 
-
-
-
-	public GiangVien getGiangVienPhuTrach() {
-		return giangVienPhuTrach;
+	public GiangVienSV getTroGiang() {
+		return troGiang;
 	}
 
-
-
-
-	public void setGiangVienPhuTrach(GiangVien giangVienPhuTrach) {
-		this.giangVienPhuTrach = giangVienPhuTrach;
+	public void setTroGiang(GiangVienSV troGiang) {
+		this.troGiang = troGiang;
 	}
 
-
-
-
-	public GiangVien getMentor() {
+	public GiangVienSV getMentor() {
 		return mentor;
 	}
 
-
-
-
-	public void setMentor(GiangVien mentor) {
+	public void setMentor(GiangVienSV mentor) {
 		this.mentor = mentor;
 	}
-
-
-
 
 	public String getTenMonHoc() {
 		return tenMonHoc;
 	}
-
 	public void setTenMonHoc(String tenMonHoc) {
 		this.tenMonHoc = tenMonHoc;
 	}
-
 	@Override
 	public String thongTinMonHoc() {
 		// TODO Auto-generated method stub
-		return tenMonHoc + giangVienChinh.giangVien()+ giangVienPhuTrach.giangVien()+ mentor.giangVien();
+		return"\n" +"\t"+tenMonHoc +"\t" + "GV: "+giangVienChinh.thongTinGiangVien()+"\t"+"\t" + "GV: "+troGiang.thongTinGiangVien()+"\t"+"\t" + "GV: "+mentor.thongTinGiangVien();
 	}
 
 }

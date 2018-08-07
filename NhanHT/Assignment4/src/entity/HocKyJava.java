@@ -26,7 +26,7 @@ public class HocKyJava implements HocKy {
 
 	@Override
 	public String hocKy() {
-		String tenHocKy = " Java Development"+"\n";
+		String tenHocKy = " Java Development"+"";
 		for (MonCongNghe x : monCongNghe) {
 			tenHocKy +="\t"+ x.thongTinMonHoc() +"\n";
 		}

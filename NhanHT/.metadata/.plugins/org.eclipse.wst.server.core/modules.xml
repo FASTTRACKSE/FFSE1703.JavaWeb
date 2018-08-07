@@ -5,4 +5,5 @@
   <module moduleId="org.eclipse.jst.jee.server:demo" serverId="Tomcat v9.0 Server at localhost"/>
   <module moduleId="org.eclipse.jst.jee.server:JfsForm" serverId="Tomcat v9.0 Server at localhost"/>
   <module moduleId="org.eclipse.jst.jee.server:JfsDemo" serverId="Tomcat v9.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:HellloworldSpring" serverId="Tomcat v9.0 Server at localhost"/>
 </modules>

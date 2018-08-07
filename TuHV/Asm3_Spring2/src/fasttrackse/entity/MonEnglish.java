@@ -7,7 +7,12 @@ public class MonEnglish implements MonHoc {
 
 	public String mangSachDiHoc() {
 
-		return "mang sÃ¡ch English Ä‘i há»�c";
+		return "mang sách English đi học";
 	}
+public String giangVienDay() {
+		
+		return "do Cô Hồng dạy";
+	}
+	
 
 }

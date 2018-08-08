@@ -1,8 +1,22 @@
 package fasttrackse.entity;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class SinhVien {
-	private String hoTen;
-	
+	public String hoTen, email, diaChi, sdt;
+
+	public SinhVien() {
+		super();
+	}
+
+	public SinhVien(String hoTen, String email, String diaChi, String sdt) {
+		super();
+		this.hoTen = hoTen;
+		this.email = email;
+		this.diaChi = diaChi;
+		this.sdt = sdt;
+	}
 
 	public String getHoTen() {
 		return hoTen;
@@ -11,13 +25,33 @@ public class SinhVien {
 	public void setHoTen(String hoTen) {
 		this.hoTen = hoTen;
 	}
-	public SinhVien() {
-		
-	}
-	public SinhVien(String hoten) {
-		this.hoTen = hoten;
-		
-		
+
+	public String getEmail() {
+		return email;
 	}
 
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getDiaChi() {
+		return diaChi;
+	}
+
+	public void setDiaChi(String diaChi) {
+		this.diaChi = diaChi;
+	}
+
+	public String getSdt() {
+		return sdt;
+	}
+
+	public void setSdt(String sdt) {
+		this.sdt = sdt;
+	}
+	public String thongTinSinhVien() {
+		String st = " - "+hoTen+" - "+email;
+
+	return st;
+	}
 }

@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class English implements MonHoc {
-	public String mangSachDiHoc() {
-		return "Mang sách tiếng anh đi học";
+	public String getMonHoc() {
+		return "English  _ Giảng viên : Cô Hồng";
 	}
 }

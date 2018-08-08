@@ -1,5 +1,11 @@
 package ffse20.entity;
 import java.util.List;
+
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+@Component("sinhvien1")
+@Scope("prototype")
 public class SinhVienSpring {
 
 	private String hoTen;

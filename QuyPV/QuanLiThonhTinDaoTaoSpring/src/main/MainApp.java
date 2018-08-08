@@ -5,8 +5,8 @@ import java.util.List;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import entity.GiangVienChinh;
-import entity.GiangVienPhuTrach;
+import entity.GiangVien;
+
 import entity.HeDaiHan;
 import entity.HeNganHan;
 import entity.HocKi;
@@ -15,19 +15,20 @@ import entity.HocKi2;
 import entity.HocKi3;
 import entity.HocKi4;
 import entity.HocKiJava;
+import entity.HocKiWebFullStack;
 import entity.LopHoc;
-import entity.Mentor;
+import entity.GiangVien;
 import entity.MonCongNghe;
 import entity.MonHoc;
 import entity.MonThucTap;
 import entity.MonTiengAnh;
 import entity.SinhVien;
-import entity.TroGiang;
+import entity.GiangVien;
 
 public class MainApp {
-	static List<MonCongNghe> monCongNgheList;
+	static List<MonHoc> monCongNgheList;
 	static List<HocKi> hocKiList;
-	static List<MonThucTap> monThucTapList;
+	static List<MonHoc> monThucTapList;
 	static List<SinhVien> sinhVienList;
 	
 	public static void main(String[] args) {
@@ -39,43 +40,43 @@ public class MainApp {
 		// khởi tạo danh sách môn công nghệ
 		monCongNgheList = new ArrayList<>();
 		monCongNgheList
-				.add(new MonCongNghe("Scratch", new GiangVienChinh("Nguyễn Duy Nghiêm", "nghiem@fasttrack.edu.vn"),
-						new Mentor("Nguyễn Đức Nghĩa", "nghia@fasttrack.edu.vn")));
+				.add(new MonCongNghe("Scratch", new GiangVien("Nguyễn Duy Nghiêm", "nghiem@fasttrack.edu.vn"),
+						new GiangVien("Nguyễn Đức Nghĩa", "nghia@fasttrack.edu.vn")));
 		monCongNgheList
-				.add(new MonCongNghe("HTML/CSS", new GiangVienChinh("Nguyễn Duy Nghiêm", "nghiem@fasttrack.edu.vn"),
-						new Mentor("Nguyễn Đức Nghĩa", "nghia@fasttrack.edu.vn")));
+				.add(new MonCongNghe("HTML/CSS", new GiangVien("Nguyễn Duy Nghiêm", "nghiem@fasttrack.edu.vn"),
+						new GiangVien("Nguyễn Đức Nghĩa", "nghia@fasttrack.edu.vn")));
 		// inject môn học cho Học kì 1
 		hocKiList.add(new HocKi1(monCongNgheList,
-				new MonTiengAnh("Tiếng anh cơ sở-lv1", new GiangVienChinh("Lê Thị Mỹ Hồng", "hong@fasttrack.edu.vn"),
-						new TroGiang("Hồ Ngọc Hà", "ha@fasttrack.edu.vn"))));
+				new MonTiengAnh("Tiếng anh cơ sở-lv1", new GiangVien("Lê Thị Mỹ Hồng", "hong@fasttrack.edu.vn"),
+						new GiangVien("Hồ Ngọc Hà", "ha@fasttrack.edu.vn"))));
 		
 		// khởi tạo danh sách môn công nghệ
 		monCongNgheList = new ArrayList<>();
 		monCongNgheList
-				.add(new MonCongNghe("Scratch", new GiangVienChinh("Cao Lê Thành", "thanh@fasttrack.edu.vn"),
-						new Mentor("Nguyễn Thanh Lâm", "lam@fasttrack.edu.vn")));
+				.add(new MonCongNghe("Scratch", new GiangVien("Cao Lê Thành", "thanh@fasttrack.edu.vn"),
+						new GiangVien("Nguyễn Thanh Lâm", "lam@fasttrack.edu.vn")));
 		monCongNgheList
-				.add(new MonCongNghe("HTML/CSS", new GiangVienChinh("Cao Lê Thành", "thanh@fasttrack.edu.vn"),
-						new Mentor("Nguyễn Thanh Lâm", "lam@fasttrack.edu.vn")));
+				.add(new MonCongNghe("HTML/CSS", new GiangVien("Cao Lê Thành", "thanh@fasttrack.edu.vn"),
+						new GiangVien("Nguyễn Thanh Lâm", "lam@fasttrack.edu.vn")));
 		// inject môn học cho Học kì 2
 		hocKiList.add(new HocKi2(monCongNgheList,
-				new MonTiengAnh("Tiếng anh cơ sở-lv1", new GiangVienChinh("Lê Thị Mỹ Hồng", "hong@fasttrack.edu.vn"),
-						new TroGiang("Hồ Ngọc Hà", "ha@fasttrack.edu.vn"))));
+				new MonTiengAnh("Tiếng anh cơ sở-lv1", new GiangVien("Lê Thị Mỹ Hồng", "hong@fasttrack.edu.vn"),
+						new GiangVien("Hồ Ngọc Hà", "ha@fasttrack.edu.vn"))));
 		
 		// khởi tạo danh sách môn công nghệ
 		monCongNgheList = new ArrayList<>();
 		monCongNgheList
-		.add(new MonCongNghe("Java Core", new GiangVienChinh("Cao Lê Thành", "thanh@fasttrack.edu.vn"),
-				new Mentor("Lê Văn Thắng", "thang@fasttrack.edu.vn")));
+		.add(new MonCongNghe("Java Core", new GiangVien("Cao Lê Thành", "thanh@fasttrack.edu.vn"),
+				new GiangVien("Lê Văn Thắng", "thang@fasttrack.edu.vn")));
 		monCongNgheList
-				.add(new MonCongNghe("Java Web", new GiangVienChinh("Cao Lê Thành", "thanh@fasttrack.edu.vn"),
-						new Mentor("Lê Văn Thắng", "thang@fasttrack.edu.vn")));
+				.add(new MonCongNghe("Java Web", new GiangVien("Cao Lê Thành", "thanh@fasttrack.edu.vn"),
+						new GiangVien("Lê Văn Thắng", "thang@fasttrack.edu.vn")));
 		// inject môn học cho Học kì 3
 		hocKiList.add(new HocKi3(monCongNgheList));
 		
 		// khởi tạo danh sách môn Thực tập
 		monThucTapList = new ArrayList<>();
-		monThucTapList.add(new MonThucTap("FPT Software",new GiangVienChinh("Nguyễn Văn A", "a@gmail.com")) );
+		monThucTapList.add(new MonThucTap("FPT Software",new GiangVien("Nguyễn Văn A", "a@gmail.com")) );
 		// inject môn học cho Học kì 4
 		hocKiList.add(new HocKi4(monThucTapList));
 		// khởi tạo danh sách sinh viên
@@ -94,11 +95,11 @@ public class MainApp {
 		// khởi tạo danh sách môn công nghệ
 		monCongNgheList = new ArrayList<>();
 		monCongNgheList
-				.add(new MonCongNghe("Java Core", new GiangVienChinh("Cao Lê Thành", "thanh@fasttrack.edu.vn"),
-						new Mentor("Lê Văn Thắng", "thang@fasttrack.edu.vn")));
+				.add(new MonCongNghe("Java Core", new GiangVien("Cao Lê Thành", "thanh@fasttrack.edu.vn"),
+						new GiangVien("Lê Văn Thắng", "thang@fasttrack.edu.vn")));
 		monCongNgheList
-				.add(new MonCongNghe("Java Web", new GiangVienChinh("Cao Lê Thành", "thanh@fasttrack.edu.vn"),
-								new Mentor("Lê Văn Thắng", "thang@fasttrack.edu.vn")));
+				.add(new MonCongNghe("Java Web", new GiangVien("Cao Lê Thành", "thanh@fasttrack.edu.vn"),
+								new GiangVien("Lê Văn Thắng", "thang@fasttrack.edu.vn")));
 		
 		// khởi tạo danh sách sinh viên
 		sinhVienList = new ArrayList<>();
@@ -109,6 +110,30 @@ public class MainApp {
 		lopHoc1801.setTenLop("FFSE1801");
 		lopHoc1801.setHedaotao(new HeNganHan(new HocKiJava(monCongNgheList)));
 		lopHoc1801.inDanhSach();
+		
+		// lớp 1801
+		LopHoc lopHoc1802 = (LopHoc) context.getBean("lopHoc");
+		
+		// khởi tạo danh sách môn công nghệ
+		monCongNgheList = new ArrayList<>();
+		monCongNgheList
+				.add(new MonCongNghe("Java Core", new GiangVien("Cao Lê Thành", "thanh@fasttrack.edu.vn"),
+						new GiangVien("Lê Văn Thắng", "thang@fasttrack.edu.vn")));
+		monCongNgheList
+				.add(new MonCongNghe("Java Web", new GiangVien("Cao Lê Thành", "thanh@fasttrack.edu.vn"),
+								new GiangVien("Lê Văn Thắng", "thang@fasttrack.edu.vn")));
+		
+		// khởi tạo danh sách sinh viên
+		sinhVienList = new ArrayList<>();
+		sinhVienList.add(new SinhVien("Nguyễn Văn B", "b@fastrack.com", "điachi", "0123456789"));
+		sinhVienList.add(new SinhVien("Nguyễn Văn C", "c@fastrack.com", "điachi", "0123456789"));
+		sinhVienList.add(new SinhVien("Nguyễn Văn D", "d@fastrack.com", "điachi", "0123456789"));
+		lopHoc1802.setSinhVienList(sinhVienList);
+		lopHoc1802.setTenLop("FFSE1802");
+		lopHoc1802.setHedaotao(new HeNganHan(new HocKiWebFullStack(monCongNgheList)));
+		lopHoc1802.inDanhSach();
+		
+		
 		
 		
 //		sinhVienList = new ArrayList<>();

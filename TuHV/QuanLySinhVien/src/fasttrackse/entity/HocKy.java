@@ -1,6 +1,6 @@
 package fasttrackse.entity;
 
 public interface HocKy {
-	public String hocKy();
+	public String thongTinHocKy();
 
 }

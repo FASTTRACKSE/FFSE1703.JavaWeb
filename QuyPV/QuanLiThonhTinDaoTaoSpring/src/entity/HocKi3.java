@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HocKi3 implements HocKi {
-	public List<MonCongNghe> monCongNgheList;
+	public List<MonHoc> monCongNgheList;
 	
 	public HocKi3() {
 		//
 	}
 	
-	public HocKi3(List<MonCongNghe> monCongNgheList) {
+	public HocKi3(List<MonHoc> monCongNgheList) {
 		this.monCongNgheList = monCongNgheList;
 	}
 	

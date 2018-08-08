@@ -20,7 +20,9 @@ public class MonCongNghe implements MonHoc {
 	
 	@Override
 	public String monHoc() {
-		return "+" + tenMonCongNghe + "\n \t " + giangVienChinh.giangVien() + "\n \t " + mentor.giangVien();
+		return "+" + tenMonCongNghe + "\n \t " 
+				+ "Giảng viên chính: " + giangVienChinh.giangVien() 
+				+ "\n \t " + "Mentor: " + mentor.giangVien();
 	}
 
 }

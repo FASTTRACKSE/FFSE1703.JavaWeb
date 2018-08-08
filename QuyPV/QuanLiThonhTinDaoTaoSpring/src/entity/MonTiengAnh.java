@@ -19,7 +19,9 @@ public class MonTiengAnh implements MonHoc {
 	@Override
 	public String monHoc() {
 		// TODO Auto-generated method stub
-		return "+" + tenMon + "\n \t" + giangVienChinh.giangVien() + "\n \t" + troGiang.giangVien();
+		return "+" + tenMon + "\n \t " 
+		+ "Giảng viên chính: " + giangVienChinh.giangVien() 
+		+ "\n \t " + "Mentor: " + troGiang.giangVien();
 	}
 
 }

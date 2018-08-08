@@ -3,13 +3,13 @@ package entity;
 import java.util.List;
 
 public class HocKiJava implements HocKi {
-	private List<MonCongNghe> monCongNgheList;
+	private List<MonHoc> monCongNgheList;
 	
 	public HocKiJava() {
 		// 
 	}
 	
-	public HocKiJava(List<MonCongNghe> monCongNgheList) {
+	public HocKiJava(List<MonHoc> monCongNgheList) {
 		this.monCongNgheList = monCongNgheList;
 	}
 	
@@ -17,7 +17,7 @@ public class HocKiJava implements HocKi {
 	public String hocKi() {
 		String hk = "Học kì java \n";
 		hk += "Môn Công nghệ chủ đề Java \n";
-		for (MonCongNghe x : monCongNgheList) {
+		for (MonHoc x : monCongNgheList) {
 			hk += x.monHoc() + "\n";
 		}
 		return hk;

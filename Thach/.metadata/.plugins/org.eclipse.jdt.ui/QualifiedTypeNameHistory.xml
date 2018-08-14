@@ -26,7 +26,6 @@
 <fullyQualifiedTypeName name="java.sql.SQLException"/>
 <fullyQualifiedTypeName name="javax.faces.bean.RequestScoped"/>
 <fullyQualifiedTypeName name="java.sql.DriverManager"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="javax.faces.bean.ManagedProperty"/>
 <fullyQualifiedTypeName name="javax.annotation.PostConstruct"/>
 <fullyQualifiedTypeName name="paginator.Paginator"/>
@@ -45,9 +44,14 @@
 <fullyQualifiedTypeName name="java.util.Locale"/>
 <fullyQualifiedTypeName name="javax.faces.context.FacesContext"/>
 <fullyQualifiedTypeName name="org.apache.catalina.core.ApplicationContext"/>
-<fullyQualifiedTypeName name="org.springframework.context.support.ClassPathXmlApplicationContext"/>
 <fullyQualifiedTypeName name="java.util.Scanner"/>
 <fullyQualifiedTypeName name="bean.Student"/>
-<fullyQualifiedTypeName name="bean.MonToan"/>
 <fullyQualifiedTypeName name="bean.MonHoa"/>
+<fullyQualifiedTypeName name="bean.KhoaHocDaiHan"/>
+<fullyQualifiedTypeName name="bean.KhoaHocNganHan"/>
+<fullyQualifiedTypeName name="bean.MonHoc"/>
+<fullyQualifiedTypeName name="bean.MonToan"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="bean.MonLy"/>
+<fullyQualifiedTypeName name="org.springframework.context.support.ClassPathXmlApplicationContext"/>
 </qualifiedTypeNameHistroy>

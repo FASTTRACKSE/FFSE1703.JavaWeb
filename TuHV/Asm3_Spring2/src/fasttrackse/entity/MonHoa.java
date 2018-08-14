@@ -7,7 +7,12 @@ public class MonHoa implements MonHoc {
 
 	public String mangSachDiHoc() {
 
-		return "mang sÃ¡ch HÃ³a Ä‘i há»�c";
+		return "mang sách Hóa đi học";
 	}
+public String giangVienDay() {
+		
+		return "do thầy Thắng dạy";
+	}
+	
 
 }

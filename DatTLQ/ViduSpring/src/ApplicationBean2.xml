@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean id="monToan" class="bean.MonToan"></bean>
+	<bean id="monLy" class="bean.MonLy"></bean>
+	<bean id="monHoa" class="bean.MonHoa"></bean>
+
+	<bean id="heDaoTaoDaiHan" class="bean.DaoTaoDaiHan"></bean>
+	<bean id="heDaoTaoNganHan" class="bean.DaoTaoNganHan"></bean>
+	<bean id="sinhvien1" class="bean.SinhVien" scope="prototype">
+		<property name="heDaoTao" ref="heDaoTaoDaiHan"></property>
+		<property name="monHoc">
+			<list>
+				<ref bean="monToan" />
+				<ref bean="monLy" />
+				<ref bean="monHoa" />
+			</list>
+		</property>
+	</bean>
+
+</beans>

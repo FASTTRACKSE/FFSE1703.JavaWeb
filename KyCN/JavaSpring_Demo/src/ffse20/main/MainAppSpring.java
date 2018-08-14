@@ -16,9 +16,7 @@ public class MainAppSpring {
 		SinhVienSpring sinhVien1 = context.getBean("sinhvien1", SinhVienSpring.class);
 		System.out.println("Nhập Tên Sinh Vien :");
 		String ten = input.nextLine();
-		sinhVien1.setHoTen(ten);
-//		SinhVienSpring sinhVien2 = context.getBean("sinhvien2", SinhVienSpring.class);
-		
+		sinhVien1.setHoTen(ten);		
 		System.out.println(sinhVien1.mangSachDiHoc());
 
 		

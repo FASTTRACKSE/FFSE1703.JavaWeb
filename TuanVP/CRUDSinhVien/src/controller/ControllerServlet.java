@@ -105,7 +105,6 @@ public class ControllerServlet extends HttpServlet {
 		String lop = request.getParameter("lop");
 		float diemlp1 = Float.parseFloat(request.getParameter("diemlp1"));
 		float diemlp2 = Float.parseFloat(request.getParameter("diemlp2"));
-
 		SinhVien sv = new SinhVien(hodem, ten, ngaysinh, gioitinh, quequan, lop, diemlp1, diemlp2);
 		studentDAO.insertStudent(sv);
 		response.sendRedirect("list");
@@ -122,7 +121,7 @@ public class ControllerServlet extends HttpServlet {
 			page = Integer.parseInt(request.getParameter("page"));
 			start = (page - 1) * perPage;
 		}
-		int total = (int) Math.ceil(studentDAO.rowCount()/perPage);
+		int total = (int) Math.ceil(studentDAO.rowCount() / perPage);
 		request.setAttribute("page", page);
 		request.setAttribute("totalPage", total);
 		request.setAttribute("lang", lang);

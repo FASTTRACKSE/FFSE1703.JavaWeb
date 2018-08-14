@@ -5,6 +5,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class MonLy implements MonHoc {
 	public String mangSachDiHoc() {
-		return "Mang Sách Lý đi học";
+		return "Mang sách Lý đi học";
 	}
 }

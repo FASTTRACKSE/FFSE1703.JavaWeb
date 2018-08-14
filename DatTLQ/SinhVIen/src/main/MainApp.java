@@ -36,6 +36,6 @@ public class MainApp {
 		listMonHoc.add(new MonToan());
 		listMonHoc.add(new MonLy());
 		sv1.setListMonHoc(listMonHoc);
-		System.out.println(sv1.mangSachDiHoc());
+	
 	}
 }

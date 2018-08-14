@@ -2,6 +2,8 @@ package fasttrackse.entity;
 
 public interface HeDaoTao {
 
-	public String getHocKy();
+	public String thongTinThoiGianHoc();
+
+	public String thongTinHeDaoTao();
 
 }

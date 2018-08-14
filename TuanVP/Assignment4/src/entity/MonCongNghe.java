@@ -7,15 +7,15 @@ import org.springframework.stereotype.Component;
 @Scope("prototype")
 public class MonCongNghe implements MonHoc {
 	public String tenMonHoc;
-	public GiangVienChinh giangVienChinh;
-	public TroGiang troGiang;
-	public Mentor mentor;
+	public GiangVien giangVienChinh;
+	public GiangVien troGiang;
+	public GiangVien mentor;
 
 	public MonCongNghe() {
 		super();
 	}
 
-	public MonCongNghe(String tenMonHoc, GiangVienChinh giangVienChinh, TroGiang troGiang, Mentor mentor) {
+	public MonCongNghe(String tenMonHoc, GiangVien giangVienChinh, GiangVien troGiang, GiangVien mentor) {
 		super();
 		this.tenMonHoc = tenMonHoc;
 		this.giangVienChinh = giangVienChinh;
@@ -26,9 +26,9 @@ public class MonCongNghe implements MonHoc {
 	@Override
 	public String thongTinMonHoc() {
 		String st = "  - Tên môn học: " + tenMonHoc + "\n";
-		st += "   + " + giangVienChinh.thongTinGiangVien();
-		st += "   + " + troGiang.thongTinGiangVien();
-		st += "   + " + mentor.thongTinGiangVien();
+		st += "   + Giảng viên chính: " + giangVienChinh.thongTinGiangVien() + "\n";
+		st += "   + Trợ giảng: " + troGiang.thongTinGiangVien() + "\n";
+		st += "   + Mentor:  " + mentor.thongTinGiangVien() + "\n";
 		return st;
 	}
 

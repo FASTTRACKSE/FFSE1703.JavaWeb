@@ -44,12 +44,14 @@
 	</section>
 	<section name="wizardPage">
 		<list key="groupId">
+			<item value="CrunchifySpringMVCTutorial"/>
 			<item value="HellloworldSpring"/>
 			<item value="QLSinhVien"/>
 		</list>
 		<list key="name">
 		</list>
 		<list key="artifactId">
+			<item value="CrunchifySpringMVCTutorial"/>
 			<item value="HellloworldSpring"/>
 			<item value="QLSinhVien"/>
 		</list>

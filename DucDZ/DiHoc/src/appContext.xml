@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc 
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<bean id="monToan" class="entity.MonToan"></bean>
+	<bean id="monLy" class="entity.MonLy"></bean>
+	<bean id="monHoa" class="entity.MonHoa"></bean>
+	<bean id="heDaoTaoDaiHan" class="entity.DaoTaoDaiHan"></bean>
+	<bean id="heDaoTaoNganHan" class="entity.DaoTaoNganHan"></bean>
+	<bean id="sinhvien1" class="entity.SinhVien" scope="prototype">
+		<property name="hdt" ref="heDaoTaoDaiHan"></property>
+		<property name="mh">
+			<list>
+				<ref bean="monToan" />
+				<ref bean="monLy" />
+				<ref bean="monHoa" />
+			</list>
+		</property>
+	</bean>
+	<bean id="sinhvien2" class="entity.SinhVien" scope="prototype">
+		<property name="hoTen" value="Tran Duc"></property>
+		<property name="hdt" ref="heDaoTaoNganHan"></property>
+		<property name="mh">
+			<list>
+				<ref bean="monHoa"/>
+				<ref bean="monToan" />
+				<ref bean="monLy" />
+			</list>
+		</property>
+	</bean>
+</beans>

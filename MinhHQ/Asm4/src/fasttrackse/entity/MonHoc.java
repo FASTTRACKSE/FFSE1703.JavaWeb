@@ -1,8 +1,5 @@
 package fasttrackse.entity;
 
-import org.springframework.stereotype.Component;
-
-@Component
-public interface MonHoc{
-	public String chonMonHoc();
+public interface MonHoc {
+	public String ttMonHoc();
 }

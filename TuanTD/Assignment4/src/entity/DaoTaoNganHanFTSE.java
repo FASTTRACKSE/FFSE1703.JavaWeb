@@ -20,7 +20,7 @@ public class DaoTaoNganHanFTSE implements HeDaoTao {
 
 	@Override
 	public String thongTinThoiGianHoc() {
-		return "6 tháng, từ 18h30-21h30";
+		return "Trong Vòng 6 tháng,mời bạn đi học buổi tối từ 18h30 đến 21h30";
 	}
 
 	@Override

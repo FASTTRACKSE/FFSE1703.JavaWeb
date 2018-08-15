@@ -31,7 +31,10 @@ public class SinhVienController {
 	}
 	
 	@RequestMapping(value="/editsave",method = RequestMethod.POST)
-	public ModelAndView editSave(@ModelAttribute("sv") SinhVien sv){ 
+	public ModelAndView editSave(@ModelAttribute("command") @Valid SinhVien sv, BindingResult result){ 
+		if(result.hasErrors()) {
+			return new ModelAndView("editform");
+		}
 		sinhVienDao.update(sv);
         return new ModelAndView("redirect:/"); // mặc định trở về trang index. đã đc định nghĩa ở web.xml  
     }  
@@ -55,7 +58,6 @@ public class SinhVienController {
 	
 	@RequestMapping(value= "/addSave", method=RequestMethod.POST)
 	public ModelAndView addSave(@ModelAttribute("command") @Valid SinhVien sv, BindingResult result) {
-
 		
 		if(result.hasErrors()) {
 			return new ModelAndView("addform");

@@ -39,4 +39,8 @@
 	<bean id="dao" class="dao.SinhVienDao">
 		<property name="template" ref="jt"></property>
 	</bean>
+	
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+    <property name="basename" value="messages"/>
+</bean>
 </beans>

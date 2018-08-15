@@ -1,5 +1,6 @@
 package entity;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
@@ -22,9 +23,9 @@ public class SinhVien {
 	@NotEmpty(message= "Nhập email sinh viên")
 	private String email;
 	
-	@NotEmpty(message= "Nhập mã lớp sinh viên")
 	private String maLop;
 	
+	@Min(1900)
 	@NotNull
 	private int namSinh;
 	

@@ -49,8 +49,12 @@
 			</div>
 			<div class= "form-group">
 				<label>Mã lớp:</label>
-				<form:input class= "form-control" type="text" path="maLop"/> <br>
-				<form:errors path="maLop" cssStyle="color: red" />
+				<form:select path="maLop" class= "form-control">
+					<form:option value="FFSE1701">FFSE1701</form:option>
+					<form:option value="FFSE1702">FFSE1702</form:option>
+					<form:option value="FFSE1703">FFSE1703</form:option>
+					<form:option value="FFSE1704">FFSE1704</form:option>
+				</form:select>
 			</div>
 			<input class= "btn btn-success" type="submit" value="Lưu" />
 	</form:form>

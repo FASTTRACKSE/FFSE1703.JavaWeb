@@ -1,0 +1,14 @@
+package model;
+
+public class MonToan {
+	private String monToan;
+
+	public String getMonToan() {
+		return monToan;
+	}
+
+	public void setMonToan(String monToan) {
+		this.monToan = monToan;
+	}
+	
+}

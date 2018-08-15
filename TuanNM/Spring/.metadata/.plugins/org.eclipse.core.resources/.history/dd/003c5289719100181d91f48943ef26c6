@@ -1,0 +1,41 @@
+package main;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import bean.Student;
+
+public class StudentMain {
+	private static String name;
+	public static Scanner myScanner = new Scanner(System.in);
+	static ArrayList<Student> arrSinhVien = new ArrayList<Student>();
+
+	public static void main(String[] args) {
+
+	}
+
+	public static void nhapName() {
+
+		System.out.print("Nhập vào tên của bạn : ");
+		name = myScanner.nextLine();
+		if (name.isEmpty()) {
+			System.out.println("Vui lòng nhập tên");
+		} else {
+			listSubject();
+		}
+	}
+	
+	public static void listSubject() {
+		System.out.println("+------BẠN MUỐN XÓA TOÀN BỘ-----+");
+		System.out.println("| 1. Đồng ý                     |");
+		System.out.println("| 2. Không và quay lai          |");
+		System.out.println("=================================");
+
+		if (option == 1) {
+			arrSinhVien.clear();
+		} else if (option == 2) {
+			myMenu();
+		}
+	}
+
+}

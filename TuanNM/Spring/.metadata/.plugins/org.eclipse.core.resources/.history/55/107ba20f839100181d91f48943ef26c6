@@ -1,0 +1,9 @@
+package model;
+
+public class MonToan implements MonHoc {
+
+	public void mangSachDiHoc() {
+		System.out.println("Mang sách Toán  đi học!!");
+	}
+	
+}

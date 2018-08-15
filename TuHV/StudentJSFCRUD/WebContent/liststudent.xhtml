@@ -69,47 +69,48 @@
 				<f:facet name="header">#{msg['ed']}</f:facet>
 				<h:commandButton
 					action="#{studentBean.editStudentRecord(student.id)}"
-					value="Update" class="btn btn-primary" />
+					value="#{msg['up']}" class="btn btn-primary" />
 			</h:column>
 			<h:column>
 				<f:facet name="header">#{msg['de']}</f:facet>
 				<h:commandButton
 					action="#{studentBean.deleteStudentRecord(student.id)}"
-					value="Delete" class="btn btn-danger" />
+					value="#{msg['dele']}" class="btn btn-danger" />
 			</h:column>
 		</h:dataTable>
 		<center>
 			<nav aria-label="Page navigation example">
 				<ul class="pagination justify-content-center">
-				<c:if test="#{studentBean.pagination.pageIndex gt 1}">
-					<li class="page-item"><h:commandLink value="#{msg['fist']}"
-							action="#{studentBean.firstPage()}" class="page-link" /></li>
-					<li class="page-item"><h:commandLink
-							value="#{studentBean.pagination.pageIndex - 1}"
-							action="#{studentBean.prev()}"
-							class="page-link #{studentBean.pagination.pageIndex == 1 ? 'd-none' : ''}" />
-					</li>
-				</c:if>
-					
+					<c:if test="#{studentBean.pagination.pageIndex gt 1}">
+						<li class="page-item"><h:commandLink value="#{msg['fist']}"
+								action="#{studentBean.firstPage()}" class="page-link" /></li>
+						<li class="page-item"><h:commandLink
+								value="#{studentBean.pagination.pageIndex - 1}"
+								action="#{studentBean.prev()}"
+								class="page-link #{studentBean.pagination.pageIndex == 1 ? 'd-none' : ''}" />
+						</li>
+					</c:if>
+
 					<li class="page-item active"><a class="page-link">#{studentBean.pagination.pageIndex}</a></li>
-					
-				<c:if test="#{studentBean.pagination.pageIndex lt studentBean.pagination.pages}">
-					<li class="page-item"><h:commandLink
-							value="#{studentBean.pagination.pageIndex + 1}"
-							action="#{studentBean.next()}"
-							class="page-link #{studentBean.pagination.pageIndex == studentBean.pagination.pages ? 'd-none' : ''}" />
-					</li>
-					<li class="page-item"><h:commandLink value="#{msg['last']}"
-							action="#{studentBean.lastPage()}" class="page-link" /></li>
-				</c:if>
-					
+
+					<c:if
+						test="#{studentBean.pagination.pageIndex lt studentBean.pagination.pages}">
+						<li class="page-item"><h:commandLink
+								value="#{studentBean.pagination.pageIndex + 1}"
+								action="#{studentBean.next()}"
+								class="page-link #{studentBean.pagination.pageIndex == studentBean.pagination.pages ? 'd-none' : ''}" />
+						</li>
+						<li class="page-item"><h:commandLink value="#{msg['last']}"
+								action="#{studentBean.lastPage()}" class="page-link" /></li>
+					</c:if>
+
 				</ul>
 			</nav>
 
 		</center>
 		<center>
 			<h:commandButton action="creatstudent.xhtml?faces-redirect=true"
-				value="Create New User" class="btn btn-success btnSpace" />
+				value="#{msg['creat']}" class="btn btn-success btnSpace" />
 		</center>
 		<h3>
 			<h:outputText value="#{msg['hello']}" />

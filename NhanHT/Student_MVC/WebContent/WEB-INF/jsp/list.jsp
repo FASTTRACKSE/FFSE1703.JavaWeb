@@ -15,8 +15,9 @@
 </head>
 <body class="container">
 	<h1>Sinh Viên</h1>
-	<table border="2" width="70%" cellpadding="2"
-		class="table table-striped table-hover table-bordered tableUpdated">
+	<table width="70%" cellpadding="2"
+		class="table table-hover">
+		<thead>
 		<tr>
 			<th>Mã Sinh Viên</th>
 			<th>Tên Sinh Viên</th>
@@ -26,6 +27,8 @@
 			<th>Lớp Học</th>
 			<th>Chức Năng</th>
 		</tr>
+		</thead>
+		<tbody>
 		<c:forEach var="emp" items="${list}">
 			<tr>
 				<td>${emp.maSv}</td>
@@ -38,9 +41,9 @@
 				<a href="delete/${emp.id}" class="btn btn-primary"  onclick="return confirm('Bạn có muốn xóa sinh viên này?');">Delete</a></td>
 			</tr>
 		</c:forEach>
+		</tbody>
 	</table>
 	<br />
 	<a href="formStudent" class="btn btn-success btnSpace">Add New Student</a>
-
 </body>
 </html>

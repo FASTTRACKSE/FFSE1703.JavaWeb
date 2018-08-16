@@ -43,6 +43,20 @@
 		</tr>
 	</c:forEach>	
 </table>
+<p>${totalPage}</p>
+
+<c:if test="${pageIndex > 1}">
+	<a href="1">first</a>
+	<a href="${pageIndex - 1}"> <button class="btn btn-default">${pageIndex - 1}</button></a>
+</c:if>
+
+<a href="${pageIndex}"><button class="btn btn-success">${pageIndex}</button></a>
+
+<c:if test="${pageIndex < totalPage}">
+	<a href="${pageIndex + 1}"><button class="btn btn-default">${pageIndex + 1}</button></a>
+	<a href="${totalPage}">last</a>
+</c:if>
+
 </div>
 
 		

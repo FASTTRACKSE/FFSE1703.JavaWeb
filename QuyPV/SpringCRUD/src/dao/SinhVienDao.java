@@ -21,9 +21,9 @@ public class SinhVienDao {
 		this.template = template;
 	}
 	
-	public List<SinhVien> sinhVienList() {
+	public List<SinhVien> sinhVienList(int start, int end) {
 		
-		return template.query("select * from Sinh_vien", new RowMapper<SinhVien>() {
+		return template.query("select * from Sinh_vien limit ?,?",new Object[]{start, end} ,new RowMapper<SinhVien>() {
 
 			@Override
 			public SinhVien mapRow(ResultSet rs, int row) throws SQLException {
@@ -102,5 +102,12 @@ public class SinhVienDao {
 
         int count = template.queryForObject(sql, new Object[] { maSv }, Integer.class);
         return count;
+	}
+	
+	public double totalRecord() {
+		String sql = "select count(*) from Sinh_vien";
+		
+		double total = template.queryForObject(sql, Double.class);
+		return total;
 	}
 }	

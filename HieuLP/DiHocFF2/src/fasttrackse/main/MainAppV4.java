@@ -17,6 +17,7 @@ public class MainAppV4 {
 		System.out.println(sinhVien2.mangSachDiHoc());
 		
 		context.close();
+		
 
 	}
 

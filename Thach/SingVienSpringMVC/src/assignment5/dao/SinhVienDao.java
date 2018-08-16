@@ -19,8 +19,8 @@ public class SinhVienDao {
 	public void setTemplate(JdbcTemplate template) {  
 	    this.template = template;  
 	}
-	public List<SinhVien> listSinhVien(){  
-	    return template.query("select * from quanlysinhvien2",new RowMapper<SinhVien>(){  
+	public List<SinhVien> listSinhVien(int start, int end){  
+	    return template.query("select * from quanlysinhvien2 limit ?,?",new Object[]{start, end} ,new RowMapper<SinhVien>(){  
 	        public SinhVien mapRow(ResultSet rs, int row) throws SQLException {  
 	            SinhVien sv=new SinhVien();   
 	            sv.setMaSv(rs.getString(2));  
@@ -89,4 +89,12 @@ public class SinhVienDao {
 			}
 		});
 	}
+	
+	public double totalRecord() {
+		String sql = "select count(*) from quanlysinhvien2";
+		
+		double total = template.queryForObject(sql, Double.class);
+		return total;
+	}
+	
 }

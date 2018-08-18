@@ -22,12 +22,13 @@ public void setTemplate(JdbcTemplate template) {
     this.template = template;  
 
 }
- public List<Student> getAllStudent(){
-	 String sql = "SELECT * FROM student";
+ public List<Student> getAllStudent(int pageid,int total){
+	 String sql = "SELECT * FROM student limit " + pageid + "," + total;
 	 return template.query(sql, new ResultSetExtractor<List<Student>>(){
 			@Override
 		 public List<Student> extractData(ResultSet rs) throws SQLException, DataAccessException {
 			 List<Student> list = new ArrayList<Student>();
+			 
 				while (rs.next()) {
 					String maSV = rs.getString("masv");
 					String tenSV = rs.getString("tensv");
@@ -42,6 +43,8 @@ public void setTemplate(JdbcTemplate template) {
 			}
 		});
 	}
+
+	
  public boolean insertStudent(Student sv) {
 		String sql = "INSERT INTO student (masv,tensv,tuoisv,email,diachi,lop) VALUES(?,?,?,?,?,?)";
 		return template.execute(sql, new PreparedStatementCallback<Boolean>() {
@@ -113,5 +116,11 @@ public void setTemplate(JdbcTemplate template) {
 			}
 		});
 	}
+	public int countStudent() {
+		String sql = "select count(*) from student";
+		int intStudent = template.queryForObject(sql,Integer.class);  
+		return intStudent;
+	}
+	
 	 
 }

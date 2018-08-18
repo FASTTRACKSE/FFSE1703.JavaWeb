@@ -31,8 +31,8 @@ public class HocKyWebFullStack implements HocKy {
 	public String thongTinHocKy() {
 		String st = "Tên học kỳ: Web Fullstrack Development \n";
 		st += " Danh sách môn học: \n";
-		for (MonCongNghe mH : monCongNghe) {
-			st += mH.thongTinMonHoc();
+		for (MonCongNghe monCongNghe : monCongNghe) {
+			st += monCongNghe.thongTinMonHoc();
 		}
 		return st;
 	}

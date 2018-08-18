@@ -1,8 +1,26 @@
 package beans;
 
-public class Student {
+import org.hibernate.validator.constraints.NotEmpty;
 
-	private String id,maSv,tenSv,namSinh,email,diaChi,lopHoc;
+public class Student {
+	@NotEmpty(message= "Tên Không được để trống !")
+	private String tenSv;
+	
+	@NotEmpty(message= "Mã SV không được để trống !")
+	private String maSv;
+	
+	@NotEmpty(message = "Năm Sinh không được để trống !")
+	private String namSinh;
+	
+	@NotEmpty(message = "Email không được để trống !")
+	private String email;
+	
+	@NotEmpty(message = "Địa Chỉ không được để trống !")
+	private String diaChi;
+	
+	@NotEmpty(message = "Lớp Học không được để trống !")
+	private String lopHoc;
+	private String id;
 	
 	public String getId() {
 		return id;

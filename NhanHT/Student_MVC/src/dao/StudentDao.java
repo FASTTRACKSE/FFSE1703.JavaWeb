@@ -16,7 +16,7 @@ public class StudentDao {
 	public void setTemplate(JdbcTemplate template) {  
 	    this.template = template;  
 	}  
-	public List<Student> getEmployees(){  
+	public List<Student> getStudent(){  
 	    return template.query("select * from SinhVien",new RowMapper<Student>(){  
 	        public Student mapRow(ResultSet rs, int row) throws SQLException {  
 	            Student e=new Student(); 

@@ -16,33 +16,40 @@
 <body class="container">
 	<h1>Add New Student</h1>
 
-	<form:form method="post" action="save" class="form-horizontal">
+	<form:form method="post" action="/Student_MVC/save" class="form-horizontal">
 		<div class="form-group">
 			<label>Mã Sinh Viên</label>
 			<form:input path="maSv" class="form-control" />
+			<form:errors path="maSv" cssStyle="color:red;display:block"></form:errors>
 		</div>
 		<div class="form-group">
 			<label>Tên Sinh Viên</label>
 			<form:input path="tenSv" class="form-control" />
+			<form:errors path="tenSv" cssStyle="color:red;display:block"></form:errors>
 		</div>
 		<div class="form-group">
 			<label>Năm Sinh</label>
 			<form:input path="namSinh" class="form-control" />
+			<form:errors path="namSinh" cssStyle="color:red;display:block"></form:errors>
 		</div>
 		<div class="form-group">
 			<label>Email</label>
 			<form:input path="email" class="form-control" />
+			<form:errors path="email" cssStyle="color:red;display:block"></form:errors>
 		</div>
 		<div class="form-group">
 			<label>Địa Chỉ</label>
 			<form:input path="diaChi" class="form-control" />
+			<form:errors path="diaChi" cssStyle="color:red;display:block"></form:errors>
 		</div>
 		<div class="form-group">
 			<label>Lớp Học</label>
 			<form:input path="lopHoc" class="form-control" />
+			<form:errors path="lopHoc" cssStyle="color:red;display:block"></form:errors>
 		</div>
 		<div class="form-group">
-			<td><input class="btn btn-success" type="submit" value="Save" />
+			<input class="btn btn-success" type="submit" value="Save" /> <a
+				class="btn btn-info" href="/Student_MVC/">View Student</a>
 		</div>
 	</form:form>
 </body>

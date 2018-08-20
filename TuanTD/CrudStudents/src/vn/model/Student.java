@@ -1,12 +1,29 @@
 package vn.model;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.springframework.lang.NonNull;
+
 public class Student {
 	    protected int id;
+	    @NotEmpty(message= "nhập mã sinh viên")
 	    protected String masv;
+	    @NotEmpty(message= "nhập họ tên sinh viên")
 	    protected String name;
 	    protected String lop;
-	    protected String email;
+	    @NotNull
+	    @Size(min = 1, max = 100)
+	    @Pattern(regexp="^([a-zA-Z0-9\\-\\.\\_]+)'+'(\\@)([a-zA-Z0-9\\-\\.]+)'+'(\\.)([a-zA-Z]{2,4})$")
+	    private String email;
 	    protected String address;
+	    @NonNull
+	    @Min(13)
+		@Max(110)
 	    protected int age;
 	    protected String author;
 		public int getId() {

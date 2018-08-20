@@ -3,9 +3,11 @@ package vn.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+
 import vn.model.Student;
 
 public class StudentDao {
@@ -41,8 +43,8 @@ public class StudentDao {
 		return template.queryForObject(sql, new Object[] {id}, new BeanPropertyRowMapper<Student>(Student.class));
 	}
 
-	public List<Student> getEmployees() {
-		return template.query("select * from student", new RowMapper<Student>() {
+	public List<Student> getEmployees(int start, int end) {
+		return template.query("select * from student limit ?,?",new Object[]{start, end} , new RowMapper<Student>() {
 			public Student mapRow(ResultSet rs, int row) throws SQLException {
 				Student e = new Student();
 				e.setId(rs.getInt(1));
@@ -56,5 +58,18 @@ public class StudentDao {
 				return e;
 			}
 		});
+	}
+	public int checkExistMaSv(String maSv) {
+		String sql = "select count(*) from student WHERE masv = ?";
+
+        int count = template.queryForObject(sql, new Object[] { maSv }, Integer.class);
+        return count;
+	}
+	
+	public double totalRecord() {
+		String sql = "select count(*) from student";
+		
+		double total = template.queryForObject(sql, Double.class);
+		return total;
 	}
 }

@@ -15,35 +15,50 @@
 </head>
 <body class="container">
 	<h1>Sinh Viên</h1>
-	<table width="70%" cellpadding="2"
-		class="table table-hover">
+	<table width="70%" cellpadding="2" class="table table-hover">
 		<thead>
-		<tr>
-			<th>Mã Sinh Viên</th>
-			<th>Tên Sinh Viên</th>
-			<th>Năm Sinh</th>
-			<th>Email</th>
-			<th>Địa Chỉ</th>
-			<th>Lớp Học</th>
-			<th>Chức Năng</th>
-		</tr>
+			<tr>
+				<th>Mã Sinh Viên</th>
+				<th>Tên Sinh Viên</th>
+				<th>Năm Sinh</th>
+				<th>Email</th>
+				<th>Địa Chỉ</th>
+				<th>Lớp Học</th>
+				<th>Chức Năng</th>
+			</tr>
 		</thead>
 		<tbody>
-		<c:forEach var="emp" items="${list}">
-			<tr>
-				<td>${emp.maSv}</td>
-				<td>${emp.tenSv}</td>
-				<td>${emp.namSinh}</td>
-				<td>${emp.email}</td>
-				<td>${emp.diaChi}</td>
-				<td>${emp.lopHoc}</td>
-				<td><a href="edit/${emp.id}" class="btn btn-danger">Edit</a>
-				<a href="delete/${emp.id}" class="btn btn-primary"  onclick="return confirm('Bạn có muốn xóa sinh viên này?');">Delete</a></td>
-			</tr>
-		</c:forEach>
+			<c:forEach var="emp" items="${list}">
+				<tr>
+					<td>${emp.maSv}</td>
+					<td>${emp.tenSv}</td>
+					<td>${emp.namSinh}</td>
+					<td>${emp.email}</td>
+					<td>${emp.diaChi}</td>
+					<td>${emp.lopHoc}</td>
+					<td><a href="edit/${emp.id}" class="btn btn-danger">Edit</a> <a
+						href="delete/${emp.id}" class="btn btn-primary"
+						onclick="return confirm('Bạn có muốn xóa sinh viên này?');">Delete</a></td>
+				</tr>
+			</c:forEach>
 		</tbody>
 	</table>
+	<p style="color: red">Page ${page}</p>
+	<ul class="pagination">
+
+		<c:if test="${page > 1}">
+			<li><a href="/Student_MVC/1">Trang Đầu</a></li>
+			<li><a href="/Student_MVC/${page-1}">${page-1}</a></li>
+		</c:if>
+		<li><a style="color: black;" href="">${page}</a></li>
+		<c:if test="${page < total}">
+			<li><a href="/Student_MVC/${page+1}">${page+1}</a></li>
+			<li><a href="/Student_MVC/${total}">Trang Cuối</a></li>
+		</c:if>
+
+	</ul>
 	<br />
-	<a href="formStudent" class="btn btn-success btnSpace">Add New Student</a>
+	<a href="/Student_MVC/formStudent" class="btn btn-success btnSpace">Add
+		New Student</a>
 </body>
 </html>

@@ -16,7 +16,7 @@
 <body class="container">
 	<h1>Add New Student</h1>
 
-	<form:form method="post" action="save" class="form-horizontal">
+	<form:form method="post" action="/Student_MVC/save" class="form-horizontal">
 		<div class="form-group">
 			<label>Mã Sinh Viên</label>
 			<form:input path="maSv" class="form-control" />

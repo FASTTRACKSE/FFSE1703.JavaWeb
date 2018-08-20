@@ -8,6 +8,8 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
+import com.sun.rowset.internal.Row;
+
 import spring.entity.SinhVien;
 
 public class SVDao {
@@ -24,8 +26,9 @@ public class SVDao {
 		String email = sv.getEmail();
 		String diachi = sv.getDia_chi();
 		String lophoc = sv.getLop_hoc();
-		String sql = "insert into `spring_sinhvien`(`ma_sv`, `ho_ten`, `nam_sinh`, `email`, `dia_chi`, `lop_hoc`) values('"
-			+masv+"','"+hoten+"','"+namsinh+"','"+email+"','"+diachi+"','"+lophoc+"')";
+		String sql = "insert into `spring_sinhvien`(`ma_sv`,`ho_ten`,"
+				+ "`nam_sinh`,`email`,`dia_chi`,`lop_hoc`) values('"+masv+"','"
+				+hoten+"','"+namsinh+"','"+email+"','"+diachi+"','"+lophoc+"')";
 		return template.update(sql);
 	}
 
@@ -36,8 +39,9 @@ public class SVDao {
 		String email = sv.getEmail();
 		String diachi = sv.getDia_chi();
 		String lophoc = sv.getLop_hoc();
-		String sql = "update spring_sinhvien set ho_ten='"+hoten+
-				"',nam_sinh='"+namsinh+"',email='"+email+"',dia_chi='"+diachi+"',lop_hoc='"+lophoc+"' where ma_sv='"+masv+"' ";
+		String sql = "update spring_sinhvien set ho_ten='"+hoten+"',nam_sinh='"
+				+namsinh+"',email='"+email+"',dia_chi='"+diachi+"',lop_hoc='"+lophoc+
+				"' where ma_sv='"+masv+"' ";
 		return template.update(sql);
 	}
 
@@ -49,13 +53,14 @@ public class SVDao {
 
 	public SinhVien getSV(int masv) {
 		String sql = "select * from spring_sinhvien where ma_sv=?";
-		return template.queryForObject(sql, new Object[] {masv}, new BeanPropertyRowMapper<SinhVien>(SinhVien.class));
+		return template.queryForObject(sql, new Object[] {masv},
+				new BeanPropertyRowMapper<SinhVien>(SinhVien.class));
 	}
-
-	public List<SinhVien> getSinhViens() {
-		String sql = "select * from spring_sinhvien ";
-		return template.query(sql, new RowMapper<SinhVien>() {
-			public SinhVien mapRow(ResultSet rs, int Row) throws SQLException {
+	
+	public List<SinhVien> getSVbyPage(int start,int total){
+		String sql="select * from spring_sinhvien limit "+start+","+total+"";
+		return template.query(sql,new RowMapper<SinhVien>(){
+			public SinhVien mapRow(ResultSet rs,int row) throws SQLException {
 				SinhVien sv = new SinhVien();
 				sv.setMa_sv(rs.getInt("ma_sv"));
 				sv.setHo_ten(rs.getString("ho_ten"));
@@ -66,5 +71,10 @@ public class SVDao {
 				return sv;
 			}
 		});
+	}
+	
+	public int countSV() throws SQLException {
+		String sql="select count(*) from spring_sinhvien";
+		return template.queryForObject(sql, Integer.class);
 	}
 }

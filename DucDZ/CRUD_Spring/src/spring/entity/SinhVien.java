@@ -1,22 +1,16 @@
 package spring.entity;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 public class SinhVien {
 
-	@NotBlank
-	private int ma_sv;
+	@NotNull(message = "Id khong duoc de trong!")
+	private Integer ma_sv;
 
-	@NotBlank
+	@NotEmpty(message = "Chua du du lieu!")
 	private String ho_ten, nam_sinh, email, dia_chi, lop_hoc;
-
-	public int getMa_sv() {
-		return ma_sv;
-	}
-
-	public void setMa_sv(int ma_sv) {
-		this.ma_sv = ma_sv;
-	}
 
 	public String getHo_ten() {
 		return ho_ten;
@@ -24,6 +18,14 @@ public class SinhVien {
 
 	public void setHo_ten(String ho_ten) {
 		this.ho_ten = ho_ten;
+	}
+
+	public Integer getMa_sv() {
+		return ma_sv;
+	}
+
+	public void setMa_sv(Integer ma_sv) {
+		this.ma_sv = ma_sv;
 	}
 
 	public String getNam_sinh() {

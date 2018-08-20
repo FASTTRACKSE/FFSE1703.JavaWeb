@@ -16,8 +16,9 @@ public class StudentDao {
 	public void setTemplate(JdbcTemplate template) {  
 	    this.template = template;  
 	}  
-	public List<Student> getEmployees(){  
-	    return template.query("select * from SinhVien",new RowMapper<Student>(){  
+	public List<Student> getStudent(int start,int end){  
+		String sql = "select * from SinhVien limit "+ start + "," + end;
+	    return template.query(sql,new RowMapper<Student>(){  
 	        public Student mapRow(ResultSet rs, int row) throws SQLException {  
 	            Student e=new Student(); 
 	            e.setId(rs.getString(1));
@@ -47,4 +48,10 @@ public class StudentDao {
 	    String sql="update SinhVien set MaSv='"+p.getMaSv()+"', TenSv='"+p.getTenSv()+"', NamSinh='"+p.getNamSinh()+"', Email='"+p.getEmail()+"', DiaChi='"+p.getDiaChi()+"', LopHoc='"+p.getLopHoc()+"' where id='"+p.getId()+"'";  
 	    return template.update(sql);  
 	}  
+	public double total() {
+		String sql = "select count(*) from SinhVien";
+		double total = template.queryForObject(sql, double.class);
+		return total;
+		
+	}
 }

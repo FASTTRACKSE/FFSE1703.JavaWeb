@@ -16,7 +16,7 @@
 <body class="container">
 	<h1>Edit Student</h1>
 
-	<form:form method="POST" action="/Student_MVC/editsave">
+	<form:form method="POST" action="/Student_MVC/edit">
 		<form:hidden path="id" />
 		<div class="form-group">
 			<label>Mã Sinh Viên</label>

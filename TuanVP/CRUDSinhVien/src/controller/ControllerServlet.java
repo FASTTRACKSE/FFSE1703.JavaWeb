@@ -121,7 +121,7 @@ public class ControllerServlet extends HttpServlet {
 			page = Integer.parseInt(request.getParameter("page"));
 			start = (page - 1) * perPage;
 		}
-		int total = (int) Math.ceil(studentDAO.rowCount() / perPage);
+		int total = (int) Math.ceil((double) studentDAO.rowCount() / (double)perPage);
 		request.setAttribute("page", page);
 		request.setAttribute("totalPage", total);
 		request.setAttribute("lang", lang);

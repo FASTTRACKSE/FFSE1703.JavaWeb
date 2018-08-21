@@ -19,13 +19,13 @@ public class SinhVienDAO {
 	public void setTemplate(JdbcTemplate template) {
 		this.template = template;
 	}
-
-	public List<SinhVien> getAllStudent() {
-		String sql = "SELECT * FROM sinhvien_spring";
+	
+	public List<SinhVien> getAllStudent(int start, int limit) {
+		String sql = "SELECT * FROM sinhvien_spring ORDER BY MaSV ASC LIMIT "+start+","+limit;
 		return template.query(sql, new ResultSetExtractor<List<SinhVien>>() {
 			@Override
 			public List<SinhVien> extractData(ResultSet rs) throws SQLException, DataAccessException {
-
+				
 				List<SinhVien> list = new ArrayList<SinhVien>();
 				while (rs.next()) {
 					String maSV = rs.getString("MaSV");
@@ -34,7 +34,8 @@ public class SinhVienDAO {
 					String email = rs.getString("Email");
 					String diaChi = rs.getString("DiaChi");
 					String lopHoc = rs.getString("LopHoc");
-					SinhVien sv = new SinhVien(maSV, tenSV, namSinh, email, diaChi, lopHoc);
+					String avatar = rs.getString("Avatar");
+					SinhVien sv = new SinhVien(maSV, tenSV, namSinh, email, diaChi, lopHoc, avatar);
 					list.add(sv);
 				}
 				return list;
@@ -43,7 +44,7 @@ public class SinhVienDAO {
 	}
 
 	public boolean insertStudent(SinhVien sv) {
-		String sql = "INSERT INTO sinhvien_spring (MaSV, TenSV, NamSinh, Email, DiaChi, LopHoc) VALUES(?,?,?,?,?,?)";
+		String sql = "INSERT INTO sinhvien_spring (MaSV, TenSV, NamSinh, Email, DiaChi, LopHoc, Avatar) VALUES(?,?,?,?,?,?,?)";
 		return template.execute(sql, new PreparedStatementCallback<Boolean>() {
 			@Override
 			public Boolean doInPreparedStatement(PreparedStatement ps) throws SQLException, DataAccessException {
@@ -54,6 +55,7 @@ public class SinhVienDAO {
 				ps.setString(4, sv.email);
 				ps.setString(5, sv.diaChi);
 				ps.setString(6, sv.lopHoc);
+				ps.setString(7, sv.avatar);
 
 				return ps.execute();
 
@@ -77,15 +79,16 @@ public class SinhVienDAO {
 					String email = rs.getString("Email");
 					String diaChi = rs.getString("DiaChi");
 					String lopHoc = rs.getString("LopHoc");
-					extSV = new SinhVien(maSV, tenSV, namSinh, email, diaChi, lopHoc);
+					String avatar = rs.getString("Avatar");
+					extSV = new SinhVien(maSV, tenSV, namSinh, email, diaChi, lopHoc, avatar);
 				}
 				return extSV;
 			}
-		});	
+		});
 	}
 
 	public boolean updateStudent(SinhVien sv) {
-		String sql = "UPDATE sinhvien_spring SET TenSV = ?, NamSinh = ?, Email = ?, DiaChi = ?, LopHoc = ? WHERE MaSV = ?";
+		String sql = "UPDATE sinhvien_spring SET TenSV = ?, NamSinh = ?, Email = ?, DiaChi = ?, LopHoc = ?, Avatar = ? WHERE MaSV = ?";
 		return template.execute(sql, new PreparedStatementCallback<Boolean>() {
 			@Override
 			public Boolean doInPreparedStatement(PreparedStatement ps) throws SQLException, DataAccessException {
@@ -95,7 +98,9 @@ public class SinhVienDAO {
 				ps.setString(3, sv.email);
 				ps.setString(4, sv.diaChi);
 				ps.setString(5, sv.lopHoc);
-				ps.setString(6, sv.maSV);
+				ps.setString(6, sv.avatar);
+				ps.setString(7, sv.maSV);
+				
 
 				return ps.execute();
 
@@ -114,5 +119,26 @@ public class SinhVienDAO {
 
 			}
 		});
+	}
+
+	public boolean checkStudent(String maSV) {
+		String sql = "SELECT * FROM sinhvien_spring WHERE MaSV = ? ";
+		return template.execute(sql, new PreparedStatementCallback<Boolean>() {
+			@Override
+			public Boolean doInPreparedStatement(PreparedStatement ps) throws SQLException, DataAccessException {
+				ps.setString(1, maSV);
+				ResultSet rs = ps.executeQuery();
+				if (rs.next()) {
+					return true;
+				}
+				return false;
+
+			}
+		});
+	}
+	
+	public int countStudent() {
+		String sql = "SELECT COUNT(*) FROM sinhvien_spring";
+		return template.queryForObject(sql, Integer.class);
 	}
 }

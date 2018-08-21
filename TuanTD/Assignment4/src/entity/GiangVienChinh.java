@@ -17,7 +17,7 @@ public class GiangVienChinh implements GiangVien {
 		this.hoTen = hoTen;
 		this.email = email;
 	}
-	
+
 	@Override
 	public String thongTinGiangVien() {
 		return "Giảng viên chính: " + hoTen + " - " + email + "\n";

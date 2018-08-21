@@ -26,12 +26,12 @@ public class HocKy1 implements HocKy {
 		String st = " Tên học kỳ: Học kỳ 1 \n";
 		st += " Danh sách môn học: \n";
 		st += "  * Môn Công Nghê: \n";
-		for (MonCongNghe mH : monCongNghe) {
-			st += mH.thongTinMonHoc();
+		for (MonCongNghe monCongNghe : monCongNghe) {
+			st += monCongNghe.thongTinMonHoc();
 		}
 		st += "  * Môn tiếng Anh: \n";
-		for (MonTiengAnh mH : monTiengAnh) {
-			st += mH.thongTinMonHoc();
+		for (MonTiengAnh monTiengAnh : monTiengAnh) {
+			st += monTiengAnh.thongTinMonHoc();
 		}
 		return st;
 	}

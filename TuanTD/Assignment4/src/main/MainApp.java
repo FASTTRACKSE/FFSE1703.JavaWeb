@@ -17,15 +17,15 @@ public class MainApp {
 		List<LopHoc> lopHoc = new ArrayList<>();
 		List<HocKy> hocKy = new ArrayList<>();
 		GiangVienChinh giangVienChinhCN = new GiangVienChinh("Thầy Thành", "thanhcl@fasttrack.edu.vn");
-		TroGiang troGiangCN =  new TroGiang("Thầy Lâm", "lamnt@fasttrack.edu.vn");
-		Mentor mentor = new Mentor("Thầy Thắng", "thangtm@fasttrack.edu.vn"); 
-		
-		GiangVienChinh giangVienChinhTA = new GiangVienChinh("Cô Hồng", "hongltm@fasttrack.edu.vn"); 
+		TroGiang troGiangCN = new TroGiang("Thầy Lâm", "lamnt@fasttrack.edu.vn");
+		Mentor mentor = new Mentor("Thầy Thắng", "thangtm@fasttrack.edu.vn");
+
+		GiangVienChinh giangVienChinhTA = new GiangVienChinh("Cô Hồng", "hongltm@fasttrack.edu.vn");
 		TroGiang troGiangTA = new TroGiang("Cô Hà", "hattd@fasttrack.edu.vn");
-		
+
 		monCongNghe = new ArrayList<>();
 		monTiengAnh = new ArrayList<>();
-		
+
 		monCongNghe.add(new MonCongNghe("HTML", giangVienChinhCN, troGiangCN, mentor));
 		monCongNghe.add(new MonCongNghe("CSS", giangVienChinhCN, troGiangCN, mentor));
 		monCongNghe.add(new MonCongNghe("PHP", giangVienChinhCN, troGiangCN, mentor));
@@ -37,17 +37,15 @@ public class MainApp {
 
 		monCongNghe = new ArrayList<>();
 		monTiengAnh = new ArrayList<>();
-		
-		
+
 		monCongNghe.add(new MonCongNghe("JavaCore", giangVienChinhCN, troGiangCN, mentor));
 		monCongNghe.add(new MonCongNghe("JavaWeb", giangVienChinhCN, troGiangCN, mentor));
 
 		monTiengAnh.add(new MonTiengAnh("Tiếng Anh cơ bản", "Level 2", giangVienChinhTA, troGiangTA));
 		monTiengAnh.add(new MonTiengAnh("E4IT2", "Level 2", giangVienChinhTA, troGiangTA));
-		
-		
+
 		hocKy.add(new HocKy2(monCongNghe, monTiengAnh));
-		
+
 		monCongNghe = new ArrayList<>();
 		monTiengAnh = new ArrayList<>();
 
@@ -76,35 +74,34 @@ public class MainApp {
 		monCongNghe.add(new MonCongNghe("PHP", giangVienChinhCN, troGiangCN, mentor));
 
 		HocKyWebFullStack hocKyWeb = new HocKyWebFullStack(monCongNghe);
+		
+        //danh sách sinh viên lớp 1703
+		List<SinhVien> lop1703 = new ArrayList<SinhVien>();
+		lop1703.add(new SinhVien("Trần Đình Tuấn ", "trandinhtuan" + "@gmail.com", "Tỉnh ", "0123456789"));
+		lop1703.add(new SinhVien("Nguyễn Văn Sinh", "nguyenvansinh" + "@gmail.com", "Tỉnh ", "0123456789"));
+		lop1703.add(new SinhVien("Trần Đình Quang", "trandinhquang" + "@gmail.com", "Tỉnh ", "0120466789"));
+		lop1703.add(new SinhVien("Nguyễn Thị Ánh Tuyết", "nguyenthianhtuyet" + "@gmail.com", "Tỉnh ", "0123456789"));
+		lop1703.add(new SinhVien("Nguyễn Thanh Long", "nguyenthanhlong" + "@gmail.com", "Tỉnh ", "0124456689"));
+		//danh sách sinh viên lớp 1704
+		List<SinhVien> lop1704 = new ArrayList<SinhVien>();
+		lop1704.add(new SinhVien("Trần Thị Hạnh ", "tranthihanh" + "@gmail.com", "Tỉnh ", "0123456789"));
+		lop1704.add(new SinhVien("Nguyễn Thị Trà My", "nguyenthitramy" + "@gmail.com", "Tỉnh ", "0123456789"));
+		lop1704.add(new SinhVien("Trần Đình Dũng", "trandinhdung" + "@gmail.com", "Tỉnh ", "0120466789"));
+		lop1704.add(new SinhVien("Nguyễn Khắc Dự", "nguyenkhacdu" + "@gmail.com", "Tỉnh ", "0123456789"));
+		lop1704.add(new SinhVien("Nguyễn Phạm Thái Qúy", "nguyenphamthaiquy" + "@gmail.com", "Tỉnh ", "0124456689"));
+		//
+		lopHoc.add(new LopHoc("1703", new DaoTaoDaiHanFTSE(hocKy), lop1703));
 
-		List<SinhVien> sinhVien = new ArrayList<>();
-		for (char i = 'A'; i <= 'Z'; i++) {
-			sinhVien.add(new SinhVien("Nguyễn Văn " + i, "nguyenvan" + String.valueOf(i).toLowerCase() + "@gmail.com", "Tỉnh " + i, "0123456789"));
-		}
+		lopHoc.add(new LopHoc("1704", new DaoTaoDaiHanFTSE(hocKy), lop1704));
 
-		sinhVienLopHoc = new ArrayList<>();
-		sinhVienLopHoc = sinhVien.subList(0, 4);
+		lopHoc.add(new LopHoc("1801", new DaoTaoNganHanFTSE(hocKyJava), lop1703));
 
-		lopHoc.add(new LopHoc("1703", new DaoTaoDaiHanFTSE(hocKy), sinhVienLopHoc));
-
-		sinhVienLopHoc = new ArrayList<>();
-		sinhVienLopHoc = sinhVien.subList(5, 9);
-		
-		lopHoc.add(new LopHoc("1704", new DaoTaoDaiHanFTSE(hocKy), sinhVienLopHoc));
-		
-		sinhVienLopHoc = new ArrayList<>();
-		sinhVienLopHoc = sinhVien.subList(10, 14);
-		
-		lopHoc.add(new LopHoc("1801", new DaoTaoNganHanFTSE(hocKyJava), sinhVienLopHoc));
-		
-		sinhVienLopHoc = new ArrayList<>();
-		sinhVienLopHoc = sinhVien.subList(15, 19);
-		
-		lopHoc.add(new LopHoc("1802", new DaoTaoNganHanFTSE(hocKyWeb), sinhVienLopHoc));
+		lopHoc.add(new LopHoc("1802", new DaoTaoNganHanFTSE(hocKyWeb), lop1703));
 
 		for (LopHoc lH : lopHoc) {
 			System.out.println(lH.thongTinLopHoc());
 		}
+		context.close();
 
 	}
 }

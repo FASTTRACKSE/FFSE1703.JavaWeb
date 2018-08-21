@@ -96,6 +96,7 @@ public class ControllerSpring {
 			throws SQLException, IllegalStateException, IOException {
 		if (student.avatar != null) {
 			if (file != null) {
+				deleteFile(student.avatar, request);
 				student.setAvatar(uploadFile(file, request));
 			}
 		}
@@ -107,8 +108,10 @@ public class ControllerSpring {
 	}
 
 	@RequestMapping(value = "/delete/{maSV}")
-	public String deleteStudent(@PathVariable String maSV, Model model, HttpSession session) throws SQLException {
+	public String deleteStudent(@PathVariable String maSV, Model model, HttpSession session, HttpServletRequest request) throws SQLException {
+		SinhVien sv = sinhVienDAO.getStudent(maSV);
 		sinhVienDAO.deleteStudent(maSV);
+		deleteFile(sv.avatar, request);
 		if ((int) session.getAttribute("page") > totalPage(perPage)) {
 			model.addAttribute("page", totalPage(perPage));
 		}
@@ -117,7 +120,7 @@ public class ControllerSpring {
 
 	public String uploadFile(MultipartFile file, HttpServletRequest request) throws IllegalStateException, IOException {
 		Date date = new Date();
-		SimpleDateFormat fm = new SimpleDateFormat("hhMMss");
+		SimpleDateFormat fm = new SimpleDateFormat("hhmmssddMMyyyy");
 		String fileName = fm.format(date)+"_"+file.getOriginalFilename();
 		String path = request.getSession().getServletContext().getRealPath("/") + "\\resources\\upload\\";
 		if (fileName.isEmpty()) {
@@ -131,5 +134,11 @@ public class ControllerSpring {
 		}
 		return fileName;
 	}
-
+	
+	public boolean deleteFile(String fileName,HttpServletRequest request) {
+		String path = request.getSession().getServletContext().getRealPath("/") + "\\resources\\upload\\";
+		File file = new File(path , fileName);
+		boolean result = file.delete();
+		return result;
+	}
 }

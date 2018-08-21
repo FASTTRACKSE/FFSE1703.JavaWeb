@@ -65,7 +65,7 @@
 			<div class="form-group">
 				<img class="form-control" style="width: 100px" alt=""
 					src='<c:url value="/resources/upload/${command.avatar }" />'>
-				<input type="hidden" name="avatar" />
+				<form:hidden path="avatar" />
 			</div>
 			<button type="submit" class="btn btn-success">
 				<spring:message code="luu" />

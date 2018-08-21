@@ -61,7 +61,7 @@
 						<td>${sv.diaChi }</td>
 						<td>${sv.email }</td>
 						<td>${sv.lopHoc }</td>
-						<td><img style="width: 50px;" src='<c:url value = "/resources/upload/${sv.avatar }" ></c:url>' alt="image"></td>
+						<td><img style="width: 100px;" src='<c:url value = "/resources/upload/${sv.avatar }" ></c:url>' alt="image"></td>
 						<td>
 							<a href="/Spring_MVC_CRUD/edit/${sv.maSV }" class="btn btn-success">
 								<spring:message code="sua" />

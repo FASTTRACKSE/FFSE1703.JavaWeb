@@ -59,7 +59,13 @@
 			</div>
 			<div class="form-group">
 				<label>Avatar</label>
-				<input type="file" class="form-control-file" value="${command.avatar }" name="file">
+				<input type="file" class="form-control-file"
+					value="${command.avatar }" name="file" />
+			</div>
+			<div class="form-group">
+				<img class="form-control" style="width: 100px" alt=""
+					src='<c:url value="/resources/upload/${command.avatar }" />'>
+				<input type="hidden" name="avatar" />
 			</div>
 			<button type="submit" class="btn btn-success">
 				<spring:message code="luu" />

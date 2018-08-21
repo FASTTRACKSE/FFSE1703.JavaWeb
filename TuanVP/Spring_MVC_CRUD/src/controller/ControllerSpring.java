@@ -2,8 +2,11 @@ package controller;
 
 import java.io.*;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -64,11 +67,9 @@ public class ControllerSpring {
 	}
 
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
-	public String insertStudent(@ModelAttribute("command") @Valid SinhVien student,
-			@RequestParam("file") MultipartFile file, BindingResult result, Model model)
-			throws SQLException, IllegalStateException, IOException {
-		System.out.println(file.getOriginalFilename());
-		student.setAvatar(uploadFile(file));
+	public String insertStudent(@ModelAttribute("command") @Valid SinhVien student, BindingResult result, Model model,
+			HttpServletRequest request,@RequestParam("file") MultipartFile file) throws SQLException, IllegalStateException, IOException {
+		student.setAvatar(uploadFile(file, request));
 		if (result.hasErrors()) {
 			return "StudentFormInsert";
 		}
@@ -90,10 +91,14 @@ public class ControllerSpring {
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String updateStudent(@ModelAttribute("command") @Valid SinhVien student,
-			@RequestParam("file") MultipartFile file, BindingResult result, Model model)
+	public String updateStudent(@ModelAttribute("command") @Valid SinhVien student, BindingResult result, Model model,
+			HttpServletRequest request, @RequestParam("file") MultipartFile file)
 			throws SQLException, IllegalStateException, IOException {
-		student.setAvatar(uploadFile(file));
+		if (student.avatar != null) {
+			if (file != null) {
+				student.setAvatar(uploadFile(file, request));
+			}
+		}
 		if (result.hasErrors()) {
 			return "StudentFormUpdate";
 		}
@@ -110,23 +115,21 @@ public class ControllerSpring {
 		return "redirect:/";
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
-	public String uploadFile(MultipartFile file) throws IllegalStateException, IOException {
-		String fileName = file.getOriginalFilename();
-		String path = "E:\\FFSE1703.JavaWeb\\TuanVP\\Spring_MVC_CRUD\\WebContent\\WEB-INF\\resource\\upload";
-		if (fileName != null) {
-			File fileUpload = new File(path + File.separator, fileName);
-			file.transferTo(fileUpload);
-		} else {
+	public String uploadFile(MultipartFile file, HttpServletRequest request) throws IllegalStateException, IOException {
+		Date date = new Date();
+		SimpleDateFormat fm = new SimpleDateFormat("hhMMss");
+		String fileName = fm.format(date)+"_"+file.getOriginalFilename();
+		String path = request.getSession().getServletContext().getRealPath("/") + "\\resources\\upload\\";
+		if (fileName.isEmpty()) {
 			fileName = "default.png";
+		} else {
+			File dir = new File(path);
+			if (!dir.exists())
+				dir.mkdirs();
+			File fileSave = new File(dir, fileName);
+			file.transferTo(fileSave);
 		}
 		return fileName;
 	}
 
-//	@RequestMapping(method = RequestMethod.POST)
-//	public String uploadFile2(MultipartFile file) throws IllegalStateException, IOException {
-//		String fileName = file.getOriginalFilename();
-//		InputStream input = file.getInputStream();
-//		return fileName;
-//	}
 }

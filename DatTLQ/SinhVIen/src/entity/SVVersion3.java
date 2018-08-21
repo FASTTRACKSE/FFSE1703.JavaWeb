@@ -4,6 +4,15 @@ import java.util.List;
 
 public class SVVersion3 {
 	private String hoTen;
+	private HeDaoTao heDaoTao;
+
+	public HeDaoTao getHeDaoTao() {
+		return heDaoTao;
+	}
+
+	public void setHeDaoTao(HeDaoTao heDaoTao) {
+		this.heDaoTao = heDaoTao;
+	}
 
 	public String getHoTen() {
 		return hoTen;
@@ -24,15 +33,24 @@ public class SVVersion3 {
 	public List<MonHoc> listMonHoc;
 
 	public SVVersion3(String hoTen) {
-		super();
+
 		this.hoTen = hoTen;
 	}
 
-	public String mangSachDiHoc() {
-		String rs = "";
-		for (MonHoc monHoc : listMonHoc) {
-			rs = rs + "Bạn " + hoTen + " " + monHoc.mangSachDiHoc();
-		}
-		return rs;
+	public SVVersion3() {
+
 	}
+
+	public void mangSachDiHoc() {
+		
+		
+		System.out.println("Bạn " + hoTen + " " );
+		System.out.println(heDaoTao.chonKhoaHoc());
+		for (MonHoc monHoc : listMonHoc) {
+		System.out.println("-"+monHoc.mangSachDiHoc());	
+		}
+		
+	}
+
+	
 }

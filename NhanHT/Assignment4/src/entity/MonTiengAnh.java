@@ -4,36 +4,34 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MonTiengAnh implements MonHoc {
-	private GiangVien giangVienChinh;
-	private GiangVien troGiang;
+	private GiangVienSV giangVienChinh;
+	private GiangVienSV troGiang;
 	private String tenMonHoc;
 	public MonTiengAnh() {
 		super();
 	}
 	
-	public MonTiengAnh(GiangVien giangVienChinh, GiangVien troGiang, String tenMonHoc) {
+	public MonTiengAnh(GiangVienSV giangVienChinh, GiangVienSV troGiang, String tenMonHoc) {
 		super();
 		this.giangVienChinh = giangVienChinh;
 		this.troGiang = troGiang;
 		this.tenMonHoc = tenMonHoc;
 	}
-
-	public GiangVien getGiangVienChinh() {
+	public GiangVienSV getGiangVienChinh() {
 		return giangVienChinh;
 	}
-	public void setGiangVienChinh(GiangVien giangVienChinh) {
+	public void setGiangVienChinh(GiangVienSV giangVienChinh) {
 		this.giangVienChinh = giangVienChinh;
 	}
-	public GiangVien getTroGiang() {
+	public GiangVienSV getTroGiang() {
 		return troGiang;
 	}
-	public void setTroGiang(GiangVien troGiang) {
+	public void setTroGiang(GiangVienSV troGiang) {
 		this.troGiang = troGiang;
 	}
 	public String getTenMonHoc() {
 		return tenMonHoc;
 	}
-
 	public void setTenMonHoc(String tenMonHoc) {
 		this.tenMonHoc = tenMonHoc;
 	}
@@ -41,7 +39,7 @@ public class MonTiengAnh implements MonHoc {
 	@Override
 	public String thongTinMonHoc() {
 		// TODO Auto-generated method stub
-		return tenMonHoc +giangVienChinh.giangVien()+troGiang.giangVien();
+		return "\n" +"\t"+tenMonHoc +"\t" + "GV: "+giangVienChinh.thongTinGiangVien()+"\t" + "GV: "+troGiang.thongTinGiangVien();
 	}
 
 }

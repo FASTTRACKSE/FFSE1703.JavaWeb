@@ -10,7 +10,9 @@
 <title><spring:message code="title3" /></title>
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/bootstrap.min.css" />">
-<script src="<c:url value="/resources/js/jquery-3.3.1.min.js" />"></script>
+<script
+	src="<c:url value="/resources/jquery/jquery-3.3.1.slim.min.js" />"></script>
+<script src="<c:url value="/resources/popper/popper.min.js" />"></script>
 <script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
 </head>
 <body>
@@ -59,13 +61,18 @@
 			</div>
 			<div class="form-group">
 				<label>Avatar</label>
-				<input type="file" class="form-control-file"
-					value="${command.avatar }" name="file" />
+				<input id="upload" type="file" class="form-control-file" name="file" />
 			</div>
-			<div class="form-group">
-				<img class="form-control" style="width: 100px" alt=""
-					src='<c:url value="/resources/upload/${command.avatar }" />'>
-				<form:hidden path="avatar" />
+			<div class="row">
+				<div class="form-group col-md-4">
+					<label>Old avatar</label> 
+					<img src="<c:url value="/resources/upload/${command.avatar }" />" alt="Old avatar" class="form-control">
+					<form:hidden path="avatar" />
+				</div>
+				<div class="form-group col-md-4">
+					<label>New avatar</label>
+					<img id="image" src="#" alt="New avatar" class="form-control">
+				</div>
 			</div>
 			<button type="submit" class="btn btn-success">
 				<spring:message code="luu" />
@@ -75,4 +82,19 @@
 		</form:form>
 	</div>
 </body>
+<script type="text/javascript">
+	function readURL(input) {
+
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				$('#image').attr('src', e.target.result);
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+	$("#upload").change(function() {
+		readURL(this);
+	});
+</script>
 </html>

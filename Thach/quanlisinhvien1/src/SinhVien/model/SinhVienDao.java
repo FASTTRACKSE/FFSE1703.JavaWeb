@@ -11,7 +11,7 @@ import com.mysql.jdbc.PreparedStatement;
 
 
 public class SinhVienDao {
-			Connection conn = (Connection) ConnectDb.getConnect();
+		Connection conn = (Connection) ConnectDb.getConnect();
 		public boolean addSv(SinhVien Sv) throws SQLException {
 		    String sql = "INSERT INTO quanlysinhvien (ma_sv, ten, ngaysinh, quequan, gioitinh, lop, lp1, lp2) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 		    
@@ -63,7 +63,6 @@ public class SinhVienDao {
 		 
 		public boolean deleteSv(SinhVien Sv) throws SQLException {
 		    String sql = "DELETE FROM quanlysinhvien where id = ?";
-		    
 		    PreparedStatement stm = (PreparedStatement) conn.prepareStatement(sql);
 		    stm.setInt(1, Sv.getId());
 		    
@@ -72,7 +71,7 @@ public class SinhVienDao {
 		    return rowDeleted;     
 		}
 		 
-		public boolean updateSv(int id, SinhVien Sv) throws SQLException {
+		public boolean updateSt(int id, SinhVien Sv) throws SQLException {
 		    String sql = "UPDATE quanlysinhvien SET ma_sv = ?, ten = ?, ngaysinh = ?, quequan = ?, gioitinh = ?, lop = ?, lp1 = ?, lp2 = ?";
 		    sql += " WHERE id = ?";
 		     

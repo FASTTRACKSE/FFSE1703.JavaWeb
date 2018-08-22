@@ -12,17 +12,4 @@
 		<list key="issueManagementUrl">
 		</list>
 	</section>
-	<section name="wizardPage">
-		<list key="groupId">
-			<item value="QLSinhVien"/>
-		</list>
-		<list key="name">
-		</list>
-		<list key="artifactId">
-			<item value="QLSinhVien"/>
-		</list>
-		<list key="version">
-			<item value="0.0.1-SNAPSHOT"/>
-		</list>
-	</section>
 </section>

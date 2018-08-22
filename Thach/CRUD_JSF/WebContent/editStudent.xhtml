@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:h="http://java.sun.com/jsf/html" 
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</h:head>
+<h:body>
+    <h:form id="form" class="form-horizontal">
+        <div class="form-group">
+            <div class="col-sm-4"></div>
+            <h2 style="text-align: center" class="col-sm-4">Sửa Sinh Viên</h2>
+        </div>
+        <hr/>
+        <div class="form-group">
+            <h:outputLabel for="hodem" class="control-label col-sm-4">Họ Đệm:</h:outputLabel>
+            <div class="col-sm-4">
+                <h:inputText id="hodem-id" value="#{editRecord.hoDem}" class="form-control"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <h:outputLabel for="ten" class="control-label col-sm-4">Tên:</h:outputLabel>
+            <div class="col-sm-4">
+                <h:inputText id="ten-id" value="#{editRecord.ten}" class="form-control"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <h:outputLabel for="namsinh" class="control-label col-sm-4">Năm Sinh:</h:outputLabel>
+            <div class="col-sm-4">
+                <h:inputText id="namsinh-id" value="#{editRecord.namSinh}" class="form-control"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <h:outputLabel for="gioitinh" class="control-label col-sm-4">Giới Tính:</h:outputLabel>
+            <div class="col-sm-4">
+                <h:selectOneRadio value="#{editRecord.gioiTinh}">
+                    <f:selectItem itemValue="Nam" itemLabel="Nam" /><f:selectItem itemValue="Nữ" itemLabel="Nữ" />
+                </h:selectOneRadio>
+            </div>
+        </div>
+        <div class="form-group">
+            <h:outputLabel for="email" class="control-label col-sm-4">Email:</h:outputLabel>
+            <div class="col-sm-4">
+                <h:inputText value="#{editRecord.email}" class="form-control"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <h:outputLabel for="sdt" class="control-label col-sm-4">Số Điện Thoại:</h:outputLabel>
+            <div class="col-sm-4">
+                <h:inputText value="#{editRecord.sdt}" class="form-control"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <h:outputLabel for="diachi" class="control-label col-sm-4">Địa Chỉ:</h:outputLabel>
+            <div class="col-sm-4">
+                <h:inputTextarea value="#{editRecord.diaChi}" cols="50" rows="5" class="form-control"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <h:outputLabel for="lop" class="control-label col-sm-4">Lớp:</h:outputLabel>
+            <div class="col-sm-4">
+            <h:selectOneMenu id="lop-id" value = "#{editRecord.maLop}" required="true"
+             requiredMessage="Bắt Buộc Chọn Lớp!!!"
+             class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+	            <f:selectItem itemValue = "FFSE1701" itemLabel = "FFSE1701" /> 
+			    <f:selectItem itemValue = "FFSE1702" itemLabel = "FFSE1702" /> 
+			    <f:selectItem itemValue = "FFSE1703" itemLabel = "FFSE1703" /> 
+			    <f:selectItem itemValue = "FFSE1704" itemLabel = "FFSE1704" /> 
+            </h:selectOneMenu>
+            <h:message for="lop-id" style="color :red"></h:message>
+            </div>
+            </div>
+        <div class="form-group">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <h:commandButton value="Sửa" action="#{student.updateStudent(editRecord)}" class="btn btn-primary updateBtnStyle" />
+            </div>
+        </div>
+    </h:form>
+</h:body>
+</html>

@@ -2,4 +2,8 @@
 <modules>
   <module moduleId="org.eclipse.jst.jee.server:quanlisinhvien1" serverId="Tomcat v9.0 Server at localhost"/>
   <module moduleId="org.eclipse.jst.jee.server:Hello" serverId="Tomcat v9.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:CRUD_JSF" serverId="Tomcat v9.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:SingVienSpringMVC" serverId="Tomcat v9.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:HelloJSF" serverId="Tomcat v9.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:Quanlysinhvienjsf" serverId="Tomcat v9.0 Server at localhost"/>
 </modules>

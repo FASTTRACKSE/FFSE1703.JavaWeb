@@ -1,50 +1,60 @@
 package fasttrackse.entity;
 
-import org.springframework.lang.NonNull;
+import javax.validation.constraints.NotEmpty;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Student {
-	
-	public String maSV;
+
+    
+	public int maSV;
+	@NotEmpty(message= "Nhập họ tên sinh viên")
 	public String tenSV;
+	@NotEmpty(message= "Nhập tuổi sinh viên")
 	public String tuoiSV;
+	@NotEmpty(message= "Nhập email của sinh viên")
 	public String email;
+	@NotEmpty(message= "Nhập địa chỉ sinh viên")
 	public String diaChi;
+	@NotEmpty(message= "Nhập lớp học")
 	public String lop;
-	
+	public String avatar;
 	public Student() {
 		
 	}
-	public Student(String maSV) {
+	public Student(int maSV) {
 		super();
 		this.maSV = maSV;
 	}
-	public Student(String tenSV, String tuoiSV, String email, String diaChi, String lop) {
+	public Student(String tenSV, String tuoiSV, String email, String diaChi, String lop,String avatar) {
 		this.tenSV = tenSV;
 		this.tuoiSV = tuoiSV;
 		this.email = email;
 		this.diaChi = diaChi;
 		this.lop = lop;
+		this.avatar = avatar;
 	}
 
-	public Student(String maSV,String tenSV, String tuoiSV, String email, String diaChi, String lop) {
+	public Student(int maSV,String tenSV, String tuoiSV, String email, String diaChi, String lop, String avatar) {
 		this.maSV = maSV;
 		this.tenSV = tenSV;
 		this.tuoiSV = tuoiSV;
 		this.email = email;
 		this.diaChi = diaChi;
 		this.lop = lop;
+		this.avatar = avatar;
 	}
 
 	
 
-	public String getMaSV() {
+
+	public int getMaSV() {
 		return maSV;
 	}
-
-	public void setMaSV(String maSV) {
+	public void setMaSV(int maSV) {
 		this.maSV = maSV;
 	}
-
 	public String getTenSV() {
 		return tenSV;
 	}
@@ -83,6 +93,12 @@ public class Student {
 
 	public void setLop(String lop) {
 		this.lop = lop;
+	}
+	public String getAvatar() {
+		return avatar;
+	}
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
 	}
 	
 	

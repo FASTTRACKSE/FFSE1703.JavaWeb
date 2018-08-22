@@ -21,7 +21,7 @@ public class Student {
 	@NotEmpty(message = "Lớp Học Không Được Để Trống !")
 	private String lopHoc;
 	private String id;
-	
+	public String avatar;
 	public String getId() {
 		return id;
 	}
@@ -76,6 +76,14 @@ public class Student {
 
 	public void setLopHoc(String lopHoc) {
 		this.lopHoc = lopHoc;
+	}
+
+	public String getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
 	}
 	
 }

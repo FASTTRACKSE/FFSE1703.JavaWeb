@@ -1,5 +1,6 @@
 package sinhvien.bean;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Map;
@@ -19,7 +20,7 @@ import sinhvien.service.SinhVienDB;
 
 @ManagedBean
 @SessionScoped
-public class ControllerBean{
+public class ControllerBean {
 	private int id;
 	public int getId() {
 		return id;
@@ -31,17 +32,29 @@ public class ControllerBean{
 	private String name,sex,email,phone,adress,classes,year;
 	private SinhVien sv;
 	public ArrayList<SinhVien> arrSv = new ArrayList<SinhVien>();
-	public Locale locale = FacesContext.getCurrentInstance().getViewRoot().getLocale();
+	public Locale locale;
 	public Locale getLocale() {
 		return locale;
 	}
+	private String theLanguage = "vi_VN";
 
+	public String getTheLanguage() {
+		return theLanguage;
+	}
+
+	public String setTheLanguage(String theLanguage) {
+		this.theLanguage = theLanguage;
+		return FacesContext.getCurrentInstance().getViewRoot().getViewId() +
+	            "?faces-redirect=true";
+	}
 	public Map<String, Object> sessionObj = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
 	@ManagedProperty(value= "#{paginator}")
 	Paginator paginator;
 	
 	public void changeLanguage(String language) {
 		locale = new Locale(language);
+		theLanguage = locale.getLanguage();
+		System.out.println("Language: " + theLanguage);
 		FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
 	}
 	
@@ -78,8 +91,13 @@ public class ControllerBean{
 	
 	@PostConstruct
 	public void init() {
-		locale = new Locale("vi");
-		FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
+//		locale = new Locale("vi");
+//		FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
+
+        locale = FacesContext.getCurrentInstance().getExternalContext().getRequestLocale();
+        locale = new Locale("vi_VN");
+        theLanguage = locale.getLanguage();
+
 		double tongSv = SinhVienDB.countStudent();
 		paginator.pagination(tongSv);
 		this.arrSv = SinhVienDB.sinhVienList(paginator.start(),paginator.end);

@@ -1,8 +1,9 @@
 package spring.entity;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+
+import org.springframework.web.multipart.MultipartFile;
 
 public class SinhVien {
 
@@ -10,7 +11,36 @@ public class SinhVien {
 	private Integer ma_sv;
 
 	@NotEmpty(message = "Chua du du lieu!")
-	private String ho_ten, nam_sinh, email, dia_chi, lop_hoc;
+	private String ho_ten, nam_sinh, email, dia_chi, lop_hoc, description;
+
+	@NotNull(message = "Khong duoc de trong!")
+	private MultipartFile myImage;
+
+	private String avatar;
+
+	public String getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
+	
+	public MultipartFile getMyImage() {
+		return myImage;
+	}
+
+	public void setMyImage(MultipartFile myImage) {
+		this.myImage = myImage;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
 	public String getHo_ten() {
 		return ho_ten;

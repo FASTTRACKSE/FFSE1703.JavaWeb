@@ -29,7 +29,7 @@
 				<tr>
 					<th scope="col">Mã sinh viên</th>
 					<th scope="col">Tên sinh viên</th>
-					<th scope="col">Năm sinh</th>
+					<th scope="col">Tuổi</th>
 					<th scope="col">Địa chỉ</th>
 					<th scope="col">Email</th>
 					<th scope="col">Lớp học</th>
@@ -45,14 +45,37 @@
 						<td>${sv.diaChi }</td>
 						<td>${sv.email }</td>
 						<td>${sv.lop }</td>
-						<td>
-							<a href="formupdate/${sv.maSV }" class="btn btn-success">Sửa</a>
-							<a href="delete/${sv.maSV }" onclick="return confirm('Bạn có muốn xóa sinh viên này?');" class="btn btn-danger">Xóa</a>
-						</td>
+						<td><a href="formupdate/${sv.maSV}" class="btn btn-success">Sửa</a>
+							<a href="delete/${sv.maSV}"
+							onclick="return confirm('Bạn có muốn xóa sinh viên này?');"
+							class="btn btn-danger">Xóa</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
+
+
 	</div>
+	<nav aria-label="Page navigation example">
+		<ul class="pagination">
+			<c:if test="${pageId > 1 }">
+				<li class="page-item"><a class="page-link" href="1">First</a></li>
+				<li class="page-item"><a class="page-link" href="${pageId -1 }">${pageId -1 }</a></li>
+			</c:if>
+			
+			<li class="page-item"><a class="page-link" href="${pageId }">${pageId }</a></li>
+			
+			<c:if test="${pageId < totalPage}">
+				<li class="page-item"><a class="page-link" href="${pageId +1 }">${pageId +1 }</a></li>
+				<li class="page-item"><a class="page-link" href="${totalPage }">Last</a></li>
+			</c:if>
+		</ul>
+	</nav>
+
+	<script>
+		function canhbao() {
+			return confirm("Bạn Có Chắc Muốn Xóa Không?");
+		}
+	</script>
 </body>
 </html>

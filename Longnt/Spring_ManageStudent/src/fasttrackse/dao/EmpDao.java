@@ -7,12 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.dao.DataAccessException;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;  
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCallback;
 import org.springframework.jdbc.core.ResultSetExtractor;
-import org.springframework.jdbc.core.RowMapper;
-
 import fasttrackse.entity.Student;  
  
 public class EmpDao {  
@@ -30,13 +27,14 @@ public void setTemplate(JdbcTemplate template) {
 			 List<Student> list = new ArrayList<Student>();
 			 
 				while (rs.next()) {
-					String maSV = rs.getString("masv");
+					Integer maSV = rs.getInt("masv");
 					String tenSV = rs.getString("tensv");
 					String tuoiSV = rs.getString("tuoisv");
 					String email = rs.getString("email");
 					String diaChi = rs.getString("diachi");
 					String lop = rs.getString("lop");
-					Student sv = new Student(maSV, tenSV, tuoiSV, email, diaChi, lop);
+					String avatar = rs.getString("avatar");
+					Student sv = new Student(maSV, tenSV, tuoiSV, email, diaChi, lop, avatar);
 					list.add(sv);
 				}
 				return list;
@@ -46,16 +44,17 @@ public void setTemplate(JdbcTemplate template) {
 
 	
  public boolean insertStudent(Student sv) {
-		String sql = "INSERT INTO student (masv,tensv,tuoisv,email,diachi,lop) VALUES(?,?,?,?,?,?)";
+		String sql = "INSERT INTO student (masv,tensv,tuoisv,email,diachi,lop,avatar) VALUES(?,?,?,?,?,?,?)";
 		return template.execute(sql, new PreparedStatementCallback<Boolean>() {
 			@Override
 			public Boolean doInPreparedStatement(PreparedStatement ps) throws SQLException, DataAccessException {
-				ps.setString(1, sv.getMaSV());
+				ps.setInt(1, sv.getMaSV());
 				ps.setString(2, sv.tenSV);
 				ps.setString(3, sv.tuoiSV);
 				ps.setString(4, sv.email);
 				ps.setString(5, sv.diaChi);
 				ps.setString(6, sv.lop);
+				ps.setString(7, sv.avatar);
 
 				return ps.execute();
 
@@ -73,20 +72,21 @@ public void setTemplate(JdbcTemplate template) {
 				ps.setString(1, maSV);
 				ResultSet rs = ps.executeQuery();
 				while (rs.next()) {
-					String maSV = rs.getString("masv");
+					Integer maSV = rs.getInt("masv");
 					String tenSV = rs.getString("tensv");
 					String namSinh = rs.getString("tuoisv");
 					String email = rs.getString("email");
 					String diaChi = rs.getString("diachi");
 					String lopHoc = rs.getString("lop");
-					extSV = new Student(maSV, tenSV, namSinh, email, diaChi, lopHoc);
+					String avatar = rs.getString("avatar");
+					extSV = new Student(maSV, tenSV, namSinh, email, diaChi, lopHoc,avatar);
 				}
 				return extSV;
 			}
 		});	
 	}
  public boolean updateStudent(Student sv) {
-		String sql = "UPDATE student SET tensv = ?, tuoisv = ?, email = ?, diachi = ?, lop = ? WHERE masv = ?";
+		String sql = "UPDATE student SET tensv = ?, tuoisv = ?, email = ?, diachi = ?, lop = ?, avatar = ? WHERE masv = ?";
 		return template.execute(sql, new PreparedStatementCallback<Boolean>() {
 			@Override
 			public Boolean doInPreparedStatement(PreparedStatement ps) throws SQLException, DataAccessException {
@@ -96,7 +96,8 @@ public void setTemplate(JdbcTemplate template) {
 				ps.setString(3, sv.email);
 				ps.setString(4, sv.diaChi);
 				ps.setString(5, sv.lop);
-				ps.setString(6, sv.maSV);
+				ps.setString(6, sv.avatar);
+				ps.setInt(7, sv.maSV);
 
 				return ps.execute();
 
@@ -122,5 +123,9 @@ public void setTemplate(JdbcTemplate template) {
 		return intStudent;
 	}
 	
-	 
+	public int check(int masv) {
+		String sql = "select count(*) from student where masv = ?";
+		int intStudent = template.queryForObject(sql,new Object[] { masv },Integer.class);  
+		return intStudent;
+	} 
 }

@@ -6,96 +6,116 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
-	
- <h:head>
- <link rel="stylesheet"
+<f:view locale="#{controllerBean.theLanguage}"></f:view>
+<h:head>
+	<link rel="stylesheet"
 		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
- <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1" http-equiv="X-UA-Conpatible" />
-    <h:outputStylesheet library="css" name="bootstrap.min.css" />
- 	<title>Danh Sách Sinh Viên</title>
- 	<style type="text/css">
-        .tableUpdated {
-            width: 90% !important;
-            margin: 17px 58px 0 !important;
-        }
-        .btnSpace {
-            margin: 17px;
-        }    
-    </style>
- </h:head>
- <h:body>
- <b>Languages</b><br/>
- <h:form>
- <h:commandButton action="#{controllerBean.changeLanguage('vi')}"><img style="width: 30px;height: 30px" src="http://ipapo.org/images/icon-vn.png" alt="Việt Nam" /></h:commandButton>
- <h:commandButton action="#{controllerBean.changeLanguage('en')}"><img style="width: 30px;height: 30px" src="https://cdn2.iconfinder.com/data/icons/world-flag-icons/256/Flag_of_United_States.png" alt="Mỹ" /></h:commandButton>
- </h:form>
- 	
- 	<center><h1>${msg['title']}</h1></center>
- 	<h:form id="studentForm">
-        <h:dataTable id="studentTable" binding="#{table}" value="#{controllerBean.arrSv}" var="student" class="table table-striped table-hover table-bordered tableUpdated">
-            <h:column>
-                <f:facet name="header">${msg['number']}</f:facet>
-                <h:outputText value="#{table.rowIndex + 1}" />
-            </h:column>
-            <h:column>
-                <f:facet name="header">${msg['fullname']}</f:facet>
-                <h:outputText value="#{student.name}" />
-            </h:column>
-            <h:column>
-                <f:facet name="header">${msg['year']}</f:facet>
-                <h:outputText value="#{student.year}" />
-            </h:column>
-            <h:column>
-                <f:facet name="header">${msg['sex']}</f:facet>
-                <h:outputText value="#{student.sex}" />
-            </h:column>
-            <h:column>
-                <f:facet name="header">${msg['email']}</f:facet>
-                <h:outputText value="#{student.email}" />
-            </h:column>
-            <h:column>
-                <f:facet name="header">${msg['phone']}</f:facet>
-                <h:outputText value="#{student.phone}" />
-            </h:column>
-            <h:column>
-                <f:facet name="header">${msg['adress']}</f:facet>
-                <h:outputText value="#{student.adress}" />
-            </h:column>
-            <h:column>
-                <f:facet name="header">${msg['classes']}</f:facet>
-                <h:outputText value="#{student.classes}" />
-            </h:column>
-            <h:column>
-                <f:facet name="header">${msg['update']}</f:facet>
-                <h:commandButton action="#{controllerBean.editForm(student.id)}" value="Update" class="btn btn-primary" />
-            </h:column>
-            <h:column>
-                <f:facet name="header">${msg['delete']}</f:facet>
-                <h:commandButton action="#{controllerBean.delOk(student.id)}" value="Delete" class="btn btn-danger" />
-            </h:column>
-        </h:dataTable>
+	<meta charset="utf-8" name="viewport"
+		content="width=device-width, initial-scale=1"
+		http-equiv="X-UA-Conpatible" />
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<title>Danh Sách Sinh Viên - #{controllerBean.locale}</title>
+	<style type="text/css">
+.tableUpdated {
+	width: 90% !important;
+	margin: 17px 58px 0 !important;
+}
 
-	
-	<h:commandButton action="#{controllerBean.create()}" value="Thêm Sinh Viên" class="btn btn-success btnSpace" />
-<center>	
-			
+.btnSpace {
+	margin: 17px;
+}
+</style>
+</h:head>
+<h:body>
+	<b>Languages</b>
+	<br />
+	<h:form>
+
+		<h:commandButton action="#{controllerBean.changeLanguage('en_US')}"
+			value="English" style="width:100px;height:100px"
+			image="https://cdn2.iconfinder.com/data/icons/world-flag-icons/256/Flag_of_United_States.png" />
+
+		<h:outputText value=" " />
+
+		<h:commandButton action="#{controllerBean.changeLanguage('vi_VN')}"
+			value="Tiếng Việt" style="width:100px;height:100px"
+			image="http://ipapo.org/images/icon-vn.png" />
+
+	</h:form>
+
+	<center>
+		<h1>${msg['title']}</h1>
+	</center>
+	<h:form id="studentForm">
+		<h:dataTable id="studentTable" binding="#{table}"
+			value="#{controllerBean.arrSv}" var="student"
+			class="table table-striped table-hover table-bordered tableUpdated">
+			<h:column>
+				<f:facet name="header">${msg['number']}</f:facet>
+				<h:outputText value="#{table.rowIndex + 1}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">${msg['fullname']}</f:facet>
+				<h:outputText value="#{student.name}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">${msg['year']}</f:facet>
+				<h:outputText value="#{student.year}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">${msg['sex']}</f:facet>
+				<h:outputText value="#{student.sex}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">${msg['email']}</f:facet>
+				<h:outputText value="#{student.email}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">${msg['phone']}</f:facet>
+				<h:outputText value="#{student.phone}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">${msg['adress']}</f:facet>
+				<h:outputText value="#{student.adress}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">${msg['classes']}</f:facet>
+				<h:outputText value="#{student.classes}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">${msg['update']}</f:facet>
+				<h:commandButton action="#{controllerBean.editForm(student.id)}"
+					value="Update" class="btn btn-primary" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">${msg['delete']}</f:facet>
+				<h:commandButton action="#{controllerBean.delOk(student.id)}"
+					value="Delete" class="btn btn-danger" />
+			</h:column>
+		</h:dataTable>
+
+
+		<h:commandButton action="#{controllerBean.create()}"
+			value="Thêm Sinh Viên" class="btn btn-success btnSpace" />
+		<center>
+
 			<ul class="pagination">
 
-				<li>
-					<c:if test="#{controllerBean.paginator.trang gt 1}">
-							<h:commandLink value="first" action="#{controllerBean.paginator.first}"></h:commandLink>
-							<h:commandLink value="#{controllerBean.paginator.trang - 1}" action="#{controllerBean.prev}"></h:commandLink>
-					</c:if>
-				</li>
-				<li><a style="background-color: rgb(131,199,93)">#{paginator.trang}</a></li>
-				<li>
-					<c:if test="#{controllerBean.paginator.trang lt controllerBean.paginator.soTrang}">
-						<h:commandLink value="#{controllerBean.paginator.trang + 1}" action="#{controllerBean.next}"></h:commandLink>
+				<li><c:if test="#{controllerBean.paginator.trang gt 1}">
+						<h:commandLink value="first"
+							action="#{controllerBean.paginator.first}"></h:commandLink>
+						<h:commandLink value="#{controllerBean.paginator.trang - 1}"
+							action="#{controllerBean.prev}"></h:commandLink>
+					</c:if></li>
+				<li><a style="background-color: rgb(131, 199, 93)">#{paginator.trang}</a></li>
+				<li><c:if
+						test="#{controllerBean.paginator.trang lt controllerBean.paginator.soTrang}">
+						<h:commandLink value="#{controllerBean.paginator.trang + 1}"
+							action="#{controllerBean.next}"></h:commandLink>
 						<h:commandLink value="last" action="#{controllerBean.last}"></h:commandLink>
-					</c:if>
-				</li>
+					</c:if></li>
 			</ul>
-			</center>				
+		</center>
 	</h:form>
- </h:body>
+</h:body>
 </html>

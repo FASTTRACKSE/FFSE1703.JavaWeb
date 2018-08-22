@@ -6,10 +6,7 @@ import java.util.ArrayList;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
-
-import org.omg.CORBA.Request;
 
 import sinhvien.service.Paginator;
 import sinhvien.service.SinhVien;
@@ -18,7 +15,7 @@ import sinhvien.service.SinhVienDB;
 @ManagedBean
 @SessionScoped
 public class QuanLyBean {
-	public ArrayList sv;
+	public ArrayList<?> sv;
 	private String  hoTen, gioiTinh, email, diaChi, lop, sdt, namSinh;
 	private int id;
 	@ManagedProperty(value= "#{paginator}")
@@ -98,11 +95,11 @@ public class QuanLyBean {
 		return "index";
 	}
 	
-	public ArrayList getSv() {
+	public ArrayList<?> getSv() {
 		this.sv = SinhVienDB.sinhVienList(paginator.start(),paginator.end);
 		return sv;
 	}
-	public void setSv(ArrayList sv) {	
+	public void setSv(ArrayList<?> sv) {	
 		this.sv = sv;
 	}
 	public String getHoTen() {

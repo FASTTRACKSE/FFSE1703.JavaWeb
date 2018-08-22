@@ -51,11 +51,9 @@ public class SinhVien {
 	public void setSdt(String sdt) {
 		this.sdt = sdt;
 	}
+
 	public String thongTinSinhVien() {
-		String st = " - "+hoTen+" - "+email;
-//		 st += "Email: "+email+"\n";
-//		 st += "Địa chỉ: "+diaChi+"\n";
-//		 st += "Số điện thoại: "+sdt+"\n";
+		String st = " - " + hoTen + " - " + email + " - " + sdt;
 		return st;
 	}
 }

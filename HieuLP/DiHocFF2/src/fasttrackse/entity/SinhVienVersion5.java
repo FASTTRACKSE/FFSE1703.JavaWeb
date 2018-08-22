@@ -2,15 +2,20 @@ package fasttrackse.entity;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 
-@Component("sinhVien1")
+@Component ("sinhVien1")
 @Scope("prototype")
 public class SinhVienVersion5 {
 	private String hoTen;
 	private List<MonHoc> monHoc;
+	
+	@Autowired
+	@Qualifier("khoaDaiHan")
 	private HeDaoTao heDaoTao;
 
 	public String getHoTen() {

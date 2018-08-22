@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc 
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd">
+ 
+       <bean id="monHoc1"
+              class="bean.MonToan"></bean>
+       <bean id = "daoTao1" class="bean.HeDaoTaoNganHan"></bean>
+       <bean id="sinhvien1"
+              class="bean.SinhVien">
+              <property name="hoTen" value="n"></property>
+              <property name="monHoc" ref="monHoc1"></property>
+              <property name="heDaoTao" ref="daoTao1"></property>
+       </bean> 
+       <bean id ="sinhvien2" class="bean.SinhVien">
+       		<property name="hoTen" value="a"></property>
+       		<property name="monHoc" ref="monHoc1"></property>
+       		<property name="heDaoTao" ref="daoTao1"></property>
+       		
+       </bean>
+</beans>
+ 

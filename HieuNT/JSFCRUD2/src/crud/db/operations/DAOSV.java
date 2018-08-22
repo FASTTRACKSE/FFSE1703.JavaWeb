@@ -67,7 +67,7 @@ public class DAOSV {
 		return navigationResult;
 	}
 
-	public static String deleteStudentRecordInDB(String maSinhVien) throws SQLException {
+	public static boolean deleteStudentRecordInDB(String maSinhVien) throws SQLException {
 		Connection conn = connect.getConnect();
 
 		String sql = "DELETE FROM SinhVien where Ma_Sinh_Vien  = ?";
@@ -75,8 +75,11 @@ public class DAOSV {
 
 		statement.setString(1, maSinhVien);
 
-		statement.executeUpdate();
-		return "/ListSinhVien.xhtml?faces-redirect=true";
+		if (statement.executeUpdate() > 0) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public static String updateStudentDetailsInDB(SinhVienBean updateStudentObj) throws SQLException {

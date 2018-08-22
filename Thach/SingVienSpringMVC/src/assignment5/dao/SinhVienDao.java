@@ -90,6 +90,13 @@ public class SinhVienDao {
 		});
 	}
 	
+	public int checkExistMaSv(String maSv) {
+		String sql = "select count(*) from quanlysinhvien2 WHERE ma_sv = ?";
+
+        int count = template.queryForObject(sql, new Object[] { maSv }, Integer.class);
+        return count;
+	}
+	
 	public double totalRecord() {
 		String sql = "select count(*) from quanlysinhvien2";
 		

@@ -70,20 +70,22 @@ public class SinhVienBean {
 	// return sinhVienList;
 	// }
 
-	public List<SinhVienBean> getStudentList() {
-		return studentList;
-	}
-
-	public void setStudentList(List<SinhVienBean> studentList) {
-		this.studentList = studentList;
-	}
-
 	public String saveStudentDetails(SinhVienBean newStudentObj) throws SQLException {
 		return DAOSV.saveStudent(newStudentObj);
 	}
 
 	public String deleteStudentRecord(String maSinhVien) throws SQLException {
-		return DAOSV.deleteStudentRecordInDB(maSinhVien);
+		if (DAOSV.deleteStudentRecordInDB(maSinhVien)) {
+			try {
+				int countRecords = studentDao.count();
+				pagination.setStudentList(countRecords);
+				setStudentList();
+			} catch (Exception e) {
+				System.out.println(e);
+			}
+			return "/ListSinhVien.xhtml";
+		}
+		return "/ListSinhVien.xhtml";
 	}
 
 	public String updateStudentDetails(SinhVienBean updateStudentObj) throws SQLException {

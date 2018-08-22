@@ -25,38 +25,38 @@
 			modelAttribute="command">
 			<div class="form-group">
 				<label>Mã sinh viên:</label>
-				<form:input class="form-control" type="text" path="MaSv" />
+				<form:input class="form-control" type="text" path="maSv" />
+				<form:errors path="maSv" cssStyle="color: red" />
+				<p style="color: red">${mess}</p> 
 			</div>
 			<div class="form-group">
 				<label>Họ tên:</label>
-				<form:input class="form-control" type="text" path="Ten" />
-
+				<form:input class="form-control" type="text" path="ten" />
+				<form:errors path="ten" cssStyle="color: red" />
 			</div>
 			<div class="form-group">
 				<label>Năm Sinh:</label>
-				<form:input class="form-control" type="number" path="NamSinh" />
-
+				<form:input class="form-control" type="number" path="namSinh" />
+				<form:errors path="namSinh" cssStyle="color: red" />
 			</div>
 			<div class="form-group">
 				<label>Email:</label>
-				<form:input class="form-control" type="text" path="Email" />
-				
-
+				<form:input class="form-control" type="text" path="email" />
+				<form:errors path="email" cssStyle="color: red" /> 
 			</div>
 			<div class="form-group">
 				<label>Điện thoại:</label>
-				<form:input class="form-control" type="number" path="Sdt" />
-				
-
+				<form:input class="form-control" type="number" path="sdt" />
+				<form:errors path="sdt" cssStyle="color: red" />
 			</div>
 			<div class="form-group">
 				<label>Địa Chỉ:</label>
-				<form:input class="form-control" type="text" path="DiaChi" />
-
+				<form:input class="form-control" type="text" path="diaChi" />
+				<form:errors path="diaChi" cssStyle="color: red" /> 
 			</div>
 			<div class= "form-group">
 			<label>Mã lớp:</label>
-				<form:select path="Lop" class= "form-control">
+				<form:select path="lop" class= "form-control">
 					<form:option value="FFSE1701">FFSE1701</form:option>
 					<form:option value="FFSE1702">FFSE1702</form:option>
 					<form:option value="FFSE1703">FFSE1703</form:option>
@@ -71,11 +71,12 @@
 					</div>
 					<div class="col-sm-1"></div>
 					<div class="col-sm-2">
-						<a href="/"><button class="btn btn-primary" />Quay lại danh sách</button></a>
+						
 					</div>
 				</div>
 			</div>
 		</form:form>
+		<a href="/SingVienSpringMVC/"><button class="btn btn-primary" />Quay lại danh sách</button></a>
 	</div>
 </body>
 </html>

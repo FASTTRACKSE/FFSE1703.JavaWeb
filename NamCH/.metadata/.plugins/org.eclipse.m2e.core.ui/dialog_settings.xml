@@ -4,6 +4,9 @@
 	</section>
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
+			<item value="daotao"/>
+			<item value="test"/>
+			<item value="exam"/>
 			<item value="sinhvien"/>
 			<item value="tinhtong"/>
 			<item value="s"/>
@@ -14,6 +17,9 @@
 		<list key="name">
 		</list>
 		<list key="artifactId">
+			<item value="SinhVienDiHoc"/>
+			<item value="dihoc"/>
+			<item value="ExamSpringHelloWorld"/>
 			<item value="SinhVienJSF"/>
 			<item value="TongHaiSo"/>
 			<item value="s"/>

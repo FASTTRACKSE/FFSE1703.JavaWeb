@@ -23,7 +23,7 @@ public class SinhVienDao {
 	
 	public List<SinhVien> sinhVienList(int start, int end) {
 		
-		return template.query("select * from Sinh_vien limit ?,?",new Object[]{start, end} ,new RowMapper<SinhVien>() {
+		return template.query("select * from Sinh_vien order by Id DESC limit ?,?",new Object[]{start, end} ,new RowMapper<SinhVien>() {
 
 			@Override
 			public SinhVien mapRow(ResultSet rs, int row) throws SQLException {
@@ -35,6 +35,7 @@ public class SinhVienDao {
 				sv.setEmail(rs.getString(6));
 				sv.setDienThoai(Integer.parseInt(rs.getString(7)) );
 				sv.setMaLop(rs.getString(8));
+				sv.setHinhAnh(rs.getString(9));
 				return sv;
 			}
 		});
@@ -58,7 +59,7 @@ public class SinhVienDao {
 	}
 	
 	public void update(final SinhVien sv) {
-		String sql="update Sinh_vien set Hoten= ?, Namsinh= ?, Quequan= ?, Email= ?, Dienthoai= ?, Malop= ? where Masv= ?";
+		String sql="update Sinh_vien set Hoten= ?, Namsinh= ?, Quequan= ?, Email= ?, Dienthoai= ?, Malop= ?, Hinhanh= ? where Masv= ?";
 		template.execute(sql, new PreparedStatementCallback<Boolean>() {
 
 			@Override
@@ -69,8 +70,9 @@ public class SinhVienDao {
 				ps.setString(4, sv.getEmail());
 				ps.setString(5, String.valueOf(sv.getDienThoai()) );
 				ps.setString(6, sv.getMaLop());
-				ps.setString(7, sv.getMaSv());
-				System.out.println("abx" + sv.getMaSv());
+				ps.setString(7, sv.getHinhAnh());
+				ps.setString(8, sv.getMaSv());
+//				System.out.println("abx" + sv.getHinhAnh());
 //				System.out.println("ma lop" + sv.getMaLop());
 				return ps.execute(); // bollean
 			}
@@ -78,7 +80,7 @@ public class SinhVienDao {
 	}
 	
 	public void insert(SinhVien sv) {
-		String sql="insert into Sinh_vien (Masv, Hoten, Namsinh, Quequan, Email, Dienthoai, Malop) value (?, ?, ?, ?, ?, ?, ?)";
+		String sql="insert into Sinh_vien (Masv, Hoten, Namsinh, Quequan, Email, Dienthoai, Malop, Hinhanh) value (?, ?, ?, ?, ?, ?, ?, ?)";
 		template.execute(sql, new PreparedStatementCallback<Boolean>() {
 
 			@Override
@@ -90,6 +92,7 @@ public class SinhVienDao {
 				ps.setString(5, sv.getEmail());
 				ps.setString(6, String.valueOf(sv.getDienThoai()) );
 				ps.setString(7, sv.getMaLop());
+				ps.setString(8, sv.getHinhAnh());
 //				System.out.println("abx" + sv.getMaSv());
 //				System.out.println("ma lop" + sv.getMaLop());
 				return ps.execute(); // bollean

@@ -18,7 +18,6 @@
     <fullyQualifiedTypeName name="vn.model.GiangVien"/>
     <fullyQualifiedTypeName name="vn.model.MonHoc"/>
     <fullyQualifiedTypeName name="java.util.List"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="vn.model.HocKy"/>
     <fullyQualifiedTypeName name="vn.model.LopHoc"/>
     <fullyQualifiedTypeName name="vn.model.HeDaoTao"/>
@@ -39,4 +38,8 @@
     <fullyQualifiedTypeName name="javax.validation.constraints.Min"/>
     <fullyQualifiedTypeName name="javax.validation.constraints.Max"/>
     <fullyQualifiedTypeName name="javax.validation.constraints.NotEmpty"/>
+    <fullyQualifiedTypeName name="javax.validation.constraints.NotNull"/>
+    <fullyQualifiedTypeName name="javax.validation.constraints.Size"/>
+    <fullyQualifiedTypeName name="javax.validation.constraints.Pattern"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
 </qualifiedTypeNameHistroy>

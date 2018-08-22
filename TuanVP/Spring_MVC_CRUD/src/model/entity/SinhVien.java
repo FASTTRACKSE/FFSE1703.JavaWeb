@@ -5,13 +5,12 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 public class SinhVien {
-	
 	@NotEmpty
 	public String maSV;
 
 	@NotEmpty
 	public String tenSV;
-	
+
 	@DecimalMin(value = "1990")
 	@NotEmpty
 	public String namSinh;
@@ -19,7 +18,7 @@ public class SinhVien {
 	@NotEmpty
 	@Email
 	public String email;
-	
+
 	@NotEmpty
 	public String diaChi;
 
@@ -27,7 +26,7 @@ public class SinhVien {
 	public String lopHoc;
 
 	public String avatar;
-	
+
 	public SinhVien() {
 		super();
 	}
@@ -37,7 +36,8 @@ public class SinhVien {
 		this.maSV = maSV;
 	}
 
-	public SinhVien(String maSV, String tenSV, String namSinh, String email, String diaChi, String lopHoc, String avatar) {
+	public SinhVien(String maSV, String tenSV, String namSinh, String email, String diaChi, String lopHoc,
+			String avatar) {
 		super();
 		this.maSV = maSV;
 		this.tenSV = tenSV;
@@ -57,7 +57,7 @@ public class SinhVien {
 		this.lopHoc = lopHoc;
 		this.avatar = avatar;
 	}
-	
+
 	public String getMaSV() {
 		return maSV;
 	}

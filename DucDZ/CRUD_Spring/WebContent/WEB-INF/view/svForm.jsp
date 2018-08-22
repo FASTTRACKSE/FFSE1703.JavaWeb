@@ -8,60 +8,58 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 <style>
-  .error {
-    color: red;
-  }
+.error {
+	color: red;
+}
 </style>
 </head>
 <body>
 	<h1>Add New Student</h1>
-	<form:form method="post" action="save" modelAttribute="command">
+	<form:form method="post" action="save" modelAttribute="command"
+		enctype="multipart/form-data">
 		<table>
 			<tr>
 				<td>ID :</td>
-				<td>
-					<form:input path="ma_sv" />
-					<form:errors path="ma_sv" cssClass="error" />
-				</td>
+				<td><form:input path="ma_sv" /> <form:errors path="ma_sv"
+						cssClass="error" /></td>
 			</tr>
 			<tr>
 				<td>Name :</td>
-				<td>
-					<form:input path="ho_ten" />
-					<form:errors path="ho_ten" cssClass="error" />
-				</td>
+				<td><form:input path="ho_ten" /> <form:errors path="ho_ten"
+						cssClass="error" /></td>
 			</tr>
 			<tr>
 				<td>Date :</td>
-				<td>
-					<form:input path="nam_sinh" />
-					<form:errors path="nam_sinh" cssClass="error" />
-				</td>
+				<td><form:input path="nam_sinh" /> <form:errors
+						path="nam_sinh" cssClass="error" /></td>
 			</tr>
 			<tr>
 				<td>Email :</td>
-				<td>
-					<form:input path="email" />
-					<form:errors path="email" cssClass="error" />
-				</td>
+				<td><form:input path="email" /> <form:errors path="email"
+						cssClass="error" /></td>
 			</tr>
 			<tr>
 				<td>Address :</td>
-				<td>
-					<form:input path="dia_chi" />
-					<form:errors path="dia_chi" cssClass="error" />
-				</td>
+				<td><form:input path="dia_chi" /> <form:errors path="dia_chi"
+						cssClass="error" /></td>
 			</tr>
 			<tr>
 				<td>Class :</td>
-				<td>
-					<form:input path="lop_hoc" />
-					<form:errors path="lop_hoc" cssClass="error" />
+				<td><form:input path="lop_hoc" /> <form:errors path="lop_hoc"
+						cssClass="error" /></td>
+			</tr>
+			<tr>
+				<td>File:</td>
+				<td><form:input type="file" path="myImage" />
 				</td>
 			</tr>
 			<tr>
+				<td>Description:</td>
+				<td><form:input path="description" /></td>
+			</tr>
+			<tr>
 				<td></td>
-				<td><input type="submit" value="Save" /></td>
+				<td><form:input path="" type="submit" value="Save" /></td>
 			</tr>
 		</table>
 	</form:form>

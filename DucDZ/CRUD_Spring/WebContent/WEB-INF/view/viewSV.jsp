@@ -5,7 +5,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
+		xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -21,6 +21,8 @@
 			<th>Email</th>
 			<th>Address</th>
 			<th>Class</th>
+			<th>Image</th>
+			<th>Description</th>
 			<th>Edit</th>
 			<th>Delete</th>
 		</tr>
@@ -32,6 +34,8 @@
 				<td>${sv.email}</td>
 				<td>${sv.dia_chi}</td>
 				<td>${sv.lop_hoc}</td>
+				<td><img alt="image" src='<c:url value="/upload/${sv.avatar}"></c:url>'></td>
+				<td>${sv.description}</td>
 				<td><a href="/CRUD_Spring/editForm/${sv.ma_sv}">Edit</a></td>
 				<td><a href="/CRUD_Spring/deleteSV/${sv.ma_sv}">Delete</a></td>
 			</tr>

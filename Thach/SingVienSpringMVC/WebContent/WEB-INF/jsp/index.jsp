@@ -57,7 +57,7 @@
 
 			</c:forEach>
 		</table>
-		<p>${totalPage}</p>
+
 
 		<c:if test="${pageIndex > 1}">
 			<a href="1">first</a>

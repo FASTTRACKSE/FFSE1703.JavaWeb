@@ -1,8 +1,10 @@
 package spring.main;
 
+import java.io.File;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,27 +37,47 @@ public class AppController {
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String save(@ModelAttribute("command") @Valid SinhVien SinhVien, BindingResult rs) {
+	public String save(@ModelAttribute("command") @Valid SinhVien SinhVien, BindingResult rs,
+			HttpServletRequest request, Model model) {
 		if (rs.hasErrors()) {
 			return "svForm";
 		} else {
-			SVDao.save(SinhVien);
+			String nameFile = SinhVien.getMyImage().getOriginalFilename();
+			if (!"".equals(nameFile)) {
+				String dirFile = request.getServletContext().getRealPath("upload");
+				System.out.println(dirFile);
+				File fileDir = new File(dirFile);
+				if (!fileDir.exists()) {
+					fileDir.mkdir();
+				}
+				try {
+					SinhVien.getMyImage().transferTo(new File(fileDir + File.separator + nameFile));
+					System.out.println("Upload file thành công!");
+					System.out.println(nameFile);
+					model.addAttribute("filename", nameFile);
+				} catch (Exception e) {
+					System.out.println(e.getMessage());
+					System.out.println("Upload file thất bại!");
+				}
+				SVDao.save(SinhVien,nameFile);
+			}
 		}
 		return "redirect:/viewSV2";
 	}
-	@RequestMapping(value="/viewSV2")
-	public String viewSVlist () {
+
+	@RequestMapping(value = "/viewSV2")
+	public String viewSVlist() {
 		return "redirect:/viewSV/1";
 	}
 
-	@RequestMapping(value="/viewSV/{pageid}")
+	@RequestMapping(value = "/viewSV/{pageid}")
 	public ModelAndView viewSV(@PathVariable int pageid, Model model) throws SQLException {
 		double perPage = 2;
-		double pageTotal = (int) Math.ceil(dao.countSV()/perPage);
- 		int start = (pageid-1)*(int)perPage;
-		List<SinhVien> listsv = dao.getSVbyPage(start,(int)perPage);
+		double pageTotal = (int) Math.ceil(dao.countSV() / perPage);
+		int start = (pageid - 1) * (int) perPage;
+		List<SinhVien> listsv = dao.getSVbyPage(start, (int) perPage);
 		model.addAttribute("pageid", pageid);
-		model.addAttribute("pagetotal",pageTotal);
+		model.addAttribute("pagetotal", pageTotal);
 		return new ModelAndView("viewSV", "listsv", listsv);
 	}
 

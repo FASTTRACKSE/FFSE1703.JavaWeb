@@ -18,10 +18,10 @@ public class StudentMain {
 
 	public static void myMenu() {
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("ApplicationContext.xml");
-		Student student = context.getBean("monHoc" ,Student.class);
-			System.out.println("Nhập Họ Và Tên Sinh Viên:");
-			ten = myInput.nextLine();
-			student.setHoTen(ten);
-			student.diHoc();
-		}
+		Student student = context.getBean("monHoc", Student.class);
+		System.out.println("Nhập Họ Và Tên Sinh Viên:");
+		ten = myInput.nextLine();
+		student.setHoTen(ten);
+		student.diHoc();
 	}
+}

@@ -1,6 +1,9 @@
 package fasttrackse.entity;
 
+import org.springframework.lang.NonNull;
+
 public class Student {
+	
 	public String maSV;
 	public String tenSV;
 	public String tuoiSV;

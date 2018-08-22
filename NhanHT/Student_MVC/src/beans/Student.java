@@ -1,9 +1,27 @@
 package beans;
 
-public class Student {
+import org.hibernate.validator.constraints.NotEmpty;
 
-	private String id,maSv,tenSv,namSinh,email,diaChi,lopHoc;
+public class Student {
+	@NotEmpty(message= "Tên Không Được Để Trống !")
+	private String tenSv;
 	
+	@NotEmpty(message= "Mã Sinh Vien Không Được Để Trống !")
+	private String maSv;
+	
+	@NotEmpty(message = "Nam Sinh Không Được Để Trống !")
+	private String namSinh;
+	
+	@NotEmpty(message = "Email Không Được Để Trống !")
+	private String email;
+	
+	@NotEmpty(message = "Địa Chỉ Không Được Để Trống !")
+	private String diaChi;
+	
+	@NotEmpty(message = "Lớp Học Không Được Để Trống !")
+	private String lopHoc;
+	private String id;
+	public String avatar;
 	public String getId() {
 		return id;
 	}
@@ -58,6 +76,14 @@ public class Student {
 
 	public void setLopHoc(String lopHoc) {
 		this.lopHoc = lopHoc;
+	}
+
+	public String getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
 	}
 	
 }

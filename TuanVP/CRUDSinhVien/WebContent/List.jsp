@@ -80,8 +80,8 @@
 	</table>
 	<nav aria-label="Page navigation example">
 	<ul class="pagination">
-		<li class="page-item"><a class="page-link" href="list?page=1&lang=${lang}"><fmt:message
-					key="trangdau" /></a></li>
+		<li class="page-item"><a class="page-link"
+			href="list?page=1&lang=${lang}"><fmt:message key="trangdau" /></a></li>
 		<c:if test="${page > 1 }">
 			<li class="page-item"><a class="page-link"
 				href="list?page=${page-1}&lang=${lang}"> << </a></li>
@@ -97,7 +97,8 @@
 				href="list?page=${page+1}&lang=${lang}"> >> </a></li>
 		</c:if>
 		<li class="page-item"><a class="page-link"
-			href="list?page=${totalPage}&lang=${lang}"><fmt:message key="trangcuoi" /></a></li>
+			href="list?page=${totalPage}&lang=${lang}"><fmt:message
+					key="trangcuoi" /></a></li>
 	</ul>
 	</nav>
 </body>

@@ -16,7 +16,7 @@
 <body class="container">
 	<h1>Edit Student</h1>
 
-	<form:form method="POST" action="/Student_MVC/editsave">
+	<form:form method="POST" action="/Student_MVC/edit" enctype="multipart/form-data">
 		<form:hidden path="id" />
 		<div class="form-group">
 			<label>Mã Sinh Viên</label>
@@ -43,8 +43,11 @@
 			<form:input path="lopHoc" class="form-control" />
 		</div>
 		<div class="form-group">
-			<td><input class="btn btn-success" type="submit"
-				value="Edit Save" />
+			<label>Avatar</label> <input type="file" class="form-control-file"
+				value="${command.avatar }" name="file" />
+		</div>
+		<div class="form-group">
+			<td><input class="btn btn-success" type="submit" value="Edit Save" />
 		</div>
 	</form:form>
 </body>

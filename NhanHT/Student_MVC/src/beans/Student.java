@@ -3,22 +3,22 @@ package beans;
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class Student {
-	@NotEmpty(message= "Tên Không được để trống !")
+	@NotEmpty(message= "Tên Không Được Để Trống !")
 	private String tenSv;
 	
-	@NotEmpty(message= "Mã SV không được để trống !")
+	@NotEmpty(message= "Mã Sinh Vien Không Được Để Trống !")
 	private String maSv;
 	
-	@NotEmpty(message = "Năm Sinh không được để trống !")
+	@NotEmpty(message = "Nam Sinh Không Được Để Trống !")
 	private String namSinh;
 	
-	@NotEmpty(message = "Email không được để trống !")
+	@NotEmpty(message = "Email Không Được Để Trống !")
 	private String email;
 	
-	@NotEmpty(message = "Địa Chỉ không được để trống !")
+	@NotEmpty(message = "Địa Chỉ Không Được Để Trống !")
 	private String diaChi;
 	
-	@NotEmpty(message = "Lớp Học không được để trống !")
+	@NotEmpty(message = "Lớp Học Không Được Để Trống !")
 	private String lopHoc;
 	private String id;
 	

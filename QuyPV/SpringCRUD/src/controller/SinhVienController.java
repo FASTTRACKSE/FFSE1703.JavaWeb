@@ -2,13 +2,12 @@ package controller;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.Map;
+
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
@@ -16,7 +15,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.context.annotation.SessionScope;
+
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -109,7 +108,15 @@ public class SinhVienController {
 	}
 	
 	@RequestMapping("deleteSv/{maSv}")
-	public ModelAndView delete(@PathVariable String maSv) {
+	public ModelAndView delete(@PathVariable String maSv, HttpSession session) {
+		
+		getSv = sinhVienDao.getEdit(maSv);
+		ServletContext context = session.getServletContext();
+		String path = context.getRealPath(UPLOAD_DIRECTORY);
+		String filename = getSv.getHinhAnh();
+		File file = new File(path + File.separator + filename);
+		file.delete();
+		
 		sinhVienDao.delete(maSv);
 		totalRecord = sinhVienDao.totalRecord();
 		totalPage = Math.ceil(totalRecord / recordPerPage);

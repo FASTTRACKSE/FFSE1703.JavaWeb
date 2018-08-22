@@ -92,7 +92,6 @@ public class DAO {
 	
 	public void insert(SinhVien_Bean sinhVien) throws SQLException {
 		connect();
-		int status = 0;
 		String sql = "INSERT INTO Sinh_vien (Masv, Hoten, Namsinh, Quequan, Gioitinh, Email, Dienthoai, MaLop) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 		PreparedStatement ps = conn.prepareStatement(sql);
 		
@@ -129,21 +128,18 @@ public class DAO {
 		return exist;
 	}
 	
-	public void editSinhVienRecord(String maSv) throws SQLException {
+	public SinhVien_Bean editSinhVienRecord(String maSv) throws SQLException {
 		connect();
 		SinhVien_Bean editRecord = new SinhVien_Bean();
 
-		java.util.Map<String, Object> sessionMapObj = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-		
 		String sql = "SELECT * FROM Sinh_vien WHERE Masv = ?";
 		PreparedStatement ps = conn.prepareStatement(sql);
 		
 		ps.setString(1, maSv);
 		
 		ResultSet result=ps.executeQuery();
+			result.next();
 		
-		while(result.next())
-		{
 			editRecord.setMaSv(result.getString("Masv"));
 			editRecord.setHoTen(result.getString("Hoten"));
 			editRecord.setNamSinh(result.getString("Namsinh"));
@@ -153,9 +149,9 @@ public class DAO {
 			editRecord.setDienThoai(result.getString("Dienthoai"));
 			editRecord.setMaLop(result.getString("Malop"));
 			
-		}
-		sessionMapObj.put("editRecordObj", editRecord);
-		disconnect();
+			disconnect();
+		
+			return editRecord;
 	}
 	
 	public void update(SinhVien_Bean sinhVien) throws SQLException {
@@ -194,6 +190,26 @@ public class DAO {
 			}
 		
 		return total;
+	}
+	
+	public int checkLogin(String user, String pass) {
+		int kt = 0;
+		try {
+			connect();
+			String sql = "select count(*) from User where User_name = ? and Pass = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, user);
+			ps.setString(2, pass);
+			ResultSet result= ps.executeQuery();
+			while(result.next())
+			{
+				kt = result.getInt("COUNT(*)");
+			}
+			disconnect();
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+		return kt;
 	}
 	
 }

@@ -16,7 +16,7 @@ public class SinhVienDAO {
 	private Connection jdbcConnection;
 
 	public SinhVienDAO() {
-		this.jdbcURL = "jdbc:mysql://localhost:3306/ffse1703014";
+		this.jdbcURL = "jdbc:mysql://localhost:3306/ffse1703014?useUnicode=true&characterEncoding=utf-8";
 		this.jdbcUsername = "admin";
 		this.jdbcPassword = "123456";
 	}

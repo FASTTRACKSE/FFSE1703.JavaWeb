@@ -1,0 +1,23 @@
+package main;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import bean.Student;
+
+public class StudentMain {
+	private static String name;
+	public static Scanner myScanner = new Scanner(System.in);
+	static ArrayList<Student> arrSinhVien = new ArrayList<Student>();
+
+	public static void main(String[] args) {
+		
+
+	}
+	public static void nhapName() {
+
+		System.out.print("Nhập vào tên của bạn : ");
+		name = myScanner.nextLine();
+	}
+
+}

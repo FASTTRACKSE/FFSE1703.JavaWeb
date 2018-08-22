@@ -15,10 +15,10 @@
 <body>
 	<div class="container">
 		<h2 style="text-align: center">Sửa sinh viên</h2>
-		<form:form class="form-horizontal" action="/SpringCRUD/editsave" method="POST">
+		<form:form class="form-horizontal" action="/SpringCRUD/editsave" method="POST" enctype="multipart/form-data">
 			<div class= "form-group">
-				<label>Mã Sinh Viên:</label>
-				<form:input class= "form-control" type="text" path="maSv"/> <br>
+				<!-- label>Mã Sinh Viên:</label> -->
+				<form:input class= "form-control" type="hidden" path="maSv"/> <br>
 			</div>
 			<div class= "form-group">
 				<label>Họ tên:</label>
@@ -55,8 +55,36 @@
 				</form:select>
 				<form:errors path="maLop" cssStyle="color: red" />
 			</div>
+			<div class="form-group">
+				<label>Hình Ảnh:</label> <input id="imgUrl" class="form-control"
+					type="file" name="file" /> <br> 
+					<img src="<c:url value="/upload/${command.hinhAnh}" />" width="100" height="150">
+					<img id="img" src="#"
+					alt="your image" width="100" height="150" />
+				<form:errors path="hinhAnh" cssStyle="color: red" />
+
+			</div>
+			
 			<input class= "btn btn-success" type="submit" value="Lưu" />
 		</form:form>
+		<script type="text/javascript">
+		function readURL(input) {
+
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+
+				reader.onload = function(e) {
+					$('#img').attr('src', e.target.result);
+				}
+
+				reader.readAsDataURL(input.files[0]);
+			}
+		}
+
+		$("#imgUrl").change(function() {
+			readURL(this);
+		});
+	</script>
 	</div>
 </body>
 </html>

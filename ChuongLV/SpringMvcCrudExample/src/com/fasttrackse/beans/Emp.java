@@ -6,6 +6,17 @@ public class Emp {
 	private String Name;
 	private String Address;
 	private String lop;
+	private String Image;
+
+	public Emp() {
+		super();
+	}
+	public String getImage() {
+		return Image;
+	}
+	public void setImage(String image) {
+		Image = image;
+	}
 	public int getId() {
 		return Id;
 	}

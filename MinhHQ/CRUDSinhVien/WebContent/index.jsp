@@ -7,7 +7,7 @@
 <title></title>
 </head>
 <body>
-	<a href="empform">Add Student</a>  
-	<a href="viewsv/1">View Students</a>  
+	<a>&ensp;&ensp;</a> <a>&ensp;&ensp;</a> <a href="empform">Thêm Sinh Viên</a><a>&ensp;&ensp;</a> 
+	<a href="viewsv/1">Sinh Viên</a>   
 </body>
 </html>

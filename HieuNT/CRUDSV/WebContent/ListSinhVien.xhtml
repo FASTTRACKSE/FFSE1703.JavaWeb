@@ -1,0 +1,154 @@
+<!DOCTYPE HTML>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+<h:head>
+	<f:view locale="#{languageBean.getLocale()}"></f:view>
+	<meta charset="utf-8" name="viewport"
+		content="width=device-width, initial-scale=1"
+		http-equiv="X-UA-Conpatible" />
+
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<title>DANH SÁCH SINH VIÊN</title>
+
+	<style type="text/css">
+body {
+	background-image: url(/CRUDSV/resources/image/lia.jpg);
+	background-filter: blur(5px); /* Center and scale the image nicely */
+}
+</style>
+
+</h:head>
+
+<h:body>
+	<div class="container">
+		<h:form id="studentForm">
+			<h:dataTable id="studentTable"
+				value="#{sinhVienController.listSinhVien}" var="student"
+				class="table table-striped table-hover table-bordered tableUpdated">
+				<h:column>
+
+					<f:facet name="header">#{msg['STUDENTCODE']}</f:facet>
+
+					<h:outputText value="#{student.maSinhVien}" />
+
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">#{msg['NAME']}</f:facet>
+
+					<h:outputText value="#{student.name}" />
+
+				</h:column>
+
+				<h:column>
+
+					<f:facet name="header">#{msg['SEX']}</f:facet>
+
+					<h:outputText value="#{student.sex}" />
+
+				</h:column>
+
+				<h:column>
+
+					<f:facet name="header">#{msg['AGE']}</f:facet>
+
+					<h:outputText value="#{student.age}" />
+
+				</h:column>
+
+				<h:column>
+
+					<f:facet name="header">#{msg['CLASS']}</f:facet>
+
+					<h:outputText value="#{student.lop}" />
+
+				</h:column>
+
+				<h:column>
+
+					<f:facet name="header">#{msg['ADDRESS']}</f:facet>
+
+					<h:outputText value="#{student.dress}" />
+
+				</h:column>
+
+				<h:column>
+
+					<f:facet name="header">UPDATE</f:facet>
+
+					<h:commandButton
+						action="#{sinhVienController.editSV(student.maSinhVien)}"
+						value="Update" class="btn btn-primary" />
+
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">DELETE</f:facet>
+
+					<h:commandButton
+						action="#{sinhVienController.xoaSV(student.maSinhVien)}"
+						value="Delete" class="btn btn-danger"
+						onclick="if(!confirm('BẠN CÓ MUỐN XÓA SINH VIÊN NÀY KHÔNG')) return false" />
+
+				</h:column>
+
+			</h:dataTable>
+
+			<center>
+
+				<h:commandButton action="createSinhVien.xhtml?faces-redirect=true"
+					value="Create New User" class="btn btn-success btnSpace" />
+			</center>
+
+		</h:form>
+
+		<h:form>
+			<center>
+
+				<ul class="pagination">
+					<li class="page-item"><h:commandLink
+							rendered="#{sinhVienController.pageCurrent gt 1}"
+							value="&lt;&lt; Frist Page" class="page-link"
+							actionListener="#{sinhVienController.firstPage}">
+						</h:commandLink></li>
+					<li class="page-item"><h:commandLink
+							rendered="#{sinhVienController.pageCurrent gt 1}"
+							value="#{sinhVienController.pageCurrent - 1}" class="page-link"
+							actionListener="#{sinhVienController.prevPage()}">
+						</h:commandLink></li>
+					<li class="page-item"><h:commandLink class="page-link"
+							style="color:black;">
+							<h:outputText value="#{sinhVienController.pageCurrent}" />
+						</h:commandLink></li>
+					<li class="page-item"><h:commandLink
+							rendered="#{sinhVienController.pageCurrent lt sinhVienController.pageTotal}"
+							value="#{sinhVienController.pageCurrent + 1}" class="page-link"
+							actionListener="#{sinhVienController.nextPage()}">
+						</h:commandLink></li>
+					<li class="page-item"><h:commandLink
+							rendered="#{sinhVienController.pageCurrent lt sinhVienController.pageTotal}"
+							value="Last Page &gt;&gt;" class="page-link"
+							actionListener="#{sinhVienController.lastPage}">
+						</h:commandLink></li>
+				</ul>
+			</center>
+			<h3></h3>
+			<center>
+				<h:panelGrid columns="2"> 
+		          	LANGUAGE : 
+		            <h:selectOneMenu value="#{languageBean.locale}"
+						class="btn btn-default dropdown-toggle" onchange="submit()"
+						valueChangeListener="#{languageBean.localeChanged}">
+						<f:selectItems value="#{languageBean.countries}" />
+					</h:selectOneMenu>
+				</h:panelGrid>
+			</center>
+		</h:form>
+
+	</div>
+</h:body>
+</html>

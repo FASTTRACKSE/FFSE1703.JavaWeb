@@ -2,12 +2,16 @@ package entity;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 @Component
 @Scope("prototype")
 public class LopHoc {
 	public String tenLopHoc;
+	@Autowired
+	@Qualifier("daoTaoDaiHanFTSE")
 	public HeDaoTao heDaoTao;
 	public List<SinhVien> sinhVien;
 

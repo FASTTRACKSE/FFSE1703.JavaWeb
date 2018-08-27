@@ -51,6 +51,8 @@ public class MainApp {
 
 		System.out.println(lopHoc1.thongTinLopHoc());
 		System.out.println(lopHoc2.thongTinLopHoc());
+		
+		context.close();
 	}
 
 }

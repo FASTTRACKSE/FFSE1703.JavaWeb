@@ -40,6 +40,4 @@
 		<property name="template" ref="jt"></property>
 	</bean>
 
-
-
 </beans>

@@ -40,6 +40,14 @@
 				<label>Lớp học</label>
 				<form:input path="lop" cssClass="form-control"></form:input>
 			</div>
+			<div class="form-group">
+				<label>Avatar</label>
+				 <form:input path="avatar" id="upload" type="file"
+					class="form-control-file" name="file"></form:input>
+			</div>
+			<div class="form-group">
+				<img id="image" style="width: 100px" alt="Image" src='#'>
+			</div>
 			<button type="submit" class="btn btn-primary">Submit</button>
 		</form:form>
 	</div>

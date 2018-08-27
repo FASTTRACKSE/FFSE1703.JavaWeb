@@ -16,7 +16,9 @@
 	<h2 style="text-align: center">Danh sách sinh viên</h2>
 	<a href="addSv"><button class = "btn btn-success">Thêm sinh viên</button></a>
 <table class="table table-hover">
+
 	<tr>
+		<th>Stt</th>
 		<th>Mã sv</th>
 		<th>Họ tên</th>
 		<th>Năm Sinh</th>
@@ -24,10 +26,12 @@
 		<th>Email</th>
 		<th>Điện Thoại</th>
 		<th>Mã Lớp</th>
+		<th>Hình Ảnh</th>
 		<th>Chức năng</th>
 	</tr>
 	<c:forEach var = "x" items="${listSinhVien}"> 
 		<tr>
+			<td>${stt}</td>
 			<td>${x.maSv}</td>
 			<td>${x.hoTen}</td>
 			<td>${x.namSinh}</td>
@@ -35,6 +39,7 @@
 			<td>${x.email}</td>
 			<td>${x.dienThoai}</td>
 			<td>${x.maLop}</td>
+			<td><img src="<c:url value="/upload/${x.hinhAnh}" />" width="60" height="80"></td>
 			<td>
 				<a href="editSv/${x.maSv}"><button class="btn btn-warning">Sửa</button></a>
 								&nbsp; &nbsp;

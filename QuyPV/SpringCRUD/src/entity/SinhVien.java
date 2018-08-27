@@ -1,16 +1,21 @@
 package entity;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.sun.istack.internal.NotNull;
 
 @Component
 public class SinhVien {
+	private String hinhAnh;
+	
 	@NotEmpty(message= "Nhập mã sinh viên")
 	private String maSv;
 	
@@ -20,17 +25,18 @@ public class SinhVien {
 	@NotEmpty(message= "Nhập quê quán sinh viên")
 	private String queQuan;
 	
+	@Email(message= "Email phải nhập đúng dạng")
 	@NotEmpty(message= "Nhập email sinh viên")
 	private String email;
 	
 	private String maLop;
 	
-	@Min(1900)
-	@NotNull
+	@Min(value= 1900, message= "năm sinh phải lớn hơn 1900")
 	private int namSinh;
 	
 	@NotNull
 	private int dienThoai;
+	
 	public String getMaSv() {
 		return maSv;
 	}
@@ -72,6 +78,12 @@ public class SinhVien {
 	}
 	public void setDienThoai(int dienThoai) {
 		this.dienThoai = dienThoai;
+	}
+	public String getHinhAnh() {
+		return hinhAnh;
+	}
+	public void setHinhAnh(String hinhAnh) {
+		this.hinhAnh = hinhAnh;
 	}
 	
 	

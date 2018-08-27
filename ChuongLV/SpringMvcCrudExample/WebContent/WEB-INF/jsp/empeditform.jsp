@@ -14,7 +14,7 @@
 </head>
 <body>
 	<h1>Sửa Sinh Viên</h1>
-	<form:form method="POST" action="/SpringMvcCrudExample/editsave">
+	<form:form method="POST" action="/SpringMvcCrudExample/editsave" enctype="multipart/form-data">
 		<table>
 			<tr>
 				<td></td>
@@ -33,7 +33,13 @@
 				<td><form:input path="lop" /></td>
 			</tr>
 			<tr>
-				<td></td>
+				<td>Ảnh cũ</td>
+			<td><img style="width: 100px" src="<c:url value="/resources/upload/${command.image }" />">
+			</td>
+				<tr>
+				<td>Ảnh:</td>
+				<td><input type="file" name="file" /></td>
+				<td><form:hidden path="image" /></td>
 				<td> <input type="submit" value="Lưu" /> <a>&ensp;&ensp;</a>  <a href="/SpringMvcCrudExample/viewemp/1">Back</a></td>
 				
 			</tr>

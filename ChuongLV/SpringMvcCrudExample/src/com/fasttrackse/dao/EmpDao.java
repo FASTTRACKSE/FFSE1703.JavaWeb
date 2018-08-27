@@ -13,11 +13,11 @@ public void setTemplate(JdbcTemplate template) {
 	this.template = template;
 }
 public int save(Emp p){
-	String sql="insert into users_spring (name,address,lop) values('"+p.getName()+"','"+p.getAddress()+"','"+p.getLop()+"')";
+	String sql="insert into users_spring (id,name,address,lop,image) values('"+p.getId()+"','"+p.getName()+"','"+p.getAddress()+"','"+p.getLop()+"', '"+p.getImage()+"')";
 	return template.update(sql);
 }
 public int update(Emp p){
-	String sql="update users_spring set name='"+p.getName()+"', address='"+p.getAddress()+"', lop='"+p.getLop()+"' where id="+p.getId()+"";
+	String sql="update users_spring set id='"+p.getId()+"', name='"+p.getName()+"', address='"+p.getAddress()+"', lop='"+p.getLop()+"', image='"+p.getImage()+"' where id="+p.getId()+"";
 	return template.update(sql);
 }
 public int delete(int id){
@@ -36,6 +36,7 @@ public List<Emp> getEmployees(int start,int total){
 			e.setName(rs.getString(2));
 			e.setAddress(rs.getString(3));
 			e.setLop(rs.getString(4));
+			e.setImage(rs.getString(5));
 			return e;
 		}
 	});

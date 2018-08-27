@@ -68,7 +68,8 @@ public class ControllerSpring {
 
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
 	public String insertStudent(@ModelAttribute("command") @Valid SinhVien student, BindingResult result, Model model,
-			HttpServletRequest request,@RequestParam("file") MultipartFile file) throws SQLException, IllegalStateException, IOException {
+			HttpServletRequest request, @RequestParam("file") MultipartFile file)
+			throws SQLException, IllegalStateException, IOException {
 		student.setAvatar(uploadFile(file, request));
 		if (result.hasErrors()) {
 			return "StudentFormInsert";
@@ -95,7 +96,7 @@ public class ControllerSpring {
 			HttpServletRequest request, @RequestParam("file") MultipartFile file)
 			throws SQLException, IllegalStateException, IOException {
 		if (student.avatar != null) {
-			if (file != null) {
+			if (!file.isEmpty()) {
 				deleteFile(student.avatar, request);
 				student.setAvatar(uploadFile(file, request));
 			}
@@ -108,7 +109,8 @@ public class ControllerSpring {
 	}
 
 	@RequestMapping(value = "/delete/{maSV}")
-	public String deleteStudent(@PathVariable String maSV, Model model, HttpSession session, HttpServletRequest request) throws SQLException {
+	public String deleteStudent(@PathVariable String maSV, Model model, HttpSession session, HttpServletRequest request)
+			throws SQLException {
 		SinhVien sv = sinhVienDAO.getStudent(maSV);
 		sinhVienDAO.deleteStudent(maSV);
 		deleteFile(sv.avatar, request);
@@ -121,11 +123,10 @@ public class ControllerSpring {
 	public String uploadFile(MultipartFile file, HttpServletRequest request) throws IllegalStateException, IOException {
 		Date date = new Date();
 		SimpleDateFormat fm = new SimpleDateFormat("hhmmssddMMyyyy");
-		String fileName = fm.format(date)+"_"+file.getOriginalFilename();
+		String fileName = "";
 		String path = request.getSession().getServletContext().getRealPath("/") + "\\resources\\upload\\";
-		if (fileName.isEmpty()) {
-			fileName = "default.png";
-		} else {
+		if (!file.isEmpty()) {
+			fileName = fm.format(date) + "_" + file.getOriginalFilename();
 			File dir = new File(path);
 			if (!dir.exists())
 				dir.mkdirs();
@@ -134,10 +135,10 @@ public class ControllerSpring {
 		}
 		return fileName;
 	}
-	
-	public boolean deleteFile(String fileName,HttpServletRequest request) {
+
+	public boolean deleteFile(String fileName, HttpServletRequest request) {
 		String path = request.getSession().getServletContext().getRealPath("/") + "\\resources\\upload\\";
-		File file = new File(path , fileName);
+		File file = new File(path, fileName);
 		boolean result = file.delete();
 		return result;
 	}

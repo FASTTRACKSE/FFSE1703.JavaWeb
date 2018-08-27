@@ -1,44 +1,41 @@
-package model.entity;
+package hiberspring.model.entity;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-public class SinhVien {
-	@NotEmpty
-	public String maSV;
+@Entity
+@Table(name = "sinhvien_spring")
+public class Student {
 
-	@NotEmpty
-	public String tenSV;
+	@Id
+	@Column(name = "MaSV", nullable = false)
+	private String maSV;
 
-	@Min(value = 1990)
-	@Max(value = 2000)
-	@NotEmpty
-	public String namSinh;
+	@Column(name = "TenSV", nullable = false)
+	private String tenSV;
 
-	@NotEmpty
-	@Email
-	public String email;
+	@Column(name = "NamSinh", nullable = false)
+	private String namSinh;
 
-	@NotEmpty
-	public String diaChi;
+	@Column(name = "Email", nullable = false)
+	private String email;
 
-	@NotEmpty
-	public String lopHoc;
+	@Column(name = "DiaChi", nullable = false)
+	private String diaChi;
 
-	public String avatar;
+	@Column(name = "LopHoc", nullable = false)
+	private String lopHoc;
 
-	public SinhVien() {
+	@Column(name = "Avatar")
+	private String avatar;
+
+	public Student() {
 		super();
 	}
 
-	public SinhVien(String maSV) {
-		super();
-		this.maSV = maSV;
-	}
-
-	public SinhVien(String maSV, String tenSV, String namSinh, String email, String diaChi, String lopHoc,
+	public Student(String maSV, String tenSV, String namSinh, String email, String diaChi, String lopHoc,
 			String avatar) {
 		super();
 		this.maSV = maSV;
@@ -50,7 +47,7 @@ public class SinhVien {
 		this.avatar = avatar;
 	}
 
-	public SinhVien(String tenSV, String namSinh, String email, String diaChi, String lopHoc, String avatar) {
+	public Student(String tenSV, String namSinh, String email, String diaChi, String lopHoc, String avatar) {
 		super();
 		this.tenSV = tenSV;
 		this.namSinh = namSinh;

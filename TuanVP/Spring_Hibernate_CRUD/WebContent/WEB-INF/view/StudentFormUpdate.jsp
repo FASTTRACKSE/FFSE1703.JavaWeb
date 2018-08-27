@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title><spring:message code="title2" /></title>
+<title><spring:message code="title3" /></title>
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/bootstrap.min.css" />">
 <script
@@ -15,22 +15,14 @@
 <script src="<c:url value="/resources/popper/popper.min.js" />"></script>
 <script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
 </head>
-</head>
 <body>
 	<div class="container">
 		<h1 style="text-align: center;">
-			<spring:message code="title2" />
+			<spring:message code="title3" />
 		</h1>
-		<form:form action="/Spring_MVC_CRUD/insert" method="POST"
+		<form:form action="/Spring_Hibernate_CRUD/update" method="POST"
 			enctype="multipart/form-data">
-			<div class="form-group">
-				<label><spring:message code="masv" /></label>
-				<form:input path="maSV" cssClass="form-control"></form:input>
-				<form:errors path="maSV" cssClass="invalid-feedback d-block" />
-				<p class="invalid-feedback d-block">
-					<c:out value="${message}"></c:out>
-				</p>
-			</div>
+			<form:hidden path="maSV" />
 			<div class="form-group">
 				<label><spring:message code="tensv" /></label>
 				<form:input path="tenSV" cssClass="form-control"></form:input>
@@ -68,24 +60,32 @@
 				<form:errors path="lopHoc" cssClass="invalid-feedback d-block" />
 			</div>
 			<div class="form-group">
-				<label>Avatar</label>
-				<input id="upload" type="file" class="form-control-file" name="file">
+				<label>Avatar</label> <input id="upload" type="file"
+					class="form-control-file" name="file" />
 			</div>
-			<div class="form-group">
-				<img id="image" style="width: 100px" alt="Image" src='#'>
+			<div class="row">
+				<div class="form-group col-md-4">
+					<label>Old avatar</label> <img
+						src="<c:url value="/resources/upload/${command.avatar }" />"
+						alt="Old avatar" class="form-control">
+					<form:hidden path="avatar" />
+				</div>
+				<div class="form-group col-md-4">
+					<label>New avatar</label> <img id="image" src="#" alt="New avatar"
+						class="form-control">
+				</div>
 			</div>
 			<button type="submit" class="btn btn-success">
 				<spring:message code="luu" />
 			</button>
-			<c:if test="${empty emptyStudent}">
-				<a href="/Spring_MVC_CRUD/" class="btn btn-primary"><spring:message
-						code="trove" /></a>
-			</c:if>
+			<a href="<c:url value ="/"/>" class="btn btn-primary"><spring:message
+					code="trove" /></a>
 		</form:form>
 	</div>
 </body>
 <script type="text/javascript">
 	function readURL(input) {
+
 		if (input.files && input.files[0]) {
 			var reader = new FileReader();
 			reader.onload = function(e) {

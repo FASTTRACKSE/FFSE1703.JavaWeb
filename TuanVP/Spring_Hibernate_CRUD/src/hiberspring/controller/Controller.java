@@ -1,6 +1,7 @@
-package controller;
+package hiberspring.controller;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -11,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -19,19 +20,22 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
-import model.dao.*;
-import model.entity.*;
+import hiberspring.model.entity.Student;
+import hiberspring.service.StudentService;
 
-@Controller
-@SessionAttributes("page")
-public class ControllerSpring {
+@org.springframework.stereotype.Controller
+public class Controller {
 	public int perPage = 2;
 	public int currentPage = 1;
+	private StudentService studentService;
+
 	@Autowired
-	SinhVienDAO sinhVienDAO;
+	@Qualifier(value = "studentServiceImpl")
+	private void setStudentService(StudentService studentService) {
+		this.studentService = studentService;
+	}
 
 	@RequestMapping("/")
 	public String redirectPage(HttpSession session, Model model) {
@@ -48,7 +52,7 @@ public class ControllerSpring {
 	@RequestMapping("/list/{page}")
 	public String listStudent(Model model, @PathVariable("page") int page) throws SQLException {
 		int start = (page - 1) * perPage;
-		List<SinhVien> list = sinhVienDAO.getAllStudent(start, perPage);
+		List<Student> list = studentService.listStudent(start, perPage);
 		model.addAttribute("list", list);
 		model.addAttribute("total", totalPage(perPage));
 		model.addAttribute("page", page);
@@ -56,26 +60,26 @@ public class ControllerSpring {
 	}
 
 	public int totalPage(int perPage) {
-		int totalPage = (int) Math.ceil((double) sinhVienDAO.countStudent() / (double) perPage);
+		int totalPage = (int) Math.ceil((double) this.studentService.countStudents() / (double) perPage);
 		return totalPage;
 	}
 
 	@RequestMapping("/add")
 	public String showFormInsert(Model model) throws SQLException {
-		model.addAttribute("command", new SinhVien());
+		model.addAttribute("command", new Student());
 		return "StudentFormInsert";
 	}
 
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
-	public String insertStudent(@ModelAttribute("command") @Valid SinhVien student, BindingResult result, Model model,
+	public String insertStudent(@ModelAttribute("command") @Valid Student student, BindingResult result, Model model,
 			HttpServletRequest request, @RequestParam("file") MultipartFile file)
 			throws SQLException, IllegalStateException, IOException {
 		student.setAvatar(uploadFile(file, request));
 		if (result.hasErrors()) {
 			return "StudentFormInsert";
 		}
-		if (sinhVienDAO.checkStudent(student.maSV) == false) {
-			sinhVienDAO.insertStudent(student);
+		if (studentService.checkStudent(student.getMaSV()) == false) {
+			studentService.addStudent(student);
 			model.addAttribute("page", totalPage(perPage));
 		} else {
 			model.addAttribute("message", "Mã sinh viên đã tồn tại");
@@ -86,34 +90,34 @@ public class ControllerSpring {
 
 	@RequestMapping(value = "/edit/{maSV}")
 	public String showFormEdit(@PathVariable String maSV, Model model) throws SQLException {
-		SinhVien sv = sinhVienDAO.getStudent(maSV);
+		Student sv = studentService.getStudentById(maSV);
 		model.addAttribute("command", sv);
 		return "StudentFormUpdate";
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String updateStudent(@ModelAttribute("command") @Valid SinhVien student, BindingResult result, Model model,
+	public String updateStudent(@ModelAttribute("command") @Valid Student student, BindingResult result, Model model,
 			HttpServletRequest request, @RequestParam("file") MultipartFile file)
 			throws SQLException, IllegalStateException, IOException {
-		if (student.avatar != null) {
+		if (student.getAvatar() != null) {
 			if (!file.isEmpty()) {
-				deleteFile(student.avatar, request);
+				deleteFile(student.getAvatar(), request);
 				student.setAvatar(uploadFile(file, request));
 			}
 		}
 		if (result.hasErrors()) {
 			return "StudentFormUpdate";
 		}
-		sinhVienDAO.updateStudent(student);
+		studentService.updateStudent(student);
 		return "redirect:/";
 	}
 
 	@RequestMapping(value = "/delete/{maSV}")
 	public String deleteStudent(@PathVariable String maSV, Model model, HttpSession session, HttpServletRequest request)
 			throws SQLException {
-		SinhVien sv = sinhVienDAO.getStudent(maSV);
-		sinhVienDAO.deleteStudent(maSV);
-		deleteFile(sv.avatar, request);
+		Student sv = studentService.getStudentById(maSV);
+		studentService.deleteStudent(maSV);
+		deleteFile(sv.getAvatar(), request);
 		if ((int) session.getAttribute("page") > totalPage(perPage)) {
 			model.addAttribute("page", totalPage(perPage));
 		}

@@ -21,7 +21,7 @@
 		<h1 style="text-align: center;">
 			<spring:message code="title2" />
 		</h1>
-		<form:form action="/Spring_MVC_CRUD/insert" method="POST"
+		<form:form action="/Spring_Hibernate_CRUD/insert" method="POST"
 			enctype="multipart/form-data">
 			<div class="form-group">
 				<label><spring:message code="masv" /></label>
@@ -68,8 +68,8 @@
 				<form:errors path="lopHoc" cssClass="invalid-feedback d-block" />
 			</div>
 			<div class="form-group">
-				<label>Avatar</label>
-				<input id="upload" type="file" class="form-control-file" name="file">
+				<label>Avatar</label> <input id="upload" type="file"
+					class="form-control-file" name="file">
 			</div>
 			<div class="form-group">
 				<img id="image" style="width: 100px" alt="Image" src='#'>
@@ -78,7 +78,7 @@
 				<spring:message code="luu" />
 			</button>
 			<c:if test="${empty emptyStudent}">
-				<a href="/Spring_MVC_CRUD/" class="btn btn-primary"><spring:message
+				<a href="<c:url value ="/"/>" class="btn btn-primary"><spring:message
 						code="trove" /></a>
 			</c:if>
 		</form:form>

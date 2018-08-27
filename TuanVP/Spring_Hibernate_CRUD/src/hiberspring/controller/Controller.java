@@ -7,12 +7,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -60,7 +60,7 @@ public class Controller {
 	}
 
 	public int totalPage(int perPage) {
-		int totalPage = (int) Math.ceil((double) this.studentService.countStudents() / (double) perPage);
+		int totalPage = (int) Math.ceil((double) studentService.countStudents() / (double) perPage);
 		return totalPage;
 	}
 
@@ -72,9 +72,9 @@ public class Controller {
 
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
 	public String insertStudent(@ModelAttribute("command") @Valid Student student, BindingResult result, Model model,
-			HttpServletRequest request, @RequestParam("file") MultipartFile file)
+			HttpSession session, @RequestParam("file") MultipartFile file)
 			throws SQLException, IllegalStateException, IOException {
-		student.setAvatar(uploadFile(file, request));
+		student.setAvatar(uploadFile(file, session));
 		if (result.hasErrors()) {
 			return "StudentFormInsert";
 		}
@@ -82,7 +82,11 @@ public class Controller {
 			studentService.addStudent(student);
 			model.addAttribute("page", totalPage(perPage));
 		} else {
-			model.addAttribute("message", "Mã sinh viên đã tồn tại");
+			if (LocaleContextHolder.getLocale().toString().equals("vi")) {
+				model.addAttribute("message", "Mã sinh viên đã tồn tại");
+			} else {
+				model.addAttribute("message", "Student id has been available");
+			}
 			return "StudentFormInsert";
 		}
 		return "redirect:/";
@@ -97,12 +101,12 @@ public class Controller {
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String updateStudent(@ModelAttribute("command") @Valid Student student, BindingResult result, Model model,
-			HttpServletRequest request, @RequestParam("file") MultipartFile file)
+			HttpSession session, @RequestParam("file") MultipartFile file)
 			throws SQLException, IllegalStateException, IOException {
 		if (student.getAvatar() != null) {
 			if (!file.isEmpty()) {
-				deleteFile(student.getAvatar(), request);
-				student.setAvatar(uploadFile(file, request));
+				deleteFile(student.getAvatar(), session);
+				student.setAvatar(uploadFile(file, session));
 			}
 		}
 		if (result.hasErrors()) {
@@ -113,22 +117,22 @@ public class Controller {
 	}
 
 	@RequestMapping(value = "/delete/{maSV}")
-	public String deleteStudent(@PathVariable String maSV, Model model, HttpSession session, HttpServletRequest request)
+	public String deleteStudent(@PathVariable String maSV, Model model, HttpSession session)
 			throws SQLException {
 		Student sv = studentService.getStudentById(maSV);
 		studentService.deleteStudent(maSV);
-		deleteFile(sv.getAvatar(), request);
+		deleteFile(sv.getAvatar(), session);
 		if ((int) session.getAttribute("page") > totalPage(perPage)) {
 			model.addAttribute("page", totalPage(perPage));
 		}
 		return "redirect:/";
 	}
 
-	public String uploadFile(MultipartFile file, HttpServletRequest request) throws IllegalStateException, IOException {
+	public String uploadFile(MultipartFile file, HttpSession session) throws IllegalStateException, IOException {
 		Date date = new Date();
 		SimpleDateFormat fm = new SimpleDateFormat("hhmmssddMMyyyy");
 		String fileName = "";
-		String path = request.getSession().getServletContext().getRealPath("/") + "\\resources\\upload\\";
+		String path = session.getServletContext().getRealPath("/") + "\\resources\\upload\\";
 		if (!file.isEmpty()) {
 			fileName = fm.format(date) + "_" + file.getOriginalFilename();
 			File dir = new File(path);
@@ -140,8 +144,8 @@ public class Controller {
 		return fileName;
 	}
 
-	public boolean deleteFile(String fileName, HttpServletRequest request) {
-		String path = request.getSession().getServletContext().getRealPath("/") + "\\resources\\upload\\";
+	public boolean deleteFile(String fileName, HttpSession session) {
+		String path = session.getServletContext().getRealPath("/") + "\\resources\\upload\\";
 		File file = new File(path, fileName);
 		boolean result = file.delete();
 		return result;

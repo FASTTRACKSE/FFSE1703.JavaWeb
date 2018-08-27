@@ -7,6 +7,7 @@ import javax.management.Query;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projection;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +50,8 @@ public class SinhVienDaoImpl implements SinhVienDao {
 
 	@Override
 	public void update(SinhVien sv) {
-		// TODO Auto-generated method stub
+		Session session = this.sessionFactory.getCurrentSession();
+		session.update(sv);
 		
 	}
 
@@ -60,22 +62,22 @@ public class SinhVienDaoImpl implements SinhVienDao {
 	}
 	
 	@Override
-	public String checkExistMaSv(String maSv) {
+	public boolean checkExistMaSv(String maSv) {
 		Session session= this.sessionFactory.getCurrentSession();
-		String hql = "FROM SinhVien sv WHERE sv.masv = " + maSv;
-		if(session.createQuery(hql) != null) {
-			return "true";
-		} else {
-			return "false";
-		}
-	
+		Long count = session.createQuery("select count(*) from  SinhVien where maSv = '"+maSv+"'",Long.class).getSingleResult();
+		 
+		 if(count > 0) {
+			 return false;
+		 }
+		
+		return true;
+		
 	}
 
 	@SuppressWarnings("deprecation")
 	@Override
 	public long totalRecord() {
 		Session session= this.sessionFactory.getCurrentSession();
-		
 		return (long) session.createCriteria(SinhVien.class)
                 .setProjection(Projections.rowCount())
                 .uniqueResult();

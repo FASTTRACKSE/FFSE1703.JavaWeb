@@ -49,13 +49,13 @@
     </bean>
     
     <!-- Enable configuration of transactional behavior based on annotations -->
-	<tx:annotation-driven transaction-manager="myTransactionManager" />
+    <tx:annotation-driven transaction-manager="myTransactionManager" />
 
     <!-- Resources theme location -->
     <mvc:resources mapping="/images/**" location="/images/" />
     
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<property name="maxUploadSize" value="500000" />
+		<property name="maxUploadSize" value="500000000" />
 	</bean>
 	
 	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">

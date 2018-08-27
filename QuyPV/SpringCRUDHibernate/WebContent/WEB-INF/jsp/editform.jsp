@@ -17,6 +17,10 @@
 		<h2 style="text-align: center">Sửa sinh viên</h2>
 		<form:form class="form-horizontal" action="/SpringCRUDHibernate/editsave" method="POST" enctype="multipart/form-data">
 			<div class= "form-group">
+				<!-- label>Id:</label> -->
+				<form:input class= "form-control" type="hidden" path="id"/> <br>
+			</div>
+			<div class= "form-group">
 				<!-- label>Mã Sinh Viên:</label> -->
 				<form:input class= "form-control" type="hidden" path="maSv"/> <br>
 			</div>

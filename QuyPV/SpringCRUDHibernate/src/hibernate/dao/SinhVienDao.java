@@ -10,6 +10,6 @@ public interface SinhVienDao {
 	public SinhVien getEdit(int id);
 	public void update(final SinhVien sv);
 	public void insert(SinhVien sv);
-	public String checkExistMaSv(String maSv);
+	public boolean checkExistMaSv(String maSv);
 	public long totalRecord();
 }

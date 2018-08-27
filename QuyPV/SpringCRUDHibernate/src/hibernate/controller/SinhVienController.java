@@ -84,14 +84,15 @@ public class SinhVienController {
 	}
 	
 	@RequestMapping(value= "/addSave", method=RequestMethod.POST)
-	public @ResponseBody ModelAndView addSave(@ModelAttribute("command") @Valid SinhVien sv ,BindingResult result, 
+	public ModelAndView addSave(@ModelAttribute("command") @Valid SinhVien sv ,BindingResult result, 
 			@RequestParam("file") CommonsMultipartFile file, HttpSession session) throws IOException {
+		boolean check = sinhVienService.checkExistMaSv(sv.getMaSv());
 		
 		if(result.hasErrors()) {
 			return new ModelAndView("addform");
 		}
-		
-		
+			
+		if(check == true) {
 			ServletContext context = session.getServletContext();
 			String path = context.getRealPath(UPLOAD_DIRECTORY);
 			String filename = file.getOriginalFilename();
@@ -105,6 +106,11 @@ public class SinhVienController {
 		    stream.close();
 			sinhVienService.insert(sv);
 			return new ModelAndView("redirect:/" + pageIndex); // mặc định trở về trang index. đã đc định nghĩa ở web.xml
+		} else {
+			String message = "Mã sinh viên đã tồn tại";
+			return new ModelAndView("addform", "mess", message);
+		}
+			
 		
 		
 	}
@@ -114,6 +120,32 @@ public class SinhVienController {
 		getSv = sinhVienService.getEdit(id);
 		return new ModelAndView("editform", "command", getSv); // "command" mặc định của spring frame work
 	}
+	
+	@RequestMapping(value="/editsave",method = RequestMethod.POST)
+	public ModelAndView editSave(@ModelAttribute("command") @Valid SinhVien sv, BindingResult result,
+			@RequestParam("file") CommonsMultipartFile file, HttpSession session) throws IOException{
+		sv.setHinhAnh(getSv.getHinhAnh()); // thuộc tính hình ảnh đang null -> phải set dữ liệu
+		if(result.hasErrors()) {
+			return new ModelAndView("editform");
+		}
+		System.out.println("file: " + file);
+		ServletContext context = session.getServletContext();
+		String path = context.getRealPath(UPLOAD_DIRECTORY);
+		String filename = file.getOriginalFilename();
+		System.out.println("file name: " + filename);
+		if(!filename.isEmpty()) {
+		System.out.println(path + " " + filename);
+		byte[] bytes = file.getBytes();  
+	    BufferedOutputStream stream =new BufferedOutputStream(new FileOutputStream(  
+	         new File(path + File.separator + filename)));
+	    sv.setHinhAnh(filename);
+	    stream.write(bytes);  
+	    stream.flush();  
+	    stream.close();
+		}
+		sinhVienService.update(sv);
+        return new ModelAndView("redirect:/" + pageIndex); // mặc định trở về trang index. đã đc định nghĩa ở web.xml  
+    }  
 	
 	@RequestMapping("deleteSv/{id}")
 	public ModelAndView delete(@PathVariable int id, HttpSession session) {

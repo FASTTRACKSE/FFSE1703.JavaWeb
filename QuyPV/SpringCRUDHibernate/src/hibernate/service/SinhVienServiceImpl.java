@@ -35,13 +35,13 @@ public class SinhVienServiceImpl implements SinhVienService {
 	@Override
 	@Transactional
 	public SinhVien getEdit(int id) {
-		// TODO Auto-generated method stub
 		return sinhVienDao.getEdit(id);
 	}
 
 	@Override
+	@Transactional
 	public void update(SinhVien sv) {
-		// TODO Auto-generated method stub
+		sinhVienDao.update(sv);
 		
 	}
 
@@ -54,7 +54,7 @@ public class SinhVienServiceImpl implements SinhVienService {
 
 	@Override
 	@Transactional
-	public String checkExistMaSv(String maSv) {
+	public boolean checkExistMaSv(String maSv) {
 		// TODO Auto-generated method stub
 		return sinhVienDao.checkExistMaSv(maSv);
 	}

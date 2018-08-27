@@ -1,3 +1,0 @@
-127.0.0.1 - - [03/Jul/2018:16:30:08 +0700] "GET / HTTP/1.1" 404 1073
-0:0:0:0:0:0:0:1 - - [03/Jul/2018:16:30:20 +0700] "GET /DemoJFS/WEB-INF/classes/HelloService.java HTTP/1.1" 404 1046
-0:0:0:0:0:0:0:1 - - [03/Jul/2018:16:30:21 +0700] "GET /DemoJFS/WEB-INF/classes/HelloService.java HTTP/1.1" 404 1046

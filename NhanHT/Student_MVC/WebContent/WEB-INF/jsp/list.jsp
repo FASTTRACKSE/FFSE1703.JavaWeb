@@ -24,7 +24,9 @@
 				<th>Email</th>
 				<th>Địa Chỉ</th>
 				<th>Lớp Học</th>
+				<th>Avatar</th>
 				<th>Chức Năng</th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -36,6 +38,7 @@
 					<td>${emp.email}</td>
 					<td>${emp.diaChi}</td>
 					<td>${emp.lopHoc}</td>
+					<td><img style="width: 100px;" src='<c:url value = "/resources/${emp.avatar }" ></c:url>' alt="image"></td>
 					<td><a href="edit/${emp.id}" class="btn btn-danger">Edit</a> <a
 						href="delete/${emp.id}" class="btn btn-primary"
 						onclick="return confirm('Bạn có muốn xóa sinh viên này?');">Delete</a></td>

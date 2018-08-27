@@ -13,11 +13,6 @@
 	src="<c:url value="/resources/jquery/jquery-3.3.1.slim.min.js" />"></script>
 <script src="<c:url value="/resources/popper/popper.min.js" />"></script>
 <script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
-<style type="text/css">
-body {
-	background-image: url("${pageContext.request.contextPath}/resources/upload/sky-wallpaper-blue-hdblue.jpg");
-}
-</style>
 </head>
 <body>
 	<div class="container">
@@ -66,7 +61,7 @@ body {
 						<td>${sv.diaChi }</td>
 						<td>${sv.email }</td>
 						<td>${sv.lopHoc }</td>
-						<td><img style="width: 50px;" src='<c:url value = "/resources/image/${sv.avatar }" ></c:url>' alt="image"></td>
+						<td><img style="width: 100px;" src='<c:url value = "/resources/upload/${sv.avatar }" ></c:url>' alt="image"></td>
 						<td>
 							<a href="/Spring_MVC_CRUD/edit/${sv.maSV }" class="btn btn-success">
 								<spring:message code="sua" />

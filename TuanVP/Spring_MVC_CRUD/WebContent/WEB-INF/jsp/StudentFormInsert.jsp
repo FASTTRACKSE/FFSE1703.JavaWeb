@@ -69,7 +69,10 @@
 			</div>
 			<div class="form-group">
 				<label>Avatar</label>
-				<input type="file" class="form-control-file" name="file" >
+				<input id="upload" type="file" class="form-control-file" name="file">
+			</div>
+			<div class="form-group">
+				<img id="image" style="width: 100px" alt="Image" src='#'>
 			</div>
 			<button type="submit" class="btn btn-success">
 				<spring:message code="luu" />
@@ -81,4 +84,18 @@
 		</form:form>
 	</div>
 </body>
+<script type="text/javascript">
+	function readURL(input) {
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				$('#image').attr('src', e.target.result);
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+	$("#upload").change(function() {
+		readURL(this);
+	});
+</script>
 </html>

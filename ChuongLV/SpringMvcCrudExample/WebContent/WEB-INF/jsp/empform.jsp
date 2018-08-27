@@ -9,11 +9,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Sinh Viên</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 
 	<h1>Thêm Sinh Viên</h1>
-	<form:form method="post" action="save">
+	<form:form method="post" action="save" enctype="multipart/form-data">
 		<table>
 			<tr>
 				<td>Name :</td>
@@ -28,17 +32,11 @@
 				<td><form:input path="lop" /></td>
 			</tr>
 			<tr>
-				<td></td>
-				<td><input type="submit" href="CRUDSpring/viewemp/1" value="Lưu" /> <a>&ensp;&ensp;</a> <a>&ensp;&ensp;</a> <a href="viewemp/1"  type="submit" >Quay lại</a></td>
-				
-				
+				<td><input type="file" name="file" ></td>
+				<td><input type="submit" href="SpringMvcCrudExample/viewemp/1" value="Lưu" /> <a>&ensp;&ensp;</a> <a>&ensp;&ensp;</a> <a href="viewemp/1"  type="submit" >Back</a></td>
 
 			</tr>
-
 		</table>
 	</form:form>
-
-
-
 </body>
 </html>

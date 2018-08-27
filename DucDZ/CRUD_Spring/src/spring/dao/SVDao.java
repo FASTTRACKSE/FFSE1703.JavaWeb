@@ -8,27 +8,27 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
-import com.sun.rowset.internal.Row;
-
 import spring.entity.SinhVien;
 
 public class SVDao {
 	static JdbcTemplate template;
 
 	public void setTemplate(JdbcTemplate template) {
-		this.template = template;
+		SVDao.template = template;
 	}
 
-	public static int save(SinhVien sv) {
+	public static int save(SinhVien sv,String filename) {
 		int masv = sv.getMa_sv();
 		String hoten = sv.getHo_ten();
 		String namsinh = sv.getNam_sinh();
 		String email = sv.getEmail();
 		String diachi = sv.getDia_chi();
 		String lophoc = sv.getLop_hoc();
+		String file = filename;
+		String descrip = sv.getDescription();
 		String sql = "insert into `spring_sinhvien`(`ma_sv`,`ho_ten`,"
-				+ "`nam_sinh`,`email`,`dia_chi`,`lop_hoc`) values('"+masv+"','"
-				+hoten+"','"+namsinh+"','"+email+"','"+diachi+"','"+lophoc+"')";
+				+ "`nam_sinh`,`email`,`dia_chi`,`lop_hoc`,`myimage`,`description`) values('"+masv+"','"+hoten+
+				"','"+namsinh+"','"+email+"','"+diachi+"','"+lophoc+"','"+file+"','"+descrip+"')";
 		return template.update(sql);
 	}
 
@@ -68,6 +68,8 @@ public class SVDao {
 				sv.setEmail(rs.getString("email"));
 				sv.setDia_chi(rs.getString("dia_chi"));
 				sv.setLop_hoc(rs.getString("lop_hoc"));
+				sv.setAvatar(rs.getString("myimage"));
+				sv.setDescription(rs.getString("description"));
 				return sv;
 			}
 		});

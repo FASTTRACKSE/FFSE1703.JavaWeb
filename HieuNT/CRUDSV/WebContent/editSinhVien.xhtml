@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<meta charset="utf-8" name="viewport"
+		content="width=device-width, initial-scale=1"
+		http-equiv="X-UA-Conpatible" />
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<title>JSF CRUD Example</title>
+	<style type="text/css">
+.updateBtnStyle {
+	width: 80px !important;
+}
+
+body {
+	background-image: url(/JSFCRUD2/resources/image/lisa.jpg);
+	/* Center and scale the image nicely */
+
+}
+</style>
+</h:head>
+<h:body>
+	<h:form id="form" class="form-horizontal">
+		<div class="form-group">
+			<div class="col-sm-2"></div>
+			<h2 style="text-align: center" class="col-sm-4">Edit Sinh Viên</h2>
+		</div>
+		<hr />
+		<div class="form-group">
+			<h:outputLabel for="username" class="control-label col-sm-2">MÃ SINH VIÊN:</h:outputLabel>
+			<div class="col-sm-4">
+				<h:inputText id="name-id" value="#{editRecordObj.maSinhVien}"
+					class="form-control" />
+			</div>
+		</div>
+		<div class="form-group">
+			<h:outputLabel for="email" class="control-label col-sm-2">TÊN SINH VIÊN:</h:outputLabel>
+			<div class="col-sm-4">
+				<h:inputText id="email-id" value="#{editRecordObj.name}"
+					class="form-control" />
+			</div>
+		</div>
+		<div class="form-group">
+			<h:outputLabel for="gender" class="control-label col-sm-2">GIỚI TÍNH:</h:outputLabel>
+			<div class="col-sm-4">
+				<h:selectOneRadio value="#{editRecordObj.sex}">
+					<f:selectItem itemValue="NAM" itemLabel="Male" />
+					<f:selectItem itemValue="NỮ" itemLabel="Female" />
+				</h:selectOneRadio>
+			</div>
+		</div>
+		<div class="form-group">
+			<h:outputLabel for="age" class="control-label col-sm-2">TUỔI:</h:outputLabel>
+			<div class="col-sm-4">
+				<h:inputText id="age-id" value="#{editRecordObj.age}"
+					class="form-control" />
+			</div>
+		</div>
+
+
+		<div class="form-group">
+
+			<h:outputLabel for="lop" class="control-label col-sm-2	">LỚP:</h:outputLabel>
+			<div class="col-sm-2">
+				<h:selectOneMenu value="#{editRecordObj.lop}" style="height:70px"
+					styleClass="selectpicker">
+					<f:selectItem itemValue="FFSE1702" itemLabel="FFSE1702" />
+					<f:selectItem itemValue="FFSE1703" itemLabel="FFSE1703" />
+					<f:selectItem itemValue="FFSE1704" itemLabel="FFSE1704" />
+				</h:selectOneMenu>
+			</div>
+		</div>
+		<div class="form-group">
+			<h:outputLabel for="address" class="control-label col-sm-2">Address:</h:outputLabel>
+			<div class="col-sm-4">
+				<h:inputTextarea value="#{editRecordObj.dress}" cols="50" rows="5"
+					class="form-control" />
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-2"></div>
+			<div class="col-sm-4">
+				<h:commandButton value="Update"
+					action="#{sinhVienController.updateSinhVien(editRecordObj)}"
+					class="btn btn-primary updateBtnStyle" />
+			</div>
+		</div>
+	</h:form>
+</h:body>
+</html>

@@ -6,8 +6,6 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,8 +33,9 @@ public class EmpController {
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public ModelAndView save(@ModelAttribute("emp") Emp emp, @RequestParam("file") MultipartFile file,
-			HttpSession session) throws IllegalStateException, IOException {
+	public ModelAndView save(@ModelAttribute("emp") Emp emp,
+			@RequestParam("file") MultipartFile file, HttpSession session)
+					throws IllegalStateException, IOException {
 		emp.setAvatar(uploadFile(file, session));
 		dao.save(emp);
 		return new ModelAndView("redirect:/viewemp/1");
@@ -62,7 +61,11 @@ public class EmpController {
 	@RequestMapping(value = "/editsave", method = RequestMethod.POST)
 	public ModelAndView editsave(@ModelAttribute("emp") Emp emp, @RequestParam("file") MultipartFile file,
 			HttpSession session) throws IllegalStateException, IOException {
-		emp.setAvatar(uploadFile(file, session));
+		if (emp.avatar != null) {
+			if (!file.isEmpty()) {
+				emp.setAvatar(uploadFile(file, session));
+			}
+		}
 		dao.update(emp);
 		return new ModelAndView("redirect:/viewemp/1");
 	}

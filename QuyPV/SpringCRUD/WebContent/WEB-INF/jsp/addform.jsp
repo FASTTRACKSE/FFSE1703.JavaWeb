@@ -68,8 +68,8 @@
 			</div>
 			<div class="form-group">
 				<label>Hình Ảnh:</label> <input id="imgUrl" class="form-control"
-					type="file" name="file" /> <br> <img id="img" src="#"
-					alt="your image" width="100" height="150" />
+					type="file" name="file" /> <br> 
+					<img id="img" src="#" alt="your image" width="100" height="150" />
 				<form:errors path="hinhAnh" cssStyle="color: red" />
 
 			</div>

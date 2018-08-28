@@ -1,8 +1,14 @@
 package fasttrackse.controllers;
 
+import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 //import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +17,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import fasttrackse.beans.*;
 
@@ -25,7 +33,9 @@ public class EmpController {
 	}
 	
 	@RequestMapping(value="/save",method = RequestMethod.POST)
-	public ModelAndView save(@ModelAttribute("emp") Emp emp){
+	public ModelAndView save(@ModelAttribute("emp") Emp emp, @RequestParam("file") MultipartFile file,
+			HttpSession session)throws IllegalStateException, IOException {
+		emp.setAvatar(uploadFile(file, session));
 		dao.save(emp);
 		return new ModelAndView("redirect:/viewemp/1");
 	}
@@ -42,11 +52,6 @@ public class EmpController {
 		return new ModelAndView("viewemp", "listsv", listsv);
 	}
 	
-/*	@RequestMapping("/viewemp")
-	public ModelAndView viewemp(){
-		List<Emp> list=dao.getEmployees();
-		return new ModelAndView("viewemp","list",list);
-	}*/
 	
 	@RequestMapping(value="/editemp/{id}")
 	public ModelAndView edit(@PathVariable int id){
@@ -55,7 +60,9 @@ public class EmpController {
 	}
 	
 	@RequestMapping(value="/editsave",method = RequestMethod.POST)
-	public ModelAndView editsave(@ModelAttribute("emp") Emp emp){
+	public ModelAndView editsave(@ModelAttribute("emp") Emp emp, @RequestParam("file") MultipartFile file,
+			HttpSession session) throws IllegalStateException, IOException {
+		emp.setAvatar(uploadFile(file, session));
 		dao.update(emp);
 		return new ModelAndView("redirect:/viewemp/1");
 	}
@@ -65,5 +72,27 @@ public class EmpController {
 		dao.delete(id);
 		return new ModelAndView("redirect:/viewemp/1");
 	}
+	public String uploadFile(MultipartFile file, HttpSession session) throws IllegalStateException, IOException  {
+		Date date = new Date();
+		SimpleDateFormat fm = new SimpleDateFormat("hhmmssddMMyyyy");
+		String fileName = fm.format(date) + "_" + file.getOriginalFilename();
+		String path = session.getServletContext().getRealPath("/") + "\\resources\\upload\\";
+		if (fileName.isEmpty()) {
+			fileName = "default.png";
+		} else {
+			File dir = new File(path);
+			if (!dir.exists())
+				dir.mkdirs();
+			File fileSave = new File(dir, fileName);
+			file.transferTo(fileSave);
+		}
+		return fileName;
+	}
 
+	public boolean deleteFile(String fileName, HttpSession session) {
+		String path = session.getServletContext().getRealPath("/") + "\\resources\\upload\\";
+		File file = new File(path, fileName);
+		boolean result = file.delete();
+		return result;
+	}
 }

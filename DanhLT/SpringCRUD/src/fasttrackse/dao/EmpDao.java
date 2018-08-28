@@ -14,11 +14,11 @@ public void setTemplate(JdbcTemplate template) {
 	this.template = template;
 }
 public int save(Emp p){
-	String sql="insert into danhlt(masv,ten,tuoi,lop,diachi) values('"+p.getMasv()+"','"+p.getTen()+"','"+p.getTuoi()+"','"+p.getLop()+"','"+p.getDiachi()+"')";
+	String sql="insert into danhlt(masv,ten,tuoi,lop,diachi,avatar) values('"+p.getMasv()+"','"+p.getTen()+"','"+p.getTuoi()+"','"+p.getLop()+"','"+p.getDiachi()+"','"+p.getAvatar()+"')";
 	return template.update(sql);
 }
 public int update(Emp p){
-	String sql="update danhlt set masv='"+p.getMasv()+"', ten='"+p.getTen()+"',tuoi='"+p.getTuoi()+"', lop='"+p.getLop()+"',diachi='"+p.getDiachi()+"' where id="+p.getId()+"";
+	String sql="update danhlt set masv='"+p.getMasv()+"', ten='"+p.getTen()+"',tuoi='"+p.getTuoi()+"', lop='"+p.getLop()+"',diachi='"+p.getDiachi()+"',avatar='"+p.getAvatar()+"' where id="+p.getId()+"";
 	return template.update(sql);
 }
 public int delete(int id){
@@ -39,6 +39,7 @@ public List<Emp> getEmployees(){
 			e.setTuoi(rs.getInt(4));
 			e.setLop(rs.getString(5));
 			e.setDiachi(rs.getString(6));
+			e.setAvatar(rs.getString(7));
 			return e;
 		}
 	});
@@ -54,6 +55,7 @@ public List<Emp> getSVbyPage(int start,int total){
 			sv.setTuoi(rs.getInt("tuoi"));
 			sv.setDiachi(rs.getString("diachi"));
 			sv.setLop(rs.getString("lop"));
+			sv.setAvatar(rs.getString("avatar"));
 			return sv;
 		}
 	});

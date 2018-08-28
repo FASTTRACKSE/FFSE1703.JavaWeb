@@ -8,13 +8,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-<f:view>
 
 
 		<h1>Edit Student</h1>
-       <form:form method="POST" action="/SpringCRUD/editsave">  
+       <form:form method="POST" action="/SpringCRUD/editsave" enctype="multipart/form-data">  
       	<table >  
-      	<tr>
+      	<tr> 
       	<td></td>  
          <td><form:hidden  path="id" /></td>
          </tr> 
@@ -38,14 +37,22 @@
           <td>Địa Chỉ :</td>  
           <td><form:input path="diachi" /></td>
          </tr>
-         
          <tr>  
+          <tr>
+			<td>Ảnh cũ</td>
+			<td><img style="width: 100px" src="<c:url value="/resources/upload/${command.avatar }" />">
+			</td>
+				<tr>
+				<td>Ảnh:</td>
+				<td><input type="file" name="file" /></td>
+				<td><form:hidden path="avatar" /></td>
+			</tr>
+			<tr>
           <td> </td>  
-          <td><input type="submit" value="Edit Save" /></td>  
+          <td><input type="submit" value=" Save" /></td>  
          </tr>  
         </table>  
        </form:form>  
 
-</f:view>
 </body>
 </html>

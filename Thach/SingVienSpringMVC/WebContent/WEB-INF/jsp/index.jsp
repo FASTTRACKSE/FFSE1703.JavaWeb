@@ -37,6 +37,7 @@
 				<th>Số Điện Thoại</th>
 				<th>Địa Chỉ</th>
 				<th>Mã Lớp</th>
+				<th>Hình Ảnh</th>
 				<th>Chức Năng</th>
 			</tr>
 			<c:forEach var="x" items="${listSinhVien}">
@@ -48,6 +49,9 @@
 					<td>${x.sdt}</td>
 					<td>${x.diaChi}</td>
 					<td>${x.lop}</td>
+					<td><img alt="ảnh"
+						src="<c:url  value="/upload/${x.hinhAnh}"/>" width="70"
+						height="90"></td>
 					<td><a href="editSv/${x.maSv}"><button
 								class="btn btn-edit">Sửa</button></a> &nbsp; &nbsp; <a
 						href="deleteSv/${x.maSv}"><button class="btn btn-danger"

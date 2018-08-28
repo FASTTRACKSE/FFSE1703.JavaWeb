@@ -8,10 +8,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-<f:view>
+
 
 		<h1>Add Student</h1>
-       <form:form method="post" action="save">  
+       <form:form method="post" action="save" enctype="multipart/form-data">  
       	<table >  
       	  <tr>  
           <td>Mã Sinh Viên : </td> 
@@ -33,13 +33,13 @@
           <td>Địa Chỉ :</td>  
           <td><form:input path="diachi" /></td>
          </tr> 
+         
          <tr>  
-          <td> </td>  
+          <td><input type="file" name="file" ></td>
           <td><input type="submit" value="Save" /></td>  
          </tr>  
         </table>  
        </form:form>  
 
-</f:view>
 </body>
 </html>

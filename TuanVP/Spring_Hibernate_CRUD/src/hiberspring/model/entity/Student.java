@@ -4,28 +4,41 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "sinhvien_spring")
 public class Student {
-
+	
 	@Id
 	@Column(name = "MaSV", nullable = false)
+	@NotEmpty
 	private String maSV;
 
 	@Column(name = "TenSV", nullable = false)
+	@NotEmpty
 	private String tenSV;
 
 	@Column(name = "NamSinh", nullable = false)
+	@NotEmpty
+	@Min(value = 1990)
+	@Max(value = 2000)
 	private String namSinh;
 
 	@Column(name = "Email", nullable = false)
+	@NotEmpty
+	@Email
 	private String email;
 
 	@Column(name = "DiaChi", nullable = false)
+	@NotEmpty
 	private String diaChi;
 
 	@Column(name = "LopHoc", nullable = false)
+	@NotEmpty
 	private String lopHoc;
 
 	@Column(name = "Avatar")

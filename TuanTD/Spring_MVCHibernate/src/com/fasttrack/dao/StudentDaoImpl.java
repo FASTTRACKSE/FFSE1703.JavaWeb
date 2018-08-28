@@ -7,14 +7,12 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.fasttrack.model.Student;
 
 
 
-@Repository(value = "studentDaoImpl")
-@Transactional(rollbackFor = Exception.class)
+@Repository
 public class StudentDaoImpl implements StudentDao {
 	
 	@Autowired
@@ -29,13 +27,13 @@ public class StudentDaoImpl implements StudentDao {
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-
+	@Override
 	public void create(Student student) {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.save(student);
 		
 	}
-
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<Student> listStudent() {
 		Session session = sessionFactory.getCurrentSession();
@@ -43,13 +41,13 @@ public class StudentDaoImpl implements StudentDao {
 	
 		return list;
 	}
-
+	@Override
 	public Student findById(int id) {
 		Session session = this.sessionFactory.getCurrentSession();
 		Student u = (Student) session.get(Student.class, id);
 		return u;
 	}
-
+	@Override
 	public void delete(int id) {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.delete(findById(id));
@@ -63,7 +61,7 @@ public class StudentDaoImpl implements StudentDao {
 		tx.commit();
 		session.close();
 	}
-
+	@Override
 	@SuppressWarnings("unchecked")
 	public List<Student> findAllForPaging(int startPosition,int maxResult){
 		Session session = this.sessionFactory.getCurrentSession();

@@ -68,8 +68,8 @@
 				<form:errors path="lopHoc" cssClass="invalid-feedback d-block" />
 			</div>
 			<div class="form-group">
-				<label>Avatar</label> <input id="upload" type="file"
-					class="form-control-file" name="file">
+				<label>Avatar</label>
+				<input id="upload" type="file" class="form-control-file" name="file">
 			</div>
 			<div class="form-group">
 				<img id="image" style="width: 100px" alt="Image" src='#'>

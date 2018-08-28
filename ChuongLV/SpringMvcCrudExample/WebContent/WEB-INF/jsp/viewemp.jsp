@@ -13,22 +13,24 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<h1  color: blue">Sinh Viên</h1>
-	<table  border="2" width="80%" cellpadding="2">
+	<h1>Sinh Viên</h1>
+	<table  border="10" width="70%" cellpadding="2">
 		<tr style="color:blue;">
-		
+			<th>Id</th>
 			<th>Name</th>
 			<th>Address</th>
 			<th>Class</th>
+			<th>Image</th>
 			<th>Action</th>
 			
 		</tr>
 		<c:forEach var="emp" items="${list}">
 			<tr style="color:maroon;">
-		
+				<td>${emp.id}</td>
 				<td>${emp.name}</td>
 				<td>${emp.address}</td>
 				<td>${emp.lop}</td>
+				<td><img style="width: 100px" src="<c:url value="/resources/upload/${emp.image }" />">
 				<td ><a href="/SpringMvcCrudExample/editemp/${emp.id}">edit </a> <a>&ensp;&ensp;</a>  <a href="/SpringMvcCrudExample/deleteemp/${emp.id}">delete</a> </td>
 				
 			</tr>

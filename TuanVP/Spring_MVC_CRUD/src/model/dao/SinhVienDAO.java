@@ -21,7 +21,7 @@ public class SinhVienDAO {
 	}
 	
 	public List<SinhVien> getAllStudent(int start, int limit) {
-		String sql = "SELECT * FROM sinhvien_spring ORDER BY MaSV ASC LIMIT "+start+","+limit;
+		String sql = "SELECT * FROM sinhvien_spring LIMIT "+start+","+limit;
 		return template.query(sql, new ResultSetExtractor<List<SinhVien>>() {
 			@Override
 			public List<SinhVien> extractData(ResultSet rs) throws SQLException, DataAccessException {

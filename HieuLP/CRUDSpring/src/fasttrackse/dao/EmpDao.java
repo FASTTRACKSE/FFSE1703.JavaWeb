@@ -13,11 +13,11 @@ public void setTemplate(JdbcTemplate template) {
 	this.template = template;
 }
 public int save(Emp p){
-	String sql="insert into Emp99(ten,tuoi,lop,diachi) values('"+p.getTen()+"','"+p.getTuoi()+"','"+p.getLop()+"','"+p.getDiachi()+"')";
+	String sql="insert into Emp99(ten,tuoi,lop,diachi,avatar) values('"+p.getTen()+"','"+p.getTuoi()+"','"+p.getLop()+"','"+p.getDiachi()+"','"+p.getAvatar()+"')";
 	return template.update(sql);
 }
 public int update(Emp p){
-	String sql="update Emp99 set ten='"+p.getTen()+"', tuoi='"+p.getTuoi()+"', lop='"+p.getLop()+"', diachi='"+p.getDiachi()+"' where id="+p.getId()+"";
+	String sql="update Emp99 set ten='"+p.getTen()+"', tuoi='"+p.getTuoi()+"', lop='"+p.getLop()+"', diachi='"+p.getDiachi()+"', avatar='"+p.getAvatar()+"' where id="+p.getId()+"";
 	return template.update(sql);
 }
 public int delete(int id){
@@ -37,6 +37,8 @@ public List<Emp> getEmployees(int start,int total){
 			e.setTuoi(rs.getString(3));
 			e.setLop(rs.getString(4));
 			e.setDiachi(rs.getString(5));
+			e.setAvatar(rs.getString(6));
+			
 			return e;
 		}
 	});

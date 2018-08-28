@@ -21,6 +21,8 @@
 			<th>Email</th>
 			<th>Address</th>
 			<th>Class</th>
+			<th>Image</th>
+			<th>Description</th>
 			<th>Edit</th>
 			<th>Delete</th>
 		</tr>
@@ -32,6 +34,9 @@
 				<td>${sv.email}</td>
 				<td>${sv.dia_chi}</td>
 				<td>${sv.lop_hoc}</td>
+				<td><img alt="image"
+					src='<c:url value="/upload/${sv.avatar}"></c:url>'></td>
+				<td>${sv.description}</td>
 				<td><a href="/CRUD_Spring/editForm/${sv.ma_sv}">Edit</a></td>
 				<td><a href="/CRUD_Spring/deleteSV/${sv.ma_sv}">Delete</a></td>
 			</tr>
@@ -39,12 +44,19 @@
 	</table>
 	<br />
 	<center>
-	<c:if test="${pageid > 1}"><a href="/CRUD_Spring/viewSV/1">First</a></c:if>
-	<c:if test="${pageid > 1}"><a href="/CRUD_Spring/viewSV/${pageid-1}">${pageid-1}</a></c:if>
-	<a href="/CRUD_Spring/viewSV/${pageid}">${pageid}</a>
-	<c:if test="${pageid < pagetotal}"><a href="/CRUD_Spring/viewSV/${pageid+1}">${pageid+1}</a></c:if>
-	<c:if test="${pageid < pagetotal}"><a href="/CRUD_Spring/viewSV/${pagetotal}">Last</a></c:if>
-	
+		<c:if test="${pageid > 1}">
+			<a href="/CRUD_Spring/viewSV/1">First</a>
+		</c:if>
+		<c:if test="${pageid > 1}">
+			<a href="/CRUD_Spring/viewSV/${pageid-1}">${pageid-1}</a>
+		</c:if>
+		<a href="/CRUD_Spring/viewSV/${pageid}">${pageid}</a>
+		<c:if test="${pageid < pagetotal}">
+			<a href="/CRUD_Spring/viewSV/${pageid+1}">${pageid+1}</a>
+		</c:if>
+		<c:if test="${pageid < pagetotal}">
+			<a href="/CRUD_Spring/viewSV/${pagetotal}">Last</a>
+		</c:if>
 	</center>
 	<a href="/CRUD_Spring/svForm">Add New Student</a>
 	<a href="/CRUD_Spring/">Back Home</a>

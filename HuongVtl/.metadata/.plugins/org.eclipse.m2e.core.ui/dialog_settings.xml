@@ -5,11 +5,18 @@
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
 			<item value="sinhvien"/>
+			<item value="SinhVien"/>
+			<item value="hello"/>
 		</list>
 		<list key="name">
 		</list>
 		<list key="artifactId">
-			<item value="SinhVienJSF"/>
+			<item value="DaoTaoSping.java"/>
+			<item value="MangSachSping.java"/>
+			<item value="MangSachSping"/>
+			<item value="MangSach"/>
+			<item value="SpingHelloWold.java"/>
+			<item value="SpingMVCHello"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
@@ -34,6 +41,7 @@
 		</list>
 	</section>
 	<section name="MavenProjectWizardArchetypePage">
+		<item value="All Catalogs" key="catalog"/>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
 			<item value="[artifactId]-TRUNK"/>
@@ -58,6 +66,9 @@
 	</section>
 	<section name="MavenProjectWizardLocationPage">
 		<list key="location">
+			<item value="D:\FFSE1703.JavaWeb\HuongVtl\SpingHelloWold.java\src\main\resources\Beans.xml"/>
+			<item value="D:\FFSE1703.JavaWeb\HuongVtl\SpingMVCHello\src\main\java\bean\MainHello.java"/>
+			<item value="D:\FFSE1703.JavaWeb\HuongVtl\SinhVienJSF\src\main\java\sinhvien\service\SinhVienDB.java"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>

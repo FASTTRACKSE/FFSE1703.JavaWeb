@@ -1,12 +1,12 @@
 package controller;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -22,8 +22,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
-import model.dao.*;
-import model.entity.*;
+import model.dao.SinhVienDAO;
+import model.entity.SinhVien;
 
 @Controller
 @SessionAttributes("page")
@@ -68,8 +68,9 @@ public class ControllerSpring {
 
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
 	public String insertStudent(@ModelAttribute("command") @Valid SinhVien student, BindingResult result, Model model,
-			HttpServletRequest request,@RequestParam("file") MultipartFile file) throws SQLException, IllegalStateException, IOException {
-		student.setAvatar(uploadFile(file, request));
+			HttpSession session, @RequestParam("file") MultipartFile file)
+			throws SQLException, IllegalStateException, IOException {
+		student.setAvatar(uploadFile(file, session));
 		if (result.hasErrors()) {
 			return "StudentFormInsert";
 		}
@@ -92,12 +93,12 @@ public class ControllerSpring {
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String updateStudent(@ModelAttribute("command") @Valid SinhVien student, BindingResult result, Model model,
-			HttpServletRequest request, @RequestParam("file") MultipartFile file)
+			HttpSession session, @RequestParam("file") MultipartFile file)
 			throws SQLException, IllegalStateException, IOException {
 		if (student.avatar != null) {
-			if (file != null) {
-				deleteFile(student.avatar, request);
-				student.setAvatar(uploadFile(file, request));
+			if (!file.isEmpty()) {
+				deleteFile(student.avatar, session);
+				student.setAvatar(uploadFile(file, session));
 			}
 		}
 		if (result.hasErrors()) {
@@ -108,24 +109,23 @@ public class ControllerSpring {
 	}
 
 	@RequestMapping(value = "/delete/{maSV}")
-	public String deleteStudent(@PathVariable String maSV, Model model, HttpSession session, HttpServletRequest request) throws SQLException {
+	public String deleteStudent(@PathVariable String maSV, Model model, HttpSession session) throws SQLException {
 		SinhVien sv = sinhVienDAO.getStudent(maSV);
 		sinhVienDAO.deleteStudent(maSV);
-		deleteFile(sv.avatar, request);
+		deleteFile(sv.avatar, session);
 		if ((int) session.getAttribute("page") > totalPage(perPage)) {
 			model.addAttribute("page", totalPage(perPage));
 		}
 		return "redirect:/";
 	}
 
-	public String uploadFile(MultipartFile file, HttpServletRequest request) throws IllegalStateException, IOException {
+	public String uploadFile(MultipartFile file, HttpSession session) throws IllegalStateException, IOException {
 		Date date = new Date();
 		SimpleDateFormat fm = new SimpleDateFormat("hhmmssddMMyyyy");
-		String fileName = fm.format(date)+"_"+file.getOriginalFilename();
-		String path = request.getSession().getServletContext().getRealPath("/") + "\\resources\\upload\\";
-		if (fileName.isEmpty()) {
-			fileName = "default.png";
-		} else {
+		String fileName = "";
+		String path = session.getServletContext().getRealPath("/") + "\\resources\\upload\\";
+		if (!file.isEmpty()) {
+			fileName = fm.format(date) + "_" + file.getOriginalFilename();
 			File dir = new File(path);
 			if (!dir.exists())
 				dir.mkdirs();
@@ -134,10 +134,10 @@ public class ControllerSpring {
 		}
 		return fileName;
 	}
-	
-	public boolean deleteFile(String fileName,HttpServletRequest request) {
-		String path = request.getSession().getServletContext().getRealPath("/") + "\\resources\\upload\\";
-		File file = new File(path , fileName);
+
+	public boolean deleteFile(String fileName, HttpSession session) {
+		String path = session.getServletContext().getRealPath("/") + "\\resources\\upload\\";
+		File file = new File(path, fileName);
 		boolean result = file.delete();
 		return result;
 	}

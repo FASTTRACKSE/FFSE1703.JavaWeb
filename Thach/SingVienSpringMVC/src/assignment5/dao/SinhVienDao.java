@@ -21,6 +21,9 @@ public class SinhVienDao {
 	}
 	public List<SinhVien> listSinhVien(int start, int end){  
 	    return template.query("select * from quanlysinhvien2 limit ?,?",new Object[]{start, end} ,new RowMapper<SinhVien>(){  
+	        /* (non-Javadoc)
+	         * @see org.springframework.jdbc.core.RowMapper#mapRow(java.sql.ResultSet, int)
+	         */
 	        public SinhVien mapRow(ResultSet rs, int row) throws SQLException {  
 	            SinhVien sv=new SinhVien();   
 	            sv.setMaSv(rs.getString(2));  
@@ -30,6 +33,7 @@ public class SinhVienDao {
 	            sv.setSdt(rs.getString(6)); 
 	            sv.setDiaChi(rs.getString(7));
 	            sv.setLop(rs.getString(8)); 
+	            sv.setHinhAnh(rs.getString(9));
 	            return sv;  
 	        }  
 	    });  
@@ -53,7 +57,7 @@ public class SinhVienDao {
 	}
 	
 	public void update(final SinhVien sv) {
-		String sql="update quanlysinhvien2 set ten= ?, namsinh= ?, email= ?, sdt= ?, diachi= ?, lop= ? where ma_sv= ?";
+		String sql="update quanlysinhvien2 set ten= ?, namsinh= ?, email= ?, sdt= ?, diachi= ?, lop= ?, hinhanh= ? where ma_sv= ?";
 		template.execute(sql, new PreparedStatementCallback<Boolean>() {
 
 			@Override
@@ -64,8 +68,8 @@ public class SinhVienDao {
 				ps.setString(4, sv.getSdt());
 				ps.setString(5, sv.getDiaChi());
 				ps.setString(6, sv.getLop());
-				ps.setString(7, sv.getMaSv());
-				System.out.println("abx" + sv.getMaSv());
+				ps.setString(7, sv.getHinhAnh());
+				ps.setString(8, sv.getMaSv());
 //				System.out.println("ma lop" + sv.getMaLop());
 				return ps.execute(); // bollean
 			}
@@ -73,7 +77,7 @@ public class SinhVienDao {
 	}
 	
 	public void insert(SinhVien sv) {
-		String sql="insert into quanlysinhvien2 (ma_sv, ten, namsinh, email, sdt, diachi, lop) value (?, ?, ?, ?, ?, ?, ?)";
+		String sql="insert into quanlysinhvien2 (ma_sv, ten, namsinh, email, sdt, diachi, lop, hinhanh) value (?, ?, ?, ?, ?, ?, ?, ?)";
 		template.execute(sql, new PreparedStatementCallback<Boolean>() {
 
 			@Override
@@ -85,9 +89,17 @@ public class SinhVienDao {
 				ps.setString(5, sv.getSdt());
 				ps.setString(6, sv.getDiaChi());
 				ps.setString(7, sv.getLop());
+				ps.setString(8, sv.getHinhAnh());
 				return ps.execute(); // bollean
 			}
 		});
+	}
+	
+	public int checkExistMaSv(String maSv) {
+		String sql = "select count(*) from quanlysinhvien2 WHERE ma_sv = ?";
+
+        int count = template.queryForObject(sql, new Object[] { maSv }, Integer.class);
+        return count;
 	}
 	
 	public double totalRecord() {

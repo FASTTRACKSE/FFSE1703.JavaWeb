@@ -64,6 +64,7 @@ public class SinhVienDaoIPM implements SinhVienDao {
 		session.close();
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public List<Student> findAllForPaging(int startPosition,int maxResult){
 		Session session = this.sessionFactory.getCurrentSession();
 		Query q = session.createQuery("from Student");

@@ -43,7 +43,7 @@
 			<tbody>
 				<c:forEach var="sv" items="${listStudent}">
 					<tr>
-						<th scope="row">${sv.Masv}</th>
+						<th scope="row">${sv.masv}</th>
 						<td>${sv.name}</td>
 						<td>${sv.age}</td>
 						<td>${sv.address}</td>

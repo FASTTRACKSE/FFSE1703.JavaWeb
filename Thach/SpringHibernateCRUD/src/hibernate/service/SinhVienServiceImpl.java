@@ -52,9 +52,8 @@ public class SinhVienServiceImpl implements SinhVienService{
 
 	@Override
 	@Transactional
-	public int checkExistMaSv(String maSv) {
-		// TODO Auto-generated method stub
-		return 0;
+	public boolean checkExistMaSv(String maSv) {
+		return sinhvienDao.checkExistMaSv(maSv);
 	}
 
 	@Override

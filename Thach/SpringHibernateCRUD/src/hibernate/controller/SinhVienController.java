@@ -79,10 +79,11 @@ public class SinhVienController {
 	@RequestMapping(value = "/addSave", method = RequestMethod.POST)
 	public ModelAndView addSave(@ModelAttribute("command") @Valid SinhVien sv, BindingResult result,
 			@RequestParam("file") CommonsMultipartFile file, HttpSession session) throws IOException {
+		boolean check = sinhvienService.checkExistMaSv(sv.getMaSv());
 		if (result.hasErrors()) {
 			return new ModelAndView("addSv");
 		}
-
+		if(check == true) {
 		ServletContext context = session.getServletContext();
 		String path = context.getRealPath(UPLOAD_DIRECTORY);
 		String filename = file.getOriginalFilename();
@@ -96,7 +97,10 @@ public class SinhVienController {
 		stream.close();
 		sinhvienService.insert(sv);
 		return new ModelAndView("redirect:/"); // mặc định trở về trang index. đã đc định nghĩa ở web.xml
-
+		} else {
+			String message = "Mã sinh viên đã tồn tại";
+			return new ModelAndView("addSv", "mess", message);
+		}
 	}
 
 	@RequestMapping(value = "/editsave", method = RequestMethod.POST)
@@ -138,7 +142,7 @@ public class SinhVienController {
 		if (pageIndex > (int) totalPage) {
 			pageIndex = (int) totalPage;
 		}
-		return "redirect:/";
+		return "redirect:/"+pageIndex;
 	}
 
 }

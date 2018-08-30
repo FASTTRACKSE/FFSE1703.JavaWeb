@@ -6,6 +6,7 @@ private String ten;
 private String tuoi;
 private String lop;
 private String diachi;
+public String avatar;
 
 public String getTen() {
 	return ten;
@@ -37,6 +38,12 @@ public int getId() {
 public void setId(int id) {
 	this.id = id;
 }
+public String getAvatar() {
+	return avatar;
+}
 
+public void setAvatar(String avatar) {
+	this.avatar = avatar;
+}
 
 }

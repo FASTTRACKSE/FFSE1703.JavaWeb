@@ -25,31 +25,20 @@ body {
 
 	<h1>꧁༺🅴🅳🅸🆃 🅴🅼🅿🅻🅾🆈🅴🅴༻꧂</h1>
 
-	<form:form method="POST" action="/SpringCRUD/editsave" enctype="multipart/form-data" >
+	<form:form method="POST" action="/Crud_spring_and_hibernate/update" modelAttribute="command">
 		<form:hidden path="id" />
 		<div class="form-group">
-			<form:input path="name" cssClass="form-control" placeholder="NAME"></form:input>
+			<form:input path="name" cssClass="form-control" placeholder="NAME" ></form:input>
 		</div>
 		<div class="form-group">
-			<form:input path="address" cssClass="form-control"
-				placeholder="ADDRESS"></form:input>
+			<form:input path="email" cssClass="form-control"
+				placeholder="email"></form:input>
 		</div>
 		<div class="form-group">
-			<form:input path="email" cssClass="form-control" placeholder="EMAIL"></form:input>
-		</div>>
-		<div class="form-group">
-				<label style="color: white;">Avatar</label>
-				<form:input id="upload" type="file" path="myFile" />
-		</div>
-		<div class="form-group">
-					<label style="color: white;">Old </label> 
-					<img  style="width: 310px" src='<c:url value="/image/${command.nameFile}"></c:url>'>
-					<form:hidden path="nameFile" />
-		</div>
-
-		    
+			<form:input path="address" cssClass="form-control" placeholder="address"></form:input>
+		</div> 
 		    <button type="submit" class="btn btn-primary">Submit</button>
-			<button><a href="/SpringCRUD/">HOME</a></button>
+			<a href="/Crud_spring_and_hibernate/">HOME</a>
 		
 	</form:form>
 </body>

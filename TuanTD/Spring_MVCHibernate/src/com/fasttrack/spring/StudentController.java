@@ -82,6 +82,11 @@ public class StudentController {
 		model.addAttribute("student", studentService.findById(id));
 		return "edit";
 	}
+	@RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
+	public String view(@PathVariable("id") int id, Model model) {
+		model.addAttribute("student", studentService.findById(id));
+		return "view";
+	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String edit(Model model, HttpServletRequest request, MultipartFile file,

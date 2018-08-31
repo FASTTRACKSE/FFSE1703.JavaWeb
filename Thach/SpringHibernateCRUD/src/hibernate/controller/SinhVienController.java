@@ -34,7 +34,6 @@ public class SinhVienController {
 	public static double totalRecord;
 	public static double recordPerPage;
 
-	public static SinhVien getSv = new SinhVien();
 
 	// đường dẫn upload file
 	private static final String UPLOAD_DIRECTORY = "/image";
@@ -106,7 +105,7 @@ public class SinhVienController {
 	@RequestMapping(value = "/editsave", method = RequestMethod.POST)
 	public ModelAndView editSave(@ModelAttribute("command") @Valid SinhVien sv, BindingResult result,
 			@RequestParam("file") CommonsMultipartFile file, HttpSession session) throws IOException {
-		sv.setHinhAnh(getSv.getHinhAnh()); // thuộc tính hình sẽ trả về null -> phải set dữ liệu
+		sv.setHinhAnh(sv.getHinhAnh()); // thuộc tính hình sẽ trả về null -> phải set dữ liệu
 		if (result.hasErrors()) {
 			return new ModelAndView("addSv");
 		}

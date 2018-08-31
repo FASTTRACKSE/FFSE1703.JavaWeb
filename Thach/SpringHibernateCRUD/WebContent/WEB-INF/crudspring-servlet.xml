@@ -79,7 +79,7 @@
 
 	<!-- i18n -->
 	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource" >
-		<property name="basename" value="resources/i18n/messages"></property>
+		<property name="basename" value="WEB-INF/language/messages"></property>
 		<property name="defaultEncoding" value="UTF-8"></property>
 	</bean>
 	<mvc:interceptors>

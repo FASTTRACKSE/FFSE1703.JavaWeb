@@ -17,24 +17,24 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<a href="?language=en_US">English</a>|
-	<a href="?language=vi">Viet Nam</a>|
+	<a href="?language=en_US">English</a>
+	<a href="?language=vi">Viet Nam</a>
 	
-	<h1 style="text-align: center;"> <spring:message code="title" /></h1>
+	<h1 style="text-align: center;"> <spring:message code="title_list" /></h1>
 	<div class="container">
 		<a style="background: green" href="showForm" class="btn btn-info"
-			role="button">Thêm Sv</a>
+			role="button"><spring:message code="add" /></a>
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th>Mã Sv</th>
+					<th><spring:message code="code" /></th>
 					<th> <spring:message code="full_name" /></th>
-					<th>Năm sinh</th>
-					<th>email</th>
-					<th>Địa chỉ</th>
-					<th>Lớp</th>
-					<th>Ảnh đại diện</th>
-					<th>Chức năng</th>
+					<th><spring:message code="birth_year" /></th>
+					<th><spring:message code="email" /></th>
+					<th><spring:message code="address" /></th>
+					<th><spring:message code="class" /></th>
+					<th><spring:message code="avatar" /></th>
+					<th><spring:message code="action" /></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -54,7 +54,7 @@
 						<td><a href="editStudent/${st.id}" title=""
 							class="btn btn-primary"> <i
 								class="glyphicon glyphicon-pencil"></i></a> <a
-							onclick=" if(!confirm('Bạn muốn xóa sinh viên??')){return false;}"
+							onclick=" if(!confirm('<spring:message code="delete" />??')){return false;}"
 							href="delete/${st.id}" title="" class="btn btn-danger"> <i
 								class="glyphicon glyphicon-remove"></i></a>
 					</tr>
@@ -77,7 +77,5 @@
 				</c:if>
 			</ul>
 		</nav>
-	<tag:paginate step="${step}" offset="${offset}" count="${count}" uri="/Crud_Spring_and_Hibernate" next="&raquo;" previous="&laquo;"/>
-		<tag:paginate  step="${step}"  offset="${offset}" count="${count}"
-			uri="/Crud_Spring_and_Hibernate" next="&raquo;" previous="&laquo;" />
+	
 	</div>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -24,10 +25,10 @@
 </head>
 <body>
 	<div class="container">
-		<h1 style="text-align: center;">Thêm sinh viên</h1>
+		<h1 style="text-align: center;"><spring:message code="title_add" /></h1>
 		<form:form method="post" action="inserts" enctype="multipart/form-data">
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="email">Name:</label>
+				<label class="control-label col-sm-2" for="email"><spring:message code="full_name" />:</label>
 				<div class="col-sm-10">
 					<form:errors path="fullName" cssClass="error" />
 					<form:input path="fullName" class="form-control" />
@@ -36,28 +37,28 @@
 			</div>
 
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="pwd">BirthYear:</label>
+				<label class="control-label col-sm-2" for="pwd"><spring:message code="birth_year" />:</label>
 				<div class="col-sm-10">
 					<form:errors path="birthYear" cssClass="error" />
 					<form:input path="birthYear" class="form-control" id="email" />
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="email">Email:</label>
+				<label class="control-label col-sm-2" for="email"><spring:message code="email" />:</label>
 				<div class="col-sm-10">
 					<form:errors path="email" cssClass="error" />
 					<form:input path="email" class="form-control" id="email" />
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="pwd">Address:</label>
+				<label class="control-label col-sm-2" for="pwd"><spring:message code="address" />:</label>
 				<div class="col-sm-10">
 					<form:errors path="address" cssClass="error" />
 					<form:input path="address" class="form-control" id="email" />
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="email">Class:</label>
+				<label class="control-label col-sm-2" for="email"><spring:message code="class" />:</label>
 				<div class="col-sm-10">
 					<form:errors path="classSv" cssClass="error" />
 					<form:select path="classSv">
@@ -69,7 +70,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="pwd">Avatars :</label>
+				<label class="control-label col-sm-2" for="pwd"><spring:message code="avatar" /> :</label>
 				<div class="col-sm-10">
 					<form:errors path="avatar" cssClass="error" />
 					Chọn hình ảnh: <input id="imgInp" name="files" type="file" />
@@ -80,9 +81,11 @@
 
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
-					<input type="submit" value="Save" />
+					<input type="submit" value="<spring:message code="save" />" />
 				</div>
 			</div>
+			<a style="background: green" href="StudentList" class="btn btn-info"
+			role="button"><spring:message code="back" /></a>
 		</form:form>
 	</div>
 	<script type="text/javascript">

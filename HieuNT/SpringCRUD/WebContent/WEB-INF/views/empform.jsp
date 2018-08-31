@@ -35,26 +35,24 @@ body {
     </div>
     Adress: <form:input path="address"/> <form:errors path="address" cssClass="error"/> <br/><br/>
     Email: <form:input path="email"/> <form:errors path="email" cssClass="error"/>  --%>
-   <div class="form-group">
+  <div class="form-group">
     <label for="exampleInputEmail1" style="color: white;">Name</label>
-    <form:input path="name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"></form:input>
+    <form:input path="name" type="text" class="form-control"  aria-describedby="emailHelp" placeholder="Enter email"></form:input>
      <form:errors path="name" cssClass="error" />
   </div>
-     <div class="form-group">
+  <div class="form-group">
     <label for="exampleInputEmail1" style="color: white;">Address</label>
-    
-    <form:input  path="address" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"/>
+    <form:input  path="address" type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter email"/>
   <form:errors path="address" cssClass="error" />
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1" style="color: white;">Mail</label>
-    <form:input  path="mail" type="text" class="form-control" id="exampleInputPassword1" placeholder="Password"></form:input>
-  <form:errors path="mail" cssClass="error" />
+    <form:input  path="email" type="text" class="form-control" id="mail" placeholder="Password"></form:input>
+   <form:errors path="email" cssClass="error" />
   </div>
 		<div class="form-group">
-			<%-- 			<form:label path="myFile">Select a file to upload</form:label> --%>
 			<form:input type="file" path="myFile" />
-		</div>
+  </div>
 		<button type="submit" class="btn btn-primary">Submit</button>
 	<button  ><a href="/SpringCRUD/">HOME</a></button>
 

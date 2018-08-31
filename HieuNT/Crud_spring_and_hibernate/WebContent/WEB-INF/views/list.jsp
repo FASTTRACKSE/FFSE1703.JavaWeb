@@ -19,13 +19,14 @@
 <title>View List</title>
 </head>
 <style>
-
-
+body {
+	background-color:black;
+}
 .color {
 	background-color: #F08080
 }
 </style>
-<body background="<c:url value='/resources/image/jisoo-1.jpg' />">
+<body>
 
 
 	<h1 style="color: pink;">꧁༺🅴🅼🅿🅻🅾🆈🅴🅴🆂 🅻🅸🆂🆃༻꧂</h1>
@@ -33,48 +34,49 @@
 		<tr class="color">
 			<th>Id</th>
 			<th>Name</th>
-			<th>Address</th>
 			<th>Email</th>
+			<th>Address</th>
 			<th>Avatar</th>
 			<th>Edit</th>
 			<th>Delete</th>
 		</tr>
-		<c:forEach var="emp" items="${list}">
+		<c:forEach var="entities" items="${list}">
 			<tr class="color">
-				<td>${emp.id}</td>
-				<td>${emp.name}</td>
-				<td>${emp.address}</td>
-				<td>${emp.email}</td>
+				<td>${entities.id}</td>
+				<td>${entities.name}</td>
+				<td>${entities.email}</td>
+				<td>${entities.address}</td>
 				<td><img alt="image" style="width: 310px"
-					src='<c:url value="/image/${emp.nameFile}"></c:url>'></td>
-				<td><a href="/SpringCRUD/editemp/${emp.id}"
+					src='<c:url value="/image/${entities.nameFile}"></c:url>'></td>
+				<td><a href="/Crud_spring_and_hibernate/getID/${entities.id}"
 					class="btn btn-primary">Edit</a></td>
-				<td><a href="/SpringCRUD/deleteemp/${emp.id}"
+				<td><a href="/Crud_spring_and_hibernate/delete/${entities.id}"
 					class="btn btn-primary"
 					onclick="if (!confirm('Are you sure you want to delete this student?')) return false">Delete</a></td>
 			</tr>
 		</c:forEach>
-	</table>
-	<center>
-		<c:if test="${pageid>1}">
-			<a href="/SpringCRUD/viewemp/1">FIRST</a>
+			<center>
+		<c:if test="${page >1}">
+			<a href="/Crud_spring_and_hibernate/list/1">FIRST</a>
 		</c:if>
 
-		<c:if test="${pageid > 1}">
-			<a href="/SpringCRUD/viewemp/${pageid-1}">${pageid-1}</a>
+		<c:if test="${page > 1}">
+			<a href="/Crud_spring_and_hibernate/list/${page-1}">${page-1}</a>
 		</c:if>
 
-		<a href="/SpringCRUD/viewemp/${pageid}">${pageid}</a>
+		<a href="/Crud_spring_and_hibernate/list/${page}">${page}</a>
 
-		<c:if test="${pageid < pagetotal}">
-			<a href="/SpringCRUD/viewemp/${pageid+1}">${pageid+1}</a>
+		<c:if test="${page < total}">
+			<a href="/Crud_spring_and_hibernate/list/${page+1}">${page+1}</a>
 		</c:if>
 
-		<c:if test="${pageid<pagetotal}">
-			<a href="/SpringCRUD/viewemp/${pagetotal}">LAST</a>
+		<c:if test="${page < total}">
+			<a href="/Crud_spring_and_hibernate/list/${total}">LAST</a>
 		</c:if>
 	</center>
+	</table>
+
 	<br />
-	<a href="/SpringCRUD/empform">꧁༺🅰🅳🅳 🅽🅴🆆 🅴🅼🅿🅻🅾🆈🅴🅴༻꧂</a>
+	<a href="/Crud_spring_and_hibernate/showForm">꧁༺🅰🅳🅳 🅽🅴🆆 🅴🅼🅿🅻🅾🆈🅴🅴༻꧂</a>
 </body>
 </html>

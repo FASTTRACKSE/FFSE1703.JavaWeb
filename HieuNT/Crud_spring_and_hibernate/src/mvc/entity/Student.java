@@ -1,28 +1,42 @@
-package Spring.entity;
+package mvc.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 import org.hibernate.validator.constraints.Length;
-import org.springframework.web.multipart.MultipartFile;
-public class Emp {
+
+@Entity
+@Table(name = "Hibernate")
+public class Student {
+
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
 	@Length(min = 5, max = 10)
 	@NotBlank(message = "Phải nhập thông tin")
+	@Column(name = "name")
 	private String name;
-	
-	@NotBlank(message = "Phải nhập thông tin")
-	private String address;
-	
+
 	@Email(message = "Email chưa đúng")
 	@NotBlank(message = "Phải nhập thông tin")
 	private String email;
 
-    private String nameFile;
+	@Column(name = "address")
+	@NotBlank(message ="Phải nhập thông tin")
+	private String address;
+	 
+	@Column(name = "nameFile")
+	private String nameFile;
 	
-    private MultipartFile myFile;
-
-	public String getNameFile() {
+    public String getNameFile() {
 		return nameFile;
 	}
 
@@ -30,16 +44,8 @@ public class Emp {
 		this.nameFile = nameFile;
 	}
 
-	public MultipartFile getMyFile() {
-		return myFile;
-	}
-
-	public void setMyFile(MultipartFile myFile) {
-		this.myFile = myFile;
-	}
-
-	public Emp() {
-
+	public Student() {
+		super();
 	}
 
 	public int getId() {
@@ -58,6 +64,14 @@ public class Emp {
 		this.name = name;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public String getAddress() {
 		return address;
 	}
@@ -66,11 +80,4 @@ public class Emp {
 		this.address = address;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
 }

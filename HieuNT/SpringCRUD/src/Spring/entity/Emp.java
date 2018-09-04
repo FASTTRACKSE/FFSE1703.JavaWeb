@@ -5,7 +5,6 @@ import javax.validation.constraints.NotBlank;
 
 import org.hibernate.validator.constraints.Length;
 import org.springframework.web.multipart.MultipartFile;
-
 public class Emp {
 	private int id;
 	@Length(min = 5, max = 10)

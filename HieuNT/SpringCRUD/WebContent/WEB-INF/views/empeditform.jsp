@@ -25,7 +25,7 @@ body {
 
 	<h1>꧁༺🅴🅳🅸🆃 🅴🅼🅿🅻🅾🆈🅴🅴༻꧂</h1>
 
-	<form:form method="POST" action="/SpringCRUD/editsave">
+	<form:form method="POST" action="/SpringCRUD/editsave" enctype="multipart/form-data" >
 		<form:hidden path="id" />
 		<div class="form-group">
 			<form:input path="name" cssClass="form-control" placeholder="NAME"></form:input>
@@ -36,8 +36,19 @@ body {
 		</div>
 		<div class="form-group">
 			<form:input path="email" cssClass="form-control" placeholder="EMAIL"></form:input>
+		</div>>
+		<div class="form-group">
+				<label style="color: white;">Avatar</label>
+				<form:input id="upload" type="file" path="myFile" />
 		</div>
-		<button type="submit" class="btn btn-primary">Submit</button>
+		<div class="form-group">
+					<label style="color: white;">Old </label> 
+					<img  style="width: 310px" src='<c:url value="/image/${command.nameFile}"></c:url>'>
+					<form:hidden path="nameFile" />
+		</div>
+
+		    
+		    <button type="submit" class="btn btn-primary">Submit</button>
 			<button><a href="/SpringCRUD/">HOME</a></button>
 		
 	</form:form>

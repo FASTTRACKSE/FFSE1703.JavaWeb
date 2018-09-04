@@ -150,12 +150,12 @@ public class SinhVienController {
 	@RequestMapping("deleteSv/{id}")
 	public ModelAndView delete(@PathVariable int id, HttpSession session) {
 		// xóa hình ảnh
-//		getSv = sinhVienService.getEdit(maSv);
-//		ServletContext context = session.getServletContext();
-//		String path = context.getRealPath(UPLOAD_DIRECTORY);
-//		String filename = getSv.getHinhAnh();
-//		File file = new File(path + File.separator + filename);
-//		file.delete();
+		getSv = sinhVienService.getEdit(id);
+		ServletContext context = session.getServletContext();
+		String path = context.getRealPath(UPLOAD_DIRECTORY);
+		String filename = getSv.getHinhAnh();
+		File file = new File(path + File.separator + filename);
+		file.delete();
 		// xóa thông tin sinh viên
 		sinhVienService.delete(id);
 		totalRecord = sinhVienService.totalRecord();

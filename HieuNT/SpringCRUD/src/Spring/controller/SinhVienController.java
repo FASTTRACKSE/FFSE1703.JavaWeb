@@ -53,13 +53,31 @@ public class SinhVienController {
 	}
 
 	@RequestMapping(value = "/editemp/{id}")
-	public ModelAndView edit(@PathVariable int id) {
+	public ModelAndView edit(@PathVariable int id,Model model) {
 		Emp emp = dao.getEmpById(id);
-		return new ModelAndView("empeditform", "command", emp);
+		return new ModelAndView("empeditform", "command", emp); // "command" mặc định của spring frame work
 	}
 
 	@RequestMapping(value = "/editsave", method = RequestMethod.POST)
-	public ModelAndView editsave(@ModelAttribute("command") Emp emp) {
+	public ModelAndView editsave(@ModelAttribute("command") Emp emp , Model model,HttpServletRequest request) {
+		if (!emp.getMyFile().isEmpty()) {
+			String nameFile = emp.getMyFile().getOriginalFilename();
+			String dirFile = request.getServletContext().getRealPath("image");
+			File fileDir = new File(dirFile);
+			if (!fileDir.exists()) {
+				fileDir.mkdir();
+			}
+			try {
+				emp.getMyFile().transferTo(new File(fileDir + File.separator + nameFile));
+				System.out.println("Upload file thành công!");
+				System.out.println(nameFile);
+				model.addAttribute("filename", nameFile);
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+				System.out.println("Upload file thất bại!");
+			}
+			emp.setNameFile(nameFile);
+		}
 		dao.update(emp);
 		return new ModelAndView("redirect:/");
 	}
@@ -67,7 +85,7 @@ public class SinhVienController {
 	@RequestMapping(value = "/deleteemp/{id}", method = RequestMethod.GET)
 	public ModelAndView delete(@PathVariable int id) {
 		dao.delete(id);
-		return new ModelAndView("redirect:/");
+		return new ModelAndView("redirect:/");// mặc định trở về trang index. đã đc định nghĩa ở web.xml
 	}
 
 	@RequestMapping("/empform")

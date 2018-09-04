@@ -4,7 +4,6 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
 
 import org.springframework.stereotype.Component;
 
@@ -36,12 +35,14 @@ public class SinhVien {
 	
 	private String lop;
 	
+	private String hinhAnh;
+	
 
 	public SinhVien() {
 	}
 
 	public SinhVien(int id, String maSv, String ten, String namSinh, String email, String sdt,
-			String diaChi, String lop) {
+			String diaChi, String lop, String hinhAnh) {
 		super();
 		this.id = id;
 		this.ten = maSv;
@@ -51,6 +52,7 @@ public class SinhVien {
 		this.sdt = sdt;
 		this.diaChi = diaChi;
 		this.lop = lop;
+		this.hinhAnh = hinhAnh;
 	}
 
 	public int getId() {
@@ -117,5 +119,11 @@ public class SinhVien {
 		this.lop = lop;
 	}
 
-	
+	public String getHinhAnh() {
+		return hinhAnh;
+	}
+
+	public void setHinhAnh(String hinhAnh) {
+		this.hinhAnh = hinhAnh;
+	}
 }

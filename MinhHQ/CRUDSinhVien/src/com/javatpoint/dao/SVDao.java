@@ -17,16 +17,16 @@ public class SVDao {
 	}
 
 	public int save(SinhVien p) {
-		String sql = "INSERT INTO sinhh_vienn( maSV, tenSV, namSinh, Email, diaChi, lopHoc) VALUES ('" + p.getMaSV()
+		String sql = "INSERT INTO sinhh_vienn( maSV, tenSV, namSinh, Email, diaChi, lopHoc, avatar) VALUES ('" + p.getMaSV()
 				+ "','" + p.getTenSV() + "'," + p.getNamSinh() + ",'" + p.getEmail() + "','" + p.getDiaChi() + "','"
-				+ p.getLopHoc() + "')";
+				+ p.getLopHoc() + "','" + p.getAvatar() +"')";
 		return template.update(sql);
 	}
 
 	public int update(SinhVien p) {
 		String sql = "UPDATE sinhh_vienn SET maSV='" + p.getMaSV() + "',tenSV='" + p.getTenSV() + "',namSinh="
 				+ p.getNamSinh() + ",Email='" + p.getEmail() + "',diaChi='" + p.getDiaChi() + "',lopHoc='"
-				+ p.getLopHoc() + "' WHERE id=" + p.getId() + "";
+				+ p.getLopHoc() + "',avatar='"+ p.getAvatar() +"' WHERE id=" + p.getId() + "";
 		return template.update(sql);
 	}
 
@@ -51,6 +51,7 @@ public class SVDao {
 				e.setEmail(rs.getString(5));
 				e.setDiaChi(rs.getString(6));
 				e.setLopHoc(rs.getString(7));
+				e.setAvatar(rs.getString(8));
 				return e;
 			}
 		});
@@ -68,6 +69,7 @@ public class SVDao {
 				e.setEmail(rs.getString(5));
 				e.setDiaChi(rs.getString(6));
 				e.setLopHoc(rs.getString(7));
+				e.setAvatar(rs.getString(8));
 				return e;
 			}
 		});

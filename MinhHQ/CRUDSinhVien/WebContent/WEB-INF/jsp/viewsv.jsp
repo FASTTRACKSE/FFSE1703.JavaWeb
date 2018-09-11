@@ -5,13 +5,19 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Student List</title>
+<meta http-equiv="Content-Type" content="text/html; charset=TF-8">
+<title >Sinh Viên</title>
+<link rel="stylesheet"
+	href="<c:url value="/resources/css/bootstrap.min.css" />">
+<script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 </head>
+
 <body>
-	<h1>Student List</h1>
-	<table border="2" width="70%" cellpadding="2">
-		<tr>
+	<h1 style="margin-left: 600px; ">Sinh Viên</h1>
+	<table style="width: 60% ; margin-left: 300px" class="table table-bordered">
+		<tr >
 			<th>Id</th>
 			<th>MaSV</th>
 			<th>TenSV</th>
@@ -19,6 +25,7 @@
 			<th>Email</th>
 			<th>DiaChi</th>
 			<th>LopHoc</th>
+			<th>Avatar</th>
 			<th>Edit</th>
 			<th>Delete</th>
 		</tr>
@@ -31,6 +38,7 @@
 				<td>${emp.email}</td>
 				<td>${emp.diaChi}</td>
 				<td>${emp.lopHoc}</td>
+				<td><img style="width: 100px" src="<c:url value="/resources/upload/${emp.avatar }" />">
 				<td><a href="/CRUDSinhVien/editemp/${emp.id}">Edit</a></td>
 				<td><a href="/CRUDSinhVien/deleteemp/${emp.id}">Delete</a></td>
 			</tr>
@@ -44,7 +52,7 @@
 	<c:if test="${pageid < pagetotal}"><a href="/CRUDSinhVien/viewsv/${pageid+1}">${pageid+1}</a></c:if>
 	<c:if test="${pageid < pagetotal}"><a href="/CRUDSinhVien/viewsv/${pagetotal}">Last</a></c:if>	
 	</center>
-	<a href="/CRUDSinhVien/empform">Add New Student</a>
-	<a href="/CRUDSinhVien/">Back Home</a>
+	<a style="margin-left: 200px" class="btn btn-success" href="/CRUDSinhVien/empform">Add New Student</a>
+	<a style="margin-left: 200px" class="btn btn-success" href="/CRUDSinhVien/">Back Home</a>
 </body>
 </html>

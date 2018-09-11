@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,12 +15,15 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-	
+
 </head>
 <body>
 	<div class="container">
+	Language : 
+			<a href="?language=en">English</a> 
+			<a href="?language=vi_VN">Viet Nam</a>|
 		<div style="text-align: center;">
-			<h1>Danh sách sinh viên</h1>
+			<h1><spring:message code="anh" /></h1>
 		</div>
 		<div>
 			<h3>
@@ -50,39 +54,44 @@
 						<td>${sv.email}</td>
 						<td>${sv.lop}</td>
 						<td>${sv.author}</td>
-						<td><img style="width: 100px; height: 100px;" src='<c:url value = "/resources/upload/${sv.avatar }" ></c:url>' alt="image"></td>
-					<td><a href="edit/${sv.id }"><button
-							class="btn btn-success">Edit</button></a> <a
-					href="delete/${sv.id }"><button class="btn btn-danger"
-					onclick="return confirm('Bạn có muốn xóa sinh viên này?');">Delete</button></a></td>
+						<td><img style="width: 100px; height: 100px;"
+							src='<c:url value = "/resources/upload/${sv.avatar }" ></c:url>'
+							alt="image"></td>
+						<td><a href="edit/${sv.id }"><button
+									class="btn btn-success">Edit</button></a><a href="delete/${sv.id }"><button
+									class="btn btn-danger"
+									onclick="return confirm('Bạn có muốn xóa sinh viên này?');">Delete</button></a>
+							<a href="view/${sv.id }"><button class="btn btn-success">View</button></a>
+						</td>
 				</c:forEach>
 			</tbody>
 		</table>
-<nav aria-label="Page navigation example">
-	<ul class="pagination">
-		<li class="page-item"><a class="page-link" href="?page=1">First
-				Page</a></li>
-		<c:if test="${currentPage > 2}">
+		<nav aria-label="Page navigation example">
+			<ul class="pagination">
+				<li class="page-item"><a class="page-link" href="?page=1">First
+						Page</a></li>
+				<c:if test="${currentPage > 2}">
+					<li class="page-item"><a class="page-link"
+						href="?page=${currentPage-2}">${currentPage-2}</a></li>
+				</c:if>
+				<c:if test="${currentPage > 1}">
+					<li class="page-item"><a class="page-link"
+						href="?page=${currentPage-1}">${currentPage-1}</a></li>
+				</c:if>
+				<li class="page-item active"><a class="page-link"
+					href="?page=${currentPage}">${currentPage}</a></li>
+				<c:if test="${currentPage < lastPage}">
+					<li class="page-item"><a class="page-link"
+						href="?page=${currentPage+1}">${currentPage+1}</a></li>
+				</c:if>
+				<c:if test="${currentPage < lastPage - 1}">
+					<li class="page-item"><a class="page-link"
+						href="?page=${currentPage+2}">${currentPage+2}</a></li>
+				</c:if>
 				<li class="page-item"><a class="page-link"
-					href="?page=${currentPage-2}">${currentPage-2}</a></li>
-			</c:if>
-			<c:if test="${currentPage > 1}">
-				<li class="page-item"><a class="page-link"
-					href="?page=${currentPage-1}">${currentPage-1}</a></li>
-			</c:if>
-			<li class="page-item active"><a class="page-link"
-				href="?page=${currentPage}">${currentPage}</a></li>
-			<c:if test="${currentPage < lastPage}">
-				<li class="page-item"><a class="page-link"
-					href="?page=${currentPage+1}">${currentPage+1}</a></li>
-			</c:if>
-			<c:if test="${currentPage < lastPage - 1}">
-				<li class="page-item"><a class="page-link"
-					href="?page=${currentPage+2}">${currentPage+2}</a></li>
-			</c:if>
-		<li class="page-item"><a class="page-link" href="?page=${lastPage }">Last Page</a></li>
-	</ul>
-	</nav>
+					href="?page=${lastPage }">Last Page</a></li>
+			</ul>
+		</nav>
 	</div>
 	<script>
 		function canhbao() {

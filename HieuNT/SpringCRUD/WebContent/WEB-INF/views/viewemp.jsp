@@ -19,15 +19,13 @@
 <title>View List</title>
 </head>
 <style>
-body {
-	background-color:black;
-}
+
 
 .color {
 	background-color: #F08080
 }
 </style>
-<body<%-- background="<c:url value='/resources/image/jisoo-1.jpg' />" --%>>
+<body background="<c:url value='/resources/image/jisoo-1.jpg' />">
 
 
 	<h1 style="color: pink;">꧁༺🅴🅼🅿🅻🅾🆈🅴🅴🆂 🅻🅸🆂🆃༻꧂</h1>

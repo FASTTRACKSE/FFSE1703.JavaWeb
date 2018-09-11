@@ -55,7 +55,6 @@ public class SinhVienServiceImpl implements SinhVienService {
 	@Override
 	@Transactional
 	public boolean checkExistMaSv(String maSv) {
-		// TODO Auto-generated method stub
 		return sinhVienDao.checkExistMaSv(maSv);
 	}
 
@@ -63,6 +62,19 @@ public class SinhVienServiceImpl implements SinhVienService {
 	@Transactional
 	public long totalRecord() {
 		return sinhVienDao.totalRecord();
+	}
+
+	@Override
+	@Transactional
+	public List<SinhVien> sinhVienListHibernate(Integer start, Integer maxResult) {
+		return this.sinhVienDao.sinhVienListHibernate(start, maxResult);
+	}
+
+	@Override
+	@Transactional
+	public List<SinhVien> sinhVienListExport() {
+		
+		return sinhVienDao.sinhVienListExport();
 	}
 
 }

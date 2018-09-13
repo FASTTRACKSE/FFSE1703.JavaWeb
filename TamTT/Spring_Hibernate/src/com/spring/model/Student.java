@@ -35,7 +35,7 @@ public class Student {
 	
 	private String lop;
 	
-	private int age;
+	private String age;
 	
 	private String img;
 	
@@ -137,15 +137,19 @@ public class Student {
 
 
 
-	public int getAge() {
+	public String getAge() {
 		return age;
 	}
 
 
 
-	public void setAge(int age) {
+	public void setAge(String age) {
 		this.age = age;
 	}
+
+
+
+	
 
 }
 

@@ -18,7 +18,7 @@
 <body>
 	<div class="container">
 		<h1 style="text-align: center;">Cập nhật thông tin</h1>
-		<form:form action="/Spring_MVCHibernate/update" method="post"
+		<form:form action="/Spring_Hibernate/update" method="post"
 			enctype="multipart/form-data" modelAttribute="student">
 			<div>
 				<form:input path="id" type="hidden" />

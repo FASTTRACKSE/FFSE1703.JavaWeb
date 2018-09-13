@@ -14,17 +14,18 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import hibernate.entity.SinhVien;
+import hibernate.excel.SinhVienListExcel;
 import hibernate.service.SinhVienService;
 
 @Controller
@@ -48,6 +49,19 @@ public class SinhVienController {
 	
 	
 	List<SinhVien> listSinhVien = new ArrayList<>();
+	
+	// test template
+	@RequestMapping("template")
+	public String template() {
+		return "templatedemo";
+	}
+	
+	// export excel file
+	@RequestMapping("/export")
+	public ModelAndView exportExcelFile() {
+		List<SinhVien> listSinhVienExport = sinhVienService.sinhVienListExport();
+		return new ModelAndView("SinhVienListExcel", "listSinhVien", listSinhVienExport);
+	}
 	
 	@RequestMapping("/")
 	public String index() {
@@ -74,9 +88,19 @@ public class SinhVienController {
 		model.addObject("listSinhVien", listSinhVien);
 		model.addObject("totalPage", (int)totalPage);
 		model.addObject("pageIndex", pageid);
-		model.addObject("stt", 1);
 		return model ;
 	}
+	
+	// test phân trang hibernate
+		@RequestMapping(value= "/list")
+		public String list(Model model, Integer start, Integer maxResults) {
+
+			totalRecord = sinhVienService.totalRecord() ;
+			model.addAttribute("listSinhVien", sinhVienService.sinhVienListHibernate(start, maxResults));
+			model.addAttribute("count", (int)totalRecord);
+			model.addAttribute("start", start);
+			return "index";
+		}
 	
 	@RequestMapping(value= {"/addSv"}, method=RequestMethod.GET)
 	public ModelAndView addSv() {

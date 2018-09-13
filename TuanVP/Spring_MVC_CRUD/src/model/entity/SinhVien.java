@@ -1,7 +1,8 @@
 package model.entity;
 
-import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 
 public class SinhVien {
@@ -11,7 +12,8 @@ public class SinhVien {
 	@NotEmpty
 	public String tenSV;
 
-	@DecimalMin(value = "1990")
+	@Min(value = 1990)
+	@Max(value = 2000)
 	@NotEmpty
 	public String namSinh;
 

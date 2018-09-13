@@ -13,7 +13,7 @@
 
 	<h1>Student List</h1>
 	<table border="2" width="70%" cellpadding="2">
-	<tr><th>Id</th><th>Mã Sinh Viên</th><th>Tên</th><th>Tuổi</th><th>Lớp</th><th>Địa Chỉ</th><th>Edit</th><th>Delete</th></tr>
+	<tr><th>Id</th><th>Mã Sinh Viên</th><th>Tên</th><th>Tuổi</th><th>Lớp</th><th>Địa Chỉ</th><th>Ảnh</th><th>Edit</th><th>Delete</th></tr>
     <c:forEach var="emp" items="${listsv}"> 
     <tr>
     <td>${emp.id}</td>
@@ -21,7 +21,8 @@
     <td>${emp.ten}</td>
     <td>${emp.tuoi}</td>
     <td>${emp.lop}</td>
-     <td>${emp.diachi}</td>
+    <td>${emp.diachi}</td>
+    <td><img style="width: 100px" src="<c:url value="/resources/upload/${emp.avatar }" />">
     <td><a href="/SpringCRUD/editemp/${emp.id}">Edit</a></td>
     <td><a href="/SpringCRUD/deleteemp/${emp.id}">Delete</a></td>
     </tr>

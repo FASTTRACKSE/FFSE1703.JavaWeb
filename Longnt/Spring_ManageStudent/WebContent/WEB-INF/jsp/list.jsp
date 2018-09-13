@@ -13,6 +13,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+	
 </head>
 <body>
 	<div class="container">
@@ -33,6 +34,7 @@
 					<th scope="col">Địa chỉ</th>
 					<th scope="col">Email</th>
 					<th scope="col">Lớp học</th>
+					<th scope="col">Image</th>
 					<th scope="col">Chức năng</th>
 				</tr>
 			</thead>
@@ -45,6 +47,7 @@
 						<td>${sv.diaChi }</td>
 						<td>${sv.email }</td>
 						<td>${sv.lop }</td>
+						<td><img src="<c:url value="/resources/upload/${sv.avatar }" />"></td>
 						<td><a href="formupdate/${sv.maSV}" class="btn btn-success">Sửa</a>
 							<a href="delete/${sv.maSV}"
 							onclick="return confirm('Bạn có muốn xóa sinh viên này?');"

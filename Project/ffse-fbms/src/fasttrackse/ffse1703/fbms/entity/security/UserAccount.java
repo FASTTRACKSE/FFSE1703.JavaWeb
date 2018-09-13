@@ -1,4 +1,4 @@
-package fasttrackse.ffse1702a.fbms.Security.model.entity;
+package fasttrackse.ffse1703.fbms.entity.security;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -21,8 +21,6 @@ import javax.persistence.UniqueConstraint;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-
-import fasttrackse.ffse1702a.fbms.QuanLyNhanSu.model.entity.HoSoNhanVien;
 
 @Entity
 @Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = { "username" }))

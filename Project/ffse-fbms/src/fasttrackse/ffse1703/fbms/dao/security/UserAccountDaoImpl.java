@@ -1,4 +1,4 @@
-package fasttrackse.ffse1702a.fbms.Security.model.dao.impl;
+package fasttrackse.ffse1703.fbms.dao.security;
 
 import javax.persistence.NoResultException;
 
@@ -8,8 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import fasttrackse.ffse1702a.fbms.Security.model.dao.UserAccountDao;
-import fasttrackse.ffse1702a.fbms.Security.model.entity.UserAccount;
+import fasttrackse.ffse1703.fbms.entity.security.UserAccount;
 
 @Repository
 @Transactional(rollbackFor = Exception.class)

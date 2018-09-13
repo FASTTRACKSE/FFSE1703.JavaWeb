@@ -13,7 +13,7 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
    <meta name="description" content="Stack admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
    <meta name="keywords" content="admin template, stack admin template, dashboard template, flat admin template, responsive admin template, web app">
-   <meta name="author" content="JunBjn">
+   <meta name="author" content="FFSE1703">
    <title>FastTrackSE - The Business Management System - Login</title>
    <link rel="apple-touch-icon" href="<c:url value="/resources/images/ico/apple-icon-120.png"/>">
    <link rel="shortcut icon" type="image/x-icon" href="<c:url value="/resources/images/ico/favicon.ico"/>">

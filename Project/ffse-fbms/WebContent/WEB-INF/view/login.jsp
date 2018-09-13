@@ -12,30 +12,29 @@
     <meta name="description" content="Stack admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, stack admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>Login Page - Admin</title>
-    <link rel="apple-touch-icon" href="http://ffse1703.fasttrack.edu.vn/FFSE1703006/ad-assets/images/ico/apple-icon-120.png">
-    <link rel="shortcut icon" type="image/x-icon" href="http://ffse1703.fasttrack.edu.vn/FFSE1703006/ad-assets/images/ico/favicon.ico">
+    <title>FastTrackSE - The Business Management System - Login</title>
+    <link rel="apple-touch-icon" href="<c:url value="/resources/images/ico/apple-icon-120.png" />">
+    <link rel="shortcut icon" type="image/x-icon" href="<c:url value="/resources/images/ico/favicon.ico" />">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i%7COpen+Sans:300,300i,400,400i,600,600i,700,700i" rel="stylesheet">
     <!-- BEGIN VENDOR CSS-->
-    <link rel="stylesheet" type="text/css" href="http://ffse1703.fasttrack.edu.vn/FFSE1703006/ad-assets/css/bootstrap.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="http://ffse1703.fasttrack.edu.vn/FFSE1703006/ad-assets/fonts/feather/style.min.css">
-    <link rel="stylesheet" type="text/css" href="http://ffse1703.fasttrack.edu.vn/FFSE1703006/ad-assets/fonts/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="http://ffse1703.fasttrack.edu.vn/FFSE1703006/ad-assets/fonts/flag-icon-css/css/flag-icon.min.css">
-    <link rel="stylesheet" type="text/css" href="http://ffse1703.fasttrack.edu.vn/FFSE1703006/ad-assets/vendors/css/extensions/pace.css">
-    <link rel="stylesheet" type="text/css" href="http://ffse1703.fasttrack.edu.vn/FFSE1703006/ad-assets/vendors/css/forms/icheck/icheck.css">
-    <link rel="stylesheet" type="text/css" href="http://ffse1703.fasttrack.edu.vn/FFSE1703006/ad-assets/vendors/css/forms/icheck/custom.css">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap.css" />">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/fonts/feather/style.min.css" />">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/fonts/font-awesome/css/font-awesome.min.css" />">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/fonts/flag-icon-css/css/flag-icon.min.css" />">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/vendors/css/extensions/pace.css" />">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/vendors/css/forms/icheck/icheck.css" />">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/vendors/css/forms/icheck/custom.css" />">
     <!-- END VENDOR CSS-->
     <!-- BEGIN STACK CSS-->
-    <link rel="stylesheet" type="text/css" href="http://ffse1703.fasttrack.edu.vn/FFSE1703006/ad-assets/css/bootstrap-extended.css">
-    <link rel="stylesheet" type="text/css" href="http://ffse1703.fasttrack.edu.vn/FFSE1703006/ad-assets/css/app.css">
-    <link rel="stylesheet" type="text/css" href="http://ffse1703.fasttrack.edu.vn/FFSE1703006/ad-assets/css/colors.css">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap-extended.css" />">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/app.css" />">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/colors.css" />">
     <!-- END STACK CSS-->
     <!-- BEGIN Page Level CSS-->
-    <link rel="stylesheet" type="text/css" href="http://ffse1703.fasttrack.edu.vn/FFSE1703006/ad-assets/css/core/menu/menu-types/vertical-menu-modern.css">
-    <link rel="stylesheet" type="text/css" href="http://ffse1703.fasttrack.edu.vn/FFSE1703006/ad-assets/css/core/menu/menu-types/vertical-overlay-menu.css">
-    <link rel="stylesheet" type="text/css" href="http://ffse1703.fasttrack.edu.vn/FFSE1703006/ad-assets/css/core/colors/palette-gradient.css">
-    <link rel="stylesheet" type="text/css" href="http://ffse1703.fasttrack.edu.vn/FFSE1703006/ad-assets/css/pages/login-register.css">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/core/menu/menu-types/vertical-menu-modern.css" />">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/core/menu/menu-types/vertical-overlay-menu.css" />">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/core/colors/palette-gradient.css" />">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/pages/login-register.css" />">
     <!-- END Page Level CSS-->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <!-- END Custom CSS-->
@@ -53,7 +52,7 @@
                         <div class="card border-grey border-lighten-3 m-0">
                             <div class="card-header no-border">
                                 <div class="card-title text-xs-center">
-                                    <div class="p-1"><img src="http://ffse1703.fasttrack.edu.vn/FFSE1703006/ad-assets/images/logo/rog-logo.png" alt="branding logo" style="max-height: 50px;"></div>
+                                    <div class="p-1"><img src="https://www.fasttrack.edu.vn/wp-content/uploads/2018/03/fasttrack-title-logo-color-new-1.png" alt="branding logo" style="max-height: 50px;"></div>
                                 </div>
                                 <h6 class="card-subtitle line-on-side text-muted text-xs-center font-small-3 pt-2"><span>Login to System</span></h6>
                             </div>
@@ -72,13 +71,13 @@
                                         </div>
                                         </c:if>
                                         <fieldset class="form-group position-relative has-icon-left mb-0">
-                                            <input type="text" class="form-control form-control-lg input-lg" name="username" id="username" placeholder="Your Username" required>
+                                            <input type="text" class="form-control form-control-lg input-lg" name="username" id="username" value="giamdoc" placeholder="Your Username" required>
                                             <div class="form-control-position">
                                                 <i class="ft-user"></i>
                                             </div>
                                         </fieldset>
                                         <fieldset class="form-group position-relative has-icon-left">
-                                            <input type="password" class="form-control form-control-lg input-lg" name="password" id="password" placeholder="Enter Password" required>
+                                            <input type="password" class="form-control form-control-lg input-lg" name="password" id="password" value="123456" placeholder="Enter Password" required>
                                             <div class="form-control-position">
                                                 <i class="fa fa-key"></i>
                                             </div>
@@ -98,7 +97,7 @@
                             </div>
                             <div class="card-footer">
                                 <div class="center">
-                                    <p>Welcome to TEAM 404!!!</p>
+                                    <p>Welcome to FastTrackSE - The FFSE1703 Team!!!</p>
                                 </div>
                             </div>
                         </div>
@@ -110,18 +109,18 @@
     <!-- ////////////////////////////////////////////////////////////////////////////-->
 
     <!-- BEGIN VENDOR JS-->
-    <script src="http://ffse1703.fasttrack.edu.vn/FFSE1703006/ad-assets/vendors/js/vendors.min.js" type="text/javascript"></script>
+    <script src="<c:url value="/resources/vendors/js/vendors.min.js" />" type="text/javascript"></script>
     <!-- BEGIN VENDOR JS-->
     <!-- BEGIN PAGE VENDOR JS-->
-    <script src="http://ffse1703.fasttrack.edu.vn/FFSE1703006/ad-assets/vendors/js/forms/icheck/icheck.min.js" type="text/javascript"></script>
-    <script src="http://ffse1703.fasttrack.edu.vn/FFSE1703006/ad-assets/vendors/js/forms/validation/jqBootstrapValidation.js" type="text/javascript"></script>
+    <script src="<c:url value="/resources/vendors/js/forms/icheck/icheck.min.js" />" type="text/javascript"></script>
+    <script src="<c:url value="/resources/vendors/js/forms/validation/jqBootstrapValidation.js" />" type="text/javascript"></script>
     <!-- END PAGE VENDOR JS-->
     <!-- BEGIN STACK JS-->
-    <script src="http://ffse1703.fasttrack.edu.vn/FFSE1703006/ad-assets/js/core/app-menu.js" type="text/javascript"></script>
-    <script src="http://ffse1703.fasttrack.edu.vn/FFSE1703006/ad-assets/js/core/app.js" type="text/javascript"></script>
+    <script src="<c:url value="/resources/js/core/app-menu.js" />" type="text/javascript"></script>
+    <script src="<c:url value="/resources/js/core/app.js" />" type="text/javascript"></script>
     <!-- END STACK JS-->
     <!-- BEGIN PAGE LEVEL JS-->
-    <script src="http://ffse1703.fasttrack.edu.vn/FFSE1703006/ad-assets/js/scripts/forms/form-login-register.js" type="text/javascript"></script>
+    <script src="<c:url value="/resources/js/scripts/forms/form-login-register.js" />" type="text/javascript"></script>
     <!-- END PAGE LEVEL JS-->
 </body>
 

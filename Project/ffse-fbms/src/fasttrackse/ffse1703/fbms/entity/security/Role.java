@@ -1,4 +1,4 @@
-package fasttrackse.ffse1702a.fbms.Security.model.entity;
+package fasttrackse.ffse1703.fbms.entity.security;
 
 import static javax.persistence.GenerationType.IDENTITY;
 

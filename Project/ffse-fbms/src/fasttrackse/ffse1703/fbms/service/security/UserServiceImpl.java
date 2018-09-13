@@ -1,4 +1,4 @@
-package fasttrackse.ffse1702a.fbms.Security.service.impl;
+package fasttrackse.ffse1703.fbms.service.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
@@ -6,9 +6,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import fasttrackse.ffse1702a.fbms.Security.model.dao.UserAccountDao;
-import fasttrackse.ffse1702a.fbms.Security.model.entity.UserAccount;
-import fasttrackse.ffse1702a.fbms.Security.service.UserService;
+import fasttrackse.ffse1703.fbms.dao.security.UserAccountDao;
+import fasttrackse.ffse1703.fbms.entity.security.UserAccount;
 
 @Service
 public class UserServiceImpl implements UserService {

@@ -19,34 +19,37 @@
 </head>
 <body>
 	<div class="container">
-	Language : 
-			<a href="?language=en">English</a> 
-			<a href="?language=vi_VN">Viet Nam</a>|
+		Language : <a href="?language=en">English</a> <a
+			href="?language=vi_VN">Viet Nam</a>
 		<div style="text-align: center;">
-			<h1><spring:message code="anh" /></h1>
+			<h1>
+				<spring:message code="title1" />
+			</h1>
 		</div>
 		<div>
 			<h3>
-				<a href="create">Thêm sinh viên</a>
+				<a href="create"><spring:message code="title2" /></a>
 			</h3>
 		</div>
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th scope="col">Mã sinh viên</th>
-					<th scope="col">Tên sinh viên</th>
-					<th scope="col">Tuổi</th>
-					<th scope="col">Địa chỉ</th>
-					<th scope="col">Email</th>
-					<th scope="col">Lớp học</th>
-					<th scope="col">Gioi Tính</th>
-					<th scope="col">Ảnh đại diện</th>
-					<th scope="col">Chức năng</th>
+					<th scope="col">STT</th>
+					<th scope="col"><spring:message code="masv" /></th>
+					<th scope="col"><spring:message code="tensv" /></th>
+					<th scope="col"><spring:message code="namsinh" /></th>
+					<th scope="col"><spring:message code="diachi" /></th>
+					<th scope="col"><spring:message code="email" /></th>
+					<th scope="col"><spring:message code="lophoc" /></th>
+					<th scope="col"><spring:message code="gioitinh" /></th>
+					<th scope="col"><spring:message code="anh" /></th>
+					<th scope="col"><spring:message code="chucnang" /></th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="sv" items="${listStudent}">
+				<c:forEach var="sv" items="${listStudent}" varStatus="itr">
 					<tr>
+						<td>${offset + itr.index +1 }</td>
 						<th scope="row">${sv.masv}</th>
 						<td>${sv.name}</td>
 						<td>${sv.age}</td>
@@ -57,11 +60,10 @@
 						<td><img style="width: 100px; height: 100px;"
 							src='<c:url value = "/resources/upload/${sv.avatar }" ></c:url>'
 							alt="image"></td>
-						<td><a href="edit/${sv.id }"><button
-									class="btn btn-success">Edit</button></a><a href="delete/${sv.id }"><button
-									class="btn btn-danger"
-									onclick="return confirm('Bạn có muốn xóa sinh viên này?');">Delete</button></a>
-							<a href="view/${sv.id }"><button class="btn btn-success">View</button></a>
+						<td>
+						  <a href="edit/${sv.id }"><button class="btn btn-success">Edit</button></a><p>
+						  <a href="delete/${sv.id }"><button class="btn btn-danger" onclick="return confirm('Bạn có muốn xóa sinh viên này?');">Delete</button></a>
+						  <a href="view/${sv.id }"><button class="btn btn-success">View</button></a>
 						</td>
 				</c:forEach>
 			</tbody>

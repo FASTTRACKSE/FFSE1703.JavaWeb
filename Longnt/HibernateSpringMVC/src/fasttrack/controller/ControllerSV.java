@@ -61,10 +61,10 @@ public class ControllerSV {
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public String createStudent(Model model, @ModelAttribute("student") @Valid Student sv, HttpSession session,
 			MultipartFile file, BindingResult bindingResult) throws IllegalStateException, IOException {
+		sv.setAvatar(uploadFile(file, session));
 		if (bindingResult.hasErrors()) {
 			return "create";
 		}
-		sv.setAvatar(uploadFile(file, session));
 		sinhVienService.create(sv);
 		return "redirect:/list";
 	}

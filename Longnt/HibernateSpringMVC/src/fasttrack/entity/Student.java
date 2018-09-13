@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Version;
 import javax.validation.Valid;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
@@ -18,30 +20,34 @@ public class Student {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	 int id;
 
-	@Column(name = "masv")
+	@Column(name = "masv",nullable = false)
 	@NotEmpty
 	 String masv;
 	
-	@Column(name = "tensv")
+	@Column(name = "tensv",nullable = false)
 	@NotEmpty
 	 String tensv;
 	
-	@Column(name = "tuoisv")
+	
+    @Column(name = "tuoisv", nullable = false)
 	@NotEmpty
+	@Min(value = 1)
+	@Max(value = 100)
 	 String tuoisv;
 	
-	@Column(name = "email")
+	@Column(name = "email",nullable = false)
 	@NotEmpty
 	 String email;
 	
-	@Column(name = "diachi")
+	@Column(name = "diachi",nullable = false)
 	@NotEmpty
 	 String diachi;
 	
-	@Column(name = "lop")
+	@Column(name = "lop",nullable = false)
 	@NotEmpty
 	 String lop;
-	
+	@Column(name = "avatar",nullable = false)
+	@NotEmpty
 	public String avatar;
 	
 	public Student(String masv, String tensv, String tuoisv, String email, String diachi, String lop, String avatar) {

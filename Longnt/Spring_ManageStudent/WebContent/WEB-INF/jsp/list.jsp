@@ -47,7 +47,7 @@
 						<td>${sv.diaChi }</td>
 						<td>${sv.email }</td>
 						<td>${sv.lop }</td>
-						<td><img src="<c:url value="/resources/upload/${sv.avatar }" />"></td>
+						<td><img src="<c:url value="/resources/upload/${sv.avatar } " />"></td>
 						<td><a href="formupdate/${sv.maSV}" class="btn btn-success">Sửa</a>
 							<a href="delete/${sv.maSV}"
 							onclick="return confirm('Bạn có muốn xóa sinh viên này?');"

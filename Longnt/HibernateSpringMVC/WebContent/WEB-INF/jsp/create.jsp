@@ -24,11 +24,11 @@
 			<form:form action="create" method="POST" enctype="multipart/form-data" modelAttribute="student">
 			<div class="form-group">
 				<label><spring:message code="updateMSV" /></label>
-				<form:input class= "form-control" type="text" path="masv"/>
+				<form:input path="masv" cssClass="form-control"></form:input>
 				<form:errors style="color:red" path="masv"/>
 			</div>
 			<div class="form-group">
-				<label><spring:message code="updatetSV" /></label>
+				<label><spring:message code="updateTSV" /></label>
 				<form:input path="tensv" cssClass="form-control"></form:input>
 				<form:errors style="color:red" path="tensv"/>
 			</div>

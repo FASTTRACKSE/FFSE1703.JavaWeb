@@ -33,6 +33,16 @@ public class StudentDaoImpl implements StudentDao {
 		session.save(student);
 		
 	}
+	
+//	public void indexStudents() throws Exception {
+//		try {
+//			Session session = sessionFactory.getCurrentSession();
+//			FullTextSession fullTextSession = Search.getFullTextSession(session);
+//			fullTextSession.createIndexer().startAndWait();
+//		} catch(Exception e) {
+//			throw e;
+//		}
+//	}
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<Student> listStudent() {

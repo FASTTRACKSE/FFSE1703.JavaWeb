@@ -18,14 +18,15 @@ public class Dao {
 	}
 
 	public static int save(Emp p,String filename) {
-		String sql = "insert into CRUD(name,address,email,IMAGE_FILE_NAME) " + "values " + "('" + p.getName() + "','" + p.getAddress()
+		String sql = "insert into CRUD(name,address,email,nameFile) " + "values " + "('" + p.getName() + "','" + p.getAddress()
 				+ "','" + p.getEmail() + "','" + filename + "')";
 		return template.update(sql);
 	}
 
 	public int update(Emp p) {
 		String sql = "update CRUD set name='" + p.getName() + "', address='" + p.getAddress() + "',email='"
-				+ p.getEmail() + "' where id=" + p.getId() + "";
+				+ p.getEmail()+ "',nameFile='"
+						+ p.getNameFile()+ "' where id=" + p.getId() + "";
 		return template.update(sql);
 	}
 

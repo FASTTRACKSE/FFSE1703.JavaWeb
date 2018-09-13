@@ -2,8 +2,14 @@ package com.javatpoint.beans;
   
 public class SinhVien {  
 private int id,namSinh;  
-private String maSV,tenSV,email,diaChi,lopHoc;
+private String maSV,tenSV,email,diaChi,lopHoc,avatar;
   
+public String getAvatar() {
+	return avatar;
+}
+public void setAvatar(String avatar) {
+	this.avatar = avatar;
+}
 public int getId() {  
     return id;  
 }  

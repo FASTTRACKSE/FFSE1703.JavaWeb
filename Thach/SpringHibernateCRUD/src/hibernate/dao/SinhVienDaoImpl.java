@@ -54,9 +54,13 @@ public class SinhVienDaoImpl implements SinhVienDao {
 	}
 
 	@Override
-	public int checkExistMaSv(String maSv) {
-		// TODO Auto-generated method stub
-		return 0;
+	public boolean checkExistMaSv(String maSv) {
+		Session session = this.sessionFactory.getCurrentSession();
+		Long count = session.createQuery("select count(*) from SinhVien where maSv= '"+maSv+"'", Long.class).getSingleResult();
+		if(count > 0) {
+			return false;
+		}
+		return true;
 	}
 
 	@SuppressWarnings("deprecation")

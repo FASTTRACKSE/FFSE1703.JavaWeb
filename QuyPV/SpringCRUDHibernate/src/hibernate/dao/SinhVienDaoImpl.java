@@ -2,14 +2,13 @@ package hibernate.dao;
 
 import java.util.List;
 
-import javax.management.Query;
 
-import org.hibernate.Criteria;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Projection;
+
 import org.hibernate.criterion.Projections;
-import org.hibernate.criterion.Restrictions;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -45,7 +44,7 @@ public class SinhVienDaoImpl implements SinhVienDao {
 	public SinhVien getEdit(int id) {
 		Session sesion = this.sessionFactory.getCurrentSession();
 		
-		return sesion.get(SinhVien.class, id);
+		return sesion.get(SinhVien.class, id); 
 	}
 
 	@Override
@@ -81,6 +80,25 @@ public class SinhVienDaoImpl implements SinhVienDao {
 		return (long) session.createCriteria(SinhVien.class)
                 .setProjection(Projections.rowCount())
                 .uniqueResult();
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<SinhVien> sinhVienListHibernate(Integer start, Integer maxResult) {
+
+		Session session= this.sessionFactory.getCurrentSession();
+		List<SinhVien> sinhVienListHibernate = session.createQuery("from SinhVien").setFirstResult(start!=null?start:0).setMaxResults(maxResult!=null?maxResult:2).list();
+		return sinhVienListHibernate;
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<SinhVien> sinhVienListExport() {
+		Session session = this.sessionFactory.getCurrentSession();
+		List<SinhVien> sinhVienListExport = session.createQuery("from SinhVien").list();
+		
+		
+		return sinhVienListExport;
 	}
 
 }

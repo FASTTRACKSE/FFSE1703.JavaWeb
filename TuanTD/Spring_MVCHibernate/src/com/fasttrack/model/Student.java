@@ -14,7 +14,7 @@ public class Student {
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	@NotEmpty("")
+	@NotEmpty
 	private String masv;
 	private String name;
 	private String lop;

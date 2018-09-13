@@ -25,7 +25,7 @@ public class SinhVien {
 	@NotEmpty(message="Nhập mã sinh viên")
 	private String maSv;
 	
-	@NotEmpty(message="Nhập h�? Tên sinh viên")
+	@NotEmpty(message="Nhập Họ Tên sinh viên")
 	private String ten;
 	
 	@Column(name="namsinh")

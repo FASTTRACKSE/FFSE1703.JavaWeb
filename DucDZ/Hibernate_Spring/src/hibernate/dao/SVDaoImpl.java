@@ -20,7 +20,6 @@ public class SVDaoImpl implements SVDao {
 	public void addSV(SinhVien sv) {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.persist(sv);
-
 	}
 
 	@Override

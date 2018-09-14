@@ -51,7 +51,7 @@ public class AppController {
 					fileDir.mkdir();
 				}
 				try {
-					SinhVien.getMyImage().transferTo(new File(fileDir + File.separator + nameFile));
+					SinhVien.getMyImage().transferTo(new File(fileDir+File.separator+nameFile));
 					System.out.println("Upload file thành công!");
 					System.out.println(nameFile);
 					model.addAttribute("filename", nameFile);

@@ -8,54 +8,47 @@
 
 <div class="app-content content container-fluid">
 	<div class="content-wrapper">
+		<!-- Path -->
 		<div class="content-header row">
-			<div class="content-header-left col-md-9 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">
-					<spring:message code="label.themPhongBan" />
-				</h3>
+			<div class="content-header-left col-md-6 col-xs-12 mb-2">
+				<h3 class="content-header-title mb-0">Thêm mới phòng ban</h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a
-								href="<c:url value='/'></c:url>"><spring:message
-										code="label.trangChu" /></a></li>
-							<li class="breadcrumb-item"><a href="javascript:void(0)"><spring:message
-										code="label.quanLyNhanSu" /></a></li>
+								href='<c:url value="/home" />'>Home</a></li>
 							<li class="breadcrumb-item"><a
-								href="<c:url value='/ns/phong_ban'></c:url>"><spring:message
-										code="label.quanLyPhongBan" /></a></li>
-							<li class="breadcrumb-item active"><spring:message
-									code="label.themPhongBan" /></li>
+								href='<c:url value="/quanlyphanquyen/phong_ban/view/danhSachPhongBan" />'>Danh
+									sách phòng ban</a></li>
+							<li class="breadcrumb-item active">Thêm mới phòng ban</li>
 						</ol>
 					</div>
 				</div>
 			</div>
 		</div>
+		<!-- End Path -->
+
 		<div class="content-body">
-			<!-- Zero configuration table -->
-			<section id="configuration">
+			<div class="main-content">
 				<div class="row">
-					<div class="col-xs-12">
-						<div class="card">
-							<div class="card-header">
-								<h4 class="card-title center" id="basic-layout-form-center">
-									<i class="ft-user"></i>
-									<spring:message code="label.themPhongBan" />
-								</h4>
-								<a class="heading-elements-toggle"><i
-									class="fa fa-ellipsis-v font-medium-3"></i></a>
-								<div class="heading-elements">
-									<ul class="list-inline mb-0">
-										<li><a data-action="collapse"><i class="ft-minus"></i></a></li>
-										<li><a data-action="expand"><i class="ft-maximize"></i></a></li>
-									</ul>
-								</div>
-							</div>
+					<form:form method="POST" action="">
+						<div class="form-group col-sm-6">
+							<label>Tên phòng ban</label>
+							<input class="form-control"
+								placeholder="Tên phòng ban" />
 						</div>
-					</div>
+						<div class="form-group col-sm-6">
+							<label>Mã phòng ban</label>
+							<input class="form-control" 
+								placeholder="Mã phòng ban" />
+						</div>
+						<div class="col-sm-12 text-center">
+							<button type="submit" class="btn btn-success">Lưu thông
+								tin</button>
+						</div>
+					</form:form>
 				</div>
-			</section>
-			<!--/ Zero configuration table -->
+			</div>
 		</div>
 	</div>
 </div>

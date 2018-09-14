@@ -6,6 +6,7 @@
 <%@ page session="false"%>
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 
+<!-- ////////////////////////////////////////////////////////////////////////////-->
 <div class="app-content content container-fluid">
 	<div class="content-wrapper">
 		<!-- Path -->

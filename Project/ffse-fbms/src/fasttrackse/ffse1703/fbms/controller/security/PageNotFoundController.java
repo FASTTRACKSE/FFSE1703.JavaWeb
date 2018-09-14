@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PageNotFoundController {
 	@RequestMapping("/403")
 	public String pageNotAllow() {
-		return "error-403";
+		return "QuanTriHeThong/error-403";
 	}
 	@RequestMapping("/404")
 	public String pageNotFound() {
-		return "error-404";
+		return "QuanTriHeThong/error-404";
 	}
 	@RequestMapping("/home")
 	public String pageDemo() {
-		return "home";
+		return "QuanTriHeThong/home";
 	}
 }

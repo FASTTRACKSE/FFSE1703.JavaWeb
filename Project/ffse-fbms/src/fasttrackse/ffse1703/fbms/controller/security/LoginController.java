@@ -24,7 +24,7 @@ public class LoginController {
 		if (pr != null) {
 			return "redirect:/";
 		}
-		return "login";
+		return "QuanTriHeThong/login";
 	}
 	
     @RequestMapping(value="/logout")
@@ -33,7 +33,7 @@ public class LoginController {
        if (auth != null){
           new SecurityContextLogoutHandler().logout(request, response, auth);
        }
-       return "login";
+       return "QuanTriHeThong/login";
     }
 
 }

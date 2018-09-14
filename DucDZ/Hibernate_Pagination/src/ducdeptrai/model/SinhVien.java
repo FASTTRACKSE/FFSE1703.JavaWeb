@@ -1,39 +1,35 @@
-package hibernate.model;
+package ducdeptrai.model;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-
-@Entity
 @Table(name = "sinhvien_hibernate")
 public class SinhVien {
-
 	@Id
-	@Column(name = "id")
+	@Column(name="id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-
-	@Column(name = "ho_ten")
-	@NotEmpty(message = "Not empty!")
+	
+	@Column(name="ho_ten")
 	private String ho_ten;
-
+	
 	@Column(name = "nam_sinh")
-	@NotEmpty(message="Not empty!")
 	private String nam_sinh;
-
-	@Email
-	@Column(name = "email")
-	@NotEmpty(message="Not empty")
+	
+	@Column(name="email")
 	private String email;
+	
+	@Column(name="avatar")
+	private String avatar;
+	
+	public String getAvatar() {
+		return avatar;
+	}
 
-	public SinhVien() {
-
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
 	}
 
 	public Integer getId() {
@@ -68,4 +64,16 @@ public class SinhVien {
 		this.email = email;
 	}
 
+	public SinhVien(Integer id, String ho_ten, String nam_sinh, String email, String avatar) {
+		super();
+		this.id = id;
+		this.ho_ten = ho_ten;
+		this.nam_sinh = nam_sinh;
+		this.email = email;
+		this.avatar = avatar;
+	}
+
+	public SinhVien() {
+		// TODO Auto-generated constructor stub
+	}
 }

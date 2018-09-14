@@ -5,24 +5,25 @@
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xsi:schemaLocation="
-	http://www.springframework.org/schema/beans
-	http://www.springframework.org/schema/beans/spring-beans.xsd
-	http://www.springframework.org/schema/context
-	http://www.springframework.org/schema/context/spring-context.xsd
-	http://www.springframework.org/schema/mvc
-	http://www.springframework.org/schema/mvc/spring-mvc.xsd
-	http://www.springframework.org/schema/tx
-	http://www.springframework.org/schema/tx/spring-tx.xsd">
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd
+http://www.springframework.org/schema/mvc
+http://www.springframework.org/schema/mvc/spring-mvc.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx.xsd">
+	<!-- Add support for component scanning -->
+	<context:component-scan
+		base-package="ducdeptrai" />
+	<!-- Add support for conversion, formatting and validation support -->
 	<mvc:annotation-driven />
+	<!-- Define Spring MVC view resolver -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/view/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
-	<!-- Add support for component scanning -->
-	<context:component-scan base-package="hibernate" />
-	<!-- Add support for conversion, formatting and validation support -->
-	<!-- Define Spring MVC view resolver -->
 	<!-- Define Database DataSource / connection pool -->
 	<bean id="theDataSource"
 		class="com.mchange.v2.c3p0.ComboPooledDataSource"
@@ -37,18 +38,11 @@
 		<property name="maxPoolSize" value="20" />
 		<property name="maxIdleTime" value="30000" />
 	</bean>
-
-	<bean id="sVDao" class="ducdeptrai.dao.SVDaoImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="sVService" class="ducdeptrai.service.SVServiceImpl">
-		<property name="svDao" ref="sVDao" />
-	</bean>
 	<!-- Hibernate session factory -->
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<property name="dataSource" ref="theDataSource" />
-		<property name="packagesToScan" value="hibernate.model" />
+		<property name="packagesToScan" value="ducdeptrai" />
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
@@ -67,9 +61,10 @@
 	<!-- Resources theme location -->
 	<mvc:resources mapping="/resources/**"
 		location="/resources/" />
-
-	<!-- <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> 
-		<property name="maxUploadSize" value="500000" /> </bean> -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="500000" />
+	</bean>
 	<!-- cookies -->
 	<bean id="localeResolver"
 		class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
@@ -77,4 +72,23 @@
 		<property name="cookieMaxAge" value="3600"></property>
 		<property name="defaultLocale" value="vi"></property>
 	</bean>
+	<bean id="sVDao" class="hibernate.dao.SVDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="sVService" class="hibernate.service.SVServiceImpl">
+		<property name="svDao" ref="sVDao" />
+	</bean>
+	<!-- i18n -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basename" value="resources/i18n/messages"></property>
+		<property name="defaultEncoding" value="UTF-8"></property>
+	</bean>
+	<mvc:interceptors>
+		<bean
+			class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+			<property name="paramName" value="lang"></property>
+			<property name="ignoreInvalidLocale" value="true"></property>
+		</bean>
+	</mvc:interceptors>
 </beans>

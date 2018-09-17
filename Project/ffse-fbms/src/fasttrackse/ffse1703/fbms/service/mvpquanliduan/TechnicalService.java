@@ -1,0 +1,14 @@
+package fasttrackse.ffse1703.fbms.service.mvpquanliduan;
+
+import java.util.List;
+
+import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Technical;
+
+public interface TechnicalService {
+	public List<Technical> findAll();
+	public Technical findById(int id);
+	public void addNew(Technical technical);
+	public void update(Technical technical);
+	public void delete(Technical technical);
+	public int checkDomain(String name);
+}

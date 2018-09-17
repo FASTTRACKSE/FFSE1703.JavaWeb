@@ -1,12 +1,27 @@
 package fasttrackse.ffse1703.fbms.entity.TranDuc.quanlytailieu;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "tai_lieu")
 public class TaiLieu {
+	@Id
+	@Column(name = "ma_tai_lieu")
 	String maTL;
+	@Column(name="Ten_Danh_Muc")
 	String tenDM;
+	@Column(name="Hinh_Bieu_Tuong")
 	String iconTL;
+	@Column(name="Ten_Tai_Lieu")
 	String tenTL;
+	@Column(name="Ma_Phong_Ban")
 	String maPhongBan;
+	@Column(name="Link")
 	String link;
+	@Column(name="Trang_Thai")
 	String trangthai;
 	public TaiLieu() {
 		

@@ -16,7 +16,6 @@ import fasttrackse.ffse1703.fbms.entity.security.ChucDanh;
 public class ChucDanhDaoImpl implements ChucDanhDao{
 	@Autowired
 	private SessionFactory sessionFactory;
-	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<ChucDanh> findAll() {

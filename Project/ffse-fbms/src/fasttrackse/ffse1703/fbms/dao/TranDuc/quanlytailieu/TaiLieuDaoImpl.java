@@ -2,9 +2,20 @@ package fasttrackse.ffse1703.fbms.dao.TranDuc.quanlytailieu;
 
 import java.util.List;
 
-import fasttrackse.ffse1703.fbms.entity.TranDuc.quanlytailieu.TaiLieu;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+import fasttrackse.ffse1703.fbms.entity.TranDuc.quanlytailieu.TaiLieu;
+@Repository
 public class TaiLieuDaoImpl implements TaiLieuDao {
+	@Autowired
+	private SessionFactory session;
+	
+	public void setSession(SessionFactory session) {
+		this.session = session;
+	}
+
 	@Override
 	public List<TaiLieu> listAll() {
 		return null;

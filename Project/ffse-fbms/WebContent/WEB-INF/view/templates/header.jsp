@@ -399,10 +399,41 @@
 				<sec:authorize access="!hasRole('ROLE_NV') or hasRole('ROLE_PNS')">
 					<!-- Quản trị dự án -->
 				</sec:authorize>
+				<li class=" navigation-header"><span>Quản Lý Dự Án Team Black</span><i
+					class=" ft-minus" data-toggle="tooltip" data-placement="right"
+					data-original-title="Others"></i></li>
+				<li class=" nav-item"><a href="#"><i class="ft-layers"></i><span
+						class="menu-title" data-i18n="">DANH MỤC</span></a>
+					<ul class="menu-content">
+						<li><a class="menu-item" href="#">Khách hàng</a></li>
+						<li><a class="menu-item" href="#">Domain</a></li>
+						<li><a class="menu-item" href="#">Framework</a></li>
+						<li><a class="menu-item" href="#">Technica</a></li>
+						<li><a class="menu-item" href="#">Programming Language</a></li>
+						<li><a class="menu-item" href="#">Database</a></li>
+						
+					</ul></li>
+
+
+				<li class=" nav-item"><a href="#"><i class="ft-align-left"></i><span
+						class="menu-title" data-i18n="">THÔNG TIN DỰ ÁN</span></a>
+					<ul class="menu-content">
+						<li><a class="menu-item" href="#">Dự Án</a></li>
+					</ul></li>
+
+
+
 			</ul>
+
+
+
+
+
+
 			<ul id="main-menu-navigation" data-menu="menu-navigation"
 				class="navigation navigation-main">
 				<!-- Quản trị tài liệu của Đức -->
+<<<<<<< HEAD
 				<li class=" navigation-header"><span>Đứcdz - Quản Lý Tài Liệu</span><i data-toggle="tooltip"
 					data-placement="right" data-original-title="Apps" class=" ft-minus"></i></li>
 				<li class=" nav-item"><a
@@ -414,6 +445,23 @@
 				<li class=" nav-item"><a
 					href="<c:url value = "/TranDuc-QuanLyTaiLieu/PhanQuyen/"/>"><i
 						class="fa fa-id-card-o"></i><span data-i18n="" class="menu-title">Phân Quyền</span></a></li>
+=======
+				<li class=" navigation-header"><span>Đứcdz - Quản Lý Tài
+						Liệu</span><i data-toggle="tooltip" data-placement="right"
+					data-original-title="Apps" class=" ft-minus"></i></li>
+				<li class=" nav-item QuanTriHeThongphong_ban"><a
+					href="<c:url value = "/TranDuc-QuanLyTaiLieu/"/>"><i
+						class="fa fa-building"></i><span data-i18n="" class="menu-title">1</span></a></li>
+				<li class=" nav-item QuanTriHeThongchuc_danh"><a
+					href="<c:url value = "/TranDuc-QuanLyTaiLieu/"/>"><i
+						class="fa fa-id-card-o"></i><span data-i18n="" class="menu-title">2</span></a></li>
+				<li class=" nav-item QuanTriHeThongtai-khoan"><a
+					href="<c:url value = "/TranDuc-QuanLyTaiLieu/"/>"><i
+						class="fa fa-id-card-o"></i><span data-i18n="" class="menu-title">3</span></a></li>
+				<li class=" nav-item QuanTriHeThongphan-quyen"><a
+					href="<c:url value = "/TranDuc-QuanLyTaiLieu/"/>"><i
+						class="fa fa-id-card-o"></i><span data-i18n="" class="menu-title">4</span></a></li>
+>>>>>>> 2ea3227709c9b9af6a3149a62eb1bc6509a7dd83
 			</ul>
 		</div>
 	</div>

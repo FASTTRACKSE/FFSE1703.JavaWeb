@@ -4,42 +4,48 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "co_so_du_lieu")
 public class Database {
 	@Id
+	@NotEmpty
 	@Column(name = "ma_database")
 	private String maDatabase;
 
+	@NotEmpty
 	@Column(name = "ten_database")
 	private String tenDatabase;
 
 	@Column(name = "is_delete")
 	private int isDelete;
 
-	public String getMa_database() {
+	public Database() {
+	}
+
+	public String getMaDatabase() {
 		return maDatabase;
 	}
 
-	public void setMa_database(String ma_database) {
-		this.maDatabase = ma_database;
+	public void setMaDatabase(String maDatabase) {
+		this.maDatabase = maDatabase;
 	}
 
-	public String getTen_database() {
+	public String getTenDatabase() {
 		return tenDatabase;
 	}
 
-	public void setTen_database(String ten_database) {
-		this.tenDatabase = ten_database;
+	public void setTenDatabase(String tenDatabase) {
+		this.tenDatabase = tenDatabase;
 	}
 
-	public int getIs_delete() {
+	public int getIsDelete() {
 		return isDelete;
 	}
 
-	public void setIs_delete(int is_delete) {
-		this.isDelete = is_delete;
+	public void setIsDelete(int isDelete) {
+		this.isDelete = isDelete;
 	}
-
-}
+	}
+	

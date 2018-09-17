@@ -163,13 +163,11 @@
 						<li class="dropdown dropdown-language nav-item"><a
 							id="dropdown-flag" href="#" data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false"
-							class="dropdown-toggle nav-link"><spring:message
-									code="label.language" /><span class="selected-language"></span></a>
+							class="dropdown-toggle nav-link"><i class="flag-icon <spring:message code="label.QuanTriHeThong_NgonNgu" />"></i><span class="selected-language"></span></a>
 							<div aria-labelledby="dropdown-flag" class="dropdown-menu">
 								<a href="?lang=en" class="dropdown-item"><i
-									class="flag-icon flag-icon-gb"></i> English</a><a href="?lang=vi"
-									class="dropdown-item"><i class="flag-icon flag-icon-vn"></i>
-									Việt Nam</a>
+									class="flag-icon flag-icon-gb"></i>English</a><a href="?lang=vi"
+									class="dropdown-item"><i class="flag-icon flag-icon-vn"></i>Việt Nam</a>
 							</div></li>
 						<li class="dropdown dropdown-notification nav-item"><a
 							href="#" data-toggle="dropdown" class="nav-link nav-link-label"><i
@@ -399,7 +397,7 @@
 				<sec:authorize access="!hasRole('ROLE_NV') or hasRole('ROLE_PNS')">
 					<!-- Quản trị dự án -->
 				</sec:authorize>
-				<li class=" navigation-header"><span>Quản Lý Dự Án Team Black</span><i
+				<li class=" navigation-header"><span>Black - Quản Lý Dự Án</span><i
 					class=" ft-minus" data-toggle="tooltip" data-placement="right"
 					data-original-title="Others"></i></li>
 				<li class=" nav-item"><a href="#"><i class="ft-layers"></i><span

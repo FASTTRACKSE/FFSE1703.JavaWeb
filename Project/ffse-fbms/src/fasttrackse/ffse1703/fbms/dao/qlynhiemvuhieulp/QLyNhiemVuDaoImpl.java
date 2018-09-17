@@ -1,4 +1,4 @@
-package fasttrackse.ffse1703.fbms.dao.security;
+package fasttrackse.ffse1703.fbms.dao.qlynhiemvuhieulp;
 
 import java.util.List;
 
@@ -10,71 +10,74 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import fasttrackse.ffse1703.fbms.entity.security.ChucDanh;
-
+import fasttrackse.ffse1703.fbms.entity.qlynhiemvuhieulp.QLyNhiemVuEntity;
 @Repository
-public class ChucDanhDaoImpl implements ChucDanhDao{
+public class QLyNhiemVuDaoImpl implements QLyNhiemVuDao {
 	@Autowired
 	private SessionFactory sessionFactory;
+
 	@SuppressWarnings("unchecked")
+
 	@Override
-	public List<ChucDanh> findAll() {
+	public List<QLyNhiemVuEntity> findAll() {
 		Session session = this.sessionFactory.openSession();
-		List<ChucDanh> list = session.createQuery("from ChucDanh").list();
+		List<QLyNhiemVuEntity> list = session.createQuery("from quan_ly_nhiem_vu ").list();
 		session.close();
 		return list;
 	}
 
 	@Override
-	public void addNew(ChucDanh cd) {
+	public void addNew(QLyNhiemVuEntity nv) {
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
-		session.persist(cd);
+		session.persist(nv);
 		tx.commit();
 		session.close();
 	}
 
 	@Override
-	public void update(ChucDanh cd) {
+	public void update(QLyNhiemVuEntity nv) {
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
-		session.update(cd);
+		session.update(nv);
 		tx.commit();
 		session.close();
 	}
 
 	@Override
-	public void delete(String maChucDanh) {
+	public void delete(int ID) {
 		Session session = this.sessionFactory.openSession();
 		Transaction pb = session.beginTransaction();
-		session.delete(session.get(ChucDanh.class, maChucDanh));
+		session.delete(session.get(QLyNhiemVuEntity.class, ID));
 		pb.commit();
 		session.close();
+
 	}
 
 	@Override
-	public ChucDanh findByMaChucDanh(String maChucDanh) {
+	public QLyNhiemVuEntity findByTenCongViec(int ID) {
 		Session session = this.sessionFactory.openSession();
-		ChucDanh pb = session.get(ChucDanh.class, maChucDanh);
+		QLyNhiemVuEntity pb = session.get(QLyNhiemVuEntity.class, ID);
 		session.close();
 		return pb;
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<ChucDanh> findAll(int iDisplayStart, int iDisplayLength, String sql) {
+	public List<QLyNhiemVuEntity> findAll(int iDisplayStart, int iDisplayLength, String sql) {
 		Session session = this.sessionFactory.openSession();
-		List<ChucDanh> listChucDanh = session.createQuery(sql).setFirstResult(iDisplayStart)
+		List<QLyNhiemVuEntity> listNhiemVu = session.createQuery(sql).setFirstResult(iDisplayStart)
 				.setMaxResults(iDisplayLength).list();
 		session.close();
-		return listChucDanh;
+		return listNhiemVu;
 	}
 
 	@Override
+
 	public String getRecordsTotal() {
 		Session session = this.sessionFactory.openSession();
 
-		String sql = "SELECT COUNT(*) FROM `chuc_danh`";
+		String sql = "SELECT COUNT(*) FROM `quan_ly_nhiem_vu`";
 		Query query = session.createSQLQuery(sql);
 
 		String recordsTotal = query.getSingleResult().toString();
@@ -85,7 +88,7 @@ public class ChucDanhDaoImpl implements ChucDanhDao{
 	@Override
 	public String getRecordsFiltered(String sql) {
 		Session session = this.sessionFactory.openSession();
-		Query query = session.createQuery(sql.replace("select cd", "select count(*)"));
+		Query query = session.createQuery(sql.replace("select nv", "select count(*)"));
 		String recordsFiltered = query.getSingleResult().toString();
 		session.close();
 		return recordsFiltered;

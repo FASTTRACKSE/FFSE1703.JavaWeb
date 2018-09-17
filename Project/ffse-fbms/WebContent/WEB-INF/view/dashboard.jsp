@@ -716,11 +716,12 @@
 	</div>
 </div>
 <!-- ////////////////////////////////////////////////////////////////////////////-->
+
+<jsp:include page="/WEB-INF/view/templates/footer.jsp" />
+
    <script src="<c:url value="/resources/vendors/js/charts/raphael-min.js"/>" type="text/javascript"></script>
    <script src="<c:url value="/resources/vendors/js/charts/morris.min.js"/>" type="text/javascript"></script>
    <script src="<c:url value="/resources/vendors/js/extensions/unslider-min.js"/>" type="text/javascript"></script>
    <script src="<c:url value="/resources/vendors/js/timeline/horizontal-timeline.js"/>" type="text/javascript"></script>
 
    <script src="<c:url value="/resources/js/scripts/pages/dashboard-ecommerce.js"/>" type="text/javascript"></script>
-
-<jsp:include page="/WEB-INF/view/templates/footer.jsp" />

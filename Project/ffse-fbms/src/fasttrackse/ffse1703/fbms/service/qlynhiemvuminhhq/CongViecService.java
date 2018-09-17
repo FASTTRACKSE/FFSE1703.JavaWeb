@@ -9,24 +9,24 @@ import fasttrackse.ffse1703.fbms.entity.qlynhiemvuminhhq.CongViec;
 
 
 
-public interface CongViecService {
-	public List<CongViec> findAll();
+// public interface CongViecService {
+// 	public List<CongViec> findAll();
 
-	public void addNew(CongViec cv);
+// 	public void addNew(CongViec cv);
 
-	public void update(CongViec cv);
+// 	public void update(CongViec cv);
 
-	public void delete(int ID);
+// 	public void delete(int ID);
 
-	public CongViec findByTenCongViec(int ID);
+// 	public CongViec findByTenCongViec(int ID);
 	
-	public List<CongViec> findAll(int iDisplayStart, int iDisplayLength, String sql);
+// 	public List<CongViec> findAll(int iDisplayStart, int iDisplayLength, String sql);
 	
-	public String getRecordsTotal();
+// 	public String getRecordsTotal();
 	
-	public String getRecordsFiltered(String sql);
+// 	public String getRecordsFiltered(String sql);
 	
-	public String getSQL(HttpServletRequest request);
+// 	public String getSQL(HttpServletRequest request);
 	
-	public String toJson(CongViec cv);
-}
+// 	public String toJson(CongViec cv);
+// }

@@ -1,4 +1,4 @@
-package fasttrackse.ffse1703.fbms.TranDuc.entity.quanlytailieu;
+package fasttrackse.ffse1703.fbms.entity.TranDuc.quanlytailieu;
 
 public class TaiLieu {
 	String maTL;

@@ -1,8 +1,8 @@
-package fasttrackse.ffse1703.fbms.TranDuc.dao.quanlytailieu;
+package fasttrackse.ffse1703.fbms.dao.TranDuc.quanlytailieu;
 
 import java.util.List;
 
-import fasttrackse.ffse1703.fbms.TranDuc.entity.quanlytailieu.DanhMuc;
+import fasttrackse.ffse1703.fbms.entity.TranDuc.quanlytailieu.DanhMuc;
 
 public class DanhMucImpl implements DanhMucDao{
 

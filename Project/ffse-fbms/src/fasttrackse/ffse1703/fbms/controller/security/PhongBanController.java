@@ -28,7 +28,7 @@ public class PhongBanController {
 	@Autowired
 	private DatatableService datatableService;
 
-	@RequestMapping(value = "/view/danhSachPhongBan", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String viewPhongBan(Model model) {
 		return "QuanTriHeThong/phongban/list";
 	}
@@ -69,7 +69,7 @@ public class PhongBanController {
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("messageError", "Lỗi. Xin thử lại!");
 		}
-		return "redirect:/QuanTriHeThong/phong_ban/view/danhSachPhongBan";
+		return "redirect:/QuanTriHeThong/phong_ban/";
 	}
 
 	@RequestMapping(value = "/edit/{maPhongBan}", method = RequestMethod.GET)

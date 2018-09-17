@@ -28,7 +28,7 @@ public class ChucDanhController {
 	@Autowired
 	private DatatableService datatableService;
 	
-	@RequestMapping(value = "/view/danhSachChucDanh", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String viewChucDanh(Model model) {
 		return "QuanTriHeThong/chucdanh/list";
 	}
@@ -69,7 +69,7 @@ public class ChucDanhController {
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("messageError", "Lỗi. Xin thử lại!");
 		}
-		return "redirect:/QuanTriHeThong/chuc_danh/view/danhSachChucDanh";
+		return "redirect:/QuanTriHeThong/chuc_danh/";
 	}
 	
 	@RequestMapping(value = "/edit/{maChucDanh}", method = RequestMethod.GET)

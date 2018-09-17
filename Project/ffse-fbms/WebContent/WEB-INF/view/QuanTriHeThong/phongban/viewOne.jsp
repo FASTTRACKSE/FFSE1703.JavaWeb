@@ -25,7 +25,7 @@
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/home" />'>Home</a></li>
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/QuanTriHeThong/phong_ban/view/danhSachPhongBan" />'>Danh
+								href='<c:url value="/QuanTriHeThong/phong_ban/" />'>Danh
 									sách phòng ban</a></li>
 							<li class="breadcrumb-item active">Thông tin phòng ban</li>
 						</ol>

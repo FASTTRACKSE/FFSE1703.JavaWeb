@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 13, 2018 at 07:32 PM
+-- Generation Time: Sep 17, 2018 at 04:59 AM
 -- Server version: 5.6.37
 -- PHP Version: 5.6.31
 
@@ -40,6 +40,7 @@ INSERT INTO `chuc_danh` (`ma_chuc_danh`, `ten_chuc_danh`) VALUES
 ('NV', 'Nhân viên'),
 ('PGD', 'Phó Giám đốc'),
 ('PP', 'Phó phòng'),
+('TKY', 'Thư Ký'),
 ('TP', 'Trưởng phòng');
 
 -- --------------------------------------------------------
@@ -294,12 +295,15 @@ CREATE TABLE IF NOT EXISTS `phong_ban` (
 --
 
 INSERT INTO `phong_ban` (`ma_phong_ban`, `ten_phong_ban`) VALUES
-('PDA', 'Phòng Dự án'),
-('PDT', 'Phòng Đào tạo'),
-('PGD', 'Phòng Giám đốc'),
-('PIT', 'Phòng IT'),
-('PKT', 'Phòng Kế toán'),
-('PNS', 'Phòng Nhân sự');
+('PDA1', 'Phòng Dự Án #1'),
+('PDA2', 'Phòng Dự Án #2'),
+('PDA3', 'Phòng Dự Án #3'),
+('PDA4', 'Phòng Dự Án #4'),
+('PDT', 'Phòng Đào Tạo'),
+('PGD', 'Phòng Giám Đốc'),
+('PIT', 'Phòng Kỹ Thuật'),
+('PKT', 'Phòng Kế Toán'),
+('PNS', 'Phòng Nhân Sự');
 
 -- --------------------------------------------------------
 
@@ -415,6 +419,12 @@ ALTER TABLE `chuc_danh`
 --
 ALTER TABLE `ho_so_nhan_vien`
   ADD PRIMARY KEY (`ma_nhan_vien`);
+
+--
+-- Indexes for table `phong_ban`
+--
+ALTER TABLE `phong_ban`
+  ADD PRIMARY KEY (`ma_phong_ban`);
 
 --
 -- Indexes for table `users`

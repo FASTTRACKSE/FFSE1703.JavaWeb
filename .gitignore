@@ -47,6 +47,7 @@ hs_err_pid*
 -	
 -# MacOS	
 -.DS_Store	
+-.icloud	
  	 
  # External tool builders	 # External tool builders
  .externalToolBuilders/	 .externalToolBuilders/

@@ -400,5 +400,23 @@
 					<!-- Quản trị dự án -->
 				</sec:authorize>
 			</ul>
+			<ul id="main-menu-navigation" data-menu="menu-navigation"
+				class="navigation navigation-main">
+				<!-- Quản trị tài liệu của Đức -->
+				<li class=" navigation-header"><span>Đứcdz - Quản Lý Tài Liệu</span><i data-toggle="tooltip"
+					data-placement="right" data-original-title="Apps" class=" ft-minus"></i></li>
+				<li class=" nav-item QuanTriHeThongphong_ban"><a
+					href="<c:url value = "/TranDuc-QuanLyTaiLieu/"/>"><i
+						class="fa fa-building"></i><span data-i18n="" class="menu-title">1</span></a></li>
+				<li class=" nav-item QuanTriHeThongchuc_danh"><a
+					href="<c:url value = "/TranDuc-QuanLyTaiLieu/"/>"><i
+						class="fa fa-id-card-o"></i><span data-i18n="" class="menu-title">2</span></a></li>
+				<li class=" nav-item QuanTriHeThongtai-khoan"><a
+					href="<c:url value = "/TranDuc-QuanLyTaiLieu/"/>"><i
+						class="fa fa-id-card-o"></i><span data-i18n="" class="menu-title">3</span></a></li>
+				<li class=" nav-item QuanTriHeThongphan-quyen"><a
+					href="<c:url value = "/TranDuc-QuanLyTaiLieu/"/>"><i
+						class="fa fa-id-card-o"></i><span data-i18n="" class="menu-title">4</span></a></li>
+			</ul>
 		</div>
 	</div>

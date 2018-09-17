@@ -56,7 +56,7 @@
 			</div>
 			<div class="content-header-right col-md-3 col-xs-12">
                <div role="group" aria-label="Button group with nested dropdown" class="btn-group float-md-right" id="add-new">
-                  <a href="<c:url value = "/quanlyphanquyen/phong_ban/add"/>" class="btn btn-primary"><span class="fa fa-plus"></span> Thêm mới</a>
+                  <a href="<c:url value = "/QuanTriHeThong/phong_ban/add"/>" class="btn btn-primary"><span class="fa fa-plus"></span> Thêm mới</a>
                </div>
             </div>
 		</div>
@@ -166,7 +166,7 @@
 							responsive : true,
 							"order" : [ [ 1, "asc" ], [ 0, "desc" ] ],
 							"bServerSide" : true,
-							"sAjaxSource" : "/QuanLyToChucVaPhanQuyenHeThong/quanlyphanquyen/phong_ban/view/getListPhongBan",
+							"sAjaxSource" : "/ffse-fbms/QuanTriHeThong/phong_ban/view/getListPhongBan",
 						});
 	};
 

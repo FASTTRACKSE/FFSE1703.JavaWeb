@@ -19,7 +19,7 @@ import fasttrackse.ffse1703.fbms.service.security.ChucDanhService;
 import fasttrackse.ffse1703.fbms.service.security.DatatableService;
 
 @Controller
-@RequestMapping("/quantrihethong/chuc_danh")
+@RequestMapping("/QuanTriHeThong/chuc_danh")
 public class ChucDanhController {
 
 	@Autowired
@@ -30,21 +30,21 @@ public class ChucDanhController {
 	
 	@RequestMapping(value = "/view/danhSachChucDanh", method = RequestMethod.GET)
 	public String viewChucDanh(Model model) {
-		return "quantrihethong/chucdanh/list";
+		return "QuanTriHeThong/chucdanh/list";
 	}
 	
 	@RequestMapping(value = "/view/{maChucDanh}", method = RequestMethod.GET)
 	public String viewOneChucDanh(@PathVariable("maChucDanh") String maChucDanh, Model model) {
 		model.addAttribute("chucDanh", chucDanhService.findByMaChucDanh(maChucDanh));
-		return "quantrihethong/chucdanh/viewOne";
+		return "QuanTriHeThong/chucdanh/viewOne";
 	}
 	
 	@RequestMapping(value = "/view/getListChucDanh", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	public String getListChucDanh(Model model, HttpServletRequest request) {
 		
-		int iDisplayStart = Integer.parseInt(request.getParameter("iDisplayStart"));
-		int iDisplayLength = Integer.parseInt(request.getParameter("iDisplayLength"));
+		int iDisplayStart = (request.getParameter("iDisplayStart") != null ? Integer.parseInt(request.getParameter("iDisplayStart")) : 0);
+		int iDisplayLength = (request.getParameter("iDisplayLength") != null ? Integer.parseInt(request.getParameter("iDisplayLength")) : 10);
 		String sql = chucDanhService.getSQL(request);
 		List<ChucDanh> listChucDanh = chucDanhService.findAll(iDisplayStart, iDisplayLength, sql);
 
@@ -57,7 +57,7 @@ public class ChucDanhController {
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String addForm(Model model, final RedirectAttributes redirectAttributes) {
 		model.addAttribute("chucDanh", new ChucDanh());
-		return "quantrihethong/chucdanh/add_form";
+		return "QuanTriHeThong/chucdanh/add_form";
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
@@ -69,13 +69,13 @@ public class ChucDanhController {
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("messageError", "Lỗi. Xin thử lại!");
 		}
-		return "redirect:/quantrihethong/chuc_danh/view/danhSachChucDanh";
+		return "redirect:/QuanTriHeThong/chuc_danh/view/danhSachChucDanh";
 	}
 	
 	@RequestMapping(value = "/edit/{maChucDanh}", method = RequestMethod.GET)
 	public String editForm(@PathVariable("maChucDanh") String maChucDanh, Model model) {
 		model.addAttribute("chucDanh", chucDanhService.findByMaChucDanh(maChucDanh));
-		return "quantrihethong/chucdanh/edit_form";
+		return "QuanTriHeThong/chucdanh/edit_form";
 	}
 
 	@RequestMapping(value = "/edit/{maChucDanh}", method = RequestMethod.POST)
@@ -87,7 +87,7 @@ public class ChucDanhController {
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("messageError", "Lỗi. Xin thử lại!");
 		}
-		return "redirect:/quantrihethong/chuc_danh/view/danhSachChucDanh";
+		return "redirect:/QuanTriHeThong/chuc_danh/view/danhSachChucDanh";
 	}
 	
 	@RequestMapping(value = "/delete/{maChucDanh}", method = RequestMethod.GET)
@@ -98,6 +98,6 @@ public class ChucDanhController {
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("messageError", "Lỗi. Xin thử lại");
 		}
-		return "redirect:/quantrihethong/chuc_danh/view/danhSachChucDanh";
+		return "redirect:/QuanTriHeThong/chuc_danh/view/danhSachChucDanh";
 	}
 }

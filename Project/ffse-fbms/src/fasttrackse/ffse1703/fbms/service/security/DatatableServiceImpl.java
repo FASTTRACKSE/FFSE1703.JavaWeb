@@ -29,7 +29,7 @@ public class DatatableServiceImpl implements DatatableService {
 	public String getSearchQuery(HttpServletRequest request, String[] columnNames, String customCondition) {
 
 		int colLength = columnNames.length;
-		String sSearch = request.getParameter("sSearch");
+		String sSearch = (request.getParameter("sSearch") != null ? request.getParameter("sSearch") : "");
 		String globeSearch = "where " + customCondition;
 		boolean existCustom = !customCondition.isEmpty();
 
@@ -59,8 +59,8 @@ public class DatatableServiceImpl implements DatatableService {
 		List<String> sortDirections = new ArrayList<String>();
 
 		for (int i = 0; i < colLength; i++) {
-			String colIndex = request.getParameter("iSortCol_" + i);
-			if (colIndex != null) {
+			String colIndex = (request.getParameter("iSortCol_" + i) != null ? request.getParameter("iSortCol_" + i) : "");
+			if (colIndex != "") {
 				String sortName = columnNames[Integer.parseInt(colIndex)];
 				String sortDirection = request.getParameter("sSortDir_" + i);
 
@@ -84,7 +84,7 @@ public class DatatableServiceImpl implements DatatableService {
 			return sort;
 		}
 
-		return null;
+		return "";
 	}
 
 	@Override

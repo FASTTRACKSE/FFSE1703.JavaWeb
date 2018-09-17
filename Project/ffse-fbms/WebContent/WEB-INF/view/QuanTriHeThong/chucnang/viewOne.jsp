@@ -25,7 +25,7 @@
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/home" />'>Home</a></li>
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/quanlyphanquyen/chuc_nang/view/danhSachChucNang" />'>Danh
+								href='<c:url value="/QuanTriHeThong/chuc_nang/view/danhSachChucNang" />'>Danh
 									sách chức năng</a></li>
 							<li class="breadcrumb-item active">Thông tin chức năng</li>
 						</ol>

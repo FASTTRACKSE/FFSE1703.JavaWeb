@@ -17,7 +17,7 @@ import fasttrackse.ffse1703.fbms.service.security.ChucNangService;
 import fasttrackse.ffse1703.fbms.service.security.PhongBanService;
 
 @Controller
-@RequestMapping("/chuc-nang-phong-ban")
+@RequestMapping("/ChucNangPhongBan")
 public class ChucNangPhongBanController {
 	@Autowired
 	private ChucNangPhongBanService chucNangPhongBanService;
@@ -69,7 +69,7 @@ public class ChucNangPhongBanController {
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("messageError", "Lỗi. Xin thử lại!");
 		}
-		return "redirect:/chuc-nang-phong-ban/";
+		return "redirect:/ChucNangPhongBan/";
 	}
 
 	@RequestMapping(value = "/sua/{id}", method = RequestMethod.GET)
@@ -90,7 +90,7 @@ public class ChucNangPhongBanController {
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("messageError", "Lỗi. Xin thử lại!");
 		}
-		return "redirect:/chuc-nang-phong-ban/";
+		return "redirect:/ChucNangPhongBan/";
 	}
 
 	@RequestMapping(value = "/xoa/{id}", method = RequestMethod.GET)

@@ -95,9 +95,28 @@ public class UserAccount implements java.io.Serializable {
 	@Transient
 	public List<GrantedAuthority> getAuthorities() {
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-		for (UsersRoles usersRoles : this.usersRoleses) {
-			authorities.add(new SimpleGrantedAuthority(usersRoles.getRole().getName()));
+		
+		//Default role base on Department and Title
+		String deptCode = nhanVien.getPhongBan().getMaPhongBan();
+		String titleCode = nhanVien.getChucDanh().getMaChucDanh();
+		
+		String roleName = "ROLE_";
+		if (deptCode.equals("PGD")) {
+			roleName += deptCode;
 		}
+		else if (titleCode.equals("NV")) {
+			roleName += deptCode + titleCode;
+		}
+		else {
+			roleName += deptCode + "TPP";
+		}
+		authorities.add(new SimpleGrantedAuthority(roleName));
+		
+		// Additional title and roles
+		for (UsersRoles usersRoles : this.usersRoleses) {
+			//authorities.add(new SimpleGrantedAuthority(usersRoles.getRole().getName()));
+		}
+		
 		return authorities;
 	}
 

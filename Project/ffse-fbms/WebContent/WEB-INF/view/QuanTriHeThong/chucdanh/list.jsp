@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 <style>
@@ -34,8 +33,14 @@
 	min-width: 100px;
 	text-align: center !important;
 }
-#datatable > thead > tr > th:last-child[class*="sort"]::after{content: ""}
-#datatable > thead > tr > th:last-child[class*="sort"]::before{content: ""}
+
+#datatable>thead>tr>th:last-child[class*="sort"]::after {
+	content: ""
+}
+
+#datatable>thead>tr>th:last-child[class*="sort"]::before {
+	content: ""
+}
 </style>
 <div class="app-content content container-fluid">
 	<div class="content-wrapper">
@@ -55,10 +60,13 @@
 				</div>
 			</div>
 			<div class="content-header-right col-md-3 col-xs-12">
-               <div role="group" aria-label="Button group with nested dropdown" class="btn-group float-md-right" id="add-new">
-                  <a href="<c:url value = "/quanlyphanquyen/chuc_danh/add"/>" class="btn btn-primary"><span class="fa fa-plus"></span> Thêm mới</a>
-               </div>
-            </div>
+				<div role="group" aria-label="Button group with nested dropdown"
+					class="btn-group float-md-right" id="add-new">
+					<a href="<c:url value = "/QuanTriHeThong/chuc_danh/add"/>"
+						class="btn btn-primary"><span class="fa fa-plus"></span> Thêm
+						mới</a>
+				</div>
+			</div>
 		</div>
 		<!-- End Path -->
 
@@ -160,14 +168,12 @@
 
 		$('#datatable').dataTable().fnDestroy();
 
-		$("#datatable")
-				.dataTable(
-						{
-							responsive : true,
-							"order" : [ [ 1, "asc" ], [ 0, "desc" ] ],
-							"bServerSide" : true,
-							"sAjaxSource" : "/QuanLyToChucVaPhanQuyenHeThong/quanlyphanquyen/chuc_danh/view/getListChucDanh",
-						});
+		$("#datatable").dataTable({
+			responsive : true,
+			"order" : [ [ 1, "asc" ], [ 0, "desc" ] ],
+			"bServerSide" : true,
+			"sAjaxSource" : "/ffse-fbms/QuanTriHeThong/chuc_danh/view/getListChucDanh",
+		});
 	};
 
 	window.setTimeout(function() {

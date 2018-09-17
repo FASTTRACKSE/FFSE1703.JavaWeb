@@ -19,7 +19,7 @@ import fasttrackse.ffse1703.fbms.service.security.DatatableService;
 import fasttrackse.ffse1703.fbms.service.security.PhongBanService;
 
 @Controller
-@RequestMapping("/quantrihethong/phong_ban")
+@RequestMapping("/QuanTriHeThong/phong_ban")
 public class PhongBanController {
 
 	@Autowired
@@ -30,21 +30,21 @@ public class PhongBanController {
 
 	@RequestMapping(value = "/view/danhSachPhongBan", method = RequestMethod.GET)
 	public String viewPhongBan(Model model) {
-		return "quantrihethong/phongban/list";
+		return "QuanTriHeThong/phongban/list";
 	}
 	
 	@RequestMapping(value = "/view/{maPhongBan}", method = RequestMethod.GET)
 	public String viewOnePhongBan(@PathVariable("maPhongBan") String maPhongBan, Model model) {
 		model.addAttribute("phongBan", phongBanService.findByMaPhongBan(maPhongBan));
-		return "quantrihethong/phongban/viewOne";
+		return "QuanTriHeThong/phongban/viewOne";
 	}
 	
 	@RequestMapping(value = "/view/getListPhongBan", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	public String getListPhongBan(Model model, HttpServletRequest request) {
 		
-		int iDisplayStart = Integer.parseInt(request.getParameter("iDisplayStart"));
-		int iDisplayLength = Integer.parseInt(request.getParameter("iDisplayLength"));
+		int iDisplayStart = (request.getParameter("iDisplayStart") != null ? Integer.parseInt(request.getParameter("iDisplayStart")) : 0);
+		int iDisplayLength = (request.getParameter("iDisplayLength") != null ? Integer.parseInt(request.getParameter("iDisplayLength")) : 10);
 		String sql = phongBanService.getSQL(request);
 		List<PhongBan> listPhongBan = phongBanService.findAll(iDisplayStart, iDisplayLength, sql);
 
@@ -57,7 +57,7 @@ public class PhongBanController {
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String addForm(Model model, final RedirectAttributes redirectAttributes) {
 		model.addAttribute("phongBan", new PhongBan());
-		return "quantrihethong/phongban/add_form";
+		return "QuanTriHeThong/phongban/add_form";
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
@@ -69,13 +69,13 @@ public class PhongBanController {
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("messageError", "Lỗi. Xin thử lại!");
 		}
-		return "redirect:/quantrihethong/phong_ban/view/danhSachPhongBan";
+		return "redirect:/QuanTriHeThong/phong_ban/view/danhSachPhongBan";
 	}
 
 	@RequestMapping(value = "/edit/{maPhongBan}", method = RequestMethod.GET)
 	public String editForm(@PathVariable("maPhongBan") String maPhongBan, Model model) {
 		model.addAttribute("phongBan", phongBanService.findByMaPhongBan(maPhongBan));
-		return "quantrihethong/phongban/edit_form";
+		return "QuanTriHeThong/phongban/edit_form";
 	}
 
 	@RequestMapping(value = "/edit/{maPhongBan}", method = RequestMethod.POST)
@@ -87,7 +87,7 @@ public class PhongBanController {
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("messageError", "Lỗi. Xin thử lại!");
 		}
-		return "redirect:/quantrihethong/phong_ban/view/danhSachPhongBan";
+		return "redirect:/QuanTriHeThong/phong_ban/view/danhSachPhongBan";
 	}
 
 	@RequestMapping(value = "/delete/{maPhongBan}", method = RequestMethod.GET)
@@ -98,6 +98,6 @@ public class PhongBanController {
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("messageError", "Lỗi. Xin thử lại!");
 		}
-		return "redirect:/quantrihethong/phong_ban/view/danhSachPhongBan";
+		return "redirect:/QuanTriHeThong/phong_ban/view/danhSachPhongBan";
 	}
 }

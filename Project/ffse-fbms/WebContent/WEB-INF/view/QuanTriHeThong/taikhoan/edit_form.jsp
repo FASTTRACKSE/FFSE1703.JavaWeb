@@ -14,7 +14,7 @@
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href='<c:url value="/home" />'>Home</a></li>
-							<li class="breadcrumb-item"><a href='<c:url value="/tai-khoan/" />'>Danh sách tài khoản</a></li>
+							<li class="breadcrumb-item"><a href='<c:url value="/QuanTriHeThong/tai-khoan/" />'>Danh sách tài khoản</a></li>
 							<li class="breadcrumb-item active">Sửa tài khoản</li>
 						</ol>
 					</div>

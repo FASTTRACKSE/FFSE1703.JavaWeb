@@ -8,7 +8,17 @@
 		http://www.springframework.org/schema/security 
 		http://www.springframework.org/schema/security/spring-security.xsd">
 	<http auto-config="true">
-		<intercept-url pattern="/**" access="permitAll"/>
+		<intercept-url pattern="/login**" access="permitAll"/>
+		<intercept-url pattern="/logout**" access="permitAll"/>
+		<intercept-url pattern="/home**" access="permitAll"/>
+		<intercept-url pattern="/QuanTriHeThong/phong_ban/**" access="hasRole('ROLE_PITTPP') or hasRole('ROLE_PGD')" />
+		<intercept-url pattern="/QuanTriHeThong/chuc_danh/**" access="hasAnyRole('ROLE_PNSTPP','ROLE_PGD')" />
+		<intercept-url pattern="/QuanTriHeThong/tai-khoan/**" access="hasAnyRole('ROLE_SADM')" />
+		<intercept-url pattern="/QuanTriHeThong/phan-quyen/**" access="hasAnyRole('ROLE_SADM')" />
+
+		<access-denied-handler error-page="/403"/>		
+		<logout logout-url="/j_spring_security_logout"
+			logout-success-url="/login" delete-cookies="JSESSIONID" />
 		<form-login login-page="/login"
 			login-processing-url="/j_spring_security_login"
 			default-target-url="/" authentication-failure-url="/login?error"
@@ -21,10 +31,6 @@
 				error-if-maximum-exceeded="false"
 				expired-url="/login?message=max_session" max-sessions="1" />
 		</session-management>
-		<access-denied-handler error-page="/error"/>
-		
-		<logout logout-url="/j_spring_security_logout"
-			logout-success-url="/login" delete-cookies="JSESSIONID" />
 	</http>
 	<beans:bean id="myUserDetailsService"
 		class="fasttrackse.ffse1703.fbms.service.security.UserServiceImpl"></beans:bean>

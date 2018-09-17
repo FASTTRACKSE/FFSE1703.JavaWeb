@@ -85,15 +85,15 @@ public class ChucNangServiceImpl implements ChucNangService {
 		int trangThai = cn.getTrang_thai();
 		String enable;
 		if(trangThai == 1) {
-			enable = "<a href='/QuanLyToChucVaPhanQuyenHeThong/quanlyphanquyen/chuc_nang/active/"+ maChucNang + "'>Đang kích hoạt</a>";
+			enable = "<a href='/ffse-fbms/QuanTriHeThong/chuc_nang/active/"+ maChucNang + "'>Đang kích hoạt</a>";
 		}else {
-			enable = "<a href='/QuanLyToChucVaPhanQuyenHeThong/quanlyphanquyen/chuc_nang/active/"+ maChucNang + "'>Chưa kích hoạt</a>";
+			enable = "<a href='/ffse-fbms/QuanTriHeThong/chuc_nang/active/"+ maChucNang + "'>Chưa kích hoạt</a>";
 		}
-		String action = "<a href='/QuanLyToChucVaPhanQuyenHeThong/quanlyphanquyen/chuc_nang/view/" 
+		String action = "<a href='/ffse-fbms/QuanTriHeThong/chuc_nang/view/" 
 				+ maChucNang + "'><i class='fa fa-eye'></i></a>"
-				+ "<a href='/QuanLyToChucVaPhanQuyenHeThong/quanlyphanquyen/chuc_nang/edit/"
+				+ "<a href='/ffse-fbms/QuanTriHeThong/chuc_nang/edit/"
 				+ maChucNang + "'><i class='fa fa-pencil'></i></a>"
-				+ "<a href='javascript:void(0);' data-toggle='modal' data-target='#confirm-delete' data-href='/QuanLyToChucVaPhanQuyenHeThong/quanlyphanquyen/chuc_nang/delete/"
+				+ "<a href='javascript:void(0);' data-toggle='modal' data-target='#confirm-delete' data-href='/ffse-fbms/QuanTriHeThong/chuc_nang/delete/"
 				+maChucNang + "'><i class='fa fa-trash'></i></a>";
 
 		return "[\"" + maChucNang + "\",\"" + tenChucNang + "\",\"" + enable + "\",\"" + action + "\"]";

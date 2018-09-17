@@ -60,8 +60,6 @@
 
    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
    
    <script>
    $(document)
@@ -238,13 +236,13 @@
             <!-- Quản trị hệ thống -->
             <li class=" navigation-header"><span><spring:message code="label.QuanTriHeThong" /></span><i data-toggle="tooltip" data-placement="right" data-original-title="Apps" class=" ft-minus"></i>
             </li>
-            <li class=" nav-item QuanTriNhanSuphong_ban"><a href="<c:url value = "/QuanTriHeThong/phong_ban/"/>"><i class="fa fa-building"></i><span data-i18n="" class="menu-title"><spring:message code="label.QuanTriHeThong_PhongBan" /></span></a>
+            <li class=" nav-item QuanTriHeThongphong_ban"><a href="<c:url value = "/QuanTriHeThong/phong_ban/"/>"><i class="fa fa-building"></i><span data-i18n="" class="menu-title"><spring:message code="label.QuanTriHeThong_PhongBan" /></span></a>
             </li>
-            <li class=" nav-item QuanTriNhanSuchuc_danh"><a href="<c:url value = "/QuanTriHeThong/chuc_danh/"/>"><i class="fa fa-id-card-o"></i><span data-i18n="" class="menu-title"><spring:message code="label.QuanTriHeThong_ChucDanh" /></span></a>
+            <li class=" nav-item QuanTriHeThongchuc_danh"><a href="<c:url value = "/QuanTriHeThong/chuc_danh/"/>"><i class="fa fa-id-card-o"></i><span data-i18n="" class="menu-title"><spring:message code="label.QuanTriHeThong_ChucDanh" /></span></a>
             </li>
-            <li class=" nav-item QuanTriNhanSutai-khoan"><a href="<c:url value = "/QuanTriHeThong/tai-khoan/"/>"><i class="fa fa-id-card-o"></i><span data-i18n="" class="menu-title"><spring:message code="label.QuanTriHeThong_TaiKhoan" /></span></a>
+            <li class=" nav-item QuanTriHeThongtai-khoan"><a href="<c:url value = "/QuanTriHeThong/tai-khoan/"/>"><i class="fa fa-id-card-o"></i><span data-i18n="" class="menu-title"><spring:message code="label.QuanTriHeThong_TaiKhoan" /></span></a>
             </li>
-            <li class=" nav-item QuanTriNhanSuphan-quyen"><a href="<c:url value = "/QuanTriHeThong/phan-quyen/"/>"><i class="fa fa-id-card-o"></i><span data-i18n="" class="menu-title"><spring:message code="label.QuanTriHeThong_PhanQuyen" /></span></a>
+            <li class=" nav-item QuanTriHeThongphan-quyen"><a href="<c:url value = "/QuanTriHeThong/phan-quyen/"/>"><i class="fa fa-id-card-o"></i><span data-i18n="" class="menu-title"><spring:message code="label.QuanTriHeThong_PhanQuyen" /></span></a>
             </li>
             
             <sec:authorize access="hasAnyRole('ROLE_PNSNV','ROLE_PNSTPP')">

@@ -1,0 +1,58 @@
+package fasttrackse.ffse1703.fbms.dao.mvpquanliduan;
+
+import java.util.List;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Domain;
+
+@Repository
+public class DomainDAOImpl implements DomainDAO {
+	@Autowired
+	private SessionFactory sessionFactory;
+
+	@Override
+	public List<Domain> findAll() {
+		Session session = sessionFactory.getCurrentSession();
+		return session.createQuery("from Domain where status = 1", Domain.class).list();
+	}
+	@Override
+	public int checkDomain(String nameDomain) {
+		Session session = sessionFactory.getCurrentSession();
+		List<Domain> dm = session.createQuery("from Domain where nameDomain = '"+nameDomain+"'", Domain.class).list();
+		
+		return  dm.size();
+	}
+	@Override
+	public Domain findById(int id) {
+		Session session = sessionFactory.getCurrentSession();
+		Domain dm = session.get(Domain.class, id);
+		return dm;
+
+	}
+
+	@Override
+	public void addNew(Domain domain) {
+		Session session = this.sessionFactory.getCurrentSession();
+		session.persist(domain);
+
+	}
+
+	@Override
+	public void update(Domain domain) {
+		Session session = this.sessionFactory.getCurrentSession();
+		session.update(domain);
+	}
+
+	@Override
+	public void delete(Domain domain) {
+		Session session = this.sessionFactory.getCurrentSession();
+		session.update(domain);
+
+	}
+
+}

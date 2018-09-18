@@ -24,7 +24,7 @@ public class HoSoNhanVienPikalongDaoImpl implements HoSoNhanVienPikalongDao {
 	public List<HoSoNhanVienPikalong> listNhanVien() {
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery("from HoSoNhanVienPikalong where isActive = :active");
-		query.setParameter("active", 1);
+		query.setParameter("active", 0);
 		@SuppressWarnings("unchecked")
 		List<HoSoNhanVienPikalong> nhanVienList = query.list();
 		return nhanVienList;
@@ -37,7 +37,7 @@ public class HoSoNhanVienPikalongDaoImpl implements HoSoNhanVienPikalongDao {
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery("update HoSoNhanVienPikalong set isActive = :active" 
 												 + " where maNv = :maNv");
-		query.setParameter("active", 0);
+		query.setParameter("active", 1);
 		query.setParameter("maNv", maNv);
 		
 		query.executeUpdate();

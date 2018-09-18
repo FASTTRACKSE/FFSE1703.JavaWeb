@@ -28,6 +28,8 @@ public class HoSoNhanVienPikalong {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date ngaySinh;
 	
+	private int tinhTrangHonNhan;
+	
 	private String thanhPho;
 	
 	private String quanHuyen;
@@ -150,6 +152,14 @@ public class HoSoNhanVienPikalong {
 
 	public void setNgaySinh(Date ngaySinh) {
 		this.ngaySinh = ngaySinh;
+	}
+
+	public int getTinhTrangHonNhan() {
+		return tinhTrangHonNhan;
+	}
+
+	public void setTinhTrangHonNhan(int tinhTrangHonNhan) {
+		this.tinhTrangHonNhan = tinhTrangHonNhan;
 	}
 
 	public void setThanhPho(String thanhPho) {

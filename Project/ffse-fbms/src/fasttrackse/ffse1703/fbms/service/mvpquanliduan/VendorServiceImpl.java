@@ -27,8 +27,7 @@ public class VendorServiceImpl implements VendorService {
 
 	@Override
 	@Transactional
-	public Vendor findById(int id) {
-		
+	public Vendor findById(String id) {
 		return vendorDAO.findById(id);
 	}
 

@@ -21,14 +21,20 @@ public class DomainDAOImpl implements DomainDAO {
 		return session.createQuery("from Domain where status = 1", Domain.class).list();
 	}
 	@Override
-	public int checkDomain(String nameDomain) {
+	public int checkNameDomain(String nameDomain) {
 		Session session = sessionFactory.getCurrentSession();
-		List<Domain> dm = session.createQuery("from Domain where nameDomain = '"+nameDomain+"'", Domain.class).list();
+		List<Domain> dm = session.createQuery("from Domain where nameDomain = '"+nameDomain+"' and status = 1", Domain.class).list();
 		
 		return  dm.size();
 	}
 	@Override
-	public Domain findById(int id) {
+	public int checkMaDomain(String idDomain) {
+		Session session = sessionFactory.getCurrentSession();
+		List<Domain> dm = session.createQuery("from Domain where idDomain = '"+idDomain+"' ", Domain.class).list();
+		return  dm.size();
+	}
+	@Override
+	public Domain findById(String id) {
 		Session session = sessionFactory.getCurrentSession();
 		Domain dm = session.get(Domain.class, id);
 		return dm;

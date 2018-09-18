@@ -20,14 +20,14 @@ import fasttrackse.ffse1703.fbms.service.qlynhiemvuminhhq.DatatableCVService;
 
 
 
-@Controller
-@RequestMapping("QuanLyNhiemVuMinhHQ")
+//@Controller
+//@RequestMapping("QuanLyNhiemVuMinhHQ")
 public class QLyNhiemVuController {
-	@Autowired
-	private CongViecService congViecService;
-	
-	@Autowired
-	private DatatableCVService datatableCVService;
+//	@Autowired
+//	private CongViecService congViecService;
+//	
+//	@Autowired
+//	private DatatableCVService datatableCVService;
 	
 //	@RequestMapping(value = "/", method = RequestMethod.GET)
 //	public String viewChucDanh(Model model) {

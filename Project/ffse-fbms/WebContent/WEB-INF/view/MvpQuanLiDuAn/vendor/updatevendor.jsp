@@ -37,36 +37,35 @@
 
 		<div class="justify-content-md-center" style="width: 95%">
 		 			
-                     <form:form method="post" action="addnew" style="width: 95%;margin-left: 5%">
+                     <form:form method="post" action="/ffse-fbms/mvpquanliduan/vendor/update" style="width: 95%;margin-left: 5%" modelAttribute="vendor">
                        <h4 class="form-section"><i class="ft-clipboard"></i> Nhà cung cấp</h4>
                         <div class="row">
                           <div class="form-group col-md-6 mb-2">
-                            <label for="projectinput6">Mã Nhà cung cấp</label><br>
-                            <p Class="error" >${messageName}</p>
+                            <label for="projectinput6">Mã Nhà cung cấp</label>
                             <form:errors path="idVendor" cssClass="error" />
-                           <form:input class="form-control round" path="idVendor" placeholder="Mã nhà cung cấp" />
+                           <form:input class="form-control round" path="idVendor" placeholder="Mã nhà cung cấp" readonly="true"/>
                           </div>
                           <div class="form-group col-md-6 mb-2">
-                            <label for="projectinput7">Nhà cung cấp</label><br>
+                            <label for="projectinput7">Nhà cung cấp</label>
                             <form:errors path="nameVendor" cssClass="error" />
                             <form:input class="form-control round" path="nameVendor" placeholder="Nhà cung cấp" />
                           </div>
                         </div>
                         <div class="row">
                           <div class="form-group col-md-6 mb-2">
-                            <label for="projectinput6">Điện thoại</label><br>
+                            <label for="projectinput6">Điện thoại</label>
                               <form:errors path="phone" cssClass="error" />
                            <form:input class="form-control round" path="phone" placeholder="Điện thoại" />
                           </div>
                           <div class="form-group col-md-6 mb-2">
-                            <label for="projectinput7">Email</label><br>
+                            <label for="projectinput7">Email</label>
                              <form:errors path="email" cssClass="error" />
                             <form:input class="form-control round" path="email" placeholder="Email" />
                           </div>
                         </div>
                         <div class="row">
                           <div class="form-group col-12 mb-2">
-                            <label>Địa chỉ</label><br>
+                            <label>Địa chỉ</label>
                               <form:errors path="address" cssClass="error" />
                             <form:input class="form-control round" path="address" placeholder="Địa chỉ" />
                           </div>

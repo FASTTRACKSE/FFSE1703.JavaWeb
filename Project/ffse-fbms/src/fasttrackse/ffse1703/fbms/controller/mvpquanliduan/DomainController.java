@@ -28,7 +28,7 @@ public class DomainController {
 		this.domainService = domainService;
 	}
 
-	@RequestMapping("/listdomain")
+	@RequestMapping("/list-domain")
 	public String listDomain(Model model) {
 		List<Domain> list = domainService.findAll();
 		model.addAttribute("listDomain", list);
@@ -44,22 +44,30 @@ public class DomainController {
 	@RequestMapping(value = "/addnew", method = RequestMethod.POST)
 	public String addNew(@Valid @ModelAttribute("command") Domain domain, BindingResult result,
 			final RedirectAttributes redirectAttributes, Model model) {
-		int check= domainService.checkDomain(domain.getNameDomain());
 		
+		//validation form 
 		if (result.hasErrors()) {
 			return "MvpQuanLiDuAn/domain/adddomain";
 		}
-		if(check >=1) {
-			model.addAttribute("message", "Nghệp vụ đã tồn tại");
+		//check trùng nameDomain
+		int checkName= domainService.checkNameDomain(domain.getNameDomain());
+		if(checkName >=1) {
+			model.addAttribute("messageName", "Tên Nghệp vụ đã được sử dụng");
+			return "MvpQuanLiDuAn/domain/adddomain";
+		}
+		int checkMa= domainService.checkMaDomain(domain.getIdDomain());
+		if(checkMa >=1) {
+			model.addAttribute("messageMa", "Mã Nghệp vụ đã được sử dụng");
 			return "MvpQuanLiDuAn/domain/adddomain";
 		}
 		domain.setStatus(1);
 		domainService.addNew(domain);
-		return "redirect: listdomain";
+		redirectAttributes.addFlashAttribute("success", "<script>alert('Thêm thành công');</script>");
+		return "redirect: list-domain";
 	}
 
 	@RequestMapping(value = "/show-form-edit/{id}")
-	public String showFormEdit(Model model, @PathVariable int id) {
+	public String showFormEdit(Model model, @PathVariable String id) {
 		Domain dm = domainService.findById(id);
 		System.out.println("domainla" + dm);
 		model.addAttribute("domain", dm);
@@ -68,20 +76,21 @@ public class DomainController {
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String update(@Valid @ModelAttribute("Domain") Domain domain, BindingResult result,
-			final RedirectAttributes redirectAttributes) {
+			final RedirectAttributes redirectAttributes,Model model) {
 		if (result.hasErrors()) {
+			model.addAttribute("domain", domain);
 			return "MvpQuanLiDuAn/domain/updatedomain";
 		}
 		domain.setStatus(1);
 		domainService.update(domain);
-		return "redirect: listdomain";
+		return "redirect: list-domain";
 	}
 
 	@RequestMapping(value = "/delete/{id}")
-	public String delete(@PathVariable int id, final RedirectAttributes redirectAttributes) {
+	public String delete(@PathVariable String id, final RedirectAttributes redirectAttributes) {
 		Domain dm = domainService.findById(id);
 		dm.setStatus(0);
 		domainService.update(dm);
-		return "redirect: /ffse-fbms/mvpquanliduan/domain/listdomain";
+		return "redirect: /ffse-fbms/mvpquanliduan/domain/list-domain";
 	}
 }

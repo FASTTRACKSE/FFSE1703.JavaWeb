@@ -13,22 +13,23 @@ import javax.validation.constraints.Size;
 @Table(name= "qlda_technical")
 public class Technical {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@NotEmpty(message = "Mã Kĩ thuật không được để trống!!")
+	@Size(min = 5, max= 10, message = "Mã Kĩ thuật từ 5 đến 10 kí tự")
 	@Column(name = "id_technical")
-	private int idTechnical;
+	private String idTechnical;
 	
-	@NotEmpty(message = "Kĩ thuật không được để trống")
-	@Size(min = 5, message = "Kĩ thuật ít nhất 5 kí tự")
+	@NotEmpty(message = "Tên Kĩ thuật không được để trống")
+	@Size(min = 5, message = "Tên Kĩ thuật ít nhất 5 kí tự")
 	@Column(name = "name_technical")
 	private String nameTechnical;
 
 	private int status;
 
-	public int getIdTechnical() {
+	public String getIdTechnical() {
 		return idTechnical;
 	}
 
-	public void setIdTechnical(int idTechnical) {
+	public void setIdTechnical(String idTechnical) {
 		this.idTechnical = idTechnical;
 	}
 

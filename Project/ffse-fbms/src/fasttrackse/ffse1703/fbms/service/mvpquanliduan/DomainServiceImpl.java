@@ -23,7 +23,7 @@ public class DomainServiceImpl implements DomainService {
 
 	@Override
 	@Transactional
-	public Domain findById(int id) {
+	public Domain findById(String id) {
 		return domainDAO.findById(id);
 	}
 
@@ -44,11 +44,22 @@ public class DomainServiceImpl implements DomainService {
 	public void delete(Domain domain) {
 		domainDAO.delete(domain);
 	}
+	@Override
+	@Transactional
+	public int checkNameDomain(String nameDomain) {
+		
+		return domainDAO.checkNameDomain(nameDomain);
+	}
 
 	@Override
 	@Transactional
-	public int checkDomain(String nameDoamin) {
-		return domainDAO.checkDomain(nameDoamin);
+	public int checkMaDomain(String idDomain) {
+	
+		return domainDAO.checkMaDomain(idDomain);
 	}
+
+
+
+
 
 }

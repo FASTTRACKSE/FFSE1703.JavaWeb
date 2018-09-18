@@ -40,14 +40,24 @@
 				<div class="row">
 					<form:form method="POST" action="addnew">
 						<div class="form-group col-sm-6">
+							<label>Mã kĩ thuật</label><br>
+							<p class="error">${messageMa}</p>
+							<form:errors path="idTechnical" cssClass="error" />
+							<form:input path="idTechnical" class="form-control round"
+								placeholder="Mã kĩ thuật" />
+						</div>
+						<div class="form-group col-sm-6">
 							<label>Tên kĩ thuật</label><br>
-							<p class="error">${message}</p>
+							<p class="error">${messageName}</p>
 							<form:errors path="nameTechnical" cssClass="error" />
 							<form:input path="nameTechnical" class="form-control round"
 								placeholder="Tên kĩ thuật" />
 						</div>
 						<div class="col-sm-12 text-center">
-							<button type="submit" class="btn btn-outline-success round btn-min-width mr-1 mb-1"><i class="fa fa-check-square-o"></i> Lưu</button>
+							<button type="submit"
+								class="btn btn-outline-success round btn-min-width mr-1 mb-1">
+								<i class="fa fa-check-square-o"></i> Lưu
+							</button>
 						</div>
 					</form:form>
 				</div>

@@ -23,7 +23,7 @@
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/home" />'>Home</a></li>
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/mvpquanliduan/domain/listdomain" />'>Danh
+								href='<c:url value="/mvpquanliduan/domain/list-domain" />'>Danh
 									sách Nghiệp vụ</a></li>
 							<li class="breadcrumb-item active">Chỉnh sửa nghiệp vụ</li>
 						</ol>

@@ -22,19 +22,26 @@ public class TechnicalDAOImpl implements TechnicalDAO{
 	}
 
 	@Override
-	public Technical findById(int id) {
+	public Technical findById(String id) {
 		Session session = sessionFactory.getCurrentSession();
 		Technical technical = session.get(Technical.class, id);
 		return technical;
 
 	}
 	@Override
-	public int checkDomain(String name) {
+	public int checkNameTechnical(String name) {
 		Session session = sessionFactory.getCurrentSession();
-		List<Technical> dm = session.createQuery("from Technical where nameTechnical = '"+name+"'", Technical.class).list();
+		List<Technical> dm = session.createQuery("from Technical where nameTechnical = '"+name+"' and status = 1", Technical.class).list();
 		
 		return  dm.size();
 	}
+	@Override
+	public int checkMaTechnical(String name) {
+		Session session = sessionFactory.getCurrentSession();
+		List<Technical> dm = session.createQuery("from Technical where idTechnical = '"+name+"'", Technical.class).list();
+		return  dm.size();
+	}
+
 
 	@Override
 	public void addNew(Technical technical) {

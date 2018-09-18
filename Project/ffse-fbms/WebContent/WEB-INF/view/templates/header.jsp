@@ -394,14 +394,57 @@
 								code="label.QuanTriHeThong_PhanQuyen" /></span></a></li>
 
 				<sec:authorize access="hasAnyRole('ROLE_PNSNV','ROLE_PNSTPP')">
+
 					<!-- Quản Trị Nhân Sự -->
 				</sec:authorize>
 				<sec:authorize access="!hasRole('ROLE_NV') or hasRole('ROLE_PNS')">
+
+					<!--  MVP- Quản lí Dự Án -->
+					<!--  MVP- Quản lí Dự Án -->
+					<li class="navigation-header"><span>MVP-Quản lý dự án</span><i
+						class=" ft-minus" data-toggle="tooltip" data-placement="right"
+						data-original-title="Components"></i></li>
+					<li class="nav-item has-sub"><a href="#"><i
+							class="ft-briefcase"></i><span class="menu-title" data-i18n="">Danh
+								Mục Dự Án</span></a>
+						<ul class="menu-content" style="">
+							<li class=""><a class="menu-item"
+								href="#">Khách hàng</a></li>
+							<li class=""><a class="menu-item"
+								href="<c:url value="/mvpquanliduan/domain/list-domain" />">Domain</a></li>
+							<li class=""><a class="menu-item"
+								href="<c:url value="/mvpquanliduan/technical/list-technical" />">Technical</a></li>
+							<li class=""><a class="menu-item"
+								href="<c:url value="/mvpquanliduan/vendor/list-vendor" />">Vendor</a></li>
+							<li class=""><a class="menu-item"
+								href="#">Framework</a></li>
+							<li class=""><a class="menu-item"
+								href="#">Programing Language</a></li>
+							<li class=""><a class="menu-item"
+								href="#">Vai trò</a></li>
+							<li class=""><a class="menu-item"
+								href="#">Trạng thái</a></li>
+							<li class=""><a class="menu-item"
+								href="#">Database</a></li>
+						</ul></li>
+					<li class="nav-item has-sub"><a href="#"><i class="ft-box"></i><span
+							class="menu-title" data-i18n="">Dự Án</span></a>
+						<ul class="menu-content" style="">
+							<li class=""><a class="menu-item"
+								href="#">Thêm dự án</a></li>
+							<li class=""><a class="menu-item"
+								href="#">Danh sách dự án</a></li>
+							<li class=""><a class="menu-item"
+								href="#">Phân công nhiệm vụ dự án</a></li>
+							
+						</ul></li>
+
+					<!--  ////////////////////////////////////////////// -->
 					<!-- Quản trị dự án -->
 				</sec:authorize>
-				<li class=" navigation-header"><span>Quản Lý Dự Án Team Black</span><i
-					class=" ft-minus" data-toggle="tooltip" data-placement="right"
-					data-original-title="Others"></i></li>
+				<li class=" navigation-header"><span>Quản Lý Dự Án Team
+						Black</span><i class=" ft-minus" data-toggle="tooltip"
+					data-placement="right" data-original-title="Others"></i></li>
 				<li class=" nav-item"><a href="#"><i class="ft-layers"></i><span
 						class="menu-title" data-i18n="">DANH MỤC</span></a>
 					<ul class="menu-content">
@@ -411,7 +454,7 @@
 						<li><a class="menu-item" href="#">Technica</a></li>
 						<li><a class="menu-item" href="#">Programming Language</a></li>
 						<li><a class="menu-item" href="#">Database</a></li>
-						
+
 					</ul></li>
 
 
@@ -427,17 +470,21 @@
 			<ul id="main-menu-navigation" data-menu="menu-navigation"
 				class="navigation navigation-main">
 				<!-- Quản trị tài liệu của Đức -->
-				<li class=" navigation-header"><span>Đứcdz - Quản Lý Tài Liệu</span><i data-toggle="tooltip"
-					data-placement="right" data-original-title="Apps" class=" ft-minus"></i></li>
+				<li class=" navigation-header"><span>Đứcdz - Quản Lý Tài
+						Liệu</span><i data-toggle="tooltip" data-placement="right"
+					data-original-title="Apps" class=" ft-minus"></i></li>
 				<li class=" nav-item"><a
 					href="<c:url value = "/TranDuc-QuanLyTaiLieu/DanhMuc/"/>"><i
-						class="fa fa-building"></i><span data-i18n="" class="menu-title">Quản Lý Danh Mục</span></a></li>
+						class="fa fa-building"></i><span data-i18n="" class="menu-title">Quản
+							Lý Danh Mục</span></a></li>
 				<li class=" nav-item"><a
 					href="<c:url value = "/TranDuc-QuanLyTaiLieu/TaiLieu/"/>"><i
-						class="fa fa-id-card-o"></i><span data-i18n="" class="menu-title">Quản Lý Tài Liệu</span></a></li>
+						class="fa fa-id-card-o"></i><span data-i18n="" class="menu-title">Quản
+							Lý Tài Liệu</span></a></li>
 				<li class=" nav-item"><a
 					href="<c:url value = "/TranDuc-QuanLyTaiLieu/PhanQuyen/"/>"><i
-						class="fa fa-id-card-o"></i><span data-i18n="" class="menu-title">Phân Quyền</span></a></li>
+						class="fa fa-id-card-o"></i><span data-i18n="" class="menu-title">Phân
+							Quyền</span></a></li>
 			</ul>
 		</div>
 	</div>

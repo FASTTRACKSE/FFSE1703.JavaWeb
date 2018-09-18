@@ -6,9 +6,10 @@ import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Technical;
 
 public interface TechnicalService {
 	public List<Technical> findAll();
-	public Technical findById(int id);
+	public Technical findById(String id);
 	public void addNew(Technical technical);
 	public void update(Technical technical);
 	public void delete(Technical technical);
-	public int checkDomain(String name);
+	public int checkNameTechnical(String nameTechnical);
+	public int checkMaTechnical(String idTechnical);
 }

@@ -14,13 +14,13 @@
 			<!-- Path -->
 			<div class="content-header row">
 				<div class="content-header-left col-md-9 col-xs-12 mb-2">
-					<h3 class="content-header-title mb-0">Danh Sách Tài Liệu</h3>
+					<h3 class="content-header-title mb-0">Danh Sách Trạng Thái</h3>
 					<div class="row breadcrumbs-top">
 						<div class="breadcrumb-wrapper col-xs-12">
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item"><a
 									href='<c:url value="/home" />'>Home</a></li>
-								<li class="breadcrumb-item active">Danh Sách Tài Liệu</li>
+								<li class="breadcrumb-item active">Danh Sách Trạng Thái</li>
 							</ol>
 						</div>
 					</div>
@@ -29,7 +29,7 @@
 					<div role="group" aria-label="Button group with nested dropdown"
 						class="btn-group float-md-right" id="add-new">
 						<a class="btn btn-primary"
-							href='<c:url value = "/TranDuc-QuanLyTaiLieu/TaiLieu/add_formTL" />'><span
+							href='<c:url value = "/TranDuc-QuanLyTaiLieu/TrangThai/add_formTT" />'><span
 							data-i18n="" class="ft-plus-square">Thêm Mới</span></a>
 					</div>
 				</div>
@@ -40,7 +40,7 @@
 					<div class="col-xs-12">
 						<div class="card">
 							<div class="card-header">
-								<h4 class="card-title">Danh Sách Tài Liệu</h4>
+								<h4 class="card-title">Danh Sách Danh Mục</h4>
 								<a class="heading-elements-toggle"><i
 									class="fa fa-ellipsis-v font-medium-3"></i></a>
 								<div class="heading-elements">
@@ -59,13 +59,9 @@
 											class="table table-striped table-bordered dataex-res-constructor">
 											<thead>
 												<tr>
-													<th>Mã Tài Liệu</th>
-													<th>Tên Danh Mục</th>
-													<th>Hình Biểu Tượng</th>
-													<th>Tên Tài Liệu</th>
-													<th>Mã Phòng Ban</th>
-													<th>Link</th>
-													<th>Trạng Thái</th>
+													<th>ID</th>
+													<th>Mã Trạng Thái</th>
+													<th>Tên Trạng Thái</th>
 													<th>Action</th>
 												</tr>
 											</thead>
@@ -74,8 +70,7 @@
 													role="dialog" aria-labelledby="myModalLabel"
 													aria-hidden="true">
 													<div class="modal-dialog">
-														<div class="modal-content">
-															<div class="modal-header">
+														<div class="modal-content">															<div class="modal-header">
 																<button type="button" class="close" data-dismiss="modal"
 																	aria-hidden="true">&times;</button>
 																<h4 class="modal-title" id="myModalLabel">Bạn Có
@@ -85,6 +80,7 @@
 																<p>Bạn Có Chắc Muốn Xóa</p>
 																<p class="debug-url"></p>
 															</div>
+
 															<div class="modal-footer">
 																<button type="button" class="btn btn-default"
 																	data-dismiss="modal">Quay Lại</button>

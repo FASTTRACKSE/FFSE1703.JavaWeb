@@ -1,16 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 <div class="app-content content container-fluid">
 	<div class="content-wrapper">
-
 		<!-- Path -->
 		<div class="content-header row">
 			<div class="content-header-left col-md-9 col-xs-12 mb-2">
@@ -26,34 +19,17 @@
 				</div>
 			</div>
 			<div class="content-header-right col-md-3 col-xs-12">
-               <div role="group" aria-label="Button group with nested dropdown" class="btn-group float-md-right" id="add-new">
-                  <a href="<c:url value = "/QuanTriHeThong/phong_ban/add"/>" class="btn btn-primary"><span class="fa fa-plus"></span>Thêm Mới</a>
-               </div>
-            </div>
+				<div role="group" aria-label="Button group with nested dropdown"
+					class="btn-group float-md-right" id="add-new">
+					<a class="btn btn-primary"
+						href="<c:url value = "/TranDuc-QuanLyTaiLieu/DanhMuc/add_formDM"/>"><span
+						data-i18n="" class="ft-plus-square">Thêm Mới</span></a>
+				</div>
+			</div>
 		</div>
 		<!-- End Path -->
 
 		<div class="content-body">
-
-			<!-- Show message -->
-			<c:if test="${messageSuccess ne null}">
-				<div class="alert alert-success alert-dismissable" role="alert">
-					<button type="button" class="close" data-dismiss="alert">
-						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-					</button>
-					${messageSuccess}
-				</div>
-			</c:if>
-			<c:if test="${messageError ne null}">
-				<div class="alert alert-danger alert-dismissable" role="alert">
-					<button type="button" class="close" data-dismiss="alert">
-						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-					</button>
-					${messageError}
-				</div>
-			</c:if>
-			<!-- End Show message -->
-			
 			<div class="row">
 				<div class="col-xs-12">
 					<div class="card">
@@ -77,13 +53,13 @@
 										class="table table-striped table-bordered dataex-res-constructor">
 										<thead>
 											<tr>
-											<th>Mã Danh Mục</th>
-											<th>Tên Danh Mục</th>
-											<th>Mã Phòng Ban</th>
-											<th></th>
-										</tr>
-									</thead>
-									<tbody>
+												<th>Mã Danh Mục</th>
+												<th>Tên Danh Mục</th>
+												<th>Mã Phòng Ban</th>
+												<th>Action</th>
+											</tr>
+										</thead>
+										<tbody>
 											<div class="modal fade" id="confirm-delete" tabindex="-1"
 												role="dialog" aria-labelledby="myModalLabel"
 												aria-hidden="true">
@@ -93,19 +69,19 @@
 														<div class="modal-header">
 															<button type="button" class="close" data-dismiss="modal"
 																aria-hidden="true">&times;</button>
-															<h4 class="modal-title" id="myModalLabel">Báº¡n cÃ³
-																cháº¯c muá»n xÃ³a</h4>
+															<h4 class="modal-title" id="myModalLabel">Bạn Có
+																Chắc Muốn Xóa</h4>
 														</div>
 
 														<div class="modal-body">
-															<p>Báº¡n cÃ³ cháº¯c muá»n xÃ³a</p>
+															<p>Bạn Có Chắc Muốn Xóa</p>
 															<p class="debug-url"></p>
 														</div>
 
 														<div class="modal-footer">
 															<button type="button" class="btn btn-default"
-																data-dismiss="modal">Quay láº¡i</button>
-															<a class="btn btn-danger btn-ok">XÃ³a</a>
+																data-dismiss="modal">Quay Lại</button>
+															<a class="btn btn-danger btn-ok">Xóa</a>
 														</div>
 													</div>
 												</div>
@@ -122,5 +98,3 @@
 	</div>
 </div>
 <jsp:include page="/WEB-INF/view/templates/footer.jsp" />
-</body>
-</html>

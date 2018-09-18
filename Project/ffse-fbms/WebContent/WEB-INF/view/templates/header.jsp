@@ -160,13 +160,17 @@
 							class="nav-link nav-link-expand"><i class="ficon ft-maximize"></i></a></li>
 					</ul>
 					<ul class="nav navbar-nav float-xs-right">
-						<li class="dropdown dropdown-language nav-item">
-						  <a class="dropdown-toggle nav-link" id="dropdown-flag" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="flag-icon <spring:message code="label.QuanTriHeThong_NgonNgu" />"></i><span class="selected-language"></span></a>
-			              <div class="dropdown-menu" aria-labelledby="dropdown-flag">
-			              	<a class="dropdown-item" href="?lang=en"><i class="flag-icon flag-icon-gb"></i> English</a>
-			                <a class="dropdown-item" href="?lang=vi"><i class="flag-icon flag-icon-vn"></i> Tiếng Việt</a>
-			              </div>
-			            </li>
+						<li class="dropdown dropdown-language nav-item"><a
+							class="dropdown-toggle nav-link" id="dropdown-flag" href="#"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+								class="flag-icon <spring:message code="label.QuanTriHeThong_NgonNgu" />"></i><span
+								class="selected-language"></span></a>
+							<div class="dropdown-menu" aria-labelledby="dropdown-flag">
+								<a class="dropdown-item" href="?lang=en"><i
+									class="flag-icon flag-icon-gb"></i> English</a> <a
+									class="dropdown-item" href="?lang=vi"><i
+									class="flag-icon flag-icon-vn"></i> Tiếng Việt</a>
+							</div></li>
 						<li class="dropdown dropdown-user nav-item"><a href="#"
 							data-toggle="dropdown"
 							class="dropdown-toggle nav-link dropdown-user-link"><span
@@ -231,9 +235,9 @@
 				<sec:authorize access="!hasRole('ROLE_NV') or hasRole('ROLE_PNS')">
 					<!-- Quản trị dự án -->
 				</sec:authorize>
-				<li class=" navigation-header"><span>Black - Quản Lý Dự Án</span><i
-					class=" ft-minus" data-toggle="tooltip" data-placement="right"
-					data-original-title="Others"></i></li>
+				<li class=" navigation-header"><span>Black - Quản Lý Dự
+						Án</span><i class=" ft-minus" data-toggle="tooltip"
+					data-placement="right" data-original-title="Others"></i></li>
 				<li class=" nav-item"><a href="#"><i class="ft-layers"></i><span
 						class="menu-title" data-i18n="">DANH MỤC</span></a>
 					<ul class="menu-content">
@@ -243,33 +247,30 @@
 						<li><a class="menu-item" href="#">Technica</a></li>
 						<li><a class="menu-item" href="#">Programming Language</a></li>
 						<li><a class="menu-item" href="#">Database</a></li>
-						
+
 					</ul></li>
-
-
 				<li class=" nav-item"><a href="#"><i class="ft-align-left"></i><span
 						class="menu-title" data-i18n="">THÔNG TIN DỰ ÁN</span></a>
 					<ul class="menu-content">
 						<li><a class="menu-item" href="#">Dự Án</a></li>
 					</ul></li>
-
-
-
 			</ul>
 			<ul id="main-menu-navigation" data-menu="menu-navigation"
 				class="navigation navigation-main">
 				<!-- Quản trị tài liệu của Đức -->
-				<li class=" navigation-header"><span>Đứcdz - Quản Lý Tài Liệu</span><i data-toggle="tooltip"
-					data-placement="right" data-original-title="Apps" class=" ft-minus"></i></li>
-				<li class=" nav-item"><a
-					href="<c:url value = "/TranDuc-QuanLyTaiLieu/DanhMuc/"/>"><i
-						class="fa fa-building"></i><span data-i18n="" class="menu-title">Quản Lý Danh Mục</span></a></li>
+				<li class=" navigation-header"><span>Đứcdz - Quản Lý Tài
+						Liệu</span><i data-toggle="tooltip" data-placement="right"
+					data-original-title="Apps" class=" ft-minus"></i></li>
+				<li class=" nav-item"><a href="<c:url value = "/TranDuc-QuanLyTaiLieu/DanhMuc/"/>"><i
+						class="ft-bookmark"></i><span data-i18n="" class="menu-title">Quản
+							Lý Danh Mục</span></a></li>
 				<li class=" nav-item"><a
 					href="<c:url value = "/TranDuc-QuanLyTaiLieu/TaiLieu/"/>"><i
-						class="fa fa-id-card-o"></i><span data-i18n="" class="menu-title">Quản Lý Tài Liệu</span></a></li>
+						class="ft-file-text"></i><span data-i18n="" class="menu-title">Quản
+							Lý Tài Liệu</span></a></li>
 				<li class=" nav-item"><a
-					href="<c:url value = "/TranDuc-QuanLyTaiLieu/PhanQuyen/"/>"><i
-						class="fa fa-id-card-o"></i><span data-i18n="" class="menu-title">Phân Quyền</span></a></li>
+					href="<c:url value = "/TranDuc-QuanLyTaiLieu/TrangThai/"/>"><i
+						class="ft-users"></i><span data-i18n="" class="menu-title">Trạng Thái</span></a></li>
 			</ul>
 		</div>
 	</div>

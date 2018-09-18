@@ -28,7 +28,7 @@ public class TechnicalServiceImpl implements TechnicalService {
 
 	@Override
 	@Transactional
-	public Technical findById(int id) {
+	public Technical findById(String id) {
 		
 		return technicalDAO.findById(id);
 	}
@@ -54,10 +54,19 @@ public class TechnicalServiceImpl implements TechnicalService {
 		
 	}
 
+
 	@Override
 	@Transactional
-	public int checkDomain(String name) {
-		return technicalDAO.checkDomain(name);
+	public int checkNameTechnical(String nameTechnical) {
+		
+		return technicalDAO.checkNameTechnical(nameTechnical);
+	}
+
+	@Override
+	@Transactional
+	public int checkMaTechnical(String idTechnical) {
+		
+		return technicalDAO.checkMaTechnical(idTechnical);
 	}
 
 }

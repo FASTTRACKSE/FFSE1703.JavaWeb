@@ -2,6 +2,8 @@ package fasttrackse.ffse1703.fbms.dao.mvpquanliduan;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ public class VendorDAOImpl implements VendorDAO {
 	private SessionFactory sessionFactory;
 
 	@Override
+	@Transactional
 	public List<Vendor> findAll() {
 		Session session = sessionFactory.getCurrentSession();
 		return session.createQuery("from Vendor where status = 1", Vendor.class).list();
@@ -23,21 +26,23 @@ public class VendorDAOImpl implements VendorDAO {
 	}
 
 	@Override
-	public Vendor findById(int id) {
+	@Transactional
+	public Vendor findById(String id) {
 		Session session = sessionFactory.getCurrentSession();
 		Vendor Vendor = session.get(Vendor.class, id);
 		return Vendor;
 
 	}
 	@Override
+	@Transactional
 	public int checkVendor(String name) {
 		Session session = sessionFactory.getCurrentSession();
-		List<Vendor> dm = session.createQuery("from Vendor where nameVendor = '"+name+"'", Vendor.class).list();
-		
+		List<Vendor> dm = session.createQuery("from Vendor where idVendor = '"+name+"'", Vendor.class).list();
 		return  dm.size();
 	}
 
 	@Override
+	@Transactional
 	public void addNew(Vendor Vendor) {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.persist(Vendor);
@@ -45,12 +50,14 @@ public class VendorDAOImpl implements VendorDAO {
 	}
 
 	@Override
+	@Transactional
 	public void update(Vendor Vendor) {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.update(Vendor);
 	}
 
 	@Override
+	@Transactional
 	public void delete(Vendor Vendor) {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.update(Vendor);

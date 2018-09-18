@@ -2,8 +2,7 @@ package fasttrackse.ffse1703.fbms.entity.mvpquanliduan;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
@@ -13,23 +12,27 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "qlda_domain")
 public class Domain {
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@NotEmpty(message = "Mã Nghiệp vụ không được để trống!!")
+	@Size(min = 5, max= 10, message = "Mã nghiệp vụ từ 5 đến 10 kí tự")
 	@Column(name = "id_domain")
-	private int idDomain;
+	private String idDomain;
 
 	@NotEmpty(message = "Nghiệp vụ không được để trống!!")
-	@Size(min = 5, message = "nghiệp vụ ít nhất 5 kí tự")
+	@Size(min = 5, message = "nghiệp vụ ít nhất 6 kí tự")
 	@Column(name = "name_domain")
 	private String nameDomain;
 
 	private int status;
 
-	public int getIdDomain() {
+
+
+	public String getIdDomain() {
 		return idDomain;
 	}
 
-	public void setIdDomain(int idDomain) {
+	public void setIdDomain(String idDomain) {
 		this.idDomain = idDomain;
 	}
 

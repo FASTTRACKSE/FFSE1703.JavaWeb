@@ -25,7 +25,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class QLyNhiemVuController {
 //	@Autowired
 //	private CongViecService congViecService;
-	
 //	@Autowired
 //	private DatatableCVService datatableCVService;
 	

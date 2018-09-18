@@ -23,7 +23,7 @@
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/home" />'>Home</a></li>
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/mvpquanliduan/domain/listdomain" />'>Danh
+								href='<c:url value="/mvpquanliduan/domain/list-domain" />'>Danh
 									sách Nghiệp vụ</a></li>
 							<li class="breadcrumb-item active">Thêm mới nghiệp vụ</li>
 						</ol>
@@ -40,11 +40,20 @@
 				<div class="row">
 					<form:form method="POST" action="addnew">
 						<div class="form-group col-sm-6">
+							<label>Mã nghiệp vụ</label><br>
+							<p Class="error" >${messageMa}</p>
+							<form:errors path="idDomain" cssClass="error" />
+							<form:input path="idDomain" class="form-control round"
+								placeholder="Mã nghiệp vụ" />
+							
+						</div>
+						<div class="form-group col-sm-6">
 							<label>Tên Nghiệp vụ</label><br>
-							<p Class="error" >${message}</p>
+							<p Class="error" >${messageName}</p>
 							<form:errors path="nameDomain" cssClass="error" />
 							<form:input path="nameDomain" class="form-control round"
 								placeholder="Tên nghiệp vụ" />
+							
 						</div>
 						<div class="col-sm-12 text-center">
 							<button type="submit" class="btn btn-outline-success round btn-min-width mr-1 mb-1">Lưu </button>

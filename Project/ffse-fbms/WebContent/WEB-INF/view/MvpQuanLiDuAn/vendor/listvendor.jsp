@@ -43,24 +43,24 @@
 				</div>
 				<div class="x_content">
 
-					<table class="table table-striped"
-						style=" text-align: center">
+					<table class="table table-striped" style="text-align: center">
 						<thead>
 							<tr style="text-align: center">
-								<th >Stt</th>
+								<th>Stt</th>
+								<th>Mã Nhà cung cấp</th>
 								<th>Nhà cung cấp</th>
 								<th>Điên thoại</th>
 								<th>Email</th>
 								<th>Địa chỉ</th>
-								<th style=" text-align: center">Chức năng</th>
+								<th style="text-align: center">Chức năng</th>
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach var="vendor" items="${listVendor}"
-								varStatus="count">
+							<c:forEach var="vendor" items="${listVendor}" varStatus="count">
 								<tr>
 
 									<th scope="row">${count.count}</th>
+									<td style="text-align: left">${vendor.idVendor}</td>
 									<td style="text-align: left">${vendor.nameVendor}</td>
 									<td style="text-align: left">${vendor.phone}</td>
 									<td style="text-align: left">${vendor.email}</td>
@@ -69,22 +69,24 @@
 										style="width: 50px; high: 50px; border-color: #00E5EE; border-radius: 100%;"
 										class="btn btn-outline-info "
 										href="<c:url value="/mvpquanliduan/vendor/show-form-edit/${vendor.idVendor }" />"
-										title=""><i class="ft-edit"></i></a> <a
-										onclick=" if(!confirm('Bạn muốn xóa nghiệp vụ này?')){return false;}"
-										style="width: 50px; high: 50px; border-color: #FF6A6A; border-radius: 100%;"
-										class="btn btn-outline-danger "
-										href="<c:url value="/mvpquanliduan/vendor/delete/${vendor.idVendor }" />"
-										title=""><i class="ft-delete"></i></a>
+										title=""><i class="ft-edit"></i></a> 
+										<button
+											style="width: 50px; high: 50px; border-color: #FF6A6A; border-radius: 100%;"
+											data-href="<c:url value="/mvpquanliduan/vendor/delete/${vendor.idVendor }" />"
+											class="btn btn-outline-danger" data-toggle="modal"
+											data-target="#xoa_pr">
+											<i class="ft-delete"></i>
+										</button>
 								</tr>
 
 							</c:forEach>
-							
-									
-								<!--<script type="text/javascript"> window.onload = alertName; </script>	  -->	
-						
+
+
+							<!--<script type="text/javascript"> window.onload = alertName; </script>	  -->
+
 						</tbody>
 					</table>
-						<c:if test="${success != null }">
+					<c:if test="${success != null }">
 							${success}
 						</c:if>
 				</div>
@@ -92,6 +94,36 @@
 		</div>
 	</div>
 </div>
+<div class="modal fade" id="xoa_pr" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title">Xác nhận</h4>
+			</div>
+			<div class="modal-body">
+				<p>
+					Bạn muốn xóa Nhà cung cấp này???
+				</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+				<a class="btn btn-primary del_pr">Xóa</a>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<script type="text/javascript">
+	$('#xoa_pr').on('show.bs.modal', function(e) {
+		// var test = $(e.relatedTarget).data('href'); console.log(test);
+		$(this).find('.del_pr').attr('href', $(e.relatedTarget).data('href'));
+	});
+</script>
 
 <!-- ////////////////////////////////////////////////////////////////////////////-->
 

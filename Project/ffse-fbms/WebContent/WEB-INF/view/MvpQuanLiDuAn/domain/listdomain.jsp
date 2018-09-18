@@ -21,7 +21,7 @@
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/home" />'>Home</a></li>
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/mvpquanliduan/domain/show-form-add" />'>Danh
+								href='<c:url value="/mvpquanliduan/domain/list-domain" />'>Danh
 									sách Nghiệp vụ</a></li>
 
 						</ol>
@@ -35,18 +35,19 @@
 		<div class="content-body">
 			<div class="x_panel">
 				<div class="x_title">
-					<a 
-						class="btn btn-outline-success round btn-min-width mr-1 mb-1"
+					<a class="btn btn-outline-success round btn-min-width mr-1 mb-1"
 						href="<c:url value="/mvpquanliduan/domain/show-form-add" />">
-						<h5class="ft-plus-circle">Thêm nghiệp vụ</h5></a>
+						<h5class="ft-plus-circle">Thêm nghiệp vụ
+						</h5>
+					</a>
 				</div>
 				<div class="x_content">
 
-					<table class="table table-striped"
-						style="width: 80%; text-align: center">
+					<table class="table table-striped" style="text-align: center">
 						<thead>
 							<tr>
 								<th style="text-align: center">Stt</th>
+								<th style="text-align: center">Mã Nghiệp vụ</th>
 								<th style="width: 60%; text-align: center">Nghiệp vụ</th>
 								<th style="text-align: center">Chức năng</th>
 							</tr>
@@ -56,28 +57,62 @@
 								<tr>
 
 									<th scope="row">${count.count  }</th>
+									<td style="text-align: left">${domain.idDomain}</td>
 									<td style="text-align: left">${domain.nameDomain}</td>
 									<td><a
 										style="width: 50px; high: 50px; border-color: #00E5EE; border-radius: 100%;"
 										class="btn btn-outline-info "
 										href="<c:url value="/mvpquanliduan/domain/show-form-edit/${domain.idDomain }" />"
-										title=""><i class="ft-edit"></i></a> <a
-										onclick=" if(!confirm('Bạn muốn xóa nghiệp vụ này?')){return false;}"
-										style="width: 50px; high: 50px; border-color: #FF6A6A; border-radius: 100%;"
-										class="btn btn-outline-danger "
-										href="<c:url value="/mvpquanliduan/domain/delete/${domain.idDomain }" />"
-										title=""><i class="ft-delete"></i></a>
+										title=""><i class="ft-edit"></i></a><button
+											style="width: 50px; high: 50px; border-color: #FF6A6A; border-radius: 100%;"
+											data-href="<c:url value="/mvpquanliduan/domain/delete/${domain.idDomain }" />"
+											class="btn btn-outline-danger" data-toggle="modal"
+											data-target="#xoa_pr">
+											<i class="ft-delete"></i>
+										</button>
 								</tr>
 
 							</c:forEach>
 						</tbody>
 					</table>
-
+					<c:if test="${success != null }">
+						${success}
+					</c:if>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+<!--                 Css for confirm delete -->
+<div class="modal fade" id="xoa_pr" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title">Xác nhận</h4>
+			</div>
+			<div class="modal-body">
+				<p>Bạn muốn xóa Nhà cung cấp này???</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+				<a class="btn btn-primary del_pr">Xóa</a>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<script type="text/javascript">
+	$('#xoa_pr').on('show.bs.modal', function(e) {
+		// var test = $(e.relatedTarget).data('href'); console.log(test);
+		$(this).find('.del_pr').attr('href', $(e.relatedTarget).data('href'));
+	});
+</script>
+
 <!-- ////////////////////////////////////////////////////////////////////////////-->
 
 <jsp:include page="/WEB-INF/view/templates/footer.jsp" />

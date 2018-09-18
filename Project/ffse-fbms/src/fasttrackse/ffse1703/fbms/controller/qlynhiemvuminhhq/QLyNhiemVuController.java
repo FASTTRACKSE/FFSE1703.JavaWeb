@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import fasttrackse.ffse1703.fbms.service.qlynhiemvuminhhq.CongViecService;
-import fasttrackse.ffse1703.fbms.service.qlynhiemvuminhhq.DatatableCVService;
+// import fasttrackse.ffse1703.fbms.service.qlynhiemvuminhhq.CongViecService;
+// import fasttrackse.ffse1703.fbms.service.qlynhiemvuminhhq.DatatableCVService;
 
 
 
@@ -25,7 +25,6 @@ import fasttrackse.ffse1703.fbms.service.qlynhiemvuminhhq.DatatableCVService;
 public class QLyNhiemVuController {
 //	@Autowired
 //	private CongViecService congViecService;
-//	
 //	@Autowired
 //	private DatatableCVService datatableCVService;
 	

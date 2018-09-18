@@ -12,8 +12,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.HoSoNhanVienPikalong;
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 import fasttrackse.ffse1703.fbms.service.quantrinhansupikalong.HoSoNhanVienPikalongService;
+import fasttrackse.ffse1703.fbms.service.quantrinhansupikalong.PhuongPikalongService;
+import fasttrackse.ffse1703.fbms.service.quantrinhansupikalong.QuanHuyenPikalongService;
 import fasttrackse.ffse1703.fbms.service.quantrinhansupikalong.QuocTichPikalongService;
 import fasttrackse.ffse1703.fbms.service.quantrinhansupikalong.ThanhPhoPikalongService;
+import fasttrackse.ffse1703.fbms.service.security.ChucDanhService;
+import fasttrackse.ffse1703.fbms.service.security.PhongBanService;
 
 @Controller
 @RequestMapping("/quantrinhansu/hosonhanvien/")
@@ -27,6 +31,18 @@ public class HoSoNhanVienPikalongController {
 	
 	@Autowired
 	private ThanhPhoPikalongService thanhPhoPikalongService;
+	
+	@Autowired
+	private QuanHuyenPikalongService quanHuyenPikalongService;
+	
+	@Autowired
+	private PhuongPikalongService phuongPikalongService;
+	
+	@Autowired
+	private ChucDanhService chucDanhService;
+	
+	@Autowired
+	private PhongBanService phongBanService;
 	
 	@RequestMapping("/")
 	public String test(Model model) {
@@ -46,6 +62,10 @@ public class HoSoNhanVienPikalongController {
 		model.addAttribute("formHoSoNhanVien", new HoSoNhanVienPikalong());
 		model.addAttribute("listQuocTich", quocTichPikalongService.listQuocTich());
 		model.addAttribute("listThanhPho", thanhPhoPikalongService.listTinhThanh());
+		model.addAttribute("listQuanHuyen", quanHuyenPikalongService.listQuanHuyen());
+		model.addAttribute("listPhuong", phuongPikalongService.listPhuong());
+		model.addAttribute("listPhongBan", phongBanService.findAll());
+		model.addAttribute("listChucDanh", chucDanhService.findAll());
 		return "QuanTriNhanSuPikalong/ThongTinHoSo/thongtinhosoaddform";
 	}
 }

@@ -64,7 +64,7 @@
 										style="width: 50px; high: 50px; border-color: #00E5EE; border-radius: 100%;"
 										class="btn btn-outline-info "
 										href="<c:url value="/mvpquanliduan/technical/show-form-edit/${technical.idTechnical }" />"
-										title=""><i class="ft-edit"></i></a> \
+										title=""><i class="ft-edit"></i></a> 
 										<button
 											style="width: 50px; high: 50px; border-color: #FF6A6A; border-radius: 100%;"
 											data-href="<c:url value="/mvpquanliduan/technical/delete/${technical.idTechnical }" />"

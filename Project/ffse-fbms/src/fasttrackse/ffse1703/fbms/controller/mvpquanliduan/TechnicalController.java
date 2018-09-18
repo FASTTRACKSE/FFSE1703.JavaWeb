@@ -1,6 +1,8 @@
 package fasttrackse.ffse1703.fbms.controller.mvpquanliduan;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -90,4 +92,13 @@ public class TechnicalController {
 		technicalService.update(technical);
 		return "redirect: /ffse-fbms/mvpquanliduan/technical/list-technical";
 	}
+	 @ModelAttribute("technicalList")
+	   public Map<String, String> getTechnicalList() {
+		  List<Technical> list = technicalService.findAll();
+	      Map<String, String> technicalList = new HashMap<String, String>();
+	      for(Technical x: list) {
+	    	  technicalList.put(x.getIdTechnical(), x.getNameTechnical());
+	      }
+	      return technicalList;
+	   }
 }

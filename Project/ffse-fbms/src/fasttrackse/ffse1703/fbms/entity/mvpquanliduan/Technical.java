@@ -24,7 +24,7 @@ public class Technical {
 	private String nameTechnical;
 
 	private int status;
-
+	
 	public String getIdTechnical() {
 		return idTechnical;
 	}

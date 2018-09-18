@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
-@Service
-public class DatatableCVServiceImpl implements DatatableCVService {
+// @Service
+// public class DatatableCVServiceImpl implements DatatableCVService {
 
 //	@Autowired
 //	private ChucDanhService chucDanhService;
@@ -22,75 +22,75 @@ public class DatatableCVServiceImpl implements DatatableCVService {
 //	@Autowired
 //	private ChucNangService chucNangService;
 
-	@Override
-	public String getSearchQuery(HttpServletRequest request, String[] columnNames, String customCondition) {
+// 	@Override
+// 	public String getSearchQuery(HttpServletRequest request, String[] columnNames, String customCondition) {
 
-		int colLength = columnNames.length;
-		String sSearch = (request.getParameter("sSearch") != null ? request.getParameter("sSearch") : "");
-		String globeSearch = "where " + customCondition;
-		boolean existCustom = !customCondition.isEmpty();
+// 		int colLength = columnNames.length;
+// 		String sSearch = (request.getParameter("sSearch") != null ? request.getParameter("sSearch") : "");
+// 		String globeSearch = "where " + customCondition;
+// 		boolean existCustom = !customCondition.isEmpty();
 
-		if (!sSearch.isEmpty()) {
-			for (int i = 0; i < colLength; i++) {
-				if (i == 0) {
-					if (existCustom) {
-						globeSearch += " and ";
-					}
-					globeSearch += "(" + columnNames[i] + " like '%" + sSearch + "%' ";
-				} else {
-					globeSearch += "or " + columnNames[i] + " like '%" + sSearch + "%' ";
-				}
-			}
-			globeSearch += ")";
-			sSearch = globeSearch;
-		}
+// 		if (!sSearch.isEmpty()) {
+// 			for (int i = 0; i < colLength; i++) {
+// 				if (i == 0) {
+// 					if (existCustom) {
+// 						globeSearch += " and ";
+// 					}
+// 					globeSearch += "(" + columnNames[i] + " like '%" + sSearch + "%' ";
+// 				} else {
+// 					globeSearch += "or " + columnNames[i] + " like '%" + sSearch + "%' ";
+// 				}
+// 			}
+// 			globeSearch += ")";
+// 			sSearch = globeSearch;
+// 		}
 
-		return !existCustom ? sSearch : globeSearch;
-	}
+// 		return !existCustom ? sSearch : globeSearch;
+// 	}
 
-	@Override
-	public String getSortQuery(HttpServletRequest request, String[] columnNames) {
+// 	@Override
+// 	public String getSortQuery(HttpServletRequest request, String[] columnNames) {
 
-		int colLength = columnNames.length;
-		List<String> sortNames = new ArrayList<String>();
-		List<String> sortDirections = new ArrayList<String>();
+// 		int colLength = columnNames.length;
+// 		List<String> sortNames = new ArrayList<String>();
+// 		List<String> sortDirections = new ArrayList<String>();
 
-		for (int i = 0; i < colLength; i++) {
-			String colIndex = (request.getParameter("iSortCol_" + i) != null ? request.getParameter("iSortCol_" + i) : "");
-			if (colIndex != "") {
-				String sortName = columnNames[Integer.parseInt(colIndex)];
-				String sortDirection = request.getParameter("sSortDir_" + i);
+// 		for (int i = 0; i < colLength; i++) {
+// 			String colIndex = (request.getParameter("iSortCol_" + i) != null ? request.getParameter("iSortCol_" + i) : "");
+// 			if (colIndex != "") {
+// 				String sortName = columnNames[Integer.parseInt(colIndex)];
+// 				String sortDirection = request.getParameter("sSortDir_" + i);
 
-				sortNames.add(sortName);
-				sortDirections.add(sortDirection);
-			} else {
-				break;
-			}
-		}
+// 				sortNames.add(sortName);
+// 				sortDirections.add(sortDirection);
+// 			} else {
+// 				break;
+// 			}
+// 		}
 
-		int sortLength = sortNames.size();
-		String sort = " order by ";
-		for (int i = 0; i < sortLength; i++) {
-			sort += sortNames.get(i) + " " + sortDirections.get(i);
-			if (i != sortLength - 1) {
-				sort += ", ";
-			}
-		}
+// 		int sortLength = sortNames.size();
+// 		String sort = " order by ";
+// 		for (int i = 0; i < sortLength; i++) {
+// 			sort += sortNames.get(i) + " " + sortDirections.get(i);
+// 			if (i != sortLength - 1) {
+// 				sort += ", ";
+// 			}
+// 		}
 
-		if (sortLength != 0) {
-			return sort;
-		}
+// 		if (sortLength != 0) {
+// 			return sort;
+// 		}
 
-		return "";
-	}
+// 		return "";
+// 	}
 
-	@Override
-	@Transactional
-	public String getSqlQuery(String selectQuery, HttpServletRequest request, String[] columnNames,
-			String customCondition) {
+// 	@Override
+// 	@Transactional
+// 	public String getSqlQuery(String selectQuery, HttpServletRequest request, String[] columnNames,
+// 			String customCondition) {
 
-		return selectQuery + getSearchQuery(request, columnNames, customCondition) + getSortQuery(request, columnNames);
-	}
+// 		return selectQuery + getSearchQuery(request, columnNames, customCondition) + getSortQuery(request, columnNames);
+// 	}
 
 //	@Override
 //	public String getJsonChucDanh(String recordsTotal, String recordsFiltered, List<ChucDanh> list) {
@@ -145,4 +145,4 @@ public class DatatableCVServiceImpl implements DatatableCVService {
 //
 //		return json;
 //	}
-}
+//}

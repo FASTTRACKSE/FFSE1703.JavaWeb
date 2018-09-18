@@ -112,6 +112,9 @@
                           <form:select path="quanHuyen" type="text" id="companyName" class="form-control"
                           name="quanHuyenSelect">
                           		<option value="none" selected="" >Chọn quận huyện</option>
+                          	  <c:forEach items="${listQuanHuyen}" var="x">
+                              	<option value="${x.maQuanHuyen}" >${x.tenQuanHuyen}</option>
+                              </c:forEach>
                           </form:select>
                         </div>
                         <div class="form-group">
@@ -119,6 +122,9 @@
                           <form:select path="phuongXa" type="text" id="companyName" class="form-control"
                           name="phuongXaSelect">
                           		<option value="none" selected="" >Chọn phường xã</option>
+                          	  <c:forEach items="${listPhuong}" var="x">
+                              	<option value="${x.maPhuong}" >${x.tenPhuong}</option>
+                              </c:forEach>
                           </form:select>
                         </div>
                         
@@ -130,6 +136,9 @@
                           <form:select path="maPhongBan" type="text" id="companyName" class="form-control"
                           name="phongBanSelect">
                           		<option value="none" selected="" >Chọn Phòng ban</option>
+                          	  <c:forEach items="${listPhongBan}" var="x">
+                              	<option value="${x.maPhongBan}" >${x.tenPhongBan}</option>
+                              </c:forEach>
                           </form:select>
                         </div>
                         <div class="form-group">
@@ -137,6 +146,9 @@
                           <form:select path="maChucDanh" type="text" id="companyName" class="form-control" placeholder="Company Name"
                           name="chucDanhSelect">
                           		<option value="none" selected="" >Chọn chức danh</option>
+                          	  <c:forEach items="${listChucDanh}" var="x">
+                              	<option value="${x.maChucDanh}" >${x.tenChucDanh}</option>
+                              </c:forEach>
                           </form:select>
                         </div>
                         

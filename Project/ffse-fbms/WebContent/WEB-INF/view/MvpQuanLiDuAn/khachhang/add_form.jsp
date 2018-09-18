@@ -14,7 +14,7 @@
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href='<c:url value="/home" />'>Home</a></li>
-							<li class="breadcrumb-item"><a href='<c:url value="/mvpquanliduan/khachhang/listkhachhang" />'>Danh sách chức danh</a></li>
+							<li class="breadcrumb-item"><a href='<c:url value="/mvpquanliduan/khachhang/list-khachhang" />'>Danh sách chức danh</a></li>
 							<li class="breadcrumb-item active">Thêm mới khách hàng</li>
 						</ol>
 					</div>
@@ -46,11 +46,7 @@
 						  	<form:input class="form-control" path="gender" placeholder="Giới tính" />
 						  
 						</div>
-						<div class="form-group col-sm-6">
-						  	<label>Ngày sinh</label>
-						  	<form:input class="form-control" type="date" path="birthday" placeholder="Ngày sinh" />
-						  
-						</div>
+						
 						<div class="form-group col-sm-6">
 						  	<label>Địa chỉ</label>
 						  	<form:input class="form-control" path="address" placeholder="Địa chỉ" />

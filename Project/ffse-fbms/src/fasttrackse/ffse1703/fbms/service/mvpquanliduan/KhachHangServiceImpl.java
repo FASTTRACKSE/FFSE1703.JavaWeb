@@ -9,16 +9,16 @@ import fasttrackse.ffse1703.fbms.dao.mvpquanliduan.KhachHangDao;
 import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.KhachHang;
 
 @Service
-public class KhachHangServiceImpl implements KhachHangService {
+public  class KhachHangServiceImpl implements KhachHangService {
 	@Autowired 
-	KhachHangDao khachHangDao;
+	private KhachHangDao khachHangDao;
 	@Override
 	public void add(KhachHang khachHang) {
 		this.khachHangDao.add(khachHang);
 	}
 
 	@Override
-	public KhachHang getById(String id) {
+	public KhachHang getById(int id) {
 		return this.khachHangDao.getById(id);
 	}
 
@@ -34,9 +34,17 @@ public class KhachHangServiceImpl implements KhachHangService {
 	}
 
 	@Override
-	public void delete(String id) {
-		this.khachHangDao.delete(id);
+	public void delete(int id) {
+		this.khachHangDao.delete(id);;
 		
+	}
+
+	
+
+
+	@Override
+	public int checkKhachHang(String fullname) {
+		return khachHangDao.checkKhachHang(fullname);
 	}
 
 }

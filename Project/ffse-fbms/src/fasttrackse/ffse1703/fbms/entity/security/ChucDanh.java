@@ -30,7 +30,6 @@ public class ChucDanh implements Serializable {
 
 	// bi-directional many-to-one association to HoSoNhanVien
 	@OneToMany(mappedBy = "chucDanh")
-	
 	private List<HoSoNhanVien> hoSoNhanViens;
 
 	public ChucDanh() {

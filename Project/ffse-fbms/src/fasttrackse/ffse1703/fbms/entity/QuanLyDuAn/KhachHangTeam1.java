@@ -7,7 +7,7 @@ import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "khach_hang")
-public class KhachHang {
+public class KhachHangTeam1 {
 	@Id
 	@Column(name = "ma_khach_hang")
 	@NotEmpty
@@ -40,7 +40,7 @@ public class KhachHang {
 		this.is_delete = is_delete;
 	}
 
-	public KhachHang() {
+	public KhachHangTeam1() {
 		
 	}
 

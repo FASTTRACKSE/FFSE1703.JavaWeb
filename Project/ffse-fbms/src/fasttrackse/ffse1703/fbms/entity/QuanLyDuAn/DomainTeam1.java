@@ -7,7 +7,7 @@ import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "nghiep_vu")
-public class Domain {
+public class DomainTeam1 {
 	@Id
 	@Column(name = "ma_nghiep_vu")
 	@NotEmpty

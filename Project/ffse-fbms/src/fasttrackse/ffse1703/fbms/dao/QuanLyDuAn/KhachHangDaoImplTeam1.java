@@ -1,5 +1,4 @@
 package fasttrackse.ffse1703.fbms.dao.QuanLyDuAn;
-
 import java.util.List;
 
 import org.hibernate.Session;
@@ -7,10 +6,9 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import fasttrackse.ffse1703.fbms.entity.QuanLyDuAn.Domain;
-
+import fasttrackse.ffse1703.fbms.entity.QuanLyDuAn.KhachHangTeam1;
 @Repository
-public class DomainDaoImpl implements DomainDao{
+public class KhachHangDaoImplTeam1 implements KhachHangDaoTeam1{
 	@Autowired
 	SessionFactory sessionFactory;
 
@@ -23,45 +21,44 @@ public class DomainDaoImpl implements DomainDao{
 	}
 
 	@Override
-	public void create(Domain domain) {
+	public void create(KhachHangTeam1 khachhang) {
 		Session session = this.sessionFactory.getCurrentSession();
-		session.persist(domain);
+		session.persist(khachhang);
 
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Domain> getAll() {
+	public List<KhachHangTeam1> getAll() {
 		Session session = sessionFactory.getCurrentSession();
-		List<Domain> list = session.createQuery("FROM Domain where is_delete=0").getResultList();
-
+		List<KhachHangTeam1> list = session.createQuery("FROM KhachHang where is_delete=0 ").getResultList();
 		return list;
 	}
 
 	@Override
-	public Domain findById(String maNghiepVu) {
+	public KhachHangTeam1 findById(String maKH) {
 		Session session = this.sessionFactory.getCurrentSession();
-		Domain u = (Domain) session.get(Domain.class, maNghiepVu);
+		KhachHangTeam1 u = (KhachHangTeam1) session.get(KhachHangTeam1.class, maKH);
 		return u;
 	}
 
 	@Override
-	public void delete(Domain domain) {
+	public void delete(KhachHangTeam1 khachhang) {
 		Session session = this.sessionFactory.getCurrentSession();
-		session.update(domain);
+		session.update(khachhang);
 	}
 
 	@Override
-	public void update(Domain domain) {
+	public void update(KhachHangTeam1 khachhang) {
 		Session session = this.sessionFactory.getCurrentSession();
-		session.update(domain);
+		session.update(khachhang);
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Domain> findAllForPaging(int startPosition, int maxResult) {
+	public List<KhachHangTeam1> findAllForPaging(int startPosition, int maxResult) {
 		Session session = this.sessionFactory.getCurrentSession();
-		return session.createQuery("from nghiep_vu").setFirstResult(startPosition).setMaxResults(maxResult).list();
+		return session.createQuery("from khach_hang").setFirstResult(startPosition).setMaxResults(maxResult).list();
 	}
 
 

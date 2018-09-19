@@ -13,22 +13,22 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import fasttrackse.ffse1703.fbms.entity.QuanLyDuAn.Domain;
-import fasttrackse.ffse1703.fbms.service.QuanLyDuAn.DomainService;
+import fasttrackse.ffse1703.fbms.entity.QuanLyDuAn.DomainTeam1;
+import fasttrackse.ffse1703.fbms.service.QuanLyDuAn.DomainServiceTeam1;
 @Controller
 @RequestMapping("/qlda/domain")
-public class DomainController {
-	DomainService domainService;
+public class DomainControllerTeam1 {
+	DomainServiceTeam1 domainServiceTeam1;
 
 	@Autowired
 	@Qualifier(value = "domainServiceImpl")
-	public void setDomainService(DomainService domainService) {
-		this.domainService = domainService;
+	public void setDomainService(DomainServiceTeam1 domainServiceTeam1) {
+		this.domainServiceTeam1 = domainServiceTeam1;
 	}
 
 	@RequestMapping(value = "/add_form", method = RequestMethod.GET)
 	public String showForm(Model model) {
-		model.addAttribute("domain", new Domain());
+		model.addAttribute("domain", new DomainTeam1());
 		return "QuanLyDuAn/Domain/add_form";
 	}
 	/*@RequestMapping(value = "/save", method = RequestMethod.POST)
@@ -38,22 +38,22 @@ public class DomainController {
 		return "redirect:/qlda/domain/list";
 	}*/
 	@RequestMapping(value = { "/save" }, method = RequestMethod.POST)
-	public String creat(@ModelAttribute("domain") @Valid Domain domain, BindingResult result,
+	public String creat(@ModelAttribute("domain") @Valid DomainTeam1 domainTeam1, BindingResult result,
 			RedirectAttributes redirectAttributes) {
-		if (domainService.findById(domain.getMaNghiepVu()) != null) {
-			return "redirect:/qlda/domain/edit_form/" + domain.getMaNghiepVu();
+		if (domainServiceTeam1.findById(domainTeam1.getMaNghiepVu()) != null) {
+			return "redirect:/qlda/domain/edit_form/" + domainTeam1.getMaNghiepVu();
 		} else {
 			if (result.hasErrors()) {
 				return "QuanLyDuAn/Domain/add_form";
 			}
-			domainService.add(domain);
+			domainServiceTeam1.add(domainTeam1);
 		}
 		redirectAttributes.addFlashAttribute("message", "<script>alert('Creat successfully.');</script>");
 		return "redirect:list";
 	}
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String listDonNhap(Model model)  {
-		model.addAttribute("list", domainService.getAll());
+		model.addAttribute("list", domainServiceTeam1.getAll());
 		return "QuanLyDuAn/Domain/list";
 	}
 
@@ -64,31 +64,31 @@ public class DomainController {
 	}*/
 	@RequestMapping("/delete/{maNghiepVu}")
 	public String delete(@PathVariable String maNghiepVu, HttpServletRequest request, Model model) {
-		Domain domain = domainService.findById(maNghiepVu);
-		domain.setIs_delete("1");
-		domainService.delete(domain);
+		DomainTeam1 domainTeam1 = domainServiceTeam1.findById(maNghiepVu);
+		domainTeam1.setIs_delete("1");
+		domainServiceTeam1.delete(domainTeam1);
 		return "redirect:/qlda/domain/list";
 	}
 
 	@RequestMapping(value = "/edit_form/{maNghiepVu}", method = RequestMethod.GET)
 	public String edit(Model model, @PathVariable("maNghiepVu") String maNghiepVu) {
-		model.addAttribute("domain", domainService.findById(maNghiepVu));
+		model.addAttribute("domain", domainServiceTeam1.findById(maNghiepVu));
 		return "QuanLyDuAn/Domain/edit_form";
 	}
 	@RequestMapping(value = "/view/{maNghiepVu}", method = RequestMethod.GET)
 	public String viewDomain(Model model, @PathVariable("maNghiepVu") String maNghiepVu) {
-		model.addAttribute("domain", domainService.findById(maNghiepVu));
+		model.addAttribute("domain", domainServiceTeam1.findById(maNghiepVu));
 		return "QuanLyDuAn/Domain/info";
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST )
-	public String update(@ModelAttribute("domain") @Valid Domain domain, BindingResult result,
+	public String update(@ModelAttribute("domain") @Valid DomainTeam1 domainTeam1, BindingResult result,
 			RedirectAttributes redirectAttributes) {
 		if (result.hasErrors()) {
 			return "QuanLyDuAn/Domain/edit_form";
 		}
 		redirectAttributes.addFlashAttribute("message", "<script>alert('Update successfully.');</script>");
-		domainService.update(domain);
+		domainServiceTeam1.update(domainTeam1);
 		return "redirect:/qlda/domain/list";
 
 	}

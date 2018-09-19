@@ -38,7 +38,7 @@
 							<div class="col-md-12">
 								<div class="card">
 									<div class="card-content collpase show">
-										<div class="card-body">
+										<div class="card-body" style="margin: 1em">
 											<form:form cssClass="form form-horizontal form-bordered">
 												<div class="form-body">
 													<h4 class="form-section">

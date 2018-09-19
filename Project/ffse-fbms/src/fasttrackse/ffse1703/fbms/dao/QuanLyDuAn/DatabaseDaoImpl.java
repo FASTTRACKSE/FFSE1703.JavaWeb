@@ -29,7 +29,7 @@ public class DatabaseDaoImpl implements DatabaseDao{
 	public void delete(String maDatabase) {
 		Session session = this.sessionFactory.getCurrentSession();
 		Database db=session.get(Database.class,maDatabase);	
-		db.setIsDelete(1);
+		db.setIs_delete(1);
 		session.update(db);	
 	}
 
@@ -37,7 +37,7 @@ public class DatabaseDaoImpl implements DatabaseDao{
 	public void save(Database database) {
 		 for (int i = 0; i < 5; i++) {
 			 database = new Database();
-			 database.setMaDatabase("DB" + i);
+			 database.setMa_database("DB" + i);
 		
 	      }
 		
@@ -62,7 +62,7 @@ public class DatabaseDaoImpl implements DatabaseDao{
 	public void setIsDelete(String maDatabase) {
 		Session session = this.sessionFactory.getCurrentSession();
 		Database db=session.get(Database.class,maDatabase);	
-		db.setIsDelete(0);
+		db.setIs_delete(0);
 		session.update(db);	
 	}
 

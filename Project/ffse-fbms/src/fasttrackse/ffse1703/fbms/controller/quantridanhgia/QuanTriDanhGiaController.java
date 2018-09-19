@@ -24,4 +24,14 @@ public class QuanTriDanhGiaController {
 		model.addAttribute("command", new DanhGiaBanThan());
 		return "QuanTriDanhGia/nhanvien/formdanhgiabanthan";
 	}
+	@RequestMapping("/danhgianhanvien")
+	private String showListDanhGiaNhanVien(Model model) {
+		model.addAttribute("command", new DanhGiaBanThan());
+		return "QuanTriDanhGia/nhanvien/danhgianhanvien";
+	}
+	@RequestMapping("/danhgianhanvien/showform")
+	private String showFormDanhGiaNhanVien(Model model) {
+		model.addAttribute("command", new DanhGiaBanThan());
+		return "QuanTriDanhGia/nhanvien/formdanhgianhanvien";
+	}
 }

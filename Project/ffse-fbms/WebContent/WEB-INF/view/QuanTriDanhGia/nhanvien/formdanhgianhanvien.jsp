@@ -8,7 +8,7 @@
 	<div class="content-wrapper">
 		<div class="content-header row">
 			<div class="content-header-left col-md-9 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">Đánh giá bản thân</h3>
+				<h3 class="content-header-title mb-0">Đánh giá nhân viên</h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
@@ -16,7 +16,7 @@
 								href="<c:url value = "/quantridanhgia/home/"/>">Quản trị
 									đánh giá</a></li>
 							<li class="breadcrumb-item"><a
-								href="<c:url value = "/quantridanhgia/danhgiabanthan/"/>">Đánh giá bản thân</a></li>
+								href="<c:url value = "/quantridanhgia/danhgianhanvien/"/>">Đánh giá nhân viên</a></li>
 							<li class="breadcrumb-item active">Form đánh giá</li>
 						</ol>
 					</div>
@@ -34,25 +34,22 @@
 											method="POST">
 											<div class="form-body">
 												<h4 class="form-section">
-													<i class="ft-user"></i> Bản tự đánh giá
+													<i class="ft-user"></i> Bản đánh giá
 												</h4>
 												<div class="form-group row">
-													<label class="col-md-3 label-control"> Kỷ luật công
-														việc </label>
+													<input type="hidden" value=""> <label
+														class="col-md-3 label-control"> Kỷ luật công việc
+													</label>
 													<div class="col-md-9">
 														<div class="col-md-2">
-															<form:select cssClass="form-control"
-																path="kyLuatCongViec_DG">
-																<form:option value="1">1 Sao</form:option>
-																<form:option value="2">2 Sao</form:option>
-																<form:option value="3">3 Sao</form:option>
-																<form:option value="4">4 Sao</form:option>
-																<form:option value="5">5 Sao</form:option>
-															</form:select>
+															<input class="form-control" value="" readonly="readonly">
 														</div>
 														<div class="col-md-10">
+															<textarea class="form-control" rows="3"
+																readonly="readonly"></textarea>
+															<label></label>
 															<form:textarea rows="5" cssClass="form-control"
-																path="kyLuatCongViec_MT" />
+																path="kyLuatCongViec" />
 														</div>
 													</div>
 												</div>
@@ -61,18 +58,14 @@
 														việc</label>
 													<div class="col-md-9">
 														<div class="col-md-2">
-															<form:select cssClass="form-control"
-																path="tinhThanLamViec_DG">
-																<form:option value="1">1 Sao</form:option>
-																<form:option value="2">2 Sao</form:option>
-																<form:option value="3">3 Sao</form:option>
-																<form:option value="4">4 Sao</form:option>
-																<form:option value="5">5 Sao</form:option>
-															</form:select>
+															<input class="form-control" value="" readonly="readonly">
 														</div>
 														<div class="col-md-10">
+															<textarea class="form-control" rows="3"
+																readonly="readonly"></textarea>
+															<label></label>
 															<form:textarea rows="5" cssClass="form-control"
-																path="tinhThanLamViec_MT" />
+																path="tinhThanLamViec" />
 														</div>
 													</div>
 												</div>
@@ -82,18 +75,14 @@
 														công việc đạt được</label>
 													<div class="col-md-9">
 														<div class="col-md-2">
-															<form:select cssClass="form-control"
-																path="khoiLuongCongViec_DG">
-																<form:option value="1">1 Sao</form:option>
-																<form:option value="2">2 Sao</form:option>
-																<form:option value="3">3 Sao</form:option>
-																<form:option value="4">4 Sao</form:option>
-																<form:option value="5">5 Sao</form:option>
-															</form:select>
+															<input class="form-control" value="" readonly="readonly">
 														</div>
 														<div class="col-md-10">
+															<textarea class="form-control" rows="3"
+																readonly="readonly"></textarea>
+															<label></label>
 															<form:textarea rows="5" cssClass="form-control"
-																path="khoiLuongCongViec_MT" />
+																path="khoiLuongCongViec" />
 														</div>
 													</div>
 												</div>
@@ -103,18 +92,14 @@
 														việc đạt được</label>
 													<div class="col-md-9">
 														<div class="col-md-2">
-															<form:select cssClass="form-control"
-																path="ketQuaCongViec_DG">
-																<form:option value="1">1 Sao</form:option>
-																<form:option value="2">2 Sao</form:option>
-																<form:option value="3">3 Sao</form:option>
-																<form:option value="4">4 Sao</form:option>
-																<form:option value="5">5 Sao</form:option>
-															</form:select>
+															<input class="form-control" value="" readonly="readonly">
 														</div>
 														<div class="col-md-10">
+															<textarea class="form-control" rows="3"
+																readonly="readonly"></textarea>
+															<label></label>
 															<form:textarea rows="5" cssClass="form-control"
-																path="ketQuaCongViec_MT" />
+																path="ketQuaCongViec" />
 														</div>
 													</div>
 												</div>
@@ -124,18 +109,14 @@
 														lũy</label>
 													<div class="col-md-9">
 														<div class="col-md-2">
-															<form:select cssClass="form-control"
-																path="kyLuatCongViec_DG">
-																<form:option value="1">1 Sao</form:option>
-																<form:option value="2">2 Sao</form:option>
-																<form:option value="3">3 Sao</form:option>
-																<form:option value="4">4 Sao</form:option>
-																<form:option value="5">5 Sao</form:option>
-															</form:select>
+															<input class="form-control" value="" readonly="readonly">
 														</div>
 														<div class="col-md-10">
-															<form:textarea rows="5" cssClass="form-control"
-																path="kyLuatCongViec_MT" />
+															<textarea class="form-control" rows="3"
+																readonly="readonly"></textarea>
+															<label></label>
+															<form:textarea readonly="readonly" rows="5"
+																cssClass="form-control" path="kyLuatCongViec" />
 														</div>
 													</div>
 												</div>
@@ -149,10 +130,9 @@
 												</div>
 
 												<div class="form-group last">
-													<label class="col-md-3 label-control">Đánh giá tổng
-														thể</label>
+													<label class="col-md-3 label-control">Xếp loại</label>
 													<div class="col-md-9">
-														<form:select cssClass="form-control" path="danhGiaTongThe">
+														<form:select cssClass="form-control" path="xepLoai">
 															<form:option value="1">1 Sao</form:option>
 															<form:option value="2">2 Sao</form:option>
 															<form:option value="3">3 Sao</form:option>
@@ -163,26 +143,27 @@
 												</div>
 											</div>
 											<div class="form-actions">
-												<a href="<c:url value="/quantridanhgia/danhgiabanthan/"/>"
+												<a href="<c:url value="/quantridanhgia/danhgianhanvien/"/>"
 													class="btn btn-danger btn-min-width mr-1 mb-1">Trở về</a>
 												<c:if test="${command.trangThai == 1 }">
-												<button type="submit"
-														formaction="<c:url value="/quantridanhgia/danhgiabanthan/drafts"/>"
+													<button type="submit"
+														formaction="<c:url value="/quantridanhgia/danhgianhanvien/drafts"/>"
 														class="btn btn-info btn-min-width mr-1 mb-1">Lưu
 														nháp</button>
 													<button type="submit"
-														formaction="<c:url value="/quantridanhgia/danhgiabanthan/update"/>"
-														class="btn btn-success btn-min-width mr-1 mb-1">Cập
-														nhật</button>
+														formaction="<c:url value="/quantridanhgia/danhgianhanvien/update"/>"
+														class="btn btn-success btn-min-width mr-1 mb-1">Đánh
+														giá</button>
 												</c:if>
 												<c:if test="${command.trangThai == 0 }">
 													<button type="submit"
-														formaction="<c:url value="/quantridanhgia/danhgiabanthan/drafts"/>"
+														formaction="<c:url value="/quantridanhgia/danhgianhanvien/drafts"/>"
 														class="btn btn-info btn-min-width mr-1 mb-1">Lưu
 														nháp</button>
 													<button type="submit"
-														formaction="<c:url value="/quantridanhgia/danhgiabanthan/new"/>"
-														class="btn btn-success btn-min-width mr-1 mb-1">Tạo</button>
+														formaction="<c:url value="/quantridanhgia/danhgianhanvien/new"/>"
+														class="btn btn-success btn-min-width mr-1 mb-1">Đánh
+														giá</button>
 												</c:if>
 											</div>
 										</form:form>

@@ -15,10 +15,7 @@
 							<li class="breadcrumb-item"><a
 								href="<c:url value = "/quantridanhgia/home/"/>">Quản trị
 									đánh giá</a></li>
-							<li class="breadcrumb-item"><a
-								href="<c:url value = "/quantridanhgia/home/"/>">Đánh giá bản
-									thân</a></li>
-							<li class="breadcrumb-item active">Form đánh giá</li>
+							<li class="breadcrumb-item active">Đánh giá nhân viên</li>
 						</ol>
 					</div>
 				</div>
@@ -29,7 +26,37 @@
 				<div class="card">
 					<div class="card-content">
 						<div class="card-body" style="margin: 1em">
-							<h2>Chưa có phân công đánh giá nào</h2>
+							<form:form cssClass="form" action="">
+								<div class="form-body">
+									<h4 class="form-section">
+										<i class="fa fa-plus"></i>Tạo danh sách đánh giá
+									</h4>
+									<div class="row">
+										<div class="col-md-4">
+											<div class="form-group">
+												<label for="projectinput1">Kỳ đánh giá</label>
+												<form:select path="kyDanhgia">
+													<form:options items="${listKyDanhGia }" />
+												</form:select>
+
+											</div>
+										</div>
+										<div class="col-md-4">
+											<div class="form-group">
+												<label for="projectinput2">Phòng ban</label>
+												<form:select path="phongBan">
+													<form:options items="${listPhongBan }" />
+												</form:select>
+											</div>
+										</div>
+										<div class="col-md-4">
+											<div class="form-group">
+												<button class="btn btn-primary" type="submit">Tạo</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</form:form>
 						</div>
 					</div>
 				</div>

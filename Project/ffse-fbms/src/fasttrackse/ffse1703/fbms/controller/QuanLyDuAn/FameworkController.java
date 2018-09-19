@@ -45,8 +45,8 @@ public class FameworkController {
 
 	@RequestMapping(value = { "/creat" }, method = RequestMethod.POST)
 	public String creat(@ModelAttribute("database") @Valid Database database, BindingResult result , RedirectAttributes redirectAttributes) {
-		if(databaseService.getById(database.getMaDatabase())!=null) {
-			databaseService.setIsDelete(database.getMaDatabase());
+		if(databaseService.getById(database.getMa_database())!=null) {
+			databaseService.setIsDelete(database.getMa_database());
 			databaseService.update(database);
 			return "redirect:list";
 			}	

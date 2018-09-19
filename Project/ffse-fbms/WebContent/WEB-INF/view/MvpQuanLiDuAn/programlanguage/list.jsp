@@ -14,15 +14,15 @@
 		<!-- Path -->
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">Danh sách Framework</h3>
+				<h3 class="content-header-title mb-0">Danh sách Ngôn Ngữ</h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/home" />'>Home</a></li>
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/mvpquanliduan/framework/list-framework" />'>Danh
-									sách Framework</a></li>
+								href='<c:url value="/mvpquanliduan/programlanguage/list-language" />'>Danh
+									sách Ngôn Ngữ</a></li>
 
 						</ol>
 					</div>
@@ -36,8 +36,8 @@
 			<div class="x_panel">
 				<div class="x_title">
 					<a class="btn btn-outline-success round btn-min-width mr-1 mb-1"
-						href="<c:url value="/mvpquanliduan/framework/show-form-add" />">
-						<h5class="ft-plus-circle">Thêm Framework
+						href="<c:url value="/mvpquanliduan/programlanguage/show-form-add" />">
+						<h5class="ft-plus-circle">Thêm Ngôn Ngữ
 						</h5>
 					</a>
 				</div>
@@ -47,25 +47,25 @@
 						<thead>
 							<tr>
 								
-								<th style="text-align: center">Mã Framework</th>
-								<th style="width: 60%; text-align: center">Tên Framework</th>
+								<th style="text-align: center">Mã Ngôn Ngữ</th>
+								<th style="width: 60%; text-align: center">Tên Ngôn Ngữ</th>
 								<th style="text-align: center">Chức năng</th>
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach var="framework" items="${listFramework}" varStatus="count">
+							<c:forEach var="language" items="${listLanguage}" varStatus="count">
 								<tr>
 
 									
-									<td style="text-align: left">${framework.idFrame}</td>
-									<td style="text-align: left">${framework.nameFramework}</td>
+									<td style="text-align: left">${language.idLanguage}</td>
+									<td style="text-align: left">${language.nameLanguage}</td>
 									<td><a
 										style="width: 50px; high: 50px; border-color: #00E5EE; border-radius: 100%;"
 										class="btn btn-outline-info "
-										href="<c:url value="/mvpquanliduan/framework/show-form-edit/${framework.idFrame }" />"
+										href="<c:url value="/mvpquanliduan/framework/show-form-edit/${language.idLanguage }" />"
 										title=""><i class="ft-edit"></i></a><button
 											style="width: 50px; high: 50px; border-color: #FF6A6A; border-radius: 100%;"
-											data-href="<c:url value="/mvpquanliduan/framework/delete/${framework.idFrame }" />"
+											data-href="<c:url value="/mvpquanliduan/framework/delete/${language.idLanguage }" />"
 											class="btn btn-outline-danger" data-toggle="modal"
 											data-target="#xoa_pr">
 											<i class="ft-delete"></i>
@@ -95,7 +95,7 @@
 				<h4 class="modal-title">Xác nhận</h4>
 			</div>
 			<div class="modal-body">
-				<p>Bạn muốn xóa Framework này???</p>
+				<p>Bạn muốn xóa Ngôn ngữ này???</p>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>

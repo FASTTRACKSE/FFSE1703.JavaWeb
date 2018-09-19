@@ -10,6 +10,6 @@ public interface KhachHangService {
 	public List<KhachHang> getAll();
 	public void update(KhachHang khachHang);
 	public void delete(int id);
-	public int checkKhachHang(String fullname);
+	
 	
 }

@@ -17,7 +17,7 @@ public class Framework {
 	@Column(name="name_framework",unique = true, nullable=false)	
 	private String nameFramework;
 	@Column(name="id_program_language",unique = true, nullable=false)
-	private int idProgramLanguage;
+	private int idLanguage;
 	private int status;
 	
 
@@ -37,12 +37,14 @@ public class Framework {
 		this.nameFramework = nameFramework;
 	}
 
-	public int getIdProgramLanguage() {
-		return idProgramLanguage;
+	
+
+	public int getIdLanguage() {
+		return idLanguage;
 	}
 
-	public void setIdProgramLanguage(int idProgramLanguage) {
-		this.idProgramLanguage = idProgramLanguage;
+	public void setIdLanguage(int idLanguage) {
+		this.idLanguage = idLanguage;
 	}
 
 	public int getStatus() {

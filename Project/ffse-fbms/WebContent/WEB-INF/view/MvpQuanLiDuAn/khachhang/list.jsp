@@ -21,7 +21,7 @@
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/home" />'>Home</a></li>
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/mvpquanliduan/technical/list-khachhang" />'>Danh
+								href='<c:url value="/mvpquanliduan/khachhang/list-khachhang" />'>Danh
 									sách Khách Hàng</a></li>
 
 						</ol>
@@ -57,11 +57,8 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach var="khachHang" items="${listKhachHang}"
-								varStatus="count">
+							<c:forEach var="khachHang" items="${listKhachHang}">
 								<tr>
-
-									<th scope="row">${count.count}</th>
 									<td style="text-align: left">${khachHang.id}</td>
 									<td style="text-align: left">${khachHang.fullname}</td>
 									<td style="text-align: left">${khachHang.email}</td>
@@ -72,12 +69,12 @@
 									<td><a
 										style="width: 50px; high: 50px; border-color: #00E5EE; border-radius: 100%;"
 										class="btn btn-outline-info "
-										href="<c:url value="/mvpquanliduan/technical/show-form-edit/${khachhang.id }" />"
+										href="<c:url value="/mvpquanliduan/khachhang/show-form-edit/${khachhang.id }" />"
 										title=""><i class="ft-edit"></i></a> <a
 										onclick=" if(!confirm('Bạn muốn xóa nghiệp vụ này?')){return false;}"
 										style="width: 50px; high: 50px; border-color: #FF6A6A; border-radius: 100%;"
 										class="btn btn-outline-danger "
-										href="<c:url value="/mvpquanliduan/technical/delete/${khachhang.id }" />"
+										href="<c:url value="/mvpquanliduan/khachhang/delete/${khachhang.id }" />"
 										title=""><i class="ft-delete"></i></a>
 								</tr>
 

@@ -55,13 +55,7 @@ public class KhachHangDaoImpl implements KhachHangDao {
 		khachHang.setStatus(0);
 		session.update(khachHang);
 	}
-	@Override
-	public int checkKhachHang(String fullname) {
-		Session session = sessionFactory.getCurrentSession();
-		List<KhachHang> khachhang = session.createQuery("from KhachHang where fullname = '"+fullname+"' and status = 1", KhachHang.class).list();
-		
-		return  khachhang.size();
-	}
+	
 
 	
 

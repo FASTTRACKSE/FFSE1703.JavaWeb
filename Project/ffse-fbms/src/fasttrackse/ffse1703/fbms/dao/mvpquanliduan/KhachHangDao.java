@@ -11,7 +11,7 @@ public interface KhachHangDao {
 	public void update(KhachHang khachHang);
 	public void delete(int id);
 	public void add(KhachHang khachHang);
-	public int checkKhachHang(String fullname);
+	
 	
 	
 }

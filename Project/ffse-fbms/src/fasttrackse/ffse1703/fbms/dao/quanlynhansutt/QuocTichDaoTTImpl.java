@@ -2,13 +2,26 @@ package fasttrackse.ffse1703.fbms.dao.quanlynhansutt;
 
 import java.util.List;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.QuocTichTT;
 
-public class QuocTichDaoTTImpl implements QuocTichDaoTT{
+public class QuocTichDaoTTImpl implements QuocTichDaoTT {
 
+	@Autowired
+	private SessionFactory sessionFactory;
+
+	@Override
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<QuocTichTT> getAllQuocTich() {
-		// TODO Auto-generated method stub
-		return null;
+		Session session = this.sessionFactory.getCurrentSession();
+		Query query = session.createQuery("from QuocTichTT");
+		List<QuocTichTT> listQuocTich = query.list();
+
+		return listQuocTich;
 	}
 
 }

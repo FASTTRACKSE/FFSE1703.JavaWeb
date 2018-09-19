@@ -26,7 +26,7 @@ public class DanTocTT implements Serializable {
 	private String tenDanToc;
 
 	// bi-directional many-to-one association to HoSoNhanVien
-	@OneToMany(mappedBy = "dantoc")
+	@OneToMany(mappedBy = "danToc")
 	private List<HoSoNhanVienTT> hoSoNhanViens;
 
 	public DanTocTT() {

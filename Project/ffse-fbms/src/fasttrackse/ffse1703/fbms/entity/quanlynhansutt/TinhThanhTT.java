@@ -14,7 +14,7 @@ import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 
 @Entity
 @Table(name = "thanh_pho")
-public class TinhThanhPhoTT implements Serializable {
+public class TinhThanhTT implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -28,9 +28,9 @@ public class TinhThanhPhoTT implements Serializable {
 
 	// bi-directional many-to-one association to HoSoNhanVien
 	@OneToMany(mappedBy = "thanhPho")
-	private List<HoSoNhanVien> hoSoNhanViens;
+	private List<HoSoNhanVienTT> hoSoNhanViens;
 
-	public TinhThanhPhoTT() {
+	public TinhThanhTT() {
 	}
 
 	public String getMaThanhPho() {
@@ -49,11 +49,11 @@ public class TinhThanhPhoTT implements Serializable {
 		this.tenThanhPho = tenThanhPho;
 	}
 
-	public List<HoSoNhanVien> getHoSoNhanViens() {
+	public List<HoSoNhanVienTT> getHoSoNhanViens() {
 		return hoSoNhanViens;
 	}
 
-	public void setHoSoNhanViens(List<HoSoNhanVien> hoSoNhanViens) {
+	public void setHoSoNhanViens(List<HoSoNhanVienTT> hoSoNhanViens) {
 		this.hoSoNhanViens = hoSoNhanViens;
 	}
 

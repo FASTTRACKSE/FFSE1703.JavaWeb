@@ -2,8 +2,6 @@ package fasttrackse.ffse1703.fbms.dao.quanlynhansutt;
 
 import java.util.List;
 
-
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;

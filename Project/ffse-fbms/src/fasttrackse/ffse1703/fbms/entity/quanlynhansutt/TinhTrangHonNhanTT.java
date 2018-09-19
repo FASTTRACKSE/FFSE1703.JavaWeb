@@ -26,8 +26,8 @@ public class TinhTrangHonNhanTT {
 	private String tinhTrangHonNhan;
 
 	// bi-directional many-to-one association to HoSoNhanVien
-	@OneToMany(mappedBy = "quoctich")
-	private List<HoSoNhanVien> hoSoNhanViens;
+	@OneToMany(mappedBy = "tinhTrangHonNhan")
+	private List<HoSoNhanVienTT> hoSoNhanViens;
 
 	public String getMaTinhTrangHonNhan() {
 		return maTinhTrangHonNhan;
@@ -45,11 +45,11 @@ public class TinhTrangHonNhanTT {
 		this.tinhTrangHonNhan = tinhTrangHonNhan;
 	}
 
-	public List<HoSoNhanVien> getHoSoNhanViens() {
+	public List<HoSoNhanVienTT> getHoSoNhanViens() {
 		return hoSoNhanViens;
 	}
 
-	public void setHoSoNhanViens(List<HoSoNhanVien> hoSoNhanViens) {
+	public void setHoSoNhanViens(List<HoSoNhanVienTT> hoSoNhanViens) {
 		this.hoSoNhanViens = hoSoNhanViens;
 	}
 

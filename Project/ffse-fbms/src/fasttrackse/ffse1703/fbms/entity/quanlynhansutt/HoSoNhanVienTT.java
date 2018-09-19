@@ -2,6 +2,7 @@ package fasttrackse.ffse1703.fbms.entity.quanlynhansutt;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
@@ -67,7 +69,7 @@ public class HoSoNhanVienTT implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "thanh_pho", nullable = false)
 	@NotNull
-	private TinhThanhPhoTT thanhPho;
+	private TinhThanhTT thanhPho;
 
 	@Column(name = "so_dien_thoai", nullable = false, length = 11)
 	@Size(min = 10, max = 11)
@@ -119,25 +121,9 @@ public class HoSoNhanVienTT implements Serializable {
 	@Column(name = "trang_thai", nullable = false)
 	private Integer trangThai;
 
-	// // bi-directional many-to-one association to HopDong
-	// @OneToMany(mappedBy = "hoSoNhanVien")
-	// private List<HopDong> hopDongs;
-	//
-	// // bi-directional many-to-many association to DuAn
-	// // @ManyToMany(mappedBy = "hoSoNhanViens")
-	// // private List<DuAn> duAns;
-	//
-	// // bi-directional many-to-one association to ThongTinBangCap
-	// @OneToMany(mappedBy = "hoSoNhanVien")
-	// private List<ThongTinBangCap> thongTinBangCaps;
-	//
-	// // bi-directional many-to-one association to ThongTinGiaDinh
-	// @OneToMany(mappedBy = "hoSoNhanVien")
-	// private List<ThongTinGiaDinh> thongTinGiaDinhs;
-	//
-	// @ManyToMany(mappedBy = "hoSoNhanVien", fetch = FetchType.EAGER, targetEntity
-	// = DuAn.class)
-	// private Set<DuAn> duAn;
+	// bi-directional many-to-one association to HopDong
+	@OneToMany(mappedBy = "hoSoNhanVien")
+	private List<HopDongTT> hopDongs;
 
 	public HoSoNhanVienTT() {
 	}
@@ -206,11 +192,11 @@ public class HoSoNhanVienTT implements Serializable {
 		this.quan = quan;
 	}
 
-	public TinhThanhPhoTT getThanhPho() {
+	public TinhThanhTT getThanhPho() {
 		return thanhPho;
 	}
 
-	public void setThanhPho(TinhThanhPhoTT thanhPho) {
+	public void setThanhPho(TinhThanhTT thanhPho) {
 		this.thanhPho = thanhPho;
 	}
 

@@ -27,8 +27,8 @@ public class QuocTichTT implements Serializable {
 	private String tenQuocTich;
 
 	// bi-directional many-to-one association to HoSoNhanVien
-	@OneToMany(mappedBy = "quoctich")
-	private List<HoSoNhanVien> hoSoNhanViens;
+	@OneToMany(mappedBy = "quocTich")
+	private List<HoSoNhanVienTT> hoSoNhanViens;
 
 	public QuocTichTT() {
 	}
@@ -49,11 +49,11 @@ public class QuocTichTT implements Serializable {
 		this.tenQuocTich = tenQuocTich;
 	}
 
-	public List<HoSoNhanVien> getHoSoNhanViens() {
+	public List<HoSoNhanVienTT> getHoSoNhanViens() {
 		return hoSoNhanViens;
 	}
 
-	public void setHoSoNhanViens(List<HoSoNhanVien> hoSoNhanViens) {
+	public void setHoSoNhanViens(List<HoSoNhanVienTT> hoSoNhanViens) {
 		this.hoSoNhanViens = hoSoNhanViens;
 	}
 

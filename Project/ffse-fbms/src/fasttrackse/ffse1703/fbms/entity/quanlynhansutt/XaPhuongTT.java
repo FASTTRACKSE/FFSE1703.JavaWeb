@@ -27,8 +27,8 @@ public class XaPhuongTT implements Serializable {
 	private String tenxa;
 
 	// bi-directional many-to-one association to HoSoNhanVien
-	@OneToMany(mappedBy = "dantoc")
-	private List<HoSoNhanVien> hoSoNhanViens;
+	@OneToMany(mappedBy = "xaPhuong")
+	private List<HoSoNhanVienTT> hoSoNhanViens;
 
 	public XaPhuongTT() {
 	}
@@ -49,11 +49,11 @@ public class XaPhuongTT implements Serializable {
 		this.tenxa = tenxa;
 	}
 
-	public List<HoSoNhanVien> getHoSoNhanViens() {
+	public List<HoSoNhanVienTT> getHoSoNhanViens() {
 		return hoSoNhanViens;
 	}
 
-	public void setHoSoNhanViens(List<HoSoNhanVien> hoSoNhanViens) {
+	public void setHoSoNhanViens(List<HoSoNhanVienTT> hoSoNhanViens) {
 		this.hoSoNhanViens = hoSoNhanViens;
 	}
 

@@ -10,7 +10,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
-import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 
 @Entity
 @Table(name = "quan_huyen")
@@ -27,8 +26,8 @@ public class QuanHuyenTT implements Serializable {
 	private String tenQuanHuyen;
 
 	// bi-directional many-to-one association to HoSoNhanVien
-	@OneToMany(mappedBy = "quan")
-	private List<HoSoNhanVien> hoSoNhanViens;
+	@OneToMany(mappedBy = "quanHuyen")
+	private List<HoSoNhanVienTT> hoSoNhanViens;
 
 	public QuanHuyenTT() {
 	}
@@ -49,11 +48,11 @@ public class QuanHuyenTT implements Serializable {
 		this.tenQuanHuyen = tenQuanHuyen;
 	}
 
-	public List<HoSoNhanVien> getHoSoNhanViens() {
+	public List<HoSoNhanVienTT> getHoSoNhanViens() {
 		return hoSoNhanViens;
 	}
 
-	public void setHoSoNhanViens(List<HoSoNhanVien> hoSoNhanViens) {
+	public void setHoSoNhanViens(List<HoSoNhanVienTT> hoSoNhanViens) {
 		this.hoSoNhanViens = hoSoNhanViens;
 	}
 

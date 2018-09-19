@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.HopDongTT;
 import fasttrackse.ffse1703.fbms.service.quanlynhansutt.HopDongServiceTT;
 import fasttrackse.ffse1703.fbms.service.quanlynhansutt.LoaiHopDongServiceTT;
+import fasttrackse.ffse1703.fbms.service.security.ChucDanhService;
 
 @Controller
 @RequestMapping("/quanlynhansutt/")
@@ -24,6 +25,9 @@ public class QuanLyHopDongControllerTT {
 
 	@Autowired
 	private LoaiHopDongServiceTT loaiHopDongServiceTT;
+
+	@Autowired
+	private ChucDanhService chucDanhService;
 	@Autowired
 	private HopDongServiceTT hopDongServiceTT;
 
@@ -49,54 +53,28 @@ public class QuanLyHopDongControllerTT {
 		return "QuanLyNhanSuTT/QuanLyHopDongTT/list";
 	}
 
-//	@RequestMapping(value = "/add", method = RequestMethod.GET)
-//	public String addForm(Model model, final RedirectAttributes redirectAttributes) {
-//		// model.addAttribute("hopDongTT", new HopDongTT());
-//		return "QuanLyNhanSuTT/QuanLyHopDongTT/add_form";
-//	}
-	
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String showFormAdd(Model model, final RedirectAttributes redirectAttributes) {
-		model.addAttribute("command", new HopDongTT());
+		model.addAttribute("hopDongTT", new HopDongTT());
+		model.addAttribute("listChucDanh", chucDanhService.findAll());
+		model.addAttribute("listLoaiHopDong", loaiHopDongServiceTT.findAll());
 		return "QuanLyNhanSuTT/QuanLyHopDongTT/add_form";
 	}
 
-//	@RequestMapping(value = "/edit/{maHopDong}", method = RequestMethod.GET)
-//	public String editForm(@PathVariable("maHopDong") int maHopDong, Model model) {
-//		model.addAttribute("hopDongTT", hopDongServiceTT.findByMaHopDong(maHopDong));
-//		return "QuanLyNhanSuTT/QuanLyHopDongTT/edit_form";
-//	}
-	
 	@RequestMapping("/edit/{maHopDong}")
-	public String showFormUpdate(@PathVariable("maHopDong") int maHopDong, Model model) throws IllegalStateException, IOException {
+	public String showFormUpdate(@PathVariable("maHopDong") int maHopDong, Model model)
+			throws IllegalStateException, IOException {
 		model.addAttribute("hopDongTT", hopDongServiceTT.findByMaHopDong(maHopDong));
 		return "QuanLyNhanSuTT/QuanLyHopDongTT/edit_form";
 	}
 
-//	@RequestMapping(value = "/save_edit", method = RequestMethod.POST)
-//	public String doEdit(Model model, @ModelAttribute("hopDongTT") HopDongTT hd,
-//			final RedirectAttributes redirectAttributes, BindingResult result) {
-//		System.out.println(hd.getSoNgayPhep());
-//		if (result.hasErrors()) {
-//			model.addAttribute("hopDongTT", hd);
-//			return "QuanLyNhanSuTT/QuanLyHopDongTT/edit_form";
-//
-//		}
-//		hopDongServiceTT.updateHopDong(hd);
-//
-//		redirectAttributes.addFlashAttribute("messageSuccess", "Thành công");
-//
-//		return "redirect:/quanlynhansutt/";
-//	}
-	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String saveHopDong(@ModelAttribute("command")@Valid HopDongTT hd,BindingResult result)	
-	{
-
+	public String saveHopDong(@ModelAttribute("hopDongTT") @Valid HopDongTT hd, BindingResult result) {
 		if (hd.getMaHopDong() == 0) {
 			// new person, add it
 			if (result.hasErrors()) {
 				return "QuanLyNhanSuTT/QuanLyHopDongTT/add_form";
+
 			}
 			hopDongServiceTT.addHopDong(hd);
 		} else {
@@ -107,6 +85,5 @@ public class QuanLyHopDongControllerTT {
 			hopDongServiceTT.updateHopDong(hd);
 		}
 		return "redirect:/quanlynhansutt/";
-
 	}
 }

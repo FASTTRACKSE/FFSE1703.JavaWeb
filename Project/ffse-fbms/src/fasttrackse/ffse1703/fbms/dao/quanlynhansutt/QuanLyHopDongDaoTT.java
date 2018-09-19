@@ -21,4 +21,8 @@ public interface QuanLyHopDongDaoTT {
 	public void updateHopDong(HopDongTT tt);
 
 	public String getAutoId();
+	
+	public HopDongTT findByMaHopDong(int maHopDong);
+		
+	
 }

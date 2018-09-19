@@ -33,5 +33,5 @@ public interface HopDongServiceTT {
 
 	public HoSoNhanVien getHoSoNhanVienById(int maNhanVien);
 
-	public String findByMaHopDong(int maHopDong);
+	public HopDongTT findByMaHopDong(int maHopDong);
 }

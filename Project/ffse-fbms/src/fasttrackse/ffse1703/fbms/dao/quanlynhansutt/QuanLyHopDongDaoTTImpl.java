@@ -9,21 +9,20 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
+//import org.springframework.transaction.annotation.Transactional;
 
 import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.HopDongTT;
 
 //import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 //import fasttrackse.ffse1703.fbms.entity.security.PhongBan;
 @Repository
-@Transactional(rollbackFor = Exception.class)
 public class QuanLyHopDongDaoTTImpl implements QuanLyHopDongDaoTT {
 
 	@Autowired
 	private SessionFactory sessionFactory;
 
 	@Override
-//	@SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")
 	public List<HopDongTT> getAllHopDong() {
 		Session session = sessionFactory.getCurrentSession();
 		List<HopDongTT> listHopDong = session.createQuery("from HopDongTT").getResultList();
@@ -32,7 +31,6 @@ public class QuanLyHopDongDaoTTImpl implements QuanLyHopDongDaoTT {
 
 	@Override
 	public void addHopDong(HopDongTT tt) {
-		System.out.println(tt);
 		Session session = this.sessionFactory.getCurrentSession();
 		session.save(tt);
 	}
@@ -76,5 +74,13 @@ public class QuanLyHopDongDaoTTImpl implements QuanLyHopDongDaoTT {
 	public List<HopDongTT> getHopDongByPhongBan(String maPhongBan) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public HopDongTT findByMaHopDong(int maHopDong) {
+		// TODO Auto-generated method stub
+		Session session = this.sessionFactory.getCurrentSession();
+		return session.get(HopDongTT.class, maHopDong);
+		
 	}
 }

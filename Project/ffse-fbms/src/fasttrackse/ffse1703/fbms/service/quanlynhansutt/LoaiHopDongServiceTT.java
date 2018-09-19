@@ -6,4 +6,6 @@ import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.LoaiHopDongTT;
 
 public interface LoaiHopDongServiceTT {
 	public List<LoaiHopDongTT> listLoaiHopDongTT();
+
+	public List<LoaiHopDongTT> findAll();
 }

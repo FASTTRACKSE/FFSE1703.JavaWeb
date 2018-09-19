@@ -22,4 +22,10 @@ public class LoaiHopDongServiceTTImpl implements LoaiHopDongServiceTT {
 		return this.loaiHopDongDaoTT.listLoaiHopDongTT();
 	}
 
+	@Override
+	public List<LoaiHopDongTT> findAll() {
+		// TODO Auto-generated method stub
+		return loaiHopDongDaoTT.findAll();
+	}
+
 }

@@ -20,6 +20,17 @@ public class LoaiHopDongDaoTTImpl implements LoaiHopDongDaoTT {
 	public List<LoaiHopDongTT> listLoaiHopDongTT() {
 		Session session = this.sessionFactory.getCurrentSession();
 		List<LoaiHopDongTT> list = session.createQuery("from LoaiHopDongTT").getResultList();
+		session.close();
+		return list;
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<LoaiHopDongTT> findAll() {
+		// TODO Auto-generated method stub
+		Session session = this.sessionFactory.openSession();
+		List<LoaiHopDongTT> list = session.createQuery("from LoaiHopDongTT").list();
+		session.close();
 		return list;
 	}
 

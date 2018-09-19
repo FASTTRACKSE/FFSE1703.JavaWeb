@@ -7,7 +7,22 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
-
+<style type="text/css">
+		.table td {
+			vertical-align: baseline;
+		}
+		
+		th, td {
+			padding-left: 1rem !important;
+			padding-right: 1rem !important;
+		}
+		
+		#datatable tr td:last-child {
+			letter-spacing: 15px;
+			min-width: 100px;
+			text-align: center !important;
+		}
+</style>
 <div class="app-content content container-fluid">
 	<div class="content-wrapper">
 		<!-- Path -->
@@ -58,22 +73,6 @@
 									</ul>
 								</div>
 							</div>
-							<style type="text/css">
-.table td {
-	vertical-align: baseline;
-}
-
-th, td {
-	padding-left: 1rem !important;
-	padding-right: 1rem !important;
-}
-
-#datatable tr td:last-child {
-	letter-spacing: 15px;
-	min-width: 100px;
-	text-align: center !important;
-}
-</style>
 							<div class="card-body collapse in">
 								<div class="card-block card-dashboard">
 									<table id="datatable"
@@ -124,7 +123,7 @@ th, td {
 													</td> 
 												</tr>
 											</c:forEach>
-											<div class="modal fade" id="confirm-delete" tabindex="-1"
+										<!-- 	<div class="modal fade" id="confirm-delete" tabindex="-1"
 												role="dialog" aria-labelledby="myModalLabel"
 												aria-hidden="true">
 												<div class="modal-dialog">
@@ -149,7 +148,7 @@ th, td {
 														</div>
 													</div>
 												</div>
-											</div>
+											</div> -->
 										</tbody>
 									</table>
 								</div>

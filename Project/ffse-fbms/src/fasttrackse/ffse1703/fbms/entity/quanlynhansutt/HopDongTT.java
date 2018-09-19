@@ -55,33 +55,27 @@ public class HopDongTT implements Serializable {
 	private ChucDanh chucDanh;
 
 	@Column(name = "luong_thang_13", nullable = false)
-	@NotNull
 	private Integer luongThang13;
 
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "ngay_ky", nullable = false)  
-	@NotNull
 	private Date ngayKy;
 
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "hop_dong_tu_ngay", nullable = false)
-	@NotNull
 	private Date hopDongTuNgay;
 
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "hop_dong_den_ngay", nullable = false)
-	@NotNull
 	private Date hopDongDenNgay;
 
 	@Column(name = "so_ngay_phep", nullable = false)
-	@NotNull
 	private Integer soNgayPhep;
 
 	@Column(name = "trang_thai", nullable = false)
-	@NotNull
 	private Integer trangThai;
 
 	public HopDongTT() {

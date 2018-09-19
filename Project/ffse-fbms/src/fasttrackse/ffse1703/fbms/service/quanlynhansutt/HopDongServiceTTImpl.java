@@ -13,12 +13,10 @@ import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.HopDongTT;
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 
 @Service
-public class HopDongServiceTTImpl implements HopDongServiceTT{
-    @Autowired
-    private QuanLyHopDongDaoTT quanLyHopDongDaoTT;
-    
-    
-   
+public class HopDongServiceTTImpl implements HopDongServiceTT {
+	@Autowired
+	private QuanLyHopDongDaoTT quanLyHopDongDaoTT;
+
 	@Override
 	@Transactional
 	public List<HopDongTT> getAllHopDong() {
@@ -34,15 +32,18 @@ public class HopDongServiceTTImpl implements HopDongServiceTT{
 	}
 
 	@Override
+	@Transactional
 	public void addHopDong(HopDongTT tt) {
 		// TODO Auto-generated method stub
-		
+		quanLyHopDongDaoTT.addHopDong(tt);
+
 	}
 
 	@Override
+	@Transactional
 	public void updateHopDong(HopDongTT tt) {
-		// TODO Auto-generated method stub
-		
+		quanLyHopDongDaoTT.updateHopDong(tt);
+
 	}
 
 	@Override
@@ -98,9 +99,10 @@ public class HopDongServiceTTImpl implements HopDongServiceTT{
 	}
 
 	@Override
-	public String findByMaHopDong(int maHopDong) {
+	@Transactional
+	public HopDongTT findByMaHopDong(int maHopDong) {
 		// TODO Auto-generated method stub
-		return null;
+		return this.quanLyHopDongDaoTT.findByMaHopDong(maHopDong);
 	}
 
 }

@@ -47,11 +47,8 @@
 							</div>
 							<div class="card-body collapse in">
 								<div class="card-block">
-									<form:form method="POST" 
-										action="save">
-										<form:input type="hidden" path="maHopDong"
-											style="display:none"  />
-
+									<form:form method="POST" action="save"
+										modelAttribute="hopDongTT">
 										<div class="form-body">
 											<div class="row">
 												<div class="col-md-8">
@@ -61,41 +58,37 @@
 															<form:input class="form-control" path="maHopDong"
 																placeholder="Mã Hợp Đồng" />
 														</div>
-														<div class="col-md-6">
-															<div class="form-group">
-																<label for="projectinput4">Chức Danh</label>
-																<form:select path="chucDanh" type="text"
-																	id="projectinput4" class="form-control"
-																	name="chucDanhSelect">
-																	<option value="none" selected="">Chọn</option>
-																	<c:forEach items="${list}" var="x">
-																		<option value="${x.maChucDanh}">${x.tenChucDanh}</option>
-																	</c:forEach>
-																</form:select>
-															</div>
+														<div class="form-group col-sm-6">
+															<label>Mã Nhân Viên</label>
+															<form:input class="form-control" path="hoSoNhanVien"
+																placeholder="Mã Nhân Viên" />
 														</div>
-
 													</div>
 													<div class="row">
 														<div class="form-group col-sm-6">
 															<label>Mã Loại Hợp Đồng</label>
-															<form:input class="form-control"
-																path="loaiHopDong.maLoaiHopDong"
-																placeholder="Mã Loại Hợp Đồng" />
+															<form:select path="loaiHopDong" type="text"
+																id="companyName" class="form-control"
+																name="loaiHopDongSelect">
+																<option value="none">Chọn Loại Hợp Đồng</option>
+																<c:forEach items="${listLoaiHopDong}" var="x">
+																	<option value="${x.maLoaiHopDong}">${x.tenHopDong}</option>
+																</c:forEach>
+															</form:select>
 														</div>
 														<div class="form-group col-sm-6">
 															<label>Mã Chức Danh</label>
-															<form:input class="form-control"
-																path="chucDanh.maChucDanh"
-																
-																placeholder="Mã Loại Chức Danh" />
+															<form:select path="chucDanh.maChucDanh" type="text"
+																id="companyName" class="form-control"
+																name="chucDanhSelect">
+																<option value="none">Chọn Mã Chức Danh</option>
+																<c:forEach items="${listChucDanh}" var="x">
+																	<option value="${x.maChucDanh}">${x.maChucDanh}</option>
+																</c:forEach>
+															</form:select>
 														</div>
 													</div>
 												</div>
-												<%-- <div class="col-md-4" style="text-align: center !important;">
-													<img width="175px" height="175px"
-														src="/ffse-fbms/resources/images/nhan-vien/${hoSoNhanVien.anhDaiDien}">
-												</div> --%>
 											</div>
 											<h4 class="form-section">
 												<i class="ft-user"> Thông Tin Hợp Đồng</i>
@@ -107,14 +100,12 @@
 															<div class="form-group">
 																<label>Lương Tháng 13</label>
 																<form:input class="form-control" path="luongThang13"
-																	
 																	placeholder="Lương Tháng 13" />
 															</div>
 														</div>
 														<div class="form-group col-sm-6">
 															<label>Số Ngày Phép</label>
 															<form:input class="form-control" path="soNgayPhep"
-																
 																placeholder="Số Ngày Phép" />
 														</div>
 
@@ -122,53 +113,61 @@
 													<div class="row">
 														<div class="col-md-6">
 															<div class="form-group">
-																<label for="date1">Ngày Ký</label> <input
-																	class="form-control" path="ngayKy"
-																	placeholder="Ngày Ký"
-																	type="date" class="form-control" id="date1">
+																<label for="date1">Ngày Ký</label>
+																<fieldset class="form-group position-relative">
+																	<form:input placeholder="Ngày Ký" type="date"
+																		class="form-control round" id="date1" path="ngayKy" />
+																	<div class="form-control-position">
+																		<i class="fa fa-calendar-o"></i>
+																	</div>
+																</fieldset>
 															</div>
 														</div>
 														<div class="col-md-6">
 															<div class="form-group">
-																<label for="date1">Hợp Đồng Từ Ngày</label> <input
-																	class="form-control" path="hopDongTuNgay"
-																	
-																	placeholder="Hợp Đồng Từ Ngày" type="date"
-																	class="form-control" id="date1">
+																<label for="date1">Hợp Đồng Từ Ngày</label>
+																<fieldset class="form-group position-relative">
+																	<form:input placeholder="Hợp Đồng Từ Ngày" type="date"
+																		class="form-control round" id="date1"
+																		path="hopDongTuNgay" />
+																	<div class="form-control-position">
+																		<i class="fa fa-calendar-o"></i>
+																	</div>
+																</fieldset>
 															</div>
 														</div>
 														<div class="col-md-6">
 															<div class="form-group">
-																<label for="date1">Hợp Đồng Đến Ngày</label> <input
-																	class="form-control" path="hopDongDenNgay"
-																	
-																	placeholder="Hợp Đồng Đến Ngày" type="date"
-																	class="form-control" id="date1">
+																<label for="date1">Hợp Đồng Đến Ngày</label>
+																<fieldset class="form-group position-relative">
+																	<form:input placeholder="Hợp Đồng Đến Ngày" type="date"
+																		class="form-control round" id="date1"
+																		path="hopDongDenNgay" />
+																	<div class="form-control-position">
+																		<i class="fa fa-calendar-o"></i>
+																	</div>
+																</fieldset>
 															</div>
 														</div>
 														<div class="col-md-6">
 															<div class="form-group">
-																<label for="location1">Trạng Thái</label> <select
-																	class="custom-select form-control" id="location1"
-																	name="location" path="trangThai">
-																	<option value="${hopDongTT.trangThai == 1}">Còn
-																		Hợp Đồng</option>
-																	<option value="${hopDongTT.trangThai == 2}">Hết
-																		Hợp Đồng</option>
-																</select>
+																<label for="location1">Trạng Thái</label>
+																<form:select class="custom-select form-control"
+																	path="trangThai">
+																	<form:option value="1">Còn
+																		Hợp Đồng</form:option>
+																	<form:option value="2">Hết
+																		Hợp Đồng</form:option>
+																</form:select>
 															</div>
 														</div>
 													</div>
 												</div>
 											</div>
 										</div>
-										<sec:authorize access="hasRole('ROLE_PNS')">
-											<div class="form-actions center">
-
-												<input class="btn btn-success" type="submit" value="Save" />
-
-											</div>
-										</sec:authorize>
+										<div class="form-actions center">
+											<input class="btn btn-success" type="submit" value="Save" />
+										</div>
 									</form:form>
 								</div>
 							</div>

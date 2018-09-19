@@ -5,6 +5,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.DanhGiaBanThan;
+import fasttrackse.ffse1703.fbms.entity.quantridanhgia.DanhGiaNhanVien;
+import fasttrackse.ffse1703.fbms.entity.quantridanhgia.TruongPhongDanhGia;
 
 
 @Controller
@@ -26,12 +28,25 @@ public class QuanTriDanhGiaController {
 	}
 	@RequestMapping("/danhgianhanvien")
 	private String showListDanhGiaNhanVien(Model model) {
-		model.addAttribute("command", new DanhGiaBanThan());
+		model.addAttribute("command", new DanhGiaNhanVien());
 		return "QuanTriDanhGia/nhanvien/danhgianhanvien";
 	}
 	@RequestMapping("/danhgianhanvien/showform")
 	private String showFormDanhGiaNhanVien(Model model) {
-		model.addAttribute("command", new DanhGiaBanThan());
+		model.addAttribute("command", new DanhGiaNhanVien());
 		return "QuanTriDanhGia/nhanvien/formdanhgianhanvien";
+	}
+	@RequestMapping("/danhgiacuatruongphong")
+	private String showDanhGiaTruongPhong(Model model) {
+		model.addAttribute("command", new TruongPhongDanhGia());
+		return "QuanTriDanhGia/nhanvien/danhgiacuatruongphong";
+	}
+	@RequestMapping("/truongphongdanhgia")
+	private String showListDanhGia(Model model) {
+		return "QuanTriDanhGia/truongphong/danhgianhanvien";
+	}
+	@RequestMapping("/truongphongdanhgia/showform")
+	private String showFormDanhGia(Model model) {
+		return "QuanTriDanhGia/truongphong/formdanhgianhanvien";
 	}
 }

@@ -1,5 +1,5 @@
 package fasttrackse.ffse1703.fbms.dao.qlynhiemvunghiabt;
 
-public class QLyNhiemVuDaoImpl {
+public class QLyNhiemVuDaoNghiaBT {
 
 }

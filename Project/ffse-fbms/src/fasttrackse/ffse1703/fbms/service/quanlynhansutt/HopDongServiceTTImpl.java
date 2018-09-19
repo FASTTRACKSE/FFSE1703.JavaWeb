@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fasttrackse.ffse1703.fbms.dao.quanlynhansutt.QuanLyHopDongDaoTT;
+import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.HoSoNhanVienTT;
 import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.HopDongTT;
-import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 
 @Service
 public class HopDongServiceTTImpl implements HopDongServiceTT {
@@ -89,7 +89,7 @@ public class HopDongServiceTTImpl implements HopDongServiceTT {
 	}
 
 	@Override
-	public HoSoNhanVien getHoSoNhanVienById(int maNhanVien) {
+	public HoSoNhanVienTT getHoSoNhanVienById(int maNhanVien) {
 		// TODO Auto-generated method stub
 		return null;
 	}

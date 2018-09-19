@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.HoSoNhanVienTT;
 import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.HopDongTT;
-import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 
 public interface HopDongServiceTT {
 	
@@ -31,7 +31,7 @@ public interface HopDongServiceTT {
 
 	public Object findAllForPaging(int startPosition, int recordsPerPage);
 
-	public HoSoNhanVien getHoSoNhanVienById(int maNhanVien);
+	public HoSoNhanVienTT getHoSoNhanVienById(int maNhanVien);
 
 	public HopDongTT findByMaHopDong(int maHopDong);
 }

@@ -8,7 +8,7 @@
 
 		<h3 class="content-header-title mb-0">Thêm nhân viên</h3> <!-- title -->
 	
-                    <form:form class="form" method="GET" modelAttribute="formHoSoNhanVien" action="" enctype="multipart/form-data">
+                    <form:form class="form" method="POST" action="insert" modelAttribute="formHosopkl">
                       <div class="form-body">
                         <h4 class="form-section"><i class="ft-user"></i>Thông tin cơ bản</h4>
                         <div class="row">
@@ -26,11 +26,22 @@
                               name="hoTenInput" />
                             </div>
                           </div>
-                          <div class="col-md-12">
+                          <div class="col-md-6">
                             <div class="form-group">
                               <label for="projectinput2">Email</label>
                               <form:input path="email" type="text" id="projectinput2" class="form-control" placeholder="Email"
                               name="emailInput" />
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label for="projectinput2">Tình trạng hôn nhân</label>
+                              <form:select path="tinhTrangHonNhan" type="text" id="projectinput2" class="form-control"
+                              name="tinhTrangHonNhanRadio">
+                              		<option value="none" selected="" >Chọn tình trạng hôn nhân</option>
+                              		<option value="0" >Chưa kết hôn</option>
+                              		<option value="1" >Đã kết hôn</option>
+                              </form:select>
                             </div>
                           </div>
                         </div>
@@ -38,7 +49,11 @@
                           <div class="col-md-6">
                             <div class="form-group">
                               <label for="projectinput3">Giới tính</label>
-                              <form:input path="gioiTinh" type="text" id="projectinput3" class="form-control" placeholder="Giới tính" name="gioiTinhRadio" />
+                              <form:select path="gioiTinh" type="text" id="projectinput3" class="form-control" placeholder="Giới tính" name="gioiTinhRadio">
+                              		<option value="none" selected="" >Chọn giới tính</option>
+                              		<option value="Nam" >Nam</option>
+                              		<option value="Nữ" >Nữ</option>
+                              </form:select>
                             </div>
                           </div>
                           <div class="col-md-6">
@@ -77,7 +92,7 @@
                               <form:select path="quocTich" type="text" id="projectinput4" class="form-control" name="quocTichSelect">
                               		<option value="none" selected="" >Chọn quốc tịch</option>
                               	 <c:forEach items="${listQuocTich}" var="x">
-                              		<option value="${x.maNuoc}" >${x.tenNuoc}</option>
+                              		<option value="${x.tenNuoc}" >${x.tenNuoc}</option>
                               	 </c:forEach>
                               </form:select>
                             </div>
@@ -152,26 +167,37 @@
                           </form:select>
                         </div>
                         
-                        <div class="form-group">
-                          <label>Ảnh đại diện</label>
-                          <label id="projectinput7" class="file center-block">
-                            <form:input path="avatar" type="file" id="file" />
-                            <span class="file-custom"></span>
-                          </label>
-                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                              <label for="projectinput4">Ảnh đại diện</label>
+                              <form:input path="avatar" type="text" id="projectinput4" class="form-control" placeholder="ảnh đại diện" name="anhDaiDienInput" />
+                            </div>
+                          </div>
                         <div class="form-actions">
-                        <button type="button" class="btn btn-warning mr-1">
-                          <i class="ft-x"></i> Hủy
-                        </button>
+                        
                         <button type="submit" class="btn btn-primary">
                           <i class="fa fa-check-square-o"></i> Lưu
                         </button>
                       </div>
                     </form:form>
                     
-                      </div>
+                    <button type="button" class="btn btn-warning mr-1" onclick="searchViaAjax()">
+                          <i class="ft-x"></i> Hủy
+                        </button>
+                        
+                     <script type="text/javascript">
+						
+							function searchViaAjax(){
+
+								alert("Hello! I am an alert box!");
+								
+							}
+					
+                     </script>
+                    
+    </div>
                       
 		
-	</div>
+</div>
 
 <jsp:include page="/WEB-INF/view/templates/footer.jsp" />

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.HoSoNhanVienPikalong;
+import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 
 @Repository
 public class HoSoNhanVienPikalongDaoImpl implements HoSoNhanVienPikalongDao {
@@ -41,6 +42,14 @@ public class HoSoNhanVienPikalongDaoImpl implements HoSoNhanVienPikalongDao {
 		query.setParameter("maNv", maNv);
 		
 		query.executeUpdate();
+		
+	}
+
+
+	@Override
+	public void insert(HoSoNhanVienPikalong hoSoNhanVien) {
+		Session session = sessionFactory.getCurrentSession();
+		session.persist(hoSoNhanVien);
 		
 	}
 	

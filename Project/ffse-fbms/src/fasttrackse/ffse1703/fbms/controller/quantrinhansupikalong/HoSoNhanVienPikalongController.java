@@ -2,9 +2,13 @@ package fasttrackse.ffse1703.fbms.controller.quantrinhansupikalong;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -59,7 +63,7 @@ public class HoSoNhanVienPikalongController {
 	
 	@RequestMapping(value= "addform", method= RequestMethod.GET)
 	public String addform(Model model) {
-		model.addAttribute("formHoSoNhanVien", new HoSoNhanVienPikalong());
+		model.addAttribute("formHosopkl", new HoSoNhanVienPikalong());
 		model.addAttribute("listQuocTich", quocTichPikalongService.listQuocTich());
 		model.addAttribute("listThanhPho", thanhPhoPikalongService.listTinhThanh());
 		model.addAttribute("listQuanHuyen", quanHuyenPikalongService.listQuanHuyen());
@@ -68,4 +72,16 @@ public class HoSoNhanVienPikalongController {
 		model.addAttribute("listChucDanh", chucDanhService.findAll());
 		return "QuanTriNhanSuPikalong/ThongTinHoSo/thongtinhosoaddform";
 	}
+	
+	@RequestMapping(value= "insert", method= RequestMethod.POST)
+	public String addsave(@ModelAttribute("formHosopkl") HoSoNhanVienPikalong hoSoNhanVien, BindingResult result) {
+		hoSoNhanVienPikalongService.insert(hoSoNhanVien);
+		return "redirect:/quantrinhansu/hosonhanvien/";
+	}
+	
+	@RequestMapping(value= "test", method= RequestMethod.GET)
+	public String test() {
+		return "redirect:/quantrinhansu/hosonhanvien/";
+	}
+	
 }

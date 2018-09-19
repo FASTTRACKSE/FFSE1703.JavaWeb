@@ -12,7 +12,7 @@ public class TrangThaiController {
 //	private DanhMucService serviceDM;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String viewTaiLieu(Model model) {
+	public String viewTrangThai(Model model) {
 		return "TranDuc-QuanLyTaiLieu/TrangThai/TrangThaiList";
 	}
 	

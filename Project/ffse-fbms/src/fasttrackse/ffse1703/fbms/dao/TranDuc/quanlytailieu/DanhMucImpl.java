@@ -2,44 +2,74 @@ package fasttrackse.ffse1703.fbms.dao.TranDuc.quanlytailieu;
 
 import java.util.List;
 
+import javax.persistence.Query;
+
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import fasttrackse.ffse1703.fbms.entity.TranDuc.quanlytailieu.DanhMuc;
+import fasttrackse.ffse1703.fbms.entity.security.ChucDanh;
+
 @Repository
-public class DanhMucImpl implements DanhMucDao{
+public class DanhMucImpl implements DanhMucDao {
 	@Autowired
-	private SessionFactory session;
-	
+	private SessionFactory sessionFac;
+
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<DanhMuc> listAllDanhMuc() {
-		return null;
+		Session session = this.sessionFac.openSession();
+		List<DanhMuc> list = session.createQuery("from danh_muc").list();
+		session.close();
+		return list;
 	}
 
 	@Override
 	public void addDM(DanhMuc dm) {
-		
+		Session session = this.sessionFac.openSession();
+		Transaction tx = session.beginTransaction();
+		session.persist(dm);
+		tx.commit();
+		session.close();
 	}
 
 	@Override
 	public void updateDM(DanhMuc dm) {
-		
+		Session session = this.sessionFac.openSession();
+		Transaction tx = session.beginTransaction();
+		session.persist(dm);
+		tx.commit();
+		session.close();
 	}
 
 	@Override
-	public void deleteDM(DanhMuc dm) {
-		
+	public void deleteDM(int id) {
+		Session session = this.sessionFac.openSession();
+		Transaction pb = session.beginTransaction();
+		session.delete(session.get(DanhMuc.class, id));
+		pb.commit();
+		session.close();
 	}
 
 	@Override
 	public DanhMuc getDMbyID(int id) {
-		return null;
+		Session session = this.sessionFac.openSession();
+		DanhMuc dm = session.get(DanhMuc.class, id);
+		session.close();
+		return dm;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public List<DanhMuc> listAllDanhMuc(int start, int limit) {
-		return null;
+	public List<DanhMuc> listAllDanhMuc(int start, int limit,String sql) {
+		Session session = this.sessionFac.openSession();
+		List<DanhMuc> listDM = session.createQuery(sql).setFirstResult(start)
+				.setMaxResults(limit).list();
+		session.close();
+		return listDM;
 	}
 
 	@Override

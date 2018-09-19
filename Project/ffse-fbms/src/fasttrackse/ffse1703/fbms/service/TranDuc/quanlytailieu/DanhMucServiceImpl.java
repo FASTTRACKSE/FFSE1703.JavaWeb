@@ -29,8 +29,8 @@ public class DanhMucServiceImpl implements DanhMucService {
 	}
 
 	@Override
-	public void deleteDM(DanhMuc dm) {
-		daoDM.deleteDM(dm);
+	public void deleteDM(int id) {
+		daoDM.deleteDM(id);
 	}
 
 	@Override
@@ -39,8 +39,8 @@ public class DanhMucServiceImpl implements DanhMucService {
 	}
 
 	@Override
-	public List<DanhMuc> listAllDanhMuc(int start, int limit) {
-		return daoDM.listAllDanhMuc(start, limit);
+	public List<DanhMuc> listAllDanhMuc(int start, int limit,String sql) {
+		return daoDM.listAllDanhMuc(start, limit,sql);
 	}
 
 	@Override

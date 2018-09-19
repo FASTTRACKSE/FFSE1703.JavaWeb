@@ -11,11 +11,11 @@ public interface DanhMucService {
 
 	public void updateDM(DanhMuc dm);
 
-	public void deleteDM(DanhMuc dm);
+	public void deleteDM(int id);
 
 	public DanhMuc getDMbyID(int id);
 
-	public List<DanhMuc> listAllDanhMuc(int start, int limit);
+	public List<DanhMuc> listAllDanhMuc(int start, int limit,String sql);
 
 	public String getRecordTotal();
 

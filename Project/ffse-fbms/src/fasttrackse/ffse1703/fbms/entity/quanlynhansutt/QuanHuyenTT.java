@@ -24,6 +24,18 @@ public class QuanHuyenTT implements Serializable {
 	@Column(name = "ten_quan_huyen", nullable = false, length = 255)
 	@NotEmpty
 	private String tenQuanHuyen;
+	
+	@Column(name = "ma_thanh_pho", nullable = false, length = 255)
+	@NotEmpty
+	private String maThanhPho;
+
+	public String getMaThanhPho() {
+		return maThanhPho;
+	}
+
+	public void setMaThanhPho(String maThanhPho) {
+		this.maThanhPho = maThanhPho;
+	}
 
 	// bi-directional many-to-one association to HoSoNhanVien
 	@OneToMany(mappedBy = "quanHuyen")

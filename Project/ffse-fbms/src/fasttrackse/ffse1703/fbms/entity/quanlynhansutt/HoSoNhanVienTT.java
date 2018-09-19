@@ -57,13 +57,13 @@ public class HoSoNhanVienTT implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "phuong", nullable = false)
 	@NotNull
-	private XaPhuongTT phuong;
+	private XaPhuongTT xaPhuong;
 
 	// bi-directional many-to-one association to QuanHuyen
 	@ManyToOne
 	@JoinColumn(name = "quan", nullable = false)
 	@NotNull
-	private QuanHuyenTT quan;
+	private QuanHuyenTT quanHuyen;
 
 	// bi-directional many-to-one association to TinhThanhPho
 	@ManyToOne
@@ -176,20 +176,21 @@ public class HoSoNhanVienTT implements Serializable {
 		this.diaChi = diaChi;
 	}
 
-	public XaPhuongTT getPhuong() {
-		return phuong;
+
+	public XaPhuongTT getXaPhuong() {
+		return xaPhuong;
 	}
 
-	public void setPhuong(XaPhuongTT phuong) {
-		this.phuong = phuong;
+	public void setXaPhuong(XaPhuongTT xaPhuong) {
+		this.xaPhuong = xaPhuong;
 	}
 
-	public QuanHuyenTT getQuan() {
-		return quan;
+	public QuanHuyenTT getQuanHuyen() {
+		return quanHuyen;
 	}
 
-	public void setQuan(QuanHuyenTT quan) {
-		this.quan = quan;
+	public void setQuanHuyen(QuanHuyenTT quanHuyen) {
+		this.quanHuyen = quanHuyen;
 	}
 
 	public TinhThanhTT getThanhPho() {
@@ -288,6 +289,14 @@ public class HoSoNhanVienTT implements Serializable {
 		this.trangThai = trangThai;
 	}
 
+	public List<HopDongTT> getHopDongs() {
+		return hopDongs;
+	}
+
+	public void setHopDongs(List<HopDongTT> hopDongs) {
+		this.hopDongs = hopDongs;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -296,8 +305,8 @@ public class HoSoNhanVienTT implements Serializable {
 	public String toString() {
 		return "HoSoNhanVien [maNhanVien=" + maNhanVien + ", anhDaiDien=" + anhDaiDien + ", danToc=" + danToc
 				+ ", email=" + email + ", gioiTinh=" + gioiTinh + ", tenNhanVien=" + tenNhanVien + ", namSinh="
-				+ namSinh + ", ngayCap=" + ngayCap + ", noiCap=" + noiCap + ", thanhPho=" + thanhPho + ", quan=" + quan
-				+ ", phuong=" + phuong + ", diaChi=" + diaChi + " soCmnd=" + soCmnd + ", soDienThoai=" + soDienThoai
+				+ namSinh + ", ngayCap=" + ngayCap + ", noiCap=" + noiCap + ", thanhPho=" + thanhPho + ", quan=" + quanHuyen
+				+ ", phuong=" + xaPhuong + ", diaChi=" + diaChi + " soCmnd=" + soCmnd + ", soDienThoai=" + soDienThoai
 				+ ", trangThai=" + trangThai + ", phongBan=" + phongBan + ", chucDanh=" + chucDanh + ", quocTich="
 				+ quocTich + ", tinhTrangHonNhan=" + tinhTrangHonNhan + "]";
 	}

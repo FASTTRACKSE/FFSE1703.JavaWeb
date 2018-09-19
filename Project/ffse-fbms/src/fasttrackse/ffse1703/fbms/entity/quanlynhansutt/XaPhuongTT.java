@@ -10,7 +10,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
-import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
+
 
 @Entity
 @Table(name = "xa_phuong")

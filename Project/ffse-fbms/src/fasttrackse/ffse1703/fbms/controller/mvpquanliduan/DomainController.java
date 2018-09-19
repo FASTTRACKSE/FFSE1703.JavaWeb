@@ -52,12 +52,12 @@ public class DomainController {
 		//check trùng nameDomain
 		int checkName= domainService.checkNameDomain(domain.getNameDomain());
 		if(checkName >=1) {
-			model.addAttribute("messageName", "Tên Nghệp vụ đã được sử dụng");
+			model.addAttribute("messageName", "Tên Nghiệp vụ đã được sử dụng");
 			return "MvpQuanLiDuAn/domain/adddomain";
 		}
 		int checkMa= domainService.checkMaDomain(domain.getIdDomain());
 		if(checkMa >=1) {
-			model.addAttribute("messageMa", "Mã Nghệp vụ đã được sử dụng");
+			model.addAttribute("messageMa", "Mã Nghiệp vụ đã được sử dụng");
 			return "MvpQuanLiDuAn/domain/adddomain";
 		}
 		domain.setStatus(1);
@@ -69,7 +69,6 @@ public class DomainController {
 	@RequestMapping(value = "/show-form-edit/{id}")
 	public String showFormEdit(Model model, @PathVariable String id) {
 		Domain dm = domainService.findById(id);
-		System.out.println("domainla" + dm);
 		model.addAttribute("domain", dm);
 		return "MvpQuanLiDuAn/domain/updatedomain";
 	}

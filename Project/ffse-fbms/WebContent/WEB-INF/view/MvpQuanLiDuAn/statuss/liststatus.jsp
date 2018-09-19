@@ -14,15 +14,15 @@
 		<!-- Path -->
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">Danh sách nghiệp vụ</h3>
+				<h3 class="content-header-title mb-0">Danh sách Trạng thái</h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/home" />'>Home</a></li>
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/mvpquanliduan/domain/list-domain" />'>Danh
-									sách Nghiệp vụ</a></li>
+								href='<c:url value="/mvpquanliduan/status/list-status" />'>Danh
+									sách Trạng thái</a></li>
 
 						</ol>
 					</div>
@@ -32,12 +32,12 @@
 		<hr>
 		<!-- End Path -->
 
-		<div class="content-body">
+		<div class="content-body">	
 			<div class="x_panel">
 				<div class="x_title">
 					<a class="btn btn-outline-success round btn-min-width mr-1 mb-1"
-						href="<c:url value="/mvpquanliduan/domain/show-form-add" />">
-						<h5class="ft-plus-circle">Thêm nghiệp vụ
+						href="<c:url value="/mvpquanliduan/status/show-form-add" />">
+						<h5class="ft-plus-circle">Thêm Trạng thái
 						</h5>
 					</a>
 				</div>
@@ -47,25 +47,23 @@
 						<thead>
 							<tr>
 								<th style="text-align: center">Stt</th>
-								<th style="text-align: center">Mã Nghiệp vụ</th>
-								<th style="width: 60%; text-align: center">Nghiệp vụ</th>
+								<th style="width: 60%; text-align: center">Trạng thái</th>
 								<th style="text-align: center">Chức năng</th>
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach var="domain" items="${listDomain}" varStatus="count">
+							<c:forEach var="status" items="${listStatus}" varStatus="count">
 								<tr>
 
 									<th scope="row">${count.count  }</th>
-									<td style="text-align: left">${domain.idDomain}</td>
-									<td style="text-align: left">${domain.nameDomain}</td>
+									<td style="text-align: left">${status.nameStatus}</td>
 									<td><a
 										style="width: 50px; high: 50px; border-color: #00E5EE; border-radius: 100%;"
 										class="btn btn-outline-info "
-										href="<c:url value="/mvpquanliduan/domain/show-form-edit/${domain.idDomain }" />"
+										href="<c:url value="/mvpquanliduan/status/show-form-edit/${status.idStatus }" />"
 										title=""><i class="ft-edit"></i></a><button
 											style="width: 50px; high: 50px; border-color: #FF6A6A; border-radius: 100%;"
-											data-href="<c:url value="/mvpquanliduan/domain/delete/${domain.idDomain }" />"
+											data-href="<c:url value="/mvpquanliduan/status/delete/${status.idStatus }" />"
 											class="btn btn-outline-danger" data-toggle="modal"
 											data-target="#xoa_pr">
 											<i class="ft-delete"></i>
@@ -95,7 +93,7 @@
 				<h4 class="modal-title">Xác nhận</h4>
 			</div>
 			<div class="modal-body">
-				<p>Bạn muốn xóa Nhà cung cấp này???</p>
+				<p>Bạn muốn xóa Trạng thái này???</p>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>

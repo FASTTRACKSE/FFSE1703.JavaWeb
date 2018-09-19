@@ -41,22 +41,24 @@
 					<form:form method="POST" action="addnew">
 						<div class="form-group col-sm-6">
 							<label>Mã nghiệp vụ</label><br>
-							<p Class="error" >${messageMa}</p>
+							<p Class="error">${messageMa}</p>
 							<form:errors path="idDomain" cssClass="error" />
 							<form:input path="idDomain" class="form-control round"
 								placeholder="Mã nghiệp vụ" />
-							
+
 						</div>
 						<div class="form-group col-sm-6">
 							<label>Tên Nghiệp vụ</label><br>
-							<p Class="error" >${messageName}</p>
+							<p Class="error">${messageName}</p>
 							<form:errors path="nameDomain" cssClass="error" />
 							<form:input path="nameDomain" class="form-control round"
 								placeholder="Tên nghiệp vụ" />
-							
+
 						</div>
 						<div class="col-sm-12 text-center">
-							<button type="submit" class="btn btn-outline-success round btn-min-width mr-1 mb-1">Lưu </button>
+							<button type="submit"
+								class="btn btn-outline-success round btn-min-width mr-1 mb-1">Lưu
+							</button>
 						</div>
 					</form:form>
 				</div>

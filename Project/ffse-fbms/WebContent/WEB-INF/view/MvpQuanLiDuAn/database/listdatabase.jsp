@@ -14,15 +14,15 @@
 		<!-- Path -->
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">Danh sách nghiệp vụ</h3>
+				<h3 class="content-header-title mb-0">Danh sách Database</h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/home" />'>Home</a></li>
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/mvpquanliduan/domain/list-domain" />'>Danh
-									sách Nghiệp vụ</a></li>
+								href='<c:url value="/mvpquanliduan/database/list-database" />'>Danh
+									sách Database</a></li>
 
 						</ol>
 					</div>
@@ -36,8 +36,8 @@
 			<div class="x_panel">
 				<div class="x_title">
 					<a class="btn btn-outline-success round btn-min-width mr-1 mb-1"
-						href="<c:url value="/mvpquanliduan/domain/show-form-add" />">
-						<h5class="ft-plus-circle">Thêm nghiệp vụ
+						href="<c:url value="/mvpquanliduan/database/show-form-add" />">
+						<h5class="ft-plus-circle">Thêm Database
 						</h5>
 					</a>
 				</div>
@@ -47,25 +47,27 @@
 						<thead>
 							<tr>
 								<th style="text-align: center">Stt</th>
-								<th style="text-align: center">Mã Nghiệp vụ</th>
-								<th style="width: 60%; text-align: center">Nghiệp vụ</th>
+								<th style="text-align: center">Mã Database</th>
+								<th style="width: 60%; text-align: center">Database</th>
 								<th style="text-align: center">Chức năng</th>
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach var="domain" items="${listDomain}" varStatus="count">
+							<c:forEach var="database" items="${listDatabase}"
+								varStatus="count">
 								<tr>
 
-									<th scope="row">${count.count  }</th>
-									<td style="text-align: left">${domain.idDomain}</td>
-									<td style="text-align: left">${domain.nameDomain}</td>
+									<th scope="row">${count.count}</th>
+									<td style="text-align: left">${database.idDatabase}</td>
+									<td style="text-align: left">${database.nameDatabase}</td>
 									<td><a
 										style="width: 50px; high: 50px; border-color: #00E5EE; border-radius: 100%;"
 										class="btn btn-outline-info "
-										href="<c:url value="/mvpquanliduan/domain/show-form-edit/${domain.idDomain }" />"
-										title=""><i class="ft-edit"></i></a><button
+										href="<c:url value="/mvpquanliduan/database/show-form-edit/${database.idDatabase }" />"
+										title=""><i class="ft-edit"></i></a> 
+										<button
 											style="width: 50px; high: 50px; border-color: #FF6A6A; border-radius: 100%;"
-											data-href="<c:url value="/mvpquanliduan/domain/delete/${domain.idDomain }" />"
+											data-href="<c:url value="/mvpquanliduan/database/delete/${database.idDatabase }" />"
 											class="btn btn-outline-danger" data-toggle="modal"
 											data-target="#xoa_pr">
 											<i class="ft-delete"></i>
@@ -73,11 +75,16 @@
 								</tr>
 
 							</c:forEach>
+
+
+							<!--<script type="text/javascript"> window.onload = alertName; </script>	  -->
+
 						</tbody>
+
 					</table>
 					<c:if test="${success != null }">
-						${success}
-					</c:if>
+							${success}
+						</c:if>
 				</div>
 			</div>
 		</div>
@@ -95,7 +102,7 @@
 				<h4 class="modal-title">Xác nhận</h4>
 			</div>
 			<div class="modal-body">
-				<p>Bạn muốn xóa Nhà cung cấp này???</p>
+				<p>Bạn muốn xóa database này???</p>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>

@@ -19,8 +19,8 @@ public class Domain {
 	@Column(name = "id_domain")
 	private String idDomain;
 
-	@NotEmpty(message = "Nghiệp vụ không được để trống!!")
-	@Size(min = 5, message = "nghiệp vụ ít nhất 6 kí tự")
+	@NotEmpty(message = "Tên Nghiệp vụ không được để trống!!")
+	@Size(min = 5, message = "Tên nghiệp vụ ít nhất 6 kí tự")
 	@Column(name = "name_domain")
 	private String nameDomain;
 

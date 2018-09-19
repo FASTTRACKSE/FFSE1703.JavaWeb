@@ -29,21 +29,18 @@ public class DatabaseDaoImpl implements DatabaseDao{
 	public void delete(String maDatabase) {
 		Session session = this.sessionFactory.getCurrentSession();
 		Database db=session.get(Database.class,maDatabase);	
-		db.setIs_delete(1);
+		db.setIsDelete(1);
 		session.update(db);	
 	}
 
 	@Override
 	public void save(Database database) {
-<<<<<<< HEAD
-=======
 		 for (int i = 0; i < 5; i++) {
 			 database = new Database();
-			 database.setMa_database("DB" + i);
+			 database.setMaDatabase("DB" + i);
 		
 	      }
 		
->>>>>>> 938fc3668bf0e4f29562d8597fcf0293865be62a
 		Session session=this.sessionFactory.getCurrentSession();
 		session.save(database);
 		
@@ -65,7 +62,7 @@ public class DatabaseDaoImpl implements DatabaseDao{
 	public void setIsDelete(String maDatabase) {
 		Session session = this.sessionFactory.getCurrentSession();
 		Database db=session.get(Database.class,maDatabase);	
-		db.setIs_delete(0);
+		db.setIsDelete(0);
 		session.update(db);	
 	}
 

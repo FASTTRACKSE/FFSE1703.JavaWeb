@@ -35,12 +35,15 @@ public class DatabaseDaoImpl implements DatabaseDao{
 
 	@Override
 	public void save(Database database) {
+<<<<<<< HEAD
+=======
 		 for (int i = 0; i < 5; i++) {
 			 database = new Database();
 			 database.setMa_database("DB" + i);
 		
 	      }
 		
+>>>>>>> 938fc3668bf0e4f29562d8597fcf0293865be62a
 		Session session=this.sessionFactory.getCurrentSession();
 		session.save(database);
 		
@@ -66,4 +69,21 @@ public class DatabaseDaoImpl implements DatabaseDao{
 		session.update(db);	
 	}
 
+		
+
+	@Override
+	public int getName(String tenDatabase) {
+	Session session = this.sessionFactory.getCurrentSession();
+	List<Database> db = session.createQuery("from Database where ten_Database = '"+tenDatabase+"' AND isDelete =0", Database.class).list();	
+	return  db.size();
+	}
+
+	@Override
+	public int getMa(String maDatabase) {
+		Session session = this.sessionFactory.getCurrentSession();
+		List<Database> db = session.createQuery("from Database where ma_database = '"+maDatabase+"'", Database.class).list();	
+		return  db.size();
+	}
 }
+
+

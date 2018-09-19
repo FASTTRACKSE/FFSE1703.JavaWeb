@@ -11,6 +11,9 @@ public interface DatabaseDao {
 	public Database getById(String maDatabase);
 	public void update(Database database);
 	public void setIsDelete(String maDatabase);
+	public int getName(String tenDatabase);
+	public int getMa(String maDatabase);
+
 
 
 

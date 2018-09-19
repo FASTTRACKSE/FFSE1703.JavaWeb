@@ -18,6 +18,11 @@ public class Database {
 	@Column(name = "is_delete")
 	private int isDelete;
 
+<<<<<<< HEAD
+	public Database() {
+	}
+
+=======
 	public String getMa_database() {
 		return maDatabase;
 	}
@@ -25,6 +30,7 @@ public class Database {
 	public void setMa_database(String ma_database) {
 		this.maDatabase = ma_database;
 	}
+>>>>>>> 938fc3668bf0e4f29562d8597fcf0293865be62a
 
 	public String getTen_database() {
 		return tenDatabase;
@@ -38,8 +44,23 @@ public class Database {
 		return isDelete;
 	}
 
+<<<<<<< HEAD
+	public String getMaDatabase() {
+		return maDatabase;
+	}
+
+
+	public void setMaDatabase(String maDatabase) {
+		this.maDatabase = maDatabase;
+	}
+
+
+	public void setIsDelete(int isDelete) {
+		this.isDelete = isDelete;
+=======
 	public void setIs_delete(int is_delete) {
 		this.isDelete = is_delete;
+>>>>>>> 938fc3668bf0e4f29562d8597fcf0293865be62a
 	}
 
 }

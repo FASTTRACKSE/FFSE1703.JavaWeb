@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 
-import fasttrackse.ffse1703.fbms.entity.QuanLyDuAn.Vendor;
+import fasttrackse.ffse1703.fbms.entity.QuanLyDuAn.VendorTeam1;
 
 @Repository
 public class VendorDaoImpl implements VendorDao{
@@ -21,21 +21,21 @@ public class VendorDaoImpl implements VendorDao{
 	}
 	
 	@Override
-	public List<Vendor> getAll() {
+	public List<VendorTeam1> getAll() {
 		Session session = this.sessionFactory.getCurrentSession();
-		return session.createQuery("from Vendor where isDelete =0",Vendor.class).list();
+		return session.createQuery("from Vendor where isDelete =0",VendorTeam1.class).list();
 
 	}
 
 
 	@Override
-	public void addNew(Vendor vd) {
+	public void addNew(VendorTeam1 vd) {
 		Session session=this.sessionFactory.getCurrentSession();
 		session.save(vd);
 	}
 
 	@Override
-	public void update(Vendor vd) {
+	public void update(VendorTeam1 vd) {
 		Session session=this.sessionFactory.getCurrentSession();
 		session.update(vd);
 	}
@@ -43,22 +43,22 @@ public class VendorDaoImpl implements VendorDao{
 	@Override
 	public void delete(String maVendor) {
 		Session session = this.sessionFactory.getCurrentSession();
-		Vendor db=session.get(Vendor.class,maVendor);	
+		VendorTeam1 db=session.get(VendorTeam1.class,maVendor);	
 		db.setIs_delete(1);
 		session.update(db);	
 	}
 
 
 	@Override
-	public Vendor getById(String maVendor) {
+	public VendorTeam1 getById(String maVendor) {
 		Session session=this.sessionFactory.getCurrentSession();
-		return session.get(Vendor.class,maVendor);	
+		return session.get(VendorTeam1.class,maVendor);	
 	}
 
 	@Override
 	public void setIsDelete(String maVendor) {
 		Session session = this.sessionFactory.getCurrentSession();
-		Vendor db=session.get(Vendor.class,maVendor);	
+		VendorTeam1 db=session.get(VendorTeam1.class,maVendor);	
 		db.setIs_delete(0);
 		session.update(db);
 	}

@@ -8,7 +8,7 @@ import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "doi_tac")
-public class Vendor {
+public class VendorTeam1 {
 	@Id
 	@NotEmpty
 	@Column(name = "ma_doi_tac")

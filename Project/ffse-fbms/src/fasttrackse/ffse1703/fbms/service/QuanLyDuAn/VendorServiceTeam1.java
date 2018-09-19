@@ -1,10 +1,10 @@
-package fasttrackse.ffse1703.fbms.dao.QuanLyDuAn;
+package fasttrackse.ffse1703.fbms.service.QuanLyDuAn;
 
 import java.util.List;
 
 import fasttrackse.ffse1703.fbms.entity.QuanLyDuAn.VendorTeam1;
 
-public interface VendorDao {
+public interface VendorServiceTeam1 {
 
 	public List<VendorTeam1> getAll();
 

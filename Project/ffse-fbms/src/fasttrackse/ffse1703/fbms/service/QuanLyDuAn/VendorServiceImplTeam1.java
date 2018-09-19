@@ -8,27 +8,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fasttrackse.ffse1703.fbms.dao.QuanLyDuAn.VendorDao;
-import fasttrackse.ffse1703.fbms.entity.QuanLyDuAn.Vendor;
+import fasttrackse.ffse1703.fbms.entity.QuanLyDuAn.VendorTeam1;
 @Service
-public class VendorServiceImpl implements VendorService{
+public class VendorServiceImplTeam1 implements VendorServiceTeam1{
 	@Autowired
 	private VendorDao vendorDao;
 
 	@Override
 	@Transactional
-	public List<Vendor> getAll() {
+	public List<VendorTeam1> getAll() {
 		 return this.vendorDao.getAll();
 	}
 
 	@Override
 	@Transactional
-	public void addNew(Vendor vd) {
+	public void addNew(VendorTeam1 vd) {
 		this.vendorDao.addNew(vd);
 	}
 
 	@Override
 	@Transactional
-	public void update(Vendor vd) {
+	public void update(VendorTeam1 vd) {
 		this.vendorDao.update(vd);
 	}
 
@@ -40,7 +40,7 @@ public class VendorServiceImpl implements VendorService{
 
 	@Override
 	@Transactional
-	public Vendor getById(String maVendor) {
+	public VendorTeam1 getById(String maVendor) {
 		return this.vendorDao.getById(maVendor);
 	}
 

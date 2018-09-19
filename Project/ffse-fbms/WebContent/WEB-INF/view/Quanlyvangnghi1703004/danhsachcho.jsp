@@ -43,8 +43,8 @@
 					<td>${nv.ghiChu}</td>
 					<td>${nv.ghiChuTruongPhong}</td>
 					<td>${nv.trangThai.trangThai}</td>
-					<td><button class="btn btn-success">
-									Sửa</button>
+					<td><a href="suachoduyet/${nv.id}"><button class="btn btn-success">
+									Sửa</button></a>
 					</td>
 						</tr>
 				</c:forEach>

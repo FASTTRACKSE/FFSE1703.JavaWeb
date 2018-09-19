@@ -95,15 +95,15 @@ public class QuanLyVangNghiDaoIpml implements QuanLyVangNghiDao {
 	@Override
 	public void createfeedback(ThongKeDonXinPhep thongKeDonXinPhep) {
 		Session session = this.sessionFactory.getCurrentSession();
-		session.save(thongKeDonXinPhep);
+		session.update(thongKeDonXinPhep);
 		session.createQuery("update ThongKeDonXinPhep set trangThai = '4'  where id =" + thongKeDonXinPhep.getId()).executeUpdate();
 		
 	}
 
 	public ThongKeDonXinPhep findById(int id) {
 		Session session = this.sessionFactory.getCurrentSession();
-		ThongKeDonXinPhep u = (ThongKeDonXinPhep) session.get(ThongKeDonXinPhep.class, id);
-		return u;
+		ThongKeDonXinPhep list = (ThongKeDonXinPhep) session.get(ThongKeDonXinPhep.class, id);
+		return list;
 	}
 
 	public void delete(int id) {
@@ -113,10 +113,8 @@ public class QuanLyVangNghiDaoIpml implements QuanLyVangNghiDao {
 	
 	@Override
 	public void updateNhap(ThongKeDonXinPhep thongKeDonXinPhep) {
-		Session session = this.sessionFactory.openSession();
-		org.hibernate.Transaction tx = session.beginTransaction();
+		Session session = this.sessionFactory.getCurrentSession();;
 		session.update(thongKeDonXinPhep);
-		tx.commit();
-		session.close();
+		
 	}
 }

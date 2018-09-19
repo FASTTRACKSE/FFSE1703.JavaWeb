@@ -11,6 +11,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 
 @Entity
@@ -26,11 +35,13 @@ public class ThongKeDonXinPhep {
 	@JoinColumn(name = "ma_nhan_vien")
 	private HoSoNhanVien maNhanVien;
 	
+	
 	@Column(name = "ngay_bat_dau")
 	private Date ngayBatDau;
 	
 	@Column(name = "ngay_ket_thuc")
 	private Date ngayKetThuc;
+	
 	
 	@Column(name = "so_ngay_nghi")
 	private int soNgayNghi;
@@ -40,6 +51,8 @@ public class ThongKeDonXinPhep {
 	private LyDoXinNghi lyDo;
 	
 	@Column(name = "ghi_chu")
+	@NotEmpty(message="Không được để trống")
+	@Size(max=255)
 	private String ghiChu;
 	
 	@Column(name = "ghi_chu_truong_phong")
@@ -122,15 +135,6 @@ public class ThongKeDonXinPhep {
 	}
 	
 
-/*	public String getTrangThai() {
-		return trangThai;
-	}
-
-	public void setTrangThai(String trangThai) {
-		this.trangThai = trangThai;
-	}
-*/
-	
 	
 	
 }

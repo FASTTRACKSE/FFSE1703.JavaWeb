@@ -46,7 +46,6 @@
 								<fieldset class="form-group position-relative">
 									<form:input type="date" class="form-control round" id="from"
 										path="ngayBatDau" />
-
 									<div class="form-control-position">
 										<i class="fa fa-calendar-o"></i>
 									</div>
@@ -92,7 +91,7 @@
 					<div>
 						<div class="col-md-2">
 							<button type="submit" class="btn btn-success"
-							formaction="<%=request.getContextPath()%>/taodonmoi/nhap">Lưu nháp</button>
+							formaction="<%=request.getContextPath()%>/updatenhap/nhap">Lưu nháp</button>
 					    </div>
 						<div class="col-md-4">
 						<div class="col-md-2">

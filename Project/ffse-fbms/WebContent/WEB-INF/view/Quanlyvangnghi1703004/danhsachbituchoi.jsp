@@ -15,7 +15,7 @@
 			<h3 >Danh sách đã nháp</h3>
 		</div>
 			<div>
-			<div><a href="soandonmoi"><h4>Soạn đơn mới</h4></a></div>
+			<div><a href="soandonmoi"><h4> Soạn đơn mới</h4></a></div>
 			<div class="container">
 			    <div class="table-responsive">
 						<table class="table mb-0">

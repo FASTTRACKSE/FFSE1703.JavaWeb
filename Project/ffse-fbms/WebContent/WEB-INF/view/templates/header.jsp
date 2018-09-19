@@ -160,13 +160,17 @@
 							class="nav-link nav-link-expand"><i class="ficon ft-maximize"></i></a></li>
 					</ul>
 					<ul class="nav navbar-nav float-xs-right">
-						<li class="dropdown dropdown-language nav-item">
-						  <a class="dropdown-toggle nav-link" id="dropdown-flag" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="flag-icon <spring:message code="label.QuanTriHeThong_NgonNgu" />"></i><span class="selected-language"></span></a>
-			              <div class="dropdown-menu" aria-labelledby="dropdown-flag">
-			              	<a class="dropdown-item" href="?lang=en"><i class="flag-icon flag-icon-gb"></i> English</a>
-			                <a class="dropdown-item" href="?lang=vi"><i class="flag-icon flag-icon-vn"></i> Tiếng Việt</a>
-			              </div>
-			            </li>
+						<li class="dropdown dropdown-language nav-item"><a
+							class="dropdown-toggle nav-link" id="dropdown-flag" href="#"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+								class="flag-icon <spring:message code="label.QuanTriHeThong_NgonNgu" />"></i><span
+								class="selected-language"></span></a>
+							<div class="dropdown-menu" aria-labelledby="dropdown-flag">
+								<a class="dropdown-item" href="?lang=en"><i
+									class="flag-icon flag-icon-gb"></i> English</a> <a
+									class="dropdown-item" href="?lang=vi"><i
+									class="flag-icon flag-icon-vn"></i> Tiếng Việt</a>
+							</div></li>
 						<li class="dropdown dropdown-user nav-item"><a href="#"
 							data-toggle="dropdown"
 							class="dropdown-toggle nav-link dropdown-user-link"><span
@@ -231,7 +235,23 @@
 				</sec:authorize>
 				<sec:authorize access="!hasRole('ROLE_NV') or hasRole('ROLE_PNS')">
 
-					
+					<!--  Quản lí Vắng nghỉ -->
+					<li class="navigation-header"><span>Quản lý vắng nghỉ</span><i
+						class=" ft-minus" data-toggle="tooltip" data-placement="right"
+						data-original-title="Components"></i></li>
+					<li class=" nav-item pbho_so"><a href="#"><i
+							class="ft-users"></i><span data-i18n="" class="menu-title">Thống kê tình hình</span></a>
+						<ul class="menu-content">
+							<li><a href="<c:url value="/qlvn/danhsachnhap"/>"
+								class="menu-item">Danh sách nháp</a></li>
+							<li><a href="<c:url value="/qlvn/danhsachcho"/>"
+								class="menu-item">Danh sách chờ duyệt</a></li>
+							<li><a href="<c:url value="/qlvn/danhsachduyet"/>"
+								class="menu-item">Danh sách đã duyệt</a></li>
+							<li><a href="<c:url value="/qlvn/danhsachbituchoi"/>"
+								class="menu-item">Danh sách bị từ chối</a></li>
+						</ul></li>
+
 					<!--  MVP- Quản lí Dự Án -->
 					<li class="navigation-header"><span>MVP-Quản lý dự án</span><i
 						class=" ft-minus" data-toggle="tooltip" data-placement="right"
@@ -240,48 +260,38 @@
 							class="ft-briefcase"></i><span class="menu-title" data-i18n="">Danh
 								Mục Dự Án</span></a>
 						<ul class="menu-content" style="">
-							<li class=""><a class="menu-item"
-								href="#">Khách hàng</a></li>
+							<li class=""><a class="menu-item" href="#">Khách hàng</a></li>
 							<li class=""><a class="menu-item"
 								href="<c:url value="/mvpquanliduan/domain/list-domain" />">Domain</a></li>
 							<li class=""><a class="menu-item"
 								href="<c:url value="/mvpquanliduan/technical/list-technical" />">Technical</a></li>
 							<li class=""><a class="menu-item"
 								href="<c:url value="/mvpquanliduan/vendor/list-vendor" />">Vendor</a></li>
-							<li class=""><a class="menu-item"
-								href="#">Framework</a></li>
-							<li class=""><a class="menu-item"
-								href="#">Programing Language</a></li>
-							<li class=""><a class="menu-item"
-								href="#">Vai trò</a></li>
-							<li class=""><a class="menu-item"
-								href="#">Trạng thái</a></li>
-							<li class=""><a class="menu-item"
-								href="#">Database</a></li>
+							<li class=""><a class="menu-item" href="#">Framework</a></li>
+							<li class=""><a class="menu-item" href="#">Programing
+									Language</a></li>
+							<li class=""><a class="menu-item" href="#">Vai trò</a></li>
+							<li class=""><a class="menu-item" href="#">Trạng thái</a></li>
+							<li class=""><a class="menu-item" href="#">Database</a></li>
 						</ul></li>
 					<li class="nav-item has-sub"><a href="#"><i class="ft-box"></i><span
 							class="menu-title" data-i18n="">Dự Án</span></a>
 						<ul class="menu-content" style="">
-							<li class=""><a class="menu-item"
-								href="#">Thêm dự án</a></li>
-							<li class=""><a class="menu-item"
-								href="#">Danh sách dự án</a></li>
-							<li class=""><a class="menu-item"
-								href="#">Phân công nhiệm vụ dự án</a></li>
-							
+							<li class=""><a class="menu-item" href="#">Thêm dự án</a></li>
+							<li class=""><a class="menu-item" href="#">Danh sách dự
+									án</a></li>
+							<li class=""><a class="menu-item" href="#">Phân công
+									nhiệm vụ dự án</a></li>
+
 						</ul></li>
 
 					<!--  ////////////////////////////////////////////// -->
 					<!-- Quản trị dự án -->
 				</sec:authorize>
 
-				<li class=" navigation-header"><span>Quản Lý Dự Án Team
-						Black</span><i class=" ft-minus" data-toggle="tooltip"
+				<li class=" navigation-header"><span>Black - Quản Lý Dự
+						Án</span><i class=" ft-minus" data-toggle="tooltip"
 					data-placement="right" data-original-title="Others"></i></li>
-
-				<li class=" navigation-header"><span>Black - Quản Lý Dự Án</span><i
-					class=" ft-minus" data-toggle="tooltip" data-placement="right"
-					data-original-title="Others"></i></li>
 				<li class=" nav-item"><a href="#"><i class="ft-layers"></i><span
 						class="menu-title" data-i18n="">DANH MỤC</span></a>
 					<ul class="menu-content">
@@ -300,10 +310,8 @@
 					<ul class="menu-content">
 						<li><a class="menu-item" href="#">Dự Án</a></li>
 					</ul></li>
-
-
-
 			</ul>
+
 			<ul id="main-menu-navigation" data-menu="menu-navigation"
 				class="navigation navigation-main">
 				<!-- Quản trị tài liệu của Đức -->

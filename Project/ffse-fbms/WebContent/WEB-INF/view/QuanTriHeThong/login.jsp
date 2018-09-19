@@ -13,11 +13,12 @@
     <meta name="keywords" content="admin template, stack admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
     <title>FastTrackSE - The Business Management System - Login</title>
-    <link rel="apple-touch-icon" href="<c:url value="/resources/images/ico/apple-icon-120.png" />">
-    <link rel="shortcut icon" type="image/x-icon" href="<c:url value="/resources/images/ico/favicon.ico" />">
+	<link rel="apple-touch-icon" href="<c:url value="https://www.fasttrack.edu.vn/wp-content/uploads/2018/09/fasttrackselogo.png"/>">
+	<link rel="shortcut icon" type="image/x-icon" href="<c:url value="https://www.fasttrack.edu.vn/wp-content/uploads/2018/03/favicon.png"/>">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i%7COpen+Sans:300,300i,400,400i,600,600i,700,700i" rel="stylesheet">
     <!-- BEGIN VENDOR CSS-->
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap.css" />">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/fonts/feather/style.min.css" />">
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/fonts/font-awesome/css/font-awesome.min.css" />">
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/fonts/flag-icon-css/css/flag-icon.min.css" />">
@@ -93,6 +94,35 @@
                                         <button type="submit" class="btn btn-primary btn-lg btn-block"><i class="ft-unlock"></i> Login</button>
 				                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                     </form>
+                                    <h6 class="card-subtitle line-on-side text-muted text-xs-center font-small-3 pt-2"><span>Login as</span></h6>
+                                    <div class="form-group">
+                                      <div class="btn-group" role="group" aria-label="Basic example">
+			                            <button type="button" class="btn btn-outline-success btn-sm" data-user="giamdoc">Giám đốc</button>
+			                            <button type="button" class="btn btn-outline-success btn-sm" data-user="truongphongnhansu">TP Nhân sự</button>
+			                            <button type="button" class="btn btn-outline-success btn-sm" data-user="truongphongkythuat">TP Kỹ Thuật</button>
+			                            <button type="button" class="btn btn-outline-success btn-sm" data-user="truongphongdaotao">TP Đào Tạo</button>
+			                            <button type="button" class="btn btn-outline-success btn-sm" data-user="truongphongduan">TP Dự Án</button>
+			                          </div>
+                                      <div class="btn-group" role="group" aria-label="Basic example">
+			                            <button type="button" class="btn btn-outline-warning btn-sm" data-user="thuky">Thư Ký</button>
+			                            <button type="button" class="btn btn-outline-warning btn-sm" data-user="nhanvienphongnhansu">NV Nhân sự</button>
+			                            <button type="button" class="btn btn-outline-warning btn-sm" data-user="nhanvienphongkythuat">NV Kỹ Thuật</button>
+			                            <button type="button" class="btn btn-outline-warning btn-sm" data-user="nhanvienphongdaotao">NV Đào Tạo</button>
+			                            <button type="button" class="btn btn-outline-warning btn-sm" data-user="nhanvienphongduan">NV Dự Án</button>
+			                          </div>
+			                        </div>
+									<script>
+									$(document).ready(function(){
+										$("button").click(function() {
+											 var username = $(this).data('user');
+											 var password = "123456";
+											 if (username) {
+											 	$("#username").val(username);
+											 	$("#password").val(password);
+											 }
+										});
+									});
+									</script>                                    
                                 </div>
                             </div>
                             <div class="card-footer">

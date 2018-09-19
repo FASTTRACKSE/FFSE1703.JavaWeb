@@ -415,6 +415,31 @@
 					<!-- Quản trị dự án -->
 				</sec:authorize>
 			</ul>
+
+			<li class=" navigation-header"><span>Black - Quản Lý Dự
+					Án</span><i class=" ft-minus" data-toggle="tooltip" data-placement="right"
+				data-original-title="Others"></i></li>
+			<li class=" nav-item"><a href="#"><i class="ft-layers"></i><span
+					class="menu-title" data-i18n="">DANH MỤC</span></a>
+				<ul class="menu-content">
+					<li><a class="menu-item" href="<c:url value="/qlda/khachhang/list"/>">Khách hàng</a></li>
+						<li><a class="menu-item" href="<c:url value="/qlda/domain/list"/>">Domain</a></li>
+					<li><a class="menu-item" href="#">Framework</a></li>
+					<li><a class="menu-item" href="#">Technica</a></li>
+					<li><a class="menu-item" href="#">Programming Language</a></li>
+					<li><a class="menu-item" href="#">Database</a></li>
+				</ul></li>
+
+
+			<li class=" nav-item"><a href="#"><i class="ft-align-left"></i><span
+					class="menu-title" data-i18n="">THÔNG TIN DỰ ÁN</span></a>
+				<ul class="menu-content">
+					<li><a class="menu-item" href="#">Dự Án</a></li>
+				</ul></li>
+
+
+
+			</ul>
 			<ul id="main-menu-navigation" data-menu="menu-navigation"
 				class="navigation navigation-main">
 				<!-- Quản trị tài liệu của Đức -->

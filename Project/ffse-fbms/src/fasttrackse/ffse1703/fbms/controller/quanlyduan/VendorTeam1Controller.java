@@ -1,4 +1,4 @@
-package fasttrackse.ffse1703.fbms.controller.QuanLyDuAn;
+package fasttrackse.ffse1703.fbms.controller.quanlyduan;
 
 import javax.validation.Valid;
 
@@ -12,17 +12,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import fasttrackse.ffse1703.fbms.entity.QuanLyDuAn.Database;
+import fasttrackse.ffse1703.fbms.entity.QuanLyDuAn.DatabaseTeam1;
 import fasttrackse.ffse1703.fbms.entity.QuanLyDuAn.VendorTeam1;
-import fasttrackse.ffse1703.fbms.service.QuanLyDuAn.VendorServiceTeam1;
+import fasttrackse.ffse1703.fbms.service.quanlyduan.VendorTeam1Service;
 
 
 
 @Controller
 @RequestMapping("/QuanLyDuAn/vendor")
-public class VendorControllerTeam1 {
+public class VendorTeam1Controller {
 	@Autowired
-	VendorServiceTeam1 vendorServiceTeam1;
+	VendorTeam1Service vendorServiceTeam1;
 	
 	@RequestMapping(value = { "/list", "" })
 	public String list(Model model) {

@@ -1,4 +1,4 @@
-package fasttrackse.ffse1703.fbms.dao.QuanLyDuAn;
+package fasttrackse.ffse1703.fbms.dao.quanlyduan;
 
 import java.util.List;
 
@@ -10,8 +10,7 @@ import org.springframework.stereotype.Repository;
 import fasttrackse.ffse1703.fbms.entity.QuanLyDuAn.FrameworkTeam1;
 
 @Repository
-
-public class FrameworkDaoImpl implements FrameworkDao {
+public class FrameworkTeam1DaoImpl implements FrameworkTeam1Dao {
 	@Autowired
 	private SessionFactory sessionFactory;
 

@@ -1,4 +1,4 @@
-package fasttrackse.ffse1703.fbms.controller.QuanLyDuAn;
+package fasttrackse.ffse1703.fbms.controller.quanlyduan;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -14,15 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import fasttrackse.ffse1703.fbms.entity.QuanLyDuAn.DomainTeam1;
-import fasttrackse.ffse1703.fbms.service.QuanLyDuAn.DomainServiceTeam1;
+import fasttrackse.ffse1703.fbms.service.quanlyduan.DomainTeam1Service;
 @Controller
 @RequestMapping("/qlda/domain")
-public class DomainControllerTeam1 {
-	DomainServiceTeam1 domainServiceTeam1;
+public class DomainTeam1Controller {
+	DomainTeam1Service domainServiceTeam1;
 
 	@Autowired
-	@Qualifier(value = "domainServiceImpl")
-	public void setDomainService(DomainServiceTeam1 domainServiceTeam1) {
+	public void setDomainService(DomainTeam1Service domainServiceTeam1) {
 		this.domainServiceTeam1 = domainServiceTeam1;
 	}
 

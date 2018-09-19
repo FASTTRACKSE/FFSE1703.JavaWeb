@@ -1,4 +1,4 @@
-package fasttrackse.ffse1703.fbms.dao.QuanLyDuAn;
+package fasttrackse.ffse1703.fbms.dao.quanlyduan;
 
 import java.util.List;
 
@@ -7,10 +7,10 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import fasttrackse.ffse1703.fbms.entity.QuanLyDuAn.Database;
+import fasttrackse.ffse1703.fbms.entity.QuanLyDuAn.DatabaseTeam1;
 
 @Repository
-public class DatabaseDaoImpl implements DatabaseDao{
+public class DatabaseTeam1DaoImpl implements DatabaseTeam1Dao{
 	@Autowired
 	private SessionFactory sessionFactory;
 	
@@ -19,24 +19,24 @@ public class DatabaseDaoImpl implements DatabaseDao{
 	}
 
 	@Override
-	public List<Database> getAll() {
+	public List<DatabaseTeam1> getAll() {
 		Session session = this.sessionFactory.getCurrentSession();
-		return session.createQuery("from Database where isDelete =0",Database.class).list();
+		return session.createQuery("from Database where isDelete =0",DatabaseTeam1.class).list();
 
 	}
 
 	@Override
 	public void delete(String maDatabase) {
 		Session session = this.sessionFactory.getCurrentSession();
-		Database db=session.get(Database.class,maDatabase);	
+		DatabaseTeam1 db=session.get(DatabaseTeam1.class,maDatabase);	
 		db.setIsDelete(1);
 		session.update(db);	
 	}
 
 	@Override
-	public void save(Database database) {
+	public void save(DatabaseTeam1 database) {
 		 for (int i = 0; i < 5; i++) {
-			 database = new Database();
+			 database = new DatabaseTeam1();
 			 database.setMaDatabase("DB" + i);
 		
 	      }
@@ -47,13 +47,13 @@ public class DatabaseDaoImpl implements DatabaseDao{
 	}
 
 	@Override
-	public Database getById(String maDatabase) {
+	public DatabaseTeam1 getById(String maDatabase) {
 		Session session=this.sessionFactory.getCurrentSession();
-		return session.get(Database.class,maDatabase);		
+		return session.get(DatabaseTeam1.class,maDatabase);		
 	}
 
 	@Override
-	public void update(Database database) {
+	public void update(DatabaseTeam1 database) {
 		Session session=this.sessionFactory.getCurrentSession();
 		session.update(database);		
 	}
@@ -61,7 +61,7 @@ public class DatabaseDaoImpl implements DatabaseDao{
 	@Override
 	public void setIsDelete(String maDatabase) {
 		Session session = this.sessionFactory.getCurrentSession();
-		Database db=session.get(Database.class,maDatabase);	
+		DatabaseTeam1 db=session.get(DatabaseTeam1.class,maDatabase);	
 		db.setIsDelete(0);
 		session.update(db);	
 	}
@@ -71,14 +71,14 @@ public class DatabaseDaoImpl implements DatabaseDao{
 	@Override
 	public int getName(String tenDatabase) {
 	Session session = this.sessionFactory.getCurrentSession();
-	List<Database> db = session.createQuery("from Database where ten_Database = '"+tenDatabase+"' AND isDelete =0", Database.class).list();	
+	List<DatabaseTeam1> db = session.createQuery("from Database where ten_Database = '"+tenDatabase+"' AND isDelete =0", DatabaseTeam1.class).list();	
 	return  db.size();
 	}
 
 	@Override
 	public int getMa(String maDatabase) {
 		Session session = this.sessionFactory.getCurrentSession();
-		List<Database> db = session.createQuery("from Database where ma_database = '"+maDatabase+"'", Database.class).list();	
+		List<DatabaseTeam1> db = session.createQuery("from Database where ma_database = '"+maDatabase+"'", DatabaseTeam1.class).list();	
 		return  db.size();
 	}
 }

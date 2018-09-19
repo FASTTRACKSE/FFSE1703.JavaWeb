@@ -1,20 +1,14 @@
 package fasttrackse.ffse1703.fbms.dao.quanlynhansutt;
 
-//import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-//import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Repository;
-//import org.springframework.transaction.annotation.Transactional;
 
 import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.HopDongTT;
 
-//import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
-//import fasttrackse.ffse1703.fbms.entity.security.PhongBan;
 @Repository
 public class QuanLyHopDongDaoTTImpl implements QuanLyHopDongDaoTT {
 

@@ -1,4 +1,4 @@
-package fasttrackse.ffse1703.fbms.service.QuanLyDuAn;
+package fasttrackse.ffse1703.fbms.service.quanlyduan;
 
 import java.util.List;
 
@@ -7,12 +7,12 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import fasttrackse.ffse1703.fbms.dao.QuanLyDuAn.VendorDao;
+import fasttrackse.ffse1703.fbms.dao.quanlyduan.VendorTeam1Dao;
 import fasttrackse.ffse1703.fbms.entity.QuanLyDuAn.VendorTeam1;
 @Service
-public class VendorServiceImplTeam1 implements VendorServiceTeam1{
+public class VendorTeam1ServiceImpl implements VendorTeam1Service{
 	@Autowired
-	private VendorDao vendorDao;
+	private VendorTeam1Dao vendorDao;
 
 	@Override
 	@Transactional

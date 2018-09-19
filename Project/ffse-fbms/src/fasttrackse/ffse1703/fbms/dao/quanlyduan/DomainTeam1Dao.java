@@ -1,10 +1,10 @@
-package fasttrackse.ffse1703.fbms.dao.QuanLyDuAn;
+package fasttrackse.ffse1703.fbms.dao.quanlyduan;
 
 import java.util.List;
 
 import fasttrackse.ffse1703.fbms.entity.QuanLyDuAn.DomainTeam1;
 
-public interface DomainDaoTeam1 {
+public interface DomainTeam1Dao {
 	public List<DomainTeam1> getAll();
 
 	public DomainTeam1 findById(String maNghiepVu);

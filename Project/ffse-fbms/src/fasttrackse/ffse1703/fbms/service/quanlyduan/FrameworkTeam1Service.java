@@ -1,10 +1,10 @@
-package fasttrackse.ffse1703.fbms.service.QuanLyDuAn;
+package fasttrackse.ffse1703.fbms.service.quanlyduan;
 
 import java.util.List;
 
 import fasttrackse.ffse1703.fbms.entity.QuanLyDuAn.FrameworkTeam1;
 
-public interface FrameworkService {
+public interface FrameworkTeam1Service {
 	public List<FrameworkTeam1> getAll();
 	public void delete(String ma_framework);
 	public void save(FrameworkTeam1 frameworkTeam1);

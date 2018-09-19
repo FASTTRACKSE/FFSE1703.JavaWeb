@@ -1,4 +1,4 @@
-package fasttrackse.ffse1703.fbms.controller.QuanLyDuAn;
+package fasttrackse.ffse1703.fbms.controller.quanlyduan;
 
 import javax.validation.Valid;
 
@@ -12,15 +12,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import fasttrackse.ffse1703.fbms.entity.QuanLyDuAn.Database;
-import fasttrackse.ffse1703.fbms.service.QuanLyDuAn.DatabaseService;
+import fasttrackse.ffse1703.fbms.entity.QuanLyDuAn.DatabaseTeam1;
+import fasttrackse.ffse1703.fbms.service.quanlyduan.DatabaseTeam1Service;
 
 @Controller
 @RequestMapping("/qlda/Database")
 
-public class DatabaseController {
+public class DatabaseTeam1Controller {
 	@Autowired
-	DatabaseService databaseService;
+	DatabaseTeam1Service databaseService;
 
 	@RequestMapping(value = { "/list", "" })
 	public String list(Model model) {
@@ -38,12 +38,12 @@ public class DatabaseController {
 
 	@RequestMapping(value = { "/add_form" })
 	public String redirect(Model model) {
-		model.addAttribute("database", new Database());
+		model.addAttribute("database", new DatabaseTeam1());
 		return "QuanLyDuAn/Database/add_form";
 	}
 
 	@RequestMapping(value = { "/creat" }, method = RequestMethod.POST)
-	public String creat(@ModelAttribute("database") @Valid Database database, BindingResult result,
+	public String creat(@ModelAttribute("database") @Valid DatabaseTeam1 database, BindingResult result,
 			RedirectAttributes redirectAttributes) {
 
 		if (result.hasErrors()) {
@@ -57,7 +57,7 @@ public class DatabaseController {
 		}
 
 		if (databaseService.getById(database.getMaDatabase()) != null) {
-			Database db = databaseService.getById(database.getMaDatabase());
+			DatabaseTeam1 db = databaseService.getById(database.getMaDatabase());
 			if (db.getIsDelete() == 1) {
 				databaseService.update(database);
 				return "redirect:list";
@@ -85,7 +85,7 @@ public class DatabaseController {
 	}
 
 	@RequestMapping(value = "/update")
-	public String update(@ModelAttribute("database") @Valid Database database, BindingResult result,
+	public String update(@ModelAttribute("database") @Valid DatabaseTeam1 database, BindingResult result,
 			RedirectAttributes redirectAttributes) {
 		if (result.hasErrors()) {
 			return "QuanLyDuAn/Database/edit_form";

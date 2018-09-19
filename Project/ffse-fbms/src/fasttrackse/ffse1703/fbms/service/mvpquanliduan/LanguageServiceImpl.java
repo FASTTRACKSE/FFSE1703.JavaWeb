@@ -2,9 +2,12 @@ package fasttrackse.ffse1703.fbms.service.mvpquanliduan;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import fasttrackse.ffse1703.fbms.dao.mvpquanliduan.LanguageDao;
 import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Language;
 
+@Service
 public class LanguageServiceImpl implements LanguageService {
 private LanguageDao languageDao;
 	@Override

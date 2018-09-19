@@ -1,4 +1,4 @@
-package fasttrackse.ffse1703.fbms.service.QuanLyDuAn;
+package fasttrackse.ffse1703.fbms.service.quanlyduan;
 
 import java.util.List;
 
@@ -6,12 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import fasttrackse.ffse1703.fbms.dao.QuanLyDuAn.FrameworkDao;
+import fasttrackse.ffse1703.fbms.dao.quanlyduan.FrameworkTeam1Dao;
 import fasttrackse.ffse1703.fbms.entity.QuanLyDuAn.FrameworkTeam1;
 @Service
-public class FameworkServiceImpl implements FrameworkService {
+public class FrameworkTeam1ServiceImpl implements FrameworkTeam1Service {
 	@Autowired 
-	FrameworkDao framworkDao;
+	FrameworkTeam1Dao framworkDao;
 
 	@Override
 	@Transactional

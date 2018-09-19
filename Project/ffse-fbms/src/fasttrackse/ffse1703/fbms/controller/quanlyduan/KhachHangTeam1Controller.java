@@ -1,4 +1,4 @@
-package fasttrackse.ffse1703.fbms.controller.QuanLyDuAn;
+package fasttrackse.ffse1703.fbms.controller.quanlyduan;
 
 
 
@@ -16,16 +16,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import fasttrackse.ffse1703.fbms.entity.QuanLyDuAn.KhachHangTeam1;
-import fasttrackse.ffse1703.fbms.service.QuanLyDuAn.KhachHangServiceTeam1;
+import fasttrackse.ffse1703.fbms.service.quanlyduan.KhachHangTeam1Service;
 
 @Controller
 @RequestMapping("/qlda/khachhang")
-public class KhachHangControllerTeam1 {
-	KhachHangServiceTeam1 khachHangServiceTeam1;
+public class KhachHangTeam1Controller {
+	KhachHangTeam1Service khachHangServiceTeam1;
 
 	@Autowired
-	@Qualifier(value = "khachHangServiceImpl")
-	public void setStudentService(KhachHangServiceTeam1 khachHangServiceTeam1) {
+	public void setStudentService(KhachHangTeam1Service khachHangServiceTeam1) {
 		this.khachHangServiceTeam1 = khachHangServiceTeam1;
 	}
 

@@ -1,4 +1,4 @@
-package fasttrackse.ffse1703.fbms.service.QuanLyDuAn;
+package fasttrackse.ffse1703.fbms.service.quanlyduan;
 import java.util.List;
 
 
@@ -6,15 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import fasttrackse.ffse1703.fbms.dao.QuanLyDuAn.DomainDaoTeam1;
+import fasttrackse.ffse1703.fbms.dao.quanlyduan.DomainTeam1Dao;
 import fasttrackse.ffse1703.fbms.entity.QuanLyDuAn.DomainTeam1;
 
 @Service
-public class DomainServiceImplTeam1 implements DomainServiceTeam1{
+public class DomainTeam1ServiceImpl implements DomainTeam1Service{
 	@Autowired
-	DomainDaoTeam1 domainDaoTeam1;
+	DomainTeam1Dao domainDaoTeam1;
 
-	public void setDomainDao(DomainDaoTeam1 domainDaoTeam1) {
+	public void setDomainDao(DomainTeam1Dao domainDaoTeam1) {
 		this.domainDaoTeam1 = domainDaoTeam1;
 
 	}

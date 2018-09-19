@@ -1,4 +1,4 @@
-package fasttrackse.ffse1703.fbms.service.QuanLyDuAn;
+package fasttrackse.ffse1703.fbms.service.quanlyduan;
 
 import java.util.List;
 
@@ -7,17 +7,17 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import fasttrackse.ffse1703.fbms.dao.QuanLyDuAn.DatabaseDao;
-import fasttrackse.ffse1703.fbms.entity.QuanLyDuAn.Database;
+import fasttrackse.ffse1703.fbms.dao.quanlyduan.DatabaseTeam1Dao;
+import fasttrackse.ffse1703.fbms.entity.QuanLyDuAn.DatabaseTeam1;
 
 @Service
-public class DatabaseServiceImpl implements DatabaseService {
+public class DatabaseTeam1ServiceImpl implements DatabaseTeam1Service {
 	@Autowired
-	DatabaseDao databaseDao;
+	DatabaseTeam1Dao databaseDao;
 
 	@Override
 	@Transactional
-	public List<Database> getAll() {
+	public List<DatabaseTeam1> getAll() {
 		return this.databaseDao.getAll();
 	}
 
@@ -30,20 +30,20 @@ public class DatabaseServiceImpl implements DatabaseService {
 
 	@Transactional
 	@Override
-	public void save(Database database) {
+	public void save(DatabaseTeam1 database) {
 		this.databaseDao.save(database);
 
 	}
 
 	@Transactional
 	@Override
-	public Database getById(String maDatabase) {
+	public DatabaseTeam1 getById(String maDatabase) {
 		return this.databaseDao.getById(maDatabase);
 	}
 
 	@Transactional
 	@Override
-	public void update(Database database) {
+	public void update(DatabaseTeam1 database) {
 		this.databaseDao.update(database);
 
 	}

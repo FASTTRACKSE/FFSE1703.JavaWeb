@@ -1,11 +1,11 @@
-package fasttrackse.ffse1703.fbms.service.QuanLyDuAn;
+package fasttrackse.ffse1703.fbms.service.quanlyduan;
 
 import java.util.List;
 
 
 import fasttrackse.ffse1703.fbms.entity.QuanLyDuAn.DomainTeam1;
 
-public interface DomainServiceTeam1 {
+public interface DomainTeam1Service {
 	
 	public List<DomainTeam1> getAll();
 

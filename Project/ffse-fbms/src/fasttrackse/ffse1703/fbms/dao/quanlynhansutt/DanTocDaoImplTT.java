@@ -6,9 +6,11 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.DanTocTT;
 
+@Repository
 public class DanTocDaoImplTT implements DanTocDaoTT {
 
 	@Autowired

@@ -1,4 +1,4 @@
-package fasttrackse.ffse1703.fbms.service.QuanLyDuAn;
+package fasttrackse.ffse1703.fbms.service.quanlyduan;
 
 import java.util.List;
 
@@ -7,14 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import fasttrackse.ffse1703.fbms.dao.QuanLyDuAn.KhachHangDaoTeam1;
+import fasttrackse.ffse1703.fbms.dao.quanlyduan.KhachHangTeam1Dao;
 import fasttrackse.ffse1703.fbms.entity.QuanLyDuAn.KhachHangTeam1;
 @Service
-public class KhachHangServiceImplTeam1 implements KhachHangServiceTeam1 {
+public class KhachHangTeam1ServiceImpl implements KhachHangTeam1Service {
 	@Autowired
-	KhachHangDaoTeam1 khachHangDaoTeam1;
+	KhachHangTeam1Dao khachHangDaoTeam1;
 
-	public void setStudentDAO(KhachHangDaoTeam1 khachHangDaoTeam1) {
+	public void setStudentDAO(KhachHangTeam1Dao khachHangDaoTeam1) {
 		this.khachHangDaoTeam1 = khachHangDaoTeam1;
 
 	}

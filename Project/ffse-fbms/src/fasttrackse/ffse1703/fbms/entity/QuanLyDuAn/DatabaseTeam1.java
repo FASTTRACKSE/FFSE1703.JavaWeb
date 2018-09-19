@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "co_so_du_lieu")
-public class Database {
+public class DatabaseTeam1 {
 	@Id
 	@Column(name = "ma_database")
 	private String maDatabase;
@@ -18,7 +18,7 @@ public class Database {
 	@Column(name = "is_delete")
 	private int isDelete;
 
-	public Database() {
+	public DatabaseTeam1() {
 	}
 
 	public String getMaDatabase() {

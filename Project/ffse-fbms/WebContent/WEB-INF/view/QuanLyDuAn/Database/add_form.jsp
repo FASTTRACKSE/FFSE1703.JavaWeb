@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 
 <div class="app-content content container-fluid">
 	<div class="content-wrapper">
-<<<<<<< HEAD:Project/ffse-fbms/WebContent/WEB-INF/view/QuanLyDuAn/Database/add_form.jsp
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-xs-12 mb-2">
 				<h3 class="content-header-title mb-0">Thêm database</h3>
@@ -29,14 +29,14 @@
 				</h1>
 			</div>
 		</div>
-		<form:form method="POST" action="/ffse-fbms/qlda/Database/creat" modelAttribute="database" >
-		
+		<form:form method="POST" action="/ffse-fbms/qlda/Database/creat"
+			modelAttribute="database">
 
-			
+
+
 			<div class="form-group col-sm-6">
 				<input type="hidden" name="${_csrf.parameterName}"
-				value="${_csrf.token}"/>
-				<label>Mã Database</label>
+					value="${_csrf.token}" /> <label>Mã Database</label>
 				<form:input class="form-control" path="maDatabase"
 					placeholder="Mã Database " />
 				<form:errors path="maDatabase" cssStyle="color: red"></form:errors>
@@ -51,51 +51,12 @@
 				<button type="submit" class="btn btn-success">Lưu thông tin</button>
 			</div>
 		</form:form>
-	<div class="col-sm-4">
+		<div class="col-sm-4">
 			<c:if test="${message !=null }">
 						 ${message }
 			</c:if>
-=======
 
-		<!-- Path -->
-		<div class="content-header row">
-			<div class="content-header-left col-md-6 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">Thêm mới chức danh</h3>
-				<div class="row breadcrumbs-top">
-					<div class="breadcrumb-wrapper col-xs-12">
-						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href='<c:url value="/home" />'>Home</a></li>
-							<li class="breadcrumb-item"><a href='<c:url value="/quanlyphanquyen/chuc_danh/view/danhSachChucDanh" />'>Danh sách chức danh</a></li>
-							<li class="breadcrumb-item active">Thêm mới chức danh</li>
-						</ol>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- End Path -->
-
-		<div class="content-body">
-			<div class="main-content">
-				<div class="row">
-					<form:form method="POST" modelAttribute="chucDanh" action="">
-						<div class="form-group col-sm-6">
-						  	<label>Tên chức danh</label>
-						  	<form:input class="form-control" path="tenChucDanh" placeholder="Tên chức danh" />
-						</div>
-						<div class="form-group col-sm-6">
-						  	<label>Mã chức danh</label>
-						  	<form:input class="form-control" path="maChucDanh" placeholder="Mã chức danh" />
-						  	<form:errors path="maChucDanh" cssClass="error" />
-						</div>
-						<div class="col-sm-12 text-center">
-							<button type="submit" class="btn btn-success">Lưu thông tin</button>
-						</div>
-					</form:form>
-				</div>
-			</div>
->>>>>>> 938fc3668bf0e4f29562d8597fcf0293865be62a:Project/ffse-fbms/WebContent/WEB-INF/view/QuanLyDuAn/Famework/add_form.jsp
 		</div>
 	</div>
-</div>
 
-<jsp:include page="/WEB-INF/view/templates/footer.jsp" />
+	<jsp:include page="/WEB-INF/view/templates/footer.jsp" />

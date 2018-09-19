@@ -7,7 +7,7 @@
 	<div class="content-wrapper">
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-12 mb-2">
-				<h3 class="content-header-title mb-0">Thêm Bằng Cấp</h3>
+				<h3 class="content-header-title mb-0">Update Bằng Cấp</h3>
 			</div>
 		</div>
 		<div class="content-body">
@@ -20,8 +20,9 @@
 								<div>
 									<div class="row">
 
-										<form:form method="post" action="/ffse-fbms/QuanTriNhanSuPikalong/QuanLiBangCap/save" class="form-horizontal"
-											modelAttribute="BangCap">
+										<form:form method="post"
+											action="/ffse-fbms/QuanTriNhanSuPikalong/QuanLiBangCap/save"
+											class="form-horizontal">
 											<form:hidden path="id" />
 											<div class="col-xl-4 col-lg-6 col-md-12 mb-1">
 												<div class="form-group">
@@ -50,11 +51,12 @@
 														cssStyle="color:red;display:block"></form:errors>
 												</div>
 											</div>
+
 											<div class="col-xl-4 col-lg-6 col-md-12 mb-1">
 												<div class="form-group">
 													<label for="roundText">Mã Nhân Viên</label>
-													<form:input path="maNV" type="text" id="roundText"
-														class="form-control round" />
+													<form:input path="maNV" type="text"
+														class="form-control round" readonly="true" />
 													<form:errors path="maNV" cssStyle="color:red;display:block"></form:errors>
 												</div>
 											</div>

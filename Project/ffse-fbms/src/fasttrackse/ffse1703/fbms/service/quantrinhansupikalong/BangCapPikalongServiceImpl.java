@@ -33,9 +33,9 @@ public class BangCapPikalongServiceImpl implements BangCapPikalongService {
 
 	@Override
 	@Transactional
-	public List<BangCapPikalong> listBangCapPikalong() {
+	public List<BangCapPikalong> listBangCapPikalong(int start, int maxRows) {
 		// TODO Auto-generated method stub
-		return this.BangCapPikalongDao.listBangCapPikalong();
+		return this.BangCapPikalongDao.listBangCapPikalong(start, maxRows);
 	}
 
 	@Override
@@ -56,7 +56,16 @@ public class BangCapPikalongServiceImpl implements BangCapPikalongService {
 	@Transactional
 	public int total() {
 		// TODO Auto-generated method stub
-		return 0;
+		return this.BangCapPikalongDao.total();
 	}
+
+	@Override
+	@Transactional
+	public List<BangCapPikalong> viewOne(String maNV) {
+		// TODO Auto-generated method stub
+		return this.BangCapPikalongDao.viewOne(maNV);
+	}
+
+
 
 }

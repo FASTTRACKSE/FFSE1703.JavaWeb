@@ -33,10 +33,10 @@ public class BangCapPikalongDaoImpl implements BangCapPikalongDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<BangCapPikalong> listBangCapPikalong() {
+	public List<BangCapPikalong> listBangCapPikalong(int start, int maxRows) {
 		Session session = this.sessionFactory.getCurrentSession();
 		@SuppressWarnings("rawtypes")
-		Query query = session.createQuery("from BangCapPikalong where isActive = :active ");
+		Query query = session.createQuery("from BangCapPikalong where isActive = :active ").setFirstResult(start).setMaxResults(maxRows);
 		query.setParameter("active", 0);
 		List<BangCapPikalong> bangCapList = query.list();
 		return bangCapList;
@@ -62,8 +62,20 @@ public class BangCapPikalongDaoImpl implements BangCapPikalongDao {
 
 	@Override
 	public int total() {
-		// TODO Auto-generated method stub
-		return 0;
+		Session session = this.sessionFactory.getCurrentSession();
+		return session.createQuery("from BangCapPikalong").list().size();
 	}
+
+	@Override
+	public List<BangCapPikalong> viewOne(String maNV) {
+		Session session = this.sessionFactory.openSession();
+		@SuppressWarnings("rawtypes")
+		Query query = session.createQuery("from BangCapPikalong where MaNv = :MaNv ");
+		query.setParameter("MaNv", maNV);
+		@SuppressWarnings("unchecked")
+		List<BangCapPikalong> viewOne = query.list();
+		return viewOne;
+	}
+
 
 }

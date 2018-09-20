@@ -18,13 +18,13 @@
 			</div>
 		</div>
 		<form:form method="POST" action="/ffse-fbms/qlda/khachhang/update/" modelAttribute="khachhang">
-			<div class="form-group col-sm-6"> 
+			<%-- <div class="form-group col-sm-6"> 
 				<label>Mã Khách Hàng</label>
 				<form:input class="form-control" path="makh"
 					placeholder="Mã khách hàng " />
-				<%--  <form:errors path="makh" cssStyle="color: red"></form:errors>--%>
+				 <form:errors path="makh" cssStyle="color: red"></form:errors>
 
-			</div>
+			</div> --%>
 			<div class="form-group col-sm-6">
 				<label>Tên Khách Hàng</label>
 				<form:input class="form-control" path="tenkh"

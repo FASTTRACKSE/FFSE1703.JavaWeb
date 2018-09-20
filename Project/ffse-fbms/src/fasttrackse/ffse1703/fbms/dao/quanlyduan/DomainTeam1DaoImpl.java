@@ -33,7 +33,7 @@ public class DomainTeam1DaoImpl implements DomainTeam1Dao{
 	@SuppressWarnings("unchecked")
 	public List<DomainTeam1> getAll() {
 		Session session = sessionFactory.getCurrentSession();
-		List<DomainTeam1> list = session.createQuery("FROM Domain where is_delete=0").getResultList();
+		List<DomainTeam1> list = session.createQuery("FROM DomainTeam1 where is_delete=0").getResultList();
 
 		return list;
 	}

@@ -9,7 +9,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Table(name="thongtinhopdong")
+@Table(name="loaihopdong")
 public class LoaiHopDongPikalong {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -17,6 +17,7 @@ public class LoaiHopDongPikalong {
 	private int maLoaiHopDong;
 	
 	@NotEmpty(message="Không được để trống!!!")
+	@Column(name="TenHopDong")
 	private String tenHopDong;
 	
 	

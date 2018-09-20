@@ -12,9 +12,11 @@
 			<tr>
 				
 				<th>Mã Nhân Viên</th>
-				<th>Mã Loại Hợp Đồng</th>
+				<th>Họ và Tên</th>
+				<th>Tên Hợp Đồng</th>
 				<th>Ngày Kí Kết</th>
 				<th>Ngày Kết Thúc</th>
+				<th>Lương Tháng 13</th>
 				<th>Trạng Thái</th>
 				<th>Chức Năng</th>
 			</tr>
@@ -23,14 +25,16 @@
 			<c:forEach items="${listHopDong}" var="x" varStatus="stt">
 			<tr>
 				
-				<td>${x.maNv}</td>
-				<td>${x.maLoaiHopDong}</td>
+				<td>${x.hoSoNhanVienPikalong.maNv}</td>
+				<td>${x.hoSoNhanVienPikalong.hoTenNv}</td>
+				<td>${x.loaiHopDongPikalong.tenHopDong}</td>
 				<td>${x.ngayKiKet}</td>
 				<td>${x.ngayKetThuc}</td>
+				<td>${x.luongThang13}</td>
 				<td>${x.trangThai}</td>
 				<td>
 					<div class="fonticon-container"><div style="line-height:0; height: 0; margin-bottom: 0;" class="fonticon-wrap">
-						<a href="#"><i style="font-size: 1em;" class="ft-eye"></i></a>
+						<a href="${x.id}"><i style="font-size: 1em;" class="ft-eye"></i></a>
 						<a href="#"><i style="font-size: 1em;" class="ft-edit-2"></i></a>
 						<a href="#"><i style="font-size: 1em;" class="ft-trash"></i></a>
 					</div></div>

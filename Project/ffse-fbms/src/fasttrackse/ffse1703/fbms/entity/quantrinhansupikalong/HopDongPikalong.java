@@ -5,12 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
 
-import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="thongtinhopdong")
@@ -20,12 +19,15 @@ public class HopDongPikalong {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="MaHopDong")
 	private int maHopDong;
+
+	// bi-directional many-to-one association to HoSoNhanVien
+	@ManyToOne
+	@JoinColumn(name="MaNv")
+	private HoSoNhanVienPikalong hoSoNhanVienPikalong;
 	
-	
-	private int maNv;
-	
-	
-	private int maLoaiHopDong;
+	@ManyToOne
+	@JoinColumn(name="MaLoaiHopDong")
+	private LoaiHopDongPikalong loaiHopDongPikalong;
 	
 	
 	private String ngayKiKet;
@@ -47,12 +49,10 @@ public class HopDongPikalong {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public HopDongPikalong(int maHopDong, int maNv, int maLoaiHopDong, String ngayKiKet, String ngayKetThuc,
+	public HopDongPikalong(int maHopDong, String ngayKiKet, String ngayKetThuc,
 			int soNgayNghiTrongNam, String luongThang13, int trangThai) {
 		super();
 		this.maHopDong = maHopDong;
-		this.maNv = maNv;
-		this.maLoaiHopDong = maLoaiHopDong;
 		this.ngayKiKet = ngayKiKet;
 		this.ngayKetThuc = ngayKetThuc;
 		this.soNgayNghiTrongNam = soNgayNghiTrongNam;
@@ -60,6 +60,15 @@ public class HopDongPikalong {
 		this.trangThai = trangThai;
 	}
 
+	
+	
+	public LoaiHopDongPikalong getLoaiHopDongPikalong() {
+		return loaiHopDongPikalong;
+	}
+
+	public void setLoaiHopDongPikalong(LoaiHopDongPikalong loaiHopDongPikalong) {
+		this.loaiHopDongPikalong = loaiHopDongPikalong;
+	}
 
 	public int getMaHopDong() {
 		return maHopDong;
@@ -67,12 +76,7 @@ public class HopDongPikalong {
 	public void setMaHopDong(int maHopDong) {
 		this.maHopDong = maHopDong;
 	}
-	public int getMaLoaiHopDong() {
-		return maLoaiHopDong;
-	}
-	public void setMaLoaiHopDong(int maLoaiHopDong) {
-		this.maLoaiHopDong = maLoaiHopDong;
-	}
+	
 	public String getNgayKiKet() {
 		return ngayKiKet;
 	}
@@ -97,13 +101,6 @@ public class HopDongPikalong {
 	public void setLuongThang13(String luongThang13) {
 		this.luongThang13 = luongThang13;
 	}
-	public int getMaNv() {
-		return maNv;
-	}
-
-	public void setMaNv(int maNv) {
-		this.maNv = maNv;
-	}
 	
 	public int getTrangThai() {
 		return trangThai;
@@ -113,6 +110,14 @@ public class HopDongPikalong {
 		this.trangThai = trangThai;
 	}
 
+	public HoSoNhanVienPikalong getHoSoNhanVienPikalong() {
+		return hoSoNhanVienPikalong;
+	}
+
+	public void setHoSoNhanVienPikalong(HoSoNhanVienPikalong hoSoNhanVienPikalong) {
+		this.hoSoNhanVienPikalong = hoSoNhanVienPikalong;
+	}
+	
 }
 	
 

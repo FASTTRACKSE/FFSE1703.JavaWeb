@@ -23,8 +23,8 @@ public class QuanHuyenPikalongServiceImpl implements QuanHuyenPikalongService {
 
 	@Override
 	@Transactional
-	public List<QuanHuyenPikalong> listQuanHuyen() {
-		return quanHuyenPikalongDao.listQuanHuyen();
+	public List<QuanHuyenPikalong> listQuanHuyen(String maThanhPho) {
+		return quanHuyenPikalongDao.listQuanHuyen(maThanhPho);
 	}
 
 }

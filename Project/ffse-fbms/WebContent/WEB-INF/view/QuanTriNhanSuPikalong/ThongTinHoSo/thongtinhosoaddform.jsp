@@ -113,33 +113,30 @@
                         </div>
                         <h4 class="form-section"><i class="fa fa-paperclip"></i>Thông tin quê quán</h4>
                         <div class="form-group">
-                          <label for="companyName">Thành Phố</label>
-                          <form:select path="thanhPho" type="text" id="companyName" class="form-control"
-                          name="thanhPhoSelect">
-                          		<option value="none" selected="" >Chọn thành phố</option>
-                          	  <c:forEach items="${listThanhPho}" var="x">
-                              	<option value="${x.maTinhThanh}" >${x.tenTinhThanh}</option>
-                              </c:forEach>
+                          <label for="thanhPhoId">Thành Phố</label>
+                          <form:select path="thanhPho" type="text" id="thanhPhoId" class="form-control"
+                          				name="thanhPhoSelect" onchange="clickComboboxThanhPho()">
+                          		<option value="noThanhPho" selected >Chọn thành phố</option>
+    								<c:forEach items="${listThanhPho}" var="x">
+                              			<option value="${x.maTinhThanh}" >${x.tenTinhThanh}</option>
+                              		</c:forEach>						
                           </form:select>
                         </div>
                         <div class="form-group">
-                          <label for="companyName">Quận huyện</label>
-                          <form:select path="quanHuyen" type="text" id="companyName" class="form-control"
-                          name="quanHuyenSelect">
-                          		<option value="none" selected="" >Chọn quận huyện</option>
-                          	  <c:forEach items="${listQuanHuyen}" var="x">
-                              	<option value="${x.maQuanHuyen}" >${x.tenQuanHuyen}</option>
-                              </c:forEach>
+                          <label for="quanHuyenId">Quận huyện</label>
+                          <form:select path="quanHuyen" id="quanHuyenId"  name="quanHuyen" type="text" class="form-control" disabled="true"
+                          			onchange="clickComboboxQuan()" >
+                          		 <option value="noQuanHuyen" selected >Chọn quận huyện</option>
                           </form:select>
+                     
+                          
                         </div>
                         <div class="form-group">
-                          <label for="companyName">Phường xã</label>
-                          <form:select path="phuongXa" type="text" id="companyName" class="form-control"
-                          name="phuongXaSelect">
-                          		<option value="none" selected="" >Chọn phường xã</option>
-                          	  <c:forEach items="${listPhuong}" var="x">
-                              	<option value="${x.maPhuong}" >${x.tenPhuong}</option>
-                              </c:forEach>
+                          <label for="phuongXaId">Phường xã</label>
+                          <form:select path="phuongXa" type="text" id="phuongXaId" class="form-control"
+                          name="phuongXaSelect" disabled="true">
+                          		<option value="noPhuonXa" selected>Chọn phường xã</option>
+                          	
                           </form:select>
                         </div>
                         
@@ -150,7 +147,7 @@
                           <label for="companyName">Phòng ban</label>
                           <form:select path="maPhongBan" type="text" id="companyName" class="form-control"
                           name="phongBanSelect">
-                          		<option value="none" selected="" >Chọn Phòng ban</option>
+                          		<option value="none" selected >Chọn Phòng ban</option>
                           	  <c:forEach items="${listPhongBan}" var="x">
                               	<option value="${x.maPhongBan}" >${x.tenPhongBan}</option>
                               </c:forEach>
@@ -180,22 +177,88 @@
                         </button>
                       </div>
                     </form:form>
-                    
-                    <button type="button" class="btn btn-warning mr-1" onclick="searchViaAjax()">
+                    <div ><p id="result"></p></div>
+                    <button type="button" class="btn btn-warning mr-1" onclick="bam()">
                           <i class="ft-x"></i> Hủy
                         </button>
                         
                      <script type="text/javascript">
-						
-							function searchViaAjax(){
-
-								alert("Hello! I am an alert box!");
-								
-							}
-					
+                     window.onload = function () { 
+                    	 
+                    	 console.log("aaa");
+                     }
+                     function clickComboboxThanhPho(){
+                    	 var maThanhPho = $("#thanhPhoId").val();
+                    	 if(maThanhPho == 'noThanhPho'){  // nếu người dùng chưa chọn thành phố
+                    		 $('#quanHuyenId option').remove(); /* xóa những option quận huyện cũ */
+                    		 $('#quanHuyenId').append($('<option>', {
+                     		    value: 'noQuan',
+                     		    text: "Chọn Quận Huyện"
+                     		}));
+                    		 $('#quanHuyenId').prop('disabled', true); /*disable combobox quận huyện */
+                    		 
+                    	 } else{                // nếu người dùng đã chọn thành phố
+                    		
+                    		 $('#quanHuyenId').prop('disabled', false); /*enable combobox quận huyện */
+                    		 $('#quanHuyenId option').remove(); /* xóa những option quận huyện cũ */
+                    	 }
+                    	 
+                         $.ajax({
+                        	 url: "/ffse-fbms/quantrinhansu/hosonhanvien/selectquan/" + maThanhPho, 
+                        	 dataType: "json",
+                        	 success: function(data){
+                        		/* alert("Hello! I am an alert box!"); */
+                        		$('#quanHuyenId').append($('<option>', {
+                             		    value: 'noQuanHuyen',
+                             		    text: 'Chọn Quận Huyện'
+                             		}));
+                        		
+                        		for (var i = 0; i < data.length; i++) {
+                        			$('#quanHuyenId').append($('<option>', {
+                             		    value: data[i].maQuanHuyen,
+                             		    text: data[i].tenQuanHuyen
+                             		}));
+								}
+                        	
+                         }});
+                     };
                      </script>
-                    
-    </div>
+                     
+                     <script type="text/javascript">
+         
+                     function clickComboboxQuan(){
+                    	 var maQuanHuyen = $("#quanHuyenId").val();
+                    	 if(maQuanHuyen == 'noQuanHuyen'){  // nếu người dùng chưa chọn thành phố
+                    		 $('#phuongXaId option').remove(); /* xóa những option quận huyện cũ */
+                    		 $('#phuongXaId').append($('<option>', {
+                     		    value: 'noPhuonXa',
+                     		    text: "Chọn Phường Xã"
+                     		}));
+                    		 $('#phuongXaId').prop('disabled', true); /*disable combobox quận huyện */
+                    		 
+                    	 } else{                // nếu người dùng đã chọn thành phố
+                    		
+                    		 $('#phuongXaId').prop('disabled', false); /*enable combobox quận huyện */
+                    		 $('#phuongXaId option').remove(); /* xóa những option quận huyện cũ */
+                    	 }
+                    	 
+                         $.ajax({
+                        	 url: "/ffse-fbms/quantrinhansu/hosonhanvien/selectphuong/" + maQuanHuyen, 
+                        	 dataType: "json",
+                        	 success: function(data){
+                        		/* alert("Hello! I am an alert box!"); */
+                        		
+                        		for (var i = 0; i < data.length; i++) {
+                        			$('#phuongXaId').append($('<option>', {
+                             		    value: data[i].maPhuong,
+                             		    text: data[i].tenPhuong
+                             		}));
+								}
+                        	
+                         }});
+                     };
+                     </script>   
+    		</div>
                       
 		
 </div>

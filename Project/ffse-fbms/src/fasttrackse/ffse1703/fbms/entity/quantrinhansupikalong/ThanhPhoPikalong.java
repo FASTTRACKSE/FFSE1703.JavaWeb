@@ -10,16 +10,16 @@ import javax.persistence.Table;
 @Table(name= "TinhThanh")
 public class ThanhPhoPikalong {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int maTinhThanh;
+	private String maTinhThanh;
 	
 	private String tenTinhThanh;
 
-	public int getMaTinhThanh() {
+	
+	public String getMaTinhThanh() {
 		return maTinhThanh;
 	}
 
-	public void setMaTinhThanh(int maTinhThanh) {
+	public void setMaTinhThanh(String maTinhThanh) {
 		this.maTinhThanh = maTinhThanh;
 	}
 

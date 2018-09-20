@@ -10,18 +10,17 @@ import javax.persistence.Table;
 @Table(name= "Phuong")
 public class PhuongPikalong {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int maPhuong;
+	private String maPhuong;
 	
 	private String tenPhuong;
 	
-	private int maQuanHuyen;
+	private String maQuanHuyen;
 
-	public int getMaPhuong() {
+	public String getMaPhuong() {
 		return maPhuong;
 	}
 
-	public void setMaPhuong(int maPhuong) {
+	public void setMaPhuong(String maPhuong) {
 		this.maPhuong = maPhuong;
 	}
 
@@ -33,11 +32,11 @@ public class PhuongPikalong {
 		this.tenPhuong = tenPhuong;
 	}
 
-	public int getMaQuanHuyen() {
+	public String getMaQuanHuyen() {
 		return maQuanHuyen;
 	}
 
-	public void setMaQuanHuyen(int maQuanHuyen) {
+	public void setMaQuanHuyen(String maQuanHuyen) {
 		this.maQuanHuyen = maQuanHuyen;
 	}
 	

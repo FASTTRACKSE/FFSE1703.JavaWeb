@@ -22,11 +22,11 @@ public class PhuongPikalongDaoImpl implements PhuongPikalongDao {
 
 
 	@Override
-	public List<PhuongPikalong> listPhuong() {
+	public List<PhuongPikalong> listPhuong(String maQuanHuyen) {
 		Session session = sessionFactory.getCurrentSession();
 		@SuppressWarnings("rawtypes")
-		Query query = session.createQuery("from PhuongPikalong");
-		
+		Query query = session.createQuery("from PhuongPikalong where maQuanHuyen = :maQuanHuyen");
+		query.setParameter("maQuanHuyen", maQuanHuyen);
 		@SuppressWarnings("unchecked")
 		List<PhuongPikalong> listPhuong = query.list();
 		return listPhuong;

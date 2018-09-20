@@ -22,9 +22,9 @@ public class PhuongPikalongServiceImpl  implements PhuongPikalongService{
 
 	@Override
 	@Transactional
-	public List<PhuongPikalong> listPhuong() {
+	public List<PhuongPikalong> listPhuong(String maQuanHuyen) {
 		
-		return phuongPikalongDao.listPhuong();
+		return phuongPikalongDao.listPhuong(maQuanHuyen);
 	}
 
 }

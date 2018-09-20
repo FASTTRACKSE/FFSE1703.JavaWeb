@@ -19,7 +19,7 @@ import fasttrackse.ffse1703.fbms.service.qlynhiemvuminhhq.*;
 
 @Controller
 @RequestMapping("/QuanLyNhiemVuMinhHQ/")
-public class QLyNhiemvuMinhHQController {
+public class QLyNhiemVuMinhHQController {
 	CongViecService congViecService;
 
 	@Autowired

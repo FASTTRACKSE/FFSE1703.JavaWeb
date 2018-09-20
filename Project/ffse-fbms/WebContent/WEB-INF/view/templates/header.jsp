@@ -252,6 +252,32 @@
 								class="menu-item">Danh sách bị từ chối</a></li>
 						</ul></li>
 
+				<!-- Quản Lý Nhân Sự TT -->
+				<li class=" navigation-header"><span>Team Quản Lý Nhân Sự TT</span><i
+					class=" ft-minus" data-toggle="tooltip" data-placement="right"
+					data-original-title="Others"></i></li>
+				<li class=" nav-item"><a href="#"><i class="ft-layers"></i><span
+						class="menu-title" data-i18n="">Quản Lý Hồ Sơ</span></a>
+					<ul class="menu-content">
+						<li><a class="menu-item" href="#">Hồ Sơ Nhân Viên</a></li>
+						<li><a class="menu-item" href="#">Thông Tin Gia Đình</a></li>
+				    </ul>
+				</li>
+				<li class=" nav-item"><a href="#"><i class="ft-layers"></i><span
+						class="menu-title" data-i18n="">Quản Lý Hợp Đồng</span></a>
+					<ul class="menu-content">
+						<li><a class="menu-item" href="#">Hồ Sơ Hợp Đồng</a></li>
+						<li><a class="menu-item" href="/ffse-fbms/quanlynhansutt/">Danh Sách Hợp Đồng</a></li>
+				    </ul>
+				</li>
+				<li class=" nav-item"><a href="#"><i class="fa fa-id-card-o"></i><span
+						class="menu-title" data-i18n="">Quản Lý Bằng Cấp</span></a>
+					<ul class="menu-content">
+						<li><a class="menu-item" href="#">Hồ Sơ Bằng Cấp</a></li>
+						<li><a class="menu-item" href="#">Danh Sách Bằng Cấp</a></li>
+				    </ul>
+				</li>
+				<!-- Quản Lý Nhân Sự TT  -->
 					<!--  MVP- Quản lí Dự Án -->
 					<li class="navigation-header"><span>MVP-Quản lý dự án</span><i
 						class=" ft-minus" data-toggle="tooltip" data-placement="right"

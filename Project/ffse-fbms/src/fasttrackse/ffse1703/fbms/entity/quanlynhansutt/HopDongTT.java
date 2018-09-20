@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,7 +19,6 @@ import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import fasttrackse.ffse1703.fbms.entity.security.ChucDanh;
-import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 
 /**
  * The persistent class for the hop_dong database table.
@@ -38,9 +38,9 @@ public class HopDongTT implements Serializable {
 	private int maHopDong;
 
 	// bi-directional many-to-one association to HoSoNhanVien
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ma_nhan_vien")
-	private HoSoNhanVien hoSoNhanVien;
+	private HoSoNhanVienTT hoSoNhanVienTT;
 
 	// bi-directional many-to-one association to LoaiHopDong
 	@ManyToOne
@@ -55,27 +55,33 @@ public class HopDongTT implements Serializable {
 	private ChucDanh chucDanh;
 
 	@Column(name = "luong_thang_13", nullable = false)
+	@NotNull
 	private Integer luongThang13;
 
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "ngay_ky", nullable = false)  
+	@NotNull
 	private Date ngayKy;
 
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "hop_dong_tu_ngay", nullable = false)
+	@NotNull
 	private Date hopDongTuNgay;
 
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "hop_dong_den_ngay", nullable = false)
+	@NotNull
 	private Date hopDongDenNgay;
 
 	@Column(name = "so_ngay_phep", nullable = false)
+	@NotNull
 	private Integer soNgayPhep;
 
 	@Column(name = "trang_thai", nullable = false)
+	@NotNull
 	private Integer trangThai;
 
 	public HopDongTT() {
@@ -90,12 +96,12 @@ public class HopDongTT implements Serializable {
 		this.maHopDong = maHopDong;
 	}
 
-	public HoSoNhanVien getHoSoNhanVien() {
-		return hoSoNhanVien;
+	public HoSoNhanVienTT getHoSoNhanVienTT() {
+		return hoSoNhanVienTT;
 	}
 
-	public void setHoSoNhanVien(HoSoNhanVien hoSoNhanVien) {
-		this.hoSoNhanVien = hoSoNhanVien;
+	public void setHoSoNhanVienTT(HoSoNhanVienTT hoSoNhanVienTT) {
+		this.hoSoNhanVienTT = hoSoNhanVienTT;
 	}
 
 	public LoaiHopDongTT getLoaiHopDong() {

@@ -65,6 +65,7 @@ public class QuanLyHopDongControllerTT {
 	public String showFormUpdate(@PathVariable("maHopDong") int maHopDong, Model model)
 			throws IllegalStateException, IOException {
 		model.addAttribute("hopDongTT", hopDongServiceTT.findByMaHopDong(maHopDong));
+		model.addAttribute("listLoaiHopDong", loaiHopDongServiceTT.findAll());
 		return "QuanLyNhanSuTT/QuanLyHopDongTT/edit_form";
 	}
 

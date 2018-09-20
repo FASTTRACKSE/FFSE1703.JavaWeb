@@ -60,7 +60,7 @@
 														</div>
 														<div class="form-group col-sm-6">
 															<label>Mã Nhân Viên</label>
-															<form:input class="form-control" path="hoSoNhanVien"
+															<form:input class="form-control" path="hoSoNhanVienTT"
 																placeholder="Mã Nhân Viên" />
 														</div>
 													</div>
@@ -75,6 +75,7 @@
 																	<option value="${x.maLoaiHopDong}">${x.tenHopDong}</option>
 																</c:forEach>
 															</form:select>
+															<form:errors path="" cssClass="invalid-feedback d-block" />
 														</div>
 														<div class="form-group col-sm-6">
 															<label>Mã Chức Danh</label>
@@ -86,6 +87,8 @@
 																	<option value="${x.maChucDanh}">${x.maChucDanh}</option>
 																</c:forEach>
 															</form:select>
+															<form:errors path="chucDanh.maChucDanh"
+																cssClass="invalid-feedback d-block" />
 														</div>
 													</div>
 												</div>
@@ -99,14 +102,20 @@
 														<div class="form-group col-sm-6">
 															<div class="form-group">
 																<label>Lương Tháng 13</label>
-																<form:input class="form-control" path="luongThang13"
-																	placeholder="Lương Tháng 13" />
+																<form:select class="custom-select form-control"
+																	path="luongThang13">
+																	<option value="none">Chọn</option>
+																	<form:option value="1">Có</form:option>
+																	<form:option value="2">Không</form:option>
+																</form:select>
 															</div>
 														</div>
 														<div class="form-group col-sm-6">
 															<label>Số Ngày Phép</label>
 															<form:input class="form-control" path="soNgayPhep"
 																placeholder="Số Ngày Phép" />
+															<form:errors path="soNgayPhep"
+																cssClass="invalid-feedback d-block" />
 														</div>
 
 													</div>
@@ -120,7 +129,10 @@
 																	<div class="form-control-position">
 																		<i class="fa fa-calendar-o"></i>
 																	</div>
+																	<form:errors path="ngayKy"
+																		cssClass="invalid-feedback d-block" />
 																</fieldset>
+
 															</div>
 														</div>
 														<div class="col-md-6">
@@ -133,7 +145,10 @@
 																	<div class="form-control-position">
 																		<i class="fa fa-calendar-o"></i>
 																	</div>
+																	<form:errors path="hopDongTuNgay"
+																		cssClass="invalid-feedback d-block" />
 																</fieldset>
+
 															</div>
 														</div>
 														<div class="col-md-6">
@@ -146,7 +161,10 @@
 																	<div class="form-control-position">
 																		<i class="fa fa-calendar-o"></i>
 																	</div>
+																	<form:errors path="hopDongDenNgay"
+																		cssClass="invalid-feedback d-block" />
 																</fieldset>
+
 															</div>
 														</div>
 														<div class="col-md-6">
@@ -159,6 +177,8 @@
 																	<form:option value="2">Hết
 																		Hợp Đồng</form:option>
 																</form:select>
+																<form:errors path="trangThai"
+																	cssClass="invalid-feedback d-block" />
 															</div>
 														</div>
 													</div>
@@ -167,6 +187,8 @@
 										</div>
 										<div class="form-actions center">
 											<input class="btn btn-success" type="submit" value="Save" />
+											<a href="<c:url value = "/quanlynhansutt/add"/>"
+												class="btn btn-primary">Back</a>
 										</div>
 									</form:form>
 								</div>

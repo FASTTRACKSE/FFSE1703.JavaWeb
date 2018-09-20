@@ -1,15 +1,13 @@
-package fasttrackse.ffse1703.fbms.service.qlynhiemvuminhhq;
+package fasttrackse.ffse1703.fbms.dao.qlynhiemvuminhhq;
 
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
 
 import fasttrackse.ffse1703.fbms.entity.qlynhiemvuminhhq.CongViec;
 
 
 
 
- public interface CongViecService {
+ public interface QLyNhiemvuMinhHQDao {
  	public List<CongViec> findAll();
 
  	public void addNew(CongViec cv);
@@ -25,6 +23,4 @@ import fasttrackse.ffse1703.fbms.entity.qlynhiemvuminhhq.CongViec;
 // 	public String getRecordsTotal();
 //	
 // 	public String getRecordsFiltered(String sql);
-//	
-	
  }

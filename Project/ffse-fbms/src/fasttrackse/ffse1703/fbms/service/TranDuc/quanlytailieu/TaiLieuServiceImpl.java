@@ -37,18 +37,13 @@ public class TaiLieuServiceImpl implements TaiLieuService {
 	}
 
 	@Override
-	public List<TaiLieu> listAll(int start, int limit) {
+	public List<TaiLieu> listAllPaging(int start, int limit) {
 		return daoTL.listAll(start,limit);
 	}
 
 	@Override
 	public String getRecordsTotal() {
 		return daoTL.getRecordsTotal();
-	}
-
-	@Override
-	public String getRecordsFiltered(String sql) {
-		return daoTL.getRecordsFiltered(sql);
 	}
 
 }

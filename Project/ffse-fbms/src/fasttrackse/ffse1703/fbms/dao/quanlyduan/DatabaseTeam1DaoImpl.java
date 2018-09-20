@@ -7,7 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import fasttrackse.ffse1703.fbms.entity.QuanLyDuAn.DatabaseTeam1;
+import fasttrackse.ffse1703.fbms.entity.quanlyduan.DatabaseTeam1;
 
 @Repository
 public class DatabaseTeam1DaoImpl implements DatabaseTeam1Dao{
@@ -21,7 +21,7 @@ public class DatabaseTeam1DaoImpl implements DatabaseTeam1Dao{
 	@Override
 	public List<DatabaseTeam1> getAll() {
 		Session session = this.sessionFactory.getCurrentSession();
-		return session.createQuery("from Database where isDelete =0",DatabaseTeam1.class).list();
+		return session.createQuery("from DatabaseTeam1 where isDelete =0",DatabaseTeam1.class).list();
 
 	}
 
@@ -35,12 +35,6 @@ public class DatabaseTeam1DaoImpl implements DatabaseTeam1Dao{
 
 	@Override
 	public void save(DatabaseTeam1 database) {
-		 for (int i = 0; i < 5; i++) {
-			 database = new DatabaseTeam1();
-			 database.setMaDatabase("DB" + i);
-		
-	      }
-		
 		Session session=this.sessionFactory.getCurrentSession();
 		session.save(database);
 		
@@ -71,14 +65,14 @@ public class DatabaseTeam1DaoImpl implements DatabaseTeam1Dao{
 	@Override
 	public int getName(String tenDatabase) {
 	Session session = this.sessionFactory.getCurrentSession();
-	List<DatabaseTeam1> db = session.createQuery("from Database where ten_Database = '"+tenDatabase+"' AND isDelete =0", DatabaseTeam1.class).list();	
+	List<DatabaseTeam1> db = session.createQuery("from DatabaseTeam1 where ten_Database = '"+tenDatabase+"' AND isDelete =0", DatabaseTeam1.class).list();	
 	return  db.size();
 	}
 
 	@Override
 	public int getMa(String maDatabase) {
 		Session session = this.sessionFactory.getCurrentSession();
-		List<DatabaseTeam1> db = session.createQuery("from Database where ma_database = '"+maDatabase+"'", DatabaseTeam1.class).list();	
+		List<DatabaseTeam1> db = session.createQuery("from DatabaseTeam1 where ma_database = '"+maDatabase+"'", DatabaseTeam1.class).list();	
 		return  db.size();
 	}
 }

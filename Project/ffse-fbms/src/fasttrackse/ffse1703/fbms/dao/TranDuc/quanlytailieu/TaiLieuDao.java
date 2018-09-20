@@ -19,5 +19,4 @@ public interface TaiLieuDao {
 
 	public String getRecordsTotal();
 
-	public String getRecordsFiltered(String sql);
 }

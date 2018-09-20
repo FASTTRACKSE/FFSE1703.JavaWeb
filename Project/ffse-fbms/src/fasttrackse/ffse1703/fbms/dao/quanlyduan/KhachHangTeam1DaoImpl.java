@@ -6,7 +6,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import fasttrackse.ffse1703.fbms.entity.QuanLyDuAn.KhachHangTeam1;
+import fasttrackse.ffse1703.fbms.entity.quanlyduan.KhachHangTeam1;
 
 @Repository
 public class KhachHangTeam1DaoImpl implements KhachHangTeam1Dao{
@@ -32,7 +32,7 @@ public class KhachHangTeam1DaoImpl implements KhachHangTeam1Dao{
 	@SuppressWarnings("unchecked")
 	public List<KhachHangTeam1> getAll() {
 		Session session = sessionFactory.getCurrentSession();
-		List<KhachHangTeam1> list = session.createQuery("FROM KhachHang where is_delete=0 ").getResultList();
+		List<KhachHangTeam1> list = session.createQuery("FROM KhachHangTeam1 where is_delete=0 ").getResultList();
 		return list;
 	}
 

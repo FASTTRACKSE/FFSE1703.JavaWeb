@@ -12,7 +12,7 @@
 		<div class="content-header row">
 		<div>
 		<div class="col-md-5"></div>
-			<h3 >Danh sách đã nháp</h3>
+			<h3 >Danh sách bị từ chối</h3>
 		</div>
 			<div>
 			<div><a href="soandonmoi"><h4> Soạn đơn mới</h4></a></div>
@@ -43,8 +43,9 @@
 					<td>${nv.ghiChu}</td>
 					<td>${nv.ghiChuTruongPhong}</td>
 					<td>${nv.trangThai.trangThai}</td>
-					<td><button class="btn btn-success">
-									Sửa</button>
+					<td><a  href="suanhap/${nv.id }"><button class="btn btn-success">
+									Sửa</button></a>  <a href="delete/${nv.id }"><button class="btn btn-danger"
+									onclick="return confirm('Bạn có muốn xóa sinh viên này?');">Xóa</button></a>
 					</td>
 						</tr>
 				</c:forEach>

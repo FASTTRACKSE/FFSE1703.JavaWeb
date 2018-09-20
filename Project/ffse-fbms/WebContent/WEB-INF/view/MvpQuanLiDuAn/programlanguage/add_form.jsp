@@ -23,7 +23,7 @@
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/home" />'>Home</a></li>
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/mvpquanliduan/programlanguage/list-language" />'>Danh
+								href='<c:url value="/mvpquanliduan/language/list-language" />'>Danh
 									sách Ngôn Ngữ</a></li>
 							<li class="breadcrumb-item active">Thêm mới Ngôn Ngữ</li>
 						</ol>

@@ -48,8 +48,4 @@ public class DanhMucServiceImpl implements DanhMucService {
 		return daoDM.getRecordTotal();
 	}
 
-	@Override
-	public String getRecordFiltered(String sql) {
-		return daoDM.getRecordFiltered(sql);
-	}
 }

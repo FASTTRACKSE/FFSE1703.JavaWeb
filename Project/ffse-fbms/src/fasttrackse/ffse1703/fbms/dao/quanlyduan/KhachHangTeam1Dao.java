@@ -2,7 +2,7 @@ package fasttrackse.ffse1703.fbms.dao.quanlyduan;
 
 import java.util.List;
 
-import fasttrackse.ffse1703.fbms.entity.QuanLyDuAn.KhachHangTeam1;
+import fasttrackse.ffse1703.fbms.entity.quanlyduan.KhachHangTeam1;
 
 public interface KhachHangTeam1Dao {
 	public List<KhachHangTeam1> getAll();

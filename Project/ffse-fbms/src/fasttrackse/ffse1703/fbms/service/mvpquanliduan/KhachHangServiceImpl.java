@@ -40,10 +40,7 @@ public class KhachHangServiceImpl implements KhachHangService {
 	@Override
 	public void delete(int id) {
 		this.khachHangDao.delete(id);
-		;
 
 	}
-
-	
 
 }

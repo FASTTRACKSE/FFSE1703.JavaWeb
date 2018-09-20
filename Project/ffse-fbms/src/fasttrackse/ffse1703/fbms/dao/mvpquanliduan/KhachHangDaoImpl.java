@@ -9,7 +9,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Domain;
+
 import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.KhachHang;
 
 @Repository

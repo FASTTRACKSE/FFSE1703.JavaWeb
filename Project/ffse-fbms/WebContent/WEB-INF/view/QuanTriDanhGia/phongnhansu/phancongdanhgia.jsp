@@ -66,7 +66,7 @@
 			<div class="row">
 				<div class="card">
 					<div class="card-header">
-						<h4 class="card-title">Danh sách nhân viên cần đánh giá</h4>
+						<h4 class="card-title">Danh sách đánh giá nhân viên</h4>
 					</div>
 					<div class="card-content">
 						<div class="card-body" style="margin: 1em">
@@ -75,9 +75,10 @@
 									<thead class="thead-dark">
 										<tr>
 											<th scope="col">#</th>
-											<th scope="col">First Name</th>
-											<th scope="col">Last Name</th>
-											<th scope="col">Username</th>
+											<th scope="col">Nhân viên</th>
+											<th scope="col">Xếp loại</th>
+											<th scope="col">Trang Thái</th>
+											<th scope="col">Hành động</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -85,7 +86,8 @@
 											<th scope="row">1</th>
 											<td>Mark</td>
 											<td>Otto</td>
-											<td>@mdo</td>
+											<td>Nháp</td>
+										<td><a class="btn btn-info">Xem</a></td>
 										</tr>
 									</tbody>
 								</table>

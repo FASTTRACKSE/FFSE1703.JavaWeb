@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 
-import fasttrackse.ffse1703.fbms.entity.QuanLyDuAn.VendorTeam1;
+import fasttrackse.ffse1703.fbms.entity.quanlyduan.VendorTeam1;
 
 @Repository
 public class VendorTeam1DaoImpl implements VendorTeam1Dao{
@@ -23,7 +23,7 @@ public class VendorTeam1DaoImpl implements VendorTeam1Dao{
 	@Override
 	public List<VendorTeam1> getAll() {
 		Session session = this.sessionFactory.getCurrentSession();
-		return session.createQuery("from Vendor where isDelete =0",VendorTeam1.class).list();
+		return session.createQuery("from VendorTeam1 where isDelete =0",VendorTeam1.class).list();
 
 	}
 

@@ -7,7 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import fasttrackse.ffse1703.fbms.entity.QuanLyDuAn.DomainTeam1;
+import fasttrackse.ffse1703.fbms.entity.quanlyduan.DomainTeam1;
 
 @Repository
 public class DomainTeam1DaoImpl implements DomainTeam1Dao{
@@ -33,7 +33,7 @@ public class DomainTeam1DaoImpl implements DomainTeam1Dao{
 	@SuppressWarnings("unchecked")
 	public List<DomainTeam1> getAll() {
 		Session session = sessionFactory.getCurrentSession();
-		List<DomainTeam1> list = session.createQuery("FROM Domain where is_delete=0").getResultList();
+		List<DomainTeam1> list = session.createQuery("FROM DomainTeam1 where is_delete=0").getResultList();
 
 		return list;
 	}

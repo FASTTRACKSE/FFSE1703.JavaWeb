@@ -2,13 +2,17 @@ package fasttrackse.ffse1703.fbms.dao.mvpquanliduan;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
-import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Domain;
+
 import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Framework;
-
+@Repository
+@Transactional
 public class FrameworkDaoImpl implements FrameworkDao {
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -29,7 +33,7 @@ public class FrameworkDaoImpl implements FrameworkDao {
 	@Override
 	public void add(Framework framework) {
 		Session session = this.sessionFactory.getCurrentSession();
-		session.persist(framework);
+		session.save(framework);
 	}
 
 	@Override

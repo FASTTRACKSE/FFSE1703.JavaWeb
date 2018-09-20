@@ -19,5 +19,4 @@ public interface DanhMucDao {
 
 	public String getRecordTotal();
 	
-	public String getRecordFiltered(String sql);
 }

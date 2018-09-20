@@ -2,7 +2,7 @@ package fasttrackse.ffse1703.fbms.service.quanlyduan;
 
 import java.util.List;
 
-import fasttrackse.ffse1703.fbms.entity.QuanLyDuAn.VendorTeam1;
+import fasttrackse.ffse1703.fbms.entity.quanlyduan.VendorTeam1;
 
 public interface VendorTeam1Service {
 

@@ -20,27 +20,23 @@
 								</tr>
 							</thead>
 							<tbody>
-							<h1>${viewOne.get(0).maNV }</h1>
+								<h1>${viewOne.get(0).maNV }</h1>
 								<c:forEach var="bangcap" items="${viewOne}">
 									<tr>
 										<td>${bangcap.chuyenNganh}</td>
 										<td>${bangcap.xepLoai}</td>
 										<td>${bangcap.noiCap}</td>
 										<td>${bangcap.ngayCap}</td>
-									
 									</tr>
 								</c:forEach>
 							</tbody>
 						</table>
-
 						<a
 							href="/ffse-fbms/QuanTriNhanSuPikalong/QuanLiBangCap/addBangCap"
 							class="btn btn-success btnSpace">Thêm Bằng Cấp</a>
 					</div>
 				</div>
 			</div>
-
 		</div>
 	</div>
-
 	<jsp:include page="/WEB-INF/view/templates/footer.jsp" />

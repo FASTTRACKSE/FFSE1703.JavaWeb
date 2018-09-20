@@ -408,18 +408,26 @@
 				<li class=" navigation-header"><span>Quản trị đánh giá</span><i
 					data-toggle="tooltip" data-placement="right"
 					data-original-title="Apps" class=" ft-minus"></i></li>
-				<li class=" nav-item"><a
-					href="<c:url value = "/quantridanhgia/danhgiabanthan"/>"><i
-						class="fa fa-user"></i><span data-i18n="" class="menu-title">Tự
-							đánh giá</span></a></li>
-				<li class=" nav-item"><a
-					href="<c:url value = "/quantridanhgia/danhgianhanvien"/>"><i
-						class="fa fa-users"></i><span data-i18n="" class="menu-title">Đánh
-							giá nhân viên khác</span></a></li>
-				<li class=" nav-item"><a
-					href="<c:url value = "/quantridanhgia/danhgiacuatruongphong"/>"><i
-						class="fa fa-user-secret"></i><span data-i18n=""
-						class="menu-title">Đánh giá của trưởng phòng</span></a></li>
+				<c:if test="${chucVu eq 'NV' }">
+					<li class=" nav-item"><a
+						href="<c:url value = "/quantridanhgia/danhgiabanthan"/>"><i
+							class="fa fa-user"></i><span data-i18n="" class="menu-title">Tự
+								đánh giá</span></a></li>
+					<li class=" nav-item"><a
+						href="<c:url value = "/quantridanhgia/danhgianhanvien"/>"><i
+							class="fa fa-users"></i><span data-i18n="" class="menu-title">Đánh
+								giá nhân viên khác</span></a></li>
+					<li class=" nav-item"><a
+						href="<c:url value = "/quantridanhgia/danhgiacuatruongphong"/>"><i
+							class="fa fa-user-secret"></i><span data-i18n=""
+							class="menu-title">Đánh giá của trưởng phòng</span></a></li>
+				</c:if>
+				<c:if test="${chucVu eq 'TP' }">
+					<li class=" nav-item"><a
+						href="<c:url value = "/quantridanhgia/truongphongdanhgia/home"/>"><i
+							class="fa fa-users"></i><span data-i18n="" class="menu-title">Danh
+								sách nhân viên</span></a></li>
+				</c:if>
 			</ul>
 
 

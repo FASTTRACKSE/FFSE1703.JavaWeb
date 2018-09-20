@@ -16,19 +16,8 @@ public class LyDoEntity {
 	 int id;
 
 	@Column(name = "ly_do")
-	@NotEmpty
-	 String ly_do;
+	 String tenLyDo;
 	
-	public LyDoEntity (Integer id, String ly_do  ) {
-		super ();
-		this.id = id;
-		this.ly_do = ly_do;
-	}
-	
-	public LyDoEntity ( String ly_do  ) {
-		super ();
-		this.ly_do = ly_do;
-	}
 	
 	public int getId() {
 		return id;
@@ -36,12 +25,13 @@ public class LyDoEntity {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getLy_do() {
-		return ly_do;
+	public String getTenLyDo() {
+		return tenLyDo;
 	}
-	public void setLy_do(String ly_do) {
-		this.ly_do = ly_do;
+	public void setTenLyDo(String tenLyDo) {
+		this.tenLyDo = tenLyDo;
 	}
+	
 
 	
 	

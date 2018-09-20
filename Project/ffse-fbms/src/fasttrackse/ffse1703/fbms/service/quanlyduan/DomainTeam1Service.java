@@ -2,8 +2,7 @@ package fasttrackse.ffse1703.fbms.service.quanlyduan;
 
 import java.util.List;
 
-
-import fasttrackse.ffse1703.fbms.entity.QuanLyDuAn.DomainTeam1;
+import fasttrackse.ffse1703.fbms.entity.quanlyduan.DomainTeam1;
 
 public interface DomainTeam1Service {
 	

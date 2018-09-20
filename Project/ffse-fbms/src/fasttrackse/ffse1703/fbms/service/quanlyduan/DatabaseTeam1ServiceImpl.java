@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fasttrackse.ffse1703.fbms.dao.quanlyduan.DatabaseTeam1Dao;
-import fasttrackse.ffse1703.fbms.entity.QuanLyDuAn.DatabaseTeam1;
+import fasttrackse.ffse1703.fbms.entity.quanlyduan.DatabaseTeam1;
 
 @Service
 public class DatabaseTeam1ServiceImpl implements DatabaseTeam1Service {

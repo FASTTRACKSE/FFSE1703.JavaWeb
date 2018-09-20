@@ -13,11 +13,10 @@ public interface TaiLieuService {
 
 	public void deleteTL(String maTL);
 
-	public TaiLieu getTLbyID(String maTL);
+	public TaiLieu getTLbyID(String id);
 
-	public List<TaiLieu> listAll(int start, int limit);
+	public List<TaiLieu> listAllPaging(int start, int limit);
 
 	public String getRecordsTotal();
 
-	public String getRecordsFiltered(String sql);
 }

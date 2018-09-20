@@ -64,22 +64,20 @@ public class DanhMucImpl implements DanhMucDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<DanhMuc> listAllDanhMuc(int start, int limit,String sql) {
+	public List<DanhMuc> listAllDanhMuc(int start, int limit, String sql) {
 		Session session = this.sessionFac.openSession();
-		List<DanhMuc> listDM = session.createQuery(sql).setFirstResult(start)
-				.setMaxResults(limit).list();
+		List<DanhMuc> listDM = session.createQuery(sql).setFirstResult(start).setMaxResults(limit).list();
 		session.close();
 		return listDM;
 	}
 
 	@Override
 	public String getRecordTotal() {
-		return null;
+		Session session = this.sessionFac.openSession();
+		String sql = "SELECT COUNT(*) FROM `danh_muc`";
+		Query query = session.createSQLQuery(sql);
+		String recordsTotal = query.getSingleResult().toString();
+		session.close();
+		return recordsTotal;
 	}
-
-	@Override
-	public String getRecordFiltered(String sql) {
-		return null;
-	}
-
 }

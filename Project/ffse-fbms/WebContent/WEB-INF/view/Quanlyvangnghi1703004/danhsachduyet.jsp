@@ -10,7 +10,11 @@
 	<div class="content-wrapper">
 		<!-- Path -->
 		<div class="content-header row">
+		<div>
+		<div class="col-md-5"></div>
 			<h3>Danh sách đã duyệt</h3>
+		</div>
+			
 			<div>
 			<div class="container">
 			    <div class="table-responsive">
@@ -41,8 +45,8 @@
 					<td>${nv.ghiChu}</td>
 					<td>${nv.ghiChuTruongPhong}</td>
 					<td>${nv.trangThai.trangThai}</td>
-					<td><button class="btn btn-success">
-									Sửa</button>
+					<td><a href="deleteBrowse/${nv.id }"><button class="btn btn-danger"
+									onclick="return confirm('Bạn có muốn xóa sinh viên này?');">Xóa</button></a>
 					</td>
 						</tr>
 				</c:forEach>

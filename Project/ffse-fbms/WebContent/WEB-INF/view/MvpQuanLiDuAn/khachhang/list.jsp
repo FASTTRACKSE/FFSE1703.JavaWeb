@@ -44,15 +44,16 @@
 				<div class="x_content">
 
 					<table class="table table-striped"
-						style="width: 80%; text-align: center">
+						style="text-align: center">
 						<thead>
 							<tr>
 								<th style="text-align: center">ID</th>
-								<th style="width: 60%; text-align: center">Tên khách hàng</th>
+								<th style=" text-align: center">Tên khách hàng</th>
 								<th style="text-align: center">Email</th>
 								<th style="text-align: center">Số điện thoại</th>
 								<th style="text-align: center">Giới tính</th>
 								<th style="text-align: center">Địa chỉ</th>
+								<th style="text-align: center">Chức năng</th>
 								
 							</tr>
 						</thead>
@@ -69,12 +70,20 @@
 									<td><a
 										style="width: 50px; high: 50px; border-color: #00E5EE; border-radius: 100%;"
 										class="btn btn-outline-info "
+<<<<<<< HEAD
 										href="<c:url value="/mvpquanliduan/khachhang/show-form-edit/${khachhang.idKhachHang }" />"
+=======
+										href="<c:url value="/mvpquanliduan/khachhang/show-form-edit/${khachHang.idKhachHang }" />"
+>>>>>>> 8b94f4e29fb752d434d99a01d8a972e6481a723d
 										title=""><i class="ft-edit"></i></a> <a
 										onclick=" if(!confirm('Bạn muốn xóa nghiệp vụ này?')){return false;}"
 										style="width: 50px; high: 50px; border-color: #FF6A6A; border-radius: 100%;"
 										class="btn btn-outline-danger "
+<<<<<<< HEAD
 										href="<c:url value="/mvpquanliduan/khachhang/delete/${khachhang.idKhachHang }" />"
+=======
+										href="<c:url value="/mvpquanliduan/khachhang/delete/${khachHang.idKhachHang }" />"
+>>>>>>> 8b94f4e29fb752d434d99a01d8a972e6481a723d
 										title=""><i class="ft-delete"></i></a>
 								</tr>
 

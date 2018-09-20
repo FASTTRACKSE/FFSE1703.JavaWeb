@@ -1,5 +1,6 @@
 package fasttrackse.ffse1703.fbms.dao.qlvn;
 
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -14,7 +15,7 @@ import fasttrackse.ffse1703.fbms.entity.qlvn.TrangThai;
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 
 @Repository
-@Transactional(rollbackFor = Exception.class)
+@Transactional
 public class QuanLyVangNghiDaoIpml implements QuanLyVangNghiDao {
 
 	@Autowired
@@ -58,7 +59,7 @@ public class QuanLyVangNghiDaoIpml implements QuanLyVangNghiDao {
 	
 	public List<TrangThai> loadAllTrangThai(){
 		Session session = sessionFactory.getCurrentSession();
-		List<TrangThai> list = session.createQuery("from TrangThai").list();
+		List<TrangThai> list = session.createSQLQuery("select * from trang_thai").list();
 		return list;
 	}
 	
@@ -76,7 +77,7 @@ public class QuanLyVangNghiDaoIpml implements QuanLyVangNghiDao {
 		
 	}
 
-	@Override
+	
 	public void createWalk(ThongKeDonXinPhep thongKeDonXinPhep) {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.save(thongKeDonXinPhep);
@@ -84,15 +85,27 @@ public class QuanLyVangNghiDaoIpml implements QuanLyVangNghiDao {
 		
 	}
 
-	@Override
+	
 	public void createBrowse(ThongKeDonXinPhep thongKeDonXinPhep) {
 		Session session = this.sessionFactory.getCurrentSession();
+//		Date ngayBatDau = thongKeDonXinPhep.getNgayBatDau();
+//		Date ngayKT = thongKeDonXinPhep.getNgayKetThuc();
+//		System.out.println((ngayKT.getTime()-ngayBatDau.getTime())/ (60 * 60 * 1000));
 		session.save(thongKeDonXinPhep);
+		/*if(soNgayConLai == 0) {
+			session.createQuery("update ThongKeNgayNghi set so_ngay_da_nghi = " + (soNgayNghi + soNgayDaNghi)
+			+ "where ma_nhan_vien = " + maNhanVien ).executeUpdate();
+		} else if(soNgayNghi>soNgayConLai) {
+			session.createQuery("update ThongKeNgayNghi set so_ngay_con_lai = 0, so_ngay_da_nghi = " + (soNgayNghi + soNgayDaNghi)
+					+ "where ma_nhan_vien = " + maNhanVien ).executeUpdate();
+		} else {session.createQuery("update ThongKeNgayNghi set so_ngay_con_lai =  " + (soNgayConLai + soNgayDaNghi)
+				+ ",so_ngay_da_nghi =" + (soNgayDaNghi + soNgayNghi) + "where ma_nhan_vien = " + maNhanVien ).executeUpdate();
+			*/
 		session.createQuery("update ThongKeDonXinPhep set trangThai = '3'  where id =" + thongKeDonXinPhep.getId()).executeUpdate();
 		
 	}
 
-	@Override
+
 	public void createfeedback(ThongKeDonXinPhep thongKeDonXinPhep) {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.update(thongKeDonXinPhep);
@@ -111,7 +124,7 @@ public class QuanLyVangNghiDaoIpml implements QuanLyVangNghiDao {
 		session.delete(findById(id));
 	}
 	
-	@Override
+	
 	public void updateNhap(ThongKeDonXinPhep thongKeDonXinPhep) {
 		Session session = this.sessionFactory.getCurrentSession();;
 		session.update(thongKeDonXinPhep);

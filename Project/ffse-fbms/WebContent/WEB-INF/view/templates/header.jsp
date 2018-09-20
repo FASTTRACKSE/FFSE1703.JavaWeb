@@ -240,16 +240,15 @@
 						class=" ft-minus" data-toggle="tooltip" data-placement="right"
 						data-original-title="Components"></i></li>
 					<li class=" nav-item pbho_so"><a href="#"><i
-							class="ft-users"></i><span data-i18n="" class="menu-title">Thống
-								kê tình hình</span></a>
+							class="ft-users"></i><span data-i18n="" class="menu-title">Thống kê tình hình</span></a>
 						<ul class="menu-content">
-							<li><a href="<c:url value="/qlvn/danhsachnhap"/>"
+							<li><a href="<c:url value="/Quanlyvangnghi1703004/danhsachnhap"/>"
 								class="menu-item">Danh sách nháp</a></li>
-							<li><a href="<c:url value="/qlvn/danhsachcho"/>"
+							<li><a href="<c:url value="/Quanlyvangnghi1703004/danhsachcho"/>"
 								class="menu-item">Danh sách chờ duyệt</a></li>
-							<li><a href="<c:url value="/qlvn/danhsachduyet"/>"
+							<li><a href="<c:url value="/Quanlyvangnghi1703004/danhsachduyet"/>"
 								class="menu-item">Danh sách đã duyệt</a></li>
-							<li><a href="<c:url value="/qlvn/danhsachbituchoi"/>"
+							<li><a href="<c:url value="/Quanlyvangnghi1703004/danhsachbituchoi"/>"
 								class="menu-item">Danh sách bị từ chối</a></li>
 						</ul></li>
 
@@ -321,16 +320,16 @@
 					data-original-title="Apps" class=" ft-minus"></i></li>
 				<li class=" nav-item"><a
 					href="<c:url value = "/TranDuc-QuanLyTaiLieu/DanhMuc/"/>"><i
-						class="ft-bookmark"></i><span data-i18n="" class="menu-title">Quản
+						class="fa fa-building"></i><span data-i18n="" class="menu-title">Quản
 							Lý Danh Mục</span></a></li>
 				<li class=" nav-item"><a
 					href="<c:url value = "/TranDuc-QuanLyTaiLieu/TaiLieu/"/>"><i
-						class="ft-file-text"></i><span data-i18n="" class="menu-title">Quản
+						class="fa fa-id-card-o"></i><span data-i18n="" class="menu-title">Quản
 							Lý Tài Liệu</span></a></li>
 				<li class=" nav-item"><a
-					href="<c:url value = "/TranDuc-QuanLyTaiLieu/TrangThai/"/>"><i
-						class="ft-users"></i><span data-i18n="" class="menu-title">Trạng
-							Thái</span></a></li>
+					href="<c:url value = "/TranDuc-QuanLyTaiLieu/PhanQuyen/"/>"><i
+						class="fa fa-id-card-o"></i><span data-i18n="" class="menu-title">Phân
+							Quyền</span></a></li>
 			</ul>
 		</div>
 	</div>

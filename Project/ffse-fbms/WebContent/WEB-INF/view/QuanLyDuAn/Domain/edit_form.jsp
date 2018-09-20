@@ -19,13 +19,13 @@
 		</div>
 		<form:form method="POST" action="/ffse-fbms/qlda/domain/update"
 			modelAttribute="domain">
-			<div class="form-group col-sm-6">
+			<%-- <div class="form-group col-sm-6">
 				<label>Mã Nghiệp Vụ</label>
 				<form:input class="form-control" path="maNghiepVu"
 					placeholder="Mã nghiệp vụ " />
-				<%--  <form:errors path="makh" cssStyle="color: red"></form:errors>--%>
+				 <form:errors path="makh" cssStyle="color: red"></form:errors>
 
-			</div>
+			</div> --%>
 			<div class="form-group col-sm-6">
 				<label>Tên Nghiệp Vụ</label>
 				<form:input class="form-control" path="tenNghiepVu"

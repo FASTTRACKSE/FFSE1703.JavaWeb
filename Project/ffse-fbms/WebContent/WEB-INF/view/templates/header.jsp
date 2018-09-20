@@ -296,8 +296,8 @@
 				<li class=" nav-item"><a href="#"><i class="ft-layers"></i><span
 						class="menu-title" data-i18n="">DANH MỤC</span></a>
 					<ul class="menu-content">
-						<li><a class="menu-item" href="#">Khách hàng</a></li>
-						<li><a class="menu-item" href="#">Domain</a></li>
+						<li><a class="menu-item" href="<c:url value="/qlda/khachhang/list"/>">Khách hàng</a></li>
+						<li><a class="menu-item" href="<c:url value="/qlda/domain/list"/>">Domain</a></li>
 						<li><a class="menu-item" href="#">Framework</a></li>
 						<li><a class="menu-item" href="#">Technica</a></li>
 						<li><a class="menu-item" href="#">Programming Language</a></li>

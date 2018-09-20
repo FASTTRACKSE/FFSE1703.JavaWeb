@@ -32,7 +32,7 @@ public class KhachHangTeam1DaoImpl implements KhachHangTeam1Dao{
 	@SuppressWarnings("unchecked")
 	public List<KhachHangTeam1> getAll() {
 		Session session = sessionFactory.getCurrentSession();
-		List<KhachHangTeam1> list = session.createQuery("FROM KhachHang where is_delete=0 ").getResultList();
+		List<KhachHangTeam1> list = session.createQuery("FROM KhachHangTeam1 where is_delete=0 ").getResultList();
 		return list;
 	}
 

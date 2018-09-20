@@ -11,7 +11,6 @@ public class TrangThaiController {
 //	@Autowired
 //	private DanhMucService serviceDM;
 	
-	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String viewTrangThai(Model model) {
 		return "TranDuc-QuanLyTaiLieu/TrangThai/TrangThaiList";

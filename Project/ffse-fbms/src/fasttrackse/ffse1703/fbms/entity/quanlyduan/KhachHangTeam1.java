@@ -1,5 +1,4 @@
-package fasttrackse.ffse1703.fbms.entity.QuanLyDuAn;
-
+package fasttrackse.ffse1703.fbms.entity.quanlyduan;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -7,16 +6,16 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Table(name = "doi_tac")
-public class VendorTeam1 {
+@Table(name = "khach_hang")
+public class KhachHangTeam1 {
 	@Id
+	@Column(name = "ma_khach_hang")
 	@NotEmpty
-	@Column(name = "ma_doi_tac")
-	 String mavd;
+	 String makh;
 	
-	@Column(name = "ten_doi_tac")
+	@Column(name = "ten_khach_hang")
 	@NotEmpty
-	 String tenvd;
+	 String tenkh;
 	
 	@Column(name = "dia_chi")
 	@NotEmpty
@@ -29,71 +28,60 @@ public class VendorTeam1 {
 	@Column(name = "email")
 	@NotEmpty
 	 String email;
-
 	
 	@Column(name = "is_delete")
+	String is_delete;
 	
-	 int isDelete;
-
-
-	public String getMavd() {
-		return mavd;
+	public String getIs_delete() {
+		return is_delete;
 	}
 
-
-	public void setMavd(String mavd) {
-		this.mavd = mavd;
+	public void setIs_delete(String is_delete) {
+		this.is_delete = is_delete;
 	}
 
-
-	public String getTenvd() {
-		return tenvd;
+	public KhachHangTeam1() {
+		
 	}
 
-
-	public void setTenvd(String tenvd) {
-		this.tenvd = tenvd;
+	public String getMakh() {
+		return makh;
 	}
 
+	public void setMakh(String makh) {
+		this.makh = makh;
+	}
+
+	public String getTenkh() {
+		return tenkh;
+	}
+
+	public void setTenkh(String tenkh) {
+		this.tenkh = tenkh;
+	}
 
 	public String getDiachi() {
 		return diachi;
 	}
 
-
 	public void setDiachi(String diachi) {
 		this.diachi = diachi;
 	}
-
 
 	public String getSdt() {
 		return sdt;
 	}
 
-
 	public void setSdt(String sdt) {
 		this.sdt = sdt;
 	}
-
 
 	public String getEmail() {
 		return email;
 	}
 
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-
-	public int getIs_delete() {
-		return isDelete;
-	}
-
-
-	public void setIs_delete(int is_delete) {
-		this.isDelete = is_delete;
-	}
-	
 
 }

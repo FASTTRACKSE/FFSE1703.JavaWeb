@@ -7,7 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import fasttrackse.ffse1703.fbms.entity.QuanLyDuAn.DomainTeam1;
+import fasttrackse.ffse1703.fbms.entity.quanlyduan.DomainTeam1;
 
 @Repository
 public class DomainTeam1DaoImpl implements DomainTeam1Dao{

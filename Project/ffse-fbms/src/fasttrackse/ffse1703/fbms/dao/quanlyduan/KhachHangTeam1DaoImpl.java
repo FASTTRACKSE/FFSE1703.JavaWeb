@@ -6,7 +6,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import fasttrackse.ffse1703.fbms.entity.QuanLyDuAn.KhachHangTeam1;
+import fasttrackse.ffse1703.fbms.entity.quanlyduan.KhachHangTeam1;
 
 @Repository
 public class KhachHangTeam1DaoImpl implements KhachHangTeam1Dao{

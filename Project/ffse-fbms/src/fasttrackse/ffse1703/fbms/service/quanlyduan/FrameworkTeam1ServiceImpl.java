@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import fasttrackse.ffse1703.fbms.dao.quanlyduan.FrameworkTeam1Dao;
-import fasttrackse.ffse1703.fbms.entity.QuanLyDuAn.FrameworkTeam1;
+import fasttrackse.ffse1703.fbms.entity.quanlyduan.FrameworkTeam1;
 @Service
 public class FrameworkTeam1ServiceImpl implements FrameworkTeam1Service {
 	@Autowired 

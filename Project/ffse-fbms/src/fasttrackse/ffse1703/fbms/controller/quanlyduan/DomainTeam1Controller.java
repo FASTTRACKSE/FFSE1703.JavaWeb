@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import fasttrackse.ffse1703.fbms.entity.QuanLyDuAn.DomainTeam1;
+
+import fasttrackse.ffse1703.fbms.entity.quanlyduan.DomainTeam1;
 import fasttrackse.ffse1703.fbms.service.quanlyduan.DomainTeam1Service;
 @Controller
 @RequestMapping("/qlda/domain")

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import fasttrackse.ffse1703.fbms.dao.quanlyduan.KhachHangTeam1Dao;
-import fasttrackse.ffse1703.fbms.entity.QuanLyDuAn.KhachHangTeam1;
+import fasttrackse.ffse1703.fbms.entity.quanlyduan.KhachHangTeam1;
 @Service
 public class KhachHangTeam1ServiceImpl implements KhachHangTeam1Service {
 	@Autowired

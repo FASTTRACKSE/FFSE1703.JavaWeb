@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import fasttrackse.ffse1703.fbms.entity.QuanLyDuAn.DatabaseTeam1;
+import fasttrackse.ffse1703.fbms.entity.quanlyduan.DatabaseTeam1;
 import fasttrackse.ffse1703.fbms.service.quanlyduan.DatabaseTeam1Service;
 
 @Controller

@@ -33,14 +33,22 @@
 									<div class="card-body" style="margin: 1em">
 										<form:form cssClass="form form-horizontal form-bordered"
 											method="POST">
+											<form:hidden path="id" />
+											
+											<form:hidden path="nhanVien" />
 											<div class="form-body">
 												<h4 class="form-section">
 													<i class="ft-user"></i> Bản đánh giá
 												</h4>
 												<div class="form-group row">
-													<input type="hidden" value=""> <label
-														class="col-md-3 label-control"> Kỷ luật công việc
-													</label>
+													<label class="col-md-3 label-control">Nhân viên </label>
+													<div class="col-md-9">
+														<h3><form:label path="nhanVien" /></h3>
+													</div>
+												</div>
+												<div class="form-group row">
+													<label class="col-md-3 label-control"> Kỷ luật công
+														việc </label>
 													<div class="col-md-9">
 														<form:select cssClass="form-control" path="xepLoai">
 															<form:option value="1">1 Sao</form:option>
@@ -129,7 +137,8 @@
 												</div>
 											</div>
 											<div class="form-actions">
-												<a href="<c:url value="/quantridanhgia/truongphongdanhgia/"/>"
+												<a
+													href="<c:url value="/quantridanhgia/truongphongdanhgia/"/>"
 													class="btn btn-danger btn-min-width mr-1 mb-1">Trở về</a>
 												<button type="submit"
 													formaction="<c:url value="/quantridanhgia/truongphongdanhgia/drafts"/>"

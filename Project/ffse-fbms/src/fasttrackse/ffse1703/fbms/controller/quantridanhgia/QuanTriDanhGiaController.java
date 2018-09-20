@@ -41,12 +41,13 @@ public class QuanTriDanhGiaController {
 		model.addAttribute("command", new TruongPhongDanhGia());
 		return "QuanTriDanhGia/nhanvien/danhgiacuatruongphong";
 	}
-	@RequestMapping("/truongphongdanhgia")
+	@RequestMapping("/truongphongdanhgia/home")
 	private String showListDanhGia(Model model) {
 		return "QuanTriDanhGia/truongphong/danhgianhanvien";
 	}
-	@RequestMapping("/truongphongdanhgia/showform")
+	@RequestMapping("/truongphongdanhgia/danhgia")
 	private String showFormDanhGia(Model model) {
+		model.addAttribute("command", new TruongPhongDanhGia());
 		return "QuanTriDanhGia/truongphong/formdanhgianhanvien";
 	}
 }

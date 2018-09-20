@@ -105,12 +105,18 @@
 														</div>
 													</div>
 												</div>
-												<c:if test="${command.isDelete == 1 }">
-													<div class="form-actions">
-														<a href="<c:url value="/quantridanhgia/tudanhgia/showform"/>"
+
+												<div class="form-actions">
+													<a
+														href="<c:url value="/quantridanhgia/home/"/>"
+														class="btn btn-danger btn-min-width mr-1 mb-1">Trở về</a>
+													<c:if test="${command.isDelete == 1 }">
+														<a
+															href="<c:url value="/quantridanhgia/tudanhgia/showform"/>"
 															class="btn btn-success">Cập nhật</a>
-													</div>
-												</c:if>
+													</c:if>
+												</div>
+
 											</form:form>
 										</div>
 									</div>

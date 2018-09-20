@@ -45,9 +45,9 @@
 									<thead class="thead-dark">
 										<tr>
 											<th scope="col">#</th>
-											<th scope="col">First Name</th>
-											<th scope="col">Last Name</th>
-											<th scope="col">Username</th>
+											<th scope="col">Nhân viên</th>
+											<th scope="col">Xếp loại</th>
+											<th scope="col">Hoạt động</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -55,7 +55,12 @@
 											<th scope="row">1</th>
 											<td>Mark</td>
 											<td>Otto</td>
-											<td>@mdo</td>
+											<td>
+											<a class="btn btn-info" href="<c:url value = "/quantridanhgia/danhgianhanvien/view" />">Xem</a>
+												<c:if test="${command.trangThai == 1 }">
+													<a></a>
+												</c:if>
+											</td>
 										</tr>
 									</tbody>
 								</table>

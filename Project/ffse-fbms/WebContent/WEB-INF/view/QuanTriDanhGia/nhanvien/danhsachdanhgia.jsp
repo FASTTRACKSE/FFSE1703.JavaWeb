@@ -8,14 +8,14 @@
 	<div class="content-wrapper">
 		<div class="content-header row">
 			<div class="content-header-left col-md-9 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">Đánh giá nhân viên</h3>
+				<h3 class="content-header-title mb-0">Danh sách đánh giá</h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a
 								href="<c:url value = "/quantridanhgia/home/"/>">Quản trị
 									đánh giá</a></li>
-							<li class="breadcrumb-item active">Đánh giá nhân viên</li>
+							<li class="breadcrumb-item active">Danh sách đánh giá</li>
 						</ol>
 					</div>
 				</div>
@@ -24,7 +24,7 @@
 		<div class="row">
 			<div class="card">
 				<div class="card-header">
-					<h4 class="card-title">Danh sách nhân viên cần đánh giá</h4>
+					<h4 class="card-title">Danh sách nhân viên đánh giá</h4>
 				</div>
 				<div class="card-content">
 					<div class="card-body" style="margin: 1em">
@@ -33,9 +33,9 @@
 								<thead class="thead-dark">
 									<tr>
 										<th scope="col">#</th>
-										<th scope="col">First Name</th>
-										<th scope="col">Last Name</th>
-										<th scope="col">Username</th>
+										<th scope="col">Bản đánh giá</th>
+										<th scope="col">Xếp loại</th>
+										<th scope="col">Hành động</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -43,7 +43,7 @@
 										<th scope="row">1</th>
 										<td>Mark</td>
 										<td>Otto</td>
-										<td>@mdo</td>
+										<td><a class="btn btn-info">Xem</a></td>
 									</tr>
 								</tbody>
 							</table>

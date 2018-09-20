@@ -21,7 +21,7 @@
 			modelAttribute="domain">
 			<div class="form-group col-sm-6">
 				<label>Mã Nghiệp Vụ</label>
-				<form:input class="form-control" path="maNghiepVu"
+				<form:input class="form-control" path="maNghiepVu" readonly = "true"
 					placeholder="Mã nghiệp vụ " />
 				<%--  <form:errors path="makh" cssStyle="color: red"></form:errors>--%>
 

@@ -20,7 +20,7 @@
 		<form:form method="POST" action="/ffse-fbms/qlda/khachhang/update/" modelAttribute="khachhang">
 			<div class="form-group col-sm-6"> 
 				<label>Mã Khách Hàng</label>
-				<form:input class="form-control" path="makh"
+				<form:input class="form-control" path="makh" readonly = "true"
 					placeholder="Mã khách hàng " />
 				<%--  <form:errors path="makh" cssStyle="color: red"></form:errors>--%>
 

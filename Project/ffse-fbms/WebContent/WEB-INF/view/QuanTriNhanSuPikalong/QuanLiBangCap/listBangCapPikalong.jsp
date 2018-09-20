@@ -31,8 +31,11 @@
 										<td>${bangcap.xepLoai}</td>
 										<td>${bangcap.noiCap}</td>
 										<td>${bangcap.ngayCap}</td>
-										<td><a href='<c:url value = "/QuanTriNhanSuPikalong/QuanLiBangCap/edit/${bangcap.id}"></c:url>' class="btn btn-danger">Edit</a>
-											<a href='<c:url value = "/QuanTriNhanSuPikalong/QuanLiBangCap/remove/${bangcap.id}"></c:url>' class="btn btn-primary"
+										<td><a
+											href='<c:url value = "/QuanTriNhanSuPikalong/QuanLiBangCap/edit/${bangcap.id}"></c:url>'
+											class="btn btn-danger">Edit</a> <a
+											href='<c:url value = "/QuanTriNhanSuPikalong/QuanLiBangCap/remove/${bangcap.id}"></c:url>'
+											class="btn btn-primary"
 											onclick="return confirm('Bạn có muốn xóa sinh viên này?');">Delete</a></td>
 									</tr>
 								</c:forEach>
@@ -40,28 +43,33 @@
 						</table>
 						<p style="color: red">Page ${page}</p>
 						<div class="dataTables_paginate paging_simple_numbers">
-						
-						<ul class="pagination">
-							<c:if test="${page > 1}">
-								<li class="paginate_button page-item "><a class="page-link"
-									href="/ffse-fbms/QuanTriNhanSuPikalong/QuanLiBangCap/listBangCapPikalong/1">Trang
-										Đầu</a></li>
-								<li class="paginate_button page-item "><a class="page-link"
-									href="/ffse-fbms/QuanTriNhanSuPikalong/QuanLiBangCap/listBangCapPikalong/${page-1}">${page-1}</a></li>
-							</c:if>
-							<li class="paginate_button page-item active"><a class="page-link" style="color: white;" href="">${page}</a></li>
-							<c:if test="${page < total}">
-								<li class="paginate_button page-item "><a class="page-link"
-									href="/ffse-fbms/QuanTriNhanSuPikalong/QuanLiBangCap/listBangCapPikalong/${page+1}">${page+1}</a></li>
-								<li class="paginate_button page-item "><a class="page-link"
-									href="/ffse-fbms/QuanTriNhanSuPikalong/QuanLiBangCap/listBangCapPikalong/${total}">Trang
-										Cuối</a></li>
-							</c:if>
+
+							<ul class="pagination">
+								<c:if test="${page > 1}">
+									<li class="paginate_button page-item "><a
+										class="page-link"
+										href="/ffse-fbms/QuanTriNhanSuPikalong/QuanLiBangCap/listBangCapPikalong/1">Trang
+											Đầu</a></li>
+									<li class="paginate_button page-item "><a
+										class="page-link"
+										href="/ffse-fbms/QuanTriNhanSuPikalong/QuanLiBangCap/listBangCapPikalong/${page-1}">${page-1}</a></li>
+								</c:if>
+								<li class="paginate_button page-item active"><a
+									class="page-link" style="color: white;" href="">${page}</a></li>
+								<c:if test="${page < total}">
+									<li class="paginate_button page-item "><a
+										class="page-link"
+										href="/ffse-fbms/QuanTriNhanSuPikalong/QuanLiBangCap/listBangCapPikalong/${page+1}">${page+1}</a></li>
+									<li class="paginate_button page-item "><a
+										class="page-link"
+										href="/ffse-fbms/QuanTriNhanSuPikalong/QuanLiBangCap/listBangCapPikalong/${total}">Trang
+											Cuối</a></li>
+								</c:if>
 							</ul>
-							</div>
+						</div>
 					</div>
 					<a href="/ffse-fbms/QuanTriNhanSuPikalong/QuanLiBangCap/addBangCap"
-						class="btn btn-success btnSpace">Thêm Bằng Cấp</a>
+						class="btn btn-success">Thêm Bằng Cấp</a>
 				</div>
 			</div>
 		</div>

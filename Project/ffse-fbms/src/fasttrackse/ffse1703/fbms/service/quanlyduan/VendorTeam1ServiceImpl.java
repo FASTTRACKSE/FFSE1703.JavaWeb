@@ -1,4 +1,4 @@
-package fasttrackse.ffse1703.fbms.service.quanlyduan;
+package fasttrackse.ffse1703.fbms.service.QuanLyDuAn;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import fasttrackse.ffse1703.fbms.dao.quanlyduan.VendorTeam1Dao;
+import fasttrackse.ffse1703.fbms.dao.QuanLyDuAn.VendorTeam1Dao;
 import fasttrackse.ffse1703.fbms.entity.QuanLyDuAn.VendorTeam1;
 @Service
 public class VendorTeam1ServiceImpl implements VendorTeam1Service{

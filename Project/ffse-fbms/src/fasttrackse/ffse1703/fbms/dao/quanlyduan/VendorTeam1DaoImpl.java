@@ -1,4 +1,4 @@
-package fasttrackse.ffse1703.fbms.dao.quanlyduan;
+package fasttrackse.ffse1703.fbms.dao.QuanLyDuAn;
 
 import java.util.List;
 

@@ -48,7 +48,7 @@
 							<tr>
 								
 								<th style="text-align: center">Mã Framework</th>
-								<th style="width: 60%; text-align: center">Tên Framework</th>
+								<th style=" text-align: center">Tên Framework</th>
 								<th style="text-align: center">Chức năng</th>
 							</tr>
 						</thead>

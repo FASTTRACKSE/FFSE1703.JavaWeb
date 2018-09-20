@@ -84,8 +84,8 @@ public class HoSoNhanVienPikalongController {
 	}
 	
 	
-	@RequestMapping(value= "selectquan/{maThanhPho}", method= RequestMethod.GET)
-	@ResponseBody // khi return ko trả về trang jsp mà trả về code html
+	@RequestMapping(value= "selectquan/{maThanhPho}", method= RequestMethod.GET, produces= "text/plain;charset=UTF-8")
+	@ResponseBody // khi return ko tráº£ vá»� trang jsp mÃ  tráº£ vá»� code html
 	public String selectQuan(@PathVariable String maThanhPho) {
 		List<QuanHuyenPikalong> listQuanHuyen =  quanHuyenPikalongService.listQuanHuyen(maThanhPho);
 		
@@ -105,8 +105,8 @@ public class HoSoNhanVienPikalongController {
 		
 	}
 	
-	@RequestMapping(value= "selectphuong/{maQuanHuyen}", method= RequestMethod.GET)
-	@ResponseBody // khi return ko trả về trang jsp mà trả về code html
+	@RequestMapping(value= "selectphuong/{maQuanHuyen}", method= RequestMethod.GET,  produces= "text/plain;charset=UTF-8")
+	@ResponseBody // khi return ko tráº£ vá»� trang jsp mÃ  tráº£ vá»� code html
 	public String selectPhuong(@PathVariable String maQuanHuyen) {
 		List<PhuongPikalong> listPhuong= phuongPikalongService.listPhuong(maQuanHuyen);
 		

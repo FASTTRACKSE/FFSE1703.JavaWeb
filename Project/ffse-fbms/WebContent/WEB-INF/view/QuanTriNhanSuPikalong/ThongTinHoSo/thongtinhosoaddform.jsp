@@ -116,7 +116,7 @@
                           <label for="thanhPhoId">Thành Phố</label>
                           <form:select path="thanhPho" type="text" id="thanhPhoId" class="form-control"
                           				name="thanhPhoSelect" onchange="clickComboboxThanhPho()">
-                          		<option value="noThanhPho" selected >Chọn thành phố</option>
+                          		<option value="noThanhPho" selected="selected" >Chọn thành phố</option>
     								<c:forEach items="${listThanhPho}" var="x">
                               			<option value="${x.maTinhThanh}" >${x.tenTinhThanh}</option>
                               		</c:forEach>						
@@ -126,7 +126,7 @@
                           <label for="quanHuyenId">Quận huyện</label>
                           <form:select path="quanHuyen" id="quanHuyenId"  name="quanHuyen" type="text" class="form-control" disabled="true"
                           			onchange="clickComboboxQuan()" >
-                          		 <option value="noQuanHuyen" selected >Chọn quận huyện</option>
+                          		 <option value="noQuanHuyen" selected="selected" >Chọn quận huyện</option>
                           </form:select>
                      
                           
@@ -135,7 +135,7 @@
                           <label for="phuongXaId">Phường xã</label>
                           <form:select path="phuongXa" type="text" id="phuongXaId" class="form-control"
                           name="phuongXaSelect" disabled="true">
-                          		<option value="noPhuonXa" selected>Chọn phường xã</option>
+                          		<option value="noPhuongXa" selected="selected">Chọn phường xã</option>
                           	
                           </form:select>
                         </div>
@@ -157,7 +157,7 @@
                           <label for="companyName">Chức danh</label>
                           <form:select path="maChucDanh" type="text" id="companyName" class="form-control" placeholder="Company Name"
                           name="chucDanhSelect">
-                          		<option value="none" selected="" >Chọn chức danh</option>
+                          		<option value="none" selected="selected" >Chọn chức danh</option>
                           	  <c:forEach items="${listChucDanh}" var="x">
                               	<option value="${x.maChucDanh}" >${x.tenChucDanh}</option>
                               </c:forEach>
@@ -182,6 +182,8 @@
                           <i class="ft-x"></i> Hủy
                         </button>
                         
+                        
+                        <!-- ajax select ThanhPho -->
                      <script type="text/javascript">
                      window.onload = function () { 
                     	 
@@ -190,12 +192,9 @@
                      function clickComboboxThanhPho(){
                     	 var maThanhPho = $("#thanhPhoId").val();
                     	 if(maThanhPho == 'noThanhPho'){  // nếu người dùng chưa chọn thành phố
-                    		 $('#quanHuyenId option').remove(); /* xóa những option quận huyện cũ */
-                    		 $('#quanHuyenId').append($('<option>', {
-                     		    value: 'noQuan',
-                     		    text: "Chọn Quận Huyện"
-                     		}));
                     		 $('#quanHuyenId').prop('disabled', true); /*disable combobox quận huyện */
+                    		 $('#phuongXaId option[value=noPhuongXa]').attr('selected', 'selected')
+                    		 $('#phuongXaId').prop('disabled', true);
                     		 
                     	 } else{                // nếu người dùng đã chọn thành phố
                     		
@@ -225,21 +224,19 @@
                      </script>
                      
                      <script type="text/javascript">
-         
+                     
+                     
+                     
+                     <!-- ajax select QuanHuyen -->
                      function clickComboboxQuan(){
                     	 var maQuanHuyen = $("#quanHuyenId").val();
-                    	 if(maQuanHuyen == 'noQuanHuyen'){  // nếu người dùng chưa chọn thành phố
-                    		 $('#phuongXaId option').remove(); /* xóa những option quận huyện cũ */
-                    		 $('#phuongXaId').append($('<option>', {
-                     		    value: 'noPhuonXa',
-                     		    text: "Chọn Phường Xã"
-                     		}));
+                    	 if(maQuanHuyen == 'noQuanHuyen'){  /* nếu người dùng chưa chọn thành phố */
                     		 $('#phuongXaId').prop('disabled', true); /*disable combobox quận huyện */
                     		 
-                    	 } else{                // nếu người dùng đã chọn thành phố
+                    	 } else{                /* nếu người dùng đã chọn thành phố*/
                     		
-                    		 $('#phuongXaId').prop('disabled', false); /*enable combobox quận huyện */
-                    		 $('#phuongXaId option').remove(); /* xóa những option quận huyện cũ */
+                    		 $('#phuongXaId').prop('disabled', false); // enable combobox quận huyện 
+                    		 $('#phuongXaId option').remove(); // xóa những option quận huyện cũ
                     	 }
                     	 
                          $.ajax({
@@ -247,6 +244,11 @@
                         	 dataType: "json",
                         	 success: function(data){
                         		/* alert("Hello! I am an alert box!"); */
+                        		
+                        		$('#phuongXaId').append($('<option>', {
+                             		    value: 'noPhuongXa',	
+                             		    text: 'Chọn phường xã'
+                             		}));
                         		
                         		for (var i = 0; i < data.length; i++) {
                         			$('#phuongXaId').append($('<option>', {

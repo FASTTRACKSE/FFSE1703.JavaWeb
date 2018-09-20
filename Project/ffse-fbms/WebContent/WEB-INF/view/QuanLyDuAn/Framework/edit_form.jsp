@@ -31,7 +31,7 @@
 				</h1>
 			</div>
 		</div>
-		<form:form method="POST" action="/ffse-fbms/qlda/Database/update"
+		<form:form method="POST" action="/ffse-fbms/qlda/Framework/update"
 			modelAttribute="framework">
 
 

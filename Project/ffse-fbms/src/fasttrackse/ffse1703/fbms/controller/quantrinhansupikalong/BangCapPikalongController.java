@@ -83,6 +83,7 @@ public class BangCapPikalongController {
 		return "redirect:/QuanTriNhanSuPikalong/QuanLiBangCap/listBangCapPikalong";
 
 	}
+	
 
 	@RequestMapping("/edit/{maNV}")
 	public String showFormUpdate(@PathVariable("maNV") int id, Model model) throws IllegalStateException, IOException {

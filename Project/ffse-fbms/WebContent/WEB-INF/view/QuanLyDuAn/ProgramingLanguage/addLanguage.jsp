@@ -17,21 +17,21 @@
 				</h1>
 			</div>
 		</div>
-		<form:form method="POST" action="/ffse-fbms/QuanLyDuAn/Languege/creat"> 
-			<div class="form-group col-sm-6">
+		<form:form method="POST" action="/ffse-fbms/QuanLyDuAn/Language/creat" modelAttribute="language"> 
+			<div class="form-group col-sm-6" >
 				<input type="hidden" name="${_csrf.parameterName}"
 					value="${_csrf.token}" />
 					 <label>Mã Ngôn Ngữ</label>
 				<form:input class="form-control" path="maNn" 
 					placeholder="Mã Ngôn Ngữ" />
-				<%--  <form:errors path="mavd" cssStyle="color: red"></form:errors> --%>
+				<%--  <form:errors path="maNn" cssStyle="color: red"></form:errors> --%>
 
 			</div>
 			<div class="form-group col-sm-6">
 				<label>Tên Ngôn Ngữ</label>
 				<form:input class="form-control" path="tenNn"
 					placeholder="Tên Ngôn Ngữ " />
-			<!-- 	<form:errors path="tenvd" cssStyle="color: red"></form:errors> -->
+			<!-- 	<form:errors path="tenNn" cssStyle="color: red"></form:errors> -->
 			</div>
 
 			<div class="col-sm-12 text-center">

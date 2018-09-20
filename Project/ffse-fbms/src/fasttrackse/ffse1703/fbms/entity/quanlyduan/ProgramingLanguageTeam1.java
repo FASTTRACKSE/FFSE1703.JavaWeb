@@ -19,8 +19,7 @@ public class ProgramingLanguageTeam1 {
 	 String tenNn;
 	
 	@Column(name = "is_delete")
-	@NotEmpty
-	 String isDelete;
+	 int isDelete;
 
 	public String getMaNn() {
 		return maNn;
@@ -38,11 +37,11 @@ public class ProgramingLanguageTeam1 {
 		this.tenNn = tenNn;
 	}
 
-	public String getIsDelete() {
+	public int getIsDelete() {
 		return isDelete;
 	}
 
-	public void setIsDelete(String isDelete) {
+	public void setIsDelete(int isDelete) {
 		this.isDelete = isDelete;
 	}
 	

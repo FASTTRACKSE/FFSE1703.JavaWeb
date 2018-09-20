@@ -59,7 +59,7 @@
 						<tbody>
 							<c:forEach var="khachHang" items="${listKhachHang}">
 								<tr>
-									<td style="text-align: left">${khachHang.id}</td>
+									<td style="text-align: left">${khachHang.idKhachHang}</td>
 									<td style="text-align: left">${khachHang.fullname}</td>
 									<td style="text-align: left">${khachHang.email}</td>
 									<td style="text-align: left">${khachHang.phone}</td>
@@ -69,12 +69,12 @@
 									<td><a
 										style="width: 50px; high: 50px; border-color: #00E5EE; border-radius: 100%;"
 										class="btn btn-outline-info "
-										href="<c:url value="/mvpquanliduan/khachhang/show-form-edit/${khachhang.id }" />"
+										href="<c:url value="/mvpquanliduan/khachhang/show-form-edit/${khachhang.idKhachHang }" />"
 										title=""><i class="ft-edit"></i></a> <a
 										onclick=" if(!confirm('Bạn muốn xóa nghiệp vụ này?')){return false;}"
 										style="width: 50px; high: 50px; border-color: #FF6A6A; border-radius: 100%;"
 										class="btn btn-outline-danger "
-										href="<c:url value="/mvpquanliduan/khachhang/delete/${khachhang.id }" />"
+										href="<c:url value="/mvpquanliduan/khachhang/delete/${khachhang.idKhachHang }" />"
 										title=""><i class="ft-delete"></i></a>
 								</tr>
 

@@ -1,4 +1,4 @@
-package fasttrackse.ffse1703.fbms.entity.mvpquanliduan;
+	package fasttrackse.ffse1703.fbms.entity.mvpquanliduan;
 
 
 import javax.persistence.Column;
@@ -18,7 +18,7 @@ public class KhachHang {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_customer", unique = true, nullable = false)
-	private int id;
+	private int idKhachHang;
 	
 	private String fullname;
 	
@@ -32,11 +32,13 @@ public class KhachHang {
 
 	private String address;
 	private int status;
-	public int getId() {
-		return id;
+
+
+	public int getIdKhachHang() {
+		return idKhachHang;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setIdKhachHang(int idKhachHang) {
+		this.idKhachHang = idKhachHang;
 	}
 	public String getFullname() {
 		return fullname;

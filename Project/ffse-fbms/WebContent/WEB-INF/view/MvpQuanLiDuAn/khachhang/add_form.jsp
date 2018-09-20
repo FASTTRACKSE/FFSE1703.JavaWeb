@@ -26,7 +26,7 @@
 		<div class="content-body">
 			<div class="main-content">
 				<div class="row">
-					<form:form method="POST"  action="addnew" modelAttribute="khachHang">
+					<form:form method="POST"  action="addnew" >
 						<div class="form-group col-sm-6">
 						  	<label>Tên khách hàng</label>
 						  	<form:input class="form-control" path="fullname" placeholder="Tên khách hàng" />

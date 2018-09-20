@@ -48,6 +48,7 @@
                           </div>
                           <div class="form-group col-md-6 mb-2">
                             <label for="projectinput7">Nhà cung cấp</label><br>
+                            <p Class="error" >	</p>
                             <form:errors path="nameVendor" cssClass="error" />
                             <form:input class="form-control round" path="nameVendor" placeholder="Nhà cung cấp" />
                           </div>

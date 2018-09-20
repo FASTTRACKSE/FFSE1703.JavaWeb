@@ -19,7 +19,7 @@
 							<div>
 								<div>
 									<div class="row">
-										<form:form method="post" action="/ffse-fbms/QuanTriNhanSuPikalong/QuanLiBangCap/save" class="form-horizontal">
+										<form:form method="post" action="save" class="form-horizontal">
 											<div class="col-xl-4 col-lg-6 col-md-12 mb-1">
 												<div class="form-group">
 													<label for="roundText">Chuyên Ngành</label>
@@ -51,7 +51,7 @@
 												<div class="form-group">
 													<label for="roundText">Mã Nhân Viên</label>
 													<form:input path="maNV" type="text"
-														class="form-control round" readonly="true" />
+														class="form-control round" disabled="true" />
 												</div>
 											</div>
 											<div class="col-xl-4 col-lg-6 col-md-12 mb-1">

@@ -1,4 +1,4 @@
-package fasttrackse.ffse1703.fbms.dao.QuanLyDuAn;
+package fasttrackse.ffse1703.fbms.dao.quanlyduan;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 
-import fasttrackse.ffse1703.fbms.entity.QuanLyDuAn.VendorTeam1;
+import fasttrackse.ffse1703.fbms.entity.quanlyduan.VendorTeam1;
 
 @Repository
 public class VendorTeam1DaoImpl implements VendorTeam1Dao{

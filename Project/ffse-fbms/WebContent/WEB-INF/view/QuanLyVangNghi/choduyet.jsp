@@ -94,47 +94,7 @@ td {
 													<th>Duyệt Đợt 2</em></th>
 												</tr>
 											</thead>
-											<tbody>
-												<tr class="ok">
-													<td></td>
-													<td>Djelal Eddine</td>
-													<td>Algeria</td>
-													<td>djelaleddine@gmail.com</td>
-													<td>djelaleddine@gmail.com</td>
-													<td>djelaleddine@gmail.com</td>
-													<td>djelaleddine@gmail.com</td>
-													<td align="center"><a href="#" class="btn btn-primary"
-														title="Edit"><i class="fa fa-pencil"></i></a></td>
-													<td align="center"><a href="#" class="btn btn-primary"
-														title="Edit"><i class="fa fa-pencil"></i></a></td>
-												</tr>
-												<tr class="ban">
-													<td></td>
-													<td>Moh Aymen</td>
-													<td>Algeria</td>
-													<td>email@gmail.com</td>
-													<td>djelaleddine@gmail.com</td>
-													<td>djelaleddine@gmail.com</td>
-													<td>djelaleddine@gmail.com</td>
-													<td align="center"><a href="#" class="btn btn-primary"
-														title="Edit"><i class="fa fa-pencil"></i></a></td>
-													<td align="center"><a href="#" class="btn btn-primary"
-														title="Edit"><i class="fa fa-pencil"></i></a></td>
-												</tr>
-												<tr class="new">
-													<td></td>
-													<td>Dia ElHak</td>
-													<td>Tunisia</td>
-													<td>email@gmail.com</td>
-													<td>djelaleddine@gmail.com</td>
-													<td>djelaleddine@gmail.com</td>
-													<td>djelaleddine@gmail.com</td>
-													<td align="center"><a href="#" class="btn btn-primary"
-														title="Edit"><i class="fa fa-pencil"></i></a></td>
-													<td align="center"><a href="#" class="btn btn-primary"
-														title="Edit"><i class="fa fa-pencil"></i></a></td>
-												</tr>
-											</tbody>
+											
 										</table>
 									</div>
 									<!-- END id="list" -->

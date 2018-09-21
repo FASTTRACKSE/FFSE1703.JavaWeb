@@ -73,12 +73,12 @@ public class QLyNhiemVuDaoImpl implements QLyNhiemVuDao {
 	}
 	@Override
 	public List<LoaicongviecEntity> congViec() {
-		Session session = sessionFactory.getCurrentSession();
-		CriteriaBuilder cv = session.getCriteriaBuilder();
-		CriteriaQuery<LoaicongviecEntity> cq = cv.createQuery(LoaicongviecEntity.class);
-		Root<LoaicongviecEntity> root = cq.from(LoaicongviecEntity.class);
-		cq.select(root);
-		Query<LoaicongviecEntity> query = session.createQuery(cq);
+		Session session1 = sessionFactory.getCurrentSession();
+		CriteriaBuilder cv1 = session1.getCriteriaBuilder();
+		CriteriaQuery<LoaicongviecEntity> cq1 = cv1.createQuery(LoaicongviecEntity.class);
+		Root<LoaicongviecEntity> root1 = cq1.from(LoaicongviecEntity.class);
+		cq1.select(root1);
+		Query<LoaicongviecEntity> query = session1.createQuery(cq1);
 		return query.getResultList();
 	}
 	

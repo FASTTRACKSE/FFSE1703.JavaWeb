@@ -1,7 +1,7 @@
 package fasttrackse.ffse1703.fbms.controller.qlynhiemvuhieulp;
 
 import java.io.IOException;
-import java.util.List;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import fasttrackse.ffse1703.fbms.entity.qlynhiemvuhieulp.LoaitrangthaiEntity;
 import fasttrackse.ffse1703.fbms.entity.qlynhiemvuhieulp.QLyNhiemVuEntity;
-import fasttrackse.ffse1703.fbms.entity.quanlyduan.DatabaseTeam1;
 import fasttrackse.ffse1703.fbms.service.qlynhiemvuhieulp.QLyNhiemVuService;
 
 @Controller
@@ -67,6 +66,8 @@ public class QLyNhiemVuController {
 	@RequestMapping(value = "/edit/{id}")
 	public String edit_view(@PathVariable("id") int id, Model model) {
 		model.addAttribute("edit", qLyNhiemVuService.findById(id));
+		model.addAttribute("trangthai", qLyNhiemVuService.trangThai());
+		model.addAttribute("congviec", qLyNhiemVuService.congViec());
 		return "/QuanLyNhiemVuHieuLP/edit";
 	}
 

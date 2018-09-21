@@ -6,7 +6,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "loai_cong_viec")
@@ -23,7 +22,6 @@ public class LoaicongviecEntity {
 	
 	
 	@Column(name = "loai_cong_viec")
-	@NotEmpty
 	private String loaiCongviec;
 
 

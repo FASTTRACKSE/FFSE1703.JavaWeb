@@ -36,21 +36,28 @@
 						</div>
 						
 						<div class="form-group col-sm-6">
-							<label>Loại công việc</label>
-							<form:input class="form-control" path="loaiCongviec"
-								value="${nv.loaiCongviec}" />
-						</div>
-							<div class="form-group col-sm-6">
 							<label>Tên công việc</label>
 							<form:input class="form-control" path="tenCongviec"
 								value="${nv.tenCongviec}" />
 						</div>
-						<div class="form-group col-sm-6">
-							<label>Trạng thái</label>
-							<form:input class="form-control" path="loaiTrangthai"
-								value="${nv.loaiTrangthai}" />
+					<div class="form-group col-sm-6">
+						  	<label>Loại công việc</label>
+						 <form:select path="loaiCongviec" class="custom-select block round"
+								id="customSelect">
+								<c:forEach items="${congviec}" var="ld">
+									<form:option value="${ld.loaiCongviec}" label="${ld.loaiCongviec}" />
+								</c:forEach>
+							</form:select>
 						</div>
-
+						<div class="form-group col-sm-6">
+						  	<label>Trạng thái</label>
+						 <form:select path="loaiTrangthai" class="custom-select block round"
+								id="customSelect">
+								<c:forEach items="${trangthai}" var="ld">
+									<form:option value="${ld.loaiTrangthai}" label="${ld.loaiTrangthai}" />
+								</c:forEach>
+							</form:select>
+						</div>
 						<div class="form-group col-sm-6">
 							<label>Thời gian bắt đầu</label>
 							<form:input path="tgBatdau" value="${nv.tgBatdau}" type="date"

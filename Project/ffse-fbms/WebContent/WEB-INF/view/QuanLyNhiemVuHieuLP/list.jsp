@@ -114,10 +114,10 @@
 										class="table table-striped table-bordered dataex-res-constructor">
 										<thead>
 											<tr>
-											<th>STT</th>
+											    <th>STT</th>
+											    <th>Tên dự án</th>
+											    <th>Tên công việc</th>
 												<th>Loại công việc</th>
-												<th>Tên dự án</th>
-												<th>Tên công việc</th>
 												<th>Trạng thái</th>
 												<th>Người được phân công</th>
 												<th>Tùy chọn</th>
@@ -126,17 +126,17 @@
 										<tbody>
 										<c:forEach items="${danhsach}" var="nv" varStatus="stt">
 										<tr>
-										<td>${stt.count}</td>									
-										<td>${nv.loaiCongviec}</td>
-										<td>${nv.duAn}</td>
-										<td>${nv.tenCongviec} </td>
-										<td>${nv.loaiTrangthai}</td>
-										<td>${nv.nguoiDuocphancong}</td>
-										<td>
-											<a href="view/${nv.ID}"><button class="btn btn-default">Xem</button></a> 
-											<a href="edit/${nv.ID}"><button class="btn btn-success">Sửa</button></a> 
-											<a href="delete/${nv.ID}"><button class="btn btn-danger" onclick="return confirm('Bạn có muốn xóa công việc này?');">Xóa</button></a>
-										</td>
+										        <td>${stt.count}</td>	
+										        <td>${nv.duAn}</td>		
+										        <td>${nv.tenCongviec} </td>						
+										        <td>${nv.loaiCongviec}</td>
+										        <td>${nv.loaiTrangthai}</td>
+										        <td>${nv.nguoiDuocphancong}</td>
+												<td>
+													<a href="view/${nv.ID}"><button class="btn btn-default">Xem</button></a> 
+													<a href="edit/${nv.ID}"><button class="btn btn-success">Sửa</button></a> 
+													<a href="delete/${nv.ID}"><button class="btn btn-danger" onclick="return confirm('Bạn có muốn xóa công việc này?');">Xóa</button></a>
+												</td>
 												</tr>
 										</c:forEach>
 										</tbody>

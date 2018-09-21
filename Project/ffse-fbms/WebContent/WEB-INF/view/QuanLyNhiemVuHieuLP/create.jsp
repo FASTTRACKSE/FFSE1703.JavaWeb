@@ -14,7 +14,7 @@
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href='<c:url value="/home" />'>Home</a></li>
-							<li class="breadcrumb-item"><a href='<c:url value="/QuanTriHeThong/chuc_danh/" />'>Danh sách chức danh</a></li>
+							<li class="breadcrumb-item"><a href='<c:url value="/HieuLP/" />'>Danh sách nhiệm vụ</a></li>
 							<li class="breadcrumb-item active">Thêm mới nhiệm vụ</li>
 						</ol>
 					</div>
@@ -33,13 +33,12 @@
 						</div>
 						<div class="form-group col-sm-6">
 						  	<label>Loại công việc</label>
-						 <form:select path="loaiTrangthai" class="custom-select block round"
+						 <form:select path="loaiCongviec" class="custom-select block round"
 								id="customSelect">
 								<c:forEach items="${congviec}" var="ld">
-									<form:option value="${ld.ID}" label="${ld.loaiCongviec}" />
+									<form:option value="${ld.loaiCongviec}" label="${ld.loaiCongviec}" />
 								</c:forEach>
 							</form:select>
-						  	<form:errors path="loaiCongviec" cssClass="error" />
 						</div>
 						<div class="form-group col-sm-6">
 						  	<label>Tên công việc</label>
@@ -68,7 +67,7 @@
 						</div>
 						<div class="form-group col-sm-6">
 						  	<label>Thời gian dự kiến hoàn thành</label>
-						    <form:input path="tgDukienhoanthanh" type="date" id="issueinput3" class="form-control" />
+						   <form:input class="form-control" path="tgDukienhoanthanh" placeholder="Thời gian dự kiến hoàn thành	" />
 						  	<form:errors path="tgDukienhoanthanh" cssClass="error" />
 						</div>
 							<div class="form-group col-sm-6">

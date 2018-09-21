@@ -39,24 +39,19 @@
 			<div class="main-content">
 				<div class="row">
 					<form:form method="POST" action="addnew">
-						<div class="form-group col-sm-6">
-							<label>Mã Framework</label><br>
-							<p Class="error" >${messageMa}</p>
-							<form:errors path="idFrame" cssClass="error" />
-							<form:input path="idFrame" class="form-control round"
-								placeholder="Mã Framework" />
-							
-						</div>
+						
 						<div class="form-group col-sm-6">
 							<label>Tên Framework</label><br>
-							<p Class="error" >${messageName}</p>
-							<form:errors path="nameFramework" cssClass="error" />
+							<p Class="error">${messageName}</p>
+							<form:errors path="nameFramework" cssStyle="color: red"></form:errors>
 							<form:input path="nameFramework" class="form-control round"
 								placeholder="Tên Framework" />
-							
+
 						</div>
 						<div class="col-sm-12 text-center">
-							<button type="submit" class="btn btn-outline-success round btn-min-width mr-1 mb-1">Lưu </button>
+							<button type="submit"
+								class="btn btn-outline-success round btn-min-width mr-1 mb-1">Lưu
+							</button>
 						</div>
 					</form:form>
 				</div>

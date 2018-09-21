@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "cong_viec")
@@ -14,7 +15,7 @@ public class CongViec {
 	
 	@Id
 	@Column(name = "ID")
-	@NotEmpty
+	@NotNull
 	private int ID;
 
 	@Column(name = "ten_cong_viec")
@@ -54,7 +55,7 @@ public class CongViec {
 	private String duAn;
 	
 	@Column(name = "is_delete")
-	@NotEmpty
+	@NotNull
 	private int isDelete;
 	
 	@OneToMany(mappedBy = "congViec")

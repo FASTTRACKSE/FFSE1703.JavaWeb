@@ -97,7 +97,7 @@
 											<c:forEach items="${listHopDong}" var="hshd">
 												<tr>
 													<td>${hshd.maHopDong}</td>
-													<td>${hshd.hoSoNhanVien.maNhanVien}</td>
+													<td>${hshd.hoSoNhanVienTT.maNhanVien}</td>
 													<td>${hshd.loaiHopDong.tenHopDong}</td>
 													<td>${hshd.chucDanh.tenChucDanh}</td>
 													<td><c:if test="${hshd.luongThang13 == 1}">
@@ -118,7 +118,11 @@
 														style="letter-spacing: 5px; min-width: 75px; text-align: center !important;">
 														<a href="<c:url value = ""/>"><i class="fa fa-eye"></i></a>
 														<a href="<c:url value = "/quanlynhansutt/edit/${hshd.maHopDong}"/>"><i class="fa fa-pencil"></i></a>
-														<a href="<c:url value = ""/>"><i class="fa fa-trash"></i></a>
+														<%-- <a href="<c:url value = ""/>"><i class="fa fa-trash"></i></a> --%>
+														<a
+											href='<c:url value = "/quanlynhansutt/remove/${hshd.maHopDong}"></c:url>'
+											class="fa fa-trash"
+											onclick="return confirm('Bạn có muốn xóa sinh viên này?');"></a>
 														
 													</td> 
 												</tr>

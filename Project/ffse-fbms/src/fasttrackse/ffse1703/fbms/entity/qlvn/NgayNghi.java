@@ -12,10 +12,10 @@ import javax.persistence.Table;
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 @Entity
 @Table(name="ngay_nghi")
-public class NgayNgi {
+public class NgayNghi {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
+	@Column(name = "id_ngay_nghi")
     private int id;
 	
 	@ManyToOne

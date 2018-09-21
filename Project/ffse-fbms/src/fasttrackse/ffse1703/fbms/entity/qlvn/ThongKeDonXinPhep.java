@@ -9,16 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 
@@ -29,35 +22,33 @@ public class ThongKeDonXinPhep {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-    private int id;
-	
+	private int id;
+
 	@ManyToOne
 	@JoinColumn(name = "ma_nhan_vien")
 	private HoSoNhanVien maNhanVien;
-	
-	
+
 	@Column(name = "ngay_bat_dau")
 	private Date ngayBatDau;
-	
+
 	@Column(name = "ngay_ket_thuc")
 	private Date ngayKetThuc;
-	
-	
+
 	@Column(name = "so_ngay_nghi")
 	private int soNgayNghi;
 
 	@ManyToOne
 	@JoinColumn(name = "ly_do")
 	private LyDoXinNghi lyDo;
-	
+
 	@Column(name = "ghi_chu")
-	@NotEmpty(message="Không được để trống")
-	@Size(max=255)
+	@NotEmpty(message = "")
+	@Size(max = 255)
 	private String ghiChu;
-	
+
 	@Column(name = "ghi_chu_truong_phong")
 	private String ghiChuTruongPhong;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "trang_thai")
 	private TrangThai trangThai;
@@ -133,8 +124,5 @@ public class ThongKeDonXinPhep {
 	public void setTrangThai(TrangThai trangThai) {
 		this.trangThai = trangThai;
 	}
-	
 
-	
-	
 }

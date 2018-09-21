@@ -122,7 +122,7 @@ public class HoSoNhanVienTT implements Serializable {
 	private Integer trangThai;
 
 	// bi-directional many-to-one association to HopDong
-	@OneToMany(mappedBy = "hoSoNhanVien")
+	@OneToMany(mappedBy = "hoSoNhanVienTT")
 	private List<HopDongTT> hopDongs;
 
 	public HoSoNhanVienTT() {
@@ -295,10 +295,6 @@ public class HoSoNhanVienTT implements Serializable {
 
 	public void setHopDongs(List<HopDongTT> hopDongs) {
 		this.hopDongs = hopDongs;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 
 	@Override

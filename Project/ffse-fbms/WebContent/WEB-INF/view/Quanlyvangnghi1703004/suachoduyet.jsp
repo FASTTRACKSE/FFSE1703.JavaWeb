@@ -77,14 +77,14 @@
 						</div>
 						<div>
 							<div class="col-md-2">
-								<button type="submit" class="btn btn-success"
-									formaction="<%=request.getContextPath()%>/updatenhap/tuchoi">Từ
+								<button type=submit class="btn btn-success"
+									formaction="<%=request.getContextPath()%>/Quanlyvangnghi1703004/updatenhap/tuchoi">Từ
 									chối</button>
 							</div>
 							<div class="col-md-4">
 								<div class="col-md-2">
 									<button type="submit" class="btn btn-success"
-										formaction="<%=request.getContextPath()%>/updatenhap/duyet">Duyệt</button>
+										formaction="<%=request.getContextPath()%>/Quanlyvangnghi1703004/updateduyet/duyet">Duyệt</button>
 								</div>
 							</div>
 						</div>

@@ -42,11 +42,12 @@ public class DomainTeam1Controller {
 			return "redirect:/qlda/domain/edit_form/" + domainTeam1.getMaNghiepVu();
 		} else {
 			if (result.hasErrors()) {
+				redirectAttributes.addFlashAttribute("message", "<script>alert('Tên Domain đã tồn tại.');</script>");
 				return "QuanLyDuAn/Domain/add_form";
 			}
 			domainServiceTeam1.add(domainTeam1);
 		}
-		redirectAttributes.addFlashAttribute("message", "<script>alert('Creat successfully.');</script>");
+		redirectAttributes.addFlashAttribute("message", "<script>alert('Thêm mới thành công, chúc mừng bạn.');</script>");
 		return "redirect:list";
 	}
 	@RequestMapping(value = "/list", method = RequestMethod.GET)

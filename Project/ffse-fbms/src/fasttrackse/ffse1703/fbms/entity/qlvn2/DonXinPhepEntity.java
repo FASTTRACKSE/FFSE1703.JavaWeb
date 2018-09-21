@@ -34,7 +34,7 @@ public class DonXinPhepEntity {
 
 	@ManyToOne
 	@JoinColumn(name = "ma_nhan_vien")
-	 private HoSoNhanVien hoSoNhanVien;
+	 private HoSoNhanVien maNhanVien;
 	
 	@Column(name = "ngay_bat_dau")
 	 private Date ngayBatDau;
@@ -43,7 +43,7 @@ public class DonXinPhepEntity {
 	private Date ngayKetThuc;
 	
 	@Column(name = "so_ngay_nghi")
-	private int so_ngay_nghi;
+	private int soNgayNghi;
 	
 	@ManyToOne
 	@JoinColumn(name = "ly_do")
@@ -66,12 +66,12 @@ public class DonXinPhepEntity {
 		this.id = id;
 	}
 
-	public HoSoNhanVien getHoSoNhanVien() {
-		return hoSoNhanVien;
+	public HoSoNhanVien getMaNhanVien() {
+		return maNhanVien;
 	}
 
-	public void setHoSoNhanVien(HoSoNhanVien hoSoNhanVien) {
-		this.hoSoNhanVien = hoSoNhanVien;
+	public void setMaNhanVien(HoSoNhanVien maNhanVien) {
+		this.maNhanVien = maNhanVien;
 	}
 
 	public Date getNgayBatDau() {
@@ -90,12 +90,12 @@ public class DonXinPhepEntity {
 		this.ngayKetThuc = ngayKetThuc;
 	}
 
-	public Integer getSo_ngay_nghi() {
-		return so_ngay_nghi;
+	public int getSoNgayNghi() {
+		return soNgayNghi;
 	}
 
-	public void setSo_ngay_nghi(Integer so_ngay_nghi) {
-		this.so_ngay_nghi = so_ngay_nghi;
+	public void setSoNgayNghi(int soNgayNghi) {
+		this.soNgayNghi = soNgayNghi;
 	}
 
 	public LyDoEntity getLyDo() {
@@ -130,9 +130,7 @@ public class DonXinPhepEntity {
 		this.trangThai = trangThai;
 	}
 
-		
 }
-	
 	
 
 	

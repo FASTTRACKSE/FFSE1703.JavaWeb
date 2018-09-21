@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 <style>
@@ -62,7 +63,7 @@
 			<div class="content-header-right col-md-3 col-xs-12">
 				<div role="group" aria-label="Button group with nested dropdown"
 					class="btn-group float-md-right" id="add-new">
-					<a href="<c:url value = "/QuanTriHeThong/chuc_danh/add"/>"
+					<a href="<c:url value = "/QuanLyNhiemVuMinhHQ/create"/>"
 						class="btn btn-primary"><span class="fa fa-plus"></span> Thêm
 						mới</a>
 				</div>
@@ -114,38 +115,34 @@
 										class="table table-striped table-bordered dataex-res-constructor">
 										<thead>
 											<tr>
-												<th>Mã chức danh</th>
-												<th>Tên chức danh</th>
-												<th></th>
+												<th>Tên Công Việc</th>
+												<th>Loại công việc</th>
+												<th>Thời gian Bắt Đầu</th>
+												<th>Thời Gian Kết Thúc</th>
+												<th>phân công</th>
+												<th>Trạng thái</th>
+												<th>Hoạt động</th>
 											</tr>
 										</thead>
 										<tbody>
-											<div class="modal fade" id="confirm-delete" tabindex="-1"
-												role="dialog" aria-labelledby="myModalLabel"
-												aria-hidden="true">
-												<div class="modal-dialog">
-													<div class="modal-content">
-
-														<div class="modal-header">
-															<button type="button" class="close" data-dismiss="modal"
-																aria-hidden="true">&times;</button>
-															<h4 class="modal-title" id="myModalLabel">Bạn có
-																chắc muốn xóa</h4>
-														</div>
-
-														<div class="modal-body">
-															<p>Bạn có chắc muốn xóa</p>
-															<p class="debug-url"></p>
-														</div>
-
-														<div class="modal-footer">
-															<button type="button" class="btn btn-default"
-																data-dismiss="modal">Quay lại</button>
-															<a class="btn btn-danger btn-ok">Xóa</a>
-														</div>
-													</div>
-												</div>
-											</div>
+											<c:forEach var="cv" items="${listCongViec}">
+												<tr>
+													<td>${cv.tenCongViec}</td>
+													<td>${cv.loaiCongViec}</td>
+													<td>${cv.tgBatDau}</td>
+													<td>${cv.tgKetThuc}</td>
+													<td>${cv.phanCong}</td>
+													<td>${cv.trangThai}</td>
+													<td style="letter-spacing: 5px">
+															<a href="/ffse-fbms/QuanLyNhiemVuMinhHQ/view/${cv.ID}"><i
+																class='fa fa-eye'></i></a> <a
+																href="/ffse-fbms/QuanLyNhiemVuMinhHQ/edit/${cv.ID}"><i
+																class='fa fa-pencil'></i></a> <a
+																href="/ffse-fbms/QuanLyNhiemVuMinhHQ/delete/${cv.ID}"><i
+																class='fa fa-trash'
+																onclick="return confirm('Bạn có muốn xóa sinh viên này?');"></i></a>
+													</td>
+											</c:forEach>
 										</tbody>
 									</table>
 								</div>
@@ -157,30 +154,5 @@
 		</div>
 	</div>
 </div>
-<script type="text/javascript">
-	window.onload = function() {
-		$('#confirm-delete').on(
-				'show.bs.modal',
-				function(e) {
-					$(this).find('.btn-ok').attr('href',
-							$(e.relatedTarget).data('href'));
-				});
-
-		$('#datatable').dataTable().fnDestroy();
-
-		$("#datatable").dataTable({
-			responsive : true,
-			"order" : [ [ 1, "asc" ], [ 0, "desc" ] ],
-			"bServerSide" : true,
-			"sAjaxSource" : "/ffse-fbms/QuanTriHeThong/chuc_danh/view/getListChucDanh",
-		});
-	};
-
-	window.setTimeout(function() {
-		$(".alert").fadeTo(500, 0).slideUp(500, function() {
-			$(this).remove();
-		});
-	}, 2500);
-</script>
 
 <jsp:include page="/WEB-INF/view/templates/footer.jsp" />

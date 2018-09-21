@@ -4,11 +4,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "co_so_du_lieu")
 public class DatabaseTeam1 {
 	@Id
+	
 	@Column(name = "ma_database")
 	private String maDatabase;
 

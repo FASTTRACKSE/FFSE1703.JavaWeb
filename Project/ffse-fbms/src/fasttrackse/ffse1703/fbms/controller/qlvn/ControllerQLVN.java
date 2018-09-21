@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,7 @@ import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 import fasttrackse.ffse1703.fbms.service.qlvn.QuanLyVangNghiService;
 
 @Controller
+@RequestMapping("/Quanlyvangnghi1703004")
 public class ControllerQLVN {
 
 	@Autowired
@@ -48,24 +50,33 @@ public class ControllerQLVN {
 		return "Quanlyvangnghi1703004/danhsachnhap";
 	}
 	
+	@RequestMapping(value = {"/danhsachbituchoi" }, method = RequestMethod.GET)
+	public String danhSachTuChoi(Model model) {
+		model.addAttribute("danhsachtuchoi", this.service.danhSachXinNghiTuChoi());
+		return "Quanlyvangnghi1703004/danhsachbituchoi";
+	}
 	
-	@RequestMapping(value = {"/soandonmoi" }, method = RequestMethod.GET)
+	
+	@RequestMapping(value = "/soandonmoi", method = RequestMethod.GET)
 	public String showForm(Model model) {
 		model.addAttribute("taodonmoi", new ThongKeDonXinPhep());
-		
 		return "Quanlyvangnghi1703004/soandonmoi";
 	}
 	
-	@RequestMapping(value = "/taodonmoi/nhap", method = RequestMethod.POST)
-	public String listDonNhap(Model model, @ModelAttribute("taodonmoi") @Valid ThongKeDonXinPhep nv,HttpSession session) {
-		service.create(nv);
-		return "redirect:/danhsachnhap";
+	@RequestMapping(value = {"/taodonmoi/nhap"}, method = RequestMethod.POST)
+	public String listDonNhap(Model model, @ModelAttribute("taodonmoi") @Valid ThongKeDonXinPhep nv,HttpSession session,
+			BindingResult result) {
+		if (result.hasErrors()) {
+			return "Quanlyvangnghi1703004/soandonmoi";
+		} else {
+		service.create(nv);}
+		return "redirect:/Quanlyvangnghi1703004/danhsachnhap";
 	}
 	
 	@RequestMapping(value = "/taodonmoi/choduyet", method = RequestMethod.POST)
 	public String listDonChoDuyet(Model model, @ModelAttribute("taodonmoi") @Valid ThongKeDonXinPhep nv,HttpSession session) {
 		service.createWalk(nv);
-		return "redirect:/danhsachcho";
+		return "redirect:/Quanlyvangnghi1703004/danhsachcho";
 	}
 	
 	
@@ -84,29 +95,55 @@ public class ControllerQLVN {
 		return this.service.loadAllHoSo();
 	}
 	
-	@RequestMapping("/delete/{id}")
+	@RequestMapping(value = {"/delete/{id}","/taodonmoi/choduyet"})
 	public String delete(@PathVariable int id, HttpSession session, Model model) {
 		service.delete(id);
 		return "redirect:/danhsachnhap";
 	}
 	
+	@RequestMapping(value = {"/deleteBrowse/{id}"})
+	public String deleteBrowse(@PathVariable int id, HttpSession session, Model model) {
+		service.delete(id);
+		return "redirect:/danhsachduyet";
+	}
+	
 	@RequestMapping(value = "/suanhap/{id}", method = RequestMethod.GET)
 	public String edit_view(@PathVariable("id") int id, Model model) {
-		model.addAttribute("suanhap", service.findById(id));
+		model.addAttribute("suadon", service.findById(id));
+		service.delete(id);
 		return "Quanlyvangnghi1703004/suanhap";
 	}
 
-	@RequestMapping(value = "/updatenhap/nhap", method = RequestMethod.POST)
-	public String editNhap(Model model,  @ModelAttribute("suadon") @Valid ThongKeDonXinPhep nv)
+	@RequestMapping(value = "/trove/nhap", method = RequestMethod.POST)
+	public String editNhap(Model model, @ModelAttribute("suadon") @Valid ThongKeDonXinPhep nv)
 			throws SQLException {
-		service.updateNhap(nv);
-		return "redirect:/danhsachnhap";
+		service.create(nv);
+		return "redirect:/Quanlyvangnghi1703004/danhsachnhap";
 	}
 	
 	@RequestMapping(value = "/updatenhap/choduyet", method = RequestMethod.POST)
-	public String editNapChoDuyet(Model model,  @ModelAttribute("suadon") @Valid ThongKeDonXinPhep nv)
+	public String editChoDuyet(Model model,  @ModelAttribute("suadon") @Valid ThongKeDonXinPhep nv)
 			throws SQLException {
 		service.updateNhap(nv);
-		return "redirect:/danhsachcho";
+		return "redirect:/Quanlyvangnghi1703004/danhsachcho";
+	}
+	
+	@RequestMapping(value = "/suachoduyet/{id}", method = RequestMethod.GET)
+	public String edit_walk(@PathVariable("id") int id, Model model) {
+		model.addAttribute("suachoduyet", service.findById(id));
+		service.delete(id);
+		return "Quanlyvangnghi1703004/suachoduyet";
+	}
+	
+	@RequestMapping(value = "/updateduyet/duyet", method = RequestMethod.POST)
+	public String listDonDuyet(Model model, @ModelAttribute("suachoduyet") @Valid ThongKeDonXinPhep nv,HttpSession session) {
+		service.createBrowse(nv);
+		return "redirect:/Quanlyvangnghi1703004/danhsachduyet";
+	}
+	
+	@RequestMapping(value = "/updatenhap/tuchoi", method = RequestMethod.POST)
+	public String listDonTuChoi(Model model, @ModelAttribute("suachoduyet") @Valid ThongKeDonXinPhep nv,HttpSession session) {
+		service.createfeedback(nv);
+		return "redirect:/Quanlyvangnghi1703004/danhsachbituchoi";
 	}
 }

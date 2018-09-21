@@ -65,9 +65,16 @@ public class QuanLyHopDongControllerTT {
 	public String showFormUpdate(@PathVariable("maHopDong") int maHopDong, Model model)
 			throws IllegalStateException, IOException {
 		model.addAttribute("hopDongTT", hopDongServiceTT.findByMaHopDong(maHopDong));
+		model.addAttribute("listLoaiHopDong", loaiHopDongServiceTT.findAll());
 		return "QuanLyNhanSuTT/QuanLyHopDongTT/edit_form";
 	}
-
+    
+	@RequestMapping("/remove/{maHopDong}")
+	public String remove(@PathVariable("maHopDong") int maHopDong) {
+		hopDongServiceTT.removeHopDong(maHopDong);
+		return "redirect:/quanlynhansutt/";
+	}
+	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String saveHopDong(@ModelAttribute("hopDongTT") @Valid HopDongTT hd, BindingResult result) {
 		if (hd.getMaHopDong() == 0) {

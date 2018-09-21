@@ -20,7 +20,8 @@
 					</div>
 				</div>
 			</div>
-		</div>
+			</div>
+			</div>
 		<div class="row">
 			<div class="col-sm-4"></div>
 			<div class="col-sm-4">
@@ -31,8 +32,6 @@
 		</div>
 		<form:form method="POST" action="/ffse-fbms/qlda/Database/creat"
 			modelAttribute="database">
-
-
 
 			<div class="form-group col-sm-6">
 				<input type="hidden" name="${_csrf.parameterName}"
@@ -56,7 +55,6 @@
 						 ${message }
 			</c:if>
 
-		</div>
 	</div>
-
+</div>
 	<jsp:include page="/WEB-INF/view/templates/footer.jsp" />

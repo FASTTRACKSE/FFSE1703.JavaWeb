@@ -1,4 +1,4 @@
-package fasttrackse.ffse1703.fbms.entity.mvpquanliduan;
+	package fasttrackse.ffse1703.fbms.entity.mvpquanliduan;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,6 +30,7 @@ public class KhachHang {
 	@NotEmpty(message ="Địa chỉ không được để trống")
 	private String address;
 	private int status;
+
 
 	public int getIdKhachHang() {
 		return idKhachHang;

@@ -28,7 +28,7 @@ public class HoSoNhanVienPikalong {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date ngaySinh;
 	
-	private int tinhTrangHonNhan;
+	private Integer tinhTrangHonNhan;
 	
 	private String thanhPho;
 	
@@ -154,11 +154,11 @@ public class HoSoNhanVienPikalong {
 		this.ngaySinh = ngaySinh;
 	}
 
-	public int getTinhTrangHonNhan() {
+	public Integer getTinhTrangHonNhan() {
 		return tinhTrangHonNhan;
 	}
 
-	public void setTinhTrangHonNhan(int tinhTrangHonNhan) {
+	public void setTinhTrangHonNhan(Integer tinhTrangHonNhan) {
 		this.tinhTrangHonNhan = tinhTrangHonNhan;
 	}
 

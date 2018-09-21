@@ -34,7 +34,7 @@
 							<td><a href="delete/${x.maNv}"><button class="btn btn-light" onclick="if (!confirm('Bạn có muốn xóa sinh viên này không?')) return false">
 										<i class="fa fa-trash"></i>
 									</button></a> <!-- delete button -->
-								<a href="#"><button class="btn btn-light">
+								<a href="editform/${x.maNv}"><button class="btn btn-light">
 										<i class="fa fa-pencil"></i>
 									</button></a> <!-- edit button -->	
 							</td> 		

@@ -83,9 +83,9 @@ public class HoSoNhanVienPikalongController {
 		return "redirect:/quantrinhansu/hosonhanvien/";
 	}
 	
-	
+	// ThanhPho Json
 	@RequestMapping(value= "selectquan/{maThanhPho}", method= RequestMethod.GET, produces= "text/plain;charset=UTF-8")
-	@ResponseBody // khi return ko tráº£ vá»� trang jsp mÃ  tráº£ vá»� code html
+	@ResponseBody // khi return ko trả về trang jsp mà  trả về code html
 	public String selectQuan(@PathVariable String maThanhPho) {
 		List<QuanHuyenPikalong> listQuanHuyen =  quanHuyenPikalongService.listQuanHuyen(maThanhPho);
 		
@@ -105,8 +105,9 @@ public class HoSoNhanVienPikalongController {
 		
 	}
 	
+	// QuanHuyen Json
 	@RequestMapping(value= "selectphuong/{maQuanHuyen}", method= RequestMethod.GET,  produces= "text/plain;charset=UTF-8")
-	@ResponseBody // khi return ko tráº£ vá»� trang jsp mÃ  tráº£ vá»� code html
+	@ResponseBody // khi return ko trả về trang jsp mà  trả về code html
 	public String selectPhuong(@PathVariable String maQuanHuyen) {
 		List<PhuongPikalong> listPhuong= phuongPikalongService.listPhuong(maQuanHuyen);
 		
@@ -114,15 +115,35 @@ public class HoSoNhanVienPikalongController {
 		
 		for(int i= 0; i < listPhuong.size(); i++) {
 			if(i == listPhuong.size() - 1) {
-				json += "{\"maPhuong\": \" " + listPhuong.get(i).getMaPhuong() + "\", " + "\"tenPhuong\": \" " + listPhuong.get(i).getTenPhuong() + "\"}" ;
+				json += "{\"maPhuong\": \"" + listPhuong.get(i).getMaPhuong() + "\", " + "\"tenPhuong\": \"" + listPhuong.get(i).getTenPhuong() + "\"}" ;
 			}
 			else {
-				json += "{\"maPhuong\": \" " + listPhuong.get(i).getMaPhuong() + "\", " + "\"tenPhuong\": \" " + listPhuong.get(i).getTenPhuong() + "\"}" + "," ;
+				json += "{\"maPhuong\": \"" + listPhuong.get(i).getMaPhuong() + "\", " + "\"tenPhuong\": \"" + listPhuong.get(i).getTenPhuong() + "\"}" + "," ;
 			}
 		}
 		json+= "]";
 		
 		return json;
 	}
+
+	
+	@RequestMapping(value= "editform/{maNv}", method= RequestMethod.GET)
+	public String editform(Model model, @PathVariable int maNv) {
+		model.addAttribute("formHosopkl", hoSoNhanVienPikalongService.getEdit(maNv));
+		model.addAttribute("listQuocTich", quocTichPikalongService.listQuocTich());
+		model.addAttribute("listThanhPho",  thanhPhoPikalongService.listTinhThanh());
+		model.addAttribute("listPhongBan", phongBanService.findAll());
+		model.addAttribute("listChucDanh", chucDanhService.findAll());
+		return"QuanTriNhanSuPikalong/ThongTinHoSo/thongtinhosoeditform";
+	}
+	
+	@RequestMapping(value= "getquanphuongjson/{maNv}", method= RequestMethod.GET,produces= "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String getQuanPhuongJson(@PathVariable int maNv, HoSoNhanVienPikalong hoSoNhanVienPikalong) {
+		hoSoNhanVienPikalong = hoSoNhanVienPikalongService.getEdit(maNv);
+		return "[{\"maQuanHuyen\":\"" + hoSoNhanVienPikalong.getQuanHuyen() + "\",\"maPhuong\": \"" + hoSoNhanVienPikalong.getPhuongXa() + "\"}]";
+	}
+	
+	
 	
 }

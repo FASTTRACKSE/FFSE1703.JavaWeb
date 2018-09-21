@@ -3,10 +3,11 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
+<!-- Header -->
 <div class="app-content content container-fluid">
 	<div class="content-wrapper">
-
-		<h3 class="content-header-title mb-0">Thêm nhân viên</h3> <!-- title -->
+	
+	<h3 class="content-header-title mb-0">Sửa Nhân Viên</h3> <!-- title -->
 	
                     <form:form class="form" method="POST" action="insert" modelAttribute="formHosopkl">
                       <div class="form-body">
@@ -14,8 +15,8 @@
                         <div class="row">
                           <div class="col-md-6">
                             <div class="form-group">
-                              <label for="projectinput1">Mã nhân viên</label>
-                              <form:input path="maNv" type="number" id="projectinput1" class="form-control" placeholder="Mã nhân viên"
+                              <label for="maNhanVienId">Mã nhân viên</label>
+                              <form:input path="maNv" type="number" id="maNhanVienId" class="form-control" placeholder="Mã nhân viên"
                               name="maNhanVienInput" />
                             </div>
                           </div>
@@ -38,9 +39,9 @@
                               <label for="projectinput2">Tình trạng hôn nhân</label>
                               <form:select path="tinhTrangHonNhan" type="text" id="projectinput2" class="form-control"
                               name="tinhTrangHonNhanRadio">
-                              		<option value="none" selected="selected" >Chọn tình trạng hôn nhân</option>
-                              		<option value="0" >Chưa kết hôn</option>
-                              		<option value="1" >Đã kết hôn</option>
+                              		<form:option value="">Chọn tình trạng hôn nhân</form:option>
+                              		<form:option value="0" >Chưa kết hôn</form:option>
+                              		<form:option value="1" >Đã kết hôn</form:option>
                               </form:select>
                             </div>
                           </div>
@@ -50,9 +51,9 @@
                             <div class="form-group">
                               <label for="projectinput3">Giới tính</label>
                               <form:select path="gioiTinh" type="text" id="projectinput3" class="form-control" placeholder="Giới tính" name="gioiTinhRadio">
-                              		<option value="none" selected="selected" >Chọn giới tính</option>
-                              		<option value="Nam" >Nam</option>
-                              		<option value="Nữ" >Nữ</option>
+                              		<form:option value="none">Chọn giới tính</form:option>
+                              		<form:option value="Nam" >Nam</form:option>
+                              		<form:option value="Nữ" >Nữ</form:option>
                               </form:select>
                             </div>
                           </div>
@@ -90,9 +91,9 @@
                             <div class="form-group">
                               <label for="projectinput4">Quốc tịch</label>
                               <form:select path="quocTich" type="text" id="projectinput4" class="form-control" name="quocTichSelect">
-                              		<option value="none" selected="selected" >Chọn quốc tịch</option>
+                              		<form:option value="none">Chọn quốc tịch</form:option>
                               	 <c:forEach items="${listQuocTich}" var="x">
-                              		<option value="${x.tenNuoc}" >${x.tenNuoc}</option>
+                              		<form:option value="${x.tenNuoc}" >${x.tenNuoc}</form:option>
                               	 </c:forEach>
                               </form:select>
                             </div>
@@ -116,9 +117,9 @@
                           <label for="thanhPhoId">Thành Phố</label>
                           <form:select path="thanhPho" type="text" id="thanhPhoId" class="form-control"
                           				name="thanhPhoSelect" onchange="clickComboboxThanhPho()">
-                          		<option value="noThanhPho" selected="selected" >Chọn thành phố</option>
+                          		<form:option value="noThanhPho" selected="selected" >Chọn thành phố</form:option>
     								<c:forEach items="${listThanhPho}" var="x">
-                              			<option value="${x.maTinhThanh}" >${x.tenTinhThanh}</option>
+                              			<form:option value="${x.maTinhThanh}" >${x.tenTinhThanh}</form:option>
                               		</c:forEach>						
                           </form:select>
                         </div>
@@ -147,9 +148,9 @@
                           <label for="companyName">Phòng ban</label>
                           <form:select path="maPhongBan" type="text" id="companyName" class="form-control"
                           name="phongBanSelect">
-                          		<option value="none" selected >Chọn Phòng ban</option>
+                          		<form:option value="">Chọn Phòng ban</form:option>
                           	  <c:forEach items="${listPhongBan}" var="x">
-                              	<option value="${x.maPhongBan}" >${x.tenPhongBan}</option>
+                              	<form:option value="${x.maPhongBan}" >${x.tenPhongBan}</form:option>
                               </c:forEach>
                           </form:select>
                         </div>
@@ -157,9 +158,9 @@
                           <label for="companyName">Chức danh</label>
                           <form:select path="maChucDanh" type="text" id="companyName" class="form-control" placeholder="Company Name"
                           name="chucDanhSelect">
-                          		<option value="none" selected="selected" >Chọn chức danh</option>
+                          		<form:option value="" >Chọn chức danh</form:option>
                           	  <c:forEach items="${listChucDanh}" var="x">
-                              	<option value="${x.maChucDanh}" >${x.tenChucDanh}</option>
+                              	<form:option value="${x.maChucDanh}" >${x.tenChucDanh}</form:option>
                               </c:forEach>
                           </form:select>
                         </div>
@@ -182,20 +183,27 @@
                           <i class="ft-x"></i> Hủy
                         </button>
                         
+                     
+                     <script>
+                     
+                     	window.onload= function(){
+                     		clickComboboxThanhPho();
+                     		clickComboboxQuan();
+                     	
+                    		
+                     	}
+                     </script>
                         
-                        <!-- ajax select ThanhPho -->
                      <script type="text/javascript">
-                     window.onload = function () { 
-                    	 
-                    	 console.log("aaa");
-                     }
+                     <!-- ajax select ThanhPho -->
                      function clickComboboxThanhPho(){
                     	 var maThanhPho = $("#thanhPhoId").val();
+                    	 alert(maThanhPho)
                     	 if(maThanhPho == 'noThanhPho'){  // nếu người dùng chưa chọn thành phố
-                    		 $('#quanHuyenId').prop('disabled', true); /*disable combobox quận huyện */
+                    		 
                     		 $('#phuongXaId option[value=noPhuongXa]').attr('selected', 'selected')
                     		 $('#phuongXaId').prop('disabled', true);
-                    		 
+                    		 $('#quanHuyenId').prop('disabled', true); /*disable combobox quận huyện */
                     	 } else{                // nếu người dùng đã chọn thành phố
                     		
                     		 $('#quanHuyenId').prop('disabled', false); /*enable combobox quận huyện */
@@ -206,7 +214,6 @@
                         	 url: "/ffse-fbms/quantrinhansu/hosonhanvien/selectquan/" + maThanhPho, 
                         	 dataType: "json",
                         	 success: function(data){
-                        		/* alert("Hello! I am an alert box!"); */
                         		$('#quanHuyenId').append($('<option>', {
                              		    value: 'noQuanHuyen',
                              		    text: 'Chọn Quận Huyện'
@@ -218,16 +225,12 @@
                              		    text: data[i].tenQuanHuyen
                              		}));
 								}
-                        	
+                        		$("#quanHuyenId").val("${formHosopkl.quanHuyen}").change();
                          }});
+                         
+
                      };
-                     </script>
-                     
-                     <script type="text/javascript">
-                     
-                     
-                     
-                     <!-- ajax select QuanHuyen -->
+                    // ajax select QuanHuyen
                      function clickComboboxQuan(){
                     	 var maQuanHuyen = $("#quanHuyenId").val();
                     	 if(maQuanHuyen == 'noQuanHuyen'){  /* nếu người dùng chưa chọn thành phố */
@@ -243,7 +246,7 @@
                         	 url: "/ffse-fbms/quantrinhansu/hosonhanvien/selectphuong/" + maQuanHuyen, 
                         	 dataType: "json",
                         	 success: function(data){
-                        		/* alert("Hello! I am an alert box!"); */
+                 
                         		
                         		$('#phuongXaId').append($('<option>', {
                              		    value: 'noPhuongXa',	
@@ -256,13 +259,24 @@
                              		    text: data[i].tenPhuong
                              		}));
 								}
-                        	
+
+                        		$("#phuongXaId").val("${formHosopkl.phuongXa}").change();
                          }});
+
+                         if($("#thanhPhoId").val() == 'noThanhPho'){  // nếu người dùng chưa chọn thành phố
+                    		 console.log("test");
+                    		 $("#phuongXaId").val("noPhuongXa").change();
+                    	
+                    		 $('#phuongXaId').prop('disabled', true);
+                    		 $('#quanHuyenId').prop('disabled', true); /*disable combobox quận huyện */
+                    	 }
                      };
-                     </script>   
-    		</div>
-                      
-		
+                     
+                     </script>
+                     
+			
+	</div>
 </div>
 
+<!-- Footer -->
 <jsp:include page="/WEB-INF/view/templates/footer.jsp" />

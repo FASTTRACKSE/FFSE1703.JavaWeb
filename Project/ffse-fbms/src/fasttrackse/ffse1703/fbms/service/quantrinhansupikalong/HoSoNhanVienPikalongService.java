@@ -10,5 +10,6 @@ public interface HoSoNhanVienPikalongService {
 	public List<HoSoNhanVienPikalong> listNhanVien();
 	public void delete(int maNv);
 	public void insert(HoSoNhanVienPikalong hoSoNhanVien);
+	public HoSoNhanVienPikalong getEdit(int maNv);
 	
 }

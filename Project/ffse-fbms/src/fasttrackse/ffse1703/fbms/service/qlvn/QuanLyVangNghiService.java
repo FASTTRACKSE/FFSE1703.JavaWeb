@@ -12,7 +12,9 @@ public interface QuanLyVangNghiService {
 
 	public List<ThongKeDonXinPhep> danhSachXinNghiDuyet();
 
-	public List<ThongKeDonXinPhep> danhSachXinNghiNhap();
+	public List<ThongKeDonXinPhep> danhSachXinNghiNhap(int page);
+	
+	public long totalRecords();
 	
 	public List<ThongKeDonXinPhep> danhSachXinNghiTuChoi();
 	

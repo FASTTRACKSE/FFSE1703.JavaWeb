@@ -4,6 +4,7 @@ import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,9 +25,10 @@ public class ThongKeDonXinPhep {
 	@Column(name = "id")
 	private int id;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ma_nhan_vien")
 	private HoSoNhanVien maNhanVien;
+
 
 	@Column(name = "ngay_bat_dau")
 	private Date ngayBatDau;

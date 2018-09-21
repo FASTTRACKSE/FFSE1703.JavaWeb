@@ -3,8 +3,13 @@ package fasttrackse.ffse1703.fbms.dao.qlvn;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,11 +42,26 @@ public class QuanLyVangNghiDaoIpml implements QuanLyVangNghiDao {
 		return list;
 	}
 	
-	public List<ThongKeDonXinPhep> danhSachXinNghiNhap() {
+	public List<ThongKeDonXinPhep> danhSachXinNghiNhap(int page) {
 		Session session = sessionFactory.getCurrentSession();
-		List<ThongKeDonXinPhep> list = session.createQuery("from ThongKeDonXinPhep where trangThai = '1'").getResultList();
-		return list;
+		CriteriaBuilder cb = session.getCriteriaBuilder();
+		CriteriaQuery<ThongKeDonXinPhep> cq = cb.createQuery(ThongKeDonXinPhep.class);
+		Root<ThongKeDonXinPhep> root = cq.from(ThongKeDonXinPhep.class);
+		cq.select(root)
+				.where(cb.or(cb.equal(root.get("trangThai"), 1)));
+		Query<ThongKeDonXinPhep> query = session.createQuery(cq);
+		query.setFirstResult((page - 1) * 2);
+		query.setMaxResults(5);
+		return query.getResultList();
 	}
+	
+	public long totalRecords() {
+		Session session = this.sessionFactory.getCurrentSession();
+		String queryString = "SELECT count(*) FROM ThongKeDonXinPhep WHERE trang_thai = 'Nháp'";
+		Query<?> query = session.createQuery(queryString);
+		return (Long) query.uniqueResult();
+	}
+	
 	
 	@Override
 	public List<ThongKeDonXinPhep> danhSachXinNghiTuChoi() {
@@ -74,7 +94,6 @@ public class QuanLyVangNghiDaoIpml implements QuanLyVangNghiDao {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.save(thongKeDonXinPhep);
 		session.createQuery("update ThongKeDonXinPhep set trangThai = '1'  where id =" + thongKeDonXinPhep.getId()).executeUpdate();
-		
 	}
 
 	
@@ -88,22 +107,25 @@ public class QuanLyVangNghiDaoIpml implements QuanLyVangNghiDao {
 	
 	public void createBrowse(ThongKeDonXinPhep thongKeDonXinPhep) {
 		Session session = this.sessionFactory.getCurrentSession();
-//		Date ngayBatDau = thongKeDonXinPhep.getNgayBatDau();
-//		Date ngayKT = thongKeDonXinPhep.getNgayKetThuc();
-//		System.out.println((ngayKT.getTime()-ngayBatDau.getTime())/ (60 * 60 * 1000));
+//		int soNgayNghi = thongKeDonXinPhep.getSoNgayNghi();
+//		int soNgayDaNghi = thongKeDonXinPhep.getMaNhanVien().getSoNgayDaNghi();
+//		int soNgayConLai = thongKeDonXinPhep.getMaNhanVien().getSoNgayConLai();
+//        int maNhanVien = thongKeDonXinPhep.getMaNhanVien().getHoSoNhanVien().getMaNhanVien();
 		session.save(thongKeDonXinPhep);
-		/*if(soNgayConLai == 0) {
-			session.createQuery("update ThongKeNgayNghi set so_ngay_da_nghi = " + (soNgayNghi + soNgayDaNghi)
-			+ "where ma_nhan_vien = " + maNhanVien ).executeUpdate();
-		} else if(soNgayNghi>soNgayConLai) {
-			session.createQuery("update ThongKeNgayNghi set so_ngay_con_lai = 0, so_ngay_da_nghi = " + (soNgayNghi + soNgayDaNghi)
-					+ "where ma_nhan_vien = " + maNhanVien ).executeUpdate();
-		} else {session.createQuery("update ThongKeNgayNghi set so_ngay_con_lai =  " + (soNgayConLai + soNgayDaNghi)
-				+ ",so_ngay_da_nghi =" + (soNgayDaNghi + soNgayNghi) + "where ma_nhan_vien = " + maNhanVien ).executeUpdate();
-			*/
+//		if(soNgayConLai == 0) {
+//			session.createQuery("update NgayNghi set so_ngay_da_nghi = " + (soNgayNghi + soNgayDaNghi)
+//			+ "where ma_nhan_vien = " + maNhanVien ).executeUpdate();
+//		} else if(soNgayNghi>soNgayConLai) {
+//			session.createQuery("update NgayNghi set so_ngay_con_lai = 0, so_ngay_da_nghi = " + (soNgayNghi + soNgayDaNghi)
+//					+ "where ma_nhan_vien = " + maNhanVien ).executeUpdate();
+//		} else {session.createQuery("update NgayNghi set so_ngay_con_lai =  " + (soNgayConLai + soNgayDaNghi)
+//				+ ",so_ngay_da_nghi =" + (soNgayDaNghi + soNgayNghi) + "where ma_nhan_vien = " + maNhanVien ).executeUpdate();
+//		}
 		session.createQuery("update ThongKeDonXinPhep set trangThai = '3'  where id =" + thongKeDonXinPhep.getId()).executeUpdate();
 		
+	
 	}
+
 
 
 	public void createfeedback(ThongKeDonXinPhep thongKeDonXinPhep) {
@@ -130,4 +152,5 @@ public class QuanLyVangNghiDaoIpml implements QuanLyVangNghiDao {
 		session.update(thongKeDonXinPhep);
 		
 	}
-}
+
+	}

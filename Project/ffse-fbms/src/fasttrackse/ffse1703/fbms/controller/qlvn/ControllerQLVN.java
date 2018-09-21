@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import fasttrackse.ffse1703.fbms.entity.qlvn.LyDoXinNghi;
 import fasttrackse.ffse1703.fbms.entity.qlvn.ThongKeDonXinPhep;
@@ -35,6 +36,7 @@ public class ControllerQLVN {
 	@RequestMapping(value = {"/danhsachcho" }, method = RequestMethod.GET)
 	public String danhSachChoDuyet(Model model) {
 		model.addAttribute("danhsachcho", this.service.danhSachXinNghiChoDuyet());
+		
 		return "Quanlyvangnghi1703004/danhsachcho";
 	}
 	
@@ -45,8 +47,12 @@ public class ControllerQLVN {
 	}
 	
 	@RequestMapping(value = {"/danhsachnhap" }, method = RequestMethod.GET)
-	public String danhSachNhap(Model model) {
-		model.addAttribute("danhsachnhap", this.service.danhSachXinNghiNhap());
+	public String danhSachNhap(Model model,@RequestParam(value = "page", required = false, defaultValue = "1") int page) {
+		model.addAttribute("danhsachnhap", service.danhSachXinNghiNhap(page));
+		int lastPage = (int) Math.ceil(service.totalRecords() / 2.0);
+		model.addAttribute("currentPage", page);
+		model.addAttribute("lastPage", lastPage);
+		
 		return "Quanlyvangnghi1703004/danhsachnhap";
 	}
 	

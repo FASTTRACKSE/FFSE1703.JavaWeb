@@ -25,11 +25,6 @@ public class QuanLyVangNghiServiceIpml implements QuanLyVangNghiService {
 		return this.quanLyVangNghiDao.danhSachXinNghiChoDuyet();
 	}
 
-	public List<ThongKeDonXinPhep> danhSachXinNghiNhap() {
-		// TODO Auto-generated method stub
-		return this.quanLyVangNghiDao.danhSachXinNghiNhap();
-	}
-
 	public List<ThongKeDonXinPhep> danhSachXinNghiDuyet() {
 		return this.quanLyVangNghiDao.danhSachXinNghiDuyet();
 	}
@@ -90,6 +85,15 @@ public class QuanLyVangNghiServiceIpml implements QuanLyVangNghiService {
 	public void updateNhap(ThongKeDonXinPhep thongKeDonXinPhep) {
 		quanLyVangNghiDao.updateNhap(thongKeDonXinPhep);
 		
+	}
+	public long totalRecords() {
+		
+		return this.quanLyVangNghiDao.totalRecords();
+	}
+
+	@Override
+	public List<ThongKeDonXinPhep> danhSachXinNghiNhap(int page) {
+		return this.quanLyVangNghiDao.danhSachXinNghiNhap(page);
 	}
 	
 	

@@ -1,7 +1,9 @@
 package fasttrackse.ffse1703.fbms.entity.qlvn;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,7 +20,7 @@ public class NgayNghi {
 	@Column(name = "id_ngay_nghi")
     private int id;
 	
-	@ManyToOne
+	@ManyToOne()
 	@JoinColumn(name="ma_nhan_vien")
 	private HoSoNhanVien hoSoNhanVien;
 	

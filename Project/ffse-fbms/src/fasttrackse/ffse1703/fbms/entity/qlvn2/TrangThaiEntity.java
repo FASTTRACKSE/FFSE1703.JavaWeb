@@ -7,31 +7,33 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 @Entity
-@Table(name = "trang_thai_don_xin_phep")
+@Table(name = "trang_thai_don")
 public class TrangThaiEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "trangthai")
-   private int trangThai;
+	@Column(name = "id")
+   private int id;
+
+	@Column(name = "ten_trang_thai")
+	private String tenTrangThai;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getTenTrangThai() {
+		return tenTrangThai;
+	}
+
+	public void setTenTrangThai(String tenTrangThai) {
+		this.tenTrangThai = tenTrangThai;
+	}
 	
-	@Column(name = "dang_o_trang_thai")
-	private String dangOTrangThai;
 	
-	public int getTrangThai() {
-		return trangThai;
-	}
-
-	public void setTrangThai(int trangThai) {
-		this.trangThai = trangThai;
-	}
-
-	public String getDangOTrangThai() {
-		return dangOTrangThai;
-	}
-
-	public void setDangOTrangThai(String dangOTrangThai) {
-		this.dangOTrangThai = dangOTrangThai;
-	}
 
 	
 }

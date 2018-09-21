@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/QuanLyVangNghi/")
 public class QuanLyVangNghiController {
 	
-	@RequestMapping(value = "/donxinnghi", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/donxinnghi", method = RequestMethod.GET)
 	public String viewChucDanh(Model model) {
 		return "QuanLyVangNghi/donxinnghi";
-	}
+	}*/
+	
+	// Hường làm lặp mapping 2 controller cần fix lại ngày
 }

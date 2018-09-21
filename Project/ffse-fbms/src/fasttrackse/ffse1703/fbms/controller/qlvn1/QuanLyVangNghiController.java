@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping("/QuanLyVangNghi/")
 public class QuanLyVangNghiController {
+	
 	@RequestMapping(value = "/donxinnghi", method = RequestMethod.GET)
 	public String viewChucDanh(Model model) {
 		return "QuanLyVangNghi/donxinnghi";

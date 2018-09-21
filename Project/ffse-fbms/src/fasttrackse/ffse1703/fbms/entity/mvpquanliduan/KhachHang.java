@@ -33,10 +33,7 @@ public class KhachHang {
 	private String address;
 	private int status;
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 8b94f4e29fb752d434d99a01d8a972e6481a723d
 	public int getIdKhachHang() {
 		return idKhachHang;
 	}

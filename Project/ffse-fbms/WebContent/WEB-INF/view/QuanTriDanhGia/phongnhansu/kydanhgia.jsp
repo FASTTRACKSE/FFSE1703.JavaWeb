@@ -25,7 +25,8 @@
 			<div class="card">
 				<div class="card-content">
 					<div class="card-body" style="margin: 1em">
-						<form:form cssClass="form" action="phancongdanhgia/create">
+						<form:form cssClass="form" action="kydanhgia/save">
+							<form:hidden path="maKy" />
 							<div class="form-body">
 								<h4 class="form-section">
 									<i class="fa fa-plus"></i>Tạo danh sách đánh giá
@@ -34,29 +35,28 @@
 									<div class="col-md-4">
 										<div class="form-group">
 											<label for="projectinput1">Kỳ đánh giá</label>
-											<form:select path="kyDanhGia" cssClass="form-control">
-												<c:forEach items="${listKyDanhGia }" var="x">
-													<form:option value="${x.maKy }" label="${x.tenKy}"></form:option>
-												</c:forEach>
-											</form:select>
+											<form:input cssClass="form-control" path="tenKy" />
 										</div>
 									</div>
 									<div class="col-md-4">
 										<div class="form-group">
-											<label for="projectinput2">Phòng ban</label>
-											<form:select path="phongBan" cssClass="form-control">
-												<c:forEach items="${listPhongBan }" var="x">
-													<form:option value="${x.maPhongBan }"
-														label="${x.tenPhongBan}"></form:option>
-												</c:forEach>
-											</form:select>
+											<label for="projectinput2">Mô tả</label>
+											<form:input cssClass="form-control" path="moTa" />
 										</div>
 									</div>
 									<div class="col-md-4">
 										<div class="form-group" style="padding-top: 1.9rem">
-											<button class="btn btn-primary" type="submit">Tạo</button>
+											<c:if test="${command.maKy == 0 }">
+												<button class="btn btn-primary" type="submit">Tạo</button>
+											</c:if>
+											<c:if test="${command.maKy != 0 }">
+												<button class="btn btn-primary" type="submit">Sửa</button>
+												<a class="btn btn-danger"
+													href="<c:url value = "/quantridanhgia/phongnhansu/kydanhgia"/>">Hủy</a>
+											</c:if>
 										</div>
 									</div>
+									<form:hidden path="isDelete" />
 								</div>
 							</div>
 						</form:form>
@@ -64,11 +64,11 @@
 				</div>
 			</div>
 		</div>
-		<c:if test="${empty listDanhGia}">
+		<c:if test="${not empty listKyDanhGia}">
 			<div class="row">
 				<div class="card">
 					<div class="card-header">
-						<h4 class="card-title">Danh sách đánh giá nhân viên</h4>
+						<h4 class="card-title">Danh sách kỳ đánh giá</h4>
 					</div>
 					<div class="card-content">
 						<div class="card-body" style="margin: 1em">
@@ -77,20 +77,21 @@
 									<thead class="thead-dark">
 										<tr>
 											<th scope="col">#</th>
-											<th scope="col">Nhân viên</th>
-											<th scope="col">Xếp loại</th>
-											<th scope="col">Trang Thái</th>
+											<th scope="col">Kỳ đánh giá</th>
+											<th scope="col">Thông tin</th>
 											<th scope="col">Hành động</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<th scope="row">1</th>
-											<td>Mark</td>
-											<td>Otto</td>
-											<td>Nháp</td>
-											<td><a class="btn btn-info">Xem</a></td>
-										</tr>
+										<c:forEach items="${listKyDanhGia }" var="x" varStatus="stt" >
+											<tr>
+												<th scope="row">${stt.index + 1}</th>
+												<td>${x.tenKy }</td>
+												<td>${x.moTa }</td>
+												<td><a class="btn btn-info"
+													href="<c:url value = "/quantridanhgia/phongnhansu/kydanhgia/edit/${x.maKy }"/>">Sửa</a></td>
+											</tr>
+										</c:forEach>
 									</tbody>
 								</table>
 							</div>

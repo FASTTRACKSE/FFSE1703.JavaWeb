@@ -428,6 +428,17 @@
 							class="fa fa-users"></i><span data-i18n="" class="menu-title">Danh
 								sách nhân viên</span></a></li>
 				</c:if>
+				<c:if test="${chucVu eq 'PNS' }">
+					<li class=" nav-item"><a
+						href="<c:url value = "/quantridanhgia/truongphongdanhgia/home"/>"><i
+							class="fa fa-users"></i><span data-i18n="" class="menu-title">Tạo kỳ đánh giá</span></a></li>
+							<li class=" nav-item"><a
+						href="<c:url value = "/quantridanhgia/truongphongdanhgia/home"/>"><i
+							class="fa fa-users"></i><span data-i18n="" class="menu-title">Lập danh sách đánh giá</span></a></li>
+							<li class=" nav-item"><a
+						href="<c:url value = "/quantridanhgia/truongphongdanhgia/home"/>"><i
+							class="fa fa-users"></i><span data-i18n="" class="menu-title">Danh sách đánh giá</span></a></li>
+				</c:if>
 			</ul>
 
 

@@ -16,11 +16,17 @@ public class PhanCongDanhGia {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
+	@Column(name = "KyDanhGia")
+	private String kyDanhGia;
+
+	@Column(name = "PhongBan")
+	private String phongBan;
+
 	@Column(name = "NhanVienDanhGia")
-	private String nhanVienDanhGia;
+	private int nhanVienDanhGia;
 
 	@Column(name = "NhanVien")
-	private String nhanVien;
+	private int nhanVien;
 
 	@Column(name = "IsDelete")
 	private int isDelete;
@@ -37,19 +43,35 @@ public class PhanCongDanhGia {
 		this.id = id;
 	}
 
-	public String getNhanVienDanhGia() {
+	public String getKyDanhGia() {
+		return kyDanhGia;
+	}
+
+	public void setKyDanhGia(String kyDanhGia) {
+		this.kyDanhGia = kyDanhGia;
+	}
+
+	public String getPhongBan() {
+		return phongBan;
+	}
+
+	public void setPhongBan(String phongBan) {
+		this.phongBan = phongBan;
+	}
+
+	public int getNhanVienDanhGia() {
 		return nhanVienDanhGia;
 	}
 
-	public void setNhanVienDanhGia(String nhanVienDanhGia) {
+	public void setNhanVienDanhGia(int nhanVienDanhGia) {
 		this.nhanVienDanhGia = nhanVienDanhGia;
 	}
 
-	public String getNhanVien() {
+	public int getNhanVien() {
 		return nhanVien;
 	}
 
-	public void setNhanVien(String nhanVien) {
+	public void setNhanVien(int nhanVien) {
 		this.nhanVien = nhanVien;
 	}
 

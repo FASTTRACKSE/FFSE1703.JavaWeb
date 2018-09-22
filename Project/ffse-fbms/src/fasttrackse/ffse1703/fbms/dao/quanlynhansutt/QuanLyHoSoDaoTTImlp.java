@@ -6,17 +6,16 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
+
 
 import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.HoSoNhanVienTT;
 
 @Repository
-@SuppressWarnings({ "unchecked" })
-@Transactional(rollbackFor = Exception.class)
 public class QuanLyHoSoDaoTTImlp implements QuanLyHoSoDaoTT {
 	@Autowired
 	private SessionFactory sessionFactory;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<HoSoNhanVienTT> getAllHoSo() {
 		// TODO Auto-generated method stub
@@ -62,9 +61,11 @@ public class QuanLyHoSoDaoTTImlp implements QuanLyHoSoDaoTT {
 	}
 
 	@Override
-	public String getAutoId() {
+	public HoSoNhanVienTT findByMaHopDong(int maNhanVien) {
 		// TODO Auto-generated method stub
-		return null;
+		Session session = this.sessionFactory.getCurrentSession();
+		return session.get(HoSoNhanVienTT.class, maNhanVien);
 	}
+
 
 }

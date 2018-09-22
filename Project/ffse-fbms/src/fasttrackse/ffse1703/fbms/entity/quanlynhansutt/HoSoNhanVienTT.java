@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -55,19 +56,19 @@ public class HoSoNhanVienTT implements Serializable {
 
 	// bi-directional many-to-one association to XaPhuong
 	@ManyToOne
-	@JoinColumn(name = "phuong", nullable = false)
+	@JoinColumn(name = "ma_xa_phuong", nullable = false)
 	@NotNull
 	private XaPhuongTT xaPhuong;
 
 	// bi-directional many-to-one association to QuanHuyen
 	@ManyToOne
-	@JoinColumn(name = "quan", nullable = false)
+	@JoinColumn(name = "ma_quan_huyen", nullable = false)
 	@NotNull
 	private QuanHuyenTT quanHuyen;
 
 	// bi-directional many-to-one association to TinhThanhPho
 	@ManyToOne
-	@JoinColumn(name = "thanh_pho", nullable = false)
+	@JoinColumn(name = "ma_thanh_pho", nullable = false)
 	@NotNull
 	private TinhThanhTT thanhPho;
 
@@ -90,10 +91,17 @@ public class HoSoNhanVienTT implements Serializable {
 	@JoinColumn(name = "ma_quoc_tich", nullable = false)
 	private QuocTichTT quocTich;
 
-	// bi-directional many-to-one association to DanToc
-	@ManyToOne
-	@JoinColumn(name = "ma_dan_toc", nullable = false)
+	// bi-directional many-to-one association to LoaiHopDong
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name = "ma_dan_toc")
 	private DanTocTT danToc;
+
+	// bi-directional many-to-one association to DanToc
+	/*
+	 * @ManyToOne
+	 * 
+	 * @JoinColumn(name = "ma_dan_toc", nullable = false) private DanTocTT danToc;
+	 */
 
 	@Column(name = "so_cmnd", nullable = false, length = 9)
 	@Size(min = 9, max = 9)
@@ -175,7 +183,6 @@ public class HoSoNhanVienTT implements Serializable {
 	public void setDiaChi(String diaChi) {
 		this.diaChi = diaChi;
 	}
-
 
 	public XaPhuongTT getXaPhuong() {
 		return xaPhuong;
@@ -297,14 +304,15 @@ public class HoSoNhanVienTT implements Serializable {
 		this.hopDongs = hopDongs;
 	}
 
-	@Override
-	public String toString() {
-		return "HoSoNhanVien [maNhanVien=" + maNhanVien + ", anhDaiDien=" + anhDaiDien + ", danToc=" + danToc
-				+ ", email=" + email + ", gioiTinh=" + gioiTinh + ", tenNhanVien=" + tenNhanVien + ", namSinh="
-				+ namSinh + ", ngayCap=" + ngayCap + ", noiCap=" + noiCap + ", thanhPho=" + thanhPho + ", quan=" + quanHuyen
-				+ ", phuong=" + xaPhuong + ", diaChi=" + diaChi + " soCmnd=" + soCmnd + ", soDienThoai=" + soDienThoai
-				+ ", trangThai=" + trangThai + ", phongBan=" + phongBan + ", chucDanh=" + chucDanh + ", quocTich="
-				+ quocTich + ", tinhTrangHonNhan=" + tinhTrangHonNhan + "]";
-	}
-
+	/*
+	 * @Override public String toString() { return "HoSoNhanVien [maNhanVien=" +
+	 * maNhanVien + ", anhDaiDien=" + anhDaiDien + ", danToc=" + danToc + ", email="
+	 * + email + ", gioiTinh=" + gioiTinh + ", tenNhanVien=" + tenNhanVien +
+	 * ", namSinh=" + namSinh + ", ngayCap=" + ngayCap + ", noiCap=" + noiCap +
+	 * ", thanhPho=" + thanhPho + ", quan=" + quanHuyen + ", phuong=" + xaPhuong +
+	 * ", diaChi=" + diaChi + " soCmnd=" + soCmnd + ", soDienThoai=" + soDienThoai +
+	 * ", trangThai=" + trangThai + ", phongBan=" + phongBan + ", chucDanh=" +
+	 * chucDanh + ", quocTich=" + quocTich + ", tinhTrangHonNhan=" +
+	 * tinhTrangHonNhan + "]"; }
+	 */
 }

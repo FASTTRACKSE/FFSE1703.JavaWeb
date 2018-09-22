@@ -19,7 +19,7 @@ public class QuanHuyenTT implements Serializable {
 	@Id
 	@Column(name = "ma_quan_huyen", unique = true, nullable = false, length = 30)
 	@NotEmpty
-	private String maQuanHuyen;
+	private int maQuanHuyen;
 
 	@Column(name = "ten_quan_huyen", nullable = false, length = 255)
 	@NotEmpty
@@ -27,15 +27,8 @@ public class QuanHuyenTT implements Serializable {
 	
 	@Column(name = "ma_thanh_pho", nullable = false, length = 255)
 	@NotEmpty
-	private String maThanhPho;
+	private int maThanhPho;
 
-	public String getMaThanhPho() {
-		return maThanhPho;
-	}
-
-	public void setMaThanhPho(String maThanhPho) {
-		this.maThanhPho = maThanhPho;
-	}
 
 	// bi-directional many-to-one association to HoSoNhanVien
 	@OneToMany(mappedBy = "quanHuyen")
@@ -43,13 +36,21 @@ public class QuanHuyenTT implements Serializable {
 
 	public QuanHuyenTT() {
 	}
-
-	public String getMaQuanHuyen() {
+	
+	public int getMaQuanHuyen() {
 		return maQuanHuyen;
 	}
 
-	public void setMaQuanHuyen(String maQuanHuyen) {
+	public void setMaQuanHuyen(int maQuanHuyen) {
 		this.maQuanHuyen = maQuanHuyen;
+	}
+
+	public int getMaThanhPho() {
+		return maThanhPho;
+	}
+
+	public void setMaThanhPho(int maThanhPho) {
+		this.maThanhPho = maThanhPho;
 	}
 
 	public String getTenQuanHuyen() {
@@ -67,9 +68,4 @@ public class QuanHuyenTT implements Serializable {
 	public void setHoSoNhanViens(List<HoSoNhanVienTT> hoSoNhanViens) {
 		this.hoSoNhanViens = hoSoNhanViens;
 	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
 }

@@ -13,7 +13,7 @@ import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.QuanHuyenTT;
 @Repository
 public class QuanHuyenDaoTTImpl implements QuanHuyenDaoTT {
 	@Autowired
-	SessionFactory sessionFactory;
+	private SessionFactory sessionFactory;
 
 	@Override
 	public List<QuanHuyenTT> listQuanHuyen() {
@@ -22,7 +22,6 @@ public class QuanHuyenDaoTTImpl implements QuanHuyenDaoTT {
 		Query query = session.createQuery("from QuanHuyenTT");
 		@SuppressWarnings("unchecked")
 		List<QuanHuyenTT> listQuanHuyen = query.list();
-
 		return listQuanHuyen;
 	}
 

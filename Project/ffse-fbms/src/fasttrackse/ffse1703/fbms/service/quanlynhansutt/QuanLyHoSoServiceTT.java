@@ -22,5 +22,7 @@ public interface QuanLyHoSoServiceTT {
 	public void updateHoSoNhanVien(HoSoNhanVienTT hsnv);
 
 	public void deleteHoSoNhanVien(int maNhanVien);
+	
+	public HoSoNhanVienTT findByMaNhanVien(int maNhanVien);
 
 }

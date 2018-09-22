@@ -13,7 +13,7 @@ import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.XaPhuongTT;
 @Repository
 public class XaPhuongDaoTTImpl implements XaPhuongDaoTT {
 	@Autowired
-	SessionFactory sessionFactory;
+	private SessionFactory sessionFactory;
 
 	@Override
 	public List<XaPhuongTT> listXaPhuong() {

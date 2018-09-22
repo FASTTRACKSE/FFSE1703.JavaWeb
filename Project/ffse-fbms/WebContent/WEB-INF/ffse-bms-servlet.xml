@@ -69,7 +69,7 @@
     <!-- Resources files upload location -->
     <mvc:resources mapping="/uploads/**" location="/upload/" />
 
-	<bean id="filterMultipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="10000000" />
 	</bean>
 

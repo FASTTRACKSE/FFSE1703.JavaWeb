@@ -34,7 +34,6 @@ public class HopDongTT implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ma_hop_dong", unique = true, nullable = false)
-	@NotNull
 	private int maHopDong;
 
 	// bi-directional many-to-one association to HoSoNhanVien
@@ -81,7 +80,6 @@ public class HopDongTT implements Serializable {
 	private Integer soNgayPhep;
 
 	@Column(name = "trang_thai", nullable = false)
-	@NotNull
 	private Integer trangThai;
 
 	public HopDongTT() {

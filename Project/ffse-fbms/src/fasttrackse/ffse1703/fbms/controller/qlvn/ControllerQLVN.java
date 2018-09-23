@@ -1,10 +1,10 @@
 package fasttrackse.ffse1703.fbms.controller.qlvn;
-
 import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fasttrackse.ffse1703.fbms.entity.qlvn.LyDoXinNghi;
 import fasttrackse.ffse1703.fbms.entity.qlvn.ThongKeDonXinPhep;
@@ -49,7 +50,7 @@ public class ControllerQLVN {
 	@RequestMapping(value = {"/danhsachnhap" }, method = RequestMethod.GET)
 	public String danhSachNhap(Model model,@RequestParam(value = "page", required = false, defaultValue = "1") int page) {
 		model.addAttribute("danhsachnhap", service.danhSachXinNghiNhap(page));
-		int lastPage = (int) Math.ceil(service.totalRecords() / 2.0);
+		int lastPage = (int) Math.ceil(service.totalRecords() / 3.0);
 		model.addAttribute("currentPage", page);
 		model.addAttribute("lastPage", lastPage);
 		
@@ -70,17 +71,20 @@ public class ControllerQLVN {
 	}
 	
 	@RequestMapping(value = {"/taodonmoi/nhap"}, method = RequestMethod.POST)
-	public String listDonNhap(Model model, @ModelAttribute("taodonmoi") @Valid ThongKeDonXinPhep nv,HttpSession session,
-			BindingResult result) {
+	public String listDonNhap( @ModelAttribute("taodonmoi") @Valid ThongKeDonXinPhep nv,
+			BindingResult result,Model model,final RedirectAttributes redirectAttributes) {
 		if (result.hasErrors()) {
 			return "Quanlyvangnghi1703004/soandonmoi";
-		} else {
-		service.create(nv);}
+		} 
+		service.create(nv);
 		return "redirect:/Quanlyvangnghi1703004/danhsachnhap";
 	}
 	
 	@RequestMapping(value = "/taodonmoi/choduyet", method = RequestMethod.POST)
-	public String listDonChoDuyet(Model model, @ModelAttribute("taodonmoi") @Valid ThongKeDonXinPhep nv,HttpSession session) {
+	public String listDonChoDuyet(@Valid @ModelAttribute("taodonmoi")  ThongKeDonXinPhep nv,BindingResult result,
+			Model model) {
+		if(result.hasErrors()) {
+			return "/Quanlyvangnghi1703004/soandonmoi";}
 		service.createWalk(nv);
 		return "redirect:/Quanlyvangnghi1703004/danhsachcho";
 	}
@@ -104,13 +108,13 @@ public class ControllerQLVN {
 	@RequestMapping(value = {"/delete/{id}","/taodonmoi/choduyet"})
 	public String delete(@PathVariable int id, HttpSession session, Model model) {
 		service.delete(id);
-		return "redirect:/danhsachnhap";
+		return "redirect:/Quanlyvangnghi1703004/danhsachnhap";
 	}
 	
 	@RequestMapping(value = {"/deleteBrowse/{id}"})
 	public String deleteBrowse(@PathVariable int id, HttpSession session, Model model) {
 		service.delete(id);
-		return "redirect:/danhsachduyet";
+		return "redirect:/Quanlyvangnghi1703004/danhsachduyet";
 	}
 	
 	@RequestMapping(value = "/suanhap/{id}", method = RequestMethod.GET)
@@ -121,15 +125,23 @@ public class ControllerQLVN {
 	}
 
 	@RequestMapping(value = "/trove/nhap", method = RequestMethod.POST)
-	public String editNhap(Model model, @ModelAttribute("suadon") @Valid ThongKeDonXinPhep nv)
+	public String editNhap( @ModelAttribute("suadon") @Valid ThongKeDonXinPhep nv,
+			BindingResult result,Model model)
 			throws SQLException {
+		if(result.hasErrors()) {
+			return "/Quanlyvangnghi1703004/suanhap";
+		}
 		service.create(nv);
 		return "redirect:/Quanlyvangnghi1703004/danhsachnhap";
 	}
 	
 	@RequestMapping(value = "/updatenhap/choduyet", method = RequestMethod.POST)
-	public String editChoDuyet(Model model,  @ModelAttribute("suadon") @Valid ThongKeDonXinPhep nv)
+	public String editChoDuyet(  @ModelAttribute("suadon") @Valid ThongKeDonXinPhep nv,Model model,
+			BindingResult result)
 			throws SQLException {
+		if(result.hasErrors()) {
+			return "/Quanlyvangnghi1703004/suanhap";
+		}
 		service.updateNhap(nv);
 		return "redirect:/Quanlyvangnghi1703004/danhsachcho";
 	}
@@ -142,13 +154,21 @@ public class ControllerQLVN {
 	}
 	
 	@RequestMapping(value = "/updateduyet/duyet", method = RequestMethod.POST)
-	public String listDonDuyet(Model model, @ModelAttribute("suachoduyet") @Valid ThongKeDonXinPhep nv,HttpSession session) {
+	public String listDonDuyet( @ModelAttribute("suachoduyet") @Valid ThongKeDonXinPhep nv,
+			BindingResult result,Model model) {
+		if(result.hasErrors()) {
+			return "/Quanlyvangnghi1703004/suachoduyet";
+		} 
 		service.createBrowse(nv);
 		return "redirect:/Quanlyvangnghi1703004/danhsachduyet";
 	}
 	
 	@RequestMapping(value = "/updatenhap/tuchoi", method = RequestMethod.POST)
-	public String listDonTuChoi(Model model, @ModelAttribute("suachoduyet") @Valid ThongKeDonXinPhep nv,HttpSession session) {
+	public String listDonTuChoi( @ModelAttribute("suachoduyet") @Valid ThongKeDonXinPhep nv,
+			BindingResult result,Model model) {
+		if(result.hasErrors()) {
+			return "/Quanlyvangnghi1703004/suachoduyet";
+		}
 		service.createfeedback(nv);
 		return "redirect:/Quanlyvangnghi1703004/danhsachbituchoi";
 	}

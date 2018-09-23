@@ -41,6 +41,7 @@
 							<div>
 								<label>Ghi chú</label>
 								<form:input class="form-control round" path="ghiChu" />
+							    <form:errors style="color:red" path="ghiChu"  /> 
 							</div>
 						</div>
 
@@ -73,17 +74,19 @@
 							<div>
 								<label>Ghi chú trưởng phòng</label>
 								<form:input class="form-control round" path="ghiChuTruongPhong" />
+								 <form:errors style="color:red" path="ghiChuTruongPhong"  /> 
+								
 							</div>
 						</div>
 						<div>
 							<div class="col-md-2">
-								<button type=submit class="btn btn-success"
+								<button type=submit  class="btn btn-outline-danger round  mr-1 mb-1"
 									formaction="<%=request.getContextPath()%>/Quanlyvangnghi1703004/updatenhap/tuchoi">Từ
 									chối</button>
 							</div>
 							<div class="col-md-4">
 								<div class="col-md-2">
-									<button type="submit" class="btn btn-success"
+									<button type="submit" class="btn btn-outline-success round  mr-1 mb-1"
 										formaction="<%=request.getContextPath()%>/Quanlyvangnghi1703004/updateduyet/duyet">Duyệt</button>
 								</div>
 							</div>

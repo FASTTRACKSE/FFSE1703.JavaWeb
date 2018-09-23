@@ -1,9 +1,7 @@
 package fasttrackse.ffse1703.fbms.entity.qlvn;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,15 +12,16 @@ import javax.persistence.Table;
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 @Entity
 @Table(name="ngay_nghi")
-public class NgayNghi {
+public class NgayNghi{
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_ngay_nghi")
     private int id;
 	
-	@ManyToOne()
-	@JoinColumn(name="ma_nhan_vien")
-	private HoSoNhanVien hoSoNhanVien;
+	@Column(name = "ma_nhan_vien")
+	private int maNhanVien;
+	
 	
 	@Column(name="so_ngay_da_nghi")
 	private int soNgayDaNghi;
@@ -36,14 +35,6 @@ public class NgayNghi {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public HoSoNhanVien getHoSoNhanVien() {
-		return hoSoNhanVien;
-	}
-
-	public void setHoSoNhanVien(HoSoNhanVien hoSoNhanVien) {
-		this.hoSoNhanVien = hoSoNhanVien;
 	}
 
 	public int getSoNgayDaNghi() {
@@ -60,6 +51,14 @@ public class NgayNghi {
 
 	public void setSoNgayConLai(int soNgayConLai) {
 		this.soNgayConLai = soNgayConLai;
+	}
+
+	public int getMaNhanVien() {
+		return maNhanVien;
+	}
+
+	public void setMaNhanVien(int maNhanVien) {
+		this.maNhanVien = maNhanVien;
 	}
 	
 	

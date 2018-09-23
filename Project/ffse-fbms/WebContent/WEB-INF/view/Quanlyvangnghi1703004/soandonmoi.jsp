@@ -12,7 +12,7 @@
 		<div class="content-body">
 			<div class="main-content">
 
-				<form:form method="POST" modelAttribute="taodonmoi">
+				<form:form method="POST"  modelAttribute="taodonmoi">
 					<div class="row">
 						<div class="form-group col-sm-6">
 							<div>
@@ -33,7 +33,6 @@
 							<div>
 								<label>Ngày bắt đầu</label>
 								<fieldset class="form-group position-relative">
-						<%-- 		<form:errors style="color:red" path="ngayKetThuc" /> --%>
 									<form:input type="date" class="form-control round" id="from"
 									onchange="myFunction()"  path="ngayBatDau"  />
 									<div class="form-control-position">
@@ -138,8 +137,8 @@
 							</div>
 							<div>
 								<label>Ghi chú</label>
-								<form:input class="form-control round" path="ghiChu" />
-								<form:errors style="color:red" path="ghiChu" /> 
+								<form:input class="form-control round"  placeholder="ghiChu" path="ghiChu" />
+							 <form:errors path="ghiChu" cssStyle="color: red" ></form:errors> 
 							</div>
 						</div>
 
@@ -163,7 +162,6 @@
 							<div>
 								<label>Ngày kết thúc</label>
 								<fieldset class="form-group position-relative">
-						<%-- 		<form:errors style="color:red" path="ngayKetThuc" /> --%>
 									<form:input type="date" class="form-control round" id="to"
 									onchange="count()"  path="ngayKetThuc"  />
 									<div class="form-control-position">
@@ -238,17 +236,18 @@
 								<form:input class="form-control round" path="ghiChuTruongPhong" readonly="true" />
 							</div>
 						</div>
+						<div><br></div>
 						
-						<div>
+						<div  class="row">
 							<div class="col-md-2">
-								<button type="submit" class="btn btn-success"
+								<button type="submit"  class="btn btn-outline-danger round  mr-1 mb-1"
 									formaction="<%=request.getContextPath()%>/Quanlyvangnghi1703004/taodonmoi/nhap">Lưu
 									nháp</button>
 							</div>
 							
 						<div class="col-md-4">
 								<div class="col-md-2">
-									<button type="submit" class="btn btn-success"
+									<button type="submit"  class="btn btn-outline-success round  mr-1 mb-1"
 										formaction="<%=request.getContextPath()%>/Quanlyvangnghi1703004/taodonmoi/choduyet">Gửi</button>
 								</div>
 						</div>

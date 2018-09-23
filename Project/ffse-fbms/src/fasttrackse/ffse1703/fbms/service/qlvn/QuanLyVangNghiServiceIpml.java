@@ -20,7 +20,7 @@ public class QuanLyVangNghiServiceIpml implements QuanLyVangNghiService {
 	public void setQuanLyVangNghiDao(QuanLyVangNghiDao quanLyVangNghiDao) {
 		this.quanLyVangNghiDao = quanLyVangNghiDao;
 	}
-
+	
 	public List<ThongKeDonXinPhep> danhSachXinNghiChoDuyet() {
 		return this.quanLyVangNghiDao.danhSachXinNghiChoDuyet();
 	}
@@ -28,12 +28,12 @@ public class QuanLyVangNghiServiceIpml implements QuanLyVangNghiService {
 	public List<ThongKeDonXinPhep> danhSachXinNghiDuyet() {
 		return this.quanLyVangNghiDao.danhSachXinNghiDuyet();
 	}
-
+	
 	public  void create(ThongKeDonXinPhep thongKeDonXinPhep) {
 		quanLyVangNghiDao.create(thongKeDonXinPhep);
 		
 	}
-
+	
 	public List<LyDoXinNghi> loadAllLyDo() {
 		return this.quanLyVangNghiDao.loadAllLyDo();
 	}
@@ -47,41 +47,35 @@ public class QuanLyVangNghiServiceIpml implements QuanLyVangNghiService {
 		return this.quanLyVangNghiDao.loadAllHoSo();
 	}
 
-	@Override
+	
 	public List<ThongKeDonXinPhep> danhSachXinNghiTuChoi() {
 		return this.quanLyVangNghiDao.danhSachXinNghiTuChoi();
 	}
-
-	@Override
+	
 	public void createWalk(ThongKeDonXinPhep thongKeDonXinPhep) {
 		quanLyVangNghiDao.createWalk(thongKeDonXinPhep);
 		
 	}
 
-	@Override
 	public void createBrowse(ThongKeDonXinPhep thongKeDonXinPhep) {
 		quanLyVangNghiDao.createBrowse(thongKeDonXinPhep);
 		
 	}
 
-	@Override
 	public void createfeedback(ThongKeDonXinPhep thongKeDonXinPhep) {
 		quanLyVangNghiDao.createfeedback(thongKeDonXinPhep);
 		
 	}
 
-	@Override
 	public ThongKeDonXinPhep findById(int id) {
 		return this.quanLyVangNghiDao.findById(id);
 	}
 
-	@Override
 	public void delete(int id) {
 		quanLyVangNghiDao.delete(id);
 		
 	}
 
-	@Override
 	public void updateNhap(ThongKeDonXinPhep thongKeDonXinPhep) {
 		quanLyVangNghiDao.updateNhap(thongKeDonXinPhep);
 		
@@ -91,7 +85,6 @@ public class QuanLyVangNghiServiceIpml implements QuanLyVangNghiService {
 		return this.quanLyVangNghiDao.totalRecords();
 	}
 
-	@Override
 	public List<ThongKeDonXinPhep> danhSachXinNghiNhap(int page) {
 		return this.quanLyVangNghiDao.danhSachXinNghiNhap(page);
 	}

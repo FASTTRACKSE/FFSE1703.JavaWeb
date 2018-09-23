@@ -1,26 +1,21 @@
 package fasttrackse.ffse1703.fbms.dao.qlvn;
-
-import java.util.Date;
 import java.util.List;
-
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
 import fasttrackse.ffse1703.fbms.entity.qlvn.LyDoXinNghi;
 import fasttrackse.ffse1703.fbms.entity.qlvn.ThongKeDonXinPhep;
 import fasttrackse.ffse1703.fbms.entity.qlvn.TrangThai;
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 
-@Repository
-@Transactional
+@Repository(value = "quanLyVangNghiDao")
+@Transactional(rollbackFor = Exception.class)
 public class QuanLyVangNghiDaoIpml implements QuanLyVangNghiDao {
 
 	@Autowired
@@ -50,8 +45,8 @@ public class QuanLyVangNghiDaoIpml implements QuanLyVangNghiDao {
 		cq.select(root)
 				.where(cb.or(cb.equal(root.get("trangThai"), 1)));
 		Query<ThongKeDonXinPhep> query = session.createQuery(cq);
-		query.setFirstResult((page - 1) * 2);
-		query.setMaxResults(5);
+		query.setFirstResult((page - 1) * 3);
+		query.setMaxResults(3);
 		return query.getResultList();
 	}
 	
@@ -62,8 +57,6 @@ public class QuanLyVangNghiDaoIpml implements QuanLyVangNghiDao {
 		return (Long) query.uniqueResult();
 	}
 	
-	
-	@Override
 	public List<ThongKeDonXinPhep> danhSachXinNghiTuChoi() {
 		Session session = sessionFactory.getCurrentSession();
 		List<ThongKeDonXinPhep> list = session.createQuery("from ThongKeDonXinPhep where trangThai = '4'").getResultList();
@@ -126,11 +119,9 @@ public class QuanLyVangNghiDaoIpml implements QuanLyVangNghiDao {
 	
 	}
 
-
-
 	public void createfeedback(ThongKeDonXinPhep thongKeDonXinPhep) {
 		Session session = this.sessionFactory.getCurrentSession();
-		session.update(thongKeDonXinPhep);
+		session.save(thongKeDonXinPhep);
 		session.createQuery("update ThongKeDonXinPhep set trangThai = '4'  where id =" + thongKeDonXinPhep.getId()).executeUpdate();
 		
 	}

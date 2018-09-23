@@ -15,7 +15,7 @@
 			<h3 >Danh sách bị từ chối</h3>
 		</div>
 			<div>
-			<div><a href="soandonmoi"><h4> Soạn đơn mới</h4></a></div>
+			<div><a  class="btn btn-outline-success round btn-min-width mr-1 mb-1" href="soandonmoi"><h4>Soạn đơn mới</h4></a></div>
 			<div class="container">
 			    <div class="table-responsive">
 						<table class="table mb-0">
@@ -43,9 +43,9 @@
 					<td>${nv.ghiChu}</td>
 					<td>${nv.ghiChuTruongPhong}</td>
 					<td>${nv.trangThai.trangThai}</td>
-					<td><a  href="suanhap/${nv.id }"><button class="btn btn-success">
-									Sửa</button></a>  <a href="delete/${nv.id }"><button class="btn btn-danger"
-									onclick="return confirm('Bạn có muốn xóa sinh viên này?');">Xóa</button></a>
+					<td><a  href="suanhap/${nv.id }" class="btn btn-outline-success round  mr-1 mb-1">
+									Sửa</a>  <a href="delete/${nv.id }"class="btn btn-outline-danger round mr-1 mb-1"
+									onclick="return confirm('Bạn có muốn xóa sinh viên này?');">Xóa</a>
 					</td>
 						</tr>
 				</c:forEach>

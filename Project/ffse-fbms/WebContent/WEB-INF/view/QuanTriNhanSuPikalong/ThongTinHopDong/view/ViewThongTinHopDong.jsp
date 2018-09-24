@@ -6,9 +6,8 @@
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 <div class="app-content content container-fluid">
 <div class="content-wrapper">
-<form:form class="form"  method="POST" modelAttribute="hopDongPikalong" action="/ffse-fbms/QuanTriNhanSu/quanlihopdong/save">
+<form:form class="form"  method="GET" modelAttribute="HopDong" action="">
 	<div class="form-body">
-		<h4 class="form-section">Thêm Hợp Đồng</h4>
 		
 		<div class="row">
 			<div class="col-md-6">
@@ -45,67 +44,47 @@
 		<div class="col-md-4">
 				<label>Mã hợp đồng</label> <fmt:parseNumber var="intValue" value="${lastMaHd}" integerOnly="true"/><div class="form-control well">${intValue + 1}</div>
 			</div>
-			<form:hidden path="hoSoNhanVienPikalong.maNv" value="${hsnv.maNv}" />
 			<div class="col-md-4">
 				<div class="form-group">
-					<label>Tên hợp đồng</label> <form:select path="loaiHopDongPikalong.maLoaiHopDong"
-						id="tenHd" name="tenHdSelect" class="form-control">
-						<option value="none" selected="" disabled=""> <--Chọn--> </option>
-						<form:option value="1">Hợp đồng thử việc</form:option>
-						<option value="2">Hợp đồng ngắn hạn</option>
-						<option value="3">Hợp đồng chính thức</option>
-						
-					</form:select>
+					<label>Tên hợp đồng</label> 
+					<div class="form-control well">${hopdong.maHopDong.tenHopDong}</div>
 				</div>
 			</div>
 			<div class="col-md-4">
 				<div class="form-group">
-					<label>Trạng thái</label> <form:input path="trangThai"
-						type="text" id="trangThai" class="form-control" />
+					<label>Trạng thái</label> 
+					<div class="form-control well">${hopdong.trangThai}</div>
 				</div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-3">
 				<div class="form-group">
-					<label>Lương tháng 13</label> <form:select path="luongThang13"
-						  class="form-control">
-						<form:option value="none" selected="" disabled=""> <--Chọn--> </form:option>
-						<form:option value="1">Có</form:option>
-						<form:option value="2">Không</form:option>
-					</form:select>
+					<label>Lương tháng 13</label> 
+					<div class="form-control well">${hopdong.luongThang13}</div>
 				</div>
 			</div>
 			<div class="col-md-3">
 				<div class="form-group">
-					<label>Số ngày nghỉ trong năm</label> <form:input path="soNgayNghiTrongNam"
-						type="text" id="soNgayNghiTrongNam" class="form-control" />
+					<label>Số ngày nghỉ trong năm</label> 
+					<div class="form-control well">${hopdong.soNgayNghiTrongNam}</div>
 				</div>
 			</div>
 			<div class="col-md-3">
 				<div class="form-group">
-					<label>Ngày ký hợp đồng</label> <form:input path="ngayKiKet"
-						type="date" id="ngayKyKet" class="form-control" />
+					<label>Ngày ký hợp đồng</label> 
+					<div class="form-control well">${hopdong.ngayKiKet}</div>
 				</div>
 			</div>
 			<div class="col-md-3">
 				<div class="form-group">
-					<label>Ngày kết thúc hợp đồng</label> <form:input path="ngayKetThuc"
-						type="date" id="ngayKetThuc" class="form-control" />
+					<label>Ngày kết thúc hợp đồng</label> 
+					<div class="form-control well">${hopdong.ngayKetThuc}</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="form-actions center">
-	<a href="QuanTriNhanSu/quanlihopdong/HopDong">
-	<button type="button" class="btn btn-warning btn-min-width mr-1 mb-1">
-			<i class="ft-x"></i> Hủy
-	</button></a>
-		<button type="submit" class="btn btn-info btn-min-width mr-1 mb-1">
-			<i class="fa fa-check"></i> Lưu
-		</button>
-		
-	</div>
+	
 </form:form>
 </div>
 </div>

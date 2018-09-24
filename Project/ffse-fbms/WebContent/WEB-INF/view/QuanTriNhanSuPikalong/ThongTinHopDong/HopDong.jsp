@@ -34,7 +34,7 @@
 				<td>${x.trangThai}</td>
 				<td>
 					<div class="fonticon-container"><div style="line-height:0; height: 0; margin-bottom: 0;" class="fonticon-wrap">
-						<a href="${x.id}"><i style="font-size: 1em;" class="ft-eye"></i></a>
+						<a href="#"><i style="font-size: 1em;" class="ft-eye"></i></a>
 						<a href="#"><i style="font-size: 1em;" class="ft-edit-2"></i></a>
 						<a href="#"><i style="font-size: 1em;" class="ft-trash"></i></a>
 					</div></div>

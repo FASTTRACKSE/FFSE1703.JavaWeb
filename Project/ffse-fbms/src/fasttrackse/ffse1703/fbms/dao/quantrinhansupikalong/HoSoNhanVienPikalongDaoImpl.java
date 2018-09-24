@@ -7,6 +7,8 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.sun.org.apache.regexp.internal.recompile;
+
 import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.HoSoNhanVienPikalong;
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 
@@ -53,6 +55,21 @@ public class HoSoNhanVienPikalongDaoImpl implements HoSoNhanVienPikalongDao {
 		
 	}
 	
+	@SuppressWarnings("rawtypes")
+	@Override
+	public String getAutoId() {
+		Session session = this.sessionFactory.getCurrentSession();
+		Query query = session.createSQLQuery(
+				"SELECT `AUTO_INCREMENT` FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'ffse1703' AND TABLE_NAME = 'thongtinhoso'");
+		String index = query.getSingleResult().toString();
+		return index;
+	}
 	
-
+	@Override
+	public HoSoNhanVienPikalong getHoSoNhanVienById (int maNv) {
+		Session session = this.sessionFactory.getCurrentSession();
+		HoSoNhanVienPikalong hsnv = session.load(HoSoNhanVienPikalong.class, new Integer(maNv));
+		System.out.println(hsnv);
+		return hsnv;
+	}
 }

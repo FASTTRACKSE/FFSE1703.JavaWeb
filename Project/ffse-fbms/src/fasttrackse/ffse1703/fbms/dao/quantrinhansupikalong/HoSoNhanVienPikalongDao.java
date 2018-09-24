@@ -9,5 +9,6 @@ public interface HoSoNhanVienPikalongDao {
 	public List<HoSoNhanVienPikalong> listNhanVien();
 	public void delete(int maNv);
 	public void insert(HoSoNhanVienPikalong hoSoNhanVien);
-	
+	public String getAutoId();
+	public HoSoNhanVienPikalong getHoSoNhanVienById(int maNv);
 }

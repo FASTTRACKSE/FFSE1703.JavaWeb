@@ -1,12 +1,15 @@
 package fasttrackse.ffse1703.fbms.dao.quanlyduan;
 import java.util.List;
 
+
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import fasttrackse.ffse1703.fbms.entity.quanlyduan.KhachHangTeam1;
+
 
 @Repository
 public class KhachHangTeam1DaoImpl implements KhachHangTeam1Dao{
@@ -61,6 +64,8 @@ public class KhachHangTeam1DaoImpl implements KhachHangTeam1Dao{
 		Session session = this.sessionFactory.getCurrentSession();
 		return session.createQuery("from khach_hang").setFirstResult(startPosition).setMaxResults(maxResult).list();
 	}
+	
+	
 
 
 }

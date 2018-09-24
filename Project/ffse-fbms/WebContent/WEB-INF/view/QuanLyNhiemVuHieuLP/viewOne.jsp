@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
@@ -25,8 +26,7 @@
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/home" />'>Home</a></li>
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/HieuLP/" />'>Danh
-									sách nhiệm vụ</a></li>
+								href='<c:url value="/HieuLP/" />'>Danh sách nhiệm vụ</a></li>
 							<li class="breadcrumb-item active">Thông tin nhiệm vụ</li>
 						</ol>
 					</div>
@@ -55,30 +55,25 @@
 						<div class="card-body collapse in">
 							<div class="card-block">
 								<div class="table-responsive">
-									
-										<label>Tên dự án</label> <input class="form-control"
-												value="${nv.duAn}" readonly />
-										<label>Tên công việc</label> <input
-												class="form-control" value="${nv.tenCongviec}" readonly />
-											<label>Loại công việc</label> <input
-												class="form-control" value="${nv.loaiCongviec}" readonly />
-										<label>Mô Tả</label> <input class="form-control"
-												value="${nv.moTa}" readonly />
-											<label>Thời gian bắt đầu</label> <input
-												class="form-control" value="${nv.tgBatdau}" readonly />
-											<label>Thời gian kết thúc</label> <input
-												class="form-control" value="${nv.tgKetthuc}" readonly />
-											<label>Người được phân công</label> <input
-												class="form-control"  value="${nv.nguoiDuocphancong}" readonly /></td>
-											<label>Thời gian dự kiếnhoàn thành</label> <input
-												class="form-control" value="${nv.tgDukienhoanthanh}"
-												readonly /></td>
-											<label>Loại trạng thái</label> <input
-												class="form-control" value="${nv.loaiTrangthai}" readonly />
-							
-						</div>
-										
+
+									<label>Tên dự án</label> <input class="form-control"
+										value="${nv.duAn}" readonly /> <label>Tên công việc</label> <input
+										class="form-control" value="${nv.tenCongviec}" readonly /> <label>Loại
+										công việc</label> <input class="form-control"
+										value="${nv.loaiCongviec}" readonly /> <label>Mô Tả</label> <input
+										class="form-control" value="${nv.moTa}" readonly /> <label>Thời
+										gian bắt đầu</label> <input class="form-control"
+										value="${nv.tgBatdau}" readonly /> <label>Thời gian
+										kết thúc</label> <input class="form-control" value="${nv.tgKetthuc}"
+										readonly /> <label>Người được phân công</label> <input
+										class="form-control" value="${nv.nhanVien}" readonly />
+									</td> <label>Thời gian dự kiếnhoàn thành</label> <input
+										class="form-control" value="${nv.tgDukienhoanthanh}" readonly />
+									</td> <label>Loại trạng thái</label> <input class="form-control"
+										value="${nv.loaiTrangthai}" readonly />
+
 								</div>
+
 							</div>
 						</div>
 					</div>
@@ -86,6 +81,7 @@
 			</div>
 		</div>
 	</div>
+</div>
 </div>
 
 <jsp:include page="/WEB-INF/view/templates/footer.jsp" />

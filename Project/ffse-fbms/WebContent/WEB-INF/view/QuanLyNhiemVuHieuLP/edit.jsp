@@ -32,9 +32,8 @@
 							value="${nv.ID}" />
 						<div class="form-group col-sm-6">
 							<label>Dự án</label>
-							<form:input class="form-control" path="duAn" value="${nv.duAn}" readonly="true" />
+							<form:input class="form-control" path="duAn" readonly="true" />
 						</div>
-						
 						<div class="form-group col-sm-6">
 							<label>Tên công việc</label>
 							<form:input class="form-control" path="tenCongviec"
@@ -70,8 +69,8 @@
 						</div>
 						<div class="form-group col-sm-6">
 							<label>Người được phân công</label>
-								<form:input class="form-control" path="nguoiDuocphancong"
-								value="${nv.nguoiDuocphancong}" />
+								<form:input class="form-control" path="nhanVien"
+								value="${nv.nhanVien}" />
 						</div>
 						<div class="form-group col-sm-6">
 							<label>Thời gian dự kiến hoàn thành</label>

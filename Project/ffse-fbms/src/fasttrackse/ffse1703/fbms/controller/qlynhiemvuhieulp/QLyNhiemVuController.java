@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import fasttrackse.ffse1703.fbms.entity.qlynhiemvuhieulp.LoaitrangthaiEntity;
+
 import fasttrackse.ffse1703.fbms.entity.qlynhiemvuhieulp.QLyNhiemVuEntity;
 import fasttrackse.ffse1703.fbms.service.qlynhiemvuhieulp.QLyNhiemVuService;
 
@@ -30,9 +30,6 @@ public class QLyNhiemVuController {
 		model.addAttribute("nv", qLyNhiemVuService.findById(id));
 		return "QuanLyNhiemVuHieuLP/viewOne";
 	}
-	
-	
-	
 	@RequestMapping(value = {"/","/danhsach"})
 	public String danhSach(Model model) {
 		model.addAttribute("danhsach",qLyNhiemVuService.getAll());
@@ -51,6 +48,7 @@ public class QLyNhiemVuController {
 		model.addAttribute("add", new QLyNhiemVuEntity());
 		model.addAttribute("trangthai", "Mới");
 		model.addAttribute("congviec", qLyNhiemVuService.congViec());
+		model.addAttribute("duan", qLyNhiemVuService.duAn());
 		return "QuanLyNhiemVuHieuLP/create";
 	}
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
@@ -68,6 +66,7 @@ public class QLyNhiemVuController {
 		model.addAttribute("edit", qLyNhiemVuService.findById(id));
 		model.addAttribute("trangthai", qLyNhiemVuService.trangThai());
 		model.addAttribute("congviec", qLyNhiemVuService.congViec());
+		model.addAttribute("duan", qLyNhiemVuService.duAn());
 		return "/QuanLyNhiemVuHieuLP/edit";
 	}
 
@@ -77,6 +76,4 @@ public class QLyNhiemVuController {
 		qLyNhiemVuService.update(nv);
 		return "redirect:/HieuLP/danhsach";
 	}
-	
-
 }

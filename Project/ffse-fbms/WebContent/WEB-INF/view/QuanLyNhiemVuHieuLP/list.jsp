@@ -131,7 +131,7 @@
 										        <td>${nv.tenCongviec} </td>						
 										        <td>${nv.loaiCongviec}</td>
 										        <td>${nv.loaiTrangthai}</td>
-										        <td>${nv.nguoiDuocphancong}</td>
+										        <td>${nv.nhanVien}</td>
 												<td>
 													<a href="view/${nv.ID}"><button class="btn btn-default">Xem</button></a> 
 													<a href="edit/${nv.ID}"><button class="btn btn-success">Sửa</button></a> 

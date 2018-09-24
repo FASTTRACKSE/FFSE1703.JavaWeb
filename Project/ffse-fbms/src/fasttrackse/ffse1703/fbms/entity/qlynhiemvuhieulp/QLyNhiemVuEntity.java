@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -21,7 +23,7 @@ public class QLyNhiemVuEntity {
 
 	@Column(name = "ma_du_an")
 	@NotNull
-	private int duAn;
+	private String duAn;
 
 	@Column(name = "loai_cong_viec")
 	@NotEmpty
@@ -43,9 +45,17 @@ public class QLyNhiemVuEntity {
 	@NotNull
 	private Date tgKetthuc;
 
-	@Column(name = "nguoi_duoc_phan_cong")
-	@NotEmpty
-	private String nguoiDuocphancong;
+	@Column(name = "ma_nhan_vien")
+	@NotNull
+	private String nhanVien;
+
+	public String getNhanVien() {
+		return nhanVien;
+	}
+
+	public void setNhanVien(String nhanVien) {
+		this.nhanVien = nhanVien;
+	}
 
 	@Column(name = "tg_du_kien_hoan_thanh")
 	@NotNull
@@ -55,7 +65,7 @@ public class QLyNhiemVuEntity {
 	@NotEmpty
 	private String loaiTrangthai;
 
-	@Column(name = "is_delete")	
+	@Column(name = "is_delete")
 	private int isDelete;
 
 	public QLyNhiemVuEntity() {
@@ -71,11 +81,11 @@ public class QLyNhiemVuEntity {
 		ID = iD;
 	}
 
-	public int getDuAn() {
+	public String getDuAn() {
 		return duAn;
 	}
 
-	public void setDuAn(int duAn) {
+	public void setDuAn(String duAn) {
 		this.duAn = duAn;
 	}
 
@@ -117,14 +127,6 @@ public class QLyNhiemVuEntity {
 
 	public void setTgKetthuc(Date tgKetthuc) {
 		this.tgKetthuc = tgKetthuc;
-	}
-
-	public String getNguoiDuocphancong() {
-		return nguoiDuocphancong;
-	}
-
-	public void setNguoiDuocphancong(String nguoiDuocphancong) {
-		this.nguoiDuocphancong = nguoiDuocphancong;
 	}
 
 	public String getTgDukienhoanthanh() {

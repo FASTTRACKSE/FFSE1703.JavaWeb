@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import fasttrackse.ffse1703.fbms.entity.qlynhiemvuhieulp.DuAnEntityHieuLp;
 import fasttrackse.ffse1703.fbms.entity.qlynhiemvuhieulp.LoaicongviecEntity;
 import fasttrackse.ffse1703.fbms.entity.qlynhiemvuhieulp.LoaitrangthaiEntity;
 import fasttrackse.ffse1703.fbms.entity.qlynhiemvuhieulp.QLyNhiemVuEntity;
@@ -78,8 +79,18 @@ public class QLyNhiemVuDaoImpl implements QLyNhiemVuDao {
 		CriteriaQuery<LoaicongviecEntity> cq1 = cv1.createQuery(LoaicongviecEntity.class);
 		Root<LoaicongviecEntity> root1 = cq1.from(LoaicongviecEntity.class);
 		cq1.select(root1);
-		Query<LoaicongviecEntity> query = session1.createQuery(cq1);
-		return query.getResultList();
+		Query<LoaicongviecEntity> query1 = session1.createQuery(cq1);
+		return query1.getResultList();
+	}
+	@Override
+	public List<DuAnEntityHieuLp> duAn() {
+		Session session2 = sessionFactory.getCurrentSession();
+		CriteriaBuilder cv2 = session2.getCriteriaBuilder();
+		CriteriaQuery<DuAnEntityHieuLp> cq2 = cv2.createQuery(DuAnEntityHieuLp.class);
+		Root<DuAnEntityHieuLp> root2 = cq2.from(DuAnEntityHieuLp.class);
+		cq2.select(root2);
+		Query<DuAnEntityHieuLp> query2 = session2.createQuery(cq2);
+		return query2.getResultList();
 	}
 	
 

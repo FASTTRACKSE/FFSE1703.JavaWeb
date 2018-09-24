@@ -13,4 +13,8 @@ public interface HoSoNhanVienPikalongDao {
 	public HoSoNhanVienPikalong getHoSoNhanVienById(int maNv);
 	public HoSoNhanVienPikalong getEdit(int maNv);
 	public void update(HoSoNhanVienPikalong hoSoNhanVienPikalong);
+<<<<<<< HEAD
+=======
+	
+>>>>>>> 46d12abb8da1283b82fbfc16450d531c19366ca9
 }

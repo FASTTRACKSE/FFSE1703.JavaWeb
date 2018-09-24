@@ -43,7 +43,10 @@
 		</h4>
 		<div class="row">
 		<div class="col-md-4">
-				<label>Mã hợp đồng</label> <fmt:parseNumber var="intValue" value="${lastMaHd}" integerOnly="true"/><div class="form-control well">${intValue + 1}</div>
+				<label>Mã hợp đồng</label> 
+				
+					<fmt:parseNumber var="intValue" value="${lastMaHd}" integerOnly="true"/><div class="form-control well">${intValue + 1}</div>
+				
 			</div>
 			<form:hidden path="hoSoNhanVienPikalong.maNv" value="${hsnv.maNv}" />
 			<div class="col-md-4">

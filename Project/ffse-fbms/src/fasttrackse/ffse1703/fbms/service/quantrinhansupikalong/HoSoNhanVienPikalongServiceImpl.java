@@ -55,11 +55,6 @@ public class HoSoNhanVienPikalongServiceImpl implements HoSoNhanVienPikalongServ
 	public HoSoNhanVienPikalong getHoSoNhanVienById(int maNv) {
 		return this.hoSoNhanVienPikalongDao.getHoSoNhanVienById(maNv);
 	}
-<<<<<<< HEAD
-=======
-
->>>>>>> 46d12abb8da1283b82fbfc16450d531c19366ca9
-
 	@Override
 	@Transactional
 	public HoSoNhanVienPikalong getEdit(int maNv) {
@@ -74,9 +69,4 @@ public class HoSoNhanVienPikalongServiceImpl implements HoSoNhanVienPikalongServ
 		hoSoNhanVienPikalongDao.update(hoSoNhanVienPikalong);
 		
 	}
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 46d12abb8da1283b82fbfc16450d531c19366ca9
 }

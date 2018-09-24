@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "qlda_program_language")
@@ -14,6 +15,7 @@ public class Language {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_program_language", unique = true, nullable = false)
 	private int idLanguage;
+	@NotEmpty
 	@Column(name = "name_language", unique = true, nullable = false)	
 	private String nameLanguage;
 	private int status;

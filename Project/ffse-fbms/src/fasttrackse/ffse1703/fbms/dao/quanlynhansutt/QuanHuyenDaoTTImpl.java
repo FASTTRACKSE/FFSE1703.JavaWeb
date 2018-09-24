@@ -10,20 +10,22 @@ import org.springframework.stereotype.Repository;
 
 import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.QuanHuyenTT;
 
+
 @Repository
 public class QuanHuyenDaoTTImpl implements QuanHuyenDaoTT {
 	@Autowired
-	SessionFactory sessionFactory;
+	private SessionFactory sessionFactory;
 
 	@Override
-	public List<QuanHuyenTT> listQuanHuyen() {
+	public List<QuanHuyenTT> listQuanHuyen(int maThanhPho) {
 		Session session = sessionFactory.getCurrentSession();
 		@SuppressWarnings("rawtypes")
-		Query query = session.createQuery("from QuanHuyenTT");
+		Query query = session.createQuery("from QuanHuyenTT where maThanhPho = :maThanhPho");
+		query.setParameter("maThanhPho", maThanhPho);
 		@SuppressWarnings("unchecked")
 		List<QuanHuyenTT> listQuanHuyen = query.list();
-
 		return listQuanHuyen;
 	}
 
+	
 }

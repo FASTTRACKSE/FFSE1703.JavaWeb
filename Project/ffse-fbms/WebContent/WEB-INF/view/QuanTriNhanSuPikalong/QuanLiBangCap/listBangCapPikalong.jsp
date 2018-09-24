@@ -43,7 +43,6 @@
 						</table>
 						<p style="color: red">Page ${page}</p>
 						<div class="dataTables_paginate paging_simple_numbers">
-
 							<ul class="pagination">
 								<c:if test="${page > 1}">
 									<li class="paginate_button page-item "><a
@@ -62,8 +61,7 @@
 										href="/ffse-fbms/QuanTriNhanSuPikalong/QuanLiBangCap/listBangCapPikalong/${page+1}">${page+1}</a></li>
 									<li class="paginate_button page-item "><a
 										class="page-link"
-										href="/ffse-fbms/QuanTriNhanSuPikalong/QuanLiBangCap/listBangCapPikalong/${total}">Trang
-											Cuối</a></li>
+										href="/ffse-fbms/QuanTriNhanSuPikalong/QuanLiBangCap/listBangCapPikalong/${total}">Trang Cuối</a></li>
 								</c:if>
 							</ul>
 						</div>

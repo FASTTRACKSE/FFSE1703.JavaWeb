@@ -36,12 +36,13 @@
 			<c:forEach var="nv" items="${danhsachnhap003}">
 					<tr>
 					<td>${nv.id}</td>
-					<%-- <td>${nv.maNhanVien.maNhanVien}</td> --%>
+					<td>${nv.maNhanVien.maNhanVien }</td>
 					<td>${nv.ngayBatDau}</td>
 					<td>${nv.ngayKetThuc}</td>
-					 <td>${nv.lyDo.tenLyDo}</td> 
+					 <td>${nv.lyDo.lyDo}</td> 
 					<td>${nv.ghiChu}</td>
 					<td>${nv.ghiChuTruongPhong}</td>
+				      <td>${nv.trangThai.tenTrangThai}</td>
 					<%-- <td>${nv.trangThai}</td> --%>
 					<td><a  href="suanhap/${nv.id }"><button class="btn btn-success">
 									Sửa</button></a>  <a href="delete/${nv.id }"><button class="btn btn-danger"

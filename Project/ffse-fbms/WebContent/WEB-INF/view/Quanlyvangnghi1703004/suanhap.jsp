@@ -22,19 +22,9 @@
 
 							</div>
 
-							<%-- <div  class="row">
-								<label> Trạng thái</label>
-								<form:select path="trangThai.maTrangThai" class="custom-select block round"
-									id="customSelect">
-									<c:forEach items="${trangthai}" var="ld">
-										<form:option value="${ld.id}" label="${ld.trangThai}" />
-									</c:forEach>
-								</form:select>
-							</div> --%>
-
 							<div>
 								<label> Mã nhân viên</label>
-								<form:select path="maNhanVien.maNhanVien"
+								<form:select path="thongTinHoSoNhanVien.maNhanVien"
 									class="custom-select block round" id="customSelect">
 									<c:forEach items="${hoso}" var="ld">
 										<form:option value="${ld.maNhanVien}" label="${ld.maNhanVien}" />
@@ -44,7 +34,7 @@
 							<div>
 								<label>Ngày bắt đầu</label>
 								<fieldset class="form-group position-relative">
-						<%-- 		<form:errors style="color:red" path="ngayKetThuc" /> --%>
+							
 									<form:input type="date" class="form-control round" id="from"
 									onchange="myFunction()"  path="ngayBatDau"  />
 									<div class="form-control-position">
@@ -150,6 +140,8 @@
 							<div>
 								<label>Ghi chú</label>
 								<form:input class="form-control round" path="ghiChu" />
+								<form:errors style="color:red"  path="ghiChu" /> 
+								
 							</div>
 						</div>
 
@@ -247,12 +239,12 @@
 						</div>
 					<div>
 						<div class="col-md-2">
-							<button type="submit" class="btn btn-success"
+							<button type="submit"  class="btn btn-outline-danger round  mr-1 mb-1"
 							formaction="<%=request.getContextPath()%>/Quanlyvangnghi1703004/trove/nhap">Hủy</button>
 					    </div>
 						<div class="col-md-4">
 						<div class="col-md-2">
-							<button type="submit" class="btn btn-success"
+							<button type="submit"  class="btn btn-outline-success round  mr-1 mb-1"
 							formaction="<%=request.getContextPath()%>/Quanlyvangnghi1703004/taodonmoi/choduyet">Gửi</button>
 						</div>
 						</div>

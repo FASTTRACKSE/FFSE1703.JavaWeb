@@ -12,7 +12,7 @@
 		<div class="content-header row">
 		<div>
 		<div class="col-md-5"></div>
-			<h3>Danh sách đã duyệt</h3>
+			<h3 class="content-header-title mb-0">Danh sách đã duyệt</h3>
 		</div>
 			
 			<div>
@@ -37,7 +37,7 @@
 			<c:forEach var="nv" items="${danhsachduyet}">
 					<tr>
 					<td>${nv.id}</td>
-					<td>${nv.maNhanVien.maNhanVien}</td>
+					<td>${nv.thongTinHoSoNhanVien.maNhanVien}</td>
 					<td>${nv.ngayBatDau}</td>
 					<td>${nv.ngayKetThuc}</td>
 					<td>${nv.soNgayNghi}</td>
@@ -45,8 +45,8 @@
 					<td>${nv.ghiChu}</td>
 					<td>${nv.ghiChuTruongPhong}</td>
 					<td>${nv.trangThai.trangThai}</td>
-					<td><a href="deleteBrowse/${nv.id }"><button class="btn btn-danger"
-									onclick="return confirm('Bạn có muốn xóa sinh viên này?');">Xóa</button></a>
+					<td><a href="deleteBrowse/${nv.id }" class="btn btn-outline-danger round  mr-1 mb-1"
+									onclick="return confirm('Bạn có muốn xóa sinh viên này?');">Xóa</a>
 					</td>
 						</tr>
 				</c:forEach>

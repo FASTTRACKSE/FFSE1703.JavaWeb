@@ -33,13 +33,11 @@ public class CongViecServiceImpl implements CongViecService{
 	}
 
 	@Override
-	@Transactional
 	public void update(CongViec cv) {
 		congViecDao.update(cv);
 	}
 
 	@Override
-	@Transactional
 	public void delete(CongViec cv) {
 		congViecDao.delete(cv);
 	}

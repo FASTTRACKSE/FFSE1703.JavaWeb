@@ -35,10 +35,10 @@ public class HopDongPikalong {
 	
 	private String ngayKetThuc;
 	
-	@NotEmpty(message="Không được để trống!!!")
+	
 	private int soNgayNghiTrongNam;
 	
-	@NotEmpty(message="Không được để trống!!!")
+	
 	private String luongThang13;
 
 	private int trangThai;

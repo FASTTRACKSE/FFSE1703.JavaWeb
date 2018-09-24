@@ -6,51 +6,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
-
-<div class="app-content content container-fluid">
-	<div class="content-wrapper">
-		<div class="content-header row">
-			<div class="content-header-left col-md-9 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">
-					<spring:message code="label.danhSachHopDong" />
-				</h3>
-				<div class="row breadcrumbs-top">
-					<div class="breadcrumb-wrapper col-xs-12">
-						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="<c:url value = "/"/>"><spring:message
-										code="label.trangChu" /></a></li>
-							<li class="breadcrumb-item"><a href="javascript:void(0)"><spring:message
-										code="label.quanLyNhanSu" /></a></li>
-							<li class="breadcrumb-item"><a href="javascript:void(0)"><spring:message
-										code="label.quanLyHopDong" /></a></li>
-							<li class="breadcrumb-item active"><spring:message
-									code="label.danhSachHopDong" /></li>
-							<li class="breadcrumb-item"><a
-								href="<c:url value = "/quanlynhansutt/add"/>"><spring:message
-										code="label.themHopDong" /></a></li>
-						</ol>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="content-body">
-			<!-- Zero configuration table -->
-			<section id="configuration">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="card">
-							<div class="card-header">
-								<h4 class="card-title">Datatable</h4>
-								<a class="heading-elements-toggle"><i
-									class="fa fa-ellipsis-v font-medium-3"></i></a>
-								<div class="heading-elements">
-									<ul class="list-inline mb-0">
-										<li><a data-action="collapse"><i class="ft-minus"></i></a></li>
-										<li><a data-action="expand"><i class="ft-maximize"></i></a></li>
-									</ul>
-								</div>
-							</div>
-							<style type="text/css">
+<style type="text/css">
 .table td {
 	vertical-align: baseline;
 }
@@ -66,38 +22,78 @@ th, td {
 	text-align: center !important;
 }
 </style>
+<div class="app-content content container-fluid">
+	<div class="content-wrapper">
+		<div class="content-header row">
+			<div class="content-header-left col-md-9 col-xs-12 mb-2">
+				<h3 class="content-header-title mb-0">Hồ sơ nhân viên</h3>
+				<div class="row breadcrumbs-top">
+					<div class="breadcrumb-wrapper col-xs-12">
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item"><a href="<c:url value = "/"/>"><spring:message
+										code="label.trangChu" /></a></li>
+							<li class="breadcrumb-item active">Danh Sách Nhân Viên</li>
+							<li class="breadcrumb-item"><a href="<c:url value = "#"/>">thêm
+									nhân viên</a></li>
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="content-body">
+			<!-- Zero configuration table -->
+			<section id="configuration">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="card">
+							<div class="card-header">
+								<h4 class="card-title">Danh sách nhân viên</h4>
+								<a class="heading-elements-toggle"><i
+									class="fa fa-ellipsis-v font-medium-3"></i></a>
+								<div class="heading-elements">
+									<ul class="list-inline mb-0">
+										<li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+										<li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+									</ul>
+								</div>
+							</div>
 							<div class="card-body collapse in">
 								<div class="card-block card-dashboard">
 									<table id="datatable"
 										class="table table-striped table-bordered zero-configuration">
 										<thead>
 											<tr>
-												<th>Mã nhân viên</th>
-												<!-- <th>Tên nhân viên</th>
-												<th>ảnh đại diện</th>
-												<th>Năm sinh</th>
-												<th>giới tính</th>
-												<th>địa chỉ</th>
-												<th>Xã,Phường </th>
-												<th>Quận, Huyện</th>
-												<th>Tỉnh, Thành Phố</th>
-												<th>số điện thoại</th>
-												<th>mã tình trạng hôn nhân</th>
-												<th>mã quốc tịch</th>
-												<th>mã dân tộc</th>
-												<th>số cmnd</th>
-												<th>nơi cấp</th>
-												<th>ngày cấp</th>
- -->
-												<th>mã phòng ban</th>
-
-												<th>tình trạng</th>
+												<th>Mã Nhân Viên</th>
+												<th>Phòng Ban</th>
+												<th>Chức Danh</th>
+												<th>Tên Nhân Viên</th>
+												<th>Năm Sinh</th>
+												<th>Giới Tính</th>
+												<th>Địa Chỉ</th>
+												<th>Số Điện Thoại</th>
+												<th>Chức Năng</th>
 											</tr>
 										</thead>
 										<tbody>
 											<c:forEach items="${listHoSo}" var="hsnv">
 												<tr>
+													<td>${hsnv.maNhanVien}</td>
+													<td>${hsnv.phongBan.tenPhongBan}</td>
+													<td>${hsnv.chucDanh.tenChucDanh}</td>
+													<td>${hsnv.tenNhanVien}</td>
+													<td>${hsnv.namSinh}</td>
+													<td>${hsnv.gioiTinh}</td>
+													<td>${hsnv.diaChi}</td>
+													<td>${hsnv.soDienThoai}</td>
 
+													<td
+														style="letter-spacing: 5px; min-width: 75px; text-align: center !important;">
+														<a href="<c:url value = ""/>"><i class="fa fa-eye"></i></a>
+														<a href="<c:url value = "#"/>"><i class="fa fa-pencil"></i></a>
+														<a href='<c:url value = "#"></c:url>' class="fa fa-trash"
+														onclick="return confirm('Bạn có muốn xóa sinh viên này?');"></a>
+
+													</td>
 												</tr>
 											</c:forEach>
 										</tbody>

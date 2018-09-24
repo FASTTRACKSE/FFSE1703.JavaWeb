@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "qlda_framework")
@@ -18,6 +19,7 @@ public class Framework {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_framework", unique = true, nullable = false)
 	private int idFrame;
+	@NotEmpty
 	@Column(name = "name_framework", unique = true, nullable = false)
 	private String nameFramework;
 

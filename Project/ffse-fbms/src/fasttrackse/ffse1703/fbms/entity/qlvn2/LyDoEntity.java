@@ -11,29 +11,29 @@ import javax.validation.constraints.NotEmpty;
 @Table(name = "ly_do_nghi")
 public class LyDoEntity {
 	@Id
-	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	 int id;
+	@Column(name = "id")
+   private int id;
+	
+   @Column(name = "ly_do")
+   private String lyDo;
 
-	@Column(name = "ly_do")
-	 String tenLyDo;
-	
-	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getTenLyDo() {
-		return tenLyDo;
-	}
-	public void setTenLyDo(String tenLyDo) {
-		this.tenLyDo = tenLyDo;
-	}
-	
+public int getId() {
+	return id;
+}
 
-	
-	
-	
+public void setId(int id) {
+	this.id = id;
+}
+
+public String getLyDo() {
+	return lyDo;
+}
+
+public void setLyDo(String lyDo) {
+	this.lyDo = lyDo;
+}
+   
+   
+
 }

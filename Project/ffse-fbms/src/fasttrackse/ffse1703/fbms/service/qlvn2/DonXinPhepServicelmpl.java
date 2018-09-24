@@ -15,6 +15,7 @@ import fasttrackse.ffse1703.fbms.entity.qlvn2.TrangThaiEntity;
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 
 @Service
+@Transactional
 public class DonXinPhepServicelmpl implements DonXinPhepService {
 	@Autowired 
 	DonXinPhepDao DonXinPhepDao;
@@ -23,53 +24,44 @@ public class DonXinPhepServicelmpl implements DonXinPhepService {
 		DonXinPhepDao = donXinPhepDao;
 	}
 
-	@Override
-	@Transactional
 	public List<DonXinPhepEntity> danhsachnhap003() {
 		return this.DonXinPhepDao.danhsachnhap003();
 	}
-	
+
 	@Override
-	@Transactional
+	public List<DonXinPhepEntity> danhsachchoduyet003() {
+		return this.DonXinPhepDao.danhsachchoduyet003();
+	}
+
+	@Override
 	public List<DonXinPhepEntity> danhsachdaduyet003() {
 		return this.DonXinPhepDao.danhsachdaduyet003();
 	}
 
 	@Override
-	@Transactional
-	public List<DonXinPhepEntity> danhsachchoduyet003() {
-	
-		return this.DonXinPhepDao.danhsachchoduyet003();
-	}
-
-	@Override
-	@Transactional
 	public List<DonXinPhepEntity> danhsachbituchoi003() {
 		return this.DonXinPhepDao.danhsachbituchoi003();
-	}
+		}
+
 	@Override
-	@Transactional
-	public void add(DonXinPhepEntity DonXinPhepEntity) {
-		this.DonXinPhepDao.donxinphep003(DonXinPhepEntity);
+	public void donxinphep003(DonXinPhepEntity DonXinPhepEntity) {
+		DonXinPhepDao.donxinphep003(DonXinPhepEntity);
+		
 	}
 
 	@Override
-	public DonXinPhepEntity findById(int id) {
-		return this.DonXinPhepDao.findById(id);
+	public List<LyDoEntity> danhSachLyDo() {
+		return this.DonXinPhepDao.danhSachLyDo();
 	}
 
-//	@Override
-//	public List<LyDoEntity> danhsachlyDo() {
-//		return this.DonXinPhepDao.danhsachlyDo();
-//	}
-//
-//	@Override
-//	public List<TrangThaiEntity> danhsachTrangThai() {
-//		return this.DonXinPhepDao.danhsachTrangThai();
-//	}
-//
-//	@Override
-//	public List<HoSoNhanVien> danhsachHoSo() {
-//		return this.DonXinPhepDao.danhsachHoSo();
-//	}
+	@Override
+	public List<TrangThaiEntity> danhSachTrangThai() {
+		return this.DonXinPhepDao.danhSachTrangThai();
+	}
+
+	@Override
+	public List<HoSoNhanVien> danhSachHoSo() {
+	return this.DonXinPhepDao.danhSachHoSo();
+	}
+
 }

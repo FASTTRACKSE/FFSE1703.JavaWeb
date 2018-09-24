@@ -18,12 +18,12 @@ import fasttrackse.ffse1703.fbms.service.qlynhiemvuminhhq.*;
 
 
 @Controller
-@RequestMapping("/QuanLyNhiemVuMinhHQ/")
+@RequestMapping("/QuanLyNhiemVuMinhHQ")
 public class QLyNhiemVuMinhHQController {
 	CongViecService congViecService;
 
 	@Autowired
-	public void setStudentService(CongViecService congViecService) {
+	public void setCongViecService(CongViecService congViecService) {
 		this.congViecService = congViecService;
 	}
 
@@ -33,6 +33,12 @@ public class QLyNhiemVuMinhHQController {
 		return "/QuanLyNhiemVuMinhHQ/list";
 	}
 
+	@RequestMapping(value= "/view/{ID}")
+	public String viewOne(@PathVariable("ID") int id, HttpServletRequest request, Model model) {
+		model.addAttribute("list", congViecService.findByID(id));
+		return "/QuanLyNhiemVuMinhHQ/viewOne";
+	}
+	
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String showForm(Model model) {
 		model.addAttribute("CongViec", new CongViec());
@@ -40,7 +46,7 @@ public class QLyNhiemVuMinhHQController {
 	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public String createStudent(Model model, @ModelAttribute("CongViec") @Valid CongViec cv, HttpServletRequest request) throws IllegalStateException {
+	public String createCongViec(Model model, @ModelAttribute("CongViec") @Valid CongViec cv, HttpServletRequest request) throws IllegalStateException {
 		cv.setIsDelete(1);
 		congViecService.addNew(cv);
 		;

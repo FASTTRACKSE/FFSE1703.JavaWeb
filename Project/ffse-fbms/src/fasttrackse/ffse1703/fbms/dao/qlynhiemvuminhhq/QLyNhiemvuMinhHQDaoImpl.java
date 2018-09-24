@@ -40,14 +40,18 @@ public class QLyNhiemvuMinhHQDaoImpl implements QLyNhiemvuMinhHQDao{
 	@Override
 	public void update(CongViec cv) {
 		Session session = this.sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
 		session.update(cv);
+		tx.commit();
 		session.close();
 	}
 
 	@Override
 	public void delete(CongViec cv) {
 		Session session = this.sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
 		session.update(cv);
+		tx.commit();
 		session.close();
 	}
 

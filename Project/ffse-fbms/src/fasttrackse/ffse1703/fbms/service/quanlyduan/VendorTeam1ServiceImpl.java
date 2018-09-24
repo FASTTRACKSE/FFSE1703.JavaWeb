@@ -51,4 +51,16 @@ public class VendorTeam1ServiceImpl implements VendorTeam1Service{
 		
 	}
 
+	@Override
+	@Transactional
+	public int getName(String tenVendor) {
+		return this.vendorDao.getName(tenVendor);
+	}
+
+	@Override
+	@Transactional
+	public int getMa(String maVendor) {
+		return this.vendorDao.getMa(maVendor);
+	}
+
 }

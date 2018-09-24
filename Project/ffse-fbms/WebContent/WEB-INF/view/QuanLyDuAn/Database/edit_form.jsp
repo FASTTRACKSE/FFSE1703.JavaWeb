@@ -47,6 +47,9 @@
 					placeholder="Tên Database " />
 				<form:errors path="tenDatabase" cssStyle="color: red"></form:errors>
 			</div>
+				<div class="col-sm-12 text-center">
+				<button type="submit" class="btn btn-success">Lưu thông tin</button>
+			</div>
 		</form:form>
 
 

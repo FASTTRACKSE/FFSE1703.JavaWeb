@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import fasttrackse.ffse1703.fbms.entity.quanlyduan.DatabaseTeam1;
 import fasttrackse.ffse1703.fbms.entity.quanlyduan.VendorTeam1;
 import fasttrackse.ffse1703.fbms.service.quanlyduan.VendorTeam1Service;
 
@@ -37,20 +38,27 @@ public class VendorTeam1Controller {
 	}
 	
 	@RequestMapping(value = { "/creat" }, method = RequestMethod.POST)
-	public String creat(@ModelAttribute("vendor") @Valid VendorTeam1 vendorTeam1, BindingResult result , RedirectAttributes redirectAttributes) {
-		if(vendorServiceTeam1.getById(vendorTeam1.getMavd())!=null) {
-			vendorServiceTeam1.setIsDelete(vendorTeam1.getMavd());
-			vendorServiceTeam1.update(vendorTeam1);
-			return "redirect:list";
-			}	
+	public String creat(@ModelAttribute("vendor") @Valid VendorTeam1 vendor1, BindingResult result,
+			RedirectAttributes redirectAttributes) {
 
-		
 		if (result.hasErrors()) {
-			return "QuanLyDuAn/Vendor/addVendor";
+			return "QuanLyDuAn/vendor/add";
 		}
-		redirectAttributes.addFlashAttribute("message", "<script>alert('Creat successfully.');</script>");
 
-		vendorServiceTeam1.addNew(vendorTeam1);
+		if (vendorServiceTeam1.getById(vendor1.getMavd()) != null) {
+			VendorTeam1 db = vendorServiceTeam1.getById(vendor1.getMavd());
+			if (db.getIs_delete() == 1) {
+				vendorServiceTeam1.update(vendor1);
+				return "redirect:list";
+
+			} else {
+				redirectAttributes.addFlashAttribute("message", "<script>alert('Mã Vendor Đã Tồn Tại.');</script>");
+				return "redirect:/QuanLyDuAn/vendor/add";
+			}
+		}
+		
+		redirectAttributes.addFlashAttribute("message", "<script>alert('Creat successfully.');</script>");
+		vendorServiceTeam1.addNew(vendor1);
 		return "redirect:list";
 	}
 	@RequestMapping(value = "/edit/{mavd}")

@@ -7,22 +7,28 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Table(name = "phancongdanhgia")
+@Table(name = "phan_cong_danh_gia")
 @Entity
 public class PhanCongDanhGia {
 
 	@Id
-	@Column(name = "Id")
+	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name = "NhanVienDanhGia")
-	private String nhanVienDanhGia;
+	@Column(name = "ma_ky_danh_gia")
+	private String kyDanhGia;
 
-	@Column(name = "NhanVien")
-	private String nhanVien;
+	@Column(name = "ma_phong_ban")
+	private String phongBan;
 
-	@Column(name = "IsDelete")
+	@Column(name = "nhan_vien_danh_gia")
+	private int nhanVienDanhGia;
+
+	@Column(name = "nhan_vien")
+	private int nhanVien;
+
+	@Column(name = "is_delete")
 	private int isDelete;
 
 	public PhanCongDanhGia() {
@@ -37,19 +43,35 @@ public class PhanCongDanhGia {
 		this.id = id;
 	}
 
-	public String getNhanVienDanhGia() {
+	public String getKyDanhGia() {
+		return kyDanhGia;
+	}
+
+	public void setKyDanhGia(String kyDanhGia) {
+		this.kyDanhGia = kyDanhGia;
+	}
+
+	public String getPhongBan() {
+		return phongBan;
+	}
+
+	public void setPhongBan(String phongBan) {
+		this.phongBan = phongBan;
+	}
+
+	public int getNhanVienDanhGia() {
 		return nhanVienDanhGia;
 	}
 
-	public void setNhanVienDanhGia(String nhanVienDanhGia) {
+	public void setNhanVienDanhGia(int nhanVienDanhGia) {
 		this.nhanVienDanhGia = nhanVienDanhGia;
 	}
 
-	public String getNhanVien() {
+	public int getNhanVien() {
 		return nhanVien;
 	}
 
-	public void setNhanVien(String nhanVien) {
+	public void setNhanVien(int nhanVien) {
 		this.nhanVien = nhanVien;
 	}
 

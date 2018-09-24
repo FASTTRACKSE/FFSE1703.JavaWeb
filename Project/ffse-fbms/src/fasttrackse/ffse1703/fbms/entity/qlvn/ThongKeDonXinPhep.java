@@ -1,6 +1,6 @@
 package fasttrackse.ffse1703.fbms.entity.qlvn;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,28 +10,35 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "thong_ke_don_xin_phep")
 public class ThongKeDonXinPhep {
 
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int id;
-
+	
 	@ManyToOne
 	@JoinColumn(name = "ma_nhan_vien")
-	private HoSoNhanVien maNhanVien;
+	private ThongTinHoSoNhanVien thongTinHoSoNhanVien;
 
 	@Column(name = "ngay_bat_dau")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
 	private Date ngayBatDau;
 
 	@Column(name = "ngay_ket_thuc")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
 	private Date ngayKetThuc;
 
 	@Column(name = "so_ngay_nghi")
@@ -42,8 +49,8 @@ public class ThongKeDonXinPhep {
 	private LyDoXinNghi lyDo;
 
 	@Column(name = "ghi_chu")
-	@NotEmpty(message = "")
-	@Size(max = 255)
+	@NotEmpty()
+	@Size(max=255)
 	private String ghiChu;
 
 	@Column(name = "ghi_chu_truong_phong")
@@ -61,12 +68,12 @@ public class ThongKeDonXinPhep {
 		this.id = id;
 	}
 
-	public HoSoNhanVien getMaNhanVien() {
-		return maNhanVien;
+	public ThongTinHoSoNhanVien getThongTinHoSoNhanVien() {
+		return thongTinHoSoNhanVien;
 	}
 
-	public void setMaNhanVien(HoSoNhanVien maNhanVien) {
-		this.maNhanVien = maNhanVien;
+	public void setThongTinHoSoNhanVien(ThongTinHoSoNhanVien thongTinHoSoNhanVien) {
+		this.thongTinHoSoNhanVien = thongTinHoSoNhanVien;
 	}
 
 	public Date getNgayBatDau() {
@@ -112,7 +119,7 @@ public class ThongKeDonXinPhep {
 	public String getGhiChuTruongPhong() {
 		return ghiChuTruongPhong;
 	}
-
+	
 	public void setGhiChuTruongPhong(String ghiChuTruongPhong) {
 		this.ghiChuTruongPhong = ghiChuTruongPhong;
 	}
@@ -125,4 +132,5 @@ public class ThongKeDonXinPhep {
 		this.trangThai = trangThai;
 	}
 
+	
 }

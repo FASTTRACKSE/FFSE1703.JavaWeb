@@ -29,7 +29,12 @@
 					<form:form method="POST" modelAttribute="add" action="add">
 						<div class="form-group col-sm-6">
 						  	<label>Dự án</label>
-						  	<form:input class="form-control" path="duAn" placeholder="Tên dự án" />
+						  <form:select path="duAn" class="custom-select block round"
+								id="customSelect">
+								<c:forEach items="${duan}" var="ld">
+									<form:option value="${ld.maDuan}" label="${ld.tenDuan}" />
+								</c:forEach>
+							</form:select>
 						</div>
 						<div class="form-group col-sm-6">
 						  	<label>Loại công việc</label>
@@ -62,8 +67,8 @@
 						</div>
 						<div class="form-group col-sm-6">
 						  	<label>Người được phân công</label>
-						  	<form:input class="form-control" path="nguoiDuocphancong" placeholder="Người phân công" />
-						  	<form:errors path="nguoiDuocphancong" cssClass="error" />
+						  	<form:input class="form-control" path="nhanVien" placeholder="Người phân công" />
+						  	<form:errors path="nhanVien" cssClass="error" />
 						</div>
 						<div class="form-group col-sm-6">
 						  	<label>Thời gian dự kiến hoàn thành</label>

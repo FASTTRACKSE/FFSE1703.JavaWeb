@@ -13,13 +13,14 @@ import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.XaPhuongTT;
 @Repository
 public class XaPhuongDaoTTImpl implements XaPhuongDaoTT {
 	@Autowired
-	SessionFactory sessionFactory;
+	private SessionFactory sessionFactory;
 
 	@Override
-	public List<XaPhuongTT> listXaPhuong() {
+	public List<XaPhuongTT> listXaPhuong(int maQuanHuyen) {
 		Session session = sessionFactory.getCurrentSession();
 		@SuppressWarnings("rawtypes")
-		Query query = session.createQuery("from XaPhuongTT");
+		Query query = session.createQuery("from XaPhuongTT where maQuanHuyen = :maQuanHuyen");
+		query.setParameter("maThanhPho", maQuanHuyen);
 		@SuppressWarnings("unchecked")
 		List<XaPhuongTT> listXaPhuong = query.list();
 

@@ -16,7 +16,7 @@ public class LoaiHopDongPikalong {
 	@Column(name="MaLoaiHopDong")
 	private int maLoaiHopDong;
 	
-	@NotEmpty(message="Không được để trống!!!")
+	
 	@Column(name="TenHopDong")
 	private String tenHopDong;
 	

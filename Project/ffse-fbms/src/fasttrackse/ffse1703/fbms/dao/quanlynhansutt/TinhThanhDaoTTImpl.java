@@ -13,7 +13,7 @@ import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.TinhThanhTT;
 @Repository
 public class TinhThanhDaoTTImpl implements TinhThanhDaoTT {
 	@Autowired
-	SessionFactory sessionFactory;
+	private SessionFactory sessionFactory;
 
 	@Override
 	public List<TinhThanhTT> listTinhThanh() {

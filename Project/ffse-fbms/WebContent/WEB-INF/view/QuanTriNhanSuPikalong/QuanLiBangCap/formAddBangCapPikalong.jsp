@@ -19,7 +19,16 @@
 							<div>
 								<div>
 									<div class="row">
-										<form:form method="post" action="/ffse-fbms/QuanTriNhanSuPikalong/QuanLiBangCap/save" class="form-horizontal">
+										<form:form method="post"
+											action="/ffse-fbms/QuanTriNhanSuPikalong/QuanLiBangCap/saveOneBangCap"
+											class="form-horizontal">
+											<div class="col-xl-4 col-lg-6 col-md-12 mb-1">
+												<div class="form-group">
+													<label for="roundText">Mã Nhân Viên</label>
+													<form:input path="maNV" type="text"
+														class="form-control round" readonly="true" />
+												</div>
+											</div>
 											<div class="col-xl-4 col-lg-6 col-md-12 mb-1">
 												<div class="form-group">
 													<label for="roundText">Chuyên Ngành</label>
@@ -49,13 +58,6 @@
 											</div>
 											<div class="col-xl-4 col-lg-6 col-md-12 mb-1">
 												<div class="form-group">
-													<label for="roundText">Mã Nhân Viên</label>
-													<form:input path="maNV" type="text"
-														class="form-control round" readonly="true" />
-												</div>
-											</div>
-											<div class="col-xl-4 col-lg-6 col-md-12 mb-1">
-												<div class="form-group">
 													<label for="roundText">Ngày Cấp</label>
 													<div class="position-relative has-icon-left">
 														<form:input path="ngayCap" type="date" id="roundText"
@@ -72,7 +74,7 @@
 												<div class="form-group">
 													<input class="btn btn-success" type="submit" value="Save" />
 													<a class="btn btn-info"
-														href="/ffse-fbms/QuanTriNhanSuPikalong/QuanLiBangCap/listBangCapPikalong">View</a>
+														href="/ffse-fbms/QuanTriNhanSuPikalong/QuanLiBangCap/viewOneBangCap/${maNv}">View</a>
 												</div>
 											</div>
 										</form:form>

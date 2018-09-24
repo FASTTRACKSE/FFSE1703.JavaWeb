@@ -24,65 +24,50 @@ import fasttrackse.ffse1703.fbms.entity.qlvn2.TrangThaiEntity;
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 import fasttrackse.ffse1703.fbms.service.qlvn2.DonXinPhepService;
 @Controller
-@RequestMapping(value ="/danh")
+@RequestMapping(value ="/QuanlyvangnghiDanhLT")
 public class DonXinPhepController {
 	@Autowired
 	DonXinPhepService DonXinPhepService;
 	
-	@RequestMapping(value = {"/danhsachnhap003"})
+	@RequestMapping(value = {"/danhsachnhap003"}, method = RequestMethod.GET)
 	public String danhsachnhap003(Model model ) {
 		model.addAttribute("danhsachnhap003", DonXinPhepService.danhsachnhap003());
 		return "QuanlyvangnghiDanhLT/danhsachnhap003";
     }
-	@RequestMapping(value ="/danhsachdaduyet003")
-	public String danhsachdaduyet003(Model model ) {
-		model.addAttribute("danhsachdaduyet003", DonXinPhepService.danhsachdaduyet003());
-		return "QuanlyvangnghiDanhLT/danhsachdaduyet003";
-    }
-	@RequestMapping(value ="/danhsachchoduyet003")
+	
+	@RequestMapping(value = {"/danhsachchoduyet003"}, method = RequestMethod.GET)
 	public String danhsachchoduyet003(Model model ) {
 		model.addAttribute("danhsachchoduyet003", DonXinPhepService.danhsachchoduyet003());
 		return "QuanlyvangnghiDanhLT/danhsachchoduyet003";
     }
-	@RequestMapping(value ="/danhsachbituchoi003")
+	@RequestMapping(value = {"/danhsachdaduyet003"}, method = RequestMethod.GET)
+	public String danhsachdaduyet003(Model model ) {
+		model.addAttribute("danhsachdaduyet003", DonXinPhepService.danhsachdaduyet003());
+		return "QuanlyvangnghiDanhLT/danhsachdaduyet003";
+    }
+	@RequestMapping(value = {"/danhsachbituchoi003"}, method = RequestMethod.GET)
 	public String danhsachbituchoi003(Model model ) {
 		model.addAttribute("danhsachbituchoi003", DonXinPhepService.danhsachbituchoi003());
 		return "QuanlyvangnghiDanhLT/danhsachbituchoi003";
     }
-	@RequestMapping(value = {"/donxinphep003" }, method = RequestMethod.GET)
+	@RequestMapping(value = "/donxinphep003", method = RequestMethod.GET)
 	public String showForm(Model model) {
 		model.addAttribute("donxinphep003", new DonXinPhepEntity());
-		
 		return "QuanlyvangnghiDanhLT/donxinphep003";
 	}
-	
-	@RequestMapping(value = "/donxinphep003/nhap", method = RequestMethod.POST)
-	public String listDonNhap(Model model, @ModelAttribute("donxinphep003") @Valid DonXinPhepEntity nv,HttpSession session) {
-		DonXinPhepService.add(nv);
-		return "redirect:/danhsachnhap003";
+	@ModelAttribute("lydo")
+	public List<LyDoEntity> danhSachLyDo() {
+		return this.DonXinPhepService.danhSachLyDo();
 	}
 	
-	@RequestMapping(value = "/donxinphep003/choduyet", method = RequestMethod.POST)
-	public String listDonChoDuyet(Model model, @ModelAttribute("donxinphep003") @Valid DonXinPhepEntity nv,HttpSession session) {
-		DonXinPhepService.danhsachchoduyet003();
-		return "redirect:/danhsachchoduyet003";
+	@ModelAttribute("trangthai")
+	public List<TrangThaiEntity> danhSachTrangThai() {
+		return this.DonXinPhepService.danhSachTrangThai();
 	}
 	
-//	@ModelAttribute("lydonghi")
-//	public List<LyDoEntity> danhSachLyDo() {
-//		return this.DonXinPhepService.danhsachlyDo();
-//	}
-//	
-//	@ModelAttribute("trangthainghi")
-//	public List<TrangThaiEntity> danhSachTrangThai() {
-//		return this.DonXinPhepService.danhsachTrangThai();
-//	}
-//	
-//	@ModelAttribute("hosonghi")
-//	public List<HoSoNhanVien> danhSachHoSoNhanVien() {
-//		return this.DonXinPhepService.danhsachHoSo();
-	
-	
-	
+	@ModelAttribute("hoso")
+	public List<HoSoNhanVien> danhSachHoSoNhanVien() {
+		return this.DonXinPhepService.danhSachHoSo();
+	}
 	}
 

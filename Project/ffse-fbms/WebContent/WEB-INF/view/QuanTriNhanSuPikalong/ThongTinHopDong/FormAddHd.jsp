@@ -6,7 +6,7 @@
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 <div class="app-content content container-fluid">
 <div class="content-wrapper">
-<form:form class="form"  method="GET" modelAttribute="formHopDong" action="">
+<form:form class="form"  method="POST" modelAttribute="hopDongPikalong" action="/ffse-fbms/QuanTriNhanSu/quanlihopdong/save">
 	<div class="form-body">
 		<h4 class="form-section">Thêm Hợp Đồng</h4>
 		
@@ -14,13 +14,13 @@
 			<div class="col-md-6">
 				<div class="form-group">
 					<label>Mã Nhân Viên</label>
-					<div class="form-control well">${hoSoNhanVienPikalong.maNv}</div>
+					<input class="form-control" value="${hsnv.maNv }" disabled type="text" />
 				</div>
 			</div>
 			<div class="col-md-6">
 				<div class="form-group">
 					<label>Trạng Thái</label>
-					<div class="form-control disabled">${hoSoNhanVienPikalong.isActive == 1 ? "Đang làm việc" : "Đã nghỉ việc"}</div>
+					<div class="form-control disabled">${hsnv.isActive}</div>
 				</div>
 			</div>
 		</div>
@@ -28,13 +28,13 @@
 			<div class="col-md-6">
 				<div class="form-group">
 					<label>Phòng ban</label>
-					<div class="form-control well">${hoSoNhanVienPikalong.maPhongBan}</div>
+					<div class="form-control well">${hsnv.maPhongBan}</div>
 				</div>
 			</div>
 			<div class="col-md-6">
 				<div class="form-group">
 					<label>Chức danh</label>
-					<div class="form-control well">${hoSoNhanVienPikalong.maChucDanh}</div>
+					<div class="form-control well">${hsnv.maChucDanh}</div>
 				</div>
 			</div>
 		</div>
@@ -43,9 +43,12 @@
 		</h4>
 		<div class="row">
 		<div class="col-md-4">
-				<label>Mã hợp đồng</label> <form:input path="maHopDong"
-						disable="true" id="maHopDong" class="form-control" />
+				<label>Mã hợp đồng</label> 
+				
+					<fmt:parseNumber var="intValue" value="${lastMaHd}" integerOnly="true"/><div class="form-control well">${intValue + 1}</div>
+				
 			</div>
+			<form:hidden path="hoSoNhanVienPikalong.maNv" value="${hsnv.maNv}" />
 			<div class="col-md-4">
 				<div class="form-group">
 					<label>Tên hợp đồng</label> <form:select path="loaiHopDongPikalong.maLoaiHopDong"
@@ -79,7 +82,7 @@
 			<div class="col-md-3">
 				<div class="form-group">
 					<label>Số ngày nghỉ trong năm</label> <form:input path="soNgayNghiTrongNam"
-						type="text" id="chucDanh" class="form-control" />
+						type="text" id="soNgayNghiTrongNam" class="form-control" />
 				</div>
 			</div>
 			<div class="col-md-3">
@@ -97,11 +100,11 @@
 		</div>
 	</div>
 	<div class="form-actions center">
-	<a href="QuanTriNhanSu/quanlihopdong/">
+	<a href="QuanTriNhanSu/quanlihopdong/HopDong">
 	<button type="button" class="btn btn-warning btn-min-width mr-1 mb-1">
 			<i class="ft-x"></i> Hủy
 	</button></a>
-		<button type="button" class="btn btn-info btn-min-width mr-1 mb-1">
+		<button type="submit" class="btn btn-info btn-min-width mr-1 mb-1">
 			<i class="fa fa-check"></i> Lưu
 		</button>
 		

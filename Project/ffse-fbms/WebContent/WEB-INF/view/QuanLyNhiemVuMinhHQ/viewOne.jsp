@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
@@ -18,16 +19,16 @@
 		<!-- Path -->
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">Sửa chức danh</h3>
+				<h3 class="content-header-title mb-0">Xem chi tiết nhiệm vụ</h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/home" />'>Home</a></li>
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/QuanTriHeThong/chuc_danh/" />'>Danh
-									sách chức danh</a></li>
-							<li class="breadcrumb-item active">Thông tin chức danh</li>
+								href='<c:url value="/QuanLyNhiemVuMinhHQ/" />'>Danh sách
+									nhiệm vụ</a></li>
+							<li class="breadcrumb-item active">Thông tin công việc</li>
 						</ol>
 					</div>
 				</div>
@@ -40,7 +41,7 @@
 				<div class="row">
 					<div class="card">
 						<div class="card-header">
-							<h4 class="card-title">Thông tin chức danh</h4>
+							<h4 class="card-title">Thông tin công việc</h4>
 							<a class="heading-elements-toggle"><i
 								class="fa fa-ellipsis-v font-medium-3"></i></a>
 							<div class="heading-elements">
@@ -52,22 +53,26 @@
 								</ul>
 							</div>
 						</div>
-						<div class="card-body collapse in">
-							<div class="card-block">
-								<div class="table-responsive">
-									<table class="table">
-										<tr>
-											<td><label>Tên chức danh</label> <input
-												class="form-control" value="${chucDanh.tenChucDanh}"
-												placeholder="Tên chức danh" readonly /></td>
-											<td><label>Mã chức danh</label> <input
-												class="form-control" value="${chucDanh.maChucDanh}"
-												placeholder="Mã chức danh" readonly /></td>
-										</tr>
-									</table>
-								</div>
-							</div>
-						</div>
+
+							<label>Dự án</label> 
+								<input class="form-control" value="${list.duAn}" readonly /> 
+							<label>Tên công việc</label> 
+								<input class="form-control" value="${list.tenCongViec}" readonly /> 
+							<label>Loại công việc</label> 
+								<input class="form-control" value="${list.loaiCongViec}" readonly /> 
+							<label>Mô tả</label>
+								<textarea class="form-control" readonly>${list.moTa}</textarea>
+							<label>Thời gian bắt đầu</label> 
+								<input class="form-control" type="date" value="${list.tgBatDau}" readonly /> 
+							<label>Thời gian kết thúc</label> 
+								<input class="form-control" type="date" value="${list.tgKetThuc}" readonly /> 
+							<label>phân công</label> 
+								<input class="form-control" value="${list.phanCong}" readonly /> 
+							<label>Thời	gian dự kiến</label> 
+								<input class="form-control" value="${list.tgDuKien}" readonly /> 
+							<label>Trạng thái</label> 
+								<input class="form-control" value="${list.trangThai}" readonly />
+
 					</div>
 				</div>
 			</div>

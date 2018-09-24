@@ -62,9 +62,9 @@ public class FrameworkTeam1DaoImpl implements FrameworkTeam1Dao {
 	}
 
 	@Override
-	public int getName(String ma_framework) {
+	public int getName(String ten_framework) {
 		Session session = this.sessionFactory.getCurrentSession();
-		List<FrameworkTeam1> db = session.createQuery("from FrameworkTeam1 where ma_framework = '"+ma_framework+"' AND is_delete =0", FrameworkTeam1.class).list();	
+		List<FrameworkTeam1> db = session.createQuery("from FrameworkTeam1 where ten_framework = '"+ten_framework+"' AND is_delete =0", FrameworkTeam1.class).list();	
 		return  db.size();
 	}
 

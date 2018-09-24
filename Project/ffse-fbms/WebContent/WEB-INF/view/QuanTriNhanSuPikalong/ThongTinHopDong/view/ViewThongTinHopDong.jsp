@@ -1,0 +1,92 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<jsp:include page="/WEB-INF/view/templates/header.jsp" />
+<div class="app-content content container-fluid">
+<div class="content-wrapper">
+<form:form class="form"  method="GET" modelAttribute="HopDong" action="">
+	<div class="form-body">
+		
+		<div class="row">
+			<div class="col-md-6">
+				<div class="form-group">
+					<label>Mã Nhân Viên</label>
+					<input class="form-control" value="${hsnv.maNv }" disabled type="text" />
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="form-group">
+					<label>Trạng Thái</label>
+					<div class="form-control disabled">${hsnv.isActive}</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="form-group">
+					<label>Phòng ban</label>
+					<div class="form-control well">${hsnv.maPhongBan}</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="form-group">
+					<label>Chức danh</label>
+					<div class="form-control well">${hsnv.maChucDanh}</div>
+				</div>
+			</div>
+		</div>
+		<h4 class="form-section">
+			<i class="ft-user"></i> Thông Tin Hợp Đồng
+		</h4>
+		<div class="row">
+		<div class="col-md-4">
+				<label>Mã hợp đồng</label> <fmt:parseNumber var="intValue" value="${lastMaHd}" integerOnly="true"/><div class="form-control well">${intValue + 1}</div>
+			</div>
+			<div class="col-md-4">
+				<div class="form-group">
+					<label>Tên hợp đồng</label> 
+					<div class="form-control well">${hopdong.maHopDong.tenHopDong}</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="form-group">
+					<label>Trạng thái</label> 
+					<div class="form-control well">${hopdong.trangThai}</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<div class="form-group">
+					<label>Lương tháng 13</label> 
+					<div class="form-control well">${hopdong.luongThang13}</div>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="form-group">
+					<label>Số ngày nghỉ trong năm</label> 
+					<div class="form-control well">${hopdong.soNgayNghiTrongNam}</div>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="form-group">
+					<label>Ngày ký hợp đồng</label> 
+					<div class="form-control well">${hopdong.ngayKiKet}</div>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="form-group">
+					<label>Ngày kết thúc hợp đồng</label> 
+					<div class="form-control well">${hopdong.ngayKetThuc}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</form:form>
+</div>
+</div>
+
+<jsp:include page="/WEB-INF/view/templates/footer.jsp" />

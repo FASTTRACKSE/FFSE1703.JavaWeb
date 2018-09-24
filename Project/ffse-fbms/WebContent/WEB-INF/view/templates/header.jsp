@@ -240,44 +240,56 @@
 						class=" ft-minus" data-toggle="tooltip" data-placement="right"
 						data-original-title="Components"></i></li>
 					<li class=" nav-item pbho_so"><a href="#"><i
-							class="ft-users"></i><span data-i18n="" class="menu-title">Thống kê tình hình</span></a>
+							class="ft-users"></i><span data-i18n="" class="menu-title">Thống
+								kê tình hình</span></a>
 						<ul class="menu-content">
-							<li><a href="<c:url value="/Quanlyvangnghi1703004/danhsachnhap"/>"
+							<li><a
+								href="<c:url value="/Quanlyvangnghi1703004/danhsachnhap"/>"
 								class="menu-item">Danh sách nháp</a></li>
-							<li><a href="<c:url value="/Quanlyvangnghi1703004/danhsachcho"/>"
+							<li><a
+								href="<c:url value="/Quanlyvangnghi1703004/danhsachcho"/>"
 								class="menu-item">Danh sách chờ duyệt</a></li>
-							<li><a href="<c:url value="/Quanlyvangnghi1703004/danhsachduyet"/>"
+							<li><a
+								href="<c:url value="/Quanlyvangnghi1703004/danhsachduyet"/>"
 								class="menu-item">Danh sách đã duyệt</a></li>
-							<li><a href="<c:url value="/Quanlyvangnghi1703004/danhsachbituchoi"/>"
+							<li><a
+								href="<c:url value="/Quanlyvangnghi1703004/danhsachbituchoi"/>"
 								class="menu-item">Danh sách bị từ chối</a></li>
 						</ul></li>
+						<li class=" nav-item pbho_so"><a href="#"><i
+							class="ft-users"></i><span data-i18n="" class="menu-title">Thống
+								kê ngày nghỉ</span></a>
+						<ul class="menu-content">
+						    <li><a
+								href="<c:url value="/Quanlyvangnghi1703004/danhsachngaynghi"/>"
+								class="menu-item">Danh sách ngày nghỉ</a></li>
+						</ul></li>
 
-				<!-- Quản Lý Nhân Sự TT -->
-				<li class=" navigation-header"><span>Team Quản Lý Nhân Sự TT</span><i
-					class=" ft-minus" data-toggle="tooltip" data-placement="right"
-					data-original-title="Others"></i></li>
-				<li class=" nav-item"><a href="#"><i class="ft-layers"></i><span
-						class="menu-title" data-i18n="">Quản Lý Hồ Sơ</span></a>
-					<ul class="menu-content">
-						<li><a class="menu-item" href="#">Hồ Sơ Nhân Viên</a></li>
-						<li><a class="menu-item" href="#">Thông Tin Gia Đình</a></li>
-				    </ul>
-				</li>
-				<li class=" nav-item"><a href="#"><i class="ft-layers"></i><span
-						class="menu-title" data-i18n="">Quản Lý Hợp Đồng</span></a>
-					<ul class="menu-content">
-						<li><a class="menu-item" href="#">Hồ Sơ Hợp Đồng</a></li>
-						<li><a class="menu-item" href="/ffse-fbms/quanlynhansutt/">Danh Sách Hợp Đồng</a></li>
-				    </ul>
-				</li>
-				<li class=" nav-item"><a href="#"><i class="fa fa-id-card-o"></i><span
-						class="menu-title" data-i18n="">Quản Lý Bằng Cấp</span></a>
-					<ul class="menu-content">
-						<li><a class="menu-item" href="#">Hồ Sơ Bằng Cấp</a></li>
-						<li><a class="menu-item" href="#">Danh Sách Bằng Cấp</a></li>
-				    </ul>
-				</li>
-				<!-- Quản Lý Nhân Sự TT  -->
+					<!-- Quản Lý Nhân Sự TT -->
+					<li class=" navigation-header"><span>Team Quản Lý Nhân
+							Sự TT</span><i class=" ft-minus" data-toggle="tooltip"
+						data-placement="right" data-original-title="Others"></i></li>
+					<li class=" nav-item"><a href="#"><i class="ft-layers"></i><span
+							class="menu-title" data-i18n="">Quản Lý Hồ Sơ</span></a>
+						<ul class="menu-content">
+							<li><a class="menu-item" href="#">Hồ Sơ Nhân Viên</a></li>
+							<li><a class="menu-item" href="#">Thông Tin Gia Đình</a></li>
+						</ul></li>
+					<li class=" nav-item"><a href="#"><i class="ft-layers"></i><span
+							class="menu-title" data-i18n="">Quản Lý Hợp Đồng</span></a>
+						<ul class="menu-content">
+							<li><a class="menu-item" href="#">Hồ Sơ Hợp Đồng</a></li>
+							<li><a class="menu-item" href="/ffse-fbms/quanlynhansutt/">Danh
+									Sách Hợp Đồng</a></li>
+						</ul></li>
+					<li class=" nav-item"><a href="#"><i
+							class="fa fa-id-card-o"></i><span class="menu-title" data-i18n="">Quản
+								Lý Bằng Cấp</span></a>
+						<ul class="menu-content">
+							<li><a class="menu-item" href="#">Hồ Sơ Bằng Cấp</a></li>
+							<li><a class="menu-item" href="#">Danh Sách Bằng Cấp</a></li>
+						</ul></li>
+					<!-- Quản Lý Nhân Sự TT  -->
 					<!--  MVP- Quản lí Dự Án -->
 					<li class="navigation-header"><span>MVP-Quản lý dự án</span><i
 						class=" ft-minus" data-toggle="tooltip" data-placement="right"
@@ -346,16 +358,16 @@
 					data-original-title="Apps" class=" ft-minus"></i></li>
 				<li class=" nav-item"><a
 					href="<c:url value = "/TranDuc-QuanLyTaiLieu/DanhMuc/"/>"><i
-						class="fa fa-building"></i><span data-i18n="" class="menu-title">Quản
+						class="ft-bookmark"></i><span data-i18n="" class="menu-title">Quản
 							Lý Danh Mục</span></a></li>
 				<li class=" nav-item"><a
 					href="<c:url value = "/TranDuc-QuanLyTaiLieu/TaiLieu/"/>"><i
-						class="fa fa-id-card-o"></i><span data-i18n="" class="menu-title">Quản
+						class="ft-file-text"></i><span data-i18n="" class="menu-title">Quản
 							Lý Tài Liệu</span></a></li>
 				<li class=" nav-item"><a
-					href="<c:url value = "/TranDuc-QuanLyTaiLieu/PhanQuyen/"/>"><i
-						class="fa fa-id-card-o"></i><span data-i18n="" class="menu-title">Phân
-							Quyền</span></a></li>
+					href="<c:url value = "/TranDuc-QuanLyTaiLieu/TrangThai/"/>"><i
+						class="ft-users"></i><span data-i18n="" class="menu-title">Trạng
+							Thái</span></a></li>
 			</ul>
 		</div>
 	</div>

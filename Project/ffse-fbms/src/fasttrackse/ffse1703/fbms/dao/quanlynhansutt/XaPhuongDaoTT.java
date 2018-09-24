@@ -5,5 +5,5 @@ import java.util.List;
 import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.XaPhuongTT;
 
 public interface XaPhuongDaoTT {
-	public List<XaPhuongTT> listXaPhuong();
+	public List<XaPhuongTT> listXaPhuong(int maQuanHuyen);
 }

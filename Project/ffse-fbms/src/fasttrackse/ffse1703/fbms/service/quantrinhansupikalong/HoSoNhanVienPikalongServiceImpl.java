@@ -43,5 +43,30 @@ public class HoSoNhanVienPikalongServiceImpl implements HoSoNhanVienPikalongServ
 		hoSoNhanVienPikalongDao.insert(hoSoNhanVien);
 		
 	}
+	
+	@Override
+	@Transactional
+	public String getId() {
+		return this.hoSoNhanVienPikalongDao.getAutoId();
+	}
+	
+	@Override
+	@Transactional
+	public HoSoNhanVienPikalong getHoSoNhanVienById(int maNv) {
+		return this.hoSoNhanVienPikalongDao.getHoSoNhanVienById(maNv);
+	}
+	@Override
+	@Transactional
+	public HoSoNhanVienPikalong getEdit(int maNv) {
+		
+		return hoSoNhanVienPikalongDao.getEdit(maNv);
+	}
 
+
+	@Override
+	@Transactional
+	public void update(HoSoNhanVienPikalong hoSoNhanVienPikalong) {
+		hoSoNhanVienPikalongDao.update(hoSoNhanVienPikalong);
+		
+	}
 }

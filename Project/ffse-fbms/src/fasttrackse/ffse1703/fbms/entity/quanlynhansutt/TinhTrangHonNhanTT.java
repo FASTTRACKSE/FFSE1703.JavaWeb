@@ -9,17 +9,16 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
-
-
 @Entity
 @Table(name = "tinh_trang_hon_nhan")
 public class TinhTrangHonNhanTT {
+	@SuppressWarnings("unused")
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name = "ma_tinh_trang_hon_nhan", unique = true, nullable = false, length = 30)
 	@NotEmpty
-	private String maTinhTrangHonNhan;
+	private int maTinhTrangHonNhan;
 
 	@Column(name = "tinh_trang_hon_nhan", nullable = false, length = 255)
 	@NotEmpty
@@ -29,11 +28,11 @@ public class TinhTrangHonNhanTT {
 	@OneToMany(mappedBy = "tinhTrangHonNhan")
 	private List<HoSoNhanVienTT> hoSoNhanViens;
 
-	public String getMaTinhTrangHonNhan() {
+	public int getMaTinhTrangHonNhan() {
 		return maTinhTrangHonNhan;
 	}
 
-	public void setMaTinhTrangHonNhan(String maTinhTrangHonNhan) {
+	public void setMaTinhTrangHonNhan(int maTinhTrangHonNhan) {
 		this.maTinhTrangHonNhan = maTinhTrangHonNhan;
 	}
 
@@ -51,10 +50,6 @@ public class TinhTrangHonNhanTT {
 
 	public void setHoSoNhanViens(List<HoSoNhanVienTT> hoSoNhanViens) {
 		this.hoSoNhanViens = hoSoNhanViens;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 
 	public TinhTrangHonNhanTT() {

@@ -7,45 +7,45 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Table(name="truongphongdanhgia")
+@Table(name="truong_phong_danh_gia")
 @Entity
 public class TruongPhongDanhGia {
 	@Id
-	@Column(name = "Id")
+	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name = "KyDanhGia")
+	@Column(name = "ma_ky_danh_gia")
 	private String kyDanhGia;
 
-	@Column(name = "PhongBan")
+	@Column(name = "ma_phong_ban")
 	private String phongBan;
 
-	@Column(name = "NhanVien")
+	@Column(name = "nhan_vien")
 	private String nhanVien;
 
-	@Column(name = "KyLuatCongViec")
+	@Column(name = "ky_luat_cong_viec")
 	private int kyLuatCongViec;
 
-	@Column(name = "TinhThanLamViec")
+	@Column(name = "tinh_than_lam_viec")
 	private int tinhThanLamViec;
 
-	@Column(name = "KhoiLuongCongViec")
+	@Column(name = "khoi_luong_cong_viec")
 	private int khoiLuongCongViec;
 
-	@Column(name = "KetQuaCongViec")
+	@Column(name = "ket_qua_cong_viec")
 	private int ketQuaCongViec;
 
-	@Column(name = "KyNangTichLuy")
+	@Column(name = "ky_nang_tich_luy")
 	private int kyNangTichLuy;
 
-	@Column(name = "NhanXet")
+	@Column(name = "nhan_xet_chung")
 	private String nhanXet;
 
-	@Column(name = "XepLoai")
+	@Column(name = "xep_loai")
 	private int xepLoai;
 
-	@Column(name = "IsActive")
+	@Column(name = "is_active")
 	private int isActive;
 
 	public TruongPhongDanhGia() {

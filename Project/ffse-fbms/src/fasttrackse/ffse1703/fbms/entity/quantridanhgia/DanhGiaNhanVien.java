@@ -7,52 +7,52 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Table(name = "danhgianhanvien")
+@Table(name = "danh_gia_nhan_vien")
 @Entity
 public class DanhGiaNhanVien {
 
 	@Id
-	@Column(name = "Id")
+	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name = "KyDanhGia")
+	@Column(name = "ky_danh_gia")
 	private String kyDanhGia;
 
-	@Column(name = "PhongBan")
+	@Column(name = "ma_phong_ban")
 	private String phongBan;
 
-	@Column(name = "NhanVien")
+	@Column(name = "nhan_vien")
 	private String nhanVien;
 
-	@Column(name = "NhanVienDuocDanhGia")
-	private String nhanVienDuocDanhGia;
+	@Column(name = "nhan_vien_danh_gia")
+	private String nhanVienDanhGia;
 
-	@Column(name = "KyLuatCongViec")
+	@Column(name = "ky_luat_cong_viec")
 	private String kyLuatCongViec;
 
-	@Column(name = "TinhThanLamViec")
+	@Column(name = "tinh_than_lam_viec")
 	private String tinhThanLamViec;
 
-	@Column(name = "KhoiLuongCongViec")
+	@Column(name = "khoi_luong_cong_viec")
 	private String khoiLuongCongViec;
 
-	@Column(name = "KetQuaCongViec")
+	@Column(name = "ket_qua_cong_viec")
 	private String ketQuaCongViec;
 
-	@Column(name = "KyNangTichLuy")
+	@Column(name = "ky_nang_tich_luy")
 	private String kyNangTichLuy;
 
-	@Column(name = "DinhHuong")
+	@Column(name = "dinh_huong")
 	private String dinhHuong;
 
-	@Column(name = "DanhGiaTongThe")
+	@Column(name = "danh_gia_tong_the")
 	private int danhGiaTongThe;
 
-	@Column(name = "TrangThai")
+	@Column(name = "ma_trang_thai")
 	private int trangThai;
 
-	@Column(name = "IsDelete")
+	@Column(name = "is_delete")
 	private int isDelete;
 
 	public DanhGiaNhanVien() {
@@ -91,12 +91,12 @@ public class DanhGiaNhanVien {
 		this.nhanVien = nhanVien;
 	}
 
-	public String getNhanVienDuocDanhGia() {
-		return nhanVienDuocDanhGia;
+	public String getNhanVienDanhGia() {
+		return nhanVienDanhGia;
 	}
 
-	public void setNhanVienDuocDanhGia(String nhanVienDuocDanhGia) {
-		this.nhanVienDuocDanhGia = nhanVienDuocDanhGia;
+	public void setNhanVienDanhGia(String nhanVienDanhGia) {
+		this.nhanVienDanhGia = nhanVienDanhGia;
 	}
 
 	public String getKyLuatCongViec() {

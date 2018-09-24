@@ -86,7 +86,7 @@ public class QuanLyHopDongControllerTT {
 			hopDongServiceTT.addHopDong(hd);
 		} else {
 			// existing person, call update
-			if (result.hasErrors()) {
+		if (result.hasErrors()) {
 				return "QuanLyNhanSuTT/QuanLyHopDongTT/edit_form";
 			}
 			hopDongServiceTT.updateHopDong(hd);

@@ -10,8 +10,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
-
-
 @Entity
 @Table(name = "xa_phuong")
 public class XaPhuongTT implements Serializable {
@@ -20,7 +18,7 @@ public class XaPhuongTT implements Serializable {
 	@Id
 	@Column(name = "ma_xa_phuong", unique = true, nullable = false, length = 30)
 	@NotEmpty
-	private String maxa;
+	private int maxa;
 
 	@Column(name = "ten_xa_phuong", nullable = false, length = 255)
 	@NotEmpty
@@ -33,11 +31,11 @@ public class XaPhuongTT implements Serializable {
 	public XaPhuongTT() {
 	}
 
-	public String getMaxa() {
+	public int getMaxa() {
 		return maxa;
 	}
 
-	public void setMaxa(String maxa) {
+	public void setMaxa(int maxa) {
 		this.maxa = maxa;
 	}
 
@@ -55,10 +53,6 @@ public class XaPhuongTT implements Serializable {
 
 	public void setHoSoNhanViens(List<HoSoNhanVienTT> hoSoNhanViens) {
 		this.hoSoNhanViens = hoSoNhanViens;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 
 }

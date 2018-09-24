@@ -53,9 +53,9 @@ public class FrameworkTeam1ServiceImpl implements FrameworkTeam1Service {
 	}
 	@Transactional
 	@Override
-	public int getName(String ma_framework) {
-		return this.framworkDao.getName(ma_framework);
-
+	public int getName(String ten_framework) {
+		return this.framworkDao.getName(ten_framework);
 	}
+
 
 }

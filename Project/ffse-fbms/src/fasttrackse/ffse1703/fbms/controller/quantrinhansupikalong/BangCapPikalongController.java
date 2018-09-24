@@ -40,64 +40,66 @@ public class BangCapPikalongController {
 	public void setBangCapPikalongService(BangCapPikalongService bangCapPikalongService) {
 		this.bangCapPikalongService = bangCapPikalongService;
 	}
-
+	//
 	@RequestMapping(value = "/listBangCapPikalong/{pageid}", method = RequestMethod.GET)
 	public String listBangCapPikalong(Model model, HttpSession session, @PathVariable int pageid) {
 		int tongTrang = (int) Math.ceil((long) bangCapPikalongService.total() / (double) soBanGhi);
 
 		int start = (int) ((pageid - 1) * soBanGhi);
 		model.addAttribute("total", tongTrang);
-		//model.addAttribute("page", pageid);
 		session.setAttribute("page", pageid);
 		model.addAttribute("listBangCap", this.bangCapPikalongService.listBangCapPikalong(start, soBanGhi));
 		return "QuanTriNhanSuPikalong/QuanLiBangCap/listBangCapPikalong";
 	}
 
-	@RequestMapping(value = "/addBangCap/{maNV}", method = RequestMethod.GET)
+	@RequestMapping(value = "/add/{maNV}", method = RequestMethod.GET)
 	public String showFormAdd(Model model, HttpSession session, @PathVariable String maNV) {
-		// model.addAttribute("listNhanVien",
-		// hoSoNhanVienPikalongService.listNhanVien());
-		//
 		BangCapPikalong hsnv = new BangCapPikalong();
 		hsnv.setMaNV(maNV);
 		model.addAttribute("command", hsnv);
+		session.setAttribute("maNv", maNV);
+		//model.addAttribute("maNv", maNV);
 		return "QuanTriNhanSuPikalong/QuanLiBangCap/formAddBangCapPikalong";
 	}
 
-	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String saveBangCap(@ModelAttribute("command") @Valid BangCapPikalong p, BindingResult result) {
-
-		if (p.getId() == 0) {
-			// new person, add it
-			if (result.hasErrors()) {
-				return "QuanTriNhanSuPikalong/QuanLiBangCap/formAddBangCapPikalong";
-			}
-			bangCapPikalongService.addBangCapPikalong(p);
-		} else {
-			// existing person, call update
-			if (result.hasErrors()) {
-				return "QuanTriNhanSuPikalong/QuanLiBangCap/formUpdateBangCapPikalong";
-			}
-			bangCapPikalongService.updateBangCapPikalong(p);
-		}
-		return "redirect:/QuanTriNhanSuPikalong/QuanLiBangCap/listBangCapPikalong";
-
-	}
-
 	@RequestMapping("/edit/{maNV}")
-	public String showFormUpdate(@PathVariable("maNV") int id, Model model) throws IllegalStateException, IOException {
-		model.addAttribute("command", bangCapPikalongService.getBangCapPikalongById(id));
+	public String showFormUpdate(@PathVariable("maNV") int id, Model model,BangCapPikalong p) throws IllegalStateException, IOException {
+		p = bangCapPikalongService.getBangCapPikalongById(id);
+		model.addAttribute("command", p);
+		model.addAttribute("maNv", p.getMaNV());
 		return "QuanTriNhanSuPikalong/QuanLiBangCap/formUpdateBangCapPikalong";
 	}
 
-	@RequestMapping("/remove/{id}")
-	public String remove(@PathVariable("id") int id) {
-		bangCapPikalongService.removeBangCapPikalong(id);
-		return "redirect:/QuanTriNhanSuPikalong/QuanLiBangCap/listBangCapPikalong";
-	}
+	
 	@RequestMapping("/viewOneBangCap/{maNV}")
 	public String viewOneBangCap( @PathVariable String maNV,Model model) {
 		model.addAttribute("viewOne",this.bangCapPikalongService.viewOne(maNV));
+		model.addAttribute("maNv", maNV);
 		return "QuanTriNhanSuPikalong/QuanLiBangCap/viewOneBangCapPikalong";
+	}
+	//
+	@RequestMapping("/saveOneBangCap")
+	public String saveOneBangCap(@ModelAttribute("command") @Valid BangCapPikalong p, BindingResult result) {
+		//System.out.println("ma nv " + p.getMaNV());
+		if (result.hasErrors()) {
+			return "QuanTriNhanSuPikalong/QuanLiBangCap/formAddBangCapPikalong";
+		}
+		bangCapPikalongService.addBangCapPikalong(p);
+		return "redirect:/QuanTriNhanSuPikalong/QuanLiBangCap/viewOneBangCap/" + p.getMaNV();
+	}
+	@RequestMapping("/editOneBangCap")
+	public String updateOneBangCap(@ModelAttribute("command") @Valid BangCapPikalong p, BindingResult result) {
+		//System.out.println("ma nv " + p.getMaNV());
+		if (result.hasErrors()) {
+			return "QuanTriNhanSuPikalong/QuanLiBangCap/formUpdateBangCapPikalong";
+		}
+		bangCapPikalongService.updateBangCapPikalong(p);
+		return "redirect:/QuanTriNhanSuPikalong/QuanLiBangCap/viewOneBangCap/" + p.getMaNV();
+	}
+	@RequestMapping("/remove/{id}")
+	public String removeOneBangCap(@PathVariable("id") int id,BangCapPikalong p) {
+		p = bangCapPikalongService.getBangCapPikalongById(id);
+		bangCapPikalongService.removeBangCapPikalong(id);
+		return "redirect:/QuanTriNhanSuPikalong/QuanLiBangCap/viewOneBangCap/" + p.getMaNV();
 	}
 }

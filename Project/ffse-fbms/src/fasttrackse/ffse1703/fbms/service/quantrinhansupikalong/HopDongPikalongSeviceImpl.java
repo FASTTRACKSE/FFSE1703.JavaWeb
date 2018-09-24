@@ -34,4 +34,21 @@ public class HopDongPikalongSeviceImpl implements HopDongPikalongSevice {
 	public void insert(HopDongPikalong hd) {
 		 this.hopDongPikalongDao.insert(hd);
 	}
+	
+	@Override
+	@Transactional
+	public String getAutoId() {
+		return this.hopDongPikalongDao.getAutoId();
+	}
+	
+	@Override
+	@Transactional
+	public String getLastMaHd() {
+		return this.hopDongPikalongDao.getLastMaHd();
+	}
+	@Override
+	@Transactional
+	public HopDongPikalong getHopDongById(int maNv) {
+		return this.hopDongPikalongDao.getHopDongById();
+	}
 }

@@ -5,25 +5,34 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import fasttrackse.ffse1703.fbms.dao.quanlynhansutt.QuanLyHoSoDaoTT;
 import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.HoSoNhanVienTT;
 
+@Service
 public class QuanLyHoSoServiceTTImpl implements QuanLyHoSoServiceTT {
 
 	@Autowired
 	private QuanLyHoSoDaoTT quanLyHoSoDaoTT;
 
+	@Override
+	@Transactional
 	public List<HoSoNhanVienTT> getAllHoSo() {
 		// TODO Auto-generated method stub
 		return this.quanLyHoSoDaoTT.getAllHoSo();
 	}
 
+	@Override
+	@Transactional
 	public List<HoSoNhanVienTT> getAllHoSo(int iDisplayStart, int iDisplayLength, String sql) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Override
+	@Transactional
 	public HoSoNhanVienTT getHoSoNhanVienById(int maNhanVien) {
 		// TODO Auto-generated method stub
 		return null;
@@ -44,24 +53,37 @@ public class QuanLyHoSoServiceTTImpl implements QuanLyHoSoServiceTT {
 		return null;
 	}
 
+	@Override
+	@Transactional
 	public List<HoSoNhanVienTT> getHoSoByPhongBan(String maPhongBan) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Override
+	@Transactional
 	public void addHoSoNhanVien(HoSoNhanVienTT hsnv) {
 		// TODO Auto-generated method stub
-
+		quanLyHoSoDaoTT.addHoSoNhanVien(hsnv);
 	}
-
+	@Override
+	@Transactional
 	public void updateHoSoNhanVien(HoSoNhanVienTT hsnv) {
 		// TODO Auto-generated method stub
 
 	}
-
+	@Override
+	@Transactional
 	public void deleteHoSoNhanVien(int maNhanVien) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	@Transactional
+	public HoSoNhanVienTT findByMaNhanVien(int maNhanVien) {
+		// TODO Auto-generated method stub
+		return this.quanLyHoSoDaoTT.findByMaHopDong(maNhanVien);
 	}
 
 }

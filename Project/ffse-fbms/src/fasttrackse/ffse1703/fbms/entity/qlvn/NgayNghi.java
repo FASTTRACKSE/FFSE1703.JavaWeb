@@ -12,21 +12,24 @@ import javax.persistence.Table;
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 @Entity
 @Table(name="ngay_nghi")
-public class NgayNghi {
+public class NgayNghi{
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_ngay_nghi")
     private int id;
 	
 	@ManyToOne
-	@JoinColumn(name="ma_nhan_vien")
-	private HoSoNhanVien hoSoNhanVien;
+	@JoinColumn(name = "ma_nhan_vien")
+	private ThongTinHoSoNhanVien maNhanVien;
 	
-	@Column(name="so_ngay_da_nghi")
-	private int soNgayDaNghi;
+	@ManyToOne
+	@JoinColumn(name="so_ngay_da_nghi")
+	private ThongTinHoSoNhanVien soNgayDaNghi;
 	
-	@Column(name="so_ngay_con_lai")
-	private int soNgayConLai;
+	@ManyToOne
+	@JoinColumn(name="so_ngay_con_lai")
+	private ThongTinHoSoNhanVien soNgayConLai;
 
 	public int getId() {
 		return id;
@@ -36,30 +39,30 @@ public class NgayNghi {
 		this.id = id;
 	}
 
-	public HoSoNhanVien getHoSoNhanVien() {
-		return hoSoNhanVien;
+	public ThongTinHoSoNhanVien getMaNhanVien() {
+		return maNhanVien;
 	}
 
-	public void setHoSoNhanVien(HoSoNhanVien hoSoNhanVien) {
-		this.hoSoNhanVien = hoSoNhanVien;
+	public void setMaNhanVien(ThongTinHoSoNhanVien maNhanVien) {
+		this.maNhanVien = maNhanVien;
 	}
 
-	public int getSoNgayDaNghi() {
+	public ThongTinHoSoNhanVien getSoNgayDaNghi() {
 		return soNgayDaNghi;
 	}
 
-	public void setSoNgayDaNghi(int soNgayDaNghi) {
+	public void setSoNgayDaNghi(ThongTinHoSoNhanVien soNgayDaNghi) {
 		this.soNgayDaNghi = soNgayDaNghi;
 	}
 
-	public int getSoNgayConLai() {
+	public ThongTinHoSoNhanVien getSoNgayConLai() {
 		return soNgayConLai;
 	}
 
-	public void setSoNgayConLai(int soNgayConLai) {
+	public void setSoNgayConLai(ThongTinHoSoNhanVien soNgayConLai) {
 		this.soNgayConLai = soNgayConLai;
 	}
-	
+
 	
 	
 }

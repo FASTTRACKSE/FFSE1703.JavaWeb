@@ -70,8 +70,9 @@ public class BangCapPikalongDaoImpl implements BangCapPikalongDao {
 	public List<BangCapPikalong> viewOne(String maNV) {
 		Session session = this.sessionFactory.openSession();
 		@SuppressWarnings("rawtypes")
-		Query query = session.createQuery("from BangCapPikalong where MaNv = :MaNv ");
+		Query query = session.createQuery("from BangCapPikalong where MaNv = :MaNv and isActive = :active ");
 		query.setParameter("MaNv", maNV);
+		query.setParameter("active", 0);
 		@SuppressWarnings("unchecked")
 		List<BangCapPikalong> viewOne = query.list();
 		return viewOne;

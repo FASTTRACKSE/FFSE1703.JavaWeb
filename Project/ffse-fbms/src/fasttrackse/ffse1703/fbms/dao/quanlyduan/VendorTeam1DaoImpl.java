@@ -7,7 +7,6 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-
 import fasttrackse.ffse1703.fbms.entity.quanlyduan.VendorTeam1;
 
 @Repository
@@ -62,5 +61,20 @@ public class VendorTeam1DaoImpl implements VendorTeam1Dao{
 		db.setIs_delete(0);
 		session.update(db);
 	}
+
+	@Override
+	public int getMa(String maVendor) {
+	Session session = this.sessionFactory.getCurrentSession();
+	List<VendorTeam1> db = session.createQuery("from VendorTeam1 where tenvd = '"+maVendor+"' AND isDelete =0", VendorTeam1.class).list();	
+	return  db.size();
+	}
+
+	@Override
+	public int getName(String tenVendor) {
+		Session session = this.sessionFactory.getCurrentSession();
+		List<VendorTeam1> db = session.createQuery("from VendorTeam1 where mavd = '"+tenVendor+"'", VendorTeam1.class).list();	
+		return  db.size();
+	}
+	
 
 }

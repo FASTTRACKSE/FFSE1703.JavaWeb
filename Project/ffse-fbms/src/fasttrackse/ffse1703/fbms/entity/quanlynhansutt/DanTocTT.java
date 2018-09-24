@@ -5,10 +5,11 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
 
 
 @Entity
@@ -17,26 +18,26 @@ public class DanTocTT implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "ma_dan_toc", unique = true, nullable = false, length = 30)
-	@NotEmpty
-	private String maDanToc;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ma_dan_toc", unique = true, nullable = false)
+	private int maDanToc;
 
-	@Column(name = "ten_dan_toc", nullable = false, length = 255)
-	@NotEmpty
+	@Column(name = "ten_dan_toc", nullable = false, length = 250)
 	private String tenDanToc;
 
-	// bi-directional many-to-one association to HoSoNhanVien
+	// bi-directional many-to-one association to HopDong 
 	@OneToMany(mappedBy = "danToc")
 	private List<HoSoNhanVienTT> hoSoNhanViens;
 
 	public DanTocTT() {
+		super();
 	}
 
-	public String getMaDanToc() {
+	public int getMaDanToc() {
 		return maDanToc;
 	}
 
-	public void setMaDanToc(String maDanToc) {
+	public void setMaDanToc(int maDanToc) {
 		this.maDanToc = maDanToc;
 	}
 
@@ -56,8 +57,5 @@ public class DanTocTT implements Serializable {
 		this.hoSoNhanViens = hoSoNhanViens;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
+	
 }

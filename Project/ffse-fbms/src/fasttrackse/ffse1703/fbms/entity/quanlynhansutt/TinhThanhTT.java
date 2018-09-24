@@ -18,7 +18,7 @@ public class TinhThanhTT implements Serializable {
 	@Id
 	@Column(name = "ma_thanh_pho", unique = true, nullable = false, length = 30)
 	@NotEmpty
-	private String maThanhPho;
+	private int maThanhPho;
 
 	@Column(name = "ten_thanh_pho", nullable = false, length = 255)
 	@NotEmpty
@@ -31,11 +31,11 @@ public class TinhThanhTT implements Serializable {
 	public TinhThanhTT() {
 	}
 
-	public String getMaThanhPho() {
+	public int getMaThanhPho() {
 		return maThanhPho;
 	}
 
-	public void setMaThanhPho(String maThanhPho) {
+	public void setMaThanhPho(int maThanhPho) {
 		this.maThanhPho = maThanhPho;
 	}
 
@@ -54,9 +54,4 @@ public class TinhThanhTT implements Serializable {
 	public void setHoSoNhanViens(List<HoSoNhanVienTT> hoSoNhanViens) {
 		this.hoSoNhanViens = hoSoNhanViens;
 	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
 }

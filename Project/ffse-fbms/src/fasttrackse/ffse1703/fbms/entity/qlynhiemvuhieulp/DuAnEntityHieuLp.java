@@ -46,14 +46,14 @@ public class DuAnEntityHieuLp {
 	private String maNghiepvu;
 	
 
-	@Column(name = "start_day")
+	@Column(name = "start_date")
 	@NotNull
-	private Date startDay;
+	private Date startDate;
 	
 
-	@Column(name = "end_day")
+	@Column(name = "end_date")
 	@NotNull
-	private String endDay;
+	private String endDate;
 	
 
 	@Column(name = "is_delete")
@@ -121,23 +121,23 @@ public class DuAnEntityHieuLp {
 	}
 
 
-	public Date getStartDay() {
-		return startDay;
+	public Date getStartDate() {
+		return startDate;
 	}
 
 
-	public void setStartDay(Date startDay) {
-		this.startDay = startDay;
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
 	}
 
 
-	public String getEndDay() {
-		return endDay;
+	public String getEndDate() {
+		return endDate;
 	}
 
 
-	public void setEndDay(String endDay) {
-		this.endDay = endDay;
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
 	}
 
 

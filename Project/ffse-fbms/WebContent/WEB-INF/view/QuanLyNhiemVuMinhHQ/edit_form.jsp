@@ -67,6 +67,7 @@
 						<div class="col-sm-12 text-center">
 							<button type="submit" class="btn btn-success">Lưu thông tin</button>
 						</div>
+						<form:hidden path="isDelete"/>
 					</form:form>
 				</div>
 			</div>

@@ -61,19 +61,23 @@
 															<div class="form-group col-sm-6">
 																<label>Mã Nhân Viên</label>
 																<form:input class="form-control"
-																	path="hoSoNhanVien.maNhanVien"
+																	path="hoSoNhanVienTT.maNhanVien"
 																	placeholder="Mã Nhân Viên" />
-																<form:errors path="hoSoNhanVien.maNhanVien"></form:errors>
 															</div>
 
 														</div>
 														<div class="row">
 															<div class="form-group col-sm-6">
-																<label>Mã Loại Hợp Đồng</label>
-																<form:input class="form-control"
-																	path="loaiHopDong.maLoaiHopDong"
-																	placeholder="Mã Loại Hợp Đồng" />
-																<form:errors path="loaiHopDong.maLoaiHopDong"></form:errors>
+																<label>Tên Loại Hợp Đồng</label>
+																<form:select path="loaiHopDong.maLoaiHopDong"
+																	type="text" id="companyName" class="form-control"
+																	name="loaiHopDongSelect">
+																	<option value="none">Chọn Loại Hợp Đồng</option>
+																	<c:forEach items="${listLoaiHopDong}" var="x">
+																		<option value="${x.maLoaiHopDong}">${x.tenHopDong}</option>
+																	</c:forEach>
+																</form:select>
+
 
 															</div>
 															<div class="form-group col-sm-6">
@@ -81,14 +85,10 @@
 																<form:input class="form-control"
 																	path="chucDanh.maChucDanh"
 																	placeholder="Mã Loại Chức Danh" />
-																<form:errors path="chucDanh.maChucDanh"></form:errors>
+
 															</div>
 														</div>
 													</div>
-													<%-- 	<div class="col-md-4" style="text-align: center !important;">
-													<img width="175px" height="175px"
-														src="/ffse-fbms/resources/images/nhan-vien/${hoSoNhanVien.anhDaiDien}">
-												</div> --%>
 												</div>
 												<h4 class="form-section">
 													<i class="ft-user"> Thông Tin Hợp Đồng</i>
@@ -101,16 +101,14 @@
 																	<label>Lương Tháng 13</label>
 																	<form:input class="form-control" path="luongThang13"
 																		placeholder="Lương Tháng 13" />
-																	<form:errors path="luongThang13"></form:errors>
+
 																</div>
 															</div>
 															<div class="form-group col-sm-6">
 																<label>Số Ngày Phép</label>
 																<form:input class="form-control" path="soNgayPhep"
 																	placeholder="Số Ngày Phép" />
-																<form:errors path="soNgayPhep"></form:errors>
 															</div>
-
 														</div>
 														<div class="row">
 															<div class="col-md-6">
@@ -123,10 +121,8 @@
 																			<i class="fa fa-calendar-o"></i>
 																		</div>
 																	</fieldset>
-																	<form:errors path="ngayKy"></form:errors>
 																</div>
 															</div>
-
 															<div class="col-md-6">
 																<div class="form-group">
 																	<label>Hợp Đồng Từ Ngày</label>
@@ -137,7 +133,6 @@
 																			<i class="fa fa-calendar-o"></i>
 																		</div>
 																	</fieldset>
-																	<form:errors path="hopDongTuNgay"></form:errors>
 																</div>
 															</div>
 															<div class="col-md-6">
@@ -150,7 +145,6 @@
 																			<i class="fa fa-calendar-o"></i>
 																		</div>
 																	</fieldset>
-																	<form:errors path="hopDongDenNgay"></form:errors>
 																</div>
 															</div>
 															<div class="col-md-6">
@@ -167,9 +161,10 @@
 													</div>
 												</div>
 											</div>
-
 											<div class="form-actions center">
-												<input class="btn btn-success" type="submit" value="Save" />
+												<a href="<c:url value = "/quanlynhansutt/"/>"
+													class="btn btn-primary">Back</a> <input
+													class="btn btn-success" type="submit" value="Save" />
 											</div>
 										</form:form>
 									</div>

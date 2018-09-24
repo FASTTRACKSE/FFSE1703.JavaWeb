@@ -12,7 +12,7 @@
 		<div class="content-header row">
 		<div>
 		<div class="col-md-5"></div>
-			<h3 >Danh sách chờ duyệt</h3>
+			<h3 class="content-header-title mb-0">Danh sách chờ duyệt</h3>
 		</div>
 			<div>
 
@@ -43,8 +43,8 @@
 					<td>${nv.ghiChu}</td>
 					<td>${nv.ghiChuTruongPhong}</td>
 					<td>${nv.trangThai.trangThai}</td>
-					<td><a href="suachoduyet/${nv.id}"><button class="btn btn-success">
-									Sửa</button></a>
+					<td><a href="suachoduyet/${nv.id}" class="btn btn-outline-success round  mr-1 mb-1" >
+									Sửa</a>
 					</td>
 						</tr>
 				</c:forEach>

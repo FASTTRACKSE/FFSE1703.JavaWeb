@@ -23,7 +23,7 @@
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/home" />'>Home</a></li>
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/mvpquanliduan/programlanguage/list-language" />'>Danh
+								href='<c:url value="/mvpquanliduan/language/list-language" />'>Danh
 									sách Ngôn Ngữ</a></li>
 							<li class="breadcrumb-item active">Thêm mới Ngôn Ngữ</li>
 						</ol>
@@ -39,24 +39,19 @@
 			<div class="main-content">
 				<div class="row">
 					<form:form method="POST" action="addnew">
-						<div class="form-group col-sm-6">
-							<label>Mã Ngôn Ngữ</label><br>
-							<p Class="error" >${messageMa}</p>
-							<form:errors path="idLanguage" cssClass="error" />
-							<form:input path="idLanguage" class="form-control round"
-								placeholder="Mã ngôn ngữ" />
-							
-						</div>
+						
 						<div class="form-group col-sm-6">
 							<label>Tên Ngôn Ngữ</label><br>
-							<p Class="error" >${messageName}</p>
-							<form:errors path="nameLanguage" cssClass="error" />
+							<p Class="error">${messageName}</p>
+							<form:errors path="nameLanguage" cssStyle="color: red"></form:errors>
 							<form:input path="nameLanguage" class="form-control round"
 								placeholder="Tên ngôn ngữ" />
-							
+
 						</div>
 						<div class="col-sm-12 text-center">
-							<button type="submit" class="btn btn-outline-success round btn-min-width mr-1 mb-1">Lưu </button>
+							<button type="submit"
+								class="btn btn-outline-success round btn-min-width mr-1 mb-1">Lưu
+							</button>
 						</div>
 					</form:form>
 				</div>

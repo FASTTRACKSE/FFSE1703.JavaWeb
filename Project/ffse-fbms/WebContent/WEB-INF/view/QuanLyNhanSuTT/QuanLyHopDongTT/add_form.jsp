@@ -60,14 +60,15 @@
 														</div>
 														<div class="form-group col-sm-6">
 															<label>Mã Nhân Viên</label>
-															<form:input class="form-control" path="hoSoNhanVien"
+															<form:input class="form-control"
+																path="hoSoNhanVienTT.maNhanVien"
 																placeholder="Mã Nhân Viên" />
 														</div>
 													</div>
 													<div class="row">
 														<div class="form-group col-sm-6">
 															<label>Mã Loại Hợp Đồng</label>
-															<form:select path="loaiHopDong" type="text"
+															<form:select path="loaiHopDong.maLoaiHopDong" type="text"
 																id="companyName" class="form-control"
 																name="loaiHopDongSelect">
 																<option value="none">Chọn Loại Hợp Đồng</option>
@@ -75,10 +76,11 @@
 																	<option value="${x.maLoaiHopDong}">${x.tenHopDong}</option>
 																</c:forEach>
 															</form:select>
+                                
 														</div>
 														<div class="form-group col-sm-6">
 															<label>Mã Chức Danh</label>
-															<form:select path="chucDanh.maChucDanh" type="text"
+															<form:select path="hoSoNhanVienTT.chucDanh.maChucDanh" type="text"
 																id="companyName" class="form-control"
 																name="chucDanhSelect">
 																<option value="none">Chọn Mã Chức Danh</option>
@@ -86,6 +88,7 @@
 																	<option value="${x.maChucDanh}">${x.maChucDanh}</option>
 																</c:forEach>
 															</form:select>
+                                                       
 														</div>
 													</div>
 												</div>
@@ -99,14 +102,19 @@
 														<div class="form-group col-sm-6">
 															<div class="form-group">
 																<label>Lương Tháng 13</label>
-																<form:input class="form-control" path="luongThang13"
-																	placeholder="Lương Tháng 13" />
+																<form:select class="custom-select form-control"
+																	path="luongThang13">
+																	<option value="none">Chọn</option>
+																	<form:option value="1">Có</form:option>
+																	<form:option value="2">Không</form:option>
+																</form:select>
 															</div>
 														</div>
 														<div class="form-group col-sm-6">
 															<label>Số Ngày Phép</label>
 															<form:input class="form-control" path="soNgayPhep"
 																placeholder="Số Ngày Phép" />
+<form:errors path="soNgayPhep" cssClass="invalid-feedback d-block" />
 														</div>
 
 													</div>
@@ -120,7 +128,9 @@
 																	<div class="form-control-position">
 																		<i class="fa fa-calendar-o"></i>
 																	</div>
+
 																</fieldset>
+
 															</div>
 														</div>
 														<div class="col-md-6">
@@ -133,7 +143,9 @@
 																	<div class="form-control-position">
 																		<i class="fa fa-calendar-o"></i>
 																	</div>
+
 																</fieldset>
+
 															</div>
 														</div>
 														<div class="col-md-6">
@@ -146,7 +158,9 @@
 																	<div class="form-control-position">
 																		<i class="fa fa-calendar-o"></i>
 																	</div>
+
 																</fieldset>
+
 															</div>
 														</div>
 														<div class="col-md-6">
@@ -159,6 +173,7 @@
 																	<form:option value="2">Hết
 																		Hợp Đồng</form:option>
 																</form:select>
+
 															</div>
 														</div>
 													</div>
@@ -167,6 +182,9 @@
 										</div>
 										<div class="form-actions center">
 											<input class="btn btn-success" type="submit" value="Save" />
+											<%-- <a href="<c:url value = "/quanlynhansutt/add"/>"
+												class="btn btn-primary">Back</a>
+ --%>
 										</div>
 									</form:form>
 								</div>

@@ -38,7 +38,7 @@
                               <label for="projectinput2">Tình trạng hôn nhân</label>
                               <form:select path="tinhTrangHonNhan" type="text" id="projectinput2" class="form-control"
                               name="tinhTrangHonNhanRadio">
-                              		<option value="none" selected="" >Chọn tình trạng hôn nhân</option>
+                              		<option value="none" selected="selected" >Chọn tình trạng hôn nhân</option>
                               		<option value="0" >Chưa kết hôn</option>
                               		<option value="1" >Đã kết hôn</option>
                               </form:select>
@@ -50,7 +50,7 @@
                             <div class="form-group">
                               <label for="projectinput3">Giới tính</label>
                               <form:select path="gioiTinh" type="text" id="projectinput3" class="form-control" placeholder="Giới tính" name="gioiTinhRadio">
-                              		<option value="none" selected="" >Chọn giới tính</option>
+                              		<option value="none" selected="selected" >Chọn giới tính</option>
                               		<option value="Nam" >Nam</option>
                               		<option value="Nữ" >Nữ</option>
                               </form:select>
@@ -90,7 +90,7 @@
                             <div class="form-group">
                               <label for="projectinput4">Quốc tịch</label>
                               <form:select path="quocTich" type="text" id="projectinput4" class="form-control" name="quocTichSelect">
-                              		<option value="none" selected="" >Chọn quốc tịch</option>
+                              		<option value="none" selected="selected" >Chọn quốc tịch</option>
                               	 <c:forEach items="${listQuocTich}" var="x">
                               		<option value="${x.tenNuoc}" >${x.tenNuoc}</option>
                               	 </c:forEach>
@@ -192,7 +192,11 @@
                      function clickComboboxThanhPho(){
                     	 var maThanhPho = $("#thanhPhoId").val();
                     	 if(maThanhPho == 'noThanhPho'){  // nếu người dùng chưa chọn thành phố
+                    		
+                    		 $('#quanHuyenId option').remove();
+                    		 
                     		 $('#quanHuyenId').prop('disabled', true); /*disable combobox quận huyện */
+                    		 
                     		 $('#phuongXaId option[value=noPhuongXa]').attr('selected', 'selected')
                     		 $('#phuongXaId').prop('disabled', true);
                     		 
@@ -231,6 +235,7 @@
                      function clickComboboxQuan(){
                     	 var maQuanHuyen = $("#quanHuyenId").val();
                     	 if(maQuanHuyen == 'noQuanHuyen'){  /* nếu người dùng chưa chọn thành phố */
+                    		 $('#phuongXaId option').remove();
                     		 $('#phuongXaId').prop('disabled', true); /*disable combobox quận huyện */
                     		 
                     	 } else{                /* nếu người dùng đã chọn thành phố*/

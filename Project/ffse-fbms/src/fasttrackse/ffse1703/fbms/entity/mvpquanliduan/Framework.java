@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "qlda_framework")
@@ -14,12 +15,11 @@ public class Framework {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_framework", unique = true, nullable = false)
 	private int idFrame;
-	@Column(name="name_framework",unique = true, nullable=false)	
+	@NotEmpty
+	@Column(name = "name_framework", unique = true, nullable = false)
 	private String nameFramework;
-	@Column(name="id_program_language",unique = true, nullable=false)
-	private int idLanguage;
+
 	private int status;
-	
 
 	public int getIdFrame() {
 		return idFrame;
@@ -35,16 +35,6 @@ public class Framework {
 
 	public void setNameFramework(String nameFramework) {
 		this.nameFramework = nameFramework;
-	}
-
-	
-
-	public int getIdLanguage() {
-		return idLanguage;
-	}
-
-	public void setIdLanguage(int idLanguage) {
-		this.idLanguage = idLanguage;
 	}
 
 	public int getStatus() {

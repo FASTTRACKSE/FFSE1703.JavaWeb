@@ -18,38 +18,43 @@ public class ProgramingLanguageTeam1ServiceImpl implements ProgramingLanguageTea
 	@Override
 	@Transactional
 	public List<ProgramingLanguageTeam1> getAll() {
-		// TODO Auto-generated method stub
 		return this.languageDao.getAll();
 	}
 
 	@Override
-	public void delete(String maNn) {
-		// TODO Auto-generated method stub
-
+	@Transactional
+	public void delete(String maNgonNgu) {
+		this.languageDao.delete(maNgonNgu);
+		
 	}
 
 	@Override
-	public void addNew(ProgramingLanguageTeam1 Nn) {
-		// TODO Auto-generated method stub
-
+	@Transactional
+	public void addNew(ProgramingLanguageTeam1 nn) {
+		this.languageDao.addNew(nn);
+		
 	}
 
 	@Override
-	public ProgramingLanguageTeam1 getById(String maNn) {
-		// TODO Auto-generated method stub
-		return null;
+	@Transactional
+	public ProgramingLanguageTeam1 getById(String maNgonNgu) {
+		return this.languageDao.getById(maNgonNgu);
 	}
 
 	@Override
-	public void update(ProgramingLanguageTeam1 Nn) {
-		// TODO Auto-generated method stub
-
+	@Transactional
+	public void update(ProgramingLanguageTeam1 nn) {
+		this.languageDao.update(nn);
+		
 	}
 
 	@Override
-	public void setIsDelete(String maNn) {
-		// TODO Auto-generated method stub
-
+	@Transactional
+	public void setIsDelete(String maNgonNgu) {
+		this.languageDao.setIsDelete(maNgonNgu);
+		
 	}
+
+
 
 }

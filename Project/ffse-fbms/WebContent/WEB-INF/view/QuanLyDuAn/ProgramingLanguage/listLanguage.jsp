@@ -32,12 +32,12 @@
 							<td>${nn.tenNn}</td>
 	
 							<td><a
-								href="/ffse-fbms/QuanLyDuAn/vendor/edit/${vd.maNn}"
+								href="/ffse-fbms/QuanLyDuAn/Language/edit/${nn.maNn}"
 								data-toggle="tooltip" title="edit">
 									<button type="button" class="btn btn-icon btn-outline-warning">
 										<i class="fa fa-pencil"></i>
 									</button>
-							</a> <a href="/ffse-fbms/QuanLyDuAn/vendor/delete/${vd.maNn}">
+							</a> <a href="/ffse-fbms/QuanLyDuAn/Language/delete/${nn.maNn}">
 									<button type="button"
 										onclick="if (!confirm('Are you sure you want to delete this database?')) return false"
 										class="btn btn-outline-danger btn-icon checkid"
@@ -54,7 +54,7 @@
 		</div>
 		<div class="col-sm-4">
 			<h5>
-				<a href="/ffse-fbms/QuanLyDuAn/vendor/add"><strong>Thêm Ngôn Ngữ</strong></a>
+				<a href="/ffse-fbms/QuanLyDuAn/Language/add"><strong>Thêm Ngôn Ngữ</strong></a>
 			</h5>
 			<c:if test="${message !=null }">
 						 ${message }

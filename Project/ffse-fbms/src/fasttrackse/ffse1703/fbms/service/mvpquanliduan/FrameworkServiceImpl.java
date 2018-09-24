@@ -4,15 +4,18 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fasttrackse.ffse1703.fbms.dao.mvpquanliduan.FrameworkDao;
 import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Framework;
 @Service
+@Transactional
 public class FrameworkServiceImpl implements FrameworkService {
+	@Autowired
 	private FrameworkDao frameworkDao;
 	@Override
-	@Transactional
+	
 	public List<Framework> getAll() {
 		return this.frameworkDao.getAll();
 	}

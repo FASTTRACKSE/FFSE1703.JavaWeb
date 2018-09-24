@@ -6,5 +6,5 @@ import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.DanTocTT;
 
 
 public interface DanTocServiceTT {
-	public List<DanTocTT> listAllDanToc();
+	public List<DanTocTT> listDanTocTT();
 }

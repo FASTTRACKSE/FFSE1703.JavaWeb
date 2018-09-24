@@ -17,9 +17,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
+import fasttrackse.ffse1703.fbms.entity.qlvn.LyDoXinNghi;
+import fasttrackse.ffse1703.fbms.entity.qlvn.TrangThai;
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 
 
@@ -27,36 +26,41 @@ import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 @Table(name = "don_xin_phep")
 public class DonXinPhepEntity {
 
+
 	@Id
-	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	 int id;
+	@Column(name = "id")
+	private int id;
 
 	@ManyToOne
 	@JoinColumn(name = "ma_nhan_vien")
-	 private HoSoNhanVien hoSoNhanVien;
-	
+	private HoSoNhanVien maNhanVien;
+
 	@Column(name = "ngay_bat_dau")
-	 private Date ngayBatDau;
-	
+	private Date ngayBatDau;
+
 	@Column(name = "ngay_ket_thuc")
 	private Date ngayKetThuc;
-	
+
 	@Column(name = "so_ngay_nghi")
-	private int so_ngay_nghi;
-	
+	private int soNgayNghi;
+
 	@ManyToOne
 	@JoinColumn(name = "ly_do")
-	 private LyDoEntity lyDo ;
-	
+	private LyDoEntity lyDo;
+
 	@Column(name = "ghi_chu")
 	private String ghiChu;
-	
-	@Column(name = "ghi_chu_truong_phong" )
+
+	@Column(name = "ghi_chu_truong_phong")
 	private String ghiChuTruongPhong;
 	
-	@Column(name="trang_thai")
-	private String trangThai;
+	@Column(name="so_ngay_con_lai")
+	private int soNgayConLai;
+
+	@ManyToOne
+	@JoinColumn(name = "ten_trang_thai")
+	private TrangThaiEntity trangThai;
 
 	public int getId() {
 		return id;
@@ -66,12 +70,12 @@ public class DonXinPhepEntity {
 		this.id = id;
 	}
 
-	public HoSoNhanVien getHoSoNhanVien() {
-		return hoSoNhanVien;
+	public HoSoNhanVien getMaNhanVien() {
+		return maNhanVien;
 	}
 
-	public void setHoSoNhanVien(HoSoNhanVien hoSoNhanVien) {
-		this.hoSoNhanVien = hoSoNhanVien;
+	public void setMaNhanVien(HoSoNhanVien maNhanVien) {
+		this.maNhanVien = maNhanVien;
 	}
 
 	public Date getNgayBatDau() {
@@ -90,13 +94,15 @@ public class DonXinPhepEntity {
 		this.ngayKetThuc = ngayKetThuc;
 	}
 
-	public Integer getSo_ngay_nghi() {
-		return so_ngay_nghi;
+	public int getSoNgayNghi() {
+		return soNgayNghi;
 	}
 
-	public void setSo_ngay_nghi(Integer so_ngay_nghi) {
-		this.so_ngay_nghi = so_ngay_nghi;
+	public void setSoNgayNghi(int soNgayNghi) {
+		this.soNgayNghi = soNgayNghi;
 	}
+
+	
 
 	public LyDoEntity getLyDo() {
 		return lyDo;
@@ -122,17 +128,25 @@ public class DonXinPhepEntity {
 		this.ghiChuTruongPhong = ghiChuTruongPhong;
 	}
 
-	public String getTrangThai() {
+	public TrangThaiEntity getTrangThai() {
 		return trangThai;
 	}
 
-	public void setTrangThai(String trangThai) {
+	public void setTrangThai(TrangThaiEntity trangThai) {
 		this.trangThai = trangThai;
 	}
 
-		
+	public int getSoNgayConLai() {
+		return soNgayConLai;
+	}
+
+	public void setSoNgayConLai(int soNgayConLai) {
+		this.soNgayConLai = soNgayConLai;
+	}
+
+
+
 }
-	
-	
+
 
 	

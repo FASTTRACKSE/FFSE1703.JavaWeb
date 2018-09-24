@@ -19,6 +19,8 @@ public interface QuanLyHopDongDaoTT {
 	public void addHopDong(HopDongTT tt);
 
 	public void updateHopDong(HopDongTT tt);
+	
+	public void removeHopDong(int maHopDong);
 
 	public String getAutoId();
 	

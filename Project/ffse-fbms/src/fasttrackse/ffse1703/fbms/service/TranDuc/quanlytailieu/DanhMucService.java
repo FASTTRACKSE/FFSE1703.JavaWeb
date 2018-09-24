@@ -18,6 +18,4 @@ public interface DanhMucService {
 	public List<DanhMuc> listAllDanhMuc(int start, int limit,String sql);
 
 	public String getRecordTotal();
-
-	public String getRecordFiltered(String sql);
 }

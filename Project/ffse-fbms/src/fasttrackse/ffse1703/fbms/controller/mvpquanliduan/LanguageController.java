@@ -29,20 +29,20 @@ public class LanguageController {
 	public String listLanguage(Model model) {
 		List<Language> list = languageService.getAll();
 		model.addAttribute("listLanguage", list);
-		return "MvpQuanLiDuAn/khachhang/list";
+		return "MvpQuanLiDuAn/programlanguage/list";
 	}
 
 	@RequestMapping("/show-form-add")
 	public String showFormAdd(Model model) {
 		model.addAttribute("command", new Language());
-		return "MvpQuanLiDuAn/khachhang/add_form";
+		return "MvpQuanLiDuAn/programlanguage/add_form";
 	}
 
 	@RequestMapping(value = "/addnew", method = RequestMethod.POST)
 	public String addNew(@Valid @ModelAttribute("command") Language language, BindingResult result,
 			final RedirectAttributes redirectAttributes, Model model) {
 		if (result.hasErrors()) {
-			return "MvpQuanLiDuAn/khachhang/add_form";
+			return "MvpQuanLiDuAn/programlanguage/add_form";
 		}
 		
 		
@@ -57,18 +57,18 @@ public class LanguageController {
 	public String showFormEdit(Model model, @PathVariable int id) {
 		Language language= 		languageService.getById(id);
 		model.addAttribute("language", language);
-		return "MvpQuanLiDuAn/khachhang/update_form";
+		return "MvpQuanLiDuAn/programlanguage/update_form";
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String update(@Valid @ModelAttribute("Language") Language language, BindingResult result,
+	public String update(@Valid @ModelAttribute("language") Language language, BindingResult result,
 			final RedirectAttributes redirectAttributes) {
 		if (result.hasErrors()) {
-			return "MvpQuanLiDuAn/khachhang/update_form";
+			return "MvpQuanLiDuAn/programlanguage/update_form";
 		}
 		language.setStatus(1);
 		languageService.update(language);
-		return "redirect: /ffse-fbms/mvpquanliduan/khachhang/list-language";
+		return "redirect: /ffse-fbms/mvpquanliduan/language/list-language";
 	}
 
 	@RequestMapping(value = "/delete/{id}")
@@ -76,6 +76,6 @@ public class LanguageController {
 		Language language = languageService.getById(id);
 		language.setStatus(0);
 		languageService.update(language);
-		return "redirect: /ffse-fbms/mvpquanliduan/khachhang/list-khachhang";
+		return "redirect: /ffse-fbms/mvpquanliduan/language/list-language";
 	}
 }

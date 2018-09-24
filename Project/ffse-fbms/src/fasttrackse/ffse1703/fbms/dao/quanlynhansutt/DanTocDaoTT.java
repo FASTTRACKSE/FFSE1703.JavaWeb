@@ -5,7 +5,5 @@ import java.util.List;
 import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.DanTocTT;
 
 public interface DanTocDaoTT {
-	public List<DanTocTT> listAllDanToc();
-
-	
+	public List<DanTocTT> listDanTocTT();
 }

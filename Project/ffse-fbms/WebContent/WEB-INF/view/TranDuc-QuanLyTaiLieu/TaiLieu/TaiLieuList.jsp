@@ -29,13 +29,29 @@
 					<div role="group" aria-label="Button group with nested dropdown"
 						class="btn-group float-md-right" id="add-new">
 						<a class="btn btn-primary"
-							href='<c:url value = "/TranDuc-QuanLyTaiLieu/TaiLieu/add_formTL" />'><span
+							href='<c:url value = "/TranDuc-QuanLyTaiLieu/TaiLieu/add" />'><span
 							data-i18n="" class="ft-plus-square">Thêm Mới</span></a>
 					</div>
 				</div>
 			</div>
 			<!-- End Path -->
 			<div class="content-body">
+				<c:if test="${messageSuccess ne null}">
+					<div class="alert alert-success alert-dismissable" role="alert">
+						<button type="button" class="close" data-dismiss="alert">
+							<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+						</button>
+						${messageSuccess}
+					</div>
+				</c:if>
+				<c:if test="${messageError ne null}">
+					<div class="alert alert-danger alert-dismissable" role="alert">
+						<button type="button" class="close" data-dismiss="alert">
+							<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+						</button>
+						${messageError}
+					</div>
+				</c:if>
 				<div class="row">
 					<div class="col-xs-12">
 						<div class="card">
@@ -59,6 +75,7 @@
 											class="table table-striped table-bordered dataex-res-constructor">
 											<thead>
 												<tr>
+													<th>ID</th>
 													<th>Mã Tài Liệu</th>
 													<th>Tên Danh Mục</th>
 													<th>Hình Biểu Tượng</th>
@@ -70,29 +87,34 @@
 												</tr>
 											</thead>
 											<tbody>
-												<div class="modal fade" id="confirm-delete" tabindex="-1"
-													role="dialog" aria-labelledby="myModalLabel"
-													aria-hidden="true">
-													<div class="modal-dialog">
-														<div class="modal-content">
-															<div class="modal-header">
-																<button type="button" class="close" data-dismiss="modal"
-																	aria-hidden="true">&times;</button>
-																<h4 class="modal-title" id="myModalLabel">Bạn Có
-																	Chắc Muốn Xóa</h4>
-															</div>
-															<div class="modal-body">
-																<p>Bạn Có Chắc Muốn Xóa</p>
-																<p class="debug-url"></p>
-															</div>
-															<div class="modal-footer">
-																<button type="button" class="btn btn-default"
-																	data-dismiss="modal">Quay Lại</button>
-																<a class="btn btn-danger btn-ok">Xóa</a>
-															</div>
-														</div>
-													</div>
-												</div>
+												<c:if test="${not empty listTaiLieu}">
+													<c:forEach var="item" items="${listTaiLieu}" begin="0"
+														varStatus="counter">
+														<tr>
+															<td>${counter.index + 1}</td>
+															<td>${item.maTL}</td>
+															<td>${item.tenDM}</td>
+															<td>${item.iconTL}</td>
+															<td>${item.tenTL}</td>
+															<td>${item.maPhongBan}</td>
+															<td>${item.link }</td>
+															<td>${item.trangthai }</td>
+															<td class="tbl_actions"><a
+																href="<c:url value="/TranDuc-QuanLyTaiLieu/TaiLieu/view/${item.maTL}" />"
+																title="Xem"> <i class="fa fa-eye" aria-hidden="true"></i>
+															</a> <a
+																href="<c:url value="/TranDuc-QuanLyTaiLieu/TaiLieu/sua/${item.maTL}" />"
+																title="Sửa"> <i class="fa fa-pencil-square-o blue"
+																	aria-hidden="true"></i>
+															</a> <a
+																href="<c:url value="/TranDuc-QuanLyTaiLieu/TaiLieu/xoa/${item.maTL}" />"
+																title="Xóa"
+																onclick="return confirm('Bạn có chắc muốn xóa ?')">
+																	<i class="fa fa-trash red" aria-hidden="true"></i>
+															</a></td>
+														</tr>
+													</c:forEach>
+												</c:if>
 											</tbody>
 										</table>
 									</div>
@@ -104,6 +126,13 @@
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript">
+		window.setTimeout(function() {
+			$(".alert").fadeTo(500, 0).slideUp(500, function() {
+				$(this).remove();
+			});
+		}, 2500);
+	</script>
 	<jsp:include page="/WEB-INF/view/templates/footer.jsp" />
 </body>
 </html>

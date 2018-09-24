@@ -94,46 +94,26 @@ td{
 												</tr>
 											</thead>
 											<tbody>
-												<tr class="ok">
-													<td ></td>
-													<td>Djelal Eddine</td>
-													<td>Algeria</td>
-													<td>djelaleddine@gmail.com</td>
-													<td>djelaleddine@gmail.com</td>
-													<td>djelaleddine@gmail.com</td>
-													<td>djelaleddine@gmail.com</td>
-													<td align="center"><a href="#" class="btn btn-primary"
-														title="Edit"><i class="fa fa-pencil"></i></a> </td>
-													<td align="center"><a href="#" class="btn btn-primary"
-														title="Edit"><i class="fa fa-pencil"></i></a> </td>
-												</tr>
-												<tr class="ban">
-													<td ></td>
-													<td>Moh Aymen</td>
-													<td>Algeria</td>
-													<td>email@gmail.com</td>
-													<td>djelaleddine@gmail.com</td>
-													<td>djelaleddine@gmail.com</td>
-													<td>djelaleddine@gmail.com</td>
-													<td align="center"><a href="#" class="btn btn-primary"
-														title="Edit"><i class="fa fa-pencil"></i></a> </td>
-													<td align="center"><a href="#" class="btn btn-primary"
-														title="Edit"><i class="fa fa-pencil"></i></a> </td>
-												</tr>
-												<tr class="new">
-													<td ></td>
-													<td>Dia ElHak</td>
-													<td>Tunisia</td>
-													<td>email@gmail.com</td>
-													<td>djelaleddine@gmail.com</td>
-													<td>djelaleddine@gmail.com</td>
-													<td>djelaleddine@gmail.com</td>
-													<td align="center"><a href="#" class="btn btn-primary"
-														title="Edit"><i class="fa fa-pencil"></i></a> </td>
-													<td align="center"><a href="#" class="btn btn-primary"
-														title="Edit"><i class="fa fa-pencil"></i></a> </td>
-												</tr>
-											</tbody>
+		<c:forEach var="dn" varStatus="counter" items="${list}">
+			<tr>
+				<td>${dn.id_nv}</td>
+				<td>${dn.ma_phong}</td>
+				<td>${dn.ly_do}</td>
+				<td>${dn.thoi_gian_bat_dau}</td>
+				<td>${dn.thoi_gian-ket_thuc}</td>
+				<td>${dn.tong_ngay_nghi}</td>
+				
+				<td>					
+					<a href="edit/${sv.id}"><button type="button" class="btn btn-warning btn-circle">
+						Edit
+					</button></a>
+					<a href="delete/${sv.id}"><button type="button" class="btn btn-danger btn-circle">
+						Del
+					</button></a>
+				</td>
+			</tr>
+			</c:forEach>			
+		</tbody>
 										</table>
 									</div>
 									<!-- END id="list" -->

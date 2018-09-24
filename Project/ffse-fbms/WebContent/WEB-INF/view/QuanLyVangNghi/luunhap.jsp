@@ -88,31 +88,11 @@ td{
 													<th>Thời gian Từ</th>
 													<th>Đến Thời gian</th>
 													<th>Đến Thời gian</th>
+													<th>Chức năng</th>
 													
 												</tr>
 											</thead>
-											<tbody>
-												<tr class="ok">
-													<td ></td>
-													<td>Djelal Eddine</td>
-													<td>Algeria</td>
-													<td>djelaleddine@gmail.com</td>
-													<td>djelaleddine@gmail.com</td>
-													<td>djelaleddine@gmail.com</td>
-													
-												</tr>
-												<tr class="ban">
-													<td ></td>
-													<td>Moh Aymen</td>
-													<td>Algeria</td>
-													<td>email@gmail.com</td>
-													<td>djelaleddine@gmail.com</td>
-													<td>djelaleddine@gmail.com</td>
-												
-													
-												</tr>
-												
-											</tbody>
+											
 										</table>
 									</div>
 									<!-- END id="list" -->

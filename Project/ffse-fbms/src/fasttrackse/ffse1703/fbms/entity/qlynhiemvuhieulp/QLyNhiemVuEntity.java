@@ -1,60 +1,75 @@
 package fasttrackse.ffse1703.fbms.entity.qlynhiemvuhieulp;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "quan_ly_nhiem_vu")
 public class QLyNhiemVuEntity {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID", unique = true, nullable = false, length = 11)
-	@NotEmpty
 	private int ID;
 
-	@Column(name = "du_an", nullable = false, length = 50)
-	@NotEmpty
+	@Column(name = "ma_du_an")
+	@NotNull
 	private String duAn;
 
-	@Column(name = "loai_cong_viec", nullable = false, length = 50)
+	@Column(name = "loai_cong_viec")
 	@NotEmpty
 	private String loaiCongviec;
 
-	@Column(name = "ten_cong_viec", nullable = false, length = 50)
+	@Column(name = "ten_cong_viec")
 	@NotEmpty
 	private String tenCongviec;
 
-	@Column(name = "mo_ta", nullable = false, length = 50)
+	@Column(name = "mo_ta")
 	@NotEmpty
 	private String moTa;
 
-	@Column(name = "tg_bat_dau", nullable = false)
-	@NotEmpty
-	private String tgBatdau;
+	@Column(name = "tg_bat_dau")
+	@NotNull
+	private Date tgBatdau;
 
-	@Column(name = "tg_ket_thuc", nullable = false)
-	@NotEmpty
-	private String tgKetthuc;
+	@Column(name = "tg_ket_thuc")
+	@NotNull
+	private Date tgKetthuc;
 
-	@Column(name = "nguoi_duoc_phan_cong", nullable = false, length = 50)
-	@NotEmpty
-	private String nguoiDuocphancong;
+	@Column(name = "ma_nhan_vien")
+	@NotNull
+	private String nhanVien;
 
-	@Column(name = "tg_du_kien_hoan_thanh", nullable = false)
-	@NotEmpty
+	public String getNhanVien() {
+		return nhanVien;
+	}
+
+	public void setNhanVien(String nhanVien) {
+		this.nhanVien = nhanVien;
+	}
+
+	@Column(name = "tg_du_kien_hoan_thanh")
+	@NotNull
 	private String tgDukienhoanthanh;
 
-	@Column(name = "loai_trang_thai", nullable = false, length = 50)
+	@Column(name = "loai_trang_thai")
 	@NotEmpty
 	private String loaiTrangthai;
 
-	@Column(name = "is_delete", nullable = false, length = 50)
-	@NotEmpty
-	private String isDelete;
+	@Column(name = "is_delete")
+	private int isDelete;
 
 	public QLyNhiemVuEntity() {
+		super();
 
 	}
 
@@ -98,28 +113,20 @@ public class QLyNhiemVuEntity {
 		this.moTa = moTa;
 	}
 
-	public String getTgBatdau() {
+	public Date getTgBatdau() {
 		return tgBatdau;
 	}
 
-	public void setTgBatdau(String tgBatdau) {
+	public void setTgBatdau(Date tgBatdau) {
 		this.tgBatdau = tgBatdau;
 	}
 
-	public String getTgKetthuc() {
+	public Date getTgKetthuc() {
 		return tgKetthuc;
 	}
 
-	public void setTgKetthuc(String tgKetthuc) {
+	public void setTgKetthuc(Date tgKetthuc) {
 		this.tgKetthuc = tgKetthuc;
-	}
-
-	public String getNguoiDuocphancong() {
-		return nguoiDuocphancong;
-	}
-
-	public void setNguoiDuocphancong(String nguoiDuocphancong) {
-		this.nguoiDuocphancong = nguoiDuocphancong;
 	}
 
 	public String getTgDukienhoanthanh() {
@@ -138,11 +145,11 @@ public class QLyNhiemVuEntity {
 		this.loaiTrangthai = loaiTrangthai;
 	}
 
-	public String getIsDelete() {
+	public int getIsDelete() {
 		return isDelete;
 	}
 
-	public void setIsDelete(String isDelete) {
+	public void setIsDelete(int isDelete) {
 		this.isDelete = isDelete;
 	}
 

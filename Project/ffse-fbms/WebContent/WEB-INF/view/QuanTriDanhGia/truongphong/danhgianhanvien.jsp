@@ -15,7 +15,7 @@
 							<li class="breadcrumb-item"><a
 								href="<c:url value = "/quantridanhgia/home/"/>">Quản trị
 									đánh giá</a></li>
-							<li class="breadcrumb-item active">Đánh giá bản thân</li>
+							<li class="breadcrumb-item active">Đánh giá nhân viên</li>
 						</ol>
 					</div>
 				</div>

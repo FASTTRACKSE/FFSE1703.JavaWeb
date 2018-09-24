@@ -10,8 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fasttrackse.ffse1703.fbms.dao.qlvn2.DonXinPhepDao;
 import fasttrackse.ffse1703.fbms.entity.qlvn2.DonXinPhepEntity;
+import fasttrackse.ffse1703.fbms.entity.qlvn2.LyDoEntity;
+import fasttrackse.ffse1703.fbms.entity.qlvn2.TrangThaiEntity;
+import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 
 @Service
+@Transactional
 public class DonXinPhepServicelmpl implements DonXinPhepService {
 	@Autowired 
 	DonXinPhepDao DonXinPhepDao;
@@ -20,28 +24,44 @@ public class DonXinPhepServicelmpl implements DonXinPhepService {
 		DonXinPhepDao = donXinPhepDao;
 	}
 
-	@Override
-	@Transactional
 	public List<DonXinPhepEntity> danhsachnhap003() {
 		return this.DonXinPhepDao.danhsachnhap003();
 	}
-	
+
 	@Override
-	@Transactional
+	public List<DonXinPhepEntity> danhsachchoduyet003() {
+		return this.DonXinPhepDao.danhsachchoduyet003();
+	}
+
+	@Override
 	public List<DonXinPhepEntity> danhsachdaduyet003() {
 		return this.DonXinPhepDao.danhsachdaduyet003();
 	}
 
 	@Override
-	@Transactional
-	public List<DonXinPhepEntity> danhsachchoduyet003() {
-	
-		return this.DonXinPhepDao.danhsachchoduyet003();
+	public List<DonXinPhepEntity> danhsachbituchoi003() {
+		return this.DonXinPhepDao.danhsachbituchoi003();
+		}
+
+	@Override
+	public void donxinphep003(DonXinPhepEntity DonXinPhepEntity) {
+		DonXinPhepDao.donxinphep003(DonXinPhepEntity);
+		
 	}
 
 	@Override
-	@Transactional
-	public List<DonXinPhepEntity> danhsachbituchoi003() {
-		return this.DonXinPhepDao.danhsachbituchoi003();
+	public List<LyDoEntity> danhSachLyDo() {
+		return this.DonXinPhepDao.danhSachLyDo();
 	}
+
+	@Override
+	public List<TrangThaiEntity> danhSachTrangThai() {
+		return this.DonXinPhepDao.danhSachTrangThai();
+	}
+
+	@Override
+	public List<HoSoNhanVien> danhSachHoSo() {
+	return this.DonXinPhepDao.danhSachHoSo();
+	}
+
 }

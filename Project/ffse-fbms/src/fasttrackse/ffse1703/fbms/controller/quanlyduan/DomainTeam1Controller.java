@@ -4,7 +4,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import fasttrackse.ffse1703.fbms.entity.quanlyduan.DomainTeam1;
 import fasttrackse.ffse1703.fbms.service.quanlyduan.DomainTeam1Service;
 @Controller
@@ -44,11 +42,12 @@ public class DomainTeam1Controller {
 			return "redirect:/qlda/domain/edit_form/" + domainTeam1.getMaNghiepVu();
 		} else {
 			if (result.hasErrors()) {
+				redirectAttributes.addFlashAttribute("message", "<script>alert('Tên Domain đã tồn tại.');</script>");
 				return "QuanLyDuAn/Domain/add_form";
 			}
 			domainServiceTeam1.add(domainTeam1);
 		}
-		redirectAttributes.addFlashAttribute("message", "<script>alert('Creat successfully.');</script>");
+		redirectAttributes.addFlashAttribute("message", "<script>alert('Thêm mới thành công, chúc mừng bạn.');</script>");
 		return "redirect:list";
 	}
 	@RequestMapping(value = "/list", method = RequestMethod.GET)

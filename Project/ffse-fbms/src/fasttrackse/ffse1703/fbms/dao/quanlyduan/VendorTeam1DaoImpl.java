@@ -23,7 +23,7 @@ public class VendorTeam1DaoImpl implements VendorTeam1Dao{
 	@Override
 	public List<VendorTeam1> getAll() {
 		Session session = this.sessionFactory.getCurrentSession();
-		return session.createQuery("from Vendor where isDelete =0",VendorTeam1.class).list();
+		return session.createQuery("from VendorTeam1 where isDelete =0",VendorTeam1.class).list();
 
 	}
 

@@ -2,13 +2,16 @@ package fasttrackse.ffse1703.fbms.dao.mvpquanliduan;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.stereotype.Repository;
 
 import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Language;
-
+@Repository
+@Transactional
 public class LanguageDaoImpl implements LanguageDao {
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -28,7 +31,7 @@ public class LanguageDaoImpl implements LanguageDao {
 	@Override
 	public void add(Language language) {
 		Session session = this.sessionFactory.getCurrentSession();
-		session.persist(language);
+		session.save(language);
 	}
 
 	@Override

@@ -53,7 +53,7 @@
 								<label>Ly do</label>
 								<form:select path="lyDo.id" class="custom-select block round"
 									id="customSelect">
-									<c:forEach items="${lydo}" var="ld">
+									<c:forEach items="${lyDo}" var="ld">
 										<form:option value="${ld.id}" label="${ld.lyDo}" />
 									</c:forEach>
 								</form:select>
@@ -81,12 +81,12 @@
 					<div>
 						<div class="col-md-2">
 							<button type="submit" class="btn btn-success"
-							formaction="<%=request.getContextPath()%>/taodonmoi/nhap">Lưu nháp</button>
+							formaction="<%=request.getContextPath()%>/QuanvangnghiDanhLT/danhsachnhap">Lưu nháp</button>
 					    </div>
 						<div class="col-md-4">
 						<div class="col-md-2">
 							<button type="submit" class="btn btn-success"
-							formaction="<%=request.getContextPath()%>/taodonmoi/choduyet">Gửi</button>
+							formaction="<%=request.getContextPath()%>/QuanvangnghiDanhLT/danhsachchoduyet003">Gửi</button>
 						</div>
 						</div>
 					</div>

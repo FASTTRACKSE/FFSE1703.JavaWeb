@@ -23,30 +23,31 @@ import fasttrackse.ffse1703.fbms.service.mvpquanliduan.FrameworkService;
 public class FrameworkController {
 	@Autowired
 	private FrameworkService frameworkService;
+
 	public void setFrameworkService(FrameworkService frameworkService) {
-		this.frameworkService=frameworkService;
+		this.frameworkService = frameworkService;
 	}
+
 	@RequestMapping(value = "/list-framework")
 	public String listFramework(Model model) {
 		List<Framework> list = frameworkService.getAll();
 		model.addAttribute("listFramework", list);
-		return "MvpQuanLiDuAn/khachhang/list";
+		return "MvpQuanLiDuAn/framework/list";
 	}
 
 	@RequestMapping("/show-form-add")
 	public String showFormAdd(Model model) {
 		model.addAttribute("command", new Framework());
-		return "MvpQuanLiDuAn/khachhang/add_form";
+		return "MvpQuanLiDuAn/framework/add_form";
 	}
 
 	@RequestMapping(value = "/addnew", method = RequestMethod.POST)
 	public String addNew(@Valid @ModelAttribute("command") Framework framework, BindingResult result,
 			final RedirectAttributes redirectAttributes, Model model) {
 		if (result.hasErrors()) {
-			return "MvpQuanLiDuAn/khachhang/add_form";
+			return "MvpQuanLiDuAn/framework/add_form";
 		}
-		
-		
+
 		framework.setStatus(1);
 		frameworkService.add(framework);
 		;
@@ -56,20 +57,20 @@ public class FrameworkController {
 
 	@RequestMapping(value = "/show-form-edit/{id}")
 	public String showFormEdit(Model model, @PathVariable int id) {
-		Framework framework= 		frameworkService.getById(id);
+		Framework framework = frameworkService.getById(id);
 		model.addAttribute("framework", framework);
-		return "MvpQuanLiDuAn/khachhang/update_form";
+		return "MvpQuanLiDuAn/framework/update_form";
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String update(@Valid @ModelAttribute("Framework") Framework framework, BindingResult result,
+	public String update(@Valid @ModelAttribute("framework") Framework framework, BindingResult result,
 			final RedirectAttributes redirectAttributes) {
 		if (result.hasErrors()) {
-			return "MvpQuanLiDuAn/khachhang/update_form";
+			return "MvpQuanLiDuAn/framework/update_form";
 		}
 		framework.setStatus(1);
 		frameworkService.update(framework);
-		return "redirect: /ffse-fbms/mvpquanliduan/khachhang/list-framework";
+		return "redirect: /ffse-fbms/mvpquanliduan/framework/list-framework";
 	}
 
 	@RequestMapping(value = "/delete/{id}")
@@ -77,6 +78,6 @@ public class FrameworkController {
 		Framework framework = frameworkService.getById(id);
 		framework.setStatus(0);
 		frameworkService.update(framework);
-		return "redirect: /ffse-fbms/mvpquanliduan/khachhang/list-framework";
+		return "redirect: /ffse-fbms/mvpquanliduan/framework/list-framework";
 	}
 }

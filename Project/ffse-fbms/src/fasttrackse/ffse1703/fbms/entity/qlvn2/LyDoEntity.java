@@ -11,39 +11,29 @@ import javax.validation.constraints.NotEmpty;
 @Table(name = "ly_do_nghi")
 public class LyDoEntity {
 	@Id
-	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	 int id;
+	@Column(name = "id")
+   private int id;
+	
+   @Column(name = "ly_do")
+   private String lyDo;
 
-	@Column(name = "ly_do")
-	@NotEmpty
-	 String ly_do;
-	
-	public LyDoEntity (Integer id, String ly_do  ) {
-		super ();
-		this.id = id;
-		this.ly_do = ly_do;
-	}
-	
-	public LyDoEntity ( String ly_do  ) {
-		super ();
-		this.ly_do = ly_do;
-	}
-	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getLy_do() {
-		return ly_do;
-	}
-	public void setLy_do(String ly_do) {
-		this.ly_do = ly_do;
-	}
+public int getId() {
+	return id;
+}
 
-	
-	
-	
+public void setId(int id) {
+	this.id = id;
+}
+
+public String getLyDo() {
+	return lyDo;
+}
+
+public void setLyDo(String lyDo) {
+	this.lyDo = lyDo;
+}
+   
+   
+
 }

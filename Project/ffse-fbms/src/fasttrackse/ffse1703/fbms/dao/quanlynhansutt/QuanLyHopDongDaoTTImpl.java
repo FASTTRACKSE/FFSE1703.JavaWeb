@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+
 import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.HopDongTT;
 
 @Repository
@@ -35,6 +36,17 @@ public class QuanLyHopDongDaoTTImpl implements QuanLyHopDongDaoTT {
 		session.update(tt);
 	}
 
+	@Override
+	public void removeHopDong(int maHopDong) {
+		Session session = sessionFactory.getCurrentSession();
+		HopDongTT entity = (HopDongTT) session.get(HopDongTT.class,
+				new Integer(maHopDong));
+		if (null != entity) {
+			session.delete(entity);
+		}
+		
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<HopDongTT> getAllHopDong(int iDisplayStart, int iDisplayLength, String sql) {
@@ -42,7 +54,6 @@ public class QuanLyHopDongDaoTTImpl implements QuanLyHopDongDaoTT {
 		Session session = this.sessionFactory.getCurrentSession();
 		List<HopDongTT> listHopDongTT = session.createQuery(sql).setFirstResult(iDisplayStart)
 				.setMaxResults(iDisplayLength).list();
-
 		return listHopDongTT;
 	}
 
@@ -77,4 +88,6 @@ public class QuanLyHopDongDaoTTImpl implements QuanLyHopDongDaoTT {
 		return session.get(HopDongTT.class, maHopDong);
 		
 	}
+
+	
 }

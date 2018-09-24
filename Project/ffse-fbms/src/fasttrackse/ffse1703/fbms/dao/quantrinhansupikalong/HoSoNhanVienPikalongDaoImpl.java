@@ -54,6 +54,23 @@ public class HoSoNhanVienPikalongDaoImpl implements HoSoNhanVienPikalongDao {
 		session.persist(hoSoNhanVien);
 		
 	}
+
+
+	@Override
+	public HoSoNhanVienPikalong getEdit(int maNv) {
+		Session sesion = this.sessionFactory.getCurrentSession();
+		
+		return sesion.get(HoSoNhanVienPikalong.class, maNv);
+	}
+
+
+	@Override
+	public void update(HoSoNhanVienPikalong hoSoNhanVienPikalong) {
+		Session session = sessionFactory.getCurrentSession();
+		
+		session.update(hoSoNhanVienPikalong);
+		
+	}
 	
 	@SuppressWarnings("rawtypes")
 	@Override

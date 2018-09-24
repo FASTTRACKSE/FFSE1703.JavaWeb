@@ -32,7 +32,6 @@ public class VendorTeam1 {
 
 	
 	@Column(name = "is_delete")
-	
 	 int isDelete;
 
 

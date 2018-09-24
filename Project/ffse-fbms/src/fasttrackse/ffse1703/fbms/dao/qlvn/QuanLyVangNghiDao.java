@@ -11,8 +11,6 @@ public interface QuanLyVangNghiDao {
 	public List<ThongKeDonXinPhep> danhSachXinNghiChoDuyet();
 
 	public List<ThongKeDonXinPhep> danhSachXinNghiDuyet();
-
-	public List<ThongKeDonXinPhep> danhSachXinNghiNhap();
 	
 	public List<ThongKeDonXinPhep> danhSachXinNghiTuChoi();
 	
@@ -33,6 +31,10 @@ public interface QuanLyVangNghiDao {
 	public ThongKeDonXinPhep findById(int id);
 	
 	public void delete(int id);
+	
+	public List<ThongKeDonXinPhep> danhSachXinNghiNhap(int page);
+	
+	public long totalRecords();
 	
 	public void updateNhap(ThongKeDonXinPhep thongKeDonXinPhep) ;
 }

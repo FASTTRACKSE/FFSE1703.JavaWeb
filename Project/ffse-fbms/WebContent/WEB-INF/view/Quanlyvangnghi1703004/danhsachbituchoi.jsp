@@ -36,7 +36,7 @@
 			<c:forEach var="nv" items="${danhsachtuchoi}">
 					<tr>
 					<td>${nv.id}</td>
-					<td>${nv.maNhanVien.maNhanVien}</td>
+					<td>${nv.thongTinHoSoNhanVien.maNhanVien}</td>
 					<td>${nv.ngayBatDau}</td>
 					<td>${nv.ngayKetThuc}</td>
 					<td>${nv.lyDo.lyDo}</td>

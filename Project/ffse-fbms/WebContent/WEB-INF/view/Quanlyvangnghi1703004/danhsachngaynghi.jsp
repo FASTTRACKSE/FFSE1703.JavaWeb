@@ -32,9 +32,9 @@
 			<c:forEach var="nn" items="${danhsachngaynghi}">
 					<tr>
 					<td>${nn.id}</td>
-					<td>${nn.maNhanVien}</td>
-					<td>${nn.soNgayDaNghi}</td>
-					<td>${nn.soNgayConLai}</td>
+					<td>${nn.thongTinHoSoNhanVien.maNhanVien}</td>
+					<td>${nn.thongTinHoSoNhanVien.soNgayDaNghi}</td>
+					<td>${nn.thongTinHoSoNhanVien.soNgayConLai}</td>
 					<td><a href="deleteDate/${nn.id }"><button class="btn btn-outline-danger round  mr-1 mb-1"
 									onclick="return confirm('Bạn có muốn xóa sinh viên này?');">Xóa</button></a>
 					</td>

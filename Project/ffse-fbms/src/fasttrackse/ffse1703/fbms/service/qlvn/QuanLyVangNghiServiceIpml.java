@@ -5,12 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import fasttrackse.ffse1703.fbms.dao.qlvn.QuanLyVangNghiDao;
 import fasttrackse.ffse1703.fbms.entity.qlvn.LyDoXinNghi;
 import fasttrackse.ffse1703.fbms.entity.qlvn.ThongKeDonXinPhep;
+import fasttrackse.ffse1703.fbms.entity.qlvn.ThongTinHoSoNhanVien;
 import fasttrackse.ffse1703.fbms.entity.qlvn.TrangThai;
-import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 @Service
 @Transactional
 public class QuanLyVangNghiServiceIpml implements QuanLyVangNghiService {
@@ -43,7 +42,7 @@ public class QuanLyVangNghiServiceIpml implements QuanLyVangNghiService {
 	}
 
 
-	public List<HoSoNhanVien> loadAllHoSo() {
+	public List<ThongTinHoSoNhanVien> loadAllHoSo() {
 		return this.quanLyVangNghiDao.loadAllHoSo();
 	}
 
@@ -52,8 +51,8 @@ public class QuanLyVangNghiServiceIpml implements QuanLyVangNghiService {
 		return this.quanLyVangNghiDao.danhSachXinNghiTuChoi();
 	}
 	
-	public void createWalk(ThongKeDonXinPhep thongKeDonXinPhep) {
-		quanLyVangNghiDao.createWalk(thongKeDonXinPhep);
+	public void createWait(ThongKeDonXinPhep thongKeDonXinPhep) {
+		quanLyVangNghiDao.createWait(thongKeDonXinPhep);
 		
 	}
 

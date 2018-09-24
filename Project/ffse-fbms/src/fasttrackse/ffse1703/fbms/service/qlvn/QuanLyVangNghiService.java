@@ -4,6 +4,7 @@ import java.util.List;
 
 import fasttrackse.ffse1703.fbms.entity.qlvn.LyDoXinNghi;
 import fasttrackse.ffse1703.fbms.entity.qlvn.ThongKeDonXinPhep;
+import fasttrackse.ffse1703.fbms.entity.qlvn.ThongTinHoSoNhanVien;
 import fasttrackse.ffse1703.fbms.entity.qlvn.TrangThai;
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 
@@ -20,7 +21,7 @@ public interface QuanLyVangNghiService {
 	
 	public void create(ThongKeDonXinPhep thongKeDonXinPhep);
 	
-	public void createWalk(ThongKeDonXinPhep thongKeDonXinPhep);
+	public void createWait(ThongKeDonXinPhep thongKeDonXinPhep);
 	
 	public void createBrowse(ThongKeDonXinPhep thongKeDonXinPhep);
 	
@@ -30,7 +31,7 @@ public interface QuanLyVangNghiService {
 	
 	public List<TrangThai> loadAllTrangThai();
 	
-	public List<HoSoNhanVien> loadAllHoSo();
+	public List<ThongTinHoSoNhanVien> loadAllHoSo();
 	
 	public ThongKeDonXinPhep findById(int id);
 	

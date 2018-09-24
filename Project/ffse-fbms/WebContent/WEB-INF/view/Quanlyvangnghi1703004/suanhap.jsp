@@ -24,7 +24,7 @@
 
 							<div>
 								<label> Mã nhân viên</label>
-								<form:select path="maNhanVien.maNhanVien"
+								<form:select path="thongTinHoSoNhanVien.maNhanVien"
 									class="custom-select block round" id="customSelect">
 									<c:forEach items="${hoso}" var="ld">
 										<form:option value="${ld.maNhanVien}" label="${ld.maNhanVien}" />

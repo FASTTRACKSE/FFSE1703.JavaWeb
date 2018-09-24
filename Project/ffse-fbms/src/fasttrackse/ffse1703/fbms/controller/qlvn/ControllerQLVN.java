@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fasttrackse.ffse1703.fbms.entity.qlvn.LyDoXinNghi;
 import fasttrackse.ffse1703.fbms.entity.qlvn.ThongKeDonXinPhep;
+import fasttrackse.ffse1703.fbms.entity.qlvn.ThongTinHoSoNhanVien;
 import fasttrackse.ffse1703.fbms.entity.qlvn.TrangThai;
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 import fasttrackse.ffse1703.fbms.service.qlvn.QuanLyVangNghiService;
@@ -50,7 +51,9 @@ public class ControllerQLVN {
 	@RequestMapping(value = {"/danhsachnhap" }, method = RequestMethod.GET)
 	public String danhSachNhap(Model model,@RequestParam(value = "page", required = false, defaultValue = "1") int page) {
 		model.addAttribute("danhsachnhap", service.danhSachXinNghiNhap(page));
-		int lastPage = (int) Math.ceil(service.totalRecords() / 3.0);
+		int total =(int) (service.totalRecords() / 3.0);
+		int lastpage = (int) Math.ceil(service.totalRecords() / 3.0);
+		int lastPage = (int)((total * 3.0) + lastpage);
 		model.addAttribute("currentPage", page);
 		model.addAttribute("lastPage", lastPage);
 		
@@ -85,7 +88,7 @@ public class ControllerQLVN {
 			Model model) {
 		if(result.hasErrors()) {
 			return "/Quanlyvangnghi1703004/soandonmoi";}
-		service.createWalk(nv);
+		service.createWait(nv);
 		return "redirect:/Quanlyvangnghi1703004/danhsachcho";
 	}
 	
@@ -101,7 +104,7 @@ public class ControllerQLVN {
 	}
 	
 	@ModelAttribute("hoso")
-	public List<HoSoNhanVien> danhSachHoSoNhanVien() {
+	public List<ThongTinHoSoNhanVien> danhSachHoSoNhanVien() {
 		return this.service.loadAllHoSo();
 	}
 	
@@ -147,7 +150,7 @@ public class ControllerQLVN {
 	}
 	
 	@RequestMapping(value = "/suachoduyet/{id}", method = RequestMethod.GET)
-	public String edit_walk(@PathVariable("id") int id, Model model) {
+	public String edit_wait(@PathVariable("id") int id, Model model) {
 		model.addAttribute("suachoduyet", service.findById(id));
 		service.delete(id);
 		return "Quanlyvangnghi1703004/suachoduyet";

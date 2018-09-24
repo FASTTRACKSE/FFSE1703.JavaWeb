@@ -20,7 +20,8 @@ public class ControllerNgayNghi {
 	
 	@RequestMapping(value = {"/danhsachngaynghi" }, method = RequestMethod.GET)
 	public String danhSachChoDuyet(Model model) {
-		model.addAttribute("danhsachngaynghi", this.service.danhSachNgayNghi());
+		
+		model.addAttribute("danhsachngaynghi", this.serviceVN.danhSachXinNghiDuyet());
 		return "Quanlyvangnghi1703004/danhsachngaynghi";
 	}
 }

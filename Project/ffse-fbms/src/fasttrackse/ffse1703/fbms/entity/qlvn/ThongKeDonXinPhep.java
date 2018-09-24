@@ -1,7 +1,7 @@
 package fasttrackse.ffse1703.fbms.entity.qlvn;
 
-import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,35 +10,35 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "thong_ke_don_xin_phep")
-public class ThongKeDonXinPhep implements Serializable{
-	
-	private static final long serialVersionUID = 1L;
+public class ThongKeDonXinPhep {
+
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int id;
-
-//	@ManyToMany(targetEntity = HoSoNhanVien.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//	@JoinTable(name = "ngay_nghi", inverseJoinColumns = { @JoinColumn(name = "ma_nhan_vien", 
-//	referencedColumnName = "ma_nhan_vien", nullable = true, updatable = true,insertable=true) })
-//	private HoSoNhanVien maNhanVien;
 	
 	@ManyToOne
 	@JoinColumn(name = "ma_nhan_vien")
-	private HoSoNhanVien maNhanVien;
+	private ThongTinHoSoNhanVien thongTinHoSoNhanVien;
 
 	@Column(name = "ngay_bat_dau")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
 	private Date ngayBatDau;
 
 	@Column(name = "ngay_ket_thuc")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
 	private Date ngayKetThuc;
 
 	@Column(name = "so_ngay_nghi")
@@ -67,13 +67,13 @@ public class ThongKeDonXinPhep implements Serializable{
 	public void setId(int id) {
 		this.id = id;
 	}
-	
-	public HoSoNhanVien getMaNhanVien() {
-		return maNhanVien;
+
+	public ThongTinHoSoNhanVien getThongTinHoSoNhanVien() {
+		return thongTinHoSoNhanVien;
 	}
 
-	public void setMaNhanVien(HoSoNhanVien maNhanVien) {
-		this.maNhanVien = maNhanVien;
+	public void setThongTinHoSoNhanVien(ThongTinHoSoNhanVien thongTinHoSoNhanVien) {
+		this.thongTinHoSoNhanVien = thongTinHoSoNhanVien;
 	}
 
 	public Date getNgayBatDau() {
@@ -132,11 +132,5 @@ public class ThongKeDonXinPhep implements Serializable{
 		this.trangThai = trangThai;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-
-	
 	
 }

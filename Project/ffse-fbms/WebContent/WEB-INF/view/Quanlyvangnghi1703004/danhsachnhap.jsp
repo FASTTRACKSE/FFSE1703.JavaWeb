@@ -36,7 +36,7 @@
 			<c:forEach var="nv" items="${danhsachnhap}">
 					<tr>
 					<td>${nv.id}</td>
-					<td>${nv.maNhanVien.maNhanVien}</td>
+					<td>${nv.thongTinHoSoNhanVien.maNhanVien}</td>
 					<td>${nv.ngayBatDau}</td>
 					<td>${nv.ngayKetThuc}</td>
 					<td>${nv.lyDo.lyDo}</td>
@@ -92,13 +92,12 @@
 													aria-controls="DataTables_Table_5" data-dt-idx="8"
 													tabindex="0" class="page-link">Next</a></li>
 											</c:if>
-										
+
 											<li class="paginate_button page-item last"
 												id="DataTables_Table_5_last"><a
 												href="<%=request.getContextPath()%>/Quanlyvangnghi1703004/danhsachnhap?page=${lastPage}"
 												aria-controls="DataTables_Table_5" data-dt-idx="9"
 												tabindex="0" class="page-link">Last</a></li>
-											
 										</ul>
 									</div>
 								</div>

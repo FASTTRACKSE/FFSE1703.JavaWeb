@@ -19,15 +19,17 @@ public class NgayNghi{
 	@Column(name = "id_ngay_nghi")
     private int id;
 	
-	@Column(name = "ma_nhan_vien")
-	private int maNhanVien;
+	@ManyToOne
+	@JoinColumn(name = "ma_nhan_vien")
+	private ThongTinHoSoNhanVien maNhanVien;
 	
+	@ManyToOne
+	@JoinColumn(name="so_ngay_da_nghi")
+	private ThongTinHoSoNhanVien soNgayDaNghi;
 	
-	@Column(name="so_ngay_da_nghi")
-	private int soNgayDaNghi;
-	
-	@Column(name="so_ngay_con_lai")
-	private int soNgayConLai;
+	@ManyToOne
+	@JoinColumn(name="so_ngay_con_lai")
+	private ThongTinHoSoNhanVien soNgayConLai;
 
 	public int getId() {
 		return id;
@@ -37,30 +39,30 @@ public class NgayNghi{
 		this.id = id;
 	}
 
-	public int getSoNgayDaNghi() {
-		return soNgayDaNghi;
-	}
-
-	public void setSoNgayDaNghi(int soNgayDaNghi) {
-		this.soNgayDaNghi = soNgayDaNghi;
-	}
-
-	public int getSoNgayConLai() {
-		return soNgayConLai;
-	}
-
-	public void setSoNgayConLai(int soNgayConLai) {
-		this.soNgayConLai = soNgayConLai;
-	}
-
-	public int getMaNhanVien() {
+	public ThongTinHoSoNhanVien getMaNhanVien() {
 		return maNhanVien;
 	}
 
-	public void setMaNhanVien(int maNhanVien) {
+	public void setMaNhanVien(ThongTinHoSoNhanVien maNhanVien) {
 		this.maNhanVien = maNhanVien;
 	}
-	
+
+	public ThongTinHoSoNhanVien getSoNgayDaNghi() {
+		return soNgayDaNghi;
+	}
+
+	public void setSoNgayDaNghi(ThongTinHoSoNhanVien soNgayDaNghi) {
+		this.soNgayDaNghi = soNgayDaNghi;
+	}
+
+	public ThongTinHoSoNhanVien getSoNgayConLai() {
+		return soNgayConLai;
+	}
+
+	public void setSoNgayConLai(ThongTinHoSoNhanVien soNgayConLai) {
+		this.soNgayConLai = soNgayConLai;
+	}
+
 	
 	
 }

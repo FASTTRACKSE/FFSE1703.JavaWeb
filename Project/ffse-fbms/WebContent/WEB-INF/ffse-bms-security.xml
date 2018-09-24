@@ -15,7 +15,11 @@
 		<intercept-url pattern="/QuanTriHeThong/chuc_danh/**" access="hasAnyRole('ROLE_PNSTPP','ROLE_PGD')" />
 		<intercept-url pattern="/QuanTriHeThong/tai-khoan/**" access="hasAnyRole('ROLE_SADM')" />
 		<intercept-url pattern="/QuanTriHeThong/phan-quyen/**" access="hasAnyRole('ROLE_SADM')" />
-
+		
+		<!-- Phân quyền module QLVN - HuongVTL :: START -->
+		<intercept-url pattern="/QuanLyVangNghi/**" access="permitAll" />
+		<!-- Phân quyền module QLVN - HuongVTL :: END -->
+		
 		<access-denied-handler error-page="/403"/>		
 		<logout logout-url="/j_spring_security_logout"
 			logout-success-url="/login" delete-cookies="JSESSIONID" />

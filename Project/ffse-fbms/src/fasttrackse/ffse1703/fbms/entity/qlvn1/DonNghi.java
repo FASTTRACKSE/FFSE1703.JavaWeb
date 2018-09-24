@@ -1,121 +1,143 @@
 package fasttrackse.ffse1703.fbms.entity.qlvn1;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
+@Entity
 @Table(name = "don_nghi")
-public class QuanLyVangNghiEntity {
+public class DonNghi implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@NotEmpty
 	@Column(name = "id_don")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String id_don;
-	
+
 	@NotEmpty
-	@JoinColumn(name = "id_nv")		
+	@Column(name="id_nv")
 	private String id_nv;
-	
+
 	@NotEmpty
 	@Column(name = "id_nghi")
 	private String id_nghi;
-	
+
 	@NotEmpty
-	@JoinColumn(name = "ly_do")
+	@Column(name = "ten_nv")
+	private String ten_nv;
+
+	@NotEmpty
+	@Column(name = "phong_ban")
+	private String phong_ban;
+
+	@NotEmpty
+	@Column(name = "ly_do")
 	private Date ly_do;
-	
+
 	@NotEmpty
 	@Column(name = "tg_bat_dau")
 	private Date tg_bat_dau;
-	
+
 	@NotEmpty
 	@Column(name = "tg_ket_thuc")
 	private Date tg_ket_thuc;
-	
+
 	@NotEmpty
-	@Column(name = "so_ngay_nghi")
-	private String so_ngay_nghi;
+	@Column(name = "ghi_chu")
+	private String ghi_chu;
 	
+	public String getGhi_chu() {
+		return ghi_chu;
+	}
+
+	public void setGhi_chu(String ghi_chu) {
+		this.ghi_chu = ghi_chu;
+	}
+
 	@NotEmpty
-	@Column(name = "so_ngay_con_lai")
-	private String so_ngay_con_lai;
-	
-	@NotEmpty
-	@JoinColumn(name = "tinh_trang")
+	@Column(name = "tinh_trang")
 	private String tinh_trang;
-	
+
 	public String getId_don() {
 		return id_don;
 	}
-	
+
 	public void setId_don(String id_don) {
 		this.id_don = id_don;
 	}
-	
+
 	public String getId_nv() {
 		return id_nv;
 	}
-	
+
 	public void setId_nv(String id_nv) {
 		this.id_nv = id_nv;
 	}
-	
+
 	public String getId_nghi() {
 		return id_nghi;
 	}
-	
+
 	public void setId_nghi(String id_nghi) {
 		this.id_nghi = id_nghi;
 	}
-	
+
 	public Date getTg_bat_dau() {
 		return tg_bat_dau;
 	}
-	
+
 	public void setTg_bat_dau(Date tg_bat_dau) {
 		this.tg_bat_dau = tg_bat_dau;
 	}
-	
+
 	public Date getTg_ket_thuc() {
 		return tg_ket_thuc;
 	}
-	
+
 	public void setTg_ket_thuc(Date tg_ket_thuc) {
 		this.tg_ket_thuc = tg_ket_thuc;
 	}
-	
-	public String getSo_ngay_nghi() {
-		return so_ngay_nghi;
-	}
-	
-	public void setSo_ngay_nghi(String so_ngay_nghi) {
-		this.so_ngay_nghi = so_ngay_nghi;
-	}
-	
-	public String getSo_ngay_con_lai() {
-		return so_ngay_con_lai;
-	}
-	
-	public void setSo_ngay_con_lai(String so_ngay_con_lai) {
-		this.so_ngay_con_lai = so_ngay_con_lai;
-	}
-	
+
 	public String getTinh_trang() {
 		return tinh_trang;
 	}
-	
+
 	public void setTinh_trang(String tinh_trang) {
 		this.tinh_trang = tinh_trang;
 	}
-	
+
 	public Date getLy_do() {
 		return ly_do;
 	}
-	
+
 	public void setLy_do(Date ly_do) {
 		this.ly_do = ly_do;
+	}
+
+	public String getTen_nv() {
+		return ten_nv;
+	}
+
+	public void setTen_nv(String ten_nv) {
+		this.ten_nv = ten_nv;
+	}
+
+	public String getPhong_ban() {
+		return phong_ban;
+	}
+
+	public void setPhong_ban(String phong_ban) {
+		this.phong_ban = phong_ban;
 	}
 }

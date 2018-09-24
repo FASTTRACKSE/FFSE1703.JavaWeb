@@ -52,4 +52,12 @@ public class HoSoNhanVienPikalongServiceImpl implements HoSoNhanVienPikalongServ
 		return hoSoNhanVienPikalongDao.getEdit(maNv);
 	}
 
+
+	@Override
+	@Transactional
+	public void update(HoSoNhanVienPikalong hoSoNhanVienPikalong) {
+		hoSoNhanVienPikalongDao.update(hoSoNhanVienPikalong);
+		
+	}
+
 }

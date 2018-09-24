@@ -144,6 +144,17 @@ public class HoSoNhanVienPikalongController {
 		return "[{\"maQuanHuyen\":\"" + hoSoNhanVienPikalong.getQuanHuyen() + "\",\"maPhuong\": \"" + hoSoNhanVienPikalong.getPhuongXa() + "\"}]";
 	}
 	
+	@RequestMapping(value= "update", method= RequestMethod.POST)
+	public String editSave(@ModelAttribute("formHosopkl") HoSoNhanVienPikalong hoSoNhanVienPikalong, BindingResult result) {
+		hoSoNhanVienPikalongService.update(hoSoNhanVienPikalong);
+		return "redirect:/quantrinhansu/hosonhanvien/";
+	}
 	
+	// page view
+	@RequestMapping("view/{maNv}")
+	public String view() {
+		
+		return "QuanTriNhanSuPikalong/ThongTinHoSo/view";
+	}
 	
 }

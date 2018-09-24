@@ -192,7 +192,11 @@
                      function clickComboboxThanhPho(){
                     	 var maThanhPho = $("#thanhPhoId").val();
                     	 if(maThanhPho == 'noThanhPho'){  // nếu người dùng chưa chọn thành phố
+                    		
+                    		 $('#quanHuyenId option').remove();
+                    		 
                     		 $('#quanHuyenId').prop('disabled', true); /*disable combobox quận huyện */
+                    		 
                     		 $('#phuongXaId option[value=noPhuongXa]').attr('selected', 'selected')
                     		 $('#phuongXaId').prop('disabled', true);
                     		 
@@ -231,6 +235,7 @@
                      function clickComboboxQuan(){
                     	 var maQuanHuyen = $("#quanHuyenId").val();
                     	 if(maQuanHuyen == 'noQuanHuyen'){  /* nếu người dùng chưa chọn thành phố */
+                    		 $('#phuongXaId option').remove();
                     		 $('#phuongXaId').prop('disabled', true); /*disable combobox quận huyện */
                     		 
                     	 } else{                /* nếu người dùng đã chọn thành phố*/

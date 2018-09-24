@@ -9,7 +9,7 @@
 	
 	<h3 class="content-header-title mb-0">Sửa Nhân Viên</h3> <!-- title -->
 	
-                    <form:form class="form" method="POST" action="insert" modelAttribute="formHosopkl">
+                    <form:form class="form" method="POST" action="/ffse-fbms/quantrinhansu/hosonhanvien/update" modelAttribute="formHosopkl">
                       <div class="form-body">
                         <h4 class="form-section"><i class="ft-user"></i>Thông tin cơ bản</h4>
                         <div class="row">
@@ -17,7 +17,7 @@
                             <div class="form-group">
                               <label for="maNhanVienId">Mã nhân viên</label>
                               <form:input path="maNv" type="number" id="maNhanVienId" class="form-control" placeholder="Mã nhân viên"
-                              name="maNhanVienInput" />
+                              name="maNhanVienInput"/>
                             </div>
                           </div>
                           <div class="col-md-6">
@@ -187,8 +187,8 @@
                      <script>
                      
                      	window.onload= function(){
-                     		clickComboboxThanhPho();
-                     		clickComboboxQuan();
+                     		clickComboboxThanhPho(); // gọi function này để load quận
+                     		
                      	
                     		
                      	}
@@ -198,15 +198,17 @@
                      <!-- ajax select ThanhPho -->
                      function clickComboboxThanhPho(){
                     	 var maThanhPho = $("#thanhPhoId").val();
-                    	 alert(maThanhPho)
                     	 if(maThanhPho == 'noThanhPho'){  // nếu người dùng chưa chọn thành phố
-                    		 
+                    		 $('#quanHuyenId option').remove();
+                    		 $('#quanHuyenId').prop('disabled', true); /*disable combobox quận huyện */
+                    		
                     		 $('#phuongXaId option[value=noPhuongXa]').attr('selected', 'selected')
                     		 $('#phuongXaId').prop('disabled', true);
-                    		 $('#quanHuyenId').prop('disabled', true); /*disable combobox quận huyện */
+                    		 
                     	 } else{                // nếu người dùng đã chọn thành phố
                     		
                     		 $('#quanHuyenId').prop('disabled', false); /*enable combobox quận huyện */
+                    		
                     		 $('#quanHuyenId option').remove(); /* xóa những option quận huyện cũ */
                     	 }
                     	 
@@ -224,16 +226,22 @@
                              		    value: data[i].maQuanHuyen,
                              		    text: data[i].tenQuanHuyen
                              		}));
+                        		
 								}
-                        		$("#quanHuyenId").val("${formHosopkl.quanHuyen}").change();
+                        		$('#quanHuyenId option[value=${formHosopkl.quanHuyen}]').attr('selected', 'selected')
+                        			clickComboboxQuan(); // gọi function này để load phường
+                        		
                          }});
-                         
-
                      };
-                    // ajax select QuanHuyen
+                   
+                     </script>
+                     
+                     <script>
+                     // ajax select QuanHuyen
                      function clickComboboxQuan(){
                     	 var maQuanHuyen = $("#quanHuyenId").val();
                     	 if(maQuanHuyen == 'noQuanHuyen'){  /* nếu người dùng chưa chọn thành phố */
+                    		 $('#phuongXaId option').remove();
                     		 $('#phuongXaId').prop('disabled', true); /*disable combobox quận huyện */
                     		 
                     	 } else{                /* nếu người dùng đã chọn thành phố*/
@@ -258,20 +266,12 @@
                              		    value: data[i].maPhuong,
                              		    text: data[i].tenPhuong
                              		}));
+                        			
 								}
-
-                        		$("#phuongXaId").val("${formHosopkl.phuongXa}").change();
+                        		$('#phuongXaId option[value=${formHosopkl.phuongXa}]').attr('selected', 'selected')
+	
                          }});
-
-                         if($("#thanhPhoId").val() == 'noThanhPho'){  // nếu người dùng chưa chọn thành phố
-                    		 console.log("test");
-                    		 $("#phuongXaId").val("noPhuongXa").change();
-                    	
-                    		 $('#phuongXaId').prop('disabled', true);
-                    		 $('#quanHuyenId').prop('disabled', true); /*disable combobox quận huyện */
-                    	 }
                      };
-                     
                      </script>
                      
 			

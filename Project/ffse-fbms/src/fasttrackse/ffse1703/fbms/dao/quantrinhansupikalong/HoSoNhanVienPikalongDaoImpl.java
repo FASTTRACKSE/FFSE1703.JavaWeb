@@ -60,6 +60,15 @@ public class HoSoNhanVienPikalongDaoImpl implements HoSoNhanVienPikalongDao {
 		
 		return sesion.get(HoSoNhanVienPikalong.class, maNv);
 	}
+
+
+	@Override
+	public void update(HoSoNhanVienPikalong hoSoNhanVienPikalong) {
+		Session session = sessionFactory.getCurrentSession();
+		
+		session.update(hoSoNhanVienPikalong);
+		
+	}
 	
 	
 

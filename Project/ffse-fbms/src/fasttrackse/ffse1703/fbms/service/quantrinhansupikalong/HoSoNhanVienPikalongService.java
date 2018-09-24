@@ -11,5 +11,6 @@ public interface HoSoNhanVienPikalongService {
 	public void delete(int maNv);
 	public void insert(HoSoNhanVienPikalong hoSoNhanVien);
 	public HoSoNhanVienPikalong getEdit(int maNv);
+	public void update(HoSoNhanVienPikalong hoSoNhanVienPikalong);
 	
 }

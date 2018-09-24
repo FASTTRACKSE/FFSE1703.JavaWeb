@@ -9,73 +9,73 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Table(name="danhgiabanthan")
+@Table(name="danh_gia_ban_than")
 public class DanhGiaBanThan {
 
 	@Id
-	@Column(name="Id")
+	@Column(name="id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name="KyDanhGia")
+	@Column(name="ma_ky_danh_gia")
 	@NotEmpty
 	private String kyDanhGia;
 	
-	@Column(name="PhongBan")
+	@Column(name="ma_phong_ban")
 	@NotEmpty
 	private String phongBan;
 	
-	@Column(name="NhanVien")
+	@Column(name="nhan_vien")
 	@NotEmpty
 	private String nhanVien;
 	
-	@Column(name="KyLuatCongViec_DG")
+	@Column(name="ky_luat_cong_viec_danh_gia")
 	private int kyLuatCongViec_DG;
 	
-	@Column(name="KyLuatCongViec_MT")
+	@Column(name="ky_luat_cong_viec_mo_ta")
 	@NotEmpty
 	private String kyLuatCongViec_MT;
 
-	@Column(name="TinhThanLamViec_DG")
+	@Column(name="tinh_than_lam_viec_danh_gia")
 	private int tinhThanLamViec_DG;
 	
-	@Column(name="TinhThanLamViec_MT")
+	@Column(name="tinh_than_lam_viec_mo_ta")
 	@NotEmpty
 	private String tinhThanLamViec_MT;
 	
-	@Column(name="KhoiLuongCongViec_DG")
+	@Column(name="khoi_luong_cong_viec_danh_gia")
 	@NotEmpty
 	private int khoiLuongCongViec_DG;
 	
-	@Column(name="KhoiLuongCongViec_MT")
+	@Column(name="khoi_luong_cong_viec_mo_ta")
 	private String khoiLuongCongViec_MT;
 	
-	@Column(name="KetQuaCongViec_DG")
+	@Column(name="ket_qua_cong_viec_danh_gia")
 	@NotEmpty
 	private int ketQuaCongViec_DG;
 	
-	@Column(name="KetQuaCongViec_MT")
+	@Column(name="ket_qua_cong_viec_mo_ta")
 	private String ketQuaCongViec_MT;
 	
-	@Column(name="KyNangTichLuy_DG")
+	@Column(name="ky_nang_tich_luy_danh_gia")
 	private int kyNangTichLuy_DG;
 	
-	@Column(name="KyNangTichLuy_MT")
+	@Column(name="ky_nang_tich_luy_mo_ta")
 	@NotEmpty
 	private String kyNangTichLuy_MT;
 	
-	@Column(name="DinhHuong")
+	@Column(name="dinh_huong")
 	@NotEmpty
 	private String dinhHuong;
 	
-	@Column(name="DanhGiaTongThe")
+	@Column(name="danh_gia_tong_the")
 	private String danhGiaTongThe;
 	
-	@Column(name="TrangThai")
+	@Column(name="ma_trang_thai")
 	@NotEmpty
 	private int trangThai;
 	
-	@Column(name="IsDelete")
+	@Column(name="is_delete")
 	@NotEmpty
 	private int isDelete;
 	

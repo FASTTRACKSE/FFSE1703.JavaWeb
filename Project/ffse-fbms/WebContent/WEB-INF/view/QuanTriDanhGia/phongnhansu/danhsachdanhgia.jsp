@@ -8,14 +8,14 @@
 	<div class="content-wrapper">
 		<div class="content-header row">
 			<div class="content-header-left col-md-9 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">Đánh giá nhân viên</h3>
+				<h3 class="content-header-title mb-0">Danh sách đánh giá</h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a
 								href="<c:url value = "/quantridanhgia/home/"/>">Quản trị
 									đánh giá</a></li>
-							<li class="breadcrumb-item active">Đánh giá nhân viên</li>
+							<li class="breadcrumb-item active">Danh sách đánh giá</li>
 						</ol>
 					</div>
 				</div>
@@ -25,38 +25,41 @@
 			<div class="card">
 				<div class="card-content">
 					<div class="card-body" style="margin: 1em">
-						<form:form cssClass="form" action="kydanhgia/save">
-						<form:hidden path="id" />
+						<form:form cssClass="form" action="/ffse-fbms/quantridanhgia/phongnhansu/danhsachdanhgia/search">
 							<div class="form-body">
 								<h4 class="form-section">
-									<i class="fa fa-plus"></i>Tạo danh sách đánh giá
+									<i class="fa fa-plus"></i>Tìm kiếm đánh giá
 								</h4>
 								<div class="row">
 									<div class="col-md-4">
 										<div class="form-group">
-											<label for="projectinput1">Mã kỳ đánh giá</label>
-											<form:input cssClass="form-control" path="maKy" />
+											<label for="projectinput1">Kỳ đánh giá</label>
+											<form:select path="kyDanhGia" cssClass="form-control">
+											<form:option value="">Chọn kỳ đánh giá</form:option>
+												<c:forEach items="${listKyDanhGia }" var="x">
+													<form:option value="${x.maKy }" label="${x.tenKy}"></form:option>
+												</c:forEach>
+											</form:select>
 										</div>
 									</div>
 									<div class="col-md-4">
 										<div class="form-group">
-											<label for="projectinput2">Tên kỳ đánh giá</label>
-											<form:input cssClass="form-control" path="tenKy" />
+											<label for="projectinput2">Phòng ban</label>
+											<form:select path="phongBan" cssClass="form-control">
+											<form:option value="">Chọn phòng ban</form:option>
+												<c:forEach items="${listPhongBan }" var="x">
+													<form:option value="${x.maPhongBan }"
+														label="${x.tenPhongBan}"></form:option>
+												</c:forEach>
+											</form:select>
 										</div>
 									</div>
 									<div class="col-md-4">
 										<div class="form-group" style="padding-top: 1.9rem">
-											<c:if test="${command.id == 0 }">
-												<button class="btn btn-primary" type="submit">Tạo</button>
-											</c:if>
-											<c:if test="${command.id != 0 }">
-												<button class="btn btn-primary" type="submit">Sửa</button>
-												<a class="btn btn-danger"
-													href="<c:url value = "/quantridanhgia/phongnhansu/kydanhgia"/>">Hủy</a>
-											</c:if>
+											<button class="btn btn-primary" type="submit">Tìm
+												kiếm</button>
 										</div>
 									</div>
-									<form:hidden path="isDelete" />
 								</div>
 							</div>
 						</form:form>
@@ -64,11 +67,20 @@
 				</div>
 			</div>
 		</div>
-		<c:if test="${not empty listKyDanhGia}">
+		<c:if test="${empty listDanhGia}">
 			<div class="row">
 				<div class="card">
 					<div class="card-header">
-						<h4 class="card-title">Danh sách kỳ đánh giá</h4>
+						<h4 class="card-title">Chưa có bản đánh giá nào</h4>
+					</div>
+				</div>
+			</div>
+		</c:if>
+		<c:if test="${not empty listDanhGia}">
+			<div class="row">
+				<div class="card">
+					<div class="card-header">
+						<h4 class="card-title">Danh sách đánh giá nhân viên</h4>
 					</div>
 					<div class="card-content">
 						<div class="card-body" style="margin: 1em">
@@ -77,19 +89,18 @@
 									<thead class="thead-dark">
 										<tr>
 											<th scope="col">#</th>
-											<th scope="col">Mã kỳ đánh giá</th>
-											<th scope="col">Tên kỳ đánh giá</th>
-											<th scope="col">Hành động</th>
+											<th scope="col">Nhân viên</th>
+											<th scope="col">Xếp loại</th>
+											<th scope="col">Trang Thái</th>
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach items="${listKyDanhGia }" var="x" varStatus="stt" >
+										<c:forEach items="${listLichDanhGia}" var="x" varStatus="stt">
 											<tr>
-												<th scope="row">${stt.index + 1}</th>
-												<td>${x.maKy }</td>
-												<td>${x.tenKy }</td>
-												<td><a class="btn btn-info"
-													href="<c:url value = "/quantridanhgia/phongnhansu/kydanhgia/edit/${x.id }"/>">Sửa</a></td>
+												<th scope="row">${stt.index+1}</th>
+												<td>${x.nhanVien }</td>
+												<td>${x.danhGiaTongThe }</td>
+												<td>${x.trangThai }</td>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -102,4 +113,4 @@
 		</c:if>
 	</div>
 </div>
-<jsp:include page="/WEB-INF/view/templates/footer.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/view/QuanTriDanhGia/templates/footer.jsp"></jsp:include>

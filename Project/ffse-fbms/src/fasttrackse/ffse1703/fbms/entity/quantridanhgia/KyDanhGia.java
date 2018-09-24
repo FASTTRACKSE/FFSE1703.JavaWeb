@@ -7,33 +7,41 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Table(name = "kydanhgia")
+@Table(name = "ky_danh_gia")
 @Entity
 public class KyDanhGia {
 
 	@Id
-	@Column(name = "MaKy")
+	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int maKy;
+	private int id;
 
-	@Column(name = "TenKy")
+	@Column(name = "ma_ky_danh_gia")
+	private String maKy;
+
+	@Column(name = "ten_ky_danh_gia")
 	private String tenKy;
 
-	@Column(name = "MoTa")
-	private String moTa;
-
-	@Column(name = "IsDelete")
+	@Column(name = "is_delete")
 	private int isDelete;
 
 	public KyDanhGia() {
 		super();
 	}
 
-	public int getMaKy() {
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getMaKy() {
 		return maKy;
 	}
 
-	public void setMaKy(int maKy) {
+	public void setMaKy(String maKy) {
 		this.maKy = maKy;
 	}
 
@@ -43,14 +51,6 @@ public class KyDanhGia {
 
 	public void setTenKy(String tenKy) {
 		this.tenKy = tenKy;
-	}
-
-	public String getMoTa() {
-		return moTa;
-	}
-
-	public void setMoTa(String moTa) {
-		this.moTa = moTa;
 	}
 
 	public int getIsDelete() {

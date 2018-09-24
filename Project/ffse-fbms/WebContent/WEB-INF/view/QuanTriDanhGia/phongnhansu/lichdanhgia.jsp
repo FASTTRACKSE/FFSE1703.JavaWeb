@@ -25,7 +25,7 @@
 			<div class="card">
 				<div class="card-content">
 					<div class="card-body" style="margin: 1em">
-						<form:form cssClass="form" action="phancongdanhgia/create">
+						<form:form cssClass="form" action="lichdanhgia/create">
 							<div class="form-body">
 								<h4 class="form-section">
 									<i class="fa fa-plus"></i>Tạo danh sách đánh giá
@@ -35,6 +35,7 @@
 										<div class="form-group">
 											<label for="projectinput1">Kỳ đánh giá</label>
 											<form:select path="kyDanhGia" cssClass="form-control">
+											<form:option value="">Chọn kỳ đánh giá</form:option>
 												<c:forEach items="${listKyDanhGia }" var="x">
 													<form:option value="${x.maKy }" label="${x.tenKy}"></form:option>
 												</c:forEach>
@@ -46,6 +47,7 @@
 											<label for="projectinput2">Phòng ban</label>
 											<form:select path="phongBan" cssClass="form-control">
 												<c:forEach items="${listPhongBan }" var="x">
+												<form:option value="">Chọn phòng ban</form:option>
 													<form:option value="${x.maPhongBan }"
 														label="${x.tenPhongBan}"></form:option>
 												</c:forEach>
@@ -64,7 +66,7 @@
 				</div>
 			</div>
 		</div>
-		<c:if test="${empty listDanhGia}">
+		<c:if test="${not empty listLichDanhGia}">
 			<div class="row">
 				<div class="card">
 					<div class="card-header">
@@ -77,20 +79,25 @@
 									<thead class="thead-dark">
 										<tr>
 											<th scope="col">#</th>
-											<th scope="col">Nhân viên</th>
-											<th scope="col">Xếp loại</th>
+											<th scope="col">Kỳ đánh giá</th>
+											<th scope="col">Phòng ban</th>
 											<th scope="col">Trang Thái</th>
 											<th scope="col">Hành động</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<th scope="row">1</th>
-											<td>Mark</td>
-											<td>Otto</td>
-											<td>Nháp</td>
-											<td><a class="btn btn-info">Xem</a></td>
-										</tr>
+										<c:forEach items="${listLichDanhGia}" var="x" varStatus="stt">
+											<tr>
+												<th scope="row">${stt.index+1}</th>
+												<td>${x.kyDanhGia }</td>
+												<td>${x.phongBan }</td>
+												<td><c:if test="${x.isActive == 0 }">Chưa bắt đầu</c:if>
+													<c:if test="${x.isActive == 1 }">Đã bắt đầu</c:if>
+													<c:if test="${x.isActive == 2 }">Đã kết thúc</c:if></td>
+												<td><c:if test="${x.isActive == 0 }"><a href="<c:url value = "/quantridanhgia/phongnhansu/lichdanhgia/start/${x.id }" />" class="btn btn-success" >Bắt đầu</a></c:if>
+													<c:if test="${x.isActive == 1 }"><a href="<c:url value = "/quantridanhgia/phongnhansu/lichdanhgia/end/${x.id }" />" class="btn btn-danger" >Kết thúc</a></c:if></td>
+											</tr>
+										</c:forEach>
 									</tbody>
 								</table>
 							</div>
@@ -101,4 +108,4 @@
 		</c:if>
 	</div>
 </div>
-<jsp:include page="/WEB-INF/view/templates/footer.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/view/QuanTriDanhGia/templates/footer.jsp"></jsp:include>

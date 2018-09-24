@@ -7,22 +7,22 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Table(name="trangthaidanhgia")
+@Table(name="trang_thai_danh_gia")
 @Entity
 public class TrangThai {
 	
 	@Id
-	@Column(name = "Id")
+	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name = "MaTrangThai")
+	@Column(name = "ma_trang_thai")
 	private int maTrangThai;
 	
-	@Column(name = "TenTrangThai")
+	@Column(name = "ten_trang_thai")
 	private String tenTrangThai;
 	
-	@Column(name = "IsDelete")
+	@Column(name = "is_delete")
 	private int isDelete;
 
 	public TrangThai() {

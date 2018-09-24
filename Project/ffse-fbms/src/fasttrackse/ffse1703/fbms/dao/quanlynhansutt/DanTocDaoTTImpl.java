@@ -19,7 +19,7 @@ public class DanTocDaoTTImpl implements DanTocDaoTT {
 	public List<DanTocTT> listDanTocTT() {
 		Session session = sessionFactory.getCurrentSession();
 		List<DanTocTT> listDanToc = session.createQuery("from DanTocTT").getResultList();
-		session.close();
+//		session.close();
 		return listDanToc;
 	}
 

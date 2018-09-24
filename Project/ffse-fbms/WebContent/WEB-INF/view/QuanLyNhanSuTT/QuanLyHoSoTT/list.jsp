@@ -26,20 +26,15 @@ th, td {
 	<div class="content-wrapper">
 		<div class="content-header row">
 			<div class="content-header-left col-md-9 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">Danh Sách Nhân Viên</h3>
+				<h3 class="content-header-title mb-0">Hồ sơ nhân viên</h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="<c:url value = "/"/>"><spring:message
 										code="label.trangChu" /></a></li>
-							<li class="breadcrumb-item"><a href="javascript:void(0)"><spring:message
-										code="label.quanLyNhanSu" /></a></li>
-							<li class="breadcrumb-item"><a
-								href="<c:url value = "/quanlynhansutt/"/>"><spring:message
-										code="label.quanLyHopDong" /></a></li>
 							<li class="breadcrumb-item active">Danh Sách Nhân Viên</li>
-							<li class="breadcrumb-item"><a href="<c:url value = "#"/>"><spring:message
-										code="label.themHopDong" /></a></li>
+							<li class="breadcrumb-item"><a href="<c:url value = "#"/>">thêm
+									nhân viên</a></li>
 						</ol>
 					</div>
 				</div>
@@ -52,7 +47,7 @@ th, td {
 					<div class="col-xs-12">
 						<div class="card">
 							<div class="card-header">
-								<h4 class="card-title">Datatable</h4>
+								<h4 class="card-title">Danh sách nhân viên</h4>
 								<a class="heading-elements-toggle"><i
 									class="fa fa-ellipsis-v font-medium-3"></i></a>
 								<div class="heading-elements">

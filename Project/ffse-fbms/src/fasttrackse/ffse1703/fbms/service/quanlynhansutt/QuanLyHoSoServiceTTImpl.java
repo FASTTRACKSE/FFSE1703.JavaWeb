@@ -64,7 +64,7 @@ public class QuanLyHoSoServiceTTImpl implements QuanLyHoSoServiceTT {
 	@Transactional
 	public void addHoSoNhanVien(HoSoNhanVienTT hsnv) {
 		// TODO Auto-generated method stub
-
+		quanLyHoSoDaoTT.addHoSoNhanVien(hsnv);
 	}
 	@Override
 	@Transactional

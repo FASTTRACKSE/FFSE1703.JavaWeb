@@ -32,7 +32,7 @@ public class HoSoNhanVienTT implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ma_nhan_vien", unique = true, nullable = false)
-	private int maNhanVien;
+	private int maNhanVien; 
 
 	@Column(name = "ten_nhan_vien", nullable = false, length = 100)
 	@NotEmpty
@@ -118,7 +118,6 @@ public class HoSoNhanVienTT implements Serializable {
 	// bi-directional many-to-one association to PhongBan
 	@ManyToOne
 	@JoinColumn(name = "ma_phong_ban", nullable = false)
-
 	private PhongBan phongBan;
 
 	// bi-directional many-to-one association to ChucDanh

@@ -6,5 +6,5 @@ import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.QuanHuyenTT;
 
 
 public interface QuanHuyenServiceTT {
-	public List<QuanHuyenTT> listQuanHuyen();
+	public List<QuanHuyenTT> listQuanHuyen(int maThanhPho);
 }

@@ -15,11 +15,15 @@ public class QuanHuyenServiceTTImpl implements QuanHuyenServiceTT {
 	@Autowired
 	private QuanHuyenDaoTT quanHuyenDaoTT;
 
+	public void setQuanHuyenDaoTT(QuanHuyenDaoTT quanHuyenDaoTT) {
+		this.quanHuyenDaoTT = quanHuyenDaoTT;
+	}
+	
 	@Override
 	@Transactional
-	public List<QuanHuyenTT> listQuanHuyen() {
+	public List<QuanHuyenTT> listQuanHuyen(int maThanhPho) {
 
-		return this.quanHuyenDaoTT.listQuanHuyen();
+		return quanHuyenDaoTT.listQuanHuyen(maThanhPho);
 	}
 
 }

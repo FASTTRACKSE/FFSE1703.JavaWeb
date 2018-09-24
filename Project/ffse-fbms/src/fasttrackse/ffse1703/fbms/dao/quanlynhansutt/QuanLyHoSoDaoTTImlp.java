@@ -45,7 +45,8 @@ public class QuanLyHoSoDaoTTImlp implements QuanLyHoSoDaoTT {
 	@Override
 	public void addHoSoNhanVien(HoSoNhanVienTT hsnv) {
 		// TODO Auto-generated method stub
-
+		Session session = this.sessionFactory.getCurrentSession();
+		session.save(hsnv);
 	}
 
 	@Override

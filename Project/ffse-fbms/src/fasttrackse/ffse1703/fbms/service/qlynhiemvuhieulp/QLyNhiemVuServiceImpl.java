@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import fasttrackse.ffse1703.fbms.dao.qlynhiemvuhieulp.QLyNhiemVuDao;
+import fasttrackse.ffse1703.fbms.entity.qlynhiemvuhieulp.DuAnEntityHieuLp;
 import fasttrackse.ffse1703.fbms.entity.qlynhiemvuhieulp.LoaicongviecEntity;
 import fasttrackse.ffse1703.fbms.entity.qlynhiemvuhieulp.LoaitrangthaiEntity;
 import fasttrackse.ffse1703.fbms.entity.qlynhiemvuhieulp.QLyNhiemVuEntity;
@@ -57,5 +58,12 @@ public class QLyNhiemVuServiceImpl implements QLyNhiemVuService {
 	public List<LoaicongviecEntity> congViec() {
 		return this.qLyNhiemVuDao.congViec();
 	}
+
+	@Override
+	@Transactional
+	public List<DuAnEntityHieuLp> duAn() {
+		return this.qLyNhiemVuDao.duAn();
+	}
+
 
 }

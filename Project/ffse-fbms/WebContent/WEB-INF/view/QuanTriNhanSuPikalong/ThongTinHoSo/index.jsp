@@ -52,6 +52,7 @@ div.stroke a button:hover:after {
 						<th>Họ Tên</th>
 						<th>Giới Tính</th>
 						<th>Ngày Sinh</th>
+						<th>Ảnh Đại Diện</th>
 						<th>Chức Năng</th>
 					</tr>
 				</thead>
@@ -63,6 +64,8 @@ div.stroke a button:hover:after {
 							<td>${x.hoTenNv}</td>
 							<td>${x.gioiTinh}</td>
 							<td>${x.ngaySinh}</td>
+							<td><img src="<c:url value="/uploads/${x.avatar}" />"
+						width="60" height="80"></td>
 							<td>
 								<div class="stroke">
 									<a href="delete/${x.maNv}"><button style="background-color: #F5F7FA" class="btn btn-light" onclick="if (!confirm('Bạn có muốn xóa sinh viên này không?')) return false">

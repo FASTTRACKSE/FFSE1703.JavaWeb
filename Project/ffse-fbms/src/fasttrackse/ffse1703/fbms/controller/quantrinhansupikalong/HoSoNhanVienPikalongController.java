@@ -1,9 +1,16 @@
 package fasttrackse.ffse1703.fbms.controller.quantrinhansupikalong;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +21,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.HoSoNhanVienPikalong;
 import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.PhuongPikalong;
@@ -29,6 +39,7 @@ import fasttrackse.ffse1703.fbms.service.quantrinhansupikalong.ThanhPhoPikalongS
 import fasttrackse.ffse1703.fbms.service.security.ChucDanhService;
 import fasttrackse.ffse1703.fbms.service.security.PhongBanService;
 
+@SuppressWarnings("unused")
 @Controller
 @RequestMapping("/quantrinhansu/hosonhanvien/")
 public class HoSoNhanVienPikalongController {
@@ -54,6 +65,8 @@ public class HoSoNhanVienPikalongController {
 	@Autowired
 	private PhongBanService phongBanService;
 	
+	private static final String UPLOAD_DIRECTORY ="/upload"; 
+	
 	@RequestMapping("/")
 	public String index(Model model) {
 		List<HoSoNhanVienPikalong> nhanVienList = hoSoNhanVienPikalongService.listNhanVien();
@@ -78,7 +91,20 @@ public class HoSoNhanVienPikalongController {
 	}
 	
 	@RequestMapping(value= "insert", method= RequestMethod.POST)
-	public String addsave(@ModelAttribute("formHosopkl") HoSoNhanVienPikalong hoSoNhanVien, BindingResult result) {
+	public String addsave(@ModelAttribute("formHosopkl") @Valid HoSoNhanVienPikalong hoSoNhanVien, 
+			BindingResult result, @RequestParam("file") MultipartFile file, HttpSession session) throws IOException {
+		ServletContext context = session.getServletContext();
+		String path = context.getRealPath(UPLOAD_DIRECTORY);
+		String filename = file.getOriginalFilename();
+		System.out.println(path + " " + filename);
+		byte[] bytes = file.getBytes();  
+	    BufferedOutputStream stream =new BufferedOutputStream(new FileOutputStream(  
+	         new File(path + File.separator + filename))); 
+	    hoSoNhanVien.setAvatar(filename);
+	    stream.write(bytes);  
+	    stream.flush();  
+	    stream.close();
+		
 		hoSoNhanVienPikalongService.insert(hoSoNhanVien);
 		return "redirect:/quantrinhansu/hosonhanvien/";
 	}

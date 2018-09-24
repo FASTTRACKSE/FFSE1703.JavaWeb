@@ -17,4 +17,7 @@ public interface VaiTroTeam1Service {
 	public void update(VaiTroThanhVienTeam1 vt);
 
 	public void setIsDelete(String maVaiTro);
+	
+	public int getMa(String maVaiTro);
+
 }

@@ -59,4 +59,11 @@ public class VaiTroTeam1DaoImpl implements VaiTroTeam1Dao{
 		session.update(db);
 	}
 
+	@Override
+	public int getMa(String maVaiTro) {
+		Session session = this.sessionFactory.getCurrentSession();
+		List<VaiTroThanhVienTeam1> db = session.createQuery("from VendorTeam1 where tenvd = '"+maVaiTro+"' AND isDelete =0", VaiTroThanhVienTeam1.class).list();	
+		return  db.size();
+	}
+
 }

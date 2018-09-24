@@ -17,4 +17,8 @@ public interface VendorTeam1Dao {
 	public void update(VendorTeam1 vd);
 
 	public void setIsDelete(String maVendor);
+	
+	public int getName(String tenVendor);
+	
+	public int getMa(String maVendor);
 }

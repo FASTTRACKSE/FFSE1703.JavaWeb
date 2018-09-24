@@ -8,6 +8,21 @@
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 <div class="app-content content container-fluid">
 	<div class="content-wrapper">
+		<div class="content-header row">
+			<div class="content-header-left col-md-6 col-xs-12 mb-2">
+				<h3 class="content-header-title mb-0">Thêm Vai Trò</h3>
+				<div class="row breadcrumbs-top">
+					<div class="breadcrumb-wrapper col-xs-12">
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item"><a href="/ffse-fbms/home">Home</a></li>
+							<li class="breadcrumb-item"><a
+								href="/ffse-fbms/QuanLyDuAn/VaiTro/">Danh sách Vai Trò</a></li>
+							<li class="breadcrumb-item active">Thêm Vai Trò</li>
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
 
 		<div class="row">
 			<div class="col-sm-4"></div>
@@ -17,12 +32,12 @@
 				</h1>
 			</div>
 		</div>
-		<form:form method="POST" action="/ffse-fbms/QuanLyDuAn/VaiTro/creat" modelAttribute="vaitro"> 
-			<div class="form-group col-sm-6" >
+		<form:form method="POST" action="/ffse-fbms/QuanLyDuAn/VaiTro/creat"
+			modelAttribute="vaitro">
+			<div class="form-group col-sm-6">
 				<input type="hidden" name="${_csrf.parameterName}"
-					value="${_csrf.token}" />
-					 <label>Mã Vai Trò</label>
-				<form:input class="form-control" path="mavt" 
+					value="${_csrf.token}" /> <label>Mã Vai Trò</label>
+				<form:input class="form-control" path="mavt"
 					placeholder="Mã Vai Trò" />
 				<%--  <form:errors path="mavt" cssStyle="color: red"></form:errors> --%>
 
@@ -31,7 +46,7 @@
 				<label>Tên Vai Trò</label>
 				<form:input class="form-control" path="tenvt"
 					placeholder="Tên Vai Trò" />
-			<!-- 	<form:errors path="tenvt" cssStyle="color: red"></form:errors> -->
+				<!-- 	<form:errors path="tenvt" cssStyle="color: red"></form:errors> -->
 			</div>
 
 			<div class="col-sm-12 text-center">

@@ -45,13 +45,19 @@ public class VaiTroTeam1ServiceImpl implements VaiTroTeam1Service{
 	@Transactional
 	public void update(VaiTroThanhVienTeam1 vt) {
 		this.vaiTroDao.update(vt);
-		
 	}
 
 	@Override
 	@Transactional
 	public void setIsDelete(String maVaiTro) {
 		this.vaiTroDao.setIsDelete(maVaiTro);
+		
+	}
+
+	@Override
+	@Transactional
+	public int getMa(String maVendor) {
+		return this.vaiTroDao.getMa(maVendor);
 		
 	}
 	

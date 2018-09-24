@@ -9,12 +9,9 @@ public interface HoSoNhanVienPikalongDao {
 	public List<HoSoNhanVienPikalong> listNhanVien();
 	public void delete(int maNv);
 	public void insert(HoSoNhanVienPikalong hoSoNhanVien);
-<<<<<<< HEAD
 	public String getAutoId();
 	public HoSoNhanVienPikalong getHoSoNhanVienById(int maNv);
-=======
 	public HoSoNhanVienPikalong getEdit(int maNv);
 	public void update(HoSoNhanVienPikalong hoSoNhanVienPikalong);
 	
->>>>>>> e35fba4e52e720df83037cbed03dccf3df2c6dba
 }

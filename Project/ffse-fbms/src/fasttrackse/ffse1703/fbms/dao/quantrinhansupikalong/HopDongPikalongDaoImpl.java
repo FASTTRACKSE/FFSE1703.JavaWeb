@@ -49,7 +49,12 @@ public class HopDongPikalongDaoImpl implements HopDongPikalongDao {
 		Session session = this.sessionFactory.getCurrentSession();
 		Query query = session.createSQLQuery(
 				"SELECT `MaHopDong` FROM `thongtinhopdong` ORDER BY `MaHopDong` DESC LIMIT 1");
-		String lastMaHd = query.getSingleResult().toString();
+		String lastMaHd;
+		if(query.list().size() == 0) {
+			lastMaHd = "1";
+		} else {
+			lastMaHd = query.getSingleResult().toString();
+		}
 		return lastMaHd;
 	}
 	@SuppressWarnings("rawtypes")

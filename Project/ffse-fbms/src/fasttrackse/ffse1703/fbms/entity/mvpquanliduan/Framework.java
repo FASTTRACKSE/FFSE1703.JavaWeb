@@ -1,10 +1,14 @@
 package fasttrackse.ffse1703.fbms.entity.mvpquanliduan;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -18,6 +22,17 @@ public class Framework {
 	private String nameFramework;
 
 	private int status;
+	
+	@ManyToMany(targetEntity = Projects.class, mappedBy = "framework", fetch = FetchType.EAGER)
+	private List<Projects> project;
+
+	public List<Projects> getProject() {
+		return project;
+	}
+
+	public void setProject(List<Projects> project) {
+		this.project = project;
+	}
 
 	public int getIdFrame() {
 		return idFrame;

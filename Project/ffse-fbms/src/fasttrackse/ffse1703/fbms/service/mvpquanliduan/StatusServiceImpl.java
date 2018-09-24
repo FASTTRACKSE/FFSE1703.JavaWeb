@@ -8,42 +8,42 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fasttrackse.ffse1703.fbms.dao.mvpquanliduan.StatusDAO;
-import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Status;
+import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.StatusProject;
 @Service
 public class StatusServiceImpl implements StatusService{
 	@Autowired
 	private StatusDAO statusDAO;
 	@Override
 	@Transactional
-	public List<Status> findAll() {
+	public List<StatusProject> findAll() {
 		
 		return statusDAO.findAll();
 	}
 
 	@Override
 	@Transactional
-	public Status findById(int id) {
+	public StatusProject findById(int id) {
 	
 		return statusDAO.findById(id);
 	}
 
 	@Override
 	@Transactional
-	public void addNew(Status status) {
+	public void addNew(StatusProject status) {
 		statusDAO.addNew(status);
 		
 	}
 
 	@Override
 	@Transactional
-	public void update(Status status) {
+	public void update(StatusProject status) {
 		statusDAO.update(status);
 		
 	}
 
 	@Override
 	@Transactional
-	public void delete(Status status) {
+	public void delete(StatusProject status) {
 		statusDAO.delete(status);
 		
 	}

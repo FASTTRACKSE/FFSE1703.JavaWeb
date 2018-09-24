@@ -10,7 +10,7 @@ import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name="qlda_status")
-public class Status {
+public class StatusProject {
 	@Id
 	@Column(name = "id_status")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

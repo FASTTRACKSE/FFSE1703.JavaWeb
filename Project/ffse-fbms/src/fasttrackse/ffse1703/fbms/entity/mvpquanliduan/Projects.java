@@ -1,20 +1,22 @@
 package fasttrackse.ffse1703.fbms.entity.mvpquanliduan;
 
-import java.sql.Date;
+import java.io.Serializable;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -22,7 +24,12 @@ import fasttrackse.ffse1703.fbms.entity.security.PhongBan;
 
 @Entity
 @Table(name = "qlda_project")
-public class Projects {
+public class Projects implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@Column(name = "id_project")
 	private String idProject;
@@ -31,58 +38,62 @@ public class Projects {
 	private String nameProject;
 
 	@Column(name = "start_date")
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date startDate;
 
 	@Column(name = "end_date")
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date endDate;
 
-	@Column(name = "project_detail")
+	@Column(name = "project_details")
 	private String detail;
 
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "id_customer", nullable = false)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	@JoinColumn(name = "id_customer", referencedColumnName = "id_customer", insertable = true, updatable = true)
 	private KhachHang khachHang;
 
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "ma_phong_ban", nullable = false)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	@JoinColumn(name = "id_project_room", referencedColumnName = "ma_phong_ban", insertable = true, updatable = true)
 	private PhongBan roomProject;
 
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "id_status", nullable = false)
-	private Status status;
-	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "id_doamin", nullable = false)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	@JoinColumn(name = "id_status", referencedColumnName = "id_status", insertable = true, updatable = true)
+	private StatusProject status;
+
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	@JoinColumn(name = "id_domain", referencedColumnName = "id_domain", insertable = true, updatable = true)
 	private Domain domain;
 
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(targetEntity = Technical.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "qlda_technical_project", joinColumns = {
-	@JoinColumn(name = "id_technical") }, inverseJoinColumns = { @JoinColumn(name = "id_project") })
-	private Set<Technical> technical = new HashSet<Technical>();
-	
-	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_technical", updatable = true,insertable=true) }, inverseJoinColumns = {
+	@JoinColumn(name = "id_project",nullable = true, updatable = false,insertable=true) })
+	private Set<Technical> technical;
+
+	@ManyToMany(targetEntity = Database.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "qlda_database_project", joinColumns = {
-	@JoinColumn(name = "id_database") }, inverseJoinColumns = { @JoinColumn(name = "id_project") })
-	private Set<Database> database = new HashSet<Database>();
-	
-	@ManyToMany(fetch = FetchType.LAZY)
+			@JoinColumn(name = "id_database") }, inverseJoinColumns = { @JoinColumn(name = "id_project") })
+	private Set<Database> database;
+
+	@ManyToMany(targetEntity = Framework.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "qlda_framework_project", joinColumns = {
-	@JoinColumn(name = "id_framework") }, inverseJoinColumns = { @JoinColumn(name = "id_project") })
-	private Set<Framework> framework = new HashSet<Framework>();
+	@JoinColumn(name = "id_framework",  updatable = true,insertable=true) }, inverseJoinColumns = {
+	@JoinColumn(name = "id_project",nullable = true, updatable = false,insertable=true) })
+	private Set<Framework> framework;
 	
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "qlda_prolanguage_project", joinColumns = {
-	@JoinColumn(name = "id_prolanguage") }, inverseJoinColumns = { @JoinColumn(name = "id_project") })
-	private Set<Language> language = new HashSet<Language>();
-	
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "qlda_vendor_project", joinColumns = {
-	@JoinColumn(name = "id_vendor") }, inverseJoinColumns = { @JoinColumn(name = "id_project") })
-	private Set<Vendor> vendor = new HashSet<Vendor>();
-	
-	@Column(name="isdelete")
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "qlda_prolanguage_project", joinColumns = { @JoinColumn(name = "id_prolanguage") }, inverseJoinColumns = {
+	@JoinColumn(name = "id_project") })
+	private Set<Language> language;
+
+	@ManyToMany(targetEntity = Vendor.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable(name = "qlda_vendor_project", joinColumns = { @JoinColumn(name = "id_vendor") }, inverseJoinColumns = {
+	@JoinColumn(name = "id_project") })
+	private Set<Vendor> vendor;
+
+	@Column(name = "isdelete")
 	private int isDelete;
 
 	public String getIdProject() {
@@ -141,11 +152,11 @@ public class Projects {
 		this.roomProject = roomProject;
 	}
 
-	public Status getStatus() {
+	public StatusProject getStatus() {
 		return status;
 	}
 
-	public void setStatus(Status status) {
+	public void setStatus(StatusProject status) {
 		this.status = status;
 	}
 
@@ -204,8 +215,5 @@ public class Projects {
 	public void setIsDelete(int isDelete) {
 		this.isDelete = isDelete;
 	}
-	
-	
-	
-	
+
 }

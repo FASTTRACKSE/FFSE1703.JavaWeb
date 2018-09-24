@@ -13,4 +13,5 @@ public interface DatabaseTeam1Service {
 	public void setIsDelete(String maDatabase);
 	public int getName(String tenDatabase);
 
+
 }

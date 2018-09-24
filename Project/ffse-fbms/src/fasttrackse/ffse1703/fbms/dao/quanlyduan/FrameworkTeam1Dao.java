@@ -11,6 +11,6 @@ public interface FrameworkTeam1Dao {
 	public FrameworkTeam1 getById(String ma_framework);
 	public void update(FrameworkTeam1 frameworkTeam1);
 	public void setIsDelete(String ma_framework);
-	public int getName(String tenDatabase);
+	public int getName(String ten_framework);
 
 }

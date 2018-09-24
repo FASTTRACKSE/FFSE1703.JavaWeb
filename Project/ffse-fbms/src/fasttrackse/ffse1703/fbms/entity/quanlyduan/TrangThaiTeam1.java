@@ -1,7 +1,13 @@
 package fasttrackse.ffse1703.fbms.entity.quanlyduan;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
@@ -19,6 +25,18 @@ public class TrangThaiTeam1 {
 	
 	@Column(name = "is_delete")
 	String is_delete;
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "TrangThai",cascade=CascadeType.MERGE)
+	private Set<DuAnTeam1> duAn = new HashSet<DuAnTeam1>(0);
+	
+	
+	public Set<DuAnTeam1> getDuAn() {
+		return duAn;
+	}
+
+	public void setDuAn(Set<DuAnTeam1> duAn) {
+		this.duAn = duAn;
+	}
 
 	public String getMaTrangThai() {
 		return maTrangThai;

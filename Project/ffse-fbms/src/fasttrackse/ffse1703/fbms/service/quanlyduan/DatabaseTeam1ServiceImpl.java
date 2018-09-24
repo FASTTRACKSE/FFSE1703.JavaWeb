@@ -2,10 +2,9 @@ package fasttrackse.ffse1703.fbms.service.quanlyduan;
 
 import java.util.List;
 
-import org.springframework.transaction.annotation.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import fasttrackse.ffse1703.fbms.dao.quanlyduan.DatabaseTeam1Dao;
 import fasttrackse.ffse1703.fbms.entity.quanlyduan.DatabaseTeam1;
@@ -60,6 +59,5 @@ public class DatabaseTeam1ServiceImpl implements DatabaseTeam1Service {
 	public int getName(String tenDatabase) {
 		return this.databaseDao.getName(tenDatabase);
 	}
-
 
 }

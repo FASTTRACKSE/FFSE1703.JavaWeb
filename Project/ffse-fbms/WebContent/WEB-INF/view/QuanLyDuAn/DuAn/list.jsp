@@ -9,12 +9,12 @@
 <div class="app-content content container-fluid">
 	<div class="content-wrapper">
 	<div class="content-header-left col-md-9 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">Danh sách Database</h3>
+				<h3 class="content-header-title mb-0">Danh sách Dự Án</h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="/ffse-fbms/home">Home</a></li>
-							<li class="breadcrumb-item active">DANH SÁCH DATABASE</li>
+							<li class="breadcrumb-item active">DANH SÁCH DỰ ÁN</li>
 						</ol>
 					</div>
 				</div>
@@ -23,7 +23,7 @@
 			<div class="col-sm-4"></div>
 			<div class="col-sm-4">
 				<h1>
-					<strong>DATABASE</strong>
+					<strong>DỰ ÁN</strong>
 				</h1>
 			</div>
 		</div>
@@ -31,23 +31,31 @@
 			<table class="table">
 				<thead>
 					<tr>
-						<th>Mã Database</th>
-						<th>Tên Database</th>
+						<th>Mã Dự Án</th>
+						<th>Tên Dự Án</th>
 						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach var="entities" items="${list }">
 						<tr>
-							<td>${entities.maDatabase}</td>
-							<td>${entities.tenDatabase}</td>
+							<td>${entities.maDuAn}</td>
+							<td>${entities.tenDuAn}</td>
 							<td><a
-								href="/ffse-fbms/qlda/Database/edit/${entities.maDatabase}"
+								href="/ffse-fbms/qlda/DuAn/edit/${entities.maDuAn}"
 								data-toggle="tooltip" title="edit">
 									<button type="button" class="btn btn-icon btn-outline-warning">
 										<i class="fa fa-pencil"></i>
 									</button>
-							</a> <a href="/ffse-fbms/qlda/Database/delete/${entities.maDatabase}">
+							</a> 
+							<a
+								href="/ffse-fbms/qlda/DuAn/view/${entities.maDuAn}"
+								data-toggle="tooltip" title="view">
+									<button type="button" class="btn btn-icon btn-outline-info">
+										<i class="fa fa-eye"></i>
+									</button>
+							</a> 
+							<a href="/ffse-fbms/qlda/DuAn/delete/${entities.maDuAn}">
 									<button type="button"
 										onclick="if (!confirm('Are you sure you want to delete this database?')) return false"
 										class="btn btn-outline-danger btn-icon checkid"
@@ -59,39 +67,13 @@
 					</c:forEach>
 				</tbody>
 			</table>
-			<nav aria-label="Page navigation example">
-									<ul class="pagination">
-										<li class="page-item"><a class="page-link" href="?page=1">First
-												Page</a></li>
-										<c:if test="${currentPage > 2}">
-											<li class="page-item"><a class="page-link"
-												href="?page=${currentPage-2}">${currentPage-2}</a></li>
-										</c:if>
-										<c:if test="${currentPage > 1}">
-											<li class="page-item"><a class="page-link"
-												href="?page=${currentPage-1}">${currentPage-1}</a></li>
-										</c:if>
-										<li class="page-item active"><a class="page-link"
-											href="?page=${currentPage}">${currentPage}</a></li>
-										<c:if test="${currentPage < lastPage}">
-											<li class="page-item"><a class="page-link"
-												href="?page=${currentPage+1}">${currentPage+1}</a></li>
-										</c:if>
-										<c:if test="${currentPage < lastPage - 1}">
-											<li class="page-item"><a class="page-link"
-												href="?page=${currentPage+2}">${currentPage+2}</a></li>
-										</c:if>
-										<li class="page-item"><a class="page-link"
-											href="?page=${lastPage }">Last Page</a></li>
-									</ul>
-								</nav>
 
 			<div class="row"></div>
 		</div>
 		<div class="col-sm-4">
 			<h5>
-				<a href="/ffse-fbms/qlda/Database/add_form"><strong>THÊM
-						DATABASE</strong></a>
+				<a href="/ffse-fbms/qlda/DuAn/add_form"><strong>THÊM
+						DỰ ÁN</strong></a>
 			</h5>
 			<c:if test="${message !=null }">
 						 ${message }

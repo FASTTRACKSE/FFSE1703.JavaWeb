@@ -1,8 +1,12 @@
 package fasttrackse.ffse1703.fbms.entity.quanlyduan;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
@@ -20,6 +24,18 @@ public class FrameworkTeam1 {
 
 	@Column(name = "is_delete")
 	private int is_delete;
+
+	@ManyToMany(fetch = FetchType.EAGER,mappedBy="Framework",targetEntity=DuAnTeam1.class)
+	private Set<DuAnTeam1> duAn;
+
+	
+	public Set<DuAnTeam1> getDuAn() {
+		return duAn;
+	}
+
+	public void setDuAn(Set<DuAnTeam1> duAn) {
+		this.duAn = duAn;
+	}
 
 	public String getMa_framework() {
 		return ma_framework;

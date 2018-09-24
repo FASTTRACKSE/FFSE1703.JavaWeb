@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import fasttrackse.ffse1703.fbms.entity.quanlyduan.DatabaseTeam1;
 import fasttrackse.ffse1703.fbms.entity.quanlyduan.TechnicalTeam1;
 import fasttrackse.ffse1703.fbms.service.quanlyduan.TechnicalTeam1Service;
 
@@ -55,13 +56,15 @@ public class TechnicalTeam1Controller {
 		}
 
 		if (TechnicalTeam1Service.getById(technical.getMa_cong_nghe()) != null) {
-			TechnicalTeam1 tc = TechnicalTeam1Service.getById(technical.getTen_cong_nghe());
+			TechnicalTeam1 tc = TechnicalTeam1Service.getById(technical.getMa_cong_nghe());
 			if (tc.getIs_delete() == 1) {
 				TechnicalTeam1Service.update(technical);
+				redirectAttributes.addFlashAttribute("message", "<script>alert('Creat successfully.');</script>");
+
 				return "redirect:list";
 
 			} else {
-				redirectAttributes.addFlashAttribute("message", "<script>alert('Mã Database đã tồn tại.');</script>");
+				redirectAttributes.addFlashAttribute("message", "<script>alert('Mã Technical đã tồn tại.');</script>");
 				return "redirect:/qlda/Technical/add_form";
 			}
 		}

@@ -1,5 +1,6 @@
 package fasttrackse.ffse1703.fbms.controller.quanlyduan;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,9 @@ public class DatabaseTeam1Controller {
 	DatabaseTeam1Service databaseService;
 
 	@RequestMapping(value = { "/list", "" })
-	public String list(Model model) {
+	public String list(Model model , HttpServletRequest request) {
+		
+		
 		model.addAttribute("list", databaseService.getAll());
 		return "QuanLyDuAn/Database/list";
 

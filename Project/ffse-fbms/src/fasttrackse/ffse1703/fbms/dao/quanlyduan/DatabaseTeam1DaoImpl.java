@@ -59,9 +59,7 @@ public class DatabaseTeam1DaoImpl implements DatabaseTeam1Dao{
 		db.setIsDelete(0);
 		session.update(db);	
 	}
-
-		
-
+	
 	@Override
 	public int getName(String tenDatabase) {
 	Session session = this.sessionFactory.getCurrentSession();
@@ -69,12 +67,6 @@ public class DatabaseTeam1DaoImpl implements DatabaseTeam1Dao{
 	return  db.size();
 	}
 
-	@Override
-	public int getMa(String maDatabase) {
-		Session session = this.sessionFactory.getCurrentSession();
-		List<DatabaseTeam1> db = session.createQuery("from DatabaseTeam1 where ma_database = '"+maDatabase+"'", DatabaseTeam1.class).list();	
-		return  db.size();
-	}
 }
 
 

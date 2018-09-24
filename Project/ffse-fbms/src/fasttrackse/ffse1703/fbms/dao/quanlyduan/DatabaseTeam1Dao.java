@@ -12,9 +12,7 @@ public interface DatabaseTeam1Dao {
 	public void update(DatabaseTeam1 database);
 	public void setIsDelete(String maDatabase);
 	public int getName(String tenDatabase);
-	public int getMa(String maDatabase);
-
-
+	
 
 
 }

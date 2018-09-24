@@ -43,7 +43,6 @@ public class HoSoNhanVienPikalongServiceImpl implements HoSoNhanVienPikalongServ
 		hoSoNhanVienPikalongDao.insert(hoSoNhanVien);
 		
 	}
-<<<<<<< HEAD
 	
 	@Override
 	@Transactional
@@ -56,8 +55,6 @@ public class HoSoNhanVienPikalongServiceImpl implements HoSoNhanVienPikalongServ
 	public HoSoNhanVienPikalong getHoSoNhanVienById(int maNv) {
 		return this.hoSoNhanVienPikalongDao.getHoSoNhanVienById(maNv);
 	}
-=======
-
 
 	@Override
 	@Transactional
@@ -74,5 +71,4 @@ public class HoSoNhanVienPikalongServiceImpl implements HoSoNhanVienPikalongServ
 		
 	}
 
->>>>>>> e35fba4e52e720df83037cbed03dccf3df2c6dba
 }

@@ -19,9 +19,8 @@
 							<div>
 								<div>
 									<div class="row">
-
 										<form:form method="post"
-											action="/ffse-fbms/QuanTriNhanSuPikalong/QuanLiBangCap/editOneBangCap"
+											action="/ffse-fbms/QuanTriNhanSuPikalong/QuanLiGiaDinh/editOneGiaDinh"
 											class="form-horizontal">
 											<form:hidden path="id" />
 											<div class="col-xl-4 col-lg-6 col-md-12 mb-1">
@@ -34,50 +33,70 @@
 											</div>
 											<div class="col-xl-4 col-lg-6 col-md-12 mb-1">
 												<div class="form-group">
-													<label for="roundText">Chuyên Ngành</label>
-													<form:input path="chuyenNganh" type="text" id="roundText"
-														class="form-control round" />
-													<form:errors path="chuyenNganh"
+													<label for="roundText">Quan Hệ</label>
+													<form:select path="quanHe" class="form-control round">
+														<form:option value="">Chọn Quan Hệ</form:option>
+														<form:option value="Bố">Bố</form:option>
+														<form:option value="Mẹ">Mẹ</form:option>
+														<form:option value="Anh">Anh</form:option>
+														<form:option value="Chị">Chị</form:option>
+														<form:option value="Em">Em</form:option>
+														<form:option value="Vợ">Vợ</form:option>
+													</form:select>
+													<form:errors path="quanHe"
 														cssStyle="color:red;display:block"></form:errors>
 												</div>
 											</div>
 											<div class="col-xl-4 col-lg-6 col-md-12 mb-1">
 												<div class="form-group">
-													<label for="roundText">Xếp Loại</label>
-													<form:input path="xepLoai" type="text" id="roundText"
+													<label for="roundText">Họ Tên</label>
+													<form:input path="hoTen" type="text" id="roundText"
 														class="form-control round" />
-													<form:errors path="xepLoai"
+													<form:errors path="hoTen"
 														cssStyle="color:red;display:block"></form:errors>
 												</div>
 											</div>
 											<div class="col-xl-4 col-lg-6 col-md-12 mb-1">
 												<div class="form-group">
-													<label for="roundText">Nơi Cấp</label>
-													<form:input path="noiCap" type="text" id="roundText"
+													<label for="roundText">Quê Quán</label>
+													<form:input path="queQuan" type="text" id="roundText"
 														class="form-control round" />
-													<form:errors path="noiCap"
+													<form:errors path="queQuan"
 														cssStyle="color:red;display:block"></form:errors>
 												</div>
 											</div>
 											<div class="col-xl-4 col-lg-6 col-md-12 mb-1">
 												<div class="form-group">
-													<label for="roundText">Ngày Cấp</label>
-													<div class="position-relative has-icon-left">
-														<form:input path="ngayCap" type="date" id="roundText"
-															class="form-control round" />
-														<form:errors path="ngayCap"
-															cssStyle="color:red;display:block"></form:errors>
-														<div class="form-control-position">
-															<i class="ft-message-square"></i>
-														</div>
-													</div>
+													<label for="roundText">Nơi Ở Hiện Nay</label>
+													<form:input path="noiOHienNay" type="text" id="roundText"
+														class="form-control round" />
+													<form:errors path="noiOHienNay"
+														cssStyle="color:red;display:block"></form:errors>
 												</div>
 											</div>
-											<div class="col-xl-6 col-lg-6 col-md-12 mb-1">
+											<div class="col-xl-4 col-lg-6 col-md-12 mb-1">
+												<div class="form-group">
+													<label for="roundText">Nghề Nghiệp</label>
+													<form:input path="ngheNghiep" type="text" id="roundText"
+														class="form-control round" />
+													<form:errors path="ngheNghiep"
+														cssStyle="color:red;display:block"></form:errors>
+												</div>
+											</div>
+											<div class="col-xl-4 col-lg-6 col-md-12 mb-1">
+												<div class="form-group">
+													<label for="roundText">SDT</label>
+													<form:input path="sdt" type="text" id="roundText"
+														class="form-control round" />
+													<form:errors path="sdt"
+														cssStyle="color:red;display:block"></form:errors>
+												</div>
+											</div>
+											<div class="col-xl-12 col-lg-6 col-md-12 mb-1">
 												<div class="form-group">
 													<input class="btn btn-success" type="submit" value="Save" />
 													<a class="btn btn-info"
-														href="/ffse-fbms/QuanTriNhanSuPikalong/QuanLiBangCap/viewOneBangCap/${maNv}">View</a>
+														href="/ffse-fbms/QuanTriNhanSuPikalong/QuanLiGiaDinh/viewOneGiaDinh/${maNv}">View</a>
 												</div>
 											</div>
 										</form:form>

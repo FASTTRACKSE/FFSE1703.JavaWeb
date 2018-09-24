@@ -18,7 +18,7 @@ public class BangCapPikalong {
 	private int id;
 	
 	@Column(name = "ChuyenNganh")
-	@NotEmpty(message="Chuyên Ngành Không được để trống !")
+	@NotEmpty(message="Chuyên Ngành Không được để trống !")	
 	private String chuyenNganh;
 	
 	@Column(name = "XepLoai")
@@ -41,7 +41,10 @@ public class BangCapPikalong {
 
 	@Column(name = "IsActive")
 	private int isActive;
-
+	
+//	@ManyToOne
+//	@JoinColumn(name = "MaNv", nullable = false)
+//	private HoSoNhanVienPikalong hoSoNhanVienPikalong;
 
 	public int getId() {
 		return id;

@@ -89,9 +89,10 @@ public class HopDongServiceTTImpl implements HopDongServiceTT {
 	}
 
 	@Override
+	@Transactional
 	public HoSoNhanVienTT getHoSoNhanVienById(int maNhanVien) {
 		// TODO Auto-generated method stub
-		return null;
+		return this.quanLyHopDongDaoTT.findByMaNhanVien(maNhanVien);
 	}
 
 	public HopDongServiceTTImpl() {
@@ -111,6 +112,19 @@ public class HopDongServiceTTImpl implements HopDongServiceTT {
 		// TODO Auto-generated method stub
 		this.quanLyHopDongDaoTT.removeHopDong(maHopDong);
 		
+	}
+
+	
+	@Transactional
+	public List<HoSoNhanVienTT> getAllNhanVien() {
+		return this.quanLyHopDongDaoTT.getAllNhanVien();
+	}
+
+	@Override
+	@Transactional
+	public List<HopDongTT> viewOne(int maNhanVien) {
+		// TODO Auto-generated method stub
+		return this.quanLyHopDongDaoTT.viewOne(maNhanVien);
 	}
 
 }

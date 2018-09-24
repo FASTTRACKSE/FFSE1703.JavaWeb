@@ -39,11 +39,11 @@ public class QuanLyHoSoControllerTT {
 	@Autowired
 	private TinhThanhServiceTT tinhThanhServiceTT;
 
-	@SuppressWarnings("unused")
+	
 	@Autowired
 	private QuanHuyenServiceTT quanHuyenServiceTT;
 
-	@SuppressWarnings("unused")
+
 	@Autowired
 	private XaPhuongServiceTT xaPhuongServiceTT;
 
@@ -135,10 +135,10 @@ public class QuanLyHoSoControllerTT {
 		
 		for(int i= 0; i < listPhuong.size(); i++) {
 			if(i == listPhuong.size() - 1) {
-				json += "{\"maxa\": \"" + listPhuong.get(i).getMaxa() + "\", " + "\"tenxa\": \"" + listPhuong.get(i).getTenxa() + "\"}" ;
+				json += "{\"maXa\": \"" + listPhuong.get(i).getMaxa() + "\", " + "\"tenXa\": \"" + listPhuong.get(i).getTenxa() + "\"}" ;
 			}
 			else {
-				json += "{\"tenxa\": \"" + listPhuong.get(i).getTenxa() + "\", " + "\"tenxa\": \"" + listPhuong.get(i).getTenxa() + "\"}" + "," ;
+				json += "{\"maXa\": \"" + listPhuong.get(i).getMaxa() + "\", " + "\"tenXa\": \"" + listPhuong.get(i).getTenxa() + "\"}" + "," ;
 			}
 		}
 		json+= "]";

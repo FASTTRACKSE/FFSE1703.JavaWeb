@@ -79,8 +79,7 @@
 										class="table table-striped table-bordered zero-configuration">
 										<thead>
 											<tr>
-												<th>Mã hợp đồng</th>
-												<th>Mã nhân viên</th>
+												
 												<th>Tên loại hợp đồng</th>
 												<th>Lương Tháng 13</th>
 												<th>Số Ngày Phép</th>
@@ -93,34 +92,32 @@
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach items="${listHopDong}" var="hshd">
+											<c:forEach items="${viewOne}" var="hs">
 												<tr>
-													<td>${hshd.maHopDong}</td>
-													<td>${hshd.hoSoNhanVienTT.maNhanVien}</td> 
-													<td>${hshd.loaiHopDong.tenHopDong}</td>
-													<td><c:if test="${hshd.luongThang13 == 1}">
+													<td>${hs.loaiHopDong.tenHopDong}</td>
+													<td><c:if test="${hs.luongThang13 == 1}">
 															<spring:message code="label.co" />
-														</c:if> <c:if test="${hshd.luongThang13 == 2}">
+														</c:if> <c:if test="${hs.luongThang13 == 2}">
 															<spring:message code="label.khong" />
 														</c:if>
 													</td>
-													<td>${hshd.soNgayPhep}</td>
-													<td>${hshd.ngayKy}</td>
-													<td>${hshd.hopDongTuNgay}</td>
-													<td>${hshd.hopDongDenNgay}</td>
-													<td><c:if test="${hshd.trangThai == 1}">
+													<td>${hs.soNgayPhep}</td>
+													<td>${hs.ngayKy}</td>
+													<td>${hs.hopDongTuNgay}</td>
+													<td>${hs.hopDongDenNgay}</td>
+													<td><c:if test="${hs.trangThai == 1}">
 															<spring:message code="label.conHopDong" />
-														</c:if> <c:if test="${hshd.trangThai == 2}">
+														</c:if> <c:if test="${hs.trangThai == 2}">
 															<spring:message code="label.hetHopDong" />
 														</c:if>
 													</td>
 													 <td
 														style="letter-spacing: 5px; min-width: 75px; text-align: center !important;">
-														<a href="<c:url value = "/quanlynhansutt/viewOneBangCap/${hshd.hoSoNhanVienTT.maNhanVien}"/>"><i class="fa fa-eye"></i></a>
-														<a href="<c:url value = "/quanlynhansutt/edit/${hshd.hoSoNhanVienTT.maNhanVien}"/>"><i class="fa fa-pencil"></i></a>
+														<a href="<c:url value = ""/>"><i class="fa fa-eye"></i></a>
+														<a href="<c:url value = "/quanlynhansutt/edit/${hs.maHopDong}"/>"><i class="fa fa-pencil"></i></a>
 														<%-- <a href="<c:url value = ""/>"><i class="fa fa-trash"></i></a> --%>
 														<a
-											href='<c:url value = "/quanlynhansutt/remove/${hshd.maHopDong}"></c:url>'
+											href='<c:url value = "/quanlynhansutt/remove/${hs.maHopDong}"></c:url>'
 											class="fa fa-trash"
 											onclick="return confirm('Bạn có muốn xóa sinh viên này?');"></a>
 														

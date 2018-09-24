@@ -74,5 +74,12 @@ public class ThongTinBangCapServiceTTImpl implements ThongTinBangCapServiceTT {
 		return this.thongTinBangCapDaoTT.ListBangCap();
 	}
 
+	@Override
+	@Transactional
+	public ThongTinBangCapTT findByBangCap(int id) {
+		// TODO Auto-generated method stub
+		return this.thongTinBangCapDaoTT.findByBangCap(id);
+	}
+
 
 }

@@ -2,6 +2,7 @@ package fasttrackse.ffse1703.fbms.controller.quanlynhansutt;
 
 import java.io.IOException;
 
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.HopDongTT;
 import fasttrackse.ffse1703.fbms.service.quanlynhansutt.HopDongServiceTT;
 import fasttrackse.ffse1703.fbms.service.quanlynhansutt.LoaiHopDongServiceTT;
-import fasttrackse.ffse1703.fbms.service.security.ChucDanhService;
+import fasttrackse.ffse1703.fbms.service.quanlynhansutt.QuanLyHoSoServiceTT;
 
 @Controller
 @RequestMapping("/quanlynhansutt/")
@@ -27,7 +28,8 @@ public class QuanLyHopDongControllerTT {
 	private LoaiHopDongServiceTT loaiHopDongServiceTT;
 
 	@Autowired
-	private ChucDanhService chucDanhService;
+	private QuanLyHoSoServiceTT quanLyHoSoServiceTT;
+
 	@Autowired
 	private HopDongServiceTT hopDongServiceTT;
 
@@ -47,34 +49,38 @@ public class QuanLyHopDongControllerTT {
 		this.hopDongServiceTT = hopDongServiceTT;
 	}
 
+	public void setQuanLyHoSoServiceTT(QuanLyHoSoServiceTT quanLyHoSoServiceTT) {
+		this.quanLyHoSoServiceTT = quanLyHoSoServiceTT;
+	}
+
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String viewHopDong(Model model) {
 		model.addAttribute("listHopDong", hopDongServiceTT.getAllHopDong());
 		return "QuanLyNhanSuTT/QuanLyHopDongTT/list";
 	}
 
-	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public String showFormAdd(Model model, final RedirectAttributes redirectAttributes) {
+	@RequestMapping(value = "/add/{maNhanVien}", method = RequestMethod.GET)
+	public String showFormAdd(Model model, final RedirectAttributes redirectAttributes, @PathVariable int maNhanVien) {
 		model.addAttribute("hopDongTT", new HopDongTT());
-		model.addAttribute("listChucDanh", chucDanhService.findAll());
+		model.addAttribute("hosonv", hopDongServiceTT.getHoSoNhanVienById(maNhanVien));
 		model.addAttribute("listLoaiHopDong", loaiHopDongServiceTT.findAll());
 		return "QuanLyNhanSuTT/QuanLyHopDongTT/add_form";
 	}
 
-	@RequestMapping("/edit/{maHopDong}")
-	public String showFormUpdate(@PathVariable("maHopDong") int maHopDong, Model model)
+	@RequestMapping("/edit/{maNhanVien}")
+	public String showFormUpdate(@PathVariable("maNhanVien") int maNhanVien, Model model)
 			throws IllegalStateException, IOException {
-		model.addAttribute("hopDongTT", hopDongServiceTT.findByMaHopDong(maHopDong));
+		model.addAttribute("hopDongTT", hopDongServiceTT.findByMaHopDong(maNhanVien));
 		model.addAttribute("listLoaiHopDong", loaiHopDongServiceTT.findAll());
 		return "QuanLyNhanSuTT/QuanLyHopDongTT/edit_form";
 	}
-    
+
 	@RequestMapping("/remove/{maHopDong}")
 	public String remove(@PathVariable("maHopDong") int maHopDong) {
 		hopDongServiceTT.removeHopDong(maHopDong);
 		return "redirect:/quanlynhansutt/";
 	}
-	
+
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String saveHopDong(@ModelAttribute("hopDongTT") @Valid HopDongTT hd, BindingResult result) {
 		if (hd.getMaHopDong() == 0) {
@@ -86,11 +92,19 @@ public class QuanLyHopDongControllerTT {
 			hopDongServiceTT.addHopDong(hd);
 		} else {
 			// existing person, call update
-		if (result.hasErrors()) {
+			if (result.hasErrors()) {
 				return "QuanLyNhanSuTT/QuanLyHopDongTT/edit_form";
 			}
 			hopDongServiceTT.updateHopDong(hd);
 		}
-		return "redirect:/quanlynhansutt/";
+		return "redirect:/quanlynhansutt/" ;
 	}
+	
+	@RequestMapping("/viewOneBangCap/{maNhanVien}")
+	public String viewOneBangCap( @PathVariable int maNhanVien,Model model) {
+		model.addAttribute("viewOne",this.hopDongServiceTT.viewOne(maNhanVien));
+		model.addAttribute("maNhanVien", maNhanVien);
+		return "QuanLyNhanSuTT/QuanLyHopDongTT/viewOneHopDong";
+	}
+
 }

@@ -13,4 +13,5 @@ public interface ThongTinBangCapServiceTT {
 	public List<String> getDeleteList(List<ThongTinBangCapTT> listThongTinBangcap);
 	public List<String> getErrorList(BindingResult bindingResult) ;
 	public List<ThongTinBangCapTT> listBangCap();
+	public ThongTinBangCapTT findByBangCap(int id);
 }

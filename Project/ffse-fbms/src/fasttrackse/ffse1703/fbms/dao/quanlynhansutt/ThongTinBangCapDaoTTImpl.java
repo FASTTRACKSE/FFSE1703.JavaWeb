@@ -45,4 +45,11 @@ public class ThongTinBangCapDaoTTImpl implements ThongTinBangCapDaoTT {
 		return listBangCap;
 	}
 
+	@Override
+	public ThongTinBangCapTT findByBangCap(int id) {
+		// TODO Auto-generated method stub
+		Session session = this.sessionFactory.getCurrentSession();
+		return session.get(ThongTinBangCapTT.class, id);
+	}
+
 }

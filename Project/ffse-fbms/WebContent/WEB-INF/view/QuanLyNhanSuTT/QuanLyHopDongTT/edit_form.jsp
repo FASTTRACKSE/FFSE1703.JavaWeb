@@ -80,13 +80,13 @@
 
 
 															</div>
-															<div class="form-group col-sm-6">
+															<%-- <div class="form-group col-sm-6">
 																<label>Mã Chức Danh</label>
 																<form:input class="form-control"
 																	path="chucDanh.maChucDanh"
 																	placeholder="Mã Loại Chức Danh" />
 
-															</div>
+															</div> --%>
 														</div>
 													</div>
 												</div>

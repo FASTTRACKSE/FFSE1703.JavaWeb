@@ -94,7 +94,7 @@
 											<c:forEach items="${listBangCap}" var="hsnv">
 												<tr>
 													<td>${hsnv.id}</td>
-													<td>${hsnv.hoSoNhanVien.maNhanVien}</td>
+													<td>${hsnv.hoSoNhanVienTT.maNhanVien}</td>
 													<td>${hsnv.tenBangCap}</td>
 													<td>${hsnv.loaiBangCap}</td>
 													<td>${hsnv.donViCap}</td>

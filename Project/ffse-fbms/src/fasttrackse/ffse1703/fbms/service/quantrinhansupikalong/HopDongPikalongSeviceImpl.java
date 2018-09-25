@@ -37,6 +37,12 @@ public class HopDongPikalongSeviceImpl implements HopDongPikalongSevice {
 	
 	@Override
 	@Transactional
+	public void update(HopDongPikalong hd) {
+		this.hopDongPikalongDao.update(hd);
+	}
+	
+	@Override
+	@Transactional
 	public String getAutoId() {
 		return this.hopDongPikalongDao.getAutoId();
 	}

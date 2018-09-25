@@ -45,12 +45,12 @@ public class HopDongPikalongController {
 			return "QuanTriNhanSuPikalong/ThongTinHopDong/view/ViewThongTinHopDong";
 	}
 	
-	@RequestMapping(value = "formaddhd/11" + "", method = RequestMethod.GET)
-	public String addHopDong(Model model) {
+	@RequestMapping(value = "formaddhd/12" + "", method = RequestMethod.GET)
+	public String addFormHd(Model model) {
 		String lastMaHd = this.hopDongPikalongService.getLastMaHd();
 		System.out.println(lastMaHd);
 		
-		model.addAttribute("hsnv", hoSoNhanVienPikalongService.getEdit(11));
+		model.addAttribute("hsnv", hoSoNhanVienPikalongService.getEdit(12));
 		model.addAttribute("hopDongPikalong", new HopDongPikalong());
 		model.addAttribute("lastMaHd", lastMaHd);
 		return "QuanTriNhanSuPikalong/ThongTinHopDong/FormAddHd"; 
@@ -58,7 +58,7 @@ public class HopDongPikalongController {
 	
 	
 	@RequestMapping(value = "save", method = RequestMethod.POST)
-	public String addSave(@ModelAttribute("formHopDong") HopDongPikalong hd, Model model) {
+	public String addSaveHd(@ModelAttribute("formHopDong") HopDongPikalong hd, Model model) {
 		
 		int maNv= hd.getHoSoNhanVienPikalong().getMaNv();
 		HoSoNhanVienPikalong hsnv = this.hoSoNhanVienPikalongService.getEdit(maNv);
@@ -68,6 +68,11 @@ public class HopDongPikalongController {
 		model.addAttribute("hoSoNhanVien", hsnv);
 		return "redirect:/QuanTriNhanSu/quanlihopdong/";
 	}
+	
+//	@RequestMapping(value = "formedithd", method = RequestMethod.GET)
+//	public String editFormHd(Model model) {
+//		
+//	}
 	
 }
 

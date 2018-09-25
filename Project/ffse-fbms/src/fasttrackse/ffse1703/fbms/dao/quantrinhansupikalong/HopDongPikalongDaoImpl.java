@@ -33,6 +33,12 @@ public class HopDongPikalongDaoImpl implements HopDongPikalongDao {
 		session.save(hd);
 	}
 	
+	@Override
+	public void update(HopDongPikalong hd) {
+		Session session = this.sessionFactory.getCurrentSession();
+		session.update(hd);
+	}
+	
 	@SuppressWarnings("rawtypes")
 	@Override
 	public String getAutoId() {
@@ -56,6 +62,7 @@ public class HopDongPikalongDaoImpl implements HopDongPikalongDao {
 			lastMaHd = query.getSingleResult().toString();
 		}
 		return lastMaHd;
+		
 	}
 	@SuppressWarnings("rawtypes")
 	@Override

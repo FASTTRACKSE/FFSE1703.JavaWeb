@@ -55,6 +55,13 @@ public class ProgramingLanguageTeam1ServiceImpl implements ProgramingLanguageTea
 		
 	}
 
+	@Override
+	@Transactional
+	public int getMa(String maNgonNgu) {
+		// TODO Auto-generated method stub
+		return this.languageDao.getMa(maNgonNgu);
+	}
+
 
 
 }

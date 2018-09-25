@@ -35,20 +35,27 @@ public String addForm(Model model, final RedirectAttributes redirectAttributes) 
 }
 
 @RequestMapping(value = { "/creat" }, method = RequestMethod.POST)
-public String creat(@ModelAttribute("vaitro") @Valid VaiTroThanhVienTeam1 vendorTeam1, BindingResult result , RedirectAttributes redirectAttributes) {
-	if(vaiTroService.getById(vendorTeam1.getMavt())!=null) {
-		vaiTroService.setIsDelete(vendorTeam1.getMavt());
-		vaiTroService.update(vendorTeam1);
-		return "redirect:list";
-		}	
+public String creat(@ModelAttribute("vaitro") @Valid VaiTroThanhVienTeam1 vaitro1, BindingResult result,
+		RedirectAttributes redirectAttributes) {
 
-	
 	if (result.hasErrors()) {
-		return "QuanLyDuAn/VaiTro/addVaiTro";
+		return "QuanLyDuAn/VaiTro/add";
 	}
-	redirectAttributes.addFlashAttribute("message", "<script>alert('Creat successfully.');</script>");
 
-	vaiTroService.addNew(vendorTeam1);
+	if (vaiTroService.getById(vaitro1.getMavt()) != null) {
+		VaiTroThanhVienTeam1 db = vaiTroService.getById(vaitro1.getMavt());
+		if (db.getIsDelete() == 1) {
+			vaiTroService.update(vaitro1);
+			return "redirect:list";
+
+		} else {
+			redirectAttributes.addFlashAttribute("message", "<script>alert('Mã Vai Trò Đã Tồn Tại.');</script>");
+			return "redirect:/QuanLyDuAn/VaiTro/add";
+		}
+	}
+	
+	redirectAttributes.addFlashAttribute("message", "<script>alert('Creat successfully.');</script>");
+	vaiTroService.addNew(vaitro1);
 	return "redirect:list";
 }
 

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import fasttrackse.ffse1703.fbms.entity.quanlyduan.ProgramingLanguageTeam1;
+import fasttrackse.ffse1703.fbms.entity.quanlyduan.VaiTroThanhVienTeam1;
 import fasttrackse.ffse1703.fbms.entity.quanlyduan.VendorTeam1;
 
 
@@ -58,6 +59,13 @@ public class ProgramingLanguageTeam1DaoImpl implements ProgramingLanguageTeam1Da
 		Session session=this.sessionFactory.getCurrentSession();
 		session.update(maNgonNgu);
 		
+	}
+
+	@Override
+	public int getMa(String maNgonNgu) {
+		Session session = this.sessionFactory.getCurrentSession();
+		List<ProgramingLanguageTeam1> db = session.createQuery("from ProgramingLanguageTeam1 where maNn = '"+maNgonNgu+"' AND isDelete =0", ProgramingLanguageTeam1.class).list();	
+		return  db.size();
 	}
 
 

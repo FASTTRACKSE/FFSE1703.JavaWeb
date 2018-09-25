@@ -7,7 +7,7 @@
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 <div class="app-content content container-fluid">
 	<div class="content-wrapper">
-			<div class="content-header row">
+		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-xs-12 mb-2">
 				<h3 class="content-header-title mb-0">Update ngôn ngữ</h3>
 				<div class="row breadcrumbs-top">
@@ -31,24 +31,27 @@
 				</h1>
 			</div>
 		</div>
-		<form:form method="POST" action="/ffse-fbms/QuanLyDuAn/Language/update"
+		<form:form method="POST"
+			action="/ffse-fbms/QuanLyDuAn/Language/update"
 			modelAttribute="language">
 
 
-<%-- 			<div class="form-group col-sm-6">
+			<%-- 			<div class="form-group col-sm-6">
 				<input type="hidden" name="${_csrf.parameterName}"
 					value="${_csrf.token}" />
 
 			</div> --%>
 			<div class="form-group col-sm-6">
 				<label>Mã Ngôn Ngữ</label>
-				<form:input class="form-control" path="maNn" placeholder="Mã Ngôn Ngữ" />
-				<form:errors path="maNn" cssStyle="color: red"></form:errors> 
+				<form:input class="form-control" path="maNn"
+					placeholder="Mã Ngôn Ngữ" />
+				<form:errors path="maNn" cssStyle="color: red"></form:errors>
 
 			</div>
 			<div class="form-group col-sm-6">
 				<label>Tên Ngôn Ngữ</label>
-				<form:input class="form-control" path="tenNn" placeholder="Tên Ngôn Ngữ" />
+				<form:input class="form-control" path="tenNn"
+					placeholder="Tên Ngôn Ngữ" />
 				<form:errors path="tenNn" cssStyle="color: red"></form:errors>
 
 			</div>
@@ -56,6 +59,9 @@
 				<button type="submit" class="btn btn-success">Sữa thông tin</button>
 			</div>
 		</form:form>
+		<c:if test="${message !=null }">
+						 ${message }
+			</c:if>
 	</div>
 </div>
 

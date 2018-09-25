@@ -53,6 +53,9 @@
 				<button type="submit" class="btn btn-success">Lưu thông tin</button>
 			</div>
 		</form:form>
+						<c:if test="${message !=null }">
+						 ${message }
+			</c:if>
 	</div>
 </div>
 

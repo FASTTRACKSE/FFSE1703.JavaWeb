@@ -20,5 +20,7 @@ public interface ProgramingLanguageTeam1Service {
 	public void update(ProgramingLanguageTeam1 nn);
 
 	public void setIsDelete(String maNgonNgu);
+	
+	public int getMa(String maNgonNgu);
 
 }

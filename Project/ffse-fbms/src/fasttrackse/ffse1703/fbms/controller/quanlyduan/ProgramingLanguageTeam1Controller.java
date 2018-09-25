@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fasttrackse.ffse1703.fbms.entity.quanlyduan.ProgramingLanguageTeam1;
+import fasttrackse.ffse1703.fbms.entity.quanlyduan.VaiTroThanhVienTeam1;
 import fasttrackse.ffse1703.fbms.service.quanlyduan.ProgramingLanguageTeam1Service;
 
 @Controller
@@ -34,20 +35,27 @@ public class ProgramingLanguageTeam1Controller {
 		return "QuanLyDuAn/ProgramingLanguage/addLanguage";
 	}
 	@RequestMapping(value = { "/creat" }, method = RequestMethod.POST)
-	public String creat(@ModelAttribute("language") @Valid ProgramingLanguageTeam1 vendorTeam1, BindingResult result , RedirectAttributes redirectAttributes) {
-		if(languageService.getById(vendorTeam1.getMaNn())!=null) {
-			languageService.setIsDelete(vendorTeam1.getMaNn());
-			languageService.update(vendorTeam1);
-			return "redirect:list";
-			}	
+	public String creat(@ModelAttribute("language") @Valid ProgramingLanguageTeam1 language1, BindingResult result,
+			RedirectAttributes redirectAttributes) {
 
-		
 		if (result.hasErrors()) {
-			return "QuanLyDuAn/Vendor/addVendor";
+			return "QuanLyDuAn/Language/add";
 		}
-		redirectAttributes.addFlashAttribute("message", "<script>alert('Creat successfully.');</script>");
 
-		languageService.addNew(vendorTeam1);
+		if (languageService.getById(language1.getMaNn()) != null) {
+			ProgramingLanguageTeam1 db = languageService.getById(language1.getMaNn());
+			if (db.getIsDelete() == 1) {
+				languageService.update(language1);
+				return "redirect:list";
+
+			} else {
+				redirectAttributes.addFlashAttribute("message", "<script>alert('Mã Ngôn Ngữ Đã Tồn Tại.');</script>");
+				return "redirect:/QuanLyDuAn/Language/add";
+			}
+		}
+		
+		redirectAttributes.addFlashAttribute("message", "<script>alert('Creat successfully.');</script>");
+		languageService.addNew(language1);
 		return "redirect:list";
 	}
 	

@@ -59,7 +59,7 @@ public class TrangThaiTeam1DaoImpl implements TrangThaiTeam1Dao{
 	@Override
 	public List<TrangThaiTeam1> findAllForPaging(int startPosition, int maxResult) {
 		Session session = this.sessionFactory.getCurrentSession();
-		return session.createQuery("from tinh_trang").setFirstResult(startPosition).setMaxResults(maxResult).list();
+		return session.createQuery("FROM TrangThaiTeam1 where is_delete=0").setFirstResult(startPosition).setMaxResults(maxResult).list();
 	}
 
 }

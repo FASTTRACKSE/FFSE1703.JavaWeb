@@ -4,14 +4,13 @@ package fasttrackse.ffse1703.fbms.entity.qlynhiemvuminhhq;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "cong_viec")
-public class CongViec {
+public class CongViecMinhHQ {
 	
 	@Id
 	@Column(name = "ID")
@@ -21,6 +20,11 @@ public class CongViec {
 	@Column(name = "ten_cong_viec")
 	@NotEmpty
 	private String tenCongViec;
+	
+//	@ManyToOne(fetch = FetchType.EAGER,cascade= CascadeType.MERGE)
+//	@JoinColumn(name="ma_tinh_trang",referencedColumnName="ma_tinh_trang", insertable=true, updatable=true)
+//	@NotNull
+//	private TinhTrang tinhTrang ;
 	
 	@Column(name = "loai_cong_viec")
 	@NotEmpty
@@ -58,7 +62,7 @@ public class CongViec {
 	@NotNull
 	private int isDelete;
 	
-	@OneToMany(mappedBy = "congViec")
+//	@OneToMany(mappedBy = "congViec")
 
 	public int getID() {
 		return ID;

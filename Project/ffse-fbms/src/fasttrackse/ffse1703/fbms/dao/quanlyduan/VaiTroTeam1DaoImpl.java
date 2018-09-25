@@ -66,4 +66,11 @@ public class VaiTroTeam1DaoImpl implements VaiTroTeam1Dao{
 		return  db.size();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<VaiTroThanhVienTeam1 > findAllForPaging(int startPosition, int maxResult) {
+		Session session = this.sessionFactory.getCurrentSession();
+		return session.createQuery("from VaiTroThanhVienTeam1 where isDelete =0").setFirstResult(startPosition).setMaxResults(maxResult).list();
+	}
+
 }

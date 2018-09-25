@@ -1,11 +1,8 @@
 package fasttrackse.ffse1703.fbms.controller.qlynhiemvuhieulp;
 
 import java.io.IOException;
-
-
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +22,7 @@ public class QLyNhiemVuController {
 	@Autowired
 	private QLyNhiemVuService qLyNhiemVuService;
 	
+	
 	@RequestMapping(value = "/view/{ID}", method = RequestMethod.GET)
 	public String viewOneChucDanh(@PathVariable("ID") int id, Model model) {
 		model.addAttribute("nv", qLyNhiemVuService.findById(id));
@@ -33,6 +31,7 @@ public class QLyNhiemVuController {
 	@RequestMapping(value = {"/","/danhsach"})
 	public String danhSach(Model model) {
 		model.addAttribute("danhsach",qLyNhiemVuService.getAll());
+//		System.out.println(qLyNhiemVuService.getAll());
 		return "QuanLyNhiemVuHieuLP/list";
 	}
 	

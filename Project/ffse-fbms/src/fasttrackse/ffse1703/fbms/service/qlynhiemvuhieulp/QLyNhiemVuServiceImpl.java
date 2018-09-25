@@ -31,7 +31,6 @@ public class QLyNhiemVuServiceImpl implements QLyNhiemVuService {
 	@Override
 	@Transactional
 	public QLyNhiemVuEntity findById(int id) {
-		// TODO Auto-generated method stub
 		return this.qLyNhiemVuDao.findById(id) ;
 	}
 

@@ -63,4 +63,10 @@ public class VendorTeam1ServiceImpl implements VendorTeam1Service{
 		return this.vendorDao.getMa(maVendor);
 	}
 
+	@Override
+	@Transactional
+	public List<VendorTeam1> findAllForPaging(int startPosition, int maxResult) {
+		return this.vendorDao.findAllForPaging(startPosition, maxResult);
+	}
+
 }

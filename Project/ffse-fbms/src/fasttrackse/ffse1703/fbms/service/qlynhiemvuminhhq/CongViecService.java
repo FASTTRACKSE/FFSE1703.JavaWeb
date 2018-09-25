@@ -2,26 +2,29 @@ package fasttrackse.ffse1703.fbms.service.qlynhiemvuminhhq;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
-import fasttrackse.ffse1703.fbms.entity.qlynhiemvuminhhq.CongViec;
+import fasttrackse.ffse1703.fbms.entity.qlynhiemvuminhhq.CongViecMinhHQ;
+import fasttrackse.ffse1703.fbms.entity.qlynhiemvuminhhq.LoaiCongViecMinhHQ;
+import fasttrackse.ffse1703.fbms.entity.qlynhiemvuminhhq.TrangThaiMinhHQ;
 
 
 
 
  public interface CongViecService {
- 	public List<CongViec> findAll();
+ 	public List<CongViecMinhHQ> findAll();
 
- 	public void addNew(CongViec cv);
+ 	public void addNew(CongViecMinhHQ cv);
 
- 	public void update(CongViec cv);
+ 	public void update(CongViecMinhHQ cv);
 
- 	public void delete(CongViec cv);
+ 	public void delete(CongViecMinhHQ cv);
 
- 	public CongViec findByID(int ID);
+ 	public CongViecMinhHQ findByID(int ID);
 	
- 	public List<CongViec> findAll(int iDisplayStart, int iDisplayLength, String sql);
-	
+ 	public List<CongViecMinhHQ> findAll(int iDisplayStart, int iDisplayLength, String sql);
+ 	
+ 	public List<TrangThaiMinhHQ> trangThai();
+ 	
+ 	public List<LoaiCongViecMinhHQ> loaiCongViec();
 // 	public String getRecordsTotal();
 //	
 // 	public String getRecordsFiltered(String sql);

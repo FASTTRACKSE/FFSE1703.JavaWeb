@@ -33,7 +33,7 @@ public class GiaDinhPikalongController {
 		if (result.hasErrors()) {
 			return "QuanTriNhanSuPikalong/QuanLiGiaDinh/formAddGiaDinhPikalong";
 		}
-		//check trùng
+		//check trùng quan hệ
 				int checkQuanHe= giaDinhPikalongService.checkQuanHe(p.getQuanHe(), p.getMaNV());
 				System.out.println("ggsggggg"+checkQuanHe);
 				System.out.println("ggsggggg"+p.getQuanHe());

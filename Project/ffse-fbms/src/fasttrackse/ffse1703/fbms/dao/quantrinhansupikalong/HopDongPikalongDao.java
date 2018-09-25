@@ -9,5 +9,5 @@ public interface HopDongPikalongDao {
 	public void insert(HopDongPikalong hd);
 	public String getAutoId();
 	public String getLastMaHd();
-	public HopDongPikalong getHopDongById();
+	public HopDongPikalong getHopDongById(int maNv);
 }

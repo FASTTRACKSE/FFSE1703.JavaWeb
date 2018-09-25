@@ -7,8 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -16,6 +14,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "quan_ly_nhiem_vu")
 public class QLyNhiemVuEntity {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID", unique = true, nullable = false, length = 11)
@@ -45,8 +44,9 @@ public class QLyNhiemVuEntity {
 	@NotNull
 	private Date tgKetthuc;
 
+//	@ManyToOne(fetch = FetchType.EAGER,optional = false)
+//	@JoinColumn(name = "ma_nhan_vien" , referencedColumnName = "ma_nhan_vien" , insertable = true , updatable = true)
 	@Column(name = "ma_nhan_vien")
-	@NotNull
 	private String nhanVien;
 
 	public String getNhanVien() {
@@ -151,6 +151,14 @@ public class QLyNhiemVuEntity {
 
 	public void setIsDelete(int isDelete) {
 		this.isDelete = isDelete;
+	}
+
+	@Override
+	public String toString() {
+		return "QLyNhiemVuEntity [ID=" + ID + ", duAn=" + duAn + ", loaiCongviec=" + loaiCongviec + ", tenCongviec="
+				+ tenCongviec + ", moTa=" + moTa + ", tgBatdau=" + tgBatdau + ", tgKetthuc=" + tgKetthuc + ", nhanVien="
+				+ nhanVien + ", tgDukienhoanthanh=" + tgDukienhoanthanh + ", loaiTrangthai=" + loaiTrangthai
+				+ ", isDelete=" + isDelete + "]";
 	}
 
 }

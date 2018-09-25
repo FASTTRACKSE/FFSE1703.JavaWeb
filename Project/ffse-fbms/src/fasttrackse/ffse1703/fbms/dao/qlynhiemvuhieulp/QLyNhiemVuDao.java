@@ -1,7 +1,6 @@
 package fasttrackse.ffse1703.fbms.dao.qlynhiemvuhieulp;
 
 import java.util.List;
-
 import fasttrackse.ffse1703.fbms.entity.qlynhiemvuhieulp.DuAnEntityHieuLp;
 import fasttrackse.ffse1703.fbms.entity.qlynhiemvuhieulp.LoaicongviecEntity;
 import fasttrackse.ffse1703.fbms.entity.qlynhiemvuhieulp.LoaitrangthaiEntity;

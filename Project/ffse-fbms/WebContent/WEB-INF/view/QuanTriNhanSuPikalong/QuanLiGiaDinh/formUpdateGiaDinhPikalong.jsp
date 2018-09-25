@@ -94,8 +94,8 @@
 											</div>
 											<div class="col-xl-12 col-lg-6 col-md-12 mb-1">
 												<div class="form-group">
-													<input class="btn btn-success" type="submit" value="Save" />
-													<a class="btn btn-info"
+													<input class="btn btn-outline-success round" type="submit" value="Save" />
+													<a class="btn btn-outline-info round"
 														href="/ffse-fbms/QuanTriNhanSuPikalong/QuanLiGiaDinh/viewOneGiaDinh/${maNv}">View</a>
 												</div>
 											</div>

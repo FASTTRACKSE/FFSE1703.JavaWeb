@@ -38,7 +38,7 @@ public class GiaDinhPikalongController {
 				System.out.println("ggsggggg"+checkQuanHe);
 				System.out.println("ggsggggg"+p.getQuanHe());
 				if(checkQuanHe >=1) {
-					model.addAttribute("messageQuanHe", "Nhân Viên đã có quan hệ này");
+					model.addAttribute("messageQuanHe","<script>alert('Nhân Viên Đã Có "+p.getQuanHe()+"');</script>");
 					return "QuanTriNhanSuPikalong/QuanLiGiaDinh/formAddGiaDinhPikalong";
 				}
 		giaDinhPikalongService.addGiaDinhPikalong(p);
@@ -56,7 +56,7 @@ public class GiaDinhPikalongController {
 	}
 
 	@RequestMapping("/remove/{id}")
-	public String removeOneGiaDinh(@PathVariable("id") int id, GiaDinhPikalong p) {
+	public String removeOneGiaDinh(@PathVariable int id, GiaDinhPikalong p) {
 		p = giaDinhPikalongService.getGiaDinhPikalongById(id);
 		giaDinhPikalongService.removeGiaDinhPikalong(id);
 		return "redirect:/QuanTriNhanSuPikalong/QuanLiGiaDinh/viewOneGiaDinh/" + p.getMaNV();

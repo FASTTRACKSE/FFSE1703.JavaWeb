@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -256,15 +257,25 @@
 								href="<c:url value="/Quanlyvangnghi1703004/danhsachbituchoi"/>"
 								class="menu-item">Danh sách bị từ chối</a></li>
 						</ul></li>
-						<li class=" nav-item pbho_so"><a href="#"><i
+					<li class=" nav-item pbho_so"><a href="#"><i
 							class="ft-users"></i><span data-i18n="" class="menu-title">Thống
 								kê ngày nghỉ</span></a>
 						<ul class="menu-content">
-						    <li><a
+							<li><a
 								href="<c:url value="/Quanlyvangnghi1703004/danhsachngaynghi"/>"
 								class="menu-item">Danh sách ngày nghỉ</a></li>
 						</ul></li>
-
+					<!-- Quản Lý Nhân Sự Pikalong -->
+					<li class=" navigation-header"><span>PKL-Quản Trị Nhân
+							Sự</span><i class=" ft-minus" data-toggle="tooltip"
+						data-placement="right" data-original-title="Others"></i></li>
+					<li class=" nav-item"><a href="#"><i class="ft-layers"></i><span
+							class="menu-title" data-i18n="">Quản Lý Hồ Sơ</span></a>
+						<ul class="menu-content">
+							<li><a class="menu-item"
+								href="/ffse-fbms/quantrinhansu/hosonhanvien/">Hồ Sơ Nhân Viên</a></li>
+						</ul></li>
+					<!-- Quản Lý Nhân Sự Pikalong -->
 					<!-- Quản Lý Nhân Sự TT -->
 					<li class=" navigation-header"><span>Team Quản Lý Nhân
 							Sự TT</span><i class=" ft-minus" data-toggle="tooltip"
@@ -272,22 +283,26 @@
 					<li class=" nav-item"><a href="#"><i class="ft-layers"></i><span
 							class="menu-title" data-i18n="">Quản Lý Hồ Sơ</span></a>
 						<ul class="menu-content">
-							<li><a class="menu-item" href="/ffse-fbms/quanlynhansutt/ho_so/">Hồ Sơ Nhân Viên</a></li>
+							<li><a class="menu-item"
+								href="/ffse-fbms/quanlynhansutt/ho_so/">Hồ Sơ Nhân Viên</a></li>
 							<li><a class="menu-item" href="#">Thông Tin Gia Đình</a></li>
 						</ul></li>
 					<li class=" nav-item"><a href="#"><i class="ft-layers"></i><span
 							class="menu-title" data-i18n="">Quản Lý Hợp Đồng</span></a>
 						<ul class="menu-content">
 							<li><a class="menu-item" href="#">Hồ Sơ Hợp Đồng</a></li>
-							<li><a class="menu-item" href="/ffse-fbms/quanlynhansutt/hop_dong/">Danh
-									Sách Hợp Đồng</a></li>
+							<li><a class="menu-item"
+								href="/ffse-fbms/quanlynhansutt/hop_dong/">Danh Sách Hợp
+									Đồng</a></li>
 						</ul></li>
 					<li class=" nav-item"><a href="#"><i
 							class="fa fa-id-card-o"></i><span class="menu-title" data-i18n="">Quản
 								Lý Bằng Cấp</span></a>
 						<ul class="menu-content">
 							<li><a class="menu-item" href="#">Hồ Sơ Bằng Cấp</a></li>
-							<li><a class="menu-item" href="/ffse-fbms/quanlynhansutt/bang_cap/">Danh Sách Bằng Cấp</a></li>
+							<li><a class="menu-item"
+								href="/ffse-fbms/quanlynhansutt/bang_cap/">Danh Sách Bằng
+									Cấp</a></li>
 						</ul></li>
 					<!-- Quản Lý Nhân Sự TT  -->
 					<!--  MVP- Quản lí Dự Án -->

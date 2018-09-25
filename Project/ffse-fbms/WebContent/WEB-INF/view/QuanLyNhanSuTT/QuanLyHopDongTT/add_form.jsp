@@ -17,7 +17,7 @@
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/home" />'>Home</a></li>
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/quanlynhansutt/" />'>Danh sách hợp đồng</a></li>
+								href='<c:url value="/quanlynhansutt/hop_dong/" />'>Danh sách hợp đồng</a></li>
 							<li class="breadcrumb-item active">Thêm mới hợp đồng</li>
 						</ol>
 					</div>
@@ -47,7 +47,7 @@
 							</div>
 							<div class="card-body collapse in">
 								<div class="card-block">
-									<form:form method="POST" action="/ffse-fbms/quanlynhansutt/save"
+									<form:form method="POST" action="/ffse-fbms/quanlynhansutt/hop_dong/save"
 										modelAttribute="hopDongTT">
 										<div class="form-body">
 											<div class="row">

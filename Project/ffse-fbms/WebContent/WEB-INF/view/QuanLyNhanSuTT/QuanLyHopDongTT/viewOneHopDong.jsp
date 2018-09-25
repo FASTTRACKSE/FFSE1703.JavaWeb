@@ -8,20 +8,20 @@
 
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 <style type="text/css">
-		.table td {
-			vertical-align: baseline;
-		}
-		
-		th, td {
-			padding-left: 1rem !important;
-			padding-right: 1rem !important;
-		}
-		
-		#datatable tr td:last-child {
-			letter-spacing: 15px;
-			min-width: 100px;
-			text-align: center !important;
-		}
+.table td {
+	vertical-align: baseline;
+}
+
+th, td {
+	padding-left: 1rem !important;
+	padding-right: 1rem !important;
+}
+
+#datatable tr td:last-child {
+	letter-spacing: 15px;
+	min-width: 100px;
+	text-align: center !important;
+}
 </style>
 <div class="app-content content container-fluid">
 	<div class="content-wrapper">
@@ -36,7 +36,8 @@
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="<c:url value = "/"/>"><spring:message
 										code="label.trangChu" /></a></li>
-							<li class="breadcrumb-item"><a href="<c:url value = "/quanlyhoso/"/>"><spring:message
+							<li class="breadcrumb-item"><a
+								href="<c:url value = "/quanlyhoso/"/>"><spring:message
 										code="label.quanLyNhanSu" /></a></li>
 							<li class="breadcrumb-item"><a href="javascript:void(0)"><spring:message
 										code="label.quanLyHopDong" /></a></li>
@@ -49,7 +50,7 @@
 			<div class="content-header-right col-md-3 col-xs-12">
 				<div role="group" aria-label="Button group with nested dropdown"
 					class="btn-group float-md-right" id="add-new">
-					<a href="<c:url value = "/quanlynhansutt/add/${maNhanVien}"/>"
+					<a href="<c:url value = "/quanlynhansutt/hop_dong/add/${maNhanVien}"/>"
 						class="btn btn-primary"><span class="fa fa-plus"></span> Thêm
 						mới</a>
 				</div>
@@ -79,7 +80,7 @@
 										class="table table-striped table-bordered zero-configuration">
 										<thead>
 											<tr>
-												
+
 												<th>Tên loại hợp đồng</th>
 												<th>Lương Tháng 13</th>
 												<th>Số Ngày Phép</th>
@@ -99,8 +100,7 @@
 															<spring:message code="label.co" />
 														</c:if> <c:if test="${hs.luongThang13 == 2}">
 															<spring:message code="label.khong" />
-														</c:if>
-													</td>
+														</c:if></td>
 													<td>${hs.soNgayPhep}</td>
 													<td>${hs.ngayKy}</td>
 													<td>${hs.hopDongTuNgay}</td>
@@ -109,47 +109,22 @@
 															<spring:message code="label.conHopDong" />
 														</c:if> <c:if test="${hs.trangThai == 2}">
 															<spring:message code="label.hetHopDong" />
-														</c:if>
-													</td>
-													 <td
+														</c:if></td>
+													<td
 														style="letter-spacing: 5px; min-width: 75px; text-align: center !important;">
 														<a href="<c:url value = ""/>"><i class="fa fa-eye"></i></a>
-														<a href="<c:url value = "/quanlynhansutt/edit/${hs.maHopDong}"/>"><i class="fa fa-pencil"></i></a>
-														<%-- <a href="<c:url value = ""/>"><i class="fa fa-trash"></i></a> --%>
 														<a
-											href='<c:url value = "/quanlynhansutt/remove/${hs.maHopDong}"></c:url>'
-											class="fa fa-trash"
-											onclick="return confirm('Bạn có muốn xóa sinh viên này?');"></a>
-														
-													</td> 
+														href="<c:url value = "/quanlynhansutt/hop_dong/edit_hopdong/${hs.maHopDong}"/>"><i
+															class="fa fa-pencil"></i></a> <%-- <a href="<c:url value = ""/>"><i class="fa fa-trash"></i></a> --%>
+														<a
+														href='<c:url value = "/quanlynhansutt/hop_dong/remove/${hs.maHopDong}"></c:url>'
+														class="fa fa-trash"
+														onclick="return confirm('Bạn có muốn xóa sinh viên này?');"></a>
+
+													</td>
 												</tr>
 											</c:forEach>
-										<!-- 	<div class="modal fade" id="confirm-delete" tabindex="-1"
-												role="dialog" aria-labelledby="myModalLabel"
-												aria-hidden="true">
-												<div class="modal-dialog">
-													<div class="modal-content">
 
-														<div class="modal-header">
-															<button type="button" class="close" data-dismiss="modal"
-																aria-hidden="true">&times;</button>
-															<h4 class="modal-title" id="myModalLabel">Bạn có
-																chắc muốn xóa</h4>
-														</div>
-
-														<div class="modal-body">
-															<p>Bạn có chắc muốn xóa</p>
-															<p class="debug-url"></p>
-														</div>
-
-														<div class="modal-footer">
-															<button type="button" class="btn btn-default"
-																data-dismiss="modal">Quay lại</button>
-															<a class="btn btn-danger btn-ok">Xóa</a>
-														</div>
-													</div>
-												</div>
-											</div> -->
 										</tbody>
 									</table>
 								</div>
@@ -164,38 +139,4 @@
 	</div>
 </div>
 <!-- ////////////////////////////////////////////////////////////////////////////-->
-	<!-- 	<script>
-												window.onload = function() {
-													$('#confirm-delete')
-															.on(
-																	'show.bs.modal',
-																	function(e) {
-																		$(this)
-																				.find(
-																						'.btn-ok')
-																				.attr(
-																						'href',
-																						$(
-																								e.relatedTarget)
-																								.data(
-																										'href'));
-																	});
-													$("#datatable").dataTable()
-															.fnDestroy();
-													$("#datatable")
-															.dataTable(
-																	{
-																		responsive : true,
-																		"order" : [
-																				[
-																						6,
-																						"asc" ],
-																				[
-																						0,
-																						"desc" ] ],
-																		"bServerSide" : true,
-																		"sAjaxSource" : "/ffse-fbms/quanlynhansutt/${maPhongBan}/view/getListHopDong",
-																	});
-												};
-											</script> -->
 <jsp:include page="/WEB-INF/view/templates/footer.jsp" />

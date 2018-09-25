@@ -2,7 +2,6 @@ package fasttrackse.ffse1703.fbms.controller.quanlynhansutt;
 
 import java.io.IOException;
 
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,7 @@ import fasttrackse.ffse1703.fbms.service.quanlynhansutt.LoaiHopDongServiceTT;
 import fasttrackse.ffse1703.fbms.service.quanlynhansutt.QuanLyHoSoServiceTT;
 
 @Controller
-@RequestMapping("/quanlynhansutt/")
+@RequestMapping("/quanlynhansutt/hop_dong/")
 public class QuanLyHopDongControllerTT {
 
 	@Autowired
@@ -52,35 +51,35 @@ public class QuanLyHopDongControllerTT {
 	public void setQuanLyHoSoServiceTT(QuanLyHoSoServiceTT quanLyHoSoServiceTT) {
 		this.quanLyHoSoServiceTT = quanLyHoSoServiceTT;
 	}
-
+    //List tất cả hợp đồng
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String viewHopDong(Model model) {
 		model.addAttribute("listHopDong", hopDongServiceTT.getAllHopDong());
 		return "QuanLyNhanSuTT/QuanLyHopDongTT/list";
 	}
-
-	@RequestMapping(value = "/add/{maNhanVien}", method = RequestMethod.GET)
+    //thêm hợp đồng cho một nhân viên
+	@RequestMapping(value = "/add_hopdong/{maNhanVien}", method = RequestMethod.GET)
 	public String showFormAdd(Model model, final RedirectAttributes redirectAttributes, @PathVariable int maNhanVien) {
 		model.addAttribute("hopDongTT", new HopDongTT());
 		model.addAttribute("hosonv", hopDongServiceTT.getHoSoNhanVienById(maNhanVien));
 		model.addAttribute("listLoaiHopDong", loaiHopDongServiceTT.findAll());
 		return "QuanLyNhanSuTT/QuanLyHopDongTT/add_form";
 	}
-
-	@RequestMapping("/edit/{maNhanVien}")
+    //sửa hợp đồng cho nhân viên
+	@RequestMapping("/edit_hopdong/{maNhanVien}")
 	public String showFormUpdate(@PathVariable("maNhanVien") int maNhanVien, Model model)
 			throws IllegalStateException, IOException {
 		model.addAttribute("hopDongTT", hopDongServiceTT.findByMaHopDong(maNhanVien));
 		model.addAttribute("listLoaiHopDong", loaiHopDongServiceTT.findAll());
 		return "QuanLyNhanSuTT/QuanLyHopDongTT/edit_form";
 	}
-
+    //xóa hợp đồng
 	@RequestMapping("/remove/{maHopDong}")
 	public String remove(@PathVariable("maHopDong") int maHopDong) {
 		hopDongServiceTT.removeHopDong(maHopDong);
 		return "redirect:/quanlynhansutt/";
 	}
-
+    //lưu phần thêm,sửa cho nhân viên
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String saveHopDong(@ModelAttribute("hopDongTT") @Valid HopDongTT hd, BindingResult result) {
 		if (hd.getMaHopDong() == 0) {
@@ -97,12 +96,12 @@ public class QuanLyHopDongControllerTT {
 			}
 			hopDongServiceTT.updateHopDong(hd);
 		}
-		return "redirect:/quanlynhansutt/" ;
+		return "redirect:/quanlynhansutt/hop_dong/";
 	}
-	
-	@RequestMapping("/viewOneBangCap/{maNhanVien}")
-	public String viewOneBangCap( @PathVariable int maNhanVien,Model model) {
-		model.addAttribute("viewOne",this.hopDongServiceTT.viewOne(maNhanVien));
+    //viewOneHopDong Nhân Viên
+	@RequestMapping("/viewOneHopDong/{maNhanVien}")
+	public String viewOneBangCap(@PathVariable int maNhanVien, Model model) {
+		model.addAttribute("viewOne", this.hopDongServiceTT.viewOne(maNhanVien));
 		model.addAttribute("maNhanVien", maNhanVien);
 		return "QuanLyNhanSuTT/QuanLyHopDongTT/viewOneHopDong";
 	}

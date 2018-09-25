@@ -18,7 +18,7 @@ import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.ThongTinBangCapTT;
 import fasttrackse.ffse1703.fbms.service.quanlynhansutt.ThongTinBangCapServiceTT;
 
 @Controller
-@RequestMapping("/quanlybangcap/")
+@RequestMapping("/quanlynhansutt/bang_cap/")
 public class ThongTinBangCapControllerTT {
 	@Autowired
 	private ThongTinBangCapServiceTT thongTinBangCapServiceTT;

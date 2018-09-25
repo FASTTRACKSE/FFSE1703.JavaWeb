@@ -24,7 +24,7 @@ import fasttrackse.ffse1703.fbms.service.security.ChucDanhService;
 import fasttrackse.ffse1703.fbms.service.security.PhongBanService;
 
 @Controller
-@RequestMapping("/quanlyhoso/")
+@RequestMapping("/quanlynhansutt/ho_so/")
 public class QuanLyHoSoControllerTT {
 
 	@Autowired

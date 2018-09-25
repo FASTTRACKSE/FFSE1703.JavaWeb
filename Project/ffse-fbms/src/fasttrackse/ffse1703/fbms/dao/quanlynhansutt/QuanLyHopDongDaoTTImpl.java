@@ -110,7 +110,7 @@ public class QuanLyHopDongDaoTTImpl implements QuanLyHopDongDaoTT {
 		// TODO Auto-generated method stub
 		Session session = this.sessionFactory.openSession();
 		@SuppressWarnings("rawtypes")
-		Query query = session.createQuery("from HopDongTT where ma_nhan_vien = ma_nhan_vien and trang_thai = trang_thai ");
+		Query query = session.createQuery("from HopDongTT where ma_nhan_vien = "+maNhanVien+" and trang_thai = 1 ");
 		/*query.setParameter("ma_nhan_vien", maNhanVien);
 		query.setParameter("trang_thai", 0);*/
 		@SuppressWarnings("unchecked")

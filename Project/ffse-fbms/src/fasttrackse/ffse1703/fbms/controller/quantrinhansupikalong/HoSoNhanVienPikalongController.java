@@ -67,6 +67,8 @@ public class HoSoNhanVienPikalongController {
 	
 	private static final String UPLOAD_DIRECTORY ="/upload"; 
 	
+	HoSoNhanVienPikalong getNhanVien = new HoSoNhanVienPikalong();
+	
 	@RequestMapping("/")
 	public String index(Model model) {
 		List<HoSoNhanVienPikalong> nhanVienList = hoSoNhanVienPikalongService.listNhanVien();
@@ -75,7 +77,7 @@ public class HoSoNhanVienPikalongController {
 	}
 	
 	@RequestMapping("delete/{maNv}") // delete employee
-	public String delete(@PathVariable int maNv) {
+	public String delete(@PathVariable String maNv) {
 		hoSoNhanVienPikalongService.delete(maNv);
 		return "redirect:/quantrinhansu/hosonhanvien/";
 	}
@@ -95,6 +97,11 @@ public class HoSoNhanVienPikalongController {
 			BindingResult result, @RequestParam("file") MultipartFile file, HttpSession session) throws IOException {
 		ServletContext context = session.getServletContext();
 		String path = context.getRealPath(UPLOAD_DIRECTORY);
+		File fileUpload = new File(path);
+		 if (!fileUpload.exists()) {
+			 fileUpload.mkdir();
+		 }
+
 		String filename = file.getOriginalFilename();
 		System.out.println(path + " " + filename);
 		byte[] bytes = file.getBytes();  
@@ -154,7 +161,8 @@ public class HoSoNhanVienPikalongController {
 
 	
 	@RequestMapping(value= "editform/{maNv}", method= RequestMethod.GET)
-	public String editform(Model model, @PathVariable int maNv) {
+	public String editform(Model model, @PathVariable String maNv) {
+		getNhanVien = hoSoNhanVienPikalongService.getEdit(maNv);
 		model.addAttribute("formHosopkl", hoSoNhanVienPikalongService.getEdit(maNv));
 		model.addAttribute("listQuocTich", quocTichPikalongService.listQuocTich());
 		model.addAttribute("listThanhPho",  thanhPhoPikalongService.listTinhThanh());
@@ -166,9 +174,16 @@ public class HoSoNhanVienPikalongController {
 	@RequestMapping(value= "update", method= RequestMethod.POST)
 	public String editSave(@ModelAttribute("formHosopkl") HoSoNhanVienPikalong hoSoNhanVienPikalong, 
 			BindingResult result, @RequestParam("file") MultipartFile file, HttpSession session) throws IOException {
+		hoSoNhanVienPikalong.setAvatar(getNhanVien.getAvatar());
+		
 		ServletContext context = session.getServletContext();
 		String path = context.getRealPath(UPLOAD_DIRECTORY);
+		File fileUpload = new File(path);
+		 if (!fileUpload.exists()) {
+			 fileUpload.mkdir();
+		 }
 		String filename = file.getOriginalFilename();
+		if(!filename.isEmpty()) { // khi người dùng ko thay đổi ảnh đại diện
 		System.out.println(path + " " + filename);
 		byte[] bytes = file.getBytes();  
 	    BufferedOutputStream stream =new BufferedOutputStream(new FileOutputStream(  
@@ -177,6 +192,7 @@ public class HoSoNhanVienPikalongController {
 	    stream.write(bytes);  
 	    stream.flush();  
 	    stream.close();
+		}
 		hoSoNhanVienPikalongService.update(hoSoNhanVienPikalong);
 		return "redirect:/quantrinhansu/hosonhanvien/";
 	}
@@ -186,8 +202,8 @@ public class HoSoNhanVienPikalongController {
 	
 	// page view
 	@RequestMapping("view/{maNv}")
-	public String view() {
-		
+	public String view(@PathVariable String maNv, Model model) {
+		model.addAttribute("maNv", maNv);
 		return "QuanTriNhanSuPikalong/ThongTinHoSo/view";
 	}
 	

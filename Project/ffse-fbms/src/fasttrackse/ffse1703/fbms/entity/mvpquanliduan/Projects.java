@@ -17,9 +17,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 import fasttrackse.ffse1703.fbms.entity.security.PhongBan;
 
 @Entity
@@ -32,69 +35,93 @@ public class Projects implements Serializable {
 
 	@Id
 	@Column(name = "id_project")
+	@NotEmpty
 	private String idProject;
 
 	@Column(name = "name_project")
+	@NotEmpty
 	private String nameProject;
 
 	@Column(name = "start_date")
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@NotNull
 	private Date startDate;
 
 	@Column(name = "end_date")
 	@Temporal(TemporalType.DATE)
+	@NotNull
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date endDate;
 
 	@Column(name = "project_details")
 	private String detail;
-
+	
+	
+	// bi-directional many-to-one association to KhachHang
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "id_customer", referencedColumnName = "id_customer", insertable = true, updatable = true)
+	@NotEmpty
 	private KhachHang khachHang;
-
+	
+	// bi-directional many-to-one association to PhongBan
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "id_project_room", referencedColumnName = "ma_phong_ban", insertable = true, updatable = true)
+	@NotEmpty
 	private PhongBan roomProject;
-
+	
+	// bi-directional many-to-one association to Status
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "id_status", referencedColumnName = "id_status", insertable = true, updatable = true)
+	@NotEmpty
 	private StatusProject status;
 
+	// bi-directional many-to-one association to Doamin
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "id_domain", referencedColumnName = "id_domain", insertable = true, updatable = true)
+	@NotEmpty
 	private Domain domain;
-
+	
+	// bi-directional many-to-many association to Technical
 	@ManyToMany(targetEntity = Technical.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "qlda_technical_project", joinColumns = {
-	@JoinColumn(name = "id_technical", updatable = true,insertable=true) }, inverseJoinColumns = {
-	@JoinColumn(name = "id_project",nullable = true, updatable = false,insertable=true) })
+	@JoinColumn(name = "id_technical") }, inverseJoinColumns = {
+	@JoinColumn(name = "id_project") })
 	private Set<Technical> technical;
 
+	// bi-directional many-to-many association to Database
 	@ManyToMany(targetEntity = Database.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "qlda_database_project", joinColumns = {
-			@JoinColumn(name = "id_database") }, inverseJoinColumns = { @JoinColumn(name = "id_project") })
+	@JoinColumn(name = "id_database") }, inverseJoinColumns = { 
+	@JoinColumn(name = "id_project") })
 	private Set<Database> database;
 
+	// bi-directional many-to-many association to Framework
 	@ManyToMany(targetEntity = Framework.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "qlda_framework_project", joinColumns = {
-	@JoinColumn(name = "id_framework",  updatable = true,insertable=true) }, inverseJoinColumns = {
-	@JoinColumn(name = "id_project",nullable = true, updatable = false,insertable=true) })
+	@JoinColumn(name = "id_framework") }, inverseJoinColumns = {
+	@JoinColumn(name = "id_project") })
 	private Set<Framework> framework;
 	
+	// bi-directional many-to-many association to Language
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "qlda_prolanguage_project", joinColumns = { @JoinColumn(name = "id_prolanguage") }, inverseJoinColumns = {
+	@JoinTable(name = "qlda_prolanguage_project", joinColumns = {
+	@JoinColumn(name = "id_prolanguage") }, inverseJoinColumns = {
 	@JoinColumn(name = "id_project") })
 	private Set<Language> language;
 
+	// bi-directional many-to-many association to Vendor
 	@ManyToMany(targetEntity = Vendor.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinTable(name = "qlda_vendor_project", joinColumns = { @JoinColumn(name = "id_vendor") }, inverseJoinColumns = {
+	@JoinTable(name = "qlda_vendor_project", joinColumns = { 
+	@JoinColumn(name = "id_vendor") }, inverseJoinColumns = {
 	@JoinColumn(name = "id_project") })
 	private Set<Vendor> vendor;
-
+	
+	
 	@Column(name = "isdelete")
 	private int isDelete;
+	
+	
 
 	public String getIdProject() {
 		return idProject;

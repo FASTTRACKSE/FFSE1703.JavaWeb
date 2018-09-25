@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Projects;
+import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 
 @Repository
 public class ProjectDAOImpl implements ProjectDAO {
@@ -18,7 +19,7 @@ public class ProjectDAOImpl implements ProjectDAO {
 	@Override
 	public List<Projects> findAll() {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("from Projects where status = 1", Projects.class).list();
+		return session.createQuery("from Projects where isDelete = 1", Projects.class).list();
 	}
 	@Override
 	public int checkNameProjects(String nameProjects) {
@@ -58,6 +59,11 @@ public class ProjectDAOImpl implements ProjectDAO {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.update(Projects);
 
+	}
+	@Override
+	public List<HoSoNhanVien> getPm(String maPhongBan){
+		Session session = sessionFactory.getCurrentSession();
+		return session.createQuery("from HoSoNhanVien where trangThai = 1 and phongBan = '"+maPhongBan+"'", HoSoNhanVien.class).list();
 	}
 
 }

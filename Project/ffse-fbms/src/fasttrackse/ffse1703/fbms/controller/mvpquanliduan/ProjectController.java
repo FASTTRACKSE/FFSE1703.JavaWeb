@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -32,6 +33,7 @@ import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Projects;
 import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.StatusProject;
 import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Technical;
 import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Vendor;
+import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 import fasttrackse.ffse1703.fbms.entity.security.PhongBan;
 import fasttrackse.ffse1703.fbms.service.mvpquanliduan.DatabaseServices;
 import fasttrackse.ffse1703.fbms.service.mvpquanliduan.DomainService;
@@ -95,36 +97,53 @@ public class ProjectController {
 	public String detailProject(Model model, @PathVariable String id) {
 		
 		Projects pr = projectService.findById(id);
-		System.out.println("technical la"+pr.getDatabase());
 		model.addAttribute("project", pr);
 		return "MvpQuanLiDuAn/project/detailproject";
+	}
+	@RequestMapping(value = "/show-form-edit/{id}")
+	public String showFormEdit(Model model, @PathVariable String id) {
+		Projects pr = projectService.findById(id);
+		model.addAttribute("projects", pr);
+		return "MvpQuanLiDuAn/project/updateproject";
+	}
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String update(@Valid @ModelAttribute("projects") Projects project, BindingResult result,
+			final RedirectAttributes redirectAttributes,Model model) {
+		if (result.hasErrors()) {
+			model.addAttribute("projects", project);
+			return "MvpQuanLiDuAn/domain/updatedomain";
+		}
+		project.setIsDelete(1);
+		projectService.update(project);
+		return "redirect: detail-project/"+project.getIdProject();
+	}
+	@RequestMapping(value = "/delete/{id}")
+	public String delete(@PathVariable String id, final RedirectAttributes redirectAttributes) {
+		Projects pr = projectService.findById(id);
+		pr.setIsDelete(0);
+		projectService.update(pr);
+		redirectAttributes.addFlashAttribute("messageSuccess", "Thành công..");
+		return "redirect: /ffse-fbms/mvpquanliduan/project/list-project";
 	}
 	@RequestMapping(value = "/addnew", method = RequestMethod.POST)
 	public String addNew(@Valid @ModelAttribute("command") Projects project, BindingResult result,
 			final RedirectAttributes redirectAttributes, Model model) {
 		
 		//validation form 
-//		if (result.hasErrors()) {
-//			return "MvpQuanLiDuAn/project/addproject";
-//		}
+		if (result.hasErrors()) {
+			return "MvpQuanLiDuAn/project/addproject";
+		}
 		//check trùng nameproject
-//		int checkName= projectService.checkNameProjects(project.getNameProject());
-//		if(checkName >=1) {
-//			model.addAttribute("messageName", "Tên Du an đã được sử dụng");
-//			return "MvpQuanLiDuAn/project/addproject";
-//		}
-//		int checkMa= projectService.checkMaProjects(project.getIdProject());
-//		if(checkMa >=1) {
-//			model.addAttribute("messageMa", "Mã Du an đã được sử dụng");
-//			return "MvpQuanLiDuAn/project/addproject";
-//		}
-		
-		System.out.println("name project la"+project.getNameProject());
-		System.out.println("khách hàng là"+ project.getKhachHang());
-		System.out.println("end date là"+ project.getEndDate());
-		System.out.println("start date là"+ project.getStartDate());
-		System.out.println("framework là"+ project.getFramework());
-		System.out.println();
+		int checkName= projectService.checkNameProjects(project.getNameProject());
+		if(checkName >=1) {
+			model.addAttribute("messageName", "Tên Du an đã được sử dụng");
+			return "MvpQuanLiDuAn/project/addproject";
+		}
+		int checkMa= projectService.checkMaProjects(project.getIdProject());
+		if(checkMa >=1) {
+			model.addAttribute("messageMa", "Mã Du an đã được sử dụng");
+			return "MvpQuanLiDuAn/project/addproject";
+		}
 		project.setIsDelete(1);
 		projectService.addNew(project);
 		redirectAttributes.addFlashAttribute("success", "<script>alert('Thêm thành công');</script>");
@@ -165,6 +184,28 @@ public class ProjectController {
 			}
 		});
 	}
+//	@RequestMapping(value= "get-pm/{maPhongBan}", method= RequestMethod.GET, produces= "text/plain;charset=UTF-8")
+//	@ResponseBody
+//	public String selectQuan(@PathVariable String maPhongBan) {
+//		List<HoSoNhanVien> listPM = projectService.getPm(maPhongBan);
+//		
+//		String json = "[";
+//		
+//		for(int i =0; i < listPM.size(); i++) {
+//			
+//			if (i == listPM.size() - 1) {
+//				json += "{\"maNhanVien\":" + "\"" + listPM.get(i).getMaNhanVien() + "\"" + ", \"tenNhanVien\" :" + "\"" + listPM.get(i).getHoDem() + listPM.get(i).getTen() + "\"" + "}";
+//			} else {
+//				json += "{\"maNhanVien\":" + "\"" + listPM.get(i).getMaNhanVien() + "\"" + ", \"tenNhanVien\" :" + "\"" + listPM.get(i).getHoDem()  + listPM.get(i).getTen() + "\"" + "},";
+//			}
+//		}
+//		json += "]";
+//		
+//		return json;
+//		
+//	}
+	
+	//Get model cho các form
 	@ModelAttribute("khachHang")
 	public List<KhachHang> itemKhachHang(){
 		return  khachHangService.getAll();

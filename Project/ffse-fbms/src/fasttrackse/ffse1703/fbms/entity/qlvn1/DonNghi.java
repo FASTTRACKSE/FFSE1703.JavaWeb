@@ -1,7 +1,7 @@
 package fasttrackse.ffse1703.fbms.entity.qlvn1;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,40 +20,31 @@ public class DonNghi implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@NotEmpty
 	@Column(name = "id_don")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String id_don;
 
-	@NotEmpty
 	@Column(name="id_nv")
 	private String id_nv;
 
-	@NotEmpty
-	@Column(name = "id_nghi")
-	private String id_nghi;
-
-	@NotEmpty
 	@Column(name = "ten_nv")
 	private String ten_nv;
 
-	@NotEmpty
 	@Column(name = "phong_ban")
 	private String phong_ban;
 
-	@NotEmpty
 	@Column(name = "ly_do")
-	private Date ly_do;
+	private String ly_do;
 
-	@NotEmpty
 	@Column(name = "tg_bat_dau")
 	private Date tg_bat_dau;
 
-	@NotEmpty
 	@Column(name = "tg_ket_thuc")
 	private Date tg_ket_thuc;
 
-	@NotEmpty
+	@Column(name = "tinh_trang")
+	private String tinh_trang;
+	
 	@Column(name = "ghi_chu")
 	private String ghi_chu;
 	
@@ -64,11 +55,7 @@ public class DonNghi implements Serializable{
 	public void setGhi_chu(String ghi_chu) {
 		this.ghi_chu = ghi_chu;
 	}
-
-	@NotEmpty
-	@Column(name = "tinh_trang")
-	private String tinh_trang;
-
+	
 	public String getId_don() {
 		return id_don;
 	}
@@ -83,14 +70,6 @@ public class DonNghi implements Serializable{
 
 	public void setId_nv(String id_nv) {
 		this.id_nv = id_nv;
-	}
-
-	public String getId_nghi() {
-		return id_nghi;
-	}
-
-	public void setId_nghi(String id_nghi) {
-		this.id_nghi = id_nghi;
 	}
 
 	public Date getTg_bat_dau() {
@@ -117,11 +96,11 @@ public class DonNghi implements Serializable{
 		this.tinh_trang = tinh_trang;
 	}
 
-	public Date getLy_do() {
+	public String getLy_do() {
 		return ly_do;
 	}
 
-	public void setLy_do(Date ly_do) {
+	public void setLy_do(String ly_do) {
 		this.ly_do = ly_do;
 	}
 

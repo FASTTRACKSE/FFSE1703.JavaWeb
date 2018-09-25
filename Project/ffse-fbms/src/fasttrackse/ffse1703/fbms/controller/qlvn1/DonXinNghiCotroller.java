@@ -16,7 +16,6 @@ import fasttrackse.ffse1703.fbms.entity.qlvn1.DonNghi;
 import fasttrackse.ffse1703.fbms.entity.qlvn1.LyDo;
 import fasttrackse.ffse1703.fbms.entity.qlvn1.TinhTrangNghi;
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
-import fasttrackse.ffse1703.fbms.entity.security.PhongBan;
 import fasttrackse.ffse1703.fbms.entity.security.UserAccount;
 import fasttrackse.ffse1703.fbms.service.qlvn1.QuanLyVangNghiService;
 
@@ -55,15 +54,20 @@ public class DonXinNghiCotroller {
 	}
 
 	@RequestMapping(value = "/savenhap", method = RequestMethod.GET)
-	public String saveNhap(Model model, @ModelAttribute("donNghi") DonNghi dn,
-			final RedirectAttributes redirectAttributes) {
+	public String saveNhap(Model model, @ModelAttribute("donNghi") DonNghi dn,Authentication auth) {
 		dn.setTinh_trang("lưu nháp");
+		System.out.println(dn.getId_nv());
+		System.out.println(dn.getLy_do());
+		System.out.println(dn.getPhong_ban());
+		System.out.println(dn.getTen_nv());
 		service.addDon(dn);
 		return "QuanLyVangNghi/luunhap";
 	}
 	
-	@RequestMapping(value = "/luunhap", method = RequestMethod.GET)
+	@RequestMapping(value = "/luunhap")
 	public String viewLuuNhap(Model model) {
+		model.addAttribute("command",new DonNghi());
+		
 		return "QuanLyVangNghi/luunhap";
 	}
 

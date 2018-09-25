@@ -55,7 +55,7 @@
 			</div>
 			<div class="content-body">
 				<!-- Inputs Icons start -->
-<form method="GET" commandName="donNghi">
+                
 				<div class="row match-height">
 					<div class="col-md-12">
 						<div class="card">
@@ -92,8 +92,7 @@
 
 
 
-									<form id="donxinnghi" class="form"
-										action="QuanLyVangNghi/danhsach" method="post">
+									<form id="donxinnghi" class="form" method="POST" modelAttribute="donNghi" action="savenhap">
 										<div class="form-body">
 
 											<h4 class="form-section">
@@ -440,34 +439,30 @@
 												<i class="fa fa-tags"></i> Ghi chú*
 											</h4>
 
-											<div class="row">
+											<!-- <div class="row">
 												<div class="form-group col-xs-12 mb-2 has-icon-left">
-													<textarea id="ghi_chu" name="ghi_chu"
-														placeholder="Ghi chú ... (Tối đa 255 kí tự)"
-														class="form-control round" rows="9"></textarea>
-
+													<input  name="ghi_chu" type="text"
+																class="form-control round" 	>
 													<div class="form-control-position">
 														<i class="fa fa-keyboard-o"></i>
 													</div>
 												</div>
-											</div>
-
+											</div> -->
+											<input  name="ghi_chu" type="text"
+																class="form-control round" 	>
 											<div class="form-actions">
 												<button type="submit" class="btn btn-primary"
-													formaction="savenhap">
+													>
 													<i class="fa ft-save"></i> Lưu nháp
 												</button>
-												<button type="submit" class="btn btn-success">
-													formaction="/QuanLyVangNghi/danhsach"> <i
-														class="fa fa-check-square-o"></i> Gửi đơn chờ phê duyệt
+												<button type="submit" class="btn btn-success" formaction="danhsach">
+													 <i class="fa fa-check-square-o"></i> Gửi đơn chờ phê duyệt
 												</button>
 												<a href="QuanLyVangNghi/danhsach">
 													<button type="button" class="btn btn-warning mr-1">
 														<i class="fa fa-arrow-circle-left"></i> Quay lại
 													</button>
 												</a>
-
-
 											</div>
 										</div>
 									</form>
@@ -477,7 +472,6 @@
 					</div>
 					<!-- Inputs Icons end -->
 				</div>
-				</form>
 			</div>
 		</div>
 	</div>

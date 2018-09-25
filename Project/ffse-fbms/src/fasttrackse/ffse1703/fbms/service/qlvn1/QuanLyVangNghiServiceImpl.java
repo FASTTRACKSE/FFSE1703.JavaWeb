@@ -46,14 +46,12 @@ public class QuanLyVangNghiServiceImpl implements QuanLyVangNghiService {
 	@Transactional
 	@Override
 	public TinhTrangNghi getTinhTrang(int id_nv) {
-		// TODO Auto-generated method stub
 		return this.qlvnDao.getTinhTrang(id_nv);
 	}
 
 	@Transactional
 	@Override
 	public List<LyDo> listLyDo() {
-		// TODO Auto-generated method stub
 		return this.qlvnDao.listLyDo();
 	}
 

@@ -66,7 +66,7 @@ public class HopDongPikalongDaoImpl implements HopDongPikalongDao {
 	}
 	@SuppressWarnings("rawtypes")
 	@Override
-	public HopDongPikalong getHopDongById(int maNv) {
+	public HopDongPikalong getHopDongById(String maNv) {
 		Session session = this.sessionFactory.getCurrentSession();
 		Query query = session.createQuery("from HopDongPikalong where maNv = " + maNv + "");
 		HopDongPikalong lastIdHopDong = (HopDongPikalong) query.getSingleResult();

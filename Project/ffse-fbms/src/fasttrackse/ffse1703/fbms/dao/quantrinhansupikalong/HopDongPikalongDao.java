@@ -10,5 +10,5 @@ public interface HopDongPikalongDao {
 	public void update(HopDongPikalong hd);
 	public String getAutoId();
 	public String getLastMaHd();
-	public HopDongPikalong getHopDongById(int maNv);
+	public HopDongPikalong getHopDongById(String maNv);
 }

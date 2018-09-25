@@ -163,18 +163,26 @@ public class HoSoNhanVienPikalongController {
 		return"QuanTriNhanSuPikalong/ThongTinHoSo/thongtinhosoeditform";
 	}
 	
-	@RequestMapping(value= "getquanphuongjson/{maNv}", method= RequestMethod.GET,produces= "text/plain;charset=UTF-8")
-	@ResponseBody
-	public String getQuanPhuongJson(@PathVariable int maNv, HoSoNhanVienPikalong hoSoNhanVienPikalong) {
-		hoSoNhanVienPikalong = hoSoNhanVienPikalongService.getEdit(maNv);
-		return "[{\"maQuanHuyen\":\"" + hoSoNhanVienPikalong.getQuanHuyen() + "\",\"maPhuong\": \"" + hoSoNhanVienPikalong.getPhuongXa() + "\"}]";
-	}
-	
 	@RequestMapping(value= "update", method= RequestMethod.POST)
-	public String editSave(@ModelAttribute("formHosopkl") HoSoNhanVienPikalong hoSoNhanVienPikalong, BindingResult result) {
+	public String editSave(@ModelAttribute("formHosopkl") HoSoNhanVienPikalong hoSoNhanVienPikalong, 
+			BindingResult result, @RequestParam("file") MultipartFile file, HttpSession session) throws IOException {
+		ServletContext context = session.getServletContext();
+		String path = context.getRealPath(UPLOAD_DIRECTORY);
+		String filename = file.getOriginalFilename();
+		System.out.println(path + " " + filename);
+		byte[] bytes = file.getBytes();  
+	    BufferedOutputStream stream =new BufferedOutputStream(new FileOutputStream(  
+	         new File(path + File.separator + filename))); 
+	    hoSoNhanVienPikalong.setAvatar(filename);
+	    stream.write(bytes);  
+	    stream.flush();  
+	    stream.close();
 		hoSoNhanVienPikalongService.update(hoSoNhanVienPikalong);
 		return "redirect:/quantrinhansu/hosonhanvien/";
 	}
+	
+
+	
 	
 	// page view
 	@RequestMapping("view/{maNv}")

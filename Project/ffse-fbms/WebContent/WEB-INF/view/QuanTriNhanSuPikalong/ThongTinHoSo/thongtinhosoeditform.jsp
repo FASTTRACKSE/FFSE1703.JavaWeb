@@ -9,7 +9,7 @@
 	
 	<h3 class="content-header-title mb-0">Sửa Nhân Viên</h3> <!-- title -->
 	
-                    <form:form class="form" method="POST" action="/ffse-fbms/quantrinhansu/hosonhanvien/update" modelAttribute="formHosopkl">
+                    <form:form class="form" method="POST" action="/ffse-fbms/quantrinhansu/hosonhanvien/update" modelAttribute="formHosopkl"  enctype="multipart/form-data">
                       <div class="form-body">
                         <h4 class="form-section"><i class="ft-user"></i>Thông tin cơ bản</h4>
                         <div class="row">
@@ -165,12 +165,16 @@
                           </form:select>
                         </div>
                         
-                        <div class="col-md-6">
-                            <div class="form-group">
-                              <label for="projectinput4">Ảnh đại diện</label>
-                              <form:input path="avatar" type="text" id="projectinput4" class="form-control" placeholder="ảnh đại diện" name="anhDaiDienInput" />
-                            </div>
-                          </div>
+                        <div class="form-group">
+                          <label>Hình Ảnh:</label> <input id="imgUrl" class="form-control"
+						type="file" name="file" /> <br>
+						 <img src="<c:url value="/uploads/${formHosopkl.avatar}" />"
+						width="100" height="150">
+						<img id="img" src="#"
+						alt="your image" width="100" height="150" />
+						 
+                        </div>
+             
                         <div class="form-actions">
                         
                         <button type="submit" class="btn btn-primary">
@@ -273,6 +277,22 @@
                          }});
                      };
                      </script>
+                     
+                      <!-- preview image -->  
+                     <script type="text/javascript">
+						function readURL(input) {
+						if (input.files && input.files[0]) {
+						var reader = new FileReader();
+						reader.onload = function(e) {
+						$('#img').attr('src', e.target.result);
+						}
+						reader.readAsDataURL(input.files[0]);
+						}
+						}
+						$("#imgUrl").change(function() {
+						readURL(this);
+						});
+					</script>
                      
 			
 	</div>

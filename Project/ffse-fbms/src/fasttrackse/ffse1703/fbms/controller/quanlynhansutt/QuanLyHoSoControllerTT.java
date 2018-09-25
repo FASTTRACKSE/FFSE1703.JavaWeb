@@ -108,7 +108,7 @@ public class QuanLyHoSoControllerTT {
 	}
 	@RequestMapping(value= "selectquan/{maThanhPho}", method= RequestMethod.GET, produces= "text/plain;charset=UTF-8")
 	@ResponseBody 
-	public String selectQuan(@PathVariable int maThanhPho) {
+	public String selectQuan(@PathVariable String maThanhPho) {
 		List<QuanHuyenTT> listQuanHuyen =  quanHuyenServiceTT.listQuanHuyen(maThanhPho);
 		
 		String json = "[";
@@ -128,17 +128,17 @@ public class QuanLyHoSoControllerTT {
 	}
 	@RequestMapping(value= "selectphuong/{maQuanHuyen}", method= RequestMethod.GET,  produces= "text/plain;charset=UTF-8")
 	@ResponseBody 
-	public String selectPhuong(@PathVariable int maQuanHuyen) {
+	public String selectPhuong(@PathVariable String maQuanHuyen) {
 		List<XaPhuongTT> listPhuong= xaPhuongServiceTT.getAllXaPhuong(maQuanHuyen);
 		
 		String json = "[";
 		
 		for(int i= 0; i < listPhuong.size(); i++) {
 			if(i == listPhuong.size() - 1) {
-				json += "{\"maXa\": \"" + listPhuong.get(i).getMaxa() + "\", " + "\"tenXa\": \"" + listPhuong.get(i).getTenxa() + "\"}" ;
+				json += "{\"maXa\": \"" + listPhuong.get(i).getMaXa() + "\", " + "\"tenXa\": \"" + listPhuong.get(i).getTenXa() + "\"}" ;
 			}
 			else {
-				json += "{\"maXa\": \"" + listPhuong.get(i).getMaxa() + "\", " + "\"tenXa\": \"" + listPhuong.get(i).getTenxa() + "\"}" + "," ;
+				json += "{\"maXa\": \"" + listPhuong.get(i).getMaXa() + "\", " + "\"tenXa\": \"" + listPhuong.get(i).getTenXa() + "\"}" + "," ;
 			}
 		}
 		json+= "]";

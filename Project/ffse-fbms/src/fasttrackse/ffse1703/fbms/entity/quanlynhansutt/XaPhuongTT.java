@@ -14,16 +14,20 @@ import javax.validation.constraints.NotEmpty;
 @Table(name = "xa_phuong")
 public class XaPhuongTT implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
 	@Column(name = "ma_xa_phuong", unique = true, nullable = false, length = 30)
 	@NotEmpty
-	private int maxa;
+	private String maXa;
 
 	@Column(name = "ten_xa_phuong", nullable = false, length = 255)
 	@NotEmpty
-	private String tenxa;
+	private String tenXa;
 
+	@Column(name = "ma_quan_huyen", unique = true, nullable = false, length = 30)
+	@NotEmpty
+	private String maQuanHuyen;
+	
 	// bi-directional many-to-one association to HoSoNhanVien
 	@OneToMany(mappedBy = "xaPhuong")
 	private List<HoSoNhanVienTT> hoSoNhanViens;
@@ -31,21 +35,50 @@ public class XaPhuongTT implements Serializable {
 	public XaPhuongTT() {
 	}
 
-	public int getMaxa() {
-		return maxa;
+	
+
+	public String getMaXa() {
+		return maXa;
 	}
 
-	public void setMaxa(int maxa) {
-		this.maxa = maxa;
+
+
+	public void setMaXa(String maXa) {
+		this.maXa = maXa;
 	}
 
-	public String getTenxa() {
-		return tenxa;
+
+
+	public String getTenXa() {
+		return tenXa;
 	}
 
-	public void setTenxa(String tenxa) {
-		this.tenxa = tenxa;
+
+
+	public void setTenXa(String tenXa) {
+		this.tenXa = tenXa;
 	}
+
+
+
+
+	public String getMaQuanHuyen() {
+		return maQuanHuyen;
+	}
+
+
+
+	public void setMaQuanHuyen(String maQuanHuyen) {
+		this.maQuanHuyen = maQuanHuyen;
+	}
+
+
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+
 
 	public List<HoSoNhanVienTT> getHoSoNhanViens() {
 		return hoSoNhanViens;

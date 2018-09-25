@@ -26,8 +26,6 @@ public class QuanLyHopDongControllerTT {
 	@Autowired
 	private LoaiHopDongServiceTT loaiHopDongServiceTT;
 
-	@Autowired
-	private QuanLyHoSoServiceTT quanLyHoSoServiceTT;
 
 	@Autowired
 	private HopDongServiceTT hopDongServiceTT;
@@ -48,9 +46,6 @@ public class QuanLyHopDongControllerTT {
 		this.hopDongServiceTT = hopDongServiceTT;
 	}
 
-	public void setQuanLyHoSoServiceTT(QuanLyHoSoServiceTT quanLyHoSoServiceTT) {
-		this.quanLyHoSoServiceTT = quanLyHoSoServiceTT;
-	}
     //List tất cả hợp đồng
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String viewHopDong(Model model) {

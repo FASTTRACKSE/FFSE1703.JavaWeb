@@ -111,8 +111,6 @@ public class QuanLyHopDongDaoTTImpl implements QuanLyHopDongDaoTT {
 		Session session = this.sessionFactory.openSession();
 		@SuppressWarnings("rawtypes")
 		Query query = session.createQuery("from HopDongTT where ma_nhan_vien = "+maNhanVien+" and trang_thai = 1 ");
-		/*query.setParameter("ma_nhan_vien", maNhanVien);
-		query.setParameter("trang_thai", 0);*/
 		@SuppressWarnings("unchecked")
 		List<HopDongTT> viewOne = query.list();
 		return viewOne;

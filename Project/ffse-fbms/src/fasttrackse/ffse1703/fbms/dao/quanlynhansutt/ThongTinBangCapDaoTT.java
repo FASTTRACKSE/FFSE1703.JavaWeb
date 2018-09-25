@@ -2,6 +2,7 @@ package fasttrackse.ffse1703.fbms.dao.quanlynhansutt;
 
 import java.util.List;
 
+import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.HoSoNhanVienTT;
 import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.ThongTinBangCapTT;
 
 public interface ThongTinBangCapDaoTT {
@@ -14,5 +15,7 @@ public interface ThongTinBangCapDaoTT {
 	public void deleteThongTinBangCap(int id);
 	
 	public ThongTinBangCapTT findByBangCap(int id);
+	
+	public HoSoNhanVienTT findByMaNhanVien(int maNhanVien);
 
 }

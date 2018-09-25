@@ -53,11 +53,6 @@
 											<div class="row">
 												<div class="col-md-8">
 													<div class="row">
-														<%-- <div class="form-group col-sm-6">
-															<label>Mã Hợp Đồng</label>
-															<form:input class="form-control" path="maHopDong"
-																placeholder="Mã Hợp Đồng" />
-														</div> --%>
 														<div class="col-md-6">
 															<div class="form-group">
 																<label>Mã Nhân Viên</label>

@@ -17,7 +17,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.HopDongTT;
 import fasttrackse.ffse1703.fbms.service.quanlynhansutt.HopDongServiceTT;
 import fasttrackse.ffse1703.fbms.service.quanlynhansutt.LoaiHopDongServiceTT;
-import fasttrackse.ffse1703.fbms.service.quanlynhansutt.QuanLyHoSoServiceTT;
 
 @Controller
 @RequestMapping("/quanlynhansutt/hop_dong/")

@@ -52,7 +52,7 @@ th, td {
 	                  	<a href="<c:url value = "#"/>" class="dropdown-item"><i class="fa fa-graduation-cap"></i> <spring:message code="label.thongTinBangCap" /></a>
 	                  	<a href="<c:url value = "#"/>" class="dropdown-item"><i class="fa fa-users"></i> <spring:message code="label.thongTinGiaDinh" /></a>
 	                  	<a href="<c:url value = "#"/>" class="dropdown-item"><i class="fa fa-file-code-o"></i> <spring:message code="label.thongTinKinhNghiem" /></a>
-	                  	<a href="<c:url value = "/quanlynhansutt/add/${maNhanVien}"/>" class="dropdown-item"><i class="fa fa-handshake-o"></i> <spring:message code="label.thongTinHopDong" /></a>
+	                  	<a href="<c:url value = "#"/>" class="dropdown-item"><i class="fa fa-handshake-o"></i> <spring:message code="label.thongTinHopDong" /></a>
 	                  	<div class="dropdown-divider"></div>
 	                  	<a href="<c:url value = "#"/>" class="dropdown-item text-xs-center"><spring:message code="label.xemTatCa" /></a>
 	                  </div>
@@ -106,14 +106,12 @@ th, td {
 													<td>${hsnv.gioiTinh}</td>
 													<td>${hsnv.diaChi}</td>
 													<td>${hsnv.soDienThoai}</td>
-
 													<td
 														style="letter-spacing: 5px; min-width: 75px; text-align: center !important;">
 														<a href="<c:url value = ""/>"><i class="fa fa-eye"></i></a>
 														<a href="<c:url value = "#"/>"><i class="fa fa-pencil"></i></a>
 														<a href='<c:url value = "#"></c:url>' class="fa fa-trash"
 														onclick="return confirm('Bạn có muốn xóa sinh viên này?');"></a>
-
 													</td>
 												</tr>
 											</c:forEach>

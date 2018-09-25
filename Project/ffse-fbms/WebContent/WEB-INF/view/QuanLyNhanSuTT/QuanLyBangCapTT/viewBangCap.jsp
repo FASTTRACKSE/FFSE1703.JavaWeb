@@ -102,7 +102,7 @@
 													
 													 <td
 														style="letter-spacing: 5px; min-width: 75px; text-align: center !important;">
-														<a href="<c:url value = "#"/>"><i class="fa fa-eye"></i></a>
+														<a href="<c:url value = "/quanlynhansutt/bang_cap/viewOneBangCap/${hsnv.hoSoNhanVienTT.maNhanVien}"/>"><i class="fa fa-eye"></i></a>
 														<a href="<c:url value = "/quanlynhansutt/bang_cap/edit_bangcap/${hsnv.id}"/>"><i class="fa fa-pencil"></i></a>
 														<%-- <a href="<c:url value = ""/>"><i class="fa fa-trash"></i></a> --%>
 														<a

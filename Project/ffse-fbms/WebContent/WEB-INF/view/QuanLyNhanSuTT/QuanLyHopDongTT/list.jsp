@@ -119,7 +119,7 @@ th, td {
 														<a
 														href="<c:url value = "/quanlynhansutt/hop_dong/viewOneHopDong/${hshd.hoSoNhanVienTT.maNhanVien}"/>"><i
 															class="fa fa-eye"></i></a> <a
-														href="<c:url value = "/quanlynhansutt/hop_dong/edit_hopdong/${hshd.hoSoNhanVienTT.maNhanVien}"/>"><i
+														href="<c:url value = "/quanlynhansutt/hop_dong/edit_hopdong/${hshd.maHopDong}"/>"><i
 															class="fa fa-pencil"></i></a> <%-- <a href="<c:url value = ""/>"><i class="fa fa-trash"></i></a> --%>
 														<a
 														href='<c:url value = "/quanlynhansutt/hop_dong/remove/${hshd.maHopDong}"></c:url>'

@@ -71,7 +71,7 @@ public class QuanLyHopDongControllerTT {
 	@RequestMapping("/remove/{maHopDong}")
 	public String remove(@PathVariable("maHopDong") int maHopDong) {
 		hopDongServiceTT.removeHopDong(maHopDong);
-		return "redirect:/quanlynhansutt/";
+		return "redirect:/quanlynhansutt/hop_dong/";
 	}
     //lưu phần thêm,sửa cho nhân viên
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
@@ -94,7 +94,7 @@ public class QuanLyHopDongControllerTT {
 	}
     //viewOneHopDong Nhân Viên
 	@RequestMapping("/viewOneHopDong/{maNhanVien}")
-	public String viewOneBangCap(@PathVariable int maNhanVien, Model model) {
+	public String viewOneHopDong(@PathVariable int maNhanVien, Model model) {
 		model.addAttribute("viewOne", this.hopDongServiceTT.viewOne(maNhanVien));
 		model.addAttribute("maNhanVien", maNhanVien);
 		return "QuanLyNhanSuTT/QuanLyHopDongTT/viewOneHopDong";

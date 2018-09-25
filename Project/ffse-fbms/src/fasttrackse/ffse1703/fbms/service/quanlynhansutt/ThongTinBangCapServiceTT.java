@@ -16,4 +16,5 @@ public interface ThongTinBangCapServiceTT {
 	public List<ThongTinBangCapTT> listBangCap();
 	public ThongTinBangCapTT findByBangCap(int id);
 	public HoSoNhanVienTT getHoSoNhanVienById(int maNhanVien);
+	public List<ThongTinBangCapTT> viewOne(int maNhanVien);
 }

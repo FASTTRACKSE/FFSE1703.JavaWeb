@@ -8,20 +8,20 @@
 
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 <style type="text/css">
-.table td {
-	vertical-align: baseline;
-}
-
-th, td {
-	padding-left: 1rem !important;
-	padding-right: 1rem !important;
-}
-
-#datatable tr td:last-child {
-	letter-spacing: 15px;
-	min-width: 100px;
-	text-align: center !important;
-}
+		.table td {
+			vertical-align: baseline;
+		}
+		
+		th, td {
+			padding-left: 1rem !important;
+			padding-right: 1rem !important;
+		}
+		
+		#datatable tr td:last-child {
+			letter-spacing: 15px;
+			min-width: 100px;
+			text-align: center !important;
+		}
 </style>
 <div class="app-content content container-fluid">
 	<div class="content-wrapper">
@@ -29,20 +29,18 @@ th, td {
 		<div class="content-header row">
 			<div class="content-header-left col-md-9 col-xs-12 mb-2">
 				<h3 class="content-header-title mb-0">
-					<spring:message code="label.danhSachHopDong" />
+				Danh Sách Bằng Cấp
 				</h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="<c:url value = "/"/>"><spring:message
 										code="label.trangChu" /></a></li>
-							<li class="breadcrumb-item"><a
-								href="<c:url value = "/quanlyhoso/"/>"><spring:message
+							<li class="breadcrumb-item"><a href="javascript:void(0)"><spring:message
 										code="label.quanLyNhanSu" /></a></li>
 							<li class="breadcrumb-item"><a href="javascript:void(0)"><spring:message
 										code="label.quanLyHopDong" /></a></li>
-							<li class="breadcrumb-item active"><spring:message
-									code="label.danhSachHopDong" /></li>
+							<li class="breadcrumb-item active">Danh Sách Bằng Cấp</li>
 						</ol>
 					</div>
 				</div>
@@ -50,7 +48,7 @@ th, td {
 			<div class="content-header-right col-md-3 col-xs-12">
 				<div role="group" aria-label="Button group with nested dropdown"
 					class="btn-group float-md-right" id="add-new">
-					<a href="<c:url value = "/quanlynhansutt/hop_dong/add_hopdong/${maNhanVien}"/>"
+					<a href="<c:url value = "/quanlynhansutt/bang_cap/add_bangcap/${maNhanVien}"/>"
 						class="btn btn-primary"><span class="fa fa-plus"></span> Thêm
 						mới</a>
 				</div>
@@ -80,51 +78,40 @@ th, td {
 										class="table table-striped table-bordered zero-configuration">
 										<thead>
 											<tr>
-
-												<th>Tên loại hợp đồng</th>
-												<th>Lương Tháng 13</th>
-												<th>Số Ngày Phép</th>
-												<th>Ngày Ký</th>
-												<th>Hợp Đồng Từ Ngày</th>
-												<th>Hợp Đồng Đến Ngày</th>
-												<th>Trạng Thái</th>
+											
+												<th>Tên Bằng Cấp</th>
+												<th>Loại Bằng Cấp</th>
+												<th>Đơn Vị Cấp</th>
+												<th>Nơi Cấp</th>
+												<th>Ngày Cấp</th>
 												<th>Chức Năng</th>
 
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach items="${viewOne}" var="hs">
+											<c:forEach items="${viewOne}" var="hsnv">
 												<tr>
-													<td>${hs.loaiHopDong.tenHopDong}</td>
-													<td><c:if test="${hs.luongThang13 == 1}">
-															<spring:message code="label.co" />
-														</c:if> <c:if test="${hs.luongThang13 == 2}">
-															<spring:message code="label.khong" />
-														</c:if></td>
-													<td>${hs.soNgayPhep}</td>
-													<td>${hs.ngayKy}</td>
-													<td>${hs.hopDongTuNgay}</td>
-													<td>${hs.hopDongDenNgay}</td>
-													<td><c:if test="${hs.trangThai == 1}">
-															<spring:message code="label.conHopDong" />
-														</c:if> <c:if test="${hs.trangThai == 2}">
-															<spring:message code="label.hetHopDong" />
-														</c:if></td>
-													<td
+													
+													<td>${hsnv.tenBangCap}</td>
+													<td>${hsnv.loaiBangCap}</td>
+													<td>${hsnv.donViCap}</td>
+													<td>${hsnv.noiCap}</td>
+													<td>${hsnv.ngayCap}</td>
+													
+													 <td
 														style="letter-spacing: 5px; min-width: 75px; text-align: center !important;">
-														<a href="<c:url value = ""/>"><i class="fa fa-eye"></i></a>
+														<a href="<c:url value = "#"/>"><i class="fa fa-eye"></i></a>
+														<a href="<c:url value = "/quanlynhansutt/bang_cap/edit_bangcap/${hsnv.id}"/>"><i class="fa fa-pencil"></i></a>
+														<%-- <a href="<c:url value = ""/>"><i class="fa fa-trash"></i></a> --%>
 														<a
-														href="<c:url value = "/quanlynhansutt/hop_dong/edit_hopdong/${hs.maHopDong}"/>"><i
-															class="fa fa-pencil"></i></a> <%-- <a href="<c:url value = ""/>"><i class="fa fa-trash"></i></a> --%>
-														<a
-														href='<c:url value = "/quanlynhansutt/hop_dong/remove/${hs.maHopDong}"></c:url>'
-														class="fa fa-trash"
-														onclick="return confirm('Bạn có muốn xóa sinh viên này?');"></a>
-
-													</td>
+											href='<c:url value = "#"></c:url>'
+											class="fa fa-trash"
+											onclick="return confirm('Bạn có muốn xóa sinh viên này?');"></a>
+														
+													</td> 
 												</tr>
 											</c:forEach>
-
+										
 										</tbody>
 									</table>
 								</div>

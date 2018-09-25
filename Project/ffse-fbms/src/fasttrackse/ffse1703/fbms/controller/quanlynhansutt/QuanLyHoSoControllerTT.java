@@ -145,4 +145,11 @@ public class QuanLyHoSoControllerTT {
 		
 		return json;
 	}
+	
+	// page view
+		@RequestMapping("view/{maNhanVien}")
+		public String view(@PathVariable String maNhanVien, Model model) {
+			model.addAttribute("maNhanVien", maNhanVien);
+			return "QuanLyNhanSuTT/QuanLyHoSoTT/view";
+		}
 }

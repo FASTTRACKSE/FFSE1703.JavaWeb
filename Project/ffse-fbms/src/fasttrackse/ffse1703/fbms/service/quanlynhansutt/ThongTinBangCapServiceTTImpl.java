@@ -88,5 +88,12 @@ public class ThongTinBangCapServiceTTImpl implements ThongTinBangCapServiceTT {
 		// TODO Auto-generated method stub
 		return this.thongTinBangCapDaoTT.findByMaNhanVien(maNhanVien);	}
 
+	@Override
+	@Transactional
+	public List<ThongTinBangCapTT> viewOne(int maNhanVien) {
+		// TODO Auto-generated method stub
+		return this.thongTinBangCapDaoTT.viewOne(maNhanVien);
+	}
+
 
 }

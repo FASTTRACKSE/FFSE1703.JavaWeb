@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.HopDongTT;
 import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.ThongTinBangCapTT;
 import fasttrackse.ffse1703.fbms.service.quanlynhansutt.ThongTinBangCapServiceTT;
 
@@ -49,17 +48,6 @@ public class ThongTinBangCapControllerTT {
 		return "QuanLyNhanSuTT/QuanLyBangCapTT/edit_form";
 	}
 
-	
-	  /* //sửa hợp đồng cho nhân viên
-		@RequestMapping("/edit_hopdong/{maNhanVien}")
-		public String showFormUpdate(@PathVariable("maNhanVien") int maNhanVien, Model model)
-				throws IllegalStateException, IOException {
-			model.addAttribute("hopDongTT", hopDongServiceTT.findByMaHopDong(maNhanVien));
-			model.addAttribute("listLoaiHopDong", loaiHopDongServiceTT.findAll());
-			return "QuanLyNhanSuTT/QuanLyHopDongTT/edit_form";
-		}
-		*/
-		
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String saveHopDong(@ModelAttribute("ttbc") @Valid ThongTinBangCapTT ttbc, BindingResult result) {
 		if (ttbc.getId() == 0) {
@@ -78,5 +66,13 @@ public class ThongTinBangCapControllerTT {
 		}
 		return "redirect:/quanlynhansutt/bang_cap/";
 	}
-
+   
+	
+	 //viewOneBangCap Nhân Viên
+		@RequestMapping("/viewOneBangCap/{maNhanVien}")
+		public String viewOneHopDong(@PathVariable int maNhanVien, Model model) {
+			model.addAttribute("viewOne", this.thongTinBangCapServiceTT.viewOne(maNhanVien));
+			model.addAttribute("maNhanVien", maNhanVien);
+			return "QuanLyNhanSuTT/QuanLyBangCapTT/viewOneBangCap";
+		}
 }

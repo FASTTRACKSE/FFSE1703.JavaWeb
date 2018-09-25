@@ -52,8 +52,9 @@
 		<div class="content-body">
 			<!-- Form search -->
 			<div class="row mb-2">
-				<form class="col-xs-12" action='<c:url value="/chuc-nang-phong-ban/"></c:url>'
-					method="get" enctype="multipart/form-data">
+				<form class="col-xs-12"
+					action='<c:url value="/chuc-nang-phong-ban/"></c:url>' method="get"
+					enctype="multipart/form-data">
 					<!-- <div class="frm-search-box form-inline pull-left">
 						<label class="mr-sm-2" for="">Từ khóa: </label> <input
 							class="form-control" type="text" value="" name="q"
@@ -88,7 +89,7 @@
 				</div>
 			</c:if>
 			<!-- End Show message -->
-			
+
 			<div class="row">
 				<div class="col-xs-12">
 					<div class="card">
@@ -120,29 +121,30 @@
 										</tr>
 									</thead>
 									<tbody>
-											<c:forEach var="item" items="${list}" begin="0"
-												varStatus="counter">
-												<tr>
-													<td>${counter.index + 1}</td>
-													<td>${item.makh}</td>
-													<td>${item.tenkh}</td>
-													<td>${item.diachi}</td>
-													<td>${item.sdt}</td>
-													<td>${item.email}</td>
-													<td class="tbl_actions">
-													<a
-														href="<c:url value="/qlda/khachhang/view/${item.makh}" />" title="view">
-															<i class="fa fa-eye" aria-hidden="true"></i>view
-													</a>
-													<a
-														href="<c:url value="/qlda/khachhang/edit_form/${item.makh}" />" title="Sửa">
-															<i class="fa fa-pencil-square-o blue" aria-hidden="true"></i>Sửa
-													</a> <a href="<c:url value="/qlda/khachhang/delete/${item.makh}" />" title="Xóa"
-														onclick="return confirm('Bạn có chắc muốn xóa ?')"> <i
-															class="fa fa-trash red" aria-hidden="true"></i>Delete
-													</a></td>
-												</tr>
-											</c:forEach>
+										<c:forEach var="item" items="${list}" begin="0"
+											varStatus="counter">
+											<tr>
+												<td>${counter.index + 1}</td>
+												<td>${item.makh}</td>
+												<td>${item.tenkh}</td>
+												<td>${item.diachi}</td>
+												<td>${item.sdt}</td>
+												<td>${item.email}</td>
+												<td class="tbl_actions"><a
+													href="<c:url value="/qlda/khachhang/view/${item.makh}" />"
+													title="view"> <i class="fa fa-eye" aria-hidden="true"></i>view
+												</a> <a
+													href="<c:url value="/qlda/khachhang/edit_form/${item.makh}" />"
+													title="Sửa"> <i class="fa fa-pencil-square-o blue"
+														aria-hidden="true"></i>Sửa
+												</a> <a
+													href="<c:url value="/qlda/khachhang/delete/${item.makh}" />"
+													title="Xóa"
+													onclick="return confirm('Bạn có chắc muốn xóa ?')"> <i
+														class="fa fa-trash red" aria-hidden="true"></i>Delete
+												</a></td>
+											</tr>
+										</c:forEach>
 									</tbody>
 								</table>
 
@@ -180,12 +182,6 @@
 		</div>
 	</div>
 </div>
-<script type="text/javascript">
-window.setTimeout(function() {
-	$(".alert").fadeTo(500, 0).slideUp(500, function(){
-		$(this).remove(); 
-	});
-}, 2500);
-</script>
+	
 
 <jsp:include page="/WEB-INF/view/templates/footer.jsp" />

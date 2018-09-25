@@ -177,12 +177,5 @@
 		</div>
 	</div>
 </div>
-<script type="text/javascript">
-	window.setTimeout(function() {
-		$(".alert").fadeTo(500, 0).slideUp(500, function() {
-			$(this).remove();
-		});
-	}, 2500);
-</script>
 
 <jsp:include page="/WEB-INF/view/templates/footer.jsp" />

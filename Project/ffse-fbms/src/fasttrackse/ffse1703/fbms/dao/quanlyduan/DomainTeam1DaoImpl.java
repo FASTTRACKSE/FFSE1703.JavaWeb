@@ -61,7 +61,7 @@ public class DomainTeam1DaoImpl implements DomainTeam1Dao{
 	@Override
 	public List<DomainTeam1> findAllForPaging(int startPosition, int maxResult) {
 		Session session = this.sessionFactory.getCurrentSession();
-		return session.createQuery("from nghiep_vu").setFirstResult(startPosition).setMaxResults(maxResult).list();
+		return session.createQuery("FROM DomainTeam1 where is_delete=0").setFirstResult(startPosition).setMaxResults(maxResult).list();
 	}
 
 

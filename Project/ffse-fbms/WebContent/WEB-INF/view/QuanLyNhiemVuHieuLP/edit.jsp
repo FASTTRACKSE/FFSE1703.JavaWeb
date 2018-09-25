@@ -74,9 +74,8 @@
 						</div>
 						<div class="form-group col-sm-6">
 							<label>Thời gian dự kiến hoàn thành</label>
-							<form:input path="tgDukienhoanthanh"
-								value="${nv.tgDukienhoanthanh}" type="date" id="issueinput3"
-								class="form-control" />
+			
+								  <form:input class="form-control" path="tgDukienhoanthanh" value="${nv.tgDukienhoanthanh}" placeholder="Thời gian dự kiến hoàn thành	" />
 						</div>
 						<div class="form-group col-sm-6">
 							<label>Mô tả</label>

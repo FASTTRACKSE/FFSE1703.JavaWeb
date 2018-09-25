@@ -2,23 +2,27 @@ package fasttrackse.ffse1703.fbms.dao.qlynhiemvuminhhq;
 
 import java.util.List;
 
-import fasttrackse.ffse1703.fbms.entity.qlynhiemvuminhhq.CongViec;
+import fasttrackse.ffse1703.fbms.entity.qlynhiemvuminhhq.*;
 
 
 
 
  public interface QLyNhiemvuMinhHQDao {
- 	public List<CongViec> findAll();
+ 	public List<CongViecMinhHQ> findAll();
 
- 	public void addNew(CongViec cv);
+ 	public void addNew(CongViecMinhHQ cv);
 
- 	public void update(CongViec cv);
+ 	public void update(CongViecMinhHQ cv);
 
- 	public void delete(CongViec cv);
+ 	public void delete(CongViecMinhHQ cv);
 
- 	public CongViec findByID(int ID);
+ 	public CongViecMinhHQ findByID(int ID);
 	
- 	public List<CongViec> findAll(int iDisplayStart, int iDisplayLength, String sql);
+ 	public List<CongViecMinhHQ> findAll(int iDisplayStart, int iDisplayLength, String sql);
+ 	
+ 	public List<TrangThaiMinhHQ> trangThai();
+ 	
+ 	public List<LoaiCongViecMinhHQ> loaiCongViec();
 	
 // 	public String getRecordsTotal();
 //	

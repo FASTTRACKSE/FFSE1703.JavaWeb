@@ -101,7 +101,9 @@ td{
 				<td>${dn.ly_do}</td>
 				<td>${dn.thoi_gian_bat_dau}</td>
 				<td>${dn.thoi_gian-ket_thuc}</td>
-				<td>${dn.tong_ngay_nghi}</td>
+				<td></td>
+				<td></td>
+				<td></td>
 				
 				<td>					
 					<a href="edit/${sv.id}"><button type="button" class="btn btn-warning btn-circle">

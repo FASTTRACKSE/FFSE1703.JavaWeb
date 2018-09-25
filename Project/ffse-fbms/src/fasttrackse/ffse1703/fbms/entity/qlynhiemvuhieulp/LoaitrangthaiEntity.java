@@ -14,9 +14,8 @@ public class LoaitrangthaiEntity {
 	
 	public LoaitrangthaiEntity() {
 		super();
-
 	}
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID", unique = true, nullable = false, length = 11)

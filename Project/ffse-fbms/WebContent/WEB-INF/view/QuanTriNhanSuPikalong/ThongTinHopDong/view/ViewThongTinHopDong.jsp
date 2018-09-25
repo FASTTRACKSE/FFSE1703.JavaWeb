@@ -6,7 +6,7 @@
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 <div class="app-content content container-fluid">
 <div class="content-wrapper">
-<form:form class="form"  method="GET" modelAttribute="HopDong" action="">
+<form:form class="form"  method="GET" modelAttribute="hopDong" action="">
 	<div class="form-body">
 		
 		<div class="row">
@@ -47,13 +47,13 @@
 			<div class="col-md-4">
 				<div class="form-group">
 					<label>Tên hợp đồng</label> 
-					<div class="form-control well">${hopdong.maHopDong.tenHopDong}</div>
+					<div class="form-control well">${hopDong.loaiHopDongPikalong.tenHopDong}</div>
 				</div>
 			</div>
 			<div class="col-md-4">
 				<div class="form-group">
 					<label>Trạng thái</label> 
-					<div class="form-control well">${hopdong.trangThai}</div>
+					<div class="form-control well">${hopDong.trangThai}</div>
 				</div>
 			</div>
 		</div>
@@ -61,25 +61,25 @@
 			<div class="col-md-3">
 				<div class="form-group">
 					<label>Lương tháng 13</label> 
-					<div class="form-control well">${hopdong.luongThang13}</div>
+					<div class="form-control well">${hopDong.luongThang13}</div>
 				</div>
 			</div>
 			<div class="col-md-3">
 				<div class="form-group">
 					<label>Số ngày nghỉ trong năm</label> 
-					<div class="form-control well">${hopdong.soNgayNghiTrongNam}</div>
+					<div class="form-control well">${hopDong.soNgayNghiTrongNam}</div>
 				</div>
 			</div>
 			<div class="col-md-3">
 				<div class="form-group">
 					<label>Ngày ký hợp đồng</label> 
-					<div class="form-control well">${hopdong.ngayKiKet}</div>
+					<div class="form-control well">${hopDong.ngayKiKet}</div>
 				</div>
 			</div>
 			<div class="col-md-3">
 				<div class="form-group">
 					<label>Ngày kết thúc hợp đồng</label> 
-					<div class="form-control well">${hopdong.ngayKetThuc}</div>
+					<div class="form-control well">${hopDong.ngayKetThuc}</div>
 				</div>
 			</div>
 		</div>

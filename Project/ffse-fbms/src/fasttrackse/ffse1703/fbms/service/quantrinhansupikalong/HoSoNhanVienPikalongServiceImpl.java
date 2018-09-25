@@ -32,7 +32,7 @@ public class HoSoNhanVienPikalongServiceImpl implements HoSoNhanVienPikalongServ
 
 	@Override
 	@Transactional
-	public void delete(int maNv) {
+	public void delete(String maNv) {
 		hoSoNhanVienPikalongDao.delete(maNv);
 	}
 
@@ -52,12 +52,12 @@ public class HoSoNhanVienPikalongServiceImpl implements HoSoNhanVienPikalongServ
 	
 	@Override
 	@Transactional
-	public HoSoNhanVienPikalong getHoSoNhanVienById(int maNv) {
+	public HoSoNhanVienPikalong getHoSoNhanVienById(String maNv) {
 		return this.hoSoNhanVienPikalongDao.getHoSoNhanVienById(maNv);
 	}
 	@Override
 	@Transactional
-	public HoSoNhanVienPikalong getEdit(int maNv) {
+	public HoSoNhanVienPikalong getEdit(String maNv) {
 		
 		return hoSoNhanVienPikalongDao.getEdit(maNv);
 	}

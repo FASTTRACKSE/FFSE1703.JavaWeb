@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -21,23 +22,32 @@ import fasttrackse.ffse1703.fbms.service.security.PhongBanService;
 @RequestMapping("/quantridanhgia/phongnhansu")
 public class PhongNhanSuController {
 
-	@Autowired
 	private PhongBanService phongBanService;
 
+	private PhongNhanSuService service;
+
 	@Autowired
-	private PhongNhanSuService nhanSuService;
+	public void setPhongBanService(PhongBanService phongBanService) {
+		this.phongBanService = phongBanService;
+	}
+
+	@Autowired
+	@Qualifier(value ="phongNhanSuServiceImpl")
+	public void setService(PhongNhanSuService service) {
+		this.service = service;
+	}
 
 	@RequestMapping("/kydanhgia")
 	private String showListKyDanhgia(Model model) {
 		model.addAttribute("command", new KyDanhGia());
-		model.addAttribute("listKyDanhGia", nhanSuService.getListKyDanhGia());
+		model.addAttribute("listKyDanhGia", service.getListKyDanhGia());
 		return "QuanTriDanhGia/phongnhansu/kydanhgia";
 	}
 
 	@RequestMapping("/kydanhgia/edit/{maKy}")
 	private String showEdit(Model model, @PathVariable int maKy) {
-		model.addAttribute("command", nhanSuService.getKyDanhGia(maKy));
-		model.addAttribute("listKyDanhGia", nhanSuService.getListKyDanhGia());
+		model.addAttribute("command", service.getKyDanhGia(maKy));
+		model.addAttribute("listKyDanhGia", service.getListKyDanhGia());
 		model.addAttribute("listPhongBan", phongBanService.findAll());
 		return "QuanTriDanhGia/phongnhansu/kydanhgia";
 	}
@@ -45,9 +55,9 @@ public class PhongNhanSuController {
 	@RequestMapping("/kydanhgia/save")
 	private String insertKyDanhgia(Model model, @ModelAttribute("command") KyDanhGia kyDanhGia) {
 		if (kyDanhGia.getId() == 0) {
-			this.nhanSuService.insertKyDanhGia(kyDanhGia);
+			this.service.insertKyDanhGia(kyDanhGia);
 		} else {
-			this.nhanSuService.updateKyDanhGia(kyDanhGia);
+			this.service.updateKyDanhGia(kyDanhGia);
 			;
 		}
 		return "redirect:/quantridanhgia/phongnhansu/kydanhgia";
@@ -62,39 +72,39 @@ public class PhongNhanSuController {
 	@RequestMapping("/lichdanhgia")
 	private String showListLichDanhgia(Model model) {
 		model.addAttribute("command", new PhanCongDanhGia());
-		model.addAttribute("listKyDanhGia", nhanSuService.getListKyDanhGia());
+		model.addAttribute("listKyDanhGia", service.getListKyDanhGia());
 		model.addAttribute("listPhongBan", phongBanService.findAll());
-		model.addAttribute("listLichDanhGia", nhanSuService.getListLichDanhGia());
+		model.addAttribute("listLichDanhGia", service.getListLichDanhGia());
 		return "QuanTriDanhGia/phongnhansu/lichdanhgia";
 	}
 
 	@RequestMapping("/lichdanhgia/create")
 	private String createLichDanhgia(@ModelAttribute("command") LichDanhGia lichDanhGia, RedirectAttributes model) {
-		if (nhanSuService.checkLichDanhGia(lichDanhGia) < 1) {
-			nhanSuService.insertLichDanhGia(lichDanhGia);
+		if (service.checkLichDanhGia(lichDanhGia) < 1) {
+			service.insertLichDanhGia(lichDanhGia);
 		}
 		return "redirect:/quantridanhgia/phongnhansu/lichdanhgia";
 	}
 
 	@RequestMapping("/lichdanhgia/start/{id}")
 	private String activeLichDanhgia(RedirectAttributes model, @PathVariable int id) {
-		LichDanhGia lich = nhanSuService.getLichDanhGia(id);
+		LichDanhGia lich = service.getLichDanhGia(id);
 		lich.setIsActive(1);
-		nhanSuService.activeLichDanhGia(lich);
+		service.activeLichDanhGia(lich);
 		return "redirect:/quantridanhgia/phongnhansu/lichdanhgia";
 	}
 
 	@RequestMapping("/lichdanhgia/end/{id}")
 	private String deactiveLichDanhgia(Model model, @PathVariable int id) {
-		LichDanhGia lich = nhanSuService.getLichDanhGia(id);
+		LichDanhGia lich = service.getLichDanhGia(id);
 		lich.setIsActive(2);
-		nhanSuService.activeLichDanhGia(lich);
+		service.activeLichDanhGia(lich);
 		createPhanCongDanhgia(lich.getKyDanhGia(), lich.getPhongBan());
 		return "redirect:/quantridanhgia/phongnhansu/lichdanhgia";
 	}
 
 	private void createPhanCongDanhgia(String kyDanhGia, String phongBan) {
-		List<Integer> listNhanVien = nhanSuService.getNhanVienPhongBan(phongBan);
+		List<Integer> listNhanVien = service.getNhanVienPhongBan(phongBan);
 		List<PhanCongDanhGia> listPhanCong = new ArrayList<>();
 		for (int i = 0; i < listNhanVien.size(); i++) {
 			int nhanvien = listNhanVien.get(i);
@@ -111,31 +121,31 @@ public class PhongNhanSuController {
 				listPhanCong.add(pc);
 			}
 		}
-		nhanSuService.insertPhanCongDanhGia(listPhanCong);
+		service.insertPhanCongDanhGia(listPhanCong);
 	}
 
 	@RequestMapping("/danhsachdanhgia")
 	private String showListDanhgiaBanThan(Model model) {
 		model.addAttribute("command", new LichDanhGia());
-		model.addAttribute("listKyDanhGia", nhanSuService.getListKyDanhGia());
+		model.addAttribute("listKyDanhGia", service.getListKyDanhGia());
 		model.addAttribute("listPhongBan", phongBanService.findAll());
-		model.addAttribute("listDanhgia", nhanSuService.getListDanhGiaBanThan());
+		model.addAttribute("listDanhgia", service.getListDanhGiaBanThan());
 		return "QuanTriDanhGia/phongnhansu/danhsachdanhgia";
 	}
 	
 	@RequestMapping("/danhsachdanhgia/search")
 	private String showSearchDanhgiaBanThan(Model model, @ModelAttribute(name="command") LichDanhGia lich) {
 		if (lich.getKyDanhGia() == "" && lich.getPhongBan() == "") {
-			model.addAttribute("listDanhgia", nhanSuService.getListDanhGiaBanThan());
+			model.addAttribute("listDanhgia", service.getListDanhGiaBanThan());
 		} else if (lich.getKyDanhGia() == "") {
-			model.addAttribute("listDanhgia", nhanSuService.getListDanhGiaBanThanByPhongBan(lich.getPhongBan()));
+			model.addAttribute("listDanhgia", service.getListDanhGiaBanThanByPhongBan(lich.getPhongBan()));
 		} else if (lich.getPhongBan() == "") {
-			model.addAttribute("listDanhgia", nhanSuService.getListDanhGiaBanThanByKyDanhGia(lich.getKyDanhGia()));
+			model.addAttribute("listDanhgia", service.getListDanhGiaBanThanByKyDanhGia(lich.getKyDanhGia()));
 		} else {
-			model.addAttribute("listDanhgia", nhanSuService.getListDanhGiaBanThan(lich.getKyDanhGia(), lich.getPhongBan()));
+			model.addAttribute("listDanhgia", service.getListDanhGiaBanThan(lich.getKyDanhGia(), lich.getPhongBan()));
 		}
 		model.addAttribute("command", lich);
-		model.addAttribute("listKyDanhGia", nhanSuService.getListKyDanhGia());
+		model.addAttribute("listKyDanhGia", service.getListKyDanhGia());
 		model.addAttribute("listPhongBan", phongBanService.findAll());
 		return "QuanTriDanhGia/phongnhansu/danhsachdanhgia";
 	}

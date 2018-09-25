@@ -203,6 +203,9 @@
                     		
                     		 $('#quanHuyenId').prop('disabled', false); /*enable combobox quận huyện */
                     		 $('#quanHuyenId option').remove(); /* xóa những option quận huyện cũ */
+                    		 
+                    		 $('#phuongXaId option[value=noPhuongXa]').attr('selected', 'selected') // nếu người ta select lại thành phố thì combobox phường phải chọn lại từ đầu
+                    		 $('#phuongXaId').prop('disabled', true);
                     	 }
                     	 
                          $.ajax({

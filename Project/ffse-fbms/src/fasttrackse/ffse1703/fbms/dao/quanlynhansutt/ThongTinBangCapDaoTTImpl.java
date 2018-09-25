@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.HoSoNhanVienTT;
 import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.ThongTinBangCapTT;
 
 @Repository
@@ -43,6 +44,20 @@ public class ThongTinBangCapDaoTTImpl implements ThongTinBangCapDaoTT {
 		Session session = sessionFactory.getCurrentSession();
 		List<ThongTinBangCapTT> listBangCap = session.createQuery("from ThongTinBangCapTT").getResultList();
 		return listBangCap;
+	}
+
+	@Override
+	public ThongTinBangCapTT findByBangCap(int id) {
+		// TODO Auto-generated method stub
+		Session session = this.sessionFactory.getCurrentSession();
+		return session.get(ThongTinBangCapTT.class, id);
+	}
+
+	@Override
+	public HoSoNhanVienTT findByMaNhanVien(int maNhanVien) {
+		// TODO Auto-generated method stub
+		Session session = this.sessionFactory.getCurrentSession();
+		return session.get(HoSoNhanVienTT.class, maNhanVien);
 	}
 
 }

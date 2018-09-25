@@ -4,10 +4,11 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-
+import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.HoSoNhanVienTT;
 import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.HopDongTT;
 
 @Repository
@@ -29,6 +30,14 @@ public class QuanLyHopDongDaoTTImpl implements QuanLyHopDongDaoTT {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.save(tt);
 	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<HoSoNhanVienTT> getAllNhanVien() {
+		Session session = sessionFactory.getCurrentSession();
+		List<HoSoNhanVienTT> listHopDong = session.createQuery("from HoSoNhanVienTT").getResultList();
+		return listHopDong;
+	}
+
 
 	@Override
 	public void updateHopDong(HopDongTT tt) {
@@ -87,6 +96,24 @@ public class QuanLyHopDongDaoTTImpl implements QuanLyHopDongDaoTT {
 		Session session = this.sessionFactory.getCurrentSession();
 		return session.get(HopDongTT.class, maHopDong);
 		
+	}
+
+	@Override
+	public HoSoNhanVienTT findByMaNhanVien(int maNhanVien) {
+		// TODO Auto-generated method stub
+		Session session = this.sessionFactory.getCurrentSession();
+		return session.get(HoSoNhanVienTT.class, maNhanVien);
+	}
+
+	@Override
+	public List<HopDongTT> viewOne(int maNhanVien) {
+		// TODO Auto-generated method stub
+		Session session = this.sessionFactory.openSession();
+		@SuppressWarnings("rawtypes")
+		Query query = session.createQuery("from HopDongTT where ma_nhan_vien = "+maNhanVien+" and trang_thai = 1 ");
+		@SuppressWarnings("unchecked")
+		List<HopDongTT> viewOne = query.list();
+		return viewOne;
 	}
 
 	

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fasttrackse.ffse1703.fbms.entity.quanlyduan.KhachHangTeam1;
@@ -54,11 +55,11 @@ public class KhachHangTeam1Controller {
 		return "redirect:list";
 	}
 
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String listDonNhap(Model model) {
 		model.addAttribute("list", khachHangServiceTeam1.getAll());
 		return "QuanLyDuAn/KhachHang/list";
-	}
+	}*/
 
 	@RequestMapping("/delete/{makh}")
 	public String delete(@PathVariable String makh, HttpServletRequest request, Model model) {
@@ -101,6 +102,26 @@ public class KhachHangTeam1Controller {
 		khachHangServiceTeam1.update(khachhang);
 		return "redirect:/qlda/khachhang/list";
 
+	}
+	
+	@RequestMapping("/list")
+	public String index(Model model,
+			@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage) {
+		int totalRecords = khachHangServiceTeam1.getAll().size();
+		int recordsPerPage = 4;
+		int totalPages = 0;
+		if ((totalRecords / recordsPerPage) % 2 == 0) {
+			totalPages = totalRecords / recordsPerPage;
+		} else {
+			totalPages = totalRecords / recordsPerPage + 1;
+		}
+		int startPosition = recordsPerPage * (currentPage - 1);
+
+		model.addAttribute("list", khachHangServiceTeam1.findAllForPaging(startPosition, recordsPerPage));
+		model.addAttribute("lastPage", totalPages);
+		model.addAttribute("currentPage", currentPage);
+
+		return "QuanLyDuAn/KhachHang/list";
 	}
 
 }

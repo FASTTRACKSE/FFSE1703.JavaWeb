@@ -33,6 +33,12 @@ public class HopDongPikalongDaoImpl implements HopDongPikalongDao {
 		session.save(hd);
 	}
 	
+	@Override
+	public void update(HopDongPikalong hd) {
+		Session session = this.sessionFactory.getCurrentSession();
+		session.update(hd);
+	}
+	
 	@SuppressWarnings("rawtypes")
 	@Override
 	public String getAutoId() {
@@ -56,14 +62,14 @@ public class HopDongPikalongDaoImpl implements HopDongPikalongDao {
 			lastMaHd = query.getSingleResult().toString();
 		}
 		return lastMaHd;
+		
 	}
 	@SuppressWarnings("rawtypes")
 	@Override
-	public HopDongPikalong getHopDongById() {
+	public HopDongPikalong getHopDongById(String maNv) {
 		Session session = this.sessionFactory.getCurrentSession();
-		Query query = session.createSQLQuery(
-				"SELECT * FROM `thongtinhopdong` WHERE MaNv = 1 AND TrangThai = 1");
-		HopDongPikalong lastIdHopDong = (HopDongPikalong) query.list().get(0);
+		Query query = session.createQuery("from HopDongPikalong where maNv = " + maNv + "");
+		HopDongPikalong lastIdHopDong = (HopDongPikalong) query.getSingleResult();
 		return lastIdHopDong;
 	}
 }

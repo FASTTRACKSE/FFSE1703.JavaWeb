@@ -2,100 +2,42 @@ package fasttrackse.ffse1703.fbms.service.quantridanhgia;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import fasttrackse.ffse1703.fbms.dao.quantridanhgia.PhongNhanSuDAO;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.DanhGiaBanThan;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.KyDanhGia;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.LichDanhGia;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.PhanCongDanhGia;
 
-@Service
-public class PhongNhanSuService {
+public interface PhongNhanSuService {
 
-	@Autowired
-	public PhongNhanSuDAO dao;
+	public List<KyDanhGia> getListKyDanhGia();
 
-	@Transactional
-	public List<KyDanhGia> getListKyDanhGia() {
-		return this.dao.getListKyDanhGia();
-	}
+	public void insertKyDanhGia(KyDanhGia kyDanhGia);
 
-	@Transactional
-	public void insertKyDanhGia(KyDanhGia kyDanhGia) {
-		this.dao.insertKyDanhGia(kyDanhGia);
-	}
+	public void updateKyDanhGia(KyDanhGia kyDanhGia);
 
-	@Transactional
-	public void updateKyDanhGia(KyDanhGia kyDanhGia) {
-		this.dao.updateKyDanhGia(kyDanhGia);
-	}
+	public KyDanhGia getKyDanhGia(int maKy);
 
-	@Transactional
-	public KyDanhGia getKyDanhGia(int maKy) {
-		return this.dao.getKyDanhGia(maKy);
-	}
+	public void deleteKyDanhGia(KyDanhGia kyDanhGia);
 
-	@Transactional
-	public void deleteKyDanhGia(KyDanhGia kyDanhGia) {
-		this.dao.deleteKyDanhGia(kyDanhGia);
-	}
+	public List<Integer> getNhanVienPhongBan(String phongBan);
 
-	@Transactional
-	public List<Integer> getNhanVienPhongBan(String phongBan) {
-		return this.dao.getNhanVienPhongBan(phongBan);
-	}
+	public List<LichDanhGia> getListLichDanhGia();
 
-	@Transactional
-	public List<LichDanhGia> getListLichDanhGia() {
-		return this.dao.getListLichDanhGia();
-	}
+	public int checkLichDanhGia(LichDanhGia lichDanhGia);
 
-	@Transactional
-	public int checkLichDanhGia(LichDanhGia lichDanhGia) {
-		return this.dao.checkLichDanhGia(lichDanhGia);
-	}
+	public void insertLichDanhGia(LichDanhGia lichDanhGia);
 
-	@Transactional
-	public void insertLichDanhGia(LichDanhGia lichDanhGia) {
-		this.dao.insertLichDanhGia(lichDanhGia);
-	}
+	public LichDanhGia getLichDanhGia(int id);
 
-	@Transactional
-	public LichDanhGia getLichDanhGia(int id) {
-		return this.dao.getLichDanhGia(id);
-	}
+	public void activeLichDanhGia(LichDanhGia lichDanhGia);
 
-	@Transactional
-	public void activeLichDanhGia(LichDanhGia lichDanhGia) {
-		this.dao.activeLichDanhGia(lichDanhGia);
-	}
+	public void insertPhanCongDanhGia(List<PhanCongDanhGia> pc);
 
-	@Transactional
-	public void insertPhanCongDanhGia(List<PhanCongDanhGia> pc) {
-		this.dao.insertPhanCongDanhGia(pc);
-	}
+	public List<DanhGiaBanThan> getListDanhGiaBanThan();
 
-	@Transactional
-	public List<DanhGiaBanThan> getListDanhGiaBanThan() {
-		return this.dao.getListDanhGiaBanThan();
-	}
-	
-	@Transactional
-	public List<DanhGiaBanThan> getListDanhGiaBanThanByKyDanhGia(String kyDanhGia) {
-		return this.dao.getListDanhGiaBanThanByKyDanhGia(kyDanhGia);
-	}
-	
-	@Transactional
-	public List<DanhGiaBanThan> getListDanhGiaBanThanByPhongBan(String phongBan) {
-		return this.dao.getListDanhGiaBanThanByPhongBan(phongBan);
-	}
-	
-	@Transactional
-	public List<DanhGiaBanThan> getListDanhGiaBanThan(String kyDanhGia, String phongBan) {
-		return this.dao.getListDanhGiaBanThan(kyDanhGia, phongBan);
-	}
+	public List<DanhGiaBanThan> getListDanhGiaBanThanByKyDanhGia(String kyDanhGia);
+
+	public List<DanhGiaBanThan> getListDanhGiaBanThanByPhongBan(String phongBan);
+
+	public List<DanhGiaBanThan> getListDanhGiaBanThan(String kyDanhGia, String phongBan);
 }

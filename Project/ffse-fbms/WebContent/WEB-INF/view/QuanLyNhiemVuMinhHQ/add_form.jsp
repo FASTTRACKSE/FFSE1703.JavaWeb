@@ -37,7 +37,11 @@
 						</div>
 						<div class="form-group col-sm-6">
 						  	<label>Loại công việc</label>
-						  	<form:input class="form-control" path="loaiCongViec" />
+						  	<form:select class="form-control" path="loaiCongViec" >
+						  		<c:forEach items="${cv}" var="nv">
+						  			<form:option value="${nv.loaiCongViec}" label="${nv.loaiCongViec}"></form:option>
+						  		</c:forEach>
+						  	</form:select>
 						</div>
 						<div class="form-group col-sm-6">
 						  	<label>Mô tả</label>
@@ -61,7 +65,9 @@
 						</div>
 						<div class="form-group col-sm-6">
 						  	<label>Trạng thái</label>
-						  	<form:input class="form-control" path="trangThai"/>
+						  	<form:input class="form-control" path="trangThai" value="Mới" readonly="true"/>
+
+						  	
 						</div>
 						<div class="col-sm-12 text-center">
 							<button type="submit" class="btn btn-success">Lưu thông tin</button>

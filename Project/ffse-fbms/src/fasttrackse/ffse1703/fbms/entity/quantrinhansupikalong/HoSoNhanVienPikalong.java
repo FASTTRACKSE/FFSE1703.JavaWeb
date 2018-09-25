@@ -19,9 +19,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class HoSoNhanVienPikalong {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="MaNv")
-	private int maNv;
+	private String maNv;
 	
 	private String hoTenNv;
 	
@@ -65,7 +64,7 @@ public class HoSoNhanVienPikalong {
 	
 	private int isActive;
 
-	public int getMaNv() {
+	public String getMaNv() {
 		return maNv;
 	}
 
@@ -141,7 +140,7 @@ public class HoSoNhanVienPikalong {
 		return isActive;
 	}
 
-	public void setMaNv(int maNv) {
+	public void setMaNv(String maNv) {
 		this.maNv = maNv;
 	}
 

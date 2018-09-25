@@ -19,7 +19,6 @@
 							<div>
 								<div>
 									<div class="row">
-
 										<form:form method="post"
 											action="/ffse-fbms/QuanTriNhanSuPikalong/QuanLiBangCap/editOneBangCap"
 											class="form-horizontal">
@@ -75,8 +74,8 @@
 											</div>
 											<div class="col-xl-6 col-lg-6 col-md-12 mb-1">
 												<div class="form-group">
-													<input class="btn btn-success" type="submit" value="Save" />
-													<a class="btn btn-info"
+													<input class="btn btn-outline-success round" type="submit" value="Save" />
+													<a class="btn btn-outline-info round"
 														href="/ffse-fbms/QuanTriNhanSuPikalong/QuanLiBangCap/viewOneBangCap/${maNv}">View</a>
 												</div>
 											</div>

@@ -45,18 +45,23 @@
 				placeholder="Tên dự án" />
 			<form:errors path="tenDuAn" cssStyle="color: red"></form:errors>
 		</div>
+
 		<div class="form-group col-sm-6">
 			<label>Mô tả dự án</label>
 			<form:textarea path="moTaDuAn" cssClass="form-control round" />
 			<form:errors path="moTaDuAn" cssStyle="color: red"></form:errors>
 		</div>
+		<c:set var="khang" value="${duAn.khachHang.makh }"></c:set>
 		<div class="form-group col-sm-6">
 			<label>Tên Khách Hàng</label>
 			<form:select path="KhachHang" cssClass="form-control round"
-				mutiple="true">
+				mutiple="mutiple">
+				<option value=""></option>
 				<c:forEach items="${khachhang}" var="kh">
-					<option value="${kh.makh }">${kh.tenkh}</option>
+					<option value="${kh.makh }"
+						<c:if test="${kh.makh == khang }" >selected="selected"</c:if>>${kh.tenkh }</option>
 				</c:forEach>
+				<form:errors path="KhachHang" cssStyle="color: red"></form:errors>
 			</form:select>
 		</div>
 		<div class="form-group col-sm-6">
@@ -64,7 +69,7 @@
 			<form:select path="TrangThai" cssClass="form-control round"
 				mutiple="true">
 				<c:forEach items="${TrangThai}" var="tt">
-					<option value="${tt.tenTrangThai }">${tt.tenTrangThai}</option>
+					<option value="${tt.maTrangThai }">${tt.tenTrangThai}</option>
 				</c:forEach>
 			</form:select>
 		</div>
@@ -73,7 +78,7 @@
 			<form:select path="Domain" cssClass="form-control round"
 				mutiple="true">
 				<c:forEach items="${Domain}" var="domain">
-					<option value="${domain.tenNghiepVu}">${domain.tenNghiepVu}</option>
+					<option value="${domain.maNghiepVu}">${domain.tenNghiepVu}</option>
 				</c:forEach>
 			</form:select>
 		</div>
@@ -83,9 +88,7 @@
 			<form:select path="database" cssClass="form-control round"
 				mutiple="true">
 				<c:forEach items="${database}" var="db">
-					<option value="${db.maDatabase }"
-						<c:forEach items="${database}" var="dbs">
-					    </c:forEach>>${db.tenDatabase }
+					<option value="${db.maDatabase }">${db.tenDatabase }
 					</option>
 				</c:forEach>
 			</form:select>
@@ -96,31 +99,34 @@
 			<form:select path="Framework" cssClass="form-control round"
 				mutiple="true">
 				<c:forEach items="${Framework}" var="fw">
-					<option value="${fw.ma_framework }"
-						<c:forEach items="${Framework}" var="dbs">
-					    </c:forEach>>
-					    ${fw.ten_framework}
-					</option>
+					<option value="${fw.ma_framework }">
+						${fw.ten_framework}</option>
 				</c:forEach>
 			</form:select>
 		</div>
-		
+
 		<div class="form-group col-sm-6">
 			<label>Tên Technical</label>
 
 			<form:select path="Technical" cssClass="form-control round"
 				mutiple="true">
 				<c:forEach items="${Technical}" var="tc">
-					<option value="${tc.ma_cong_nghe }"
-						<c:forEach items="${Framework}" var="dbs">
-					    </c:forEach>>
-					    ${tc.ten_cong_nghe}
-					</option>
+					<option value="${tc.ma_cong_nghe }">
+						${tc.ten_cong_nghe}</option>
 				</c:forEach>
 			</form:select>
 		</div>
-		
-			<div class="form-group col-sm-6">
+		<div class="form-group col-sm-6">
+			<label>Tên Vendor</label>
+
+			<form:select path="Vendor" cssClass="form-control round"
+				mutiple="true">
+				<c:forEach items="${Vendor}" var="vd">
+					<option value="${vd.mavd }">${vd.tenvd }</option>
+				</c:forEach>
+			</form:select>
+		</div>
+		<div class="form-group col-sm-6">
 			<label>Start Date</label>
 			<form:input path="startDate" cssClass="form-control round"
 				type="date" />

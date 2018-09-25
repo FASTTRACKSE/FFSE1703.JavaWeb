@@ -16,7 +16,7 @@
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/home" />'>Home</a></li>
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/quanlynhansutt/" />'>Danh sách hợp đồng</a></li>
+								href='<c:url value="/quanlynhansutt/hop_dong/" />'>Danh sách hợp đồng</a></li>
 							<li class="breadcrumb-item active">Sửa hợp đồng</li>
 						</ol>
 					</div>
@@ -48,7 +48,7 @@
 								<div class="card-body collapse in">
 									<div class="card-block">
 										<form:form method="POST" modelAttribute="hopDongTT"
-											action="/ffse-fbms/quanlynhansutt/save">
+											action="/ffse-fbms/quanlynhansutt/hop_dong/save">
 											<div class="form-body">
 												<div class="row">
 													<div class="col-md-8">
@@ -78,13 +78,6 @@
 																	</c:forEach>
 																</form:select>
 
-
-															</div>
-															<div class="form-group col-sm-6">
-																<label>Mã Chức Danh</label>
-																<form:input class="form-control"
-																	path="chucDanh.maChucDanh"
-																	placeholder="Mã Loại Chức Danh" />
 
 															</div>
 														</div>
@@ -162,7 +155,7 @@
 												</div>
 											</div>
 											<div class="form-actions center">
-												<a href="<c:url value = "/quanlynhansutt/"/>"
+												<a href="<c:url value = "/quanlynhansutt/hop_dong/"/>"
 													class="btn btn-primary">Back</a> <input
 													class="btn btn-success" type="submit" value="Save" />
 											</div>

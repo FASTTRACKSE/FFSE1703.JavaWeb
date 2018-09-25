@@ -16,7 +16,7 @@ div.stroke a button:hover {
 
 div.stroke:hover {
 	transition: transform .5s;
-	transform: scale(1.2);
+	transform: scale(1.09);
 }
 
 div.stroke a button {
@@ -30,7 +30,7 @@ div.stroke a button:hover:after {
 <div class="app-content content container-fluid">
 	<div class="content-wrapper">
 		<div class="row">
-			<div class="col-xl-3 col-lg-6 col-12">
+			<div class="col-xl-6 col-lg-6 col-12">
 				<div class="stroke">
 					<a href="#">
 						<button class="btn btn-default" style="background-color: #F5F7FA">
@@ -50,7 +50,7 @@ div.stroke a button:hover:after {
 					</a>
 				</div>
 			</div>
-			<div class="col-xl-3 col-lg-6 col-12">
+			<div class="col-xl-6 col-lg-6 col-12">
 				<div class="stroke">
 					<a href="">
 						<button class="btn btn-default" style="background-color: #F5F7FA">
@@ -58,7 +58,7 @@ div.stroke a button:hover:after {
 								<div class="card-content">
 									<div class="media align-items-stretch">
 										<div class="p-2 text-center bg-primary bg-darken-2">
-											<i class="icon-camera font-large-2 white"></i>
+											<i class="ft-clipboard font-large-2 white"></i>
 										</div>
 										<div class="p-2 bg-gradient-x-primary white media-body">
 											<h5>Thông Tin Hợp Đồng</h5>											
@@ -70,15 +70,15 @@ div.stroke a button:hover:after {
 					</a>
 				</div>
 			</div>
-			<div class="col-xl-3 col-lg-6 col-12">
+			<div class="col-xl-6 col-lg-6 col-12">
 				<div class="stroke">
-					<a href="">
+					<a href="/ffse-fbms/QuanTriNhanSuPikalong/QuanLiGiaDinh/viewOneGiaDinh/${maNv}">
 						<button class="btn btn-default" style="background-color: #F5F7FA">
 							<div class="card">
 								<div class="card-content">
 									<div class="media align-items-stretch">
 										<div class="p-2 text-center bg-primary bg-darken-2">
-											<i class="icon-camera font-large-2 white"></i>
+											<i class="fa fa-home font-large-2 white"></i>
 										</div>
 										<div class="p-2 bg-gradient-x-primary white media-body">
 											<h5>Thông Tin Gia Đình</h5>											
@@ -90,15 +90,15 @@ div.stroke a button:hover:after {
 					</a>
 				</div>
 			</div>
-			<div class="col-xl-3 col-lg-6 col-12">
+			<div class="col-xl-6 col-lg-6 col-12">
 				<div class="stroke">
-					<a href="">
+					<a href="/ffse-fbms/QuanTriNhanSuPikalong/QuanLiBangCap/viewOneBangCap/${maNv}">
 						<button class="btn btn-default" style="background-color: #F5F7FA">
 							<div class="card">
 								<div class="card-content">
 									<div class="media align-items-stretch">
 										<div class="p-2 text-center bg-primary bg-darken-2">
-											<i class="icon-camera font-large-2 white"></i>
+											<i class="fa fa-institution font-large-2 white"></i>
 										</div>
 										<div class="p-2 bg-gradient-x-primary white media-body">
 											<h5>Thông Tin Bằng Cấp</h5>											

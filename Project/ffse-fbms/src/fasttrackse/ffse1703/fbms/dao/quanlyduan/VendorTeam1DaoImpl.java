@@ -75,6 +75,13 @@ public class VendorTeam1DaoImpl implements VendorTeam1Dao{
 		List<VendorTeam1> db = session.createQuery("from VendorTeam1 where mavd = '"+tenVendor+"'", VendorTeam1.class).list();	
 		return  db.size();
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<VendorTeam1> findAllForPaging(int startPosition, int maxResult) {
+		Session session = this.sessionFactory.getCurrentSession();
+		return session.createQuery("from VendorTeam1 where isDelete =0").setFirstResult(startPosition).setMaxResults(maxResult).list();
+	}
 	
 
 }

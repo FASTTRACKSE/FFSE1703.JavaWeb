@@ -303,15 +303,5 @@ public class HoSoNhanVienTT implements Serializable {
 		this.hopDongs = hopDongs;
 	}
 
-	/*
-	 * @Override public String toString() { return "HoSoNhanVien [maNhanVien=" +
-	 * maNhanVien + ", anhDaiDien=" + anhDaiDien + ", danToc=" + danToc + ", email="
-	 * + email + ", gioiTinh=" + gioiTinh + ", tenNhanVien=" + tenNhanVien +
-	 * ", namSinh=" + namSinh + ", ngayCap=" + ngayCap + ", noiCap=" + noiCap +
-	 * ", thanhPho=" + thanhPho + ", quan=" + quanHuyen + ", phuong=" + xaPhuong +
-	 * ", diaChi=" + diaChi + " soCmnd=" + soCmnd + ", soDienThoai=" + soDienThoai +
-	 * ", trangThai=" + trangThai + ", phongBan=" + phongBan + ", chucDanh=" +
-	 * chucDanh + ", quocTich=" + quocTich + ", tinhTrangHonNhan=" +
-	 * tinhTrangHonNhan + "]"; }
-	 */
+
 }

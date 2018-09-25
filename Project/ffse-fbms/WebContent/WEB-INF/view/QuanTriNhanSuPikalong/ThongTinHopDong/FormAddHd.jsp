@@ -53,7 +53,7 @@
 				<div class="form-group">
 					<label>Tên hợp đồng</label> <form:select path="loaiHopDongPikalong.maLoaiHopDong"
 						id="tenHd" name="tenHdSelect" class="form-control">
-						<option value="none" selected="" disabled=""> <--Chọn--> </option>
+						<option value="none" selected="true" disabled="true"> <--Chọn--> </option>
 						<form:option value="1">Hợp đồng thử việc</form:option>
 						<option value="2">Hợp đồng ngắn hạn</option>
 						<option value="3">Hợp đồng chính thức</option>
@@ -63,8 +63,12 @@
 			</div>
 			<div class="col-md-4">
 				<div class="form-group">
-					<label>Trạng thái</label> <form:input path="trangThai"
-						type="text" id="trangThai" class="form-control" />
+					<label>Trạng thái</label> <form:select path="luongThang13"
+						  class="form-control">
+						<form:option value="0" selected="true" disabled="true"> <--Chọn--> </form:option>
+						<form:option value="1">Hết hợp đồng</form:option>
+						<form:option value="2">Còn hợp đồng</form:option>
+					</form:select>
 				</div>
 			</div>
 		</div>
@@ -73,7 +77,7 @@
 				<div class="form-group">
 					<label>Lương tháng 13</label> <form:select path="luongThang13"
 						  class="form-control">
-						<form:option value="none" selected="" disabled=""> <--Chọn--> </form:option>
+						<form:option value="" selected="true" disabled="true"> <--Chọn--> </form:option>
 						<form:option value="1">Có</form:option>
 						<form:option value="2">Không</form:option>
 					</form:select>
@@ -100,7 +104,7 @@
 		</div>
 	</div>
 	<div class="form-actions center">
-	<a href="QuanTriNhanSu/quanlihopdong/HopDong">
+	<a href="/ffse-fbms/QuanTriNhanSu/quanlihopdong/">
 	<button type="button" class="btn btn-warning btn-min-width mr-1 mb-1">
 			<i class="ft-x"></i> Hủy
 	</button></a>

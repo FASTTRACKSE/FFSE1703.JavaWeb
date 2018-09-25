@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import fasttrackse.ffse1703.fbms.entity.quanlyduan.TrangThaiTeam1;
 import fasttrackse.ffse1703.fbms.service.quanlyduan.TrangThaiTeam1Service;
@@ -51,12 +52,12 @@ public class TrangThaiTeam1Controller {
 		redirectAttributes.addFlashAttribute("message", "<script>alert('Creat successfully.');</script>");
 		return "redirect:list";
 	}
-
+/*
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String listDonNhap(Model model) {
 		model.addAttribute("list", trangthaiServiceTeam1.getAll());
 		return "QuanLyDuAn/TrangThai/list";
-	}
+	}*/
 
 	/*
 	 * @RequestMapping("/delete/{maNghiepVu}") public String delete(@PathVariable
@@ -94,5 +95,26 @@ public class TrangThaiTeam1Controller {
 		return "redirect:/qlda/trangthai/list";
 
 	}
+
+	@RequestMapping("/list")
+	public String index(Model model,
+			@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage) {
+		int totalRecords = trangthaiServiceTeam1.getAll().size();
+		int recordsPerPage = 4;
+		int totalPages = 0;
+		if ((totalRecords / recordsPerPage) % 2 == 0) {
+			totalPages = totalRecords / recordsPerPage;
+		} else {
+			totalPages = totalRecords / recordsPerPage + 1;
+		}
+		int startPosition = recordsPerPage * (currentPage - 1);
+
+		model.addAttribute("list", trangthaiServiceTeam1.findAllForPaging(startPosition, recordsPerPage));
+		model.addAttribute("lastPage", totalPages);
+		model.addAttribute("currentPage", currentPage);
+
+		return "QuanLyDuAn/TrangThai/list";
+	}
+
 
 }

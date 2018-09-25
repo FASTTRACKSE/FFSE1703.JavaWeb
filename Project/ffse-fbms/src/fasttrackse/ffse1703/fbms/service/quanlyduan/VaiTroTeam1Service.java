@@ -19,5 +19,7 @@ public interface VaiTroTeam1Service {
 	public void setIsDelete(String maVaiTro);
 	
 	public int getMa(String maVaiTro);
+	
+	public List<VaiTroThanhVienTeam1> findAllForPaging(int startPosition,int maxResult);
 
 }

@@ -40,7 +40,7 @@ public class ThongTinBangCapTT implements Serializable {
 	// bi-directional many-to-one association to HoSoNhanVien
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ma_nhan_vien", nullable = false)
-	private HoSoNhanVienTT hoSoNhanVien;
+	private HoSoNhanVienTT hoSoNhanVienTT;
 
 	@Column(name = "ten_bang_cap", nullable = false, length = 250)
 	@NotEmpty
@@ -107,12 +107,12 @@ public class ThongTinBangCapTT implements Serializable {
 		this.tenBangCap = tenBangCap;
 	}
 
-	public HoSoNhanVienTT getHoSoNhanVien() {
-		return hoSoNhanVien;
+	public HoSoNhanVienTT getHoSoNhanVienTT() {
+		return hoSoNhanVienTT;
 	}
 
-	public void setHoSoNhanVien(HoSoNhanVienTT hoSoNhanVien) {
-		this.hoSoNhanVien = hoSoNhanVien;
+	public void setHoSoNhanVienTT(HoSoNhanVienTT hoSoNhanVienTT) {
+		this.hoSoNhanVienTT = hoSoNhanVienTT;
 	}
 
 	public String getNoiCap() {

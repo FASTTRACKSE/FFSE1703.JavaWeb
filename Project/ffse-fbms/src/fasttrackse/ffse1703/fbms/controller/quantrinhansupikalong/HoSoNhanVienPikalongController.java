@@ -95,6 +95,10 @@ public class HoSoNhanVienPikalongController {
 			BindingResult result, @RequestParam("file") MultipartFile file, HttpSession session) throws IOException {
 		ServletContext context = session.getServletContext();
 		String path = context.getRealPath(UPLOAD_DIRECTORY);
+		File fileUpload = new File(path);
+		 if (!fileUpload.exists()) {
+			 fileUpload.mkdir();
+		 }
 		String filename = file.getOriginalFilename();
 		System.out.println(path + " " + filename);
 		byte[] bytes = file.getBytes();  
@@ -168,6 +172,10 @@ public class HoSoNhanVienPikalongController {
 			BindingResult result, @RequestParam("file") MultipartFile file, HttpSession session) throws IOException {
 		ServletContext context = session.getServletContext();
 		String path = context.getRealPath(UPLOAD_DIRECTORY);
+		File fileUpload = new File(path);
+		 if (!fileUpload.exists()) {
+			 fileUpload.mkdir();
+		 }
 		String filename = file.getOriginalFilename();
 		System.out.println(path + " " + filename);
 		byte[] bytes = file.getBytes();  

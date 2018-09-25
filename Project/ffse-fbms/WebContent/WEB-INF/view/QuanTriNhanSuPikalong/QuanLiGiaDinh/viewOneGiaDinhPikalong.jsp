@@ -21,7 +21,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<h1>${viewOne.get(0).maNV }</h1>
+					<h1>${maNv }</h1>
 					<c:forEach var="giadinh" items="${viewOne}">
 						<tr>
 							<td>${giadinh.hoTen}</td>

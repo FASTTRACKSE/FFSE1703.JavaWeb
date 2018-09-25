@@ -102,6 +102,7 @@ public class HoSoNhanVienPikalongController {
 			 fileUpload.mkdir();
 		 }
 
+
 		String filename = file.getOriginalFilename();
 		System.out.println(path + " " + filename);
 		byte[] bytes = file.getBytes();  

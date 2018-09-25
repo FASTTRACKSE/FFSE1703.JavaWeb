@@ -41,8 +41,8 @@ public class HopDongPikalongController {
 		HoSoNhanVienPikalong hsnv = this.hoSoNhanVienPikalongService.getEdit(maNv);
 		model.addAttribute("hsnv", hsnv);
 		HopDongPikalong hdById = this.hopDongPikalongService.getHopDongById(maNv);
-		model.addAttribute("HopDong", hdById);
-			return "redirect:/QuanTriNhanSu/quanlihopdong/view";
+		model.addAttribute("hopDong", hdById);
+			return "QuanTriNhanSuPikalong/ThongTinHopDong/view/ViewThongTinHopDong";
 	}
 	
 	@RequestMapping(value = "formaddhd/11" + "", method = RequestMethod.GET)

@@ -36,8 +36,7 @@
 							<td>${vd.diachi}</td>
 							<td>${vd.email}</td>
 							<td>${vd.sdt}</td>
-							<td><a
-								href="/ffse-fbms/QuanLyDuAn/vendor/edit/${vd.mavd}"
+							<td><a href="/ffse-fbms/QuanLyDuAn/vendor/edit/${vd.mavd}"
 								data-toggle="tooltip" title="edit">
 									<button type="button" class="btn btn-icon btn-outline-warning">
 										<i class="fa fa-pencil"></i>
@@ -55,11 +54,39 @@
 				</tbody>
 			</table>
 
+			<nav aria-label="Page navigation example">
+				<ul class="pagination">
+					<li class="page-item"><a class="page-link" href="?page=1">First
+							Page</a></li>
+					<c:if test="${currentPage > 2}">
+						<li class="page-item"><a class="page-link"
+							href="?page=${currentPage-2}">${currentPage-2}</a></li>
+					</c:if>
+					<c:if test="${currentPage > 1}">
+						<li class="page-item"><a class="page-link"
+							href="?page=${currentPage-1}">${currentPage-1}</a></li>
+					</c:if>
+					<li class="page-item active"><a class="page-link"
+						href="?page=${currentPage}">${currentPage}</a></li>
+					<c:if test="${currentPage < lastPage}">
+						<li class="page-item"><a class="page-link"
+							href="?page=${currentPage+1}">${currentPage+1}</a></li>
+					</c:if>
+					<c:if test="${currentPage < lastPage - 1}">
+						<li class="page-item"><a class="page-link"
+							href="?page=${currentPage+2}">${currentPage+2}</a></li>
+					</c:if>
+					<li class="page-item"><a class="page-link"
+						href="?page=${lastPage }">Last Page</a></li>
+				</ul>
+			</nav>
+
 			<div class="row"></div>
 		</div>
 		<div class="col-sm-4">
 			<h5>
-				<a href="/ffse-fbms/QuanLyDuAn/vendor/add"><strong>Thêm Vendor</strong></a>
+				<a href="/ffse-fbms/QuanLyDuAn/vendor/add"><strong>Thêm
+						Vendor</strong></a>
 			</h5>
 			<c:if test="${message !=null }">
 						 ${message }

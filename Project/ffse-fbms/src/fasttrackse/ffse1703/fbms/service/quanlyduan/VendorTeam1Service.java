@@ -21,4 +21,6 @@ public interface VendorTeam1Service {
 	public int getName(String tenVendor);
 	
 	public int getMa(String maVendor);
+	
+	public List<VendorTeam1> findAllForPaging(int startPosition,int maxResult);
 }

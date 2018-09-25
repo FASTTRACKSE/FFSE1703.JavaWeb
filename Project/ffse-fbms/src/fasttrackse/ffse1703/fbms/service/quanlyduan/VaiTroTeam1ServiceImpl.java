@@ -60,6 +60,12 @@ public class VaiTroTeam1ServiceImpl implements VaiTroTeam1Service{
 		return this.vaiTroDao.getMa(maVendor);
 		
 	}
+
+	@Override
+	@Transactional
+	public List<VaiTroThanhVienTeam1> findAllForPaging(int startPosition, int maxResult) {
+		return this.vaiTroDao.findAllForPaging(startPosition, maxResult);
+	}
 	
 
 }

@@ -1,20 +1,20 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.15.9
--- https://www.phpmyadmin.net
+-- version 3.5.2.2
+-- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Sep 17, 2018 at 08:06 AM
--- Server version: 5.6.37
--- PHP Version: 5.6.31
+-- Host: 127.0.0.1
+-- Generation Time: Sep 26, 2018 at 12:25 PM
+-- Server version: 5.5.27
+-- PHP Version: 5.4.7
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `ffse1703`
@@ -28,7 +28,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `chuc_danh` (
   `ma_chuc_danh` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `ten_chuc_danh` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+  `ten_chuc_danh` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`ma_chuc_danh`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -49,10 +50,11 @@ INSERT INTO `chuc_danh` (`ma_chuc_danh`, `ten_chuc_danh`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `cong_nghe` (
-  `ma_cong_nghe` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
-  `ten_cong_nghe` int(40) NOT NULL,
-  `is_delete` int(40) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `ma_cong_nghe` int(11) NOT NULL,
+  `ten_cong_nghe` int(11) NOT NULL,
+  `is_Delete` int(11) NOT NULL,
+  PRIMARY KEY (`ma_cong_nghe`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -61,9 +63,10 @@ CREATE TABLE IF NOT EXISTS `cong_nghe` (
 --
 
 CREATE TABLE IF NOT EXISTS `cong_nghe_du_an` (
-  `ma_du_an` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `ma_cong_nghe` varchar(30) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `ma_du_an` varchar(50) NOT NULL,
+  `ma_cong_nghe` varchar(50) NOT NULL,
+  PRIMARY KEY (`ma_du_an`,`ma_cong_nghe`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -74,7 +77,8 @@ CREATE TABLE IF NOT EXISTS `cong_nghe_du_an` (
 CREATE TABLE IF NOT EXISTS `co_so_du_lieu` (
   `ma_database` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `ten_database` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-  `is_delete` int(2) NOT NULL
+  `is_delete` int(2) NOT NULL,
+  PRIMARY KEY (`ma_database`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -92,7 +96,8 @@ INSERT INTO `co_so_du_lieu` (`ma_database`, `ten_database`, `is_delete`) VALUES
 
 CREATE TABLE IF NOT EXISTS `database_du_an` (
   `ma_database` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `ma_du_an` int(11) NOT NULL
+  `ma_du_an` int(11) NOT NULL,
+  PRIMARY KEY (`ma_database`,`ma_du_an`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -114,7 +119,8 @@ CREATE TABLE IF NOT EXISTS `doi_tac` (
   `dia_chi` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `so_dien_thoai` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `is_delete` tinyint(1) NOT NULL
+  `is_delete` tinyint(1) NOT NULL,
+  PRIMARY KEY (`ma_doi_tac`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -122,7 +128,15 @@ CREATE TABLE IF NOT EXISTS `doi_tac` (
 --
 
 INSERT INTO `doi_tac` (`ma_doi_tac`, `ten_doi_tac`, `dia_chi`, `so_dien_thoai`, `email`, `is_delete`) VALUES
-('DT01', 'FPT', '20-Phan tứ', '12388882', 'doanhnghieptunhanft@gmail.com', 0);
+('DT01', 'FPT', '20-Phan tứ', '12388882', 'doanhnghieptunhanft@gmail.com', 0),
+('DT011', 'Chương ML', 'đà nẵng', '0198287266', 'aaaaa@gmail.com', 0),
+('VD001', 'sss', 'sssss', '1212121', 'sssss', 0),
+('VD0012', 'CCC', 'đà nẵng', '0198287266', 'aaaaa@gmail.com', 0),
+('VD002', 'Chương ML', 'Quảng Nam', '03093763', 'cccc@gmail.com', 0),
+('VD011', 'Chương ML', 'đà nẵng', '0198287266', '0935511583', 0),
+('VD05', 'CCC', 'ĐN', '0198287266', 'aaaaa@gmail.com', 0),
+('VD11', 'aaaa', 'DD', '0000000', 'aaaaa@gmail.com', 1),
+('VD1111', 'aaaa', 'sssss', '1212121', 'sdwedd', 1);
 
 -- --------------------------------------------------------
 
@@ -132,7 +146,8 @@ INSERT INTO `doi_tac` (`ma_doi_tac`, `ten_doi_tac`, `dia_chi`, `so_dien_thoai`, 
 
 CREATE TABLE IF NOT EXISTS `doi_tac_du_an` (
   `ma_du_an` int(11) NOT NULL,
-  `ma_doi_tac` varchar(30) COLLATE utf8_unicode_ci NOT NULL
+  `ma_doi_tac` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`ma_du_an`,`ma_doi_tac`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -149,7 +164,7 @@ INSERT INTO `doi_tac_du_an` (`ma_du_an`, `ma_doi_tac`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `du_an` (
-  `ma_du_an` int(11) NOT NULL,
+  `ma_du_an` int(11) NOT NULL AUTO_INCREMENT,
   `ten_du_an` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `ma_khach_hang` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
   `mo_ta_du_an` text COLLATE utf8_unicode_ci,
@@ -157,8 +172,13 @@ CREATE TABLE IF NOT EXISTS `du_an` (
   `ma_nghiep_vu` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
   `start_date` date DEFAULT NULL,
   `end_date` date DEFAULT NULL,
-  `is_delete` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `is_delete` tinyint(1) NOT NULL,
+  PRIMARY KEY (`ma_du_an`),
+  UNIQUE KEY `MaDuAn` (`ma_du_an`),
+  KEY `MaDuAn_2` (`ma_du_an`),
+  KEY `MaDuAn_3` (`ma_du_an`),
+  KEY `ma_tinh_trang` (`ma_tinh_trang`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `du_an`
@@ -176,7 +196,8 @@ INSERT INTO `du_an` (`ma_du_an`, `ten_du_an`, `ma_khach_hang`, `mo_ta_du_an`, `m
 CREATE TABLE IF NOT EXISTS `framework` (
   `ma_framework` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `ten_framework` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `is_delete` tinyint(1) NOT NULL
+  `is_delete` tinyint(1) NOT NULL,
+  PRIMARY KEY (`ma_framework`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -194,7 +215,8 @@ INSERT INTO `framework` (`ma_framework`, `ten_framework`, `is_delete`) VALUES
 
 CREATE TABLE IF NOT EXISTS `framework_du_an` (
   `ma_framework` varchar(30) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `ma_du_an` int(11) NOT NULL DEFAULT '0'
+  `ma_du_an` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`ma_framework`,`ma_du_an`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -211,7 +233,7 @@ INSERT INTO `framework_du_an` (`ma_framework`, `ma_du_an`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `ho_so_nhan_vien` (
-  `ma_nhan_vien` int(5) unsigned zerofill NOT NULL,
+  `ma_nhan_vien` int(5) unsigned zerofill NOT NULL AUTO_INCREMENT,
   `ma_phong_ban` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `ma_chuc_danh` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `ho_dem` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
@@ -229,8 +251,9 @@ CREATE TABLE IF NOT EXISTS `ho_so_nhan_vien` (
   `so_cmnd` varchar(11) COLLATE utf8_unicode_ci NOT NULL,
   `noi_cap` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `ngay_cap` date NOT NULL,
-  `trang_thai` int(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `trang_thai` int(1) NOT NULL,
+  PRIMARY KEY (`ma_nhan_vien`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=202 ;
 
 --
 -- Dumping data for table `ho_so_nhan_vien`
@@ -364,7 +387,8 @@ INSERT INTO `ho_so_nhan_vien` (`ma_nhan_vien`, `ma_phong_ban`, `ma_chuc_danh`, `
 (00125, 'PKT', 'NV', 'Trương Thành', 'Mạnh', '1219820798008.png', '1962-12-19', 1, 1, 'K424/H19/08 Ông Ích Khiêm, Phường Vĩnh Trung, Quận Thanh Khê, Thành phố Đà Nẵng', 'Kinh', 'VN', 'K424/H19/08 Ông Ích Khiêm, Phường Vĩnh Trung, Quận Thanh Khê, Thành phố Đà Nẵng', '01234555424', 'doanthidat8531@gmail.com', '201476209', 'Đà Nẵng', '2008-09-28', 1),
 (00126, 'PNS', 'NV', 'Đồng Phi', 'Tuệ', '1219820798007.png', '1983-08-03', 2, 1, '388 Trần Hưng Đạo, Phường An Hải Tây, Quận Sơn Trà, Thành phố Đà Nẵng', 'Kinh', 'VN', '388 Trần Hưng Đạo, Phường An Hải Tây, Quận Sơn Trà, Thành phố Đà Nẵng', '0902319019', 'dongvantien1321@gmail.com', '200850659', 'Đà Nẵng', '2011-01-14', 2),
 (00127, 'PKT', 'NV', 'Tôn Phương', 'Thanh', '1219820798012.png', '1966-02-20', 2, 3, 'K5/500 Tôn Đản, Phường Hoà Phát, Quận Cẩm Lệ, Thành phố Đà Nẵng', 'Kinh', 'VN', 'K5/500 Tôn Đản, Phường Hoà Phát, Quận Cẩm Lệ, Thành phố Đà Nẵng', '0916183036', 'hoangphucngan4741@gmail.com', '201145118', 'Kon Tum', '2012-04-05', 2),
-(00128, 'PIT', 'NV', 'Hoàng Thị', 'Phước', '1219820798009.png', '1944-04-27', 2, 2, '260 Lê Văn Hiến, Phường Khuê Mỹ, Quận Ngũ Hành Sơn, Thành phố Đà Nẵng', 'Kinh', 'VN', '260 Lê Văn Hiến, Phường Khuê Mỹ, Quận Ngũ Hành Sơn, Thành phố Đà Nẵng', '0982171823', 'hoanghuuphuoc7361@gmail.com', '201694279', 'Bắc Giang', '2012-08-19', 1),
+(00128, 'PIT', 'NV', 'Hoàng Thị', 'Phước', '1219820798009.png', '1944-04-27', 2, 2, '260 Lê Văn Hiến, Phường Khuê Mỹ, Quận Ngũ Hành Sơn, Thành phố Đà Nẵng', 'Kinh', 'VN', '260 Lê Văn Hiến, Phường Khuê Mỹ, Quận Ngũ Hành Sơn, Thành phố Đà Nẵng', '0982171823', 'hoanghuuphuoc7361@gmail.com', '201694279', 'Bắc Giang', '2012-08-19', 1);
+INSERT INTO `ho_so_nhan_vien` (`ma_nhan_vien`, `ma_phong_ban`, `ma_chuc_danh`, `ho_dem`, `ten`, `anh_dai_dien`, `nam_sinh`, `gioi_tinh`, `ma_tinh_trang_hon_nhan`, `que_quan`, `dan_toc`, `ma_quoc_tich`, `noi_tam_tru`, `so_dien_thoai`, `email`, `so_cmnd`, `noi_cap`, `ngay_cap`, `trang_thai`) VALUES
 (00129, 'PKT', 'NV', 'Võ Văn', 'Trân', '1219820798018.png', '1942-04-12', 2, 1, '57/K1/4 Đường Hòa An 19, Phường Hoà An, Quận Cẩm Lệ, Thành phố Đà Nẵng', 'Kinh', 'VN', '57/K1/4 Đường Hòa An 19, Phường Hoà An, Quận Cẩm Lệ, Thành phố Đà Nẵng', '0913347176', 'lythilong2911@gmail.com', '201548990', 'Đà Nẵng', '2009-08-18', 1),
 (00130, 'PIT', 'NV', 'Lý Hữu', 'Trí', '1219820798005.png', '1988-09-18', 2, 3, '103 Vũ Quỳnh, Phường Thanh Khê Tây, Quận Thanh Khê, Thành phố Đà Nẵng', 'Kinh', 'VN', '103 Vũ Quỳnh, Phường Thanh Khê Tây, Quận Thanh Khê, Thành phố Đà Nẵng', '0995919963', 'lyphiphuc2331@gmail.com', '201225972', 'Đà Nẵng', '2009-09-22', 1),
 (00131, 'PIT', 'NV', 'Phan Hưng', 'Nghĩa', '1219820798002.png', '1959-08-23', 1, 3, '35 Trần Thủ Độ , Phường Khuê Trung, Quận Cẩm Lệ, Thành phố Đà Nẵng', 'Kinh', 'VN', '35 Trần Thủ Độ , Phường Khuê Trung, Quận Cẩm Lệ, Thành phố Đà Nẵng', '01273008666', 'nguyenphuongthanh9611@gmail.com', '201195693', 'Hồ Chí Minh', '2012-02-19', 2),
@@ -384,8 +408,7 @@ INSERT INTO `ho_so_nhan_vien` (`ma_nhan_vien`, `ma_phong_ban`, `ma_chuc_danh`, `
 (00145, 'PIT', 'NV', 'Lê Phương', 'Phúc', '1219820798008.png', '1932-07-20', 1, 3, 'K36/H8/31 Nguyễn Huy Tưởng, Phường Hoà Minh, Quận Liên Chiểu, Thành phố Đà Nẵng', 'Kinh', 'VN', 'K36/H8/31 Nguyễn Huy Tưởng, Phường Hoà Minh, Quận Liên Chiểu, Thành phố Đà Nẵng', '01636290441', 'lamthichau2971@gmail.com', '200968178', 'Kon Tum', '2008-11-16', 2),
 (00146, 'PIT', 'NV', 'Lý Vô', 'Đạt', '1219820798005.png', '1950-09-10', 2, 3, '244 Nguyễn Duy Trinh, Phường Hoà Hải, Quận Ngũ Hành Sơn, Thành phố Đà Nẵng', 'Kinh', 'VN', '244 Nguyễn Duy Trinh, Phường Hoà Hải, Quận Ngũ Hành Sơn, Thành phố Đà Nẵng', '0947305361', 'lythanhlinh6811@gmail.com', '201026844', 'Đà Nẵng', '2009-05-20', 2),
 (00147, 'PNS', 'NV', 'Đăng Vô', 'Nghĩa', '1219820798015.png', '1947-01-28', 1, 4, '130/19 Điện Biên Phủ, Phường Chính Gián, Quận Thanh Khê, Thành phố Đà Nẵng', 'Kinh', 'VN', '130/19 Điện Biên Phủ, Phường Chính Gián, Quận Thanh Khê, Thành phố Đà Nẵng', '0942645560', 'tonhungphuc1741@gmail.com', '201189554', 'Đà Nẵng', '2012-05-12', 1),
-(00148, 'PIT', 'NV', 'Đinh Thị', 'Tuyền', '1219820798017.png', '1944-03-23', 1, 1, 'Lô 165 Khu TĐC phía nam Hoàng Văn Thái, Phường Hoà Hiệp Nam, Quận Liên Chiểu, Thành phố Đà Nẵng', 'Kinh', 'VN', 'Lô 165 Khu TĐC phía nam Hoàng Văn Thái, Phường Hoà Hiệp Nam, Quận Liên Chiểu, Thành phố Đà Nẵng', '01662685066', 'laithichi9541@gmail.com', '201583325', 'Vĩnh Phúc', '2012-05-18', 2);
-INSERT INTO `ho_so_nhan_vien` (`ma_nhan_vien`, `ma_phong_ban`, `ma_chuc_danh`, `ho_dem`, `ten`, `anh_dai_dien`, `nam_sinh`, `gioi_tinh`, `ma_tinh_trang_hon_nhan`, `que_quan`, `dan_toc`, `ma_quoc_tich`, `noi_tam_tru`, `so_dien_thoai`, `email`, `so_cmnd`, `noi_cap`, `ngay_cap`, `trang_thai`) VALUES
+(00148, 'PIT', 'NV', 'Đinh Thị', 'Tuyền', '1219820798017.png', '1944-03-23', 1, 1, 'Lô 165 Khu TĐC phía nam Hoàng Văn Thái, Phường Hoà Hiệp Nam, Quận Liên Chiểu, Thành phố Đà Nẵng', 'Kinh', 'VN', 'Lô 165 Khu TĐC phía nam Hoàng Văn Thái, Phường Hoà Hiệp Nam, Quận Liên Chiểu, Thành phố Đà Nẵng', '01662685066', 'laithichi9541@gmail.com', '201583325', 'Vĩnh Phúc', '2012-05-18', 2),
 (00149, 'PIT', 'NV', 'Lai Thành', 'Tài', '1219820798007.png', '1990-08-29', 1, 2, 'Số 54 Nguyễn Thiếp, Phường An Hải Tây, Quận Sơn Trà, Thành phố Đà Nẵng', 'Kinh', 'VN', 'Số 54 Nguyễn Thiếp, Phường An Hải Tây, Quận Sơn Trà, Thành phố Đà Nẵng', '0982236673', 'tonhungphuong7591@gmail.com', '201443743', 'Nam Định', '2009-10-25', 2),
 (00150, 'PIT', 'NV', 'Hoàng Thị', 'Sơn', '1219820798021.png', '1973-01-29', 1, 3, 'K31/12 Mẹ Nhu, Phường Thanh Khê Tây, Quận Thanh Khê, Thành phố Đà Nẵng', 'Kinh', 'VN', 'K31/12 Mẹ Nhu, Phường Thanh Khê Tây, Quận Thanh Khê, Thành phố Đà Nẵng', '0903294798', 'vuongphuongquang6411@gmail.com', '201819512', 'Đà Nẵng', '2011-12-03', 1),
 (00151, 'PNS', 'NV', 'Nguyễn Thành', 'Bách', '1219820798002.png', '1939-12-05', 1, 1, '15 An Thượng 27, Phường Mỹ An, Quận Ngũ Hành Sơn, Thành phố Đà Nẵng', 'Kinh', 'VN', '15 An Thượng 27, Phường Mỹ An, Quận Ngũ Hành Sơn, Thành phố Đà Nẵng', '01687197564', 'hoangvantue7711@gmail.com', '201469809', 'Khánh Hòa', '2009-10-07', 2),
@@ -452,7 +475,8 @@ CREATE TABLE IF NOT EXISTS `khach_hang` (
   `dia_chi` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
   `so_dien_thoai` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `is_delete` tinyint(1) NOT NULL
+  `is_delete` tinyint(1) NOT NULL,
+  PRIMARY KEY (`ma_khach_hang`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -471,7 +495,8 @@ INSERT INTO `khach_hang` (`ma_khach_hang`, `ten_khach_hang`, `dia_chi`, `so_dien
 CREATE TABLE IF NOT EXISTS `nghiep_vu` (
   `ma_nghiep_vu` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `ten_nghiep_vu` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `is_delete` tinyint(30) NOT NULL
+  `is_delete` tinyint(30) NOT NULL,
+  PRIMARY KEY (`ma_nghiep_vu`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -490,7 +515,8 @@ INSERT INTO `nghiep_vu` (`ma_nghiep_vu`, `ten_nghiep_vu`, `is_delete`) VALUES
 CREATE TABLE IF NOT EXISTS `ngon_ngu` (
   `ma_ngon_ngu` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `ten_ngon_ngu` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `is_delete` tinyint(1) NOT NULL
+  `is_delete` tinyint(1) NOT NULL,
+  PRIMARY KEY (`ma_ngon_ngu`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -498,7 +524,12 @@ CREATE TABLE IF NOT EXISTS `ngon_ngu` (
 --
 
 INSERT INTO `ngon_ngu` (`ma_ngon_ngu`, `ten_ngon_ngu`, `is_delete`) VALUES
-('PL01', 'Java', 0);
+('NN001', 'css', 0),
+('PL01', 'Java', 0),
+('PL010', 'php', 0),
+('PL0100', 'html', 0),
+('PL011', 'mySQL', 0),
+('PL012', 'css', 0);
 
 -- --------------------------------------------------------
 
@@ -508,7 +539,9 @@ INSERT INTO `ngon_ngu` (`ma_ngon_ngu`, `ten_ngon_ngu`, `is_delete`) VALUES
 
 CREATE TABLE IF NOT EXISTS `ngon_ngu_du_an` (
   `ma_ngon_ngu` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `ma_du_an` int(11) NOT NULL DEFAULT '0'
+  `ma_du_an` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`ma_ngon_ngu`,`ma_du_an`),
+  KEY `ma_du_an` (`ma_du_an`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -527,7 +560,8 @@ INSERT INTO `ngon_ngu_du_an` (`ma_ngon_ngu`, `ma_du_an`) VALUES
 CREATE TABLE IF NOT EXISTS `nhiem_vu` (
   `ma_vai_tro` varchar(30) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `ma_nhan_vien` int(11) NOT NULL DEFAULT '0',
-  `ma_du_an` int(11) NOT NULL
+  `ma_du_an` int(11) NOT NULL,
+  PRIMARY KEY (`ma_vai_tro`,`ma_nhan_vien`,`ma_du_an`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -594,7 +628,8 @@ INSERT INTO `role` (`ma_role`, `name`) VALUES
 CREATE TABLE IF NOT EXISTS `tinh_trang` (
   `ma_tinh_trang` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `ten_tinh_trang` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `is_delete` tinyint(1) NOT NULL
+  `is_delete` tinyint(1) NOT NULL,
+  PRIMARY KEY (`ma_tinh_trang`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -616,12 +651,16 @@ INSERT INTO `tinh_trang` (`ma_tinh_trang`, `ten_tinh_trang`, `is_delete`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
-  `ma_tai_khoan` int(11) NOT NULL,
+  `ma_tai_khoan` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `password` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `ma_nhan_vien` int(11) NOT NULL,
-  `enabled` int(1) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `enabled` int(1) DEFAULT NULL,
+  PRIMARY KEY (`ma_tai_khoan`),
+  UNIQUE KEY `ma_nhan_vien` (`ma_nhan_vien`),
+  UNIQUE KEY `username_UNIQUE` (`username`),
+  UNIQUE KEY `UKr43af9ap4edm43mmtq01oddj6` (`username`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=18 ;
 
 --
 -- Dumping data for table `users`
@@ -681,26 +720,6 @@ INSERT INTO `users_roles` (`ma_tai_khoan`, `ma_role`) VALUES
 (15, 8),
 (16, 8),
 (17, 1),
-(17, 8),
-(1, 2),
-(2, 3),
-(3, 4),
-(4, 5),
-(5, 6),
-(6, 1),
-(6, 7),
-(7, 3),
-(8, 4),
-(9, 5),
-(10, 6),
-(11, 1),
-(11, 7),
-(12, 2),
-(13, 8),
-(14, 8),
-(15, 8),
-(16, 8),
-(17, 1),
 (17, 8);
 
 -- --------------------------------------------------------
@@ -712,7 +731,8 @@ INSERT INTO `users_roles` (`ma_tai_khoan`, `ma_role`) VALUES
 CREATE TABLE IF NOT EXISTS `vai_tro_thanh_vien` (
   `ma_vai_tro` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `ten_vai_tro` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `is_delete` tinyint(1) NOT NULL
+  `is_delete` tinyint(1) NOT NULL,
+  PRIMARY KEY (`ma_vai_tro`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -720,6 +740,9 @@ CREATE TABLE IF NOT EXISTS `vai_tro_thanh_vien` (
 --
 
 INSERT INTO `vai_tro_thanh_vien` (`ma_vai_tro`, `ten_vai_tro`, `is_delete`) VALUES
+('VT001', 'DDA', 0),
+('VT0011', 'DDD', 0),
+('VT002', 'AAA', 0),
 ('VT01', 'PM', 0),
 ('VT02', 'Technical Lead', 0),
 ('VT03', 'Dev', 0),
@@ -727,33 +750,21 @@ INSERT INTO `vai_tro_thanh_vien` (`ma_vai_tro`, `ten_vai_tro`, `is_delete`) VALU
 ('VT05', 'Reviewer', 0);
 
 --
--- Indexes for dumped tables
+-- Constraints for dumped tables
 --
 
 --
--- Indexes for table `users`
+-- Constraints for table `du_an`
 --
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`ma_tai_khoan`),
-  ADD UNIQUE KEY `ma_nhan_vien` (`ma_nhan_vien`),
-  ADD UNIQUE KEY `username_UNIQUE` (`username`),
-  ADD UNIQUE KEY `UKr43af9ap4edm43mmtq01oddj6` (`username`);
+ALTER TABLE `du_an`
+  ADD CONSTRAINT `du_an_ibfk_1` FOREIGN KEY (`ma_tinh_trang`) REFERENCES `tinh_trang` (`ma_tinh_trang`);
 
 --
--- Indexes for table `vai_tro_thanh_vien`
+-- Constraints for table `ngon_ngu_du_an`
 --
-ALTER TABLE `vai_tro_thanh_vien`
-  ADD PRIMARY KEY (`ma_vai_tro`);
+ALTER TABLE `ngon_ngu_du_an`
+  ADD CONSTRAINT `ngon_ngu_du_an_ibfk_2` FOREIGN KEY (`ma_ngon_ngu`) REFERENCES `ngon_ngu` (`ma_ngon_ngu`);
 
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `ma_tai_khoan` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -24,7 +24,7 @@
 				<label>Mã Nghiệp Vụ</label>
 				<form:input class="form-control" path="maNghiepVu"
 					placeholder="Mã nghiệp vụ " />
-				<%--  <form:errors path="makh" cssStyle="color: red"></form:errors>--%>
+				<%--  <form:errors path="" cssStyle="color: red"></form:errors>--%>
 
 			</div>
 			<div class="form-group col-sm-6">

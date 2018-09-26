@@ -21,6 +21,7 @@ div.stroke:hover {
 
 div.stroke a button {
 	position: relative;
+	
 }
 
 div.stroke a button:hover:after {
@@ -32,7 +33,7 @@ div.stroke a button:hover:after {
 		<div class="row">
 			<div class="col-xl-6 col-lg-6 col-12">
 				<div class="stroke">
-					<a href="#">
+					<a href="/ffse-fbms/quantrinhansu/hosonhanvien/hosochitiet/${maNv}">
 						<button class="btn btn-default" style="background-color: #F5F7FA">
 							<div class="card">
 								<div class="card-content">

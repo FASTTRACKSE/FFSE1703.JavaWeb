@@ -208,4 +208,10 @@ public class HoSoNhanVienPikalongController {
 		return "QuanTriNhanSuPikalong/ThongTinHoSo/view";
 	}
 	
+	// page Hồ sơ chi tiết
+	@RequestMapping("hosochitiet/{maNv}")
+	public String details() {
+		
+		return "QuanTriNhanSuPikalong/ThongTinHoSo/hosochitiet";
+	}
 }

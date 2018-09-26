@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import fasttrackse.ffse1703.fbms.entity.quantridanhgia.DanhGiaNhanVien;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.KyDanhGia;
-import fasttrackse.ffse1703.fbms.entity.quantridanhgia.PhanCongDanhGia;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.LichDanhGia;
 import fasttrackse.ffse1703.fbms.service.quantridanhgia.PhongNhanSuService;
 import fasttrackse.ffse1703.fbms.service.security.PhongBanService;
@@ -71,7 +71,7 @@ public class PhongNhanSuController {
 
 	@RequestMapping("/lichdanhgia")
 	private String showListLichDanhgia(Model model) {
-		model.addAttribute("command", new PhanCongDanhGia());
+		model.addAttribute("command", new DanhGiaNhanVien());
 		model.addAttribute("listKyDanhGia", service.getListKyDanhGia());
 		model.addAttribute("listPhongBan", phongBanService.findAll());
 		model.addAttribute("listLichDanhGia", service.getListLichDanhGia());
@@ -88,9 +88,14 @@ public class PhongNhanSuController {
 
 	@RequestMapping("/lichdanhgia/start/{id}")
 	private String activeLichDanhgia(RedirectAttributes model, @PathVariable int id) {
-		LichDanhGia lich = service.getLichDanhGia(id);
-		lich.setIsActive(1);
-		service.activeLichDanhGia(lich);
+		if (service.checkActiveLichDanhGia() < 1) {
+			LichDanhGia lich = service.getLichDanhGia(id);
+			lich.setIsActive(1);
+			service.activeLichDanhGia(lich);
+			createPhanCongDanhgia(lich.getKyDanhGia(), lich.getPhongBan());
+		} else {
+			model.addAttribute("message", "<script>alert('Đã có hoạt động đánh giá tồn tại')</script>");
+		}
 		return "redirect:/quantridanhgia/phongnhansu/lichdanhgia";
 	}
 
@@ -99,20 +104,19 @@ public class PhongNhanSuController {
 		LichDanhGia lich = service.getLichDanhGia(id);
 		lich.setIsActive(2);
 		service.activeLichDanhGia(lich);
-		createPhanCongDanhgia(lich.getKyDanhGia(), lich.getPhongBan());
 		return "redirect:/quantridanhgia/phongnhansu/lichdanhgia";
 	}
 
 	private void createPhanCongDanhgia(String kyDanhGia, String phongBan) {
 		List<Integer> listNhanVien = service.getNhanVienPhongBan(phongBan);
-		List<PhanCongDanhGia> listPhanCong = new ArrayList<>();
+		List<DanhGiaNhanVien> listPhanCong = new ArrayList<>();
 		for (int i = 0; i < listNhanVien.size(); i++) {
 			int nhanvien = listNhanVien.get(i);
 			for (int j = 1; j < 4; j++) {
-				PhanCongDanhGia pc = new PhanCongDanhGia();
+				DanhGiaNhanVien pc = new DanhGiaNhanVien();
 				pc.setKyDanhGia(kyDanhGia);
 				pc.setPhongBan(phongBan);
-				pc.setNhanVienDanhGia(nhanvien);
+				pc.setNhanVienDanhGia(nhanvien);;
 				if (i + j < listNhanVien.size()) {
 					pc.setNhanVien(listNhanVien.get(i + j));
 				} else {

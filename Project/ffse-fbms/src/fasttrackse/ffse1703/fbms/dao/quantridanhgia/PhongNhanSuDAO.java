@@ -3,9 +3,9 @@ package fasttrackse.ffse1703.fbms.dao.quantridanhgia;
 import java.util.List;
 
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.DanhGiaBanThan;
+import fasttrackse.ffse1703.fbms.entity.quantridanhgia.DanhGiaNhanVien;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.KyDanhGia;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.LichDanhGia;
-import fasttrackse.ffse1703.fbms.entity.quantridanhgia.PhanCongDanhGia;
 
 public interface PhongNhanSuDAO {
 
@@ -28,10 +28,14 @@ public interface PhongNhanSuDAO {
 	public void insertLichDanhGia(LichDanhGia lichDanhGia);
 
 	public LichDanhGia getLichDanhGia(int id);
+	
+	public int checkActiveLichDanhGia();
 
+	public int checkCompleteLichDanhGia();
+	
 	public void activeLichDanhGia(LichDanhGia lichDanhGia);
 
-	public void insertPhanCongDanhGia(List<PhanCongDanhGia> pc);
+	public void insertPhanCongDanhGia(List<DanhGiaNhanVien> pc);
 
 	public List<DanhGiaBanThan> getListDanhGiaBanThan();
 

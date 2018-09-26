@@ -16,7 +16,8 @@
 								href="<c:url value = "/quantridanhgia/home/"/>">Quản trị
 									đánh giá</a></li>
 							<li class="breadcrumb-item"><a
-								href="<c:url value = "/quantridanhgia/danhgiabanthan/"/>">Đánh giá bản thân</a></li>
+								href="<c:url value = "/quantridanhgia/danhgiabanthan/"/>">Đánh
+									giá bản thân</a></li>
 							<li class="breadcrumb-item active">Form đánh giá</li>
 						</ol>
 					</div>
@@ -32,6 +33,10 @@
 									<div class="card-body" style="margin: 1em">
 										<form:form cssClass="form form-horizontal form-bordered"
 											method="POST">
+											<form:hidden path="id" />
+											<form:hidden path="kyDanhGia" />
+											<form:hidden path="phongBan" />
+											<form:hidden path="nhanVien" />
 											<div class="form-body">
 												<h4 class="form-section">
 													<i class="ft-user"></i> Bản tự đánh giá
@@ -162,28 +167,18 @@
 													</div>
 												</div>
 											</div>
+											<form:hidden path="trangThai"/>
 											<div class="form-actions">
-												<a href="<c:url value="/quantridanhgia/danhgiabanthan/"/>"
+												<a
+													href="<c:url value="/quantridanhgia/nhanvien/danhgiabanthan/"/>"
 													class="btn btn-danger btn-min-width mr-1 mb-1">Trở về</a>
-												<c:if test="${command.trangThai == 1 }">
 												<button type="submit"
-														formaction="<c:url value="/quantridanhgia/danhgiabanthan/drafts"/>"
-														class="btn btn-info btn-min-width mr-1 mb-1">Lưu
-														nháp</button>
-													<button type="submit"
-														formaction="<c:url value="/quantridanhgia/danhgiabanthan/update"/>"
-														class="btn btn-success btn-min-width mr-1 mb-1">Cập
-														nhật</button>
-												</c:if>
-												<c:if test="${command.trangThai == 0 }">
-													<button type="submit"
-														formaction="<c:url value="/quantridanhgia/danhgiabanthan/drafts"/>"
-														class="btn btn-info btn-min-width mr-1 mb-1">Lưu
-														nháp</button>
-													<button type="submit"
-														formaction="<c:url value="/quantridanhgia/danhgiabanthan/new"/>"
-														class="btn btn-success btn-min-width mr-1 mb-1">Tạo</button>
-												</c:if>
+													formaction="<c:url value="/quantridanhgia/nhanvien/danhgiabanthan/drafts"/>"
+													class="btn btn-info btn-min-width mr-1 mb-1">Lưu
+													nháp</button>
+												<button type="submit"
+													formaction="<c:url value="/quantridanhgia/nhanvien/danhgiabanthan/submit"/>"
+													class="btn btn-success btn-min-width mr-1 mb-1">Tạo</button>
 											</div>
 										</form:form>
 									</div>

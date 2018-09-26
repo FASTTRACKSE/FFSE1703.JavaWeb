@@ -35,7 +35,7 @@
 										<div class="form-group">
 											<label for="projectinput1">Kỳ đánh giá</label>
 											<form:select path="kyDanhGia" cssClass="form-control">
-											<form:option value="">Chọn kỳ đánh giá</form:option>
+												<form:option value="">Chọn kỳ đánh giá</form:option>
 												<c:forEach items="${listKyDanhGia }" var="x">
 													<form:option value="${x.maKy }" label="${x.tenKy}"></form:option>
 												</c:forEach>
@@ -46,8 +46,8 @@
 										<div class="form-group">
 											<label for="projectinput2">Phòng ban</label>
 											<form:select path="phongBan" cssClass="form-control">
-												<c:forEach items="${listPhongBan }" var="x">
 												<form:option value="">Chọn phòng ban</form:option>
+												<c:forEach items="${listPhongBan }" var="x">
 													<form:option value="${x.maPhongBan }"
 														label="${x.tenPhongBan}"></form:option>
 												</c:forEach>
@@ -92,10 +92,17 @@
 												<td>${x.kyDanhGia }</td>
 												<td>${x.phongBan }</td>
 												<td><c:if test="${x.isActive == 0 }">Chưa bắt đầu</c:if>
-													<c:if test="${x.isActive == 1 }">Đã bắt đầu</c:if>
-													<c:if test="${x.isActive == 2 }">Đã kết thúc</c:if></td>
-												<td><c:if test="${x.isActive == 0 }"><a href="<c:url value = "/quantridanhgia/phongnhansu/lichdanhgia/start/${x.id }" />" class="btn btn-success" >Bắt đầu</a></c:if>
-													<c:if test="${x.isActive == 1 }"><a href="<c:url value = "/quantridanhgia/phongnhansu/lichdanhgia/end/${x.id }" />" class="btn btn-danger" >Kết thúc</a></c:if></td>
+													<c:if test="${x.isActive == 1 }">Đã bắt đầu</c:if> <c:if
+														test="${x.isActive == 2 }">Đã kết thúc</c:if></td>
+												<td><c:if test="${x.isActive == 0 }">
+														<a
+															href="<c:url value = "/quantridanhgia/phongnhansu/lichdanhgia/start/${x.id }" />"
+															class="btn btn-success">Bắt đầu</a>
+													</c:if> <c:if test="${x.isActive == 1 }">
+														<a
+															href="<c:url value = "/quantridanhgia/phongnhansu/lichdanhgia/end/${x.id }" />"
+															class="btn btn-danger">Kết thúc</a>
+													</c:if></td>
 											</tr>
 										</c:forEach>
 									</tbody>

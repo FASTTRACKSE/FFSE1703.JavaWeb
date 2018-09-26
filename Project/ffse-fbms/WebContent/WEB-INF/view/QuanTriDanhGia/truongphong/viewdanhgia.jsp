@@ -18,7 +18,7 @@
 							<li class="breadcrumb-item"><a
 								href="<c:url value = "/quantridanhgia/danhgianhanvien/"/>">Đánh
 									giá nhân viên</a></li>
-							<li class="breadcrumb-item active">Form đánh giá</li>
+							<li class="breadcrumb-item active">Đánh giá của nhân viên</li>
 						</ol>
 					</div>
 				</div>
@@ -40,35 +40,37 @@
 												<div class="form-group row">
 													<label class="col-md-3 label-control">Nhân viên</label>
 													<div class="col-md-9">
-														<h3>Tên nhân viên</h3>
+														<h3>${danhGia.nhanVien }</h3>
 													</div>
 												</div>
 												<div class="form-group row">
-													<label class="col-md-3 label-control"> Kỷ luật công
-														việc </label>
+													<label class="col-md-3 label-control">Kỷ luật công
+														việc</label>
 													<div class="col-md-9">
-														<form:label cssClass="form-control" path="kyLuatCongViec" />
+														<label>${danhGia.kyLuatCongViec_DG }</label> <label>${danhGia.kyLuatCongViec_MT }</label>
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-md-3 label-control">Tinh thần làm
 														việc</label>
 													<div class="col-md-9">
-														<form:label cssClass="form-control" path="tinhThanLamViec" />
+														<label>${danhGia.tinhThanLamViec_DG }</label> <label>${danhGia.tinhThanLamViec_MT }</label>
 													</div>
 												</div>
 
 												<div class="form-group row">
 													<label class="col-md-3 label-control">Khối lượng
 														công việc đạt được</label>
-													<form:label cssClass="form-control"
-														path="khoiLuongCongViec" />
+													<div class="col-md-9">
+														<label>${danhGia.khoiLuongCongViec_DG }</label> <label>${danhGia.khoiLuongCongViec_MT }</label>
+													</div>
 												</div>
+
 												<div class="form-group row">
 													<label class="col-md-3 label-control">Kết quả công
 														việc đạt được</label>
 													<div class="col-md-9">
-														<form:label cssClass="form-control" path="ketQuaCongViec" />
+														<label>${danhGia.ketQuaCongViec_DG }</label> <label>${danhGia.ketQuaCongViec_MT }</label>
 													</div>
 												</div>
 
@@ -76,31 +78,32 @@
 													<label class="col-md-3 label-control">Kỹ năng tích
 														lũy</label>
 													<div class="col-md-9">
-														<form:label readonly="readonly" cssClass="form-control"
-															path="kyLuatCongViec" />
+														<label>${danhGia.kyNangTichLuy_DG }</label> <label>${danhGia.kyNangTichLuy_MT }</label>
 													</div>
 												</div>
 
 												<div class="form-group row">
 													<label class="col-md-3 label-control">Định hướng</label>
 													<div class="col-md-9">
-														<form:label cssClass="form-control" path="dinhHuong" />
+														<label>${danhGia.dinhHuong }</label>
 													</div>
 												</div>
 
 												<div class="form-group last">
-													<label class="col-md-3 label-control">Xếp loại</label>
+													<label class="col-md-3 label-control">Đánh giá tổng
+														thể</label>
 													<div class="col-md-9">
-														<form:label cssClass="form-control" path="xepLoai" />
+														<label>${danhGia.danhGiaTongThe }</label>
 													</div>
 												</div>
 												<div class="form-actions">
-													<a href="<c:url value="/quantridanhgia/danhgianhanvien/"/>"
+													<a href="<c:url value="/quantridanhgia/truongphong"/>"
 														class="btn btn-danger btn-min-width mr-1 mb-1">Trở về</a>
-													<c:if test="${command.isActive == 1 }">
-														<a href="<c:url value="/quantridanhgia/danhgianhanvien/showform"/>"
-															class="btn btn-danger btn-min-width mr-1 mb-1">Sửa</a>
-													</c:if>
+													<a href="<c:url value="/quantridanhgia/truongphong/accept"/>"
+														class="btn btn-danger btn-min-width mr-1 mb-1">Duyệt</a>
+													<a
+														href="<c:url value="/quantridanhgia/truongphong/ignore"/>"
+														class="btn btn-danger btn-min-width mr-1 mb-1">Hủy</a>
 												</div>
 											</div>
 										</form:form>

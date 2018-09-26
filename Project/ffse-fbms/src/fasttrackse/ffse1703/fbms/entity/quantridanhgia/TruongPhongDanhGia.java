@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.NaturalId;
+
 @Table(name="truong_phong_danh_gia")
 @Entity
 public class TruongPhongDanhGia {
@@ -21,6 +23,7 @@ public class TruongPhongDanhGia {
 	@Column(name = "ma_phong_ban")
 	private String phongBan;
 
+	@NaturalId
 	@Column(name = "nhan_vien")
 	private String nhanVien;
 

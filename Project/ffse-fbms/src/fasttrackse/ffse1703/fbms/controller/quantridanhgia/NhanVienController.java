@@ -1,5 +1,9 @@
 package fasttrackse.ffse1703.fbms.controller.quantridanhgia;
 
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.Authentication;
@@ -21,13 +25,15 @@ public class NhanVienController {
 	NhanVienService nhanVienService;
 
 	@Autowired
-	@Qualifier(value="nhanVienServiceImpl")
+	@Qualifier(value = "nhanVienServiceImpl")
 	public void setNhanVienService(NhanVienService nhanVienService) {
 		this.nhanVienService = nhanVienService;
 	}
 
 	@RequestMapping(value = { "", "/danhgiabanthan" })
-	public String getDanhGiaBanThan(Model model, Authentication auth) {
+	public String getDanhGiaBanThan(Model model, Authentication auth, HttpSession session) {
+		int nhanVien = (int) session.getAttribute("nhanVien");
+		model.addAttribute("danhGia", nhanVienService.getDanhGiaBanThan(nhanVien));
 		return "QuanTriDanhGia/nhanviendanhgia/danhgiabanthan";
 	}
 
@@ -43,9 +49,21 @@ public class NhanVienController {
 		return "QuanTriDanhGia/nhanviendanhgia/formdanhgiabanthan";
 	}
 
-	@RequestMapping(value = "/danhgiabanthan/save", method = RequestMethod.POST)
-	public String saveDanhGiaBanThan(Model model, @ModelAttribute("command") DanhGiaBanThan danhGia) {
+	@RequestMapping(value = "/danhgiabanthan/submit", method = RequestMethod.POST)
+	public String submitDanhGiaBanThan(Model model, @ModelAttribute("command") DanhGiaBanThan danhGia) {
 		if (danhGia.getId() == 0) {
+			danhGia.setTrangThai(2);
+			nhanVienService.insertDanhGiaBanThan(danhGia);
+		} else {
+			nhanVienService.updateDanhGiaBanThan(danhGia);
+		}
+		return "redirect:/quantridanhgia/nhanvien";
+	}
+	
+	@RequestMapping(value = "/danhgiabanthan/draft", method = RequestMethod.POST)
+	public String addDraftDanhGiaBanThan(Model model, @ModelAttribute("command") DanhGiaBanThan danhGia) {
+		if (danhGia.getId() == 0) {
+			danhGia.setTrangThai(1);
 			nhanVienService.insertDanhGiaBanThan(danhGia);
 		} else {
 			nhanVienService.updateDanhGiaBanThan(danhGia);
@@ -54,14 +72,16 @@ public class NhanVienController {
 	}
 
 	@RequestMapping(value = { "/danhgianhanvien" })
-	public String getListDanhGiaNhanVien(Model model) {
-		int id = 1;
-		model.addAttribute("listDanhGia", nhanVienService.getListPhanCongDanhGia(id));
+	public String getListDanhGiaNhanVien(Model model, HttpSession session, Authentication auth) {
+		int nhanVien = (int) session.getAttribute("nhanVien");
+		List<DanhGiaNhanVien> list = nhanVienService.getListDanhGiaNhanVien(nhanVien);
+		model.addAttribute("listDanhGiaNhanVien", list);
 		return "QuanTriDanhGia/nhanviendanhgia/danhgianhanvien";
 	}
 
-	@RequestMapping("/danhgianhanvien/add")
-	public String createDanhGiaNhanVien(Model model) {
+	@RequestMapping("/danhgianhanvien/add/{id}")
+	public String createDanhGiaNhanVien(Model model, @PathVariable int id) {
+		model.addAttribute("nhanVien", nhanVienService.getDanhGiaBanThan(id));
 		model.addAttribute("command", new DanhGiaNhanVien());
 		return "QuanTriDanhGia/nhanviendanhgia/formdanhgianhanvien";
 	}

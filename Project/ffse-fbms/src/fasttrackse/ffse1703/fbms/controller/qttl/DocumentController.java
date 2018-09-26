@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fasttrackse.ffse1703.fbms.entity.qttl.*;
-import fasttrackse.ffse1703.fbms.entity.quanlyduan.VendorTeam1;
 import fasttrackse.ffse1703.fbms.service.qttl.*;
 
 
@@ -75,4 +74,22 @@ public class DocumentController {
 		return "QuanTriTaiLieu/TaiLieu/editTaiLieu";
 
 	}
+	@RequestMapping(value = "/update")
+	public String update(@ModelAttribute("document") @Valid Document document, BindingResult result, RedirectAttributes redirectAttributes) {
+		if (result.hasErrors()) {
+			return "QuanTriTaiLieu/TaiLieu/editTaiLieu";
+		}
+		redirectAttributes.addFlashAttribute("message", "<script>alert('Update successfully.');</script>");
+		documentService.update(document);
+		return "redirect:list";
+
+	}
+	
+	@RequestMapping(value = "/delete/{id}")
+	public String delete(Model model, @PathVariable("id") int id) {
+		documentService.delete(id);
+		return "redirect:/QuanTriTaiLieu/TaiLieu";
+
+	}
+	
 }

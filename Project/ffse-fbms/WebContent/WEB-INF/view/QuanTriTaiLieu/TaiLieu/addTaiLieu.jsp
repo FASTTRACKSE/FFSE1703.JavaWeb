@@ -8,7 +8,7 @@
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 <div class="app-content content container-fluid">
 	<div class="content-wrapper">
-			<div class="content-header row">
+		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-xs-12 mb-2">
 				<h3 class="content-header-title mb-0">Thêm Tài Liệu</h3>
 				<div class="row breadcrumbs-top">
@@ -31,14 +31,15 @@
 				</h1>
 			</div>
 		</div>
-		<form:form method="POST" action="/ffse-fbms/QuanTriTaiLieu/TaiLieu/creat">
-			<div class="form-group col-sm-6">
-				<input type="hidden" name="${_csrf.parameterName}"
-					value="${_csrf.token}" /> <label>Id</label>
-				<form:input class="form-control" path="id" placeholder="Id" />
-				<%--  <form:errors path="id" cssStyle="color: red"></form:errors> --%>
+		
+		<form:form method="POST"
+			action="/ffse-fbms/QuanTriTaiLieu/TaiLieu/creat">
+ 			<div class="form-group col-sm-6">
+				<label>Id</label>
+				 <form:input class="form-control" path="id" placeholder="Id" /> 
+				 <%-- <form:errors path="id" cssStyle="color: red"></form:errors> --%>
 
-			</div>
+			</div> 
 			<div class="form-group col-sm-6">
 				<label>Tên tài liệu</label>
 				<form:input class="form-control" path="ten_tai_lieu"
@@ -47,7 +48,8 @@
 			</div>
 			<div class="form-group col-sm-6">
 				<label>Mã danh mục</label>
-				<form:input class="form-control" path="ma_danh_muc" placeholder="Mã danh mục" />
+				<form:input class="form-control" path="ma_danh_muc"
+					placeholder="Mã danh mục" />
 				<%--  <form:errors path="ma_danh_muc" cssStyle="color: red"></form:errors>--%>
 			</div>
 			<div class="form-group col-sm-6">
@@ -63,8 +65,7 @@
 			</div>
 			<div class="form-group col-sm-6">
 				<label>Mô tả</label>
-				<form:input class="form-control" path="mo_ta"
-					placeholder="Mô tả" />
+				<form:input class="form-control" path="mo_ta" placeholder="Mô tả" />
 				<%-- <form:errors path="mo_ta" cssStyle="color: red"></form:errors> --%>
 			</div>
 			<div class="form-group col-sm-6">

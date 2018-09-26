@@ -8,34 +8,43 @@ import javax.persistence.Id;
 //import javax.persistence.JoinColumn;
 //import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "tai_lieu")
 public class Document {
 	@Id
+	@NotNull
 	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	@Column(name = "ten_tai_lieu")
+	@NotEmpty
 	private String ten_tai_lieu;
 	
 	@Column(name = "ma_danh_muc")
+	@NotEmpty
 	private String ma_danh_muc;
 	
 	@Column(name = "file")
+	@NotEmpty
 	private String file;
 	
 	@Column(name = "ma_trang_thai")
+	@NotEmpty
 	private String ma_trang_thai;
 	
 	@Column(name = "mo_ta")
+	@NotEmpty
 	private String mo_ta;
 	
 	@Column(name = "ghi_chu")
+	@NotEmpty
 	private String ghi_chu;
 	
 	@Column(name = "ma_phong_ban")
+	@NotEmpty
 	private String ma_phong_ban;
 
 	public int getId() {

@@ -14,32 +14,31 @@ import fasttrackse.ffse1703.fbms.dao.qttl.*;
 public class DocumentServiceImpl implements DocumentService{
 	@Autowired
 	private DocumentDAO documentDao;
-
+	@Override
 	@Transactional
 	public List<Document> getAll() {
 		 return this.documentDao.getAll();
 	}
-
+	@Override
 	@Transactional
 	public void addNew(Document document) {
 		this.documentDao.addNew(document);
 	}
-
+	@Override
 	@Transactional
 	public void update(Document document) {
 		this.documentDao.update(document);
 	}
-
+	@Override
 	@Transactional
 	public void delete(int id) {
 		this.documentDao.delete(id);
 	}
-
+	@Override
 	@Transactional
 	public Document getById(int id) {
 		return this.documentDao.getById(id);
 	}
 
-	
 	
 }

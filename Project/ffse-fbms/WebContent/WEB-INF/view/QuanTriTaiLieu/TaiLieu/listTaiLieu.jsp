@@ -88,10 +88,9 @@
 											</thead>
 											<tbody>
 												<c:if test="${not empty list}">
-													<c:forEach var="sv" items="${list}" begin="0"
-														varStatus="counter">
+													<c:forEach var="sv" items="${list}">
 														<tr>
-															<td>${counter.index + 1}</td>
+															<td>${sv.id}</td>
 															<td>${sv.ten_tai_lieu}</td>
 															<td>${sv.ma_danh_muc}</td>
 															<td>${sv.file}</td>
@@ -99,19 +98,19 @@
 															<td>${sv.mo_ta}</td>
 															<td>${sv.ghi_chu }</td>
 															<td>${sv.ma_phong_ban }</td>
-															<td class="tbl_actions"><a
-																href="<c:url value="${item.maTL}" />"
-																title="Xem"> <i class="fa fa-eye" aria-hidden="true"></i>
-															</a> <a
-																href="<c:url value="${item.maTL}" />"
-																title="Sửa"> <i class="fa fa-pencil-square-o blue"
-																	aria-hidden="true"></i>
-															</a> <a
-																href="<c:url value="${item.maTL}" />"
-																title="Xóa"
-																onclick="return confirm('Bạn có chắc muốn xóa ?')">
-																	<i class="fa fa-trash red" aria-hidden="true"></i>
-															</a></td>
+															<td><a href="/ffse-fbms/QuanTriTaiLieu/TaiLieu/edit/${sv.id}"
+								data-toggle="tooltip" title="edit">
+									<button type="button" class="btn btn-icon btn-outline-warning">
+										<i class="fa fa-pencil"></i>
+									</button>
+							</a> <a href="/ffse-fbms/QuanTriTaiLieu/TaiLieu/delete/${sv.id}">
+									<button type="button"
+										onclick="if (!confirm('Are you sure you want to delete this database?')) return false"
+										class="btn btn-outline-danger btn-icon checkid"
+										data-toggle="modal" title="delete" data-target="#danger">
+										<i class="fa fa-trash-o"></i>
+									</button>
+							</a></td>
 														</tr>
 													</c:forEach>
 												</c:if>

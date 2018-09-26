@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fasttrackse.ffse1703.fbms.entity.quanlyduan.ProgramingLanguageTeam1;
@@ -22,11 +23,25 @@ public class ProgramingLanguageTeam1Controller {
 	@Autowired
 	ProgramingLanguageTeam1Service languageService;
 	
-	@RequestMapping(value = { "/list", "" })
-	public String list(Model model) {
-		model.addAttribute("list", languageService.getAll());
-		return "QuanLyDuAn/ProgramingLanguage/listLanguage";
 
+	@RequestMapping("/list")
+	public String index(Model model,
+			@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage) {
+		int totalRecords = languageService.getAll().size();
+		int recordsPerPage = 4;
+		int totalPages = 0;
+		if ((totalRecords / recordsPerPage) % 2 == 0) {
+			totalPages = totalRecords / recordsPerPage;
+		} else {
+			totalPages = totalRecords / recordsPerPage + 1;
+		}
+		int startPosition = recordsPerPage * (currentPage - 1);
+
+		model.addAttribute("list", languageService.findAllForPaging(startPosition, recordsPerPage));
+		model.addAttribute("lastPage", totalPages);
+		model.addAttribute("currentPage", currentPage);
+
+		return "QuanLyDuAn/ProgramingLanguage/listLanguage";
 	}
 	
 	@RequestMapping(value = "/add", method = RequestMethod.GET)

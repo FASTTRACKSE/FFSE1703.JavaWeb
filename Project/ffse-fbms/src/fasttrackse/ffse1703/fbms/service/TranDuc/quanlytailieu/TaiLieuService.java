@@ -2,7 +2,9 @@ package fasttrackse.ffse1703.fbms.service.TranDuc.quanlytailieu;
 
 import java.util.List;
 
+import fasttrackse.ffse1703.fbms.entity.TranDuc.quanlytailieu.DanhMuc;
 import fasttrackse.ffse1703.fbms.entity.TranDuc.quanlytailieu.TaiLieu;
+import fasttrackse.ffse1703.fbms.entity.security.PhongBan;
 
 public interface TaiLieuService {
 	public List<TaiLieu> listAll();
@@ -16,7 +18,8 @@ public interface TaiLieuService {
 	public TaiLieu getTLbyID(String id);
 
 	public List<TaiLieu> listAllPaging(int start, int limit);
+	
+	public List<DanhMuc> listDanhMuc();
 
-	public String getRecordsTotal();
-
+	public List<PhongBan> listPhongBan();
 }

@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import fasttrackse.ffse1703.fbms.entity.TranDuc.quanlytailieu.DanhMuc;
-import fasttrackse.ffse1703.fbms.entity.security.ChucDanh;
 
 @Repository
 public class DanhMucImpl implements DanhMucDao {
@@ -22,7 +21,7 @@ public class DanhMucImpl implements DanhMucDao {
 	@Override
 	public List<DanhMuc> listAllDanhMuc() {
 		Session session = this.sessionFac.openSession();
-		List<DanhMuc> list = session.createQuery("from danh_muc").list();
+		List<DanhMuc> list = session.createQuery("from DanhMuc").list();
 		session.close();
 		return list;
 	}
@@ -46,7 +45,7 @@ public class DanhMucImpl implements DanhMucDao {
 	}
 
 	@Override
-	public void deleteDM(int id) {
+	public void deleteDM(String id) {
 		Session session = this.sessionFac.openSession();
 		Transaction pb = session.beginTransaction();
 		session.delete(session.get(DanhMuc.class, id));
@@ -55,7 +54,7 @@ public class DanhMucImpl implements DanhMucDao {
 	}
 
 	@Override
-	public DanhMuc getDMbyID(int id) {
+	public DanhMuc getDMbyID(String id) {
 		Session session = this.sessionFac.openSession();
 		DanhMuc dm = session.get(DanhMuc.class, id);
 		session.close();

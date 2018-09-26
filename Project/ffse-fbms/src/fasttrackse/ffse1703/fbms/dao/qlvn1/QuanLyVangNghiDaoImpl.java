@@ -24,11 +24,8 @@ public class QuanLyVangNghiDaoImpl implements QuanLyVangNghiDao {
 
 	@Override
 	public void addDon(DonNghi dn) {
-		Session session = this.sessionFactory.openSession();
-		Transaction tx = session.beginTransaction();
+		Session session = this.sessionFactory.getCurrentSession();
 		session.persist(dn);
-		tx.commit();
-		session.close();
 	}
 
 
@@ -75,6 +72,20 @@ public class QuanLyVangNghiDaoImpl implements QuanLyVangNghiDao {
 		List<DonNghi> listDn = session.createQuery("from DonNghi").list();
 		session.close();
 		return listDn;
+	}
+
+	@Override
+	public void insertTinhTrang(int id_nv, TinhTrangNghi tt) {
+		// TODO Auto-generated method stub
+		TinhTrangNghi tinhTrang = null;
+		Session session = null;
+		tinhTrang = getTinhTrang(id_nv);
+		session = this.sessionFactory.getCurrentSession();
+		if(tinhTrang==null) {
+			session.persist(tt);
+		}else {
+			session.update(tt);
+		}
 	}
 	
 }

@@ -5,8 +5,20 @@
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 <div class="app-content content container-fluid">
 	<div class="content-wrapper">
+		<h3 class="content-header-title mb-0">Danh sách Gia Đình Của Nhân
+			Viên</h3>
+		<div class="row breadcrumbs-top">
+			<div class="breadcrumb-wrapper col-xs-12">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a
+						href='<c:url value="/quantrinhansu/hosonhanvien/" />'>Danh
+							Sách Nhân Viên</a></li>
+					<li class="breadcrumb-item active">Gia Đình Nhân Viên</li>
+				</ol>
+			</div>
+		</div>
 		<div class="table-responsive">
-		<a href="/ffse-fbms/QuanTriNhanSuPikalong/QuanLiGiaDinh/add/${maNv}"
+			<a href="/ffse-fbms/QuanTriNhanSuPikalong/QuanLiGiaDinh/add/${maNv}"
 				class="btn btn-outline-success round btn-min-width mr-1 mb-1">Thêm</a>
 			<table class="table mb-0">
 				<thead>
@@ -40,7 +52,7 @@
 					</c:forEach>
 				</tbody>
 			</table>
-			
+
 		</div>
 	</div>
 </div>

@@ -11,8 +11,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import fasttrackse.ffse1703.fbms.entity.qlvn.LyDoXinNghi;
 import fasttrackse.ffse1703.fbms.entity.qlvn.ThongKeDonXinPhep;
-import fasttrackse.ffse1703.fbms.entity.qlvn.ThongTinHoSoNhanVien;
 import fasttrackse.ffse1703.fbms.entity.qlvn.TrangThai;
+import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 
 @Repository(value = "quanLyVangNghiDao")
 @Transactional(rollbackFor = Exception.class)
@@ -39,15 +39,8 @@ public class QuanLyVangNghiDaoIpml implements QuanLyVangNghiDao {
 	
 	public List<ThongKeDonXinPhep> danhSachXinNghiNhap(int page) {
 		Session session = sessionFactory.getCurrentSession();
-		CriteriaBuilder cb = session.getCriteriaBuilder();
-		CriteriaQuery<ThongKeDonXinPhep> cq = cb.createQuery(ThongKeDonXinPhep.class);
-		Root<ThongKeDonXinPhep> root = cq.from(ThongKeDonXinPhep.class);
-		cq.select(root)
-				.where(cb.or(cb.equal(root.get("trangThai"), 1)));
-		Query<ThongKeDonXinPhep> query = session.createQuery(cq);
-		query.setFirstResult((page - 1) * 3);
-		query.setMaxResults(3);
-		return query.getResultList();
+		List<ThongKeDonXinPhep> list = session.createQuery("from ThongKeDonXinPhep where trangThai = '1'").getResultList();
+		return list;
 	}
 	
 	public long totalRecords() {
@@ -76,29 +69,16 @@ public class QuanLyVangNghiDaoIpml implements QuanLyVangNghiDao {
 		return list;
 	}
 	
-	public List<ThongTinHoSoNhanVien> loadAllHoSo(){
+	public List<HoSoNhanVien> loadAllHoSo(){
 		Session session = sessionFactory.getCurrentSession();
-		List<ThongTinHoSoNhanVien> list = session.createQuery("from ThongTinHoSoNhanVien").list();
+		List<HoSoNhanVien> list = session.createQuery("from HoSoNhanVien").list();
 		return list;
 		
 	}
-	
-	public boolean kiemTraNhanVienNgayNghiEntity(int maNhanVien) {
-		Session session = (Session) sessionFactory.getCurrentSession();
-		String count = session
-				.createSQLQuery("select count(*) from `thong_tin_ho_so_nhan_vien` where `ma_nhan_vien` = '" + maNhanVien + "'")
-				.getSingleResult().toString();
 
-		return count.equals("0") ? false : true;
-	}
 
 	public void create(ThongKeDonXinPhep thongKeDonXinPhep) {
 		Session session = this.sessionFactory.getCurrentSession();
-		if (!kiemTraNhanVienNgayNghiEntity(thongKeDonXinPhep.getThongTinHoSoNhanVien().getMaNhanVien())) {
-			// thêm mới trong `ngay_nghi`
-			session.createSQLQuery("insert into `thong_tin_ho_so_nhan_vien` (ma_nhan_vien,so_ngay_con_lai) values ('"
-					+ thongKeDonXinPhep.getThongTinHoSoNhanVien().getMaNhanVien() + "','12')").executeUpdate();			
-		}
 		session.save(thongKeDonXinPhep);
 		session.createQuery("update ThongKeDonXinPhep set trangThai = '1'  where id =" + thongKeDonXinPhep.getId()).executeUpdate();
 	}
@@ -117,18 +97,20 @@ public class QuanLyVangNghiDaoIpml implements QuanLyVangNghiDao {
 		session.createQuery("update ThongKeDonXinPhep set trangThai = '3'  where id =" + thongKeDonXinPhep.getId()).executeUpdate();
 //		int soNgayNghi = thongKeDonXinPhep.getSoNgayNghi();
 //		int soNgayDaNghi = thongKeDonXinPhep.getThongTinHoSoNhanVien().getSoNgayDaNghi();
-//		int soNgayConLai = thongKeDonXinPhep.getThongTinHoSoNhanVien().getSoNgayConLai();
+//		int ngayConLai = thongKeDonXinPhep.getThongTinHoSoNhanVien().getSoNgayConLai();
 //        int maNhanVien = thongKeDonXinPhep.getThongTinHoSoNhanVien().getMaNhanVien();
-       
-//		if(soNgayConLai == 0) {
-//			session.createQuery("update ThongTinHoSoNhanVien set soNgayDaNghi = " + (soNgayNghi + soNgayDaNghi)
-//			+ "where maNhanVien = " + maNhanVien ).executeUpdate();
-//		} else if(soNgayNghi>soNgayConLai) {
-//			session.createQuery("update ThongTinHoSoNhanVien set soNgayConLai = 0, soNgayDaNghi = " + (soNgayNghi + soNgayDaNghi)
-//					+ "where maNhanVien = " + maNhanVien ).executeUpdate();
-//		} else {session.createQuery("update ThongTinHoSoNhanVien set soNgayConLai =  " + (soNgayConLai + soNgayDaNghi)
-//				+ ",soNgayDaNghi =" + (soNgayDaNghi + soNgayNghi) + "where maNhanVien = " + maNhanVien ).executeUpdate();
-//		}	
+//        if (ngayConLai == 0) {
+//			session.createQuery("update ThongTinHoSoNhanVien set soNgayDaNghi = " + (soNgayDaNghi + soNgayNghi)
+//					+ "where maNhanVien = " + maNhanVien).executeUpdate();
+//		} else if (soNgayNghi > ngayConLai) {
+//			session.createQuery("update ThongTinHoSoNhanVien set soNgayConLai = 0,soNgayDaNghi = "
+//					+ (soNgayDaNghi + soNgayNghi) + "where maNhanVien = " + maNhanVien).executeUpdate();
+//		} else {
+//			session.createQuery("update ThongTinHoSoNhanVien set soNgayConLai = " + (ngayConLai - soNgayNghi)
+//					+ ",soNgayDaNghi = " + (soNgayDaNghi + soNgayNghi) + "where maNhanVien = " + maNhanVien)
+//					.executeUpdate();
+//		}
+
 	}
 
 

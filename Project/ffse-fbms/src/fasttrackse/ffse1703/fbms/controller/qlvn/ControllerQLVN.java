@@ -18,7 +18,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fasttrackse.ffse1703.fbms.entity.qlvn.LyDoXinNghi;
 import fasttrackse.ffse1703.fbms.entity.qlvn.ThongKeDonXinPhep;
-import fasttrackse.ffse1703.fbms.entity.qlvn.ThongTinHoSoNhanVien;
 import fasttrackse.ffse1703.fbms.entity.qlvn.TrangThai;
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 import fasttrackse.ffse1703.fbms.service.qlvn.QuanLyVangNghiService;
@@ -88,6 +87,9 @@ public class ControllerQLVN {
 			Model model) {
 		if(result.hasErrors()) {
 			return "/Quanlyvangnghi1703004/soandonmoi";}
+		// check bảng ngày nghỉ xem có tồn tại ma_nhan_vien = nv.getNgayNghi().getMaNhanVien()
+		// nếu chưa thì insert thêm 1 cột của thằng nv này
+		System.out.println(nv.getNgayNghi());
 		service.createWait(nv);
 		return "redirect:/Quanlyvangnghi1703004/danhsachcho";
 	}
@@ -104,7 +106,7 @@ public class ControllerQLVN {
 	}
 	
 	@ModelAttribute("hoso")
-	public List<ThongTinHoSoNhanVien> danhSachHoSoNhanVien() {
+	public List<HoSoNhanVien> danhSachHoSoNhanVien() {
 		return this.service.loadAllHoSo();
 	}
 	

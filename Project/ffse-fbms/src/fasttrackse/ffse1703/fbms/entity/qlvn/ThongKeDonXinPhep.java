@@ -2,20 +2,27 @@ package fasttrackse.ffse1703.fbms.entity.qlvn;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.format.annotation.DateTimeFormat;
+
+import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 
 @Entity
 @Table(name = "thong_ke_don_xin_phep")
@@ -27,9 +34,14 @@ public class ThongKeDonXinPhep {
 	@Column(name = "id")
 	private int id;
 	
+//	@ManyToOne(fetch = FetchType.EAGER)
+////	@LazyCollection(LazyCollectionOption.FALSE)
+//	@JoinColumn(name="ma_nhan_vien", insertable=false, updatable=false,nullable = true)
+//	private ThongTinHoSoNhanVien thongTinHoSoNhanVien;
+	
 	@ManyToOne
-	@JoinColumn(name = "ma_nhan_vien")
-	private ThongTinHoSoNhanVien thongTinHoSoNhanVien;
+	@JoinColumn(name ="ma_nhan_vien")
+	private NgayNghi ngayNghi;
 
 	@Column(name = "ngay_bat_dau")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -68,16 +80,25 @@ public class ThongKeDonXinPhep {
 		this.id = id;
 	}
 
-	public ThongTinHoSoNhanVien getThongTinHoSoNhanVien() {
-		return thongTinHoSoNhanVien;
-	}
-
-	public void setThongTinHoSoNhanVien(ThongTinHoSoNhanVien thongTinHoSoNhanVien) {
-		this.thongTinHoSoNhanVien = thongTinHoSoNhanVien;
-	}
+//	public NgayNghi getNgayNghi() {
+//		return ngayNghi;
+//	}
+//
+//	public void setNgayNghi(NgayNghi ngayNghi) {
+//		this.ngayNghi = ngayNghi;
+//	}
+	
 
 	public Date getNgayBatDau() {
 		return ngayBatDau;
+	}
+
+	public NgayNghi getNgayNghi() {
+		return ngayNghi;
+	}
+
+	public void setNgayNghi(NgayNghi ngayNghi) {
+		this.ngayNghi = ngayNghi;
 	}
 
 	public void setNgayBatDau(Date ngayBatDau) {
@@ -119,7 +140,7 @@ public class ThongKeDonXinPhep {
 	public String getGhiChuTruongPhong() {
 		return ghiChuTruongPhong;
 	}
-	
+
 	public void setGhiChuTruongPhong(String ghiChuTruongPhong) {
 		this.ghiChuTruongPhong = ghiChuTruongPhong;
 	}

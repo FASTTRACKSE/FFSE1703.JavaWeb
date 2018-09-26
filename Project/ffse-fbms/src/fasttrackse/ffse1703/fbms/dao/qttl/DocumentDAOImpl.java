@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 
 import fasttrackse.ffse1703.fbms.entity.qttl.*;
+import fasttrackse.ffse1703.fbms.entity.quanlyduan.VendorTeam1;
 
 @Repository
 public class DocumentDAOImpl implements DocumentDAO {
@@ -44,7 +45,7 @@ public class DocumentDAOImpl implements DocumentDAO {
 	public void delete(int id) {
 		Session session = this.sessionFactory.getCurrentSession();
 		Document db=session.get(Document.class,id);	
-		session.update(db);	
+		session.delete(db);	
 	}
 
 
@@ -52,6 +53,13 @@ public class DocumentDAOImpl implements DocumentDAO {
 	public Document getById(int id) {
 		Session session=this.sessionFactory.getCurrentSession();
 		return session.get(Document.class,id);	
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Document> findAllForPaging(int startPosition, int maxResult) {
+		Session session = this.sessionFactory.getCurrentSession();
+		return session.createQuery("from Document").setFirstResult(startPosition).setMaxResults(maxResult).list();
 	}
 
 

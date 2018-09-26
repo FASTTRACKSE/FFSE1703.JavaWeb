@@ -16,4 +16,6 @@ public interface DocumentService {
 
 	public void update(Document document);
 	
+	public List<Document> findAllForPaging(int startPosition,int maxResult);
+	
 }

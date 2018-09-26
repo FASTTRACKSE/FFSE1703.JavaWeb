@@ -15,5 +15,7 @@ public interface DocumentDAO {
 	public Document getById(int id);
 
 	public void update(Document document);
+	
+	public List<Document> findAllForPaging(int startPosition,int maxResult);
 
 }

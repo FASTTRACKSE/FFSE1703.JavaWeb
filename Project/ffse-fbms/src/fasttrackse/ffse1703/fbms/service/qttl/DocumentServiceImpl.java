@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fasttrackse.ffse1703.fbms.entity.qttl.*;
+import fasttrackse.ffse1703.fbms.entity.quanlyduan.VendorTeam1;
 import fasttrackse.ffse1703.fbms.dao.qttl.*;
 
 @Service
@@ -39,6 +40,11 @@ public class DocumentServiceImpl implements DocumentService{
 	public Document getById(int id) {
 		return this.documentDao.getById(id);
 	}
-
+	
+	@Override
+	@Transactional
+	public List<Document> findAllForPaging(int startPosition, int maxResult) {
+		return this.documentDao.findAllForPaging(startPosition, maxResult);
+	}
 	
 }

@@ -98,24 +98,56 @@
 															<td>${sv.mo_ta}</td>
 															<td>${sv.ghi_chu }</td>
 															<td>${sv.ma_phong_ban }</td>
-															<td><a href="/ffse-fbms/QuanTriTaiLieu/TaiLieu/edit/${sv.id}"
-								data-toggle="tooltip" title="edit">
-									<button type="button" class="btn btn-icon btn-outline-warning">
-										<i class="fa fa-pencil"></i>
-									</button>
-							</a> <a href="/ffse-fbms/QuanTriTaiLieu/TaiLieu/delete/${sv.id}">
-									<button type="button"
-										onclick="if (!confirm('Are you sure you want to delete this database?')) return false"
-										class="btn btn-outline-danger btn-icon checkid"
-										data-toggle="modal" title="delete" data-target="#danger">
-										<i class="fa fa-trash-o"></i>
-									</button>
-							</a></td>
+															<td><a
+																href="/ffse-fbms/QuanTriTaiLieu/TaiLieu/edit/${sv.id}"
+																data-toggle="tooltip" title="edit">
+																	<button type="button"
+																		class="btn btn-icon btn-outline-warning">
+																		<i class="fa fa-pencil"></i>
+																	</button>
+															</a> <a
+																href="/ffse-fbms/QuanTriTaiLieu/TaiLieu/delete/${sv.id}">
+																	<button type="button"
+																		onclick="if (!confirm('Are you sure you want to delete this database?')) return false"
+																		class="btn btn-outline-danger btn-icon checkid"
+																		data-toggle="modal" title="delete"
+																		data-target="#danger">
+																		<i class="fa fa-trash-o"></i>
+																	</button>
+															</a></td>
 														</tr>
 													</c:forEach>
 												</c:if>
 											</tbody>
 										</table>
+
+										<nav aria-label="Page navigation example">
+										<ul class="pagination">
+											<li class="page-item"><a class="page-link"
+												href="?page=1">First Page</a></li>
+											<c:if test="${currentPage > 2}">
+												<li class="page-item"><a class="page-link"
+													href="?page=${currentPage-2}">${currentPage-2}</a></li>
+											</c:if>
+											<c:if test="${currentPage > 1}">
+												<li class="page-item"><a class="page-link"
+													href="?page=${currentPage-1}">${currentPage-1}</a></li>
+											</c:if>
+											<li class="page-item active"><a class="page-link"
+												href="?page=${currentPage}">${currentPage}</a></li>
+											<c:if test="${currentPage < lastPage}">
+												<li class="page-item"><a class="page-link"
+													href="?page=${currentPage+1}">${currentPage+1}</a></li>
+											</c:if>
+											<c:if test="${currentPage < lastPage - 1}">
+												<li class="page-item"><a class="page-link"
+													href="?page=${currentPage+2}">${currentPage+2}</a></li>
+											</c:if>
+											<li class="page-item"><a class="page-link"
+												href="?page=${lastPage }">Last Page</a></li>
+										</ul>
+										</nav>
+
 									</div>
 								</div>
 							</div>
@@ -125,6 +157,6 @@
 			</div>
 		</div>
 	</div>
-		<jsp:include page="/WEB-INF/view/templates/footer.jsp" />
+	<jsp:include page="/WEB-INF/view/templates/footer.jsp" />
 </body>
 </html>

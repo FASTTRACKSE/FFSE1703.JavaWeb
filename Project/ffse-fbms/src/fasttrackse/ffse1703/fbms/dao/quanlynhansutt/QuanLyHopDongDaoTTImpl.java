@@ -44,17 +44,6 @@ public class QuanLyHopDongDaoTTImpl implements QuanLyHopDongDaoTT {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.update(tt);
 	}
-
-/*	@Override
-	public void removeHopDong(int maHopDong) {
-		Session session = sessionFactory.getCurrentSession();
-		HopDongTT entity = (HopDongTT) session.get(HopDongTT.class,
-				new Integer(maHopDong));
-		if (null != entity) {
-			session.delete(entity);
-		}
-		
-	}*/
 	
 	@Override
 	public void removeHopDong(HopDongTT tt) {

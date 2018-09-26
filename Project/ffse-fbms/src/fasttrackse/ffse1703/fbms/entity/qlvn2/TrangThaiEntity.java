@@ -15,7 +15,7 @@ public class TrangThaiEntity {
    private int id;
 
 	@Column(name = "ten_trang_thai")
-	private String tenTrangThai;
+	private String TrangThai;
 
 	public int getId() {
 		return id;
@@ -25,14 +25,14 @@ public class TrangThaiEntity {
 		this.id = id;
 	}
 
-	public String getTenTrangThai() {
-		return tenTrangThai;
+	public String getTrangThai() {
+		return TrangThai;
 	}
 
-	public void setTenTrangThai(String tenTrangThai) {
-		this.tenTrangThai = tenTrangThai;
+	public void setTrangThai(String trangThai) {
+		TrangThai = trangThai;
 	}
-	
+
 	
 
 	

@@ -42,7 +42,7 @@
 					 <td>${nv.lyDo.lyDo}</td> 
 					<td>${nv.ghiChu}</td>
 					<td>${nv.ghiChuTruongPhong}</td>
-				      <td>${nv.trangThai.tenTrangThai}</td>
+				      <td>${nv.trangThai.trangThai}</td>
 					<%-- <td>${nv.trangThai}</td> --%>
 					<td><a  href="suanhap/${nv.id }"><button class="btn btn-success">
 									Sửa</button></a>  <a href="delete/${nv.id }"><button class="btn btn-danger"

@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <div class="app-content content container-fluid">
 	<div class="content-wrapper">
 
@@ -17,7 +18,11 @@
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/home" />'>Home</a></li>
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/quanlynhansutt/hop_dong/" />'>Danh sách hợp đồng</a></li>
+								href="<c:url value = "/quanlynhansutt/ho_so/"/>"><spring:message
+										code="label.quanLyNhanSu" /></a></li>
+							<li class="breadcrumb-item"><a
+								href='<c:url value="/quanlynhansutt/hop_dong/" />'>Danh sách
+									hợp đồng</a></li>
 							<li class="breadcrumb-item active">Thêm mới hợp đồng</li>
 						</ol>
 					</div>
@@ -47,7 +52,8 @@
 							</div>
 							<div class="card-body collapse in">
 								<div class="card-block">
-									<form:form method="POST" action="/ffse-fbms/quanlynhansutt/hop_dong/save"
+									<form:form method="POST"
+										action="/ffse-fbms/quanlynhansutt/hop_dong/save"
 										modelAttribute="hopDongTT">
 										<div class="form-body">
 											<div class="row">
@@ -60,16 +66,19 @@
 																	minIntegerDigits="5" groupingUsed="false"
 																	value="${hoSoNhanVienTT.maNhanVien}" />
 																<input placeholder="Mã nhân viên" class="form-control"
-																	value="${hosonv.maNhanVien}" name ="hoSoNhanVienTT.maNhanVien" readonly="readonly"  type="text">
+																	value="${hosonv.maNhanVien}"
+																	name="hoSoNhanVienTT.maNhanVien" readonly="readonly"
+																	type="text">
 															</div>
 														</div>
-															<div class="col-md-6">
+														<div class="col-md-6">
 															<div class="form-group">
 																<label>Trạng Thái</label>
-												               <div style="word-wrap: break-word;" class="form-control well">
-												               		<c:if test="${hosonv.trangThai == 1 }">Còn Làm Việc</c:if>
-												               		<c:if test="${hosonv.trangThai == 2 }">Đã Nghĩ Việc</c:if>
-												               </div>
+																<div style="word-wrap: break-word;"
+																	class="form-control well">
+																	<c:if test="${hosonv.trangThai == 1 }">Còn Làm Việc</c:if>
+																	<c:if test="${hosonv.trangThai == 2 }">Đã Nghĩ Việc</c:if>
+																</div>
 															</div>
 														</div>
 													</div>
@@ -88,7 +97,7 @@
 														</div>
 														<div class="form-group col-sm-6">
 															<label>Mã Chức Danh</label>
-													        <div class="form-control well">${hosonv.chucDanh.maChucDanh}</div>
+															<div class="form-control well">${hosonv.chucDanh.maChucDanh}</div>
 														</div>
 													</div>
 												</div>
@@ -139,8 +148,7 @@
 																<label for="date1">Hợp Đồng Từ Ngày</label>
 																<fieldset class="form-group position-relative">
 																	<form:input placeholder="Hợp Đồng Từ Ngày" type="date"
-																		class="form-control round"
-																		path="hopDongTuNgay" />
+																		class="form-control round" path="hopDongTuNgay" />
 																	<div class="form-control-position">
 																		<i class="fa fa-calendar-o"></i>
 																	</div>
@@ -154,8 +162,7 @@
 																<label for="date1">Hợp Đồng Đến Ngày</label>
 																<fieldset class="form-group position-relative">
 																	<form:input placeholder="Hợp Đồng Đến Ngày" type="date"
-																		class="form-control round"
-																		path="hopDongDenNgay" />
+																		class="form-control round" path="hopDongDenNgay" />
 																	<div class="form-control-position">
 																		<i class="fa fa-calendar-o"></i>
 																	</div>

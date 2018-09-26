@@ -45,6 +45,13 @@ public class HopDongServiceTTImpl implements HopDongServiceTT {
 		quanLyHopDongDaoTT.updateHopDong(tt);
 
 	}
+	
+	@Override
+	@Transactional
+	public void removeHopDong(HopDongTT tt) {
+		// TODO Auto-generated method stub
+		quanLyHopDongDaoTT.removeHopDong(tt);
+	}
 
 	@Override
 	public String getAutoId() {
@@ -106,13 +113,13 @@ public class HopDongServiceTTImpl implements HopDongServiceTT {
 		return this.quanLyHopDongDaoTT.findByMaHopDong(maHopDong);
 	}
 
-	@Override
+/*	@Override
 	@Transactional
 	public void removeHopDong(int maHopDong) {
 		// TODO Auto-generated method stub
 		this.quanLyHopDongDaoTT.removeHopDong(maHopDong);
 		
-	}
+	}*/
 
 	
 	@Transactional
@@ -126,5 +133,7 @@ public class HopDongServiceTTImpl implements HopDongServiceTT {
 		// TODO Auto-generated method stub
 		return this.quanLyHopDongDaoTT.viewOne(maNhanVien);
 	}
+
+
 
 }

@@ -21,7 +21,7 @@ public class QuanLyHopDongDaoTTImpl implements QuanLyHopDongDaoTT {
 	@SuppressWarnings("unchecked")
 	public List<HopDongTT> getAllHopDong() {
 		Session session = sessionFactory.getCurrentSession();
-		List<HopDongTT> listHopDong = session.createQuery("from HopDongTT").getResultList();
+		List<HopDongTT> listHopDong = session.createQuery("from HopDongTT where isdelete = 1").getResultList();
 		return listHopDong;
 	}
 
@@ -45,7 +45,7 @@ public class QuanLyHopDongDaoTTImpl implements QuanLyHopDongDaoTT {
 		session.update(tt);
 	}
 
-	@Override
+/*	@Override
 	public void removeHopDong(int maHopDong) {
 		Session session = sessionFactory.getCurrentSession();
 		HopDongTT entity = (HopDongTT) session.get(HopDongTT.class,
@@ -54,12 +54,19 @@ public class QuanLyHopDongDaoTTImpl implements QuanLyHopDongDaoTT {
 			session.delete(entity);
 		}
 		
+	}*/
+	
+	@Override
+	public void removeHopDong(HopDongTT tt) {
+		// TODO Auto-generated method stub
+		Session session = this.sessionFactory.getCurrentSession();
+		session.update(tt);
+
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<HopDongTT> getAllHopDong(int iDisplayStart, int iDisplayLength, String sql) {
-		System.out.println(sql);
 		Session session = this.sessionFactory.getCurrentSession();
 		List<HopDongTT> listHopDongTT = session.createQuery(sql).setFirstResult(iDisplayStart)
 				.setMaxResults(iDisplayLength).list();
@@ -110,11 +117,10 @@ public class QuanLyHopDongDaoTTImpl implements QuanLyHopDongDaoTT {
 		// TODO Auto-generated method stub
 		Session session = this.sessionFactory.openSession();
 		@SuppressWarnings("rawtypes")
-		Query query = session.createQuery("from HopDongTT where ma_nhan_vien = "+maNhanVien+" and trang_thai = 1 ");
+		Query query = session.createQuery("from HopDongTT where ma_nhan_vien = "+maNhanVien+" and trang_thai = 1 and isdelete = 1");
 		@SuppressWarnings("unchecked")
 		List<HopDongTT> viewOne = query.list();
 		return viewOne;
 	}
 
-	
 }

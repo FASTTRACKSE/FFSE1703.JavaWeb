@@ -28,21 +28,19 @@ th, td {
 		<!-- Path -->
 		<div class="content-header row">
 			<div class="content-header-left col-md-9 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">
-					<spring:message code="label.danhSachHopDong" />
-				</h3>
+				<h3 class="content-header-title mb-0">Hợp Đồng Nhân Viên</h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="<c:url value = "/"/>"><spring:message
 										code="label.trangChu" /></a></li>
 							<li class="breadcrumb-item"><a
-								href="<c:url value = "/quanlyhoso/"/>"><spring:message
+								href="<c:url value = "/quanlynhansutt/ho_so/"/>"><spring:message
 										code="label.quanLyNhanSu" /></a></li>
-							<li class="breadcrumb-item"><a href="javascript:void(0)"><spring:message
-										code="label.quanLyHopDong" /></a></li>
-							<li class="breadcrumb-item active"><spring:message
-									code="label.danhSachHopDong" /></li>
+							<li class="breadcrumb-item"><a
+								href='<c:url value="/quanlynhansutt/hop_dong/" />'>Danh sách
+									hợp đồng</a></li>
+							<li class="breadcrumb-item active">Hợp Đồng Nhân Viên</li>
 						</ol>
 					</div>
 				</div>
@@ -50,7 +48,8 @@ th, td {
 			<div class="content-header-right col-md-3 col-xs-12">
 				<div role="group" aria-label="Button group with nested dropdown"
 					class="btn-group float-md-right" id="add-new">
-					<a href="<c:url value = "/quanlynhansutt/hop_dong/add_hopdong/${maNhanVien}"/>"
+					<a
+						href="<c:url value = "/quanlynhansutt/hop_dong/add_hopdong/${maNhanVien}"/>"
 						class="btn btn-primary"><span class="fa fa-plus"></span> Thêm
 						mới</a>
 				</div>
@@ -112,7 +111,7 @@ th, td {
 														</c:if></td>
 													<td
 														style="letter-spacing: 5px; min-width: 75px; text-align: center !important;">
-														<a href="<c:url value = ""/>"><i class="fa fa-eye"></i></a>
+														<a href="<c:url value = "#"/>"><i class="fa fa-eye"></i></a>
 														<a
 														href="<c:url value = "/quanlynhansutt/hop_dong/edit_hopdong/${hs.maHopDong}"/>"><i
 															class="fa fa-pencil"></i></a> <%-- <a href="<c:url value = ""/>"><i class="fa fa-trash"></i></a> --%>

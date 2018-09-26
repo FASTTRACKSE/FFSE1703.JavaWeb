@@ -79,6 +79,9 @@ public class HopDongTT implements Serializable {
 
 	@Column(name = "trang_thai", nullable = false)
 	private Integer trangThai;
+	
+	@Column(name = "isdelete", nullable = false)
+	private Integer isdelete;
 
 	public HopDongTT() {
 		super();
@@ -163,5 +166,14 @@ public class HopDongTT implements Serializable {
 	public void setTrangThai(Integer trangThai) {
 		this.trangThai = trangThai;
 	}
+	
+	public Integer getIsdelete() {
+		return isdelete;
+	}
+
+	public void setIsdelete(Integer isdelete) {
+		this.isdelete = isdelete;
+	}
+
 
 }

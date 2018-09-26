@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import fasttrackse.ffse1703.fbms.entity.qlynhiemvuhieulp.DuAnEntityHieuLp;
+import fasttrackse.ffse1703.fbms.entity.qlynhiemvuhieulp.HoSoNhanVienHLP;
 import fasttrackse.ffse1703.fbms.entity.qlynhiemvuhieulp.LoaicongviecEntity;
 import fasttrackse.ffse1703.fbms.entity.qlynhiemvuhieulp.LoaitrangthaiEntity;
 import fasttrackse.ffse1703.fbms.entity.qlynhiemvuhieulp.QLyNhiemVuEntity;
@@ -89,6 +90,16 @@ public class QLyNhiemVuDaoImpl implements QLyNhiemVuDao {
 		cq2.select(root2);
 		Query<DuAnEntityHieuLp> query2 = session2.createQuery(cq2);
 		return query2.getResultList();
+	}
+	@Override
+	public List<HoSoNhanVienHLP> nhanVienHLP() {
+		Session session3 = sessionFactory.openSession();
+		CriteriaBuilder cv3 = session3.getCriteriaBuilder();
+		CriteriaQuery<HoSoNhanVienHLP> cq3 = cv3.createQuery(HoSoNhanVienHLP.class);
+		Root<HoSoNhanVienHLP> root3 = cq3.from(HoSoNhanVienHLP.class);
+		cq3.select(root3);
+		Query<HoSoNhanVienHLP> query3 = session3.createQuery(cq3);
+		return query3.getResultList();
 	}
 	
 

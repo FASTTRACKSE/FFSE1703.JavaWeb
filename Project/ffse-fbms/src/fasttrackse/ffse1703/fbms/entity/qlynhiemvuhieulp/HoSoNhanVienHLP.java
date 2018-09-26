@@ -25,10 +25,6 @@ import fasttrackse.ffse1703.fbms.entity.security.PhongBan;
 @Entity
 @Table(name = "ho_so_nhan_vien")
 public class HoSoNhanVienHLP {
-
-	@SuppressWarnings("unused")
-	private static final long serialVersionUID = 1L;
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ma_nhan_vien", unique = true, nullable = false)

@@ -127,11 +127,11 @@
 										<c:forEach items="${danhsach}" var="nv" varStatus="stt">
 										<tr>
 										        <td>${stt.count}</td>	
-										        <td>${nv.duAn}</td>		
+										        <td>${nv.duAn.tenDuan}</td>		
 										        <td>${nv.tenCongviec} </td>						
-										        <td>${nv.loaiCongviec}</td>
-										        <td>${nv.loaiTrangthai}</td>
-										        <td>${nv.nhanVien}</td>
+										        <td>${nv.idLoaiCongviec.loaiCongviec}</td>
+										        <td>${nv.idLoaiTrangthai.loaiTrangthai}</td>
+										        <td>${nv.nhanVien.hoDem} ${nv.nhanVien.ten}</td>
 												<td>
 													<a href="view/${nv.ID}"><button class="btn btn-default">Xem</button></a> 
 													<a href="edit/${nv.ID}"><button class="btn btn-success">Sửa</button></a> 

@@ -14,34 +14,29 @@ public class LoaicongviecEntity {
 		super();
 
 	}
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID", unique = true, nullable = false, length = 11)
-	private int ID;
-	
-	
+	@Column(name = "ID_loai_cong_viec", unique = true, nullable = false, length = 11)
+	private int IDcongviec;
+
 	@Column(name = "loai_cong_viec")
 	private String loaiCongviec;
 
-
-	public int getID() {
-		return ID;
+	public int getIDcongviec() {
+		return IDcongviec;
 	}
 
-
-	public void setID(int iD) {
-		ID = iD;
+	public void setIDcongviec(int iDcongviec) {
+		IDcongviec = iDcongviec;
 	}
-
 
 	public String getLoaiCongviec() {
 		return loaiCongviec;
 	}
 
-
 	public void setLoaiCongviec(String loaiCongviec) {
 		this.loaiCongviec = loaiCongviec;
 	}
-	
+
 }

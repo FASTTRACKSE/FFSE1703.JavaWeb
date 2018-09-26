@@ -27,59 +27,58 @@
 			<div class="main-content">
 				<div class="row">
 				<c:url var="addAction" value="/HieuLP/update"></c:url>
-					<form:form method="POST" modelAttribute="edit" action="${addAction}">
-						<form:input type="hidden" path="ID" style="display:none"
-							value="${nv.ID}" />
+					<form:form method="POST" modelAttribute="duAn" action="${addAction}">
+						<form:input type="hidden" path="iD" style="display:none"/>
 						<div class="form-group col-sm-6">
 							<label>Dự án</label>
-							<form:input class="form-control" path="duAn" readonly="true" />
+							<form:hidden path="duAn.maDuan" />
+							<form:input class="form-control" path="duAn.tenDuan" readonly="true" />
 						</div>
 						<div class="form-group col-sm-6">
 							<label>Tên công việc</label>
-							<form:input class="form-control" path="tenCongviec"
-								value="${nv.tenCongviec}" />
+							<form:input class="form-control" path="tenCongviec" />
 						</div>
 					<div class="form-group col-sm-6">
 						  	<label>Loại công việc</label>
-						 <form:select path="loaiCongviec" class="custom-select block round"
+						 <form:select path="idLoaiCongviec.IDcongviec" class="custom-select block round"
 								id="customSelect">
 								<c:forEach items="${congviec}" var="ld">
-									<form:option value="${ld.loaiCongviec}" label="${ld.loaiCongviec}" />
+									<form:option value="${ld.IDcongviec}" label="${ld.loaiCongviec}"  />
 								</c:forEach>
 							</form:select>
 						</div>
 						<div class="form-group col-sm-6">
 						  	<label>Trạng thái</label>
-						 <form:select path="loaiTrangthai" class="custom-select block round"
+						 <form:select path="idLoaiTrangthai.IDtrangthai" class="custom-select block round"
 								id="customSelect">
 								<c:forEach items="${trangthai}" var="ld">
-									<form:option value="${ld.loaiTrangthai}" label="${ld.loaiTrangthai}" />
+									<form:option value="${ld.IDtrangthai}" label="${ld.loaiTrangthai}" />
 								</c:forEach>
 							</form:select>
 						</div>
 						<div class="form-group col-sm-6">
 							<label>Thời gian bắt đầu</label>
-							<form:input path="tgBatdau" value="${nv.tgBatdau}" type="date"
+							<form:input path="tgBatdau"  type="date"
 								id="issueinput3" class="form-control" />
 						</div>
 						<div class="form-group col-sm-6">
 							<label>Thời gian kết thúc</label>
-							<form:input path="tgKetthuc" value="${nv.tgKetthuc}" type="date"
+							<form:input path="tgKetthuc" type="date"
 								id="issueinput3" class="form-control" />
 						</div>
 						<div class="form-group col-sm-6">
 							<label>Người được phân công</label>
-								<form:input class="form-control" path="nhanVien"
-								value="${nv.nhanVien}" />
+									<form:hidden path="nhanVien.maNhanVien" />
+									<form:input class="form-control" path="nhanVien.ten"  value="${duAn.nhanVien.ten} ${duAn.nhanVien.ten}" readonly="true" />
 						</div>
 						<div class="form-group col-sm-6">
 							<label>Thời gian dự kiến hoàn thành</label>
 			
-								  <form:input class="form-control" path="tgDukienhoanthanh" value="${nv.tgDukienhoanthanh}" placeholder="Thời gian dự kiến hoàn thành	" />
+								  <form:input class="form-control" path="tgDukienhoanthanh" placeholder="Thời gian dự kiến hoàn thành	" />
 						</div>
 						<div class="form-group col-sm-6">
 							<label>Mô tả</label>
-							<form:textarea path="moTa"  value="${nv.moTa}" id="issueinput8" rows="5" class="form-control" placeholder="Mô tả" />
+							<form:textarea path="moTa" id="issueinput8" rows="5" class="form-control" placeholder="Mô tả" />
 						</div>
 						<div class="col-sm-12 text-center">
 							<button type="submit" class="btn btn-success">Lưu thông tin</button>

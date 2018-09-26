@@ -11,26 +11,26 @@ import javax.validation.constraints.NotEmpty;
 @Entity
 @Table(name = "loai_trang_thai")
 public class LoaitrangthaiEntity {
-	
+
 	public LoaitrangthaiEntity() {
 		super();
 	}
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID", unique = true, nullable = false, length = 11)
-	private int ID;
-	
+	@Column(name = "ID_loai_trang_thai", unique = true, nullable = false, length = 11)
+	private int IDtrangthai;
+
 	@Column(name = "loai_trang_thai")
 	@NotEmpty
 	private String loaiTrangthai;
 
-	public int getID() {
-		return ID;
+	public int getIDtrangthai() {
+		return IDtrangthai;
 	}
 
-	public void setID(int iD) {
-		ID = iD;
+	public void setIDtrangthai(int iDtrangthai) {
+		IDtrangthai = iDtrangthai;
 	}
 
 	public String getLoaiTrangthai() {

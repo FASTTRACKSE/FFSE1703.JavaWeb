@@ -31,7 +31,6 @@ public class QLyNhiemVuController {
 	@RequestMapping(value = {"/","/danhsach"})
 	public String danhSach(Model model) {
 		model.addAttribute("danhsach",qLyNhiemVuService.getAll());
-//		System.out.println(qLyNhiemVuService.getAll());
 		return "QuanLyNhiemVuHieuLP/list";
 	}
 	
@@ -45,9 +44,10 @@ public class QLyNhiemVuController {
 	@RequestMapping(value = "/create")
 	public String showForm(Model model) {
 		model.addAttribute("add", new QLyNhiemVuEntity());
-		model.addAttribute("trangthai", "Mới");
+	//	model.addAttribute("trangthai", "Mới");
 		model.addAttribute("congviec", qLyNhiemVuService.congViec());
 		model.addAttribute("duan", qLyNhiemVuService.duAn());
+		model.addAttribute("nhanVienHLP", qLyNhiemVuService.nhanVienHLP());
 		return "QuanLyNhiemVuHieuLP/create";
 	}
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
@@ -62,10 +62,9 @@ public class QLyNhiemVuController {
 	}
 	@RequestMapping(value = "/edit/{id}")
 	public String edit_view(@PathVariable("id") int id, Model model) {
-		model.addAttribute("edit", qLyNhiemVuService.findById(id));
+		model.addAttribute("duAn", qLyNhiemVuService.findById(id));
 		model.addAttribute("trangthai", qLyNhiemVuService.trangThai());
 		model.addAttribute("congviec", qLyNhiemVuService.congViec());
-		model.addAttribute("duan", qLyNhiemVuService.duAn());
 		return "/QuanLyNhiemVuHieuLP/edit";
 	}
 

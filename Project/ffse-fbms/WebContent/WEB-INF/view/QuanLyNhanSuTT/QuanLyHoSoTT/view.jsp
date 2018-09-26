@@ -72,7 +72,48 @@
 								</div>
 								<div class="card-body collapse in">
 									<div class="card-block">
-										<!-- để đó làm sau  -->
+										<table class="table mb-0">
+											<thead>
+												<tr>
+													<th>Mã Nhân Viên</th>
+													<th>Tên Nhân Viên</th>
+													 <th>Năm Sinh</th>
+													<th>giới Tính</th>
+													<th>Tình trạng hôn nhân</th>
+												<!--	<th>số CMND</th>
+													<th>Nơi cấp</th>
+													<th>Ngày cấp</th>
+													<th>Dân tộc</th>
+													<th>Quốc tịch</th>
+													<th>số điện thoại</th>
+													<th>Email</th>
+													<th>địa chỉ</th>
+													<th>xã, phường</th>
+													<th>quận, huyện</th>
+													<th>tỉnh, thành phố</th>
+													<th>Trạng Thái</th> -->
+												</tr>
+											</thead>
+											<tbody>
+												<c:forEach items="${viewOne}" var="hsnv">
+												<tr>
+													<td>${hsnv.maNhanVien}</td>
+													<td>${hsnv.tenNhanVien}</td>
+													<td>${hsnv.namSinh}</td>
+													<td>${hsnv.gioiTinh}</td>
+													<%-- <td>${hsnv.tinhTrangHonNhan}</td> --%>
+													<%-- <td>${hsnv.phongBan.tenPhongBan}</td>
+													<td>${hsnv.chucDanh.tenChucDanh}</td>
+													<td>${hsnv.tenNhanVien}</td>
+													<td>${hsnv.namSinh}</td>
+													<td>${hsnv.gioiTinh}</td>
+													<td>${hsnv.diaChi}</td>
+													<td>${hsnv.soDienThoai}</td> --%>
+												</tr>
+												</c:forEach>
+											</tbody>
+										</table>
+
 									</div>
 								</div>
 							</div>

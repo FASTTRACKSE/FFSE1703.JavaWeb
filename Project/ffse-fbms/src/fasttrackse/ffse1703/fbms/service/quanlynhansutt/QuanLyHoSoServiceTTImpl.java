@@ -86,4 +86,10 @@ public class QuanLyHoSoServiceTTImpl implements QuanLyHoSoServiceTT {
 		return this.quanLyHoSoDaoTT.findByMaHopDong(maNhanVien);
 	}
 
+	@Override
+	public List<HoSoNhanVienTT> viewOne(int maNhanVien) {
+		// TODO Auto-generated method stub
+		return this.quanLyHoSoDaoTT.viewOne(maNhanVien);
+	}
+
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.HoSoNhanVienTT;
 
 
+
 public interface QuanLyHoSoDaoTT {
 	public List<HoSoNhanVienTT> getAllHoSo();
 
@@ -21,4 +22,6 @@ public interface QuanLyHoSoDaoTT {
 	public void deleteHoSoNhanVien(int maNhanVien);
 	
 	public HoSoNhanVienTT findByMaHopDong(int maNhanVien);
+	
+	public List<HoSoNhanVienTT> viewOne(int maNhanVien);
 }

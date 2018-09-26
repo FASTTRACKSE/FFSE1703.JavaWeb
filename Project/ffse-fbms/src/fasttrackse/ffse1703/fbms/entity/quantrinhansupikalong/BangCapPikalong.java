@@ -42,9 +42,6 @@ public class BangCapPikalong {
 	@Column(name = "IsActive")
 	private int isActive;
 	
-//	@ManyToOne
-//	@JoinColumn(name = "MaNv", nullable = false)
-//	private HoSoNhanVienPikalong hoSoNhanVienPikalong;
 
 	public int getId() {
 		return id;

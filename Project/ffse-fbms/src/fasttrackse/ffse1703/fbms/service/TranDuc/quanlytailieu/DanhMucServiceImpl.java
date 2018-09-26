@@ -29,12 +29,12 @@ public class DanhMucServiceImpl implements DanhMucService {
 	}
 
 	@Override
-	public void deleteDM(int id) {
+	public void deleteDM(String id) {
 		daoDM.deleteDM(id);
 	}
 
 	@Override
-	public DanhMuc getDMbyID(int id) {
+	public DanhMuc getDMbyID(String id) {
 		return daoDM.getDMbyID(id);
 	}
 

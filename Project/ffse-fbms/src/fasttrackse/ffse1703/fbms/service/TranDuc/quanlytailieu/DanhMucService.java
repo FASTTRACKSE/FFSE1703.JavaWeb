@@ -11,9 +11,9 @@ public interface DanhMucService {
 
 	public void updateDM(DanhMuc dm);
 
-	public void deleteDM(int id);
+	public void deleteDM(String maDM);
 
-	public DanhMuc getDMbyID(int id);
+	public DanhMuc getDMbyID(String maDM);
 
 	public List<DanhMuc> listAllDanhMuc(int start, int limit,String sql);
 

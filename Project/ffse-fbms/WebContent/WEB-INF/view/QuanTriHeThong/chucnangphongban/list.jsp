@@ -161,8 +161,10 @@
 											<li class="page-item"><a class="page-link"
 												href="?page=${currentPage+2}">${currentPage+2}</a></li>
 										</c:if>
+										<c:if test="${lastPage == 0}" >
 										<li class="page-item"><a class="page-link"
 											href="?page=${lastPage }">Last Page</a></li>
+										</c:if>
 									</ul>
 								</nav>
 							</div>

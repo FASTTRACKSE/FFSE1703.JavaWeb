@@ -370,7 +370,7 @@
 				<!-- Quản trị tài liệu của Đức -->
 				<li class=" navigation-header"><span>Đứcdz - Quản Lý Tài
 						Liệu</span><i data-toggle="tooltip" data-placement="right"
-					data-original-title="Apps" class=" ft-minus"></i></li>
+					data-original-title="Đức Đẹp Trai" class=" ft-minus"></i></li>
 				<li class=" nav-item"><a
 					href="<c:url value = "/TranDuc-QuanLyTaiLieu/DanhMuc/"/>"><i
 						class="ft-bookmark"></i><span data-i18n="" class="menu-title">Quản

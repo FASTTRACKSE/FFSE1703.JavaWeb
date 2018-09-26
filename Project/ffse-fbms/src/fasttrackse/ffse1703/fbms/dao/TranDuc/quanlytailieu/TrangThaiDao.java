@@ -1,10 +1,10 @@
-package fasttrackse.ffse1703.fbms.service.TranDuc.quanlytailieu;
+package fasttrackse.ffse1703.fbms.dao.TranDuc.quanlytailieu;
 
 import java.util.List;
 
 import fasttrackse.ffse1703.fbms.entity.TranDuc.quanlytailieu.TrangThaiTaiLieu;
 
-public interface TrangThaiService {
+public interface TrangThaiDao {
 	
 	public List<TrangThaiTaiLieu> listAllTrangThai();
 

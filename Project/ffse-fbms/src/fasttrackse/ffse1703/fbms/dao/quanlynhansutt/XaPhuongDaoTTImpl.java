@@ -16,11 +16,11 @@ public class XaPhuongDaoTTImpl implements XaPhuongDaoTT {
 	private SessionFactory sessionFactory;
 
 	@Override
-	public List<XaPhuongTT> listXaPhuong(int maQuanHuyen) {
+	public List<XaPhuongTT> listXaPhuong(String maQuanHuyen) {
 		Session session = sessionFactory.getCurrentSession();
 		@SuppressWarnings("rawtypes")
 		Query query = session.createQuery("from XaPhuongTT where maQuanHuyen = :maQuanHuyen");
-		query.setParameter("maThanhPho", maQuanHuyen);
+		query.setParameter("maQuanHuyen", maQuanHuyen);
 		@SuppressWarnings("unchecked")
 		List<XaPhuongTT> listXaPhuong = query.list();
 

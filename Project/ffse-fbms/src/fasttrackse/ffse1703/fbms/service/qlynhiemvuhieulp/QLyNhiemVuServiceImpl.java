@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fasttrackse.ffse1703.fbms.dao.qlynhiemvuhieulp.QLyNhiemVuDao;
 import fasttrackse.ffse1703.fbms.entity.qlynhiemvuhieulp.DuAnEntityHieuLp;
+import fasttrackse.ffse1703.fbms.entity.qlynhiemvuhieulp.HoSoNhanVienHLP;
 import fasttrackse.ffse1703.fbms.entity.qlynhiemvuhieulp.LoaicongviecEntity;
 import fasttrackse.ffse1703.fbms.entity.qlynhiemvuhieulp.LoaitrangthaiEntity;
 import fasttrackse.ffse1703.fbms.entity.qlynhiemvuhieulp.QLyNhiemVuEntity;
@@ -31,7 +32,6 @@ public class QLyNhiemVuServiceImpl implements QLyNhiemVuService {
 	@Override
 	@Transactional
 	public QLyNhiemVuEntity findById(int id) {
-		// TODO Auto-generated method stub
 		return this.qLyNhiemVuDao.findById(id) ;
 	}
 
@@ -63,6 +63,11 @@ public class QLyNhiemVuServiceImpl implements QLyNhiemVuService {
 	@Transactional
 	public List<DuAnEntityHieuLp> duAn() {
 		return this.qLyNhiemVuDao.duAn();
+	}
+
+	@Override
+	public List<HoSoNhanVienHLP> nhanVienHLP() {
+		return this.qLyNhiemVuDao.nhanVienHLP();
 	}
 
 

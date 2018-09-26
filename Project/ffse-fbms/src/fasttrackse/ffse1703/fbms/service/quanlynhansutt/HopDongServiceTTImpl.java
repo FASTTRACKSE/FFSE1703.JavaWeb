@@ -45,6 +45,13 @@ public class HopDongServiceTTImpl implements HopDongServiceTT {
 		quanLyHopDongDaoTT.updateHopDong(tt);
 
 	}
+	
+	@Override
+	@Transactional
+	public void removeHopDong(HopDongTT tt) {
+		// TODO Auto-generated method stub
+		quanLyHopDongDaoTT.removeHopDong(tt);
+	}
 
 	@Override
 	public String getAutoId() {
@@ -89,9 +96,10 @@ public class HopDongServiceTTImpl implements HopDongServiceTT {
 	}
 
 	@Override
+	@Transactional
 	public HoSoNhanVienTT getHoSoNhanVienById(int maNhanVien) {
 		// TODO Auto-generated method stub
-		return null;
+		return this.quanLyHopDongDaoTT.findByMaNhanVien(maNhanVien);
 	}
 
 	public HopDongServiceTTImpl() {
@@ -105,12 +113,27 @@ public class HopDongServiceTTImpl implements HopDongServiceTT {
 		return this.quanLyHopDongDaoTT.findByMaHopDong(maHopDong);
 	}
 
-	@Override
+/*	@Override
 	@Transactional
 	public void removeHopDong(int maHopDong) {
 		// TODO Auto-generated method stub
 		this.quanLyHopDongDaoTT.removeHopDong(maHopDong);
 		
+	}*/
+
+	
+	@Transactional
+	public List<HoSoNhanVienTT> getAllNhanVien() {
+		return this.quanLyHopDongDaoTT.getAllNhanVien();
 	}
+
+	@Override
+	@Transactional
+	public List<HopDongTT> viewOne(int maNhanVien) {
+		// TODO Auto-generated method stub
+		return this.quanLyHopDongDaoTT.viewOne(maNhanVien);
+	}
+
+
 
 }

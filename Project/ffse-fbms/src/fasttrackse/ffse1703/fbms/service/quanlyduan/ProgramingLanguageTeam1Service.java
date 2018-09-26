@@ -20,5 +20,9 @@ public interface ProgramingLanguageTeam1Service {
 	public void update(ProgramingLanguageTeam1 nn);
 
 	public void setIsDelete(String maNgonNgu);
+	
+	public int getMa(String maNgonNgu);
+	
+	public List<ProgramingLanguageTeam1> findAllForPaging(int startPosition,int maxResult);
 
 }

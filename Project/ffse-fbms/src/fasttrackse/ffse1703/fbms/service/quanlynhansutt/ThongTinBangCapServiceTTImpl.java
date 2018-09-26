@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 
 import fasttrackse.ffse1703.fbms.dao.quanlynhansutt.ThongTinBangCapDaoTT;
+import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.HoSoNhanVienTT;
 import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.ThongTinBangCapTT;
 
 @Service
@@ -72,6 +73,26 @@ public class ThongTinBangCapServiceTTImpl implements ThongTinBangCapServiceTT {
 	public List<ThongTinBangCapTT> listBangCap() {
 		// TODO Auto-generated method stub
 		return this.thongTinBangCapDaoTT.ListBangCap();
+	}
+
+	@Override
+	@Transactional
+	public ThongTinBangCapTT findByBangCap(int id) {
+		// TODO Auto-generated method stub
+		return this.thongTinBangCapDaoTT.findByBangCap(id);
+	}
+
+	@Override
+	@Transactional
+	public HoSoNhanVienTT getHoSoNhanVienById(int maNhanVien) {
+		// TODO Auto-generated method stub
+		return this.thongTinBangCapDaoTT.findByMaNhanVien(maNhanVien);	}
+
+	@Override
+	@Transactional
+	public List<ThongTinBangCapTT> viewOne(int maNhanVien) {
+		// TODO Auto-generated method stub
+		return this.thongTinBangCapDaoTT.viewOne(maNhanVien);
 	}
 
 

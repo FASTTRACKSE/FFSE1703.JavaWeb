@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fasttrackse.ffse1703.fbms.dao.TranDuc.quanlytailieu.TaiLieuDao;
+import fasttrackse.ffse1703.fbms.entity.TranDuc.quanlytailieu.DanhMuc;
 import fasttrackse.ffse1703.fbms.entity.TranDuc.quanlytailieu.TaiLieu;
+import fasttrackse.ffse1703.fbms.entity.security.PhongBan;
 @Service
 public class TaiLieuServiceImpl implements TaiLieuService {
 	@Autowired
@@ -42,8 +44,13 @@ public class TaiLieuServiceImpl implements TaiLieuService {
 	}
 
 	@Override
-	public String getRecordsTotal() {
-		return daoTL.getRecordsTotal();
+	public List<PhongBan> listPhongBan() {
+		return daoTL.listPhongBan();
+	}
+
+	@Override
+	public List<DanhMuc> listDanhMuc() {
+		return daoTL.listDanhMuc();
 	}
 
 }

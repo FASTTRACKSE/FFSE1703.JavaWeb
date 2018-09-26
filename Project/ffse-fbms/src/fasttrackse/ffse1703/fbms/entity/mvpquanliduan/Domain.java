@@ -1,9 +1,12 @@
 package fasttrackse.ffse1703.fbms.entity.mvpquanliduan;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -25,8 +28,17 @@ public class Domain {
 	private String nameDomain;
 
 	private int status;
+	
+	@ManyToMany(targetEntity = Projects.class, mappedBy = "domain", fetch = FetchType.EAGER)
+	private List<Projects> project;
+	
+	public List<Projects> getProject() {
+		return project;
+	}
 
-
+	public void setProject(List<Projects> project) {
+		this.project = project;
+	}
 
 	public String getIdDomain() {
 		return idDomain;

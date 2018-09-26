@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
-import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Status;
+import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.StatusProject;
 
 import fasttrackse.ffse1703.fbms.service.mvpquanliduan.StatusService;
 
@@ -32,19 +32,19 @@ public class StatusController {
 
 	@RequestMapping("/list-status")
 	public String listStatus(Model model) {
-		List<Status> list = statusService.findAll();
+		List<StatusProject> list = statusService.findAll();
 		model.addAttribute("listStatus", list);
 		return "MvpQuanLiDuAn/statuss/liststatus";
 	}
 
 	@RequestMapping("/show-form-add")
 	public String showFormAdd(Model model) {
-		model.addAttribute("command", new Status());
+		model.addAttribute("command", new StatusProject());
 		return "MvpQuanLiDuAn/statuss/addstatus";
 	}
 
 	@RequestMapping(value = "/addnew", method = RequestMethod.POST)
-	public String addNew(@Valid @ModelAttribute("command") Status status, BindingResult result,
+	public String addNew(@Valid @ModelAttribute("command") StatusProject status, BindingResult result,
 			final RedirectAttributes redirectAttributes, Model model) {
 		
 		//validation form 
@@ -66,13 +66,13 @@ public class StatusController {
 
 	@RequestMapping(value = "/show-form-edit/{id}")
 	public String showFormEdit(Model model, @PathVariable int id) {
-		Status dm = statusService.findById(id);
+		StatusProject dm = statusService.findById(id);
 		model.addAttribute("status", dm);
 		return "MvpQuanLiDuAn/statuss/updatestatus";
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String update(@Valid @ModelAttribute("Status") Status status, BindingResult result,
+	public String update(@Valid @ModelAttribute("Status") StatusProject status, BindingResult result,
 			final RedirectAttributes redirectAttributes,Model model) {
 		if (result.hasErrors()) {
 			model.addAttribute("status", status);
@@ -85,7 +85,7 @@ public class StatusController {
 
 	@RequestMapping(value = "/delete/{id}")
 	public String delete(@PathVariable int id, final RedirectAttributes redirectAttributes) {
-		Status dm = statusService.findById(id);
+		StatusProject dm = statusService.findById(id);
 		dm.setStatus(0);
 		statusService.update(dm);
 		return "redirect: /ffse-fbms/mvpquanliduan/status/list-status";

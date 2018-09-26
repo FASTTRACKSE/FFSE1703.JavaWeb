@@ -2,6 +2,7 @@ package fasttrackse.ffse1703.fbms.dao.quanlynhansutt;
 
 import java.util.List;
 
+import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.HoSoNhanVienTT;
 import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.HopDongTT;
 
 public interface QuanLyHopDongDaoTT {
@@ -20,11 +21,16 @@ public interface QuanLyHopDongDaoTT {
 
 	public void updateHopDong(HopDongTT tt);
 	
-	public void removeHopDong(int maHopDong);
+	public void removeHopDong(HopDongTT tt);
 
 	public String getAutoId();
 	
 	public HopDongTT findByMaHopDong(int maHopDong);
+	
+	public List<HoSoNhanVienTT> getAllNhanVien();
+	
+	public HoSoNhanVienTT findByMaNhanVien(int maNhanVien);
 		
+	public List<HopDongTT> viewOne(int maNhanVien);
 	
 }

@@ -20,20 +20,33 @@
 					</div>
 				</div>
 			</div>
-			<c:if test="${tudanhgia == null}">
+			<c:if test="${empty tudanhgia}">
 				<div class="content-header-right col-md-3 col-xs-12">
 					<div role="group" aria-label="Button group with nested dropdown"
 						class="btn-group float-md-right" id="add-new">
 						<a
-							href="<c:url value = "/quantridanhgia/danhgiabanthan/showform"/>"
+							href="<c:url value = "/quantridanhgia/nhanvien/danhgiabanthan/add"/>"
 							class="btn btn-primary"><span class="fa fa-plus"></span> Tạo</a>
 					</div>
 				</div>
 			</c:if>
-			<c:if test="${tudanhgia != null}">
-				<div class="content-body">
-					<!-- Basic form layout section start -->
-					<section id="basic-form-layouts">
+			<div class="content-body">
+				<!-- Basic form layout section start -->
+				<section id="basic-form-layouts">
+					<c:if test="${empty tudanhgia}">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="card">
+									<div class="card-content">
+										<div class="card-body" style="margin: 1em">
+											<h2>Bạn chưa có bản đánh giá bản thân nào</h2>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</c:if>
+					<c:if test="${not empty tudanhgia}">
 						<div class="row">
 							<div class="col-md-12">
 								<div class="card">
@@ -107,8 +120,7 @@
 												</div>
 
 												<div class="form-actions">
-													<a
-														href="<c:url value="/quantridanhgia/home/"/>"
+													<a href="<c:url value="/quantridanhgia/home/"/>"
 														class="btn btn-danger btn-min-width mr-1 mb-1">Trở về</a>
 													<c:if test="${command.isDelete == 1 }">
 														<a
@@ -123,10 +135,10 @@
 								</div>
 							</div>
 						</div>
-					</section>
-					<!-- // Basic form layout section end -->
-				</div>
-			</c:if>
+					</c:if>
+				</section>
+				<!-- // Basic form layout section end -->
+			</div>
 		</div>
 	</div>
 </div>

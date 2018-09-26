@@ -21,7 +21,7 @@ public class QuanHuyenServiceTTImpl implements QuanHuyenServiceTT {
 	
 	@Override
 	@Transactional
-	public List<QuanHuyenTT> listQuanHuyen(int maThanhPho) {
+	public List<QuanHuyenTT> listQuanHuyen(String maThanhPho) {
 
 		return quanHuyenDaoTT.listQuanHuyen(maThanhPho);
 	}

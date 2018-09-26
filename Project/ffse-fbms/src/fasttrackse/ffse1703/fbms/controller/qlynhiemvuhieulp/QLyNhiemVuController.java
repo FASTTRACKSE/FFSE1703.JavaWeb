@@ -1,11 +1,8 @@
 package fasttrackse.ffse1703.fbms.controller.qlynhiemvuhieulp;
 
 import java.io.IOException;
-
-
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +21,7 @@ import fasttrackse.ffse1703.fbms.service.qlynhiemvuhieulp.QLyNhiemVuService;
 public class QLyNhiemVuController {
 	@Autowired
 	private QLyNhiemVuService qLyNhiemVuService;
+	
 	
 	@RequestMapping(value = "/view/{ID}", method = RequestMethod.GET)
 	public String viewOneChucDanh(@PathVariable("ID") int id, Model model) {
@@ -46,9 +44,10 @@ public class QLyNhiemVuController {
 	@RequestMapping(value = "/create")
 	public String showForm(Model model) {
 		model.addAttribute("add", new QLyNhiemVuEntity());
-		model.addAttribute("trangthai", "Mới");
+	//	model.addAttribute("trangthai", "Mới");
 		model.addAttribute("congviec", qLyNhiemVuService.congViec());
 		model.addAttribute("duan", qLyNhiemVuService.duAn());
+		model.addAttribute("nhanVienHLP", qLyNhiemVuService.nhanVienHLP());
 		return "QuanLyNhiemVuHieuLP/create";
 	}
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
@@ -63,10 +62,9 @@ public class QLyNhiemVuController {
 	}
 	@RequestMapping(value = "/edit/{id}")
 	public String edit_view(@PathVariable("id") int id, Model model) {
-		model.addAttribute("edit", qLyNhiemVuService.findById(id));
+		model.addAttribute("duAn", qLyNhiemVuService.findById(id));
 		model.addAttribute("trangthai", qLyNhiemVuService.trangThai());
 		model.addAttribute("congviec", qLyNhiemVuService.congViec());
-		model.addAttribute("duan", qLyNhiemVuService.duAn());
 		return "/QuanLyNhiemVuHieuLP/edit";
 	}
 

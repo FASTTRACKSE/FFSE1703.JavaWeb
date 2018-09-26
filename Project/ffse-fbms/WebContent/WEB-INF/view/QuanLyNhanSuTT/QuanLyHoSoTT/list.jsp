@@ -39,6 +39,27 @@ th, td {
 					</div>
 				</div>
 			</div>
+			 <c:if test="${empty add}">
+            <style> i.fa { width: 20px; } </style>
+            <div class="content-header-right col-md-3 col-xs-12">
+	            <div role="group" aria-label="Button group with nested dropdown" class="dropdown nav-item float-md-right">
+	               <div role="group" class="btn-group">
+	                  <button id="btnGroupDrop1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-outline-primary dropdown-toggle">
+	                  	<i class="ft-settings icon-left"></i> <spring:message code="label.thongTinKhac" />
+	                  </button>
+	                  <div aria-labelledby="btnGroupDrop1" class="dropdown-menu dropdown-menu-right">
+	                  	<a href="<c:url value = "#"/>" class="dropdown-item"><i class="fa fa-id-card-o"></i> <spring:message code="label.thongTinHoSo" /></a>
+	                  	<a href="<c:url value = "#"/>" class="dropdown-item"><i class="fa fa-graduation-cap"></i> <spring:message code="label.thongTinBangCap" /></a>
+	                  	<a href="<c:url value = "#"/>" class="dropdown-item"><i class="fa fa-users"></i> <spring:message code="label.thongTinGiaDinh" /></a>
+	                  	<a href="<c:url value = "#"/>" class="dropdown-item"><i class="fa fa-file-code-o"></i> <spring:message code="label.thongTinKinhNghiem" /></a>
+	                  	<a href="<c:url value = "#"/>" class="dropdown-item"><i class="fa fa-handshake-o"></i> <spring:message code="label.thongTinHopDong" /></a>
+	                  	<div class="dropdown-divider"></div>
+	                  	<a href="<c:url value = "#"/>" class="dropdown-item text-xs-center"><spring:message code="label.xemTatCa" /></a>
+	                  </div>
+	               </div>
+				</div>
+            </div>
+            </c:if>
 		</div>
 		<div class="content-body">
 			<!-- Zero configuration table -->
@@ -85,14 +106,12 @@ th, td {
 													<td>${hsnv.gioiTinh}</td>
 													<td>${hsnv.diaChi}</td>
 													<td>${hsnv.soDienThoai}</td>
-
 													<td
 														style="letter-spacing: 5px; min-width: 75px; text-align: center !important;">
-														<a href="<c:url value = ""/>"><i class="fa fa-eye"></i></a>
+														<a href="<c:url value = "/quanlynhansutt/ho_so/view/${hsnv.maNhanVien}"/>"><i class="fa fa-eye"></i></a>
 														<a href="<c:url value = "#"/>"><i class="fa fa-pencil"></i></a>
 														<a href='<c:url value = "#"></c:url>' class="fa fa-trash"
 														onclick="return confirm('Bạn có muốn xóa sinh viên này?');"></a>
-
 													</td>
 												</tr>
 											</c:forEach>

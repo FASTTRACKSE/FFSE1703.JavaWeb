@@ -44,13 +44,6 @@
 				placeholder="Tên dự án" readonly="true" />
 			<form:errors path="tenDuAn" cssStyle="color: red"></form:errors>
 		</div>
-
-		<div class="form-group col-sm-6">
-			<label>Tên dự án</label>
-			<form:input class="form-control" path="tenDuAn"
-				placeholder="Tên dự án" readonly="true" />
-			<form:errors path="tenDuAn" cssStyle="color: red"></form:errors>
-		</div>
 		<div class="form-group col-sm-6">
 			<label>Start Date</label>
 			<form:input path="startDate" cssClass="form-control round"
@@ -87,13 +80,12 @@
 			<form:select path="KhachHang" cssClass="form-control round"
 				mutiple="true">
 				<c:forEach items="${khachhang}" var="kh">
-					<option value="${kh.makh }">${kh.tenkh}</option>
+					<option value="${kh.makh }"<c:if test="${kh.makh == khang }" >selected="selected"</c:if>>${kh.tenkh }</option>
 				</c:forEach>
 			</form:select>
 		</div>
 
 		<div class="form-group col-sm-6">
-			/////////
 
 		</div>
 		<div class="col-sm-12 text-center">

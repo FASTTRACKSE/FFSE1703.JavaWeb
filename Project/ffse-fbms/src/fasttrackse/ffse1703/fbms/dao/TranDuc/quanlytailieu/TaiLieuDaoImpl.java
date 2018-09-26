@@ -10,7 +10,9 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import fasttrackse.ffse1703.fbms.entity.TranDuc.quanlytailieu.DanhMuc;
 import fasttrackse.ffse1703.fbms.entity.TranDuc.quanlytailieu.TaiLieu;
+import fasttrackse.ffse1703.fbms.entity.security.PhongBan;
 
 @Repository
 public class TaiLieuDaoImpl implements TaiLieuDao {
@@ -70,21 +72,29 @@ public class TaiLieuDaoImpl implements TaiLieuDao {
 	public List<TaiLieu> listAll(int start, int limit) {
 		Session session = this.sessionFactory.openSession();
 		Query sql = session.createQuery("from TaiLieu");
-		sql.setFirstResult(start);
-		sql.setMaxResults(limit);
+		sql.setFirstResult((int) Math.ceil(start));
+		sql.setMaxResults((int) Math.ceil(limit));
 		List<TaiLieu> list = sql.getResultList();
 		session.close();
 		return list;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public String getRecordsTotal() {
+	public List<PhongBan> listPhongBan() {
 		Session session = this.sessionFactory.openSession();
-		String sql = "SELECT COUNT(*) FROM `tai_lieu`";
-		Query query = session.createSQLQuery(sql);
-		String recordsTotal = query.getSingleResult().toString();
+		List<PhongBan> list = session.createQuery("from PhongBan").list();
 		session.close();
-		return recordsTotal;
+		return list;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<DanhMuc> listDanhMuc() {
+		Session session = this.sessionFactory.openSession();
+		List<DanhMuc> list = session.createQuery("from DanhMuc").list();
+		session.close();
+		return list;
 	}
 
 }

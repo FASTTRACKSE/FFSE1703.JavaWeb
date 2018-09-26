@@ -1,8 +1,7 @@
 package fasttrackse.ffse1703.fbms.entity.quanlyduan;
 
+import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.ManyToOne;
-
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -13,17 +12,22 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="du_an")
-public class DuAnTeam1 {
+public class DuAnTeam1 implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@NotEmpty
 	@Column(name="ma_du_an")
@@ -45,36 +49,52 @@ public class DuAnTeam1 {
 	@Column (name="start_date")
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
-//	@NotNull
+	@NotNull
 	private Date startDate;
 	
 	@Column (name="end_date")
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-//	@NotNull
+	@NotNull
 	private Date endDate;
 	
 	@ManyToMany(targetEntity = DatabaseTeam1.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "database_du_an", joinColumns = {
 	@JoinColumn(name = "ma_du_an", referencedColumnName = "ma_du_an",  updatable = true,insertable=true) }, inverseJoinColumns = {
 	@JoinColumn(name = "ma_database", referencedColumnName = "ma_database", nullable = true, updatable = false,insertable=true) })
-//	@NotEmpty
+	@NotEmpty
 	private Set<DatabaseTeam1> database;
 
 	@ManyToMany(targetEntity = TechnicalTeam1.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "cong_nghe_du_an", joinColumns = {
 	@JoinColumn(name = "ma_du_an", referencedColumnName = "ma_du_an",  updatable = true,insertable=true) }, inverseJoinColumns = {
 	@JoinColumn(name = "ma_cong_nghe", referencedColumnName = "ma_cong_nghe", nullable = true, updatable = false,insertable=true) })
-//	@NotEmpty
+	@NotEmpty
 	private Set<TechnicalTeam1> Technical;
 	
 	@ManyToMany(targetEntity = FrameworkTeam1.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "framework_du_an", joinColumns = {
 	@JoinColumn(name = "ma_du_an", referencedColumnName = "ma_du_an",  updatable = true,insertable=true) }, inverseJoinColumns = {
 	@JoinColumn(name = "ma_framework", referencedColumnName = "ma_framework", nullable = true, updatable = false,insertable=true) })
-//	@NotEmpty
+	@NotEmpty
 	private Set<FrameworkTeam1> Framework;
 	
+	@ManyToMany(targetEntity = VendorTeam1.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable(name = "doi_tac_du_an", joinColumns = {
+	@JoinColumn(name = "ma_du_an", referencedColumnName = "ma_du_an",  updatable = true,insertable=true) }, inverseJoinColumns = {
+	@JoinColumn(name = "ma_doi_tac", referencedColumnName = "ma_doi_tac", nullable = true, updatable = false,insertable=true) })
+	@NotEmpty
+	private Set<VendorTeam1> Vendor;
+
+
+	public Set<VendorTeam1> getVendor() {
+		return Vendor;
+	}
+
+	public void setVendor(Set<VendorTeam1> vendor) {
+		Vendor = vendor;
+	}
+
 	public Set<FrameworkTeam1> getFramework() {
 		return Framework;
 	}
@@ -85,17 +105,17 @@ public class DuAnTeam1 {
 
 	@ManyToOne(fetch = FetchType.EAGER,cascade= CascadeType.ALL)
 	@JoinColumn(name="ma_khach_hang",referencedColumnName="ma_khach_hang", insertable=true, updatable=true)
-//	@NotNull
+	@NotNull
 	private KhachHangTeam1 khachHang  ;
 	
 	@ManyToOne(fetch = FetchType.EAGER,cascade= CascadeType.ALL)
 	@JoinColumn(name="ma_tinh_trang",referencedColumnName="ma_tinh_trang", insertable=true, updatable=true)
-//	@NotNull
+	@NotNull
 	private TrangThaiTeam1 TrangThai;
 	
 	@ManyToOne(fetch = FetchType.EAGER,cascade= CascadeType.ALL)
 	@JoinColumn(name="ma_nghiep_vu",referencedColumnName="ma_nghiep_vu", insertable=true, updatable=true)
-//	@NotNull
+	@NotNull
 	private DomainTeam1 Domain;	
 	
 	public DomainTeam1 getDomain() {

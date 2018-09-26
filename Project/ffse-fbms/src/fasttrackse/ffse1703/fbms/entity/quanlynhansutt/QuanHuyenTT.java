@@ -19,7 +19,7 @@ public class QuanHuyenTT implements Serializable {
 	@Id
 	@Column(name = "ma_quan_huyen", unique = true, nullable = false, length = 30)
 	@NotEmpty
-	private int maQuanHuyen;
+	private String maQuanHuyen;
 
 	@Column(name = "ten_quan_huyen", nullable = false, length = 255)
 	@NotEmpty
@@ -27,7 +27,7 @@ public class QuanHuyenTT implements Serializable {
 	
 	@Column(name = "ma_thanh_pho", nullable = false, length = 255)
 	@NotEmpty
-	private int maThanhPho;
+	private String maThanhPho;
 
 
 	// bi-directional many-to-one association to HoSoNhanVien
@@ -37,19 +37,19 @@ public class QuanHuyenTT implements Serializable {
 	public QuanHuyenTT() {
 	}
 	
-	public int getMaQuanHuyen() {
+	public String getMaQuanHuyen() {
 		return maQuanHuyen;
 	}
 
-	public void setMaQuanHuyen(int maQuanHuyen) {
+	public void setMaQuanHuyen(String maQuanHuyen) {
 		this.maQuanHuyen = maQuanHuyen;
 	}
 
-	public int getMaThanhPho() {
+	public String getMaThanhPho() {
 		return maThanhPho;
 	}
 
-	public void setMaThanhPho(int maThanhPho) {
+	public void setMaThanhPho(String maThanhPho) {
 		this.maThanhPho = maThanhPho;
 	}
 

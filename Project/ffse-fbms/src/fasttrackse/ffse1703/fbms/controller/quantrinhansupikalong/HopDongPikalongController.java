@@ -37,20 +37,20 @@ public class HopDongPikalongController {
 	}
 	
 	@RequestMapping(value= "view/{maNv}", method = RequestMethod.GET)
-	public String viewThongTinHopDong(@PathVariable("maNv") int maNv, Model model) {
+	public String viewThongTinHopDong(@PathVariable("maNv") String maNv, Model model) {
 		HoSoNhanVienPikalong hsnv = this.hoSoNhanVienPikalongService.getEdit(maNv);
 		model.addAttribute("hsnv", hsnv);
 		HopDongPikalong hdById = this.hopDongPikalongService.getHopDongById(maNv);
-		model.addAttribute("HopDong", hdById);
-			return "redirect:/QuanTriNhanSu/quanlihopdong/view";
+		model.addAttribute("hopDong", hdById);
+			return "QuanTriNhanSuPikalong/ThongTinHopDong/view/ViewThongTinHopDong";
 	}
 	
-	@RequestMapping(value = "formaddhd/11" + "", method = RequestMethod.GET)
-	public String addHopDong(Model model) {
+	@RequestMapping(value = "formaddhd/{maNv}" + "", method = RequestMethod.GET)
+	public String addFormHd(@PathVariable String maNv, Model model) {
 		String lastMaHd = this.hopDongPikalongService.getLastMaHd();
 		System.out.println(lastMaHd);
 		
-		model.addAttribute("hsnv", hoSoNhanVienPikalongService.getEdit(11));
+		model.addAttribute("hsnv", hoSoNhanVienPikalongService.getEdit(maNv));
 		model.addAttribute("hopDongPikalong", new HopDongPikalong());
 		model.addAttribute("lastMaHd", lastMaHd);
 		return "QuanTriNhanSuPikalong/ThongTinHopDong/FormAddHd"; 
@@ -58,9 +58,9 @@ public class HopDongPikalongController {
 	
 	
 	@RequestMapping(value = "save", method = RequestMethod.POST)
-	public String addSave(@ModelAttribute("formHopDong") HopDongPikalong hd, Model model) {
+	public String addSaveHd(@ModelAttribute("formHopDong") HopDongPikalong hd, Model model) {
 		
-		int maNv= hd.getHoSoNhanVienPikalong().getMaNv();
+		String maNv= hd.getHoSoNhanVienPikalong().getMaNv();
 		HoSoNhanVienPikalong hsnv = this.hoSoNhanVienPikalongService.getEdit(maNv);
 	
 		hd.setMaHopDong(Integer.valueOf(this.hopDongPikalongService.getAutoId()));
@@ -68,6 +68,11 @@ public class HopDongPikalongController {
 		model.addAttribute("hoSoNhanVien", hsnv);
 		return "redirect:/QuanTriNhanSu/quanlihopdong/";
 	}
+	
+//	@RequestMapping(value = "formedithd", method = RequestMethod.GET)
+//	public String editFormHd(Model model) {
+//		
+//	}
 	
 }
 

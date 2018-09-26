@@ -18,8 +18,6 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import fasttrackse.ffse1703.fbms.entity.security.ChucDanh;
-
 /**
  * The persistent class for the hop_dong database table.
  *  e muốn list cái entity ni đsung k
@@ -47,11 +45,11 @@ public class HopDongTT implements Serializable {
 	@NotNull
 	private LoaiHopDongTT loaiHopDong;
 
-	// bi-directional many-to-one association to LoaiHopDong
+	/*// bi-directional many-to-one association to LoaiHopDong
 	@ManyToOne
 	@JoinColumn(name = "ma_chuc_danh")
 	@NotNull
-	private ChucDanh chucDanh;
+	private ChucDanh chucDanh;*/
 
 	@Column(name = "luong_thang_13", nullable = false)
 	@NotNull
@@ -81,6 +79,9 @@ public class HopDongTT implements Serializable {
 
 	@Column(name = "trang_thai", nullable = false)
 	private Integer trangThai;
+	
+	@Column(name = "isdelete", nullable = false)
+	private Integer isdelete;
 
 	public HopDongTT() {
 		super();
@@ -109,14 +110,14 @@ public class HopDongTT implements Serializable {
 	public void setLoaiHopDong(LoaiHopDongTT loaiHopDong) {
 		this.loaiHopDong = loaiHopDong;
 	}
-
+/*
 	public ChucDanh getChucDanh() {
 		return chucDanh;
 	}
 
 	public void setChucDanh(ChucDanh chucDanh) {
 		this.chucDanh = chucDanh;
-	}
+	}*/
 
 	public Integer getLuongThang13() {
 		return luongThang13;
@@ -165,9 +166,13 @@ public class HopDongTT implements Serializable {
 	public void setTrangThai(Integer trangThai) {
 		this.trangThai = trangThai;
 	}
+	
+	public Integer getIsdelete() {
+		return isdelete;
+	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public void setIsdelete(Integer isdelete) {
+		this.isdelete = isdelete;
 	}
 
 

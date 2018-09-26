@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import fasttrackse.ffse1703.fbms.dao.quanlyduan.ProgramingLanguageTeam1Dao;
 import fasttrackse.ffse1703.fbms.entity.quanlyduan.ProgramingLanguageTeam1;
+import fasttrackse.ffse1703.fbms.entity.quanlyduan.VendorTeam1;
 
 @Service
 public class ProgramingLanguageTeam1ServiceImpl implements ProgramingLanguageTeam1Service {
@@ -53,6 +54,19 @@ public class ProgramingLanguageTeam1ServiceImpl implements ProgramingLanguageTea
 	public void setIsDelete(String maNgonNgu) {
 		this.languageDao.setIsDelete(maNgonNgu);
 		
+	}
+
+	
+	@Override
+	@Transactional
+	public int getMa(String maNgonNgu) {
+		return this.languageDao.getMa(maNgonNgu);
+	}
+
+	@Override
+	@Transactional
+	public List<ProgramingLanguageTeam1> findAllForPaging(int startPosition, int maxResult) {
+		return this.languageDao.findAllForPaging(startPosition, maxResult);
 	}
 
 

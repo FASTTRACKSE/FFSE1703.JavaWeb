@@ -1,25 +1,45 @@
 package fasttrackse.ffse1703.fbms.controller.qlvn1;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import fasttrackse.ffse1703.fbms.service.qlvn.QuanLyVangNghiService;
+import fasttrackse.ffse1703.fbms.entity.qlvn1.DonNghi;
+import fasttrackse.ffse1703.fbms.entity.qlvn1.LyDo;
+import fasttrackse.ffse1703.fbms.entity.qlvn1.TinhTrangNghi;
+import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
+import fasttrackse.ffse1703.fbms.entity.security.UserAccount;
+import fasttrackse.ffse1703.fbms.service.qlvn1.QuanLyVangNghiService;
 
 @Controller
-@RequestMapping("/QuanLyVangNghi/")
+@RequestMapping("/QuanLyVangNghi")
 public class DonXinNghiCotroller {
 	@Autowired
 	private QuanLyVangNghiService service;
-
+	
+	
 	public void setService(QuanLyVangNghiService service) {
 		this.service = service;
 	}
-
+	
 	@RequestMapping(value = "/donxinnghi", method = RequestMethod.GET)
-	public String viewChucDanh(Model model) {
+	public String viewChucDanh(Model model, Authentication auth) {
+		UserAccount user = service.getThongTinUser(auth.getName());
+		HoSoNhanVien nhanVien = user.getNhanVien();
+		model.addAttribute("nhanVien", nhanVien );
+		TinhTrangNghi tinhTrang = service.getTinhTrang(nhanVien.getMaNhanVien());
+		model.addAttribute("tinhTrang", tinhTrang );
+		List<LyDo> arrLyDo = new ArrayList<LyDo>();
+		arrLyDo = service.listLyDo();
+		model.addAttribute("arrLyDo", arrLyDo );
 		return "QuanLyVangNghi/donxinnghi";
 	}
 
@@ -33,8 +53,21 @@ public class DonXinNghiCotroller {
 		return "QuanLyVangNghi/daduyet";
 	}
 
-	@RequestMapping(value = "/luunhap", method = RequestMethod.GET)
+	@RequestMapping(value = "/savenhap", method = RequestMethod.GET)
+	public String saveNhap(Model model, @ModelAttribute("donNghi") DonNghi dn,Authentication auth) {
+		dn.setTinh_trang("lưu nháp");
+		System.out.println(dn.getId_nv());
+		System.out.println(dn.getLy_do());
+		System.out.println(dn.getPhong_ban());
+		System.out.println(dn.getTen_nv());
+		service.addDon(dn);
+		return "QuanLyVangNghi/luunhap";
+	}
+	
+	@RequestMapping(value = "/luunhap")
 	public String viewLuuNhap(Model model) {
+		model.addAttribute("command",new DonNghi());
+		
 		return "QuanLyVangNghi/luunhap";
 	}
 
@@ -42,16 +75,5 @@ public class DonXinNghiCotroller {
 	public String viewChoDuyet(Model model) {
 		return "QuanLyVangNghi/choduyet";
 	}
-//
-//	@RequestMapping(value = "danhsach")
-//	public String listDon(Model model) {
-//		model.addAttribute("donnghi", new QuanLyVangNghiEntity());
-//		return "QuanLyVangNghi/danhsach";
-//	}
-//
-//	@RequestMapping(value = "donnghi/addDon", method = RequestMethod.POST)
-//	public String addDon(@ModelAttribute("donnghi") QuanLyVangNghiEntity dn) {
-//		return "redirect:/danhsach";
-//
-//	}
+
 }

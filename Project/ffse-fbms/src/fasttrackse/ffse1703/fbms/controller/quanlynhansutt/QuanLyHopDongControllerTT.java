@@ -17,17 +17,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.HopDongTT;
 import fasttrackse.ffse1703.fbms.service.quanlynhansutt.HopDongServiceTT;
 import fasttrackse.ffse1703.fbms.service.quanlynhansutt.LoaiHopDongServiceTT;
-import fasttrackse.ffse1703.fbms.service.security.ChucDanhService;
 
 @Controller
-@RequestMapping("/quanlynhansutt/")
+@RequestMapping("/quanlynhansutt/hop_dong/")
 public class QuanLyHopDongControllerTT {
 
 	@Autowired
 	private LoaiHopDongServiceTT loaiHopDongServiceTT;
 
-	@Autowired
-	private ChucDanhService chucDanhService;
 	@Autowired
 	private HopDongServiceTT hopDongServiceTT;
 
@@ -47,34 +44,41 @@ public class QuanLyHopDongControllerTT {
 		this.hopDongServiceTT = hopDongServiceTT;
 	}
 
+	// List tất cả hợp đồng
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String viewHopDong(Model model) {
 		model.addAttribute("listHopDong", hopDongServiceTT.getAllHopDong());
 		return "QuanLyNhanSuTT/QuanLyHopDongTT/list";
 	}
 
-	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public String showFormAdd(Model model, final RedirectAttributes redirectAttributes) {
+	// thêm hợp đồng cho một nhân viên
+	@RequestMapping(value = "/add_hopdong/{maNhanVien}", method = RequestMethod.GET)
+	public String showFormAdd(Model model, final RedirectAttributes redirectAttributes, @PathVariable int maNhanVien) {
 		model.addAttribute("hopDongTT", new HopDongTT());
-		model.addAttribute("listChucDanh", chucDanhService.findAll());
+		model.addAttribute("hosonv", hopDongServiceTT.getHoSoNhanVienById(maNhanVien));
 		model.addAttribute("listLoaiHopDong", loaiHopDongServiceTT.findAll());
 		return "QuanLyNhanSuTT/QuanLyHopDongTT/add_form";
 	}
 
-	@RequestMapping("/edit/{maHopDong}")
-	public String showFormUpdate(@PathVariable("maHopDong") int maHopDong, Model model)
+	// sửa hợp đồng cho nhân viên
+	@RequestMapping("/edit_hopdong/{maNhanVien}")
+	public String showFormUpdate(@PathVariable("maNhanVien") int maNhanVien, Model model)
 			throws IllegalStateException, IOException {
-		model.addAttribute("hopDongTT", hopDongServiceTT.findByMaHopDong(maHopDong));
+		model.addAttribute("hopDongTT", hopDongServiceTT.findByMaHopDong(maNhanVien));
 		model.addAttribute("listLoaiHopDong", loaiHopDongServiceTT.findAll());
 		return "QuanLyNhanSuTT/QuanLyHopDongTT/edit_form";
 	}
-    
+
+	// xóa hợp đồng
 	@RequestMapping("/remove/{maHopDong}")
-	public String remove(@PathVariable("maHopDong") int maHopDong) {
-		hopDongServiceTT.removeHopDong(maHopDong);
-		return "redirect:/quanlynhansutt/";
+	public String remove(@PathVariable("maHopDong") int maHopDong, final RedirectAttributes redirectAttributes) {
+		HopDongTT hd = hopDongServiceTT.findByMaHopDong(maHopDong);
+		hd.setIsdelete(0);
+		hopDongServiceTT.updateHopDong(hd);
+		return "redirect:/quanlynhansutt/hop_dong/";
 	}
-	
+
+	// lưu phần thêm,sửa cho nhân viên
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String saveHopDong(@ModelAttribute("hopDongTT") @Valid HopDongTT hd, BindingResult result) {
 		if (hd.getMaHopDong() == 0) {
@@ -83,14 +87,25 @@ public class QuanLyHopDongControllerTT {
 				return "QuanLyNhanSuTT/QuanLyHopDongTT/add_form";
 
 			}
+			hd.setIsdelete(1);
 			hopDongServiceTT.addHopDong(hd);
 		} else {
 			// existing person, call update
-		if (result.hasErrors()) {
+			if (result.hasErrors()) {
 				return "QuanLyNhanSuTT/QuanLyHopDongTT/edit_form";
 			}
+			hd.setIsdelete(1);
 			hopDongServiceTT.updateHopDong(hd);
 		}
-		return "redirect:/quanlynhansutt/";
+		return "redirect:/quanlynhansutt/hop_dong/";
 	}
+
+	// viewOneHopDong Nhân Viên
+	@RequestMapping("/viewOneHopDong/{maNhanVien}")
+	public String viewOneHopDong(@PathVariable int maNhanVien, Model model) {
+		model.addAttribute("viewOne", this.hopDongServiceTT.viewOne(maNhanVien));
+		model.addAttribute("maNhanVien", maNhanVien);
+		return "QuanLyNhanSuTT/QuanLyHopDongTT/viewOneHopDong";
+	}
+
 }

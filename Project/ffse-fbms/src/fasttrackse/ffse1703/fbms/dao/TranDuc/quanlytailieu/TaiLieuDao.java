@@ -2,7 +2,9 @@ package fasttrackse.ffse1703.fbms.dao.TranDuc.quanlytailieu;
 
 import java.util.List;
 
+import fasttrackse.ffse1703.fbms.entity.TranDuc.quanlytailieu.DanhMuc;
 import fasttrackse.ffse1703.fbms.entity.TranDuc.quanlytailieu.TaiLieu;
+import fasttrackse.ffse1703.fbms.entity.security.PhongBan;
 
 public interface TaiLieuDao {
 	public List<TaiLieu> listAll();
@@ -17,6 +19,8 @@ public interface TaiLieuDao {
 
 	public List<TaiLieu> listAll(int start,int limit);
 
-	public String getRecordsTotal();
+	public List<DanhMuc> listDanhMuc();
+
+	List<PhongBan> listPhongBan();
 
 }

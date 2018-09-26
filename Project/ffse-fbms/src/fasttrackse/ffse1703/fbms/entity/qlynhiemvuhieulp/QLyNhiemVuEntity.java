@@ -4,6 +4,7 @@ import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,18 +17,20 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "quan_ly_nhiem_vu")
 public class QLyNhiemVuEntity {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID", unique = true, nullable = false, length = 11)
 	private int ID;
 
-	@Column(name = "ma_du_an")
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "ma_du_an", nullable=false)
 	@NotNull
-	private String duAn;
+	private DuAnEntityHieuLp duAn;
 
-	@Column(name = "loai_cong_viec")
-	@NotEmpty
-	private String loaiCongviec;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "ID_loai_cong_viec", nullable=false)
+	private LoaicongviecEntity idLoaiCongviec;
 
 	@Column(name = "ten_cong_viec")
 	@NotEmpty
@@ -45,29 +48,24 @@ public class QLyNhiemVuEntity {
 	@NotNull
 	private Date tgKetthuc;
 
-	@Column(name = "ma_nhan_vien")
-	@NotNull
-	private String nhanVien;
-
-	public String getNhanVien() {
-		return nhanVien;
-	}
-
-	public void setNhanVien(String nhanVien) {
-		this.nhanVien = nhanVien;
-	}
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "ma_nhan_vien", nullable=false)
+	private HoSoNhanVienHLP nhanVien;
 
 	@Column(name = "tg_du_kien_hoan_thanh")
 	@NotNull
 	private String tgDukienhoanthanh;
 
-	@Column(name = "loai_trang_thai")
-	@NotEmpty
-	private String loaiTrangthai;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "ID_loai_trang_thai", nullable=false)
+	private LoaitrangthaiEntity idLoaiTrangthai;
 
 	@Column(name = "is_delete")
 	private int isDelete;
 
+	
+	
+	
 	public QLyNhiemVuEntity() {
 		super();
 
@@ -81,21 +79,14 @@ public class QLyNhiemVuEntity {
 		ID = iD;
 	}
 
-	public String getDuAn() {
+	public DuAnEntityHieuLp getDuAn() {
 		return duAn;
 	}
 
-	public void setDuAn(String duAn) {
+	public void setDuAn(DuAnEntityHieuLp duAn) {
 		this.duAn = duAn;
 	}
 
-	public String getLoaiCongviec() {
-		return loaiCongviec;
-	}
-
-	public void setLoaiCongviec(String loaiCongviec) {
-		this.loaiCongviec = loaiCongviec;
-	}
 
 	public String getTenCongviec() {
 		return tenCongviec;
@@ -137,12 +128,12 @@ public class QLyNhiemVuEntity {
 		this.tgDukienhoanthanh = tgDukienhoanthanh;
 	}
 
-	public String getLoaiTrangthai() {
-		return loaiTrangthai;
+	public LoaitrangthaiEntity getLoaiTrangthai() {
+		return idLoaiTrangthai;
 	}
 
-	public void setLoaiTrangthai(String loaiTrangthai) {
-		this.loaiTrangthai = loaiTrangthai;
+	public void setLoaiTrangthai(LoaitrangthaiEntity loaiTrangthai) {
+		this.idLoaiTrangthai = loaiTrangthai;
 	}
 
 	public int getIsDelete() {
@@ -151,6 +142,38 @@ public class QLyNhiemVuEntity {
 
 	public void setIsDelete(int isDelete) {
 		this.isDelete = isDelete;
+	}
+	
+
+	public LoaicongviecEntity getIdLoaiCongviec() {
+		return idLoaiCongviec;
+	}
+
+	public void setIdLoaiCongviec(LoaicongviecEntity idLoaiCongviec) {
+		this.idLoaiCongviec = idLoaiCongviec;
+	}
+
+	public LoaitrangthaiEntity getIdLoaiTrangthai() {
+		return idLoaiTrangthai;
+	}
+
+	public void setIdLoaiTrangthai(LoaitrangthaiEntity idLoaiTrangthai) {
+		this.idLoaiTrangthai = idLoaiTrangthai;
+	}
+	public HoSoNhanVienHLP getNhanVien() {
+		return nhanVien;
+	}
+
+	public void setNhanVien(HoSoNhanVienHLP nhanVien) {
+		this.nhanVien = nhanVien;
+	}
+
+	@Override
+	public String toString() {
+		return "QLyNhiemVuEntity [ID=" + ID + ", duAn=" + duAn + ", loaiCongviec=" + idLoaiCongviec + ", tenCongviec="
+				+ tenCongviec + ", moTa=" + moTa + ", tgBatdau=" + tgBatdau + ", tgKetthuc=" + tgKetthuc + ", nhanVien="
+				+ nhanVien + ", tgDukienhoanthanh=" + tgDukienhoanthanh + ", loaiTrangthai=" + idLoaiTrangthai
+				+ ", isDelete=" + isDelete + "]";
 	}
 
 }

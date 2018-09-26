@@ -24,7 +24,7 @@ import fasttrackse.ffse1703.fbms.service.security.ChucDanhService;
 import fasttrackse.ffse1703.fbms.service.security.PhongBanService;
 
 @Controller
-@RequestMapping("/quanlyhoso/")
+@RequestMapping("/quanlynhansutt/ho_so/")
 public class QuanLyHoSoControllerTT {
 
 	@Autowired
@@ -39,11 +39,11 @@ public class QuanLyHoSoControllerTT {
 	@Autowired
 	private TinhThanhServiceTT tinhThanhServiceTT;
 
-	@SuppressWarnings("unused")
+	
 	@Autowired
 	private QuanHuyenServiceTT quanHuyenServiceTT;
 
-	@SuppressWarnings("unused")
+
 	@Autowired
 	private XaPhuongServiceTT xaPhuongServiceTT;
 
@@ -108,7 +108,7 @@ public class QuanLyHoSoControllerTT {
 	}
 	@RequestMapping(value= "selectquan/{maThanhPho}", method= RequestMethod.GET, produces= "text/plain;charset=UTF-8")
 	@ResponseBody 
-	public String selectQuan(@PathVariable int maThanhPho) {
+	public String selectQuan(@PathVariable String maThanhPho) {
 		List<QuanHuyenTT> listQuanHuyen =  quanHuyenServiceTT.listQuanHuyen(maThanhPho);
 		
 		String json = "[";
@@ -128,21 +128,28 @@ public class QuanLyHoSoControllerTT {
 	}
 	@RequestMapping(value= "selectphuong/{maQuanHuyen}", method= RequestMethod.GET,  produces= "text/plain;charset=UTF-8")
 	@ResponseBody 
-	public String selectPhuong(@PathVariable int maQuanHuyen) {
+	public String selectPhuong(@PathVariable String maQuanHuyen) {
 		List<XaPhuongTT> listPhuong= xaPhuongServiceTT.getAllXaPhuong(maQuanHuyen);
 		
 		String json = "[";
 		
 		for(int i= 0; i < listPhuong.size(); i++) {
 			if(i == listPhuong.size() - 1) {
-				json += "{\"maxa\": \"" + listPhuong.get(i).getMaxa() + "\", " + "\"tenxa\": \"" + listPhuong.get(i).getTenxa() + "\"}" ;
+				json += "{\"maXa\": \"" + listPhuong.get(i).getMaXa() + "\", " + "\"tenXa\": \"" + listPhuong.get(i).getTenXa() + "\"}" ;
 			}
 			else {
-				json += "{\"tenxa\": \"" + listPhuong.get(i).getTenxa() + "\", " + "\"tenxa\": \"" + listPhuong.get(i).getTenxa() + "\"}" + "," ;
+				json += "{\"maXa\": \"" + listPhuong.get(i).getMaXa() + "\", " + "\"tenXa\": \"" + listPhuong.get(i).getTenXa() + "\"}" + "," ;
 			}
 		}
 		json+= "]";
 		
 		return json;
 	}
+	
+	// page view
+		@RequestMapping("view/{maNhanVien}")
+		public String view(@PathVariable String maNhanVien, Model model) {
+			model.addAttribute("maNhanVien", maNhanVien);
+			return "QuanLyNhanSuTT/QuanLyHoSoTT/view";
+		}
 }

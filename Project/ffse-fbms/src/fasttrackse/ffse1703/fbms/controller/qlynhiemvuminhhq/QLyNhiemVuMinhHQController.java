@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import fasttrackse.ffse1703.fbms.entity.qlynhiemvuminhhq.CongViec;
+import fasttrackse.ffse1703.fbms.entity.qlynhiemvuminhhq.CongViecMinhHQ;
 import fasttrackse.ffse1703.fbms.service.qlynhiemvuminhhq.*;
 
 
@@ -41,12 +41,16 @@ public class QLyNhiemVuMinhHQController {
 	
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String showForm(Model model) {
-		model.addAttribute("CongViec", new CongViec());
+		model.addAttribute("CongViec", new CongViecMinhHQ());
+		model.addAttribute("TrangThai", congViecService.trangThai());
+		model.addAttribute("LoaiCongViec", congViecService.loaiCongViec());
+		model.addAttribute("DuAn", congViecService.duAn());
+		model.addAttribute("NhanVien", congViecService.nhanVien());
 		return "/QuanLyNhiemVuMinhHQ/add_form";
 	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public String createCongViec(Model model, @ModelAttribute("CongViec") @Valid CongViec cv, HttpServletRequest request) throws IllegalStateException {
+	public String createCongViec(Model model, @ModelAttribute("CongViec") @Valid CongViecMinhHQ cv, HttpServletRequest request) throws IllegalStateException {
 		cv.setIsDelete(1);
 		congViecService.addNew(cv);
 		;
@@ -55,7 +59,7 @@ public class QLyNhiemVuMinhHQController {
 
 	@RequestMapping("/delete/{ID}")
 	public String delete(@PathVariable("ID") int id, HttpServletRequest request, Model model) {
-		CongViec cv = congViecService.findByID(id);
+		CongViecMinhHQ cv = congViecService.findByID(id);
 		cv.setIsDelete(0);
 		congViecService.delete(cv);
 		return "redirect:/QuanLyNhiemVuMinhHQ/list";
@@ -64,11 +68,15 @@ public class QLyNhiemVuMinhHQController {
 	@RequestMapping(value = "/edit/{ID}", method = RequestMethod.GET)
 	public String edit_view(@PathVariable("ID") int id, Model model) {
 		model.addAttribute("CongViec", congViecService.findByID(id));
+		model.addAttribute("TrangThai", congViecService.trangThai());
+		model.addAttribute("LoaiCongViec", congViecService.loaiCongViec());
+		model.addAttribute("DuAn", congViecService.duAn());
+		model.addAttribute("NhanVien", congViecService.nhanVien());
 		return "/QuanLyNhiemVuMinhHQ/edit_form";
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String edit(Model model, @ModelAttribute("CongViec") @Valid CongViec CongViec, HttpServletRequest request
+	public String edit(Model model, @ModelAttribute("CongViec") @Valid CongViecMinhHQ CongViec, HttpServletRequest request
 			)
 			throws IllegalStateException {
 		congViecService.update(CongViec);

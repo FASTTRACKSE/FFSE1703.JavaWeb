@@ -34,7 +34,8 @@
 #user .panel-table .panel-body .table-bordered>thead>tr>th {
 	text-align: center;
 }
-td{
+
+td {
 	padding: 5px;
 }
 </style>
@@ -50,29 +51,29 @@ td{
 							<div class="panel-heading " style="padding: 5px;">
 								<div class="row">
 									<div class="col col-xs-3 text-left">
-										<a href="choduyet" class="btn btn-default" 
-											role="tab" data-toggle="tab"><i class="fa fa-picture-o"
-											aria-hidden="true"></i>Chờ Duyệt</a>
-											<a href="daduyet" class="btn btn-default" 
-											role="tab" data-toggle="tab"><i class="fa fa-picture-o"
-											></i>Đã Duyệt</a>
+										<a href="choduyet" class="btn btn-default" role="tab"
+											data-toggle="tab"><i class="fa fa-picture-o"
+											aria-hidden="true"></i>Chờ Duyệt</a> <a href="daduyet"
+											class="btn btn-default" role="tab" data-toggle="tab"><i
+											class="fa fa-picture-o"></i>Đã Duyệt</a>
 									</div>
 									<div class="col col-xs-5 text-center">
-										<h3 class="panel-title"><b>Danh Sách Đơn Nghỉ Phép</b></h3>
+										<h3 class="panel-title">
+											<b>Danh Sách Đơn Nghỉ Phép</b>
+										</h3>
 									</div>
 									<div class="col col-xs-2 well text-center"
 										style="padding: 1px;">
-										<button type="button" class="btn  btn-warning ">
-											DANH SÁCH
-										</button>
+										<button type="button" class="btn  btn-warning ">DANH
+											SÁCH</button>
 									</div>
 									<div class="col col-xs-2 text-right ">
-									<a href="donxinnghi">
-										<button type="button" class="btn  btn-success ">
-											Thêm Mới <i class="fa fa-plus-square"></i>
-										</button>
-									</a>
-										
+										<a href="donxinnghi">
+											<button type="button" class="btn  btn-success ">
+												Thêm Mới <i class="fa fa-plus-square"></i>
+											</button>
+										</a>
+
 									</div>
 								</div>
 							</div>
@@ -90,35 +91,33 @@ td{
 													<th>Đến Thời gian</th>
 													<th>Đến Thời gian</th>
 													<th>Duyệt Đợt 1</th>
-													<th>Duyệt Đợt 2</em></th>
+													<th>Duyệt Đợt 2</th>
 												</tr>
 											</thead>
 											<tbody>
-		<c:forEach var="dn" varStatus="counter" items="${list}">
-			<tr>
-				<td>${dn.id_nv}</td>
-				<td>${dn.ma_phong}</td>
-				<td>${dn.ly_do}</td>
-				<td>${dn.thoi_gian_bat_dau}</td>
-				<td>${dn.thoi_gian-ket_thuc}</td>
-				<td>${dn.tong_ngay_nghi}</td>
-				
-				<td>					
-					<a href="edit/${sv.id}"><button type="button" class="btn btn-warning btn-circle">
-						Edit
-					</button></a>
-					<a href="delete/${sv.id}"><button type="button" class="btn btn-danger btn-circle">
-						Del
-					</button></a>
-				</td>
-			</tr>
-			</c:forEach>			
-		</tbody>
+												<c:forEach var="dn" varStatus="counter" items="${list}">
+													<tr>
+														<td>${dn.id_nv}</td>
+														<td>${dn.ma_phong}</td>
+														<td>${dn.ly_do}</td>
+														<td>${dn.thoi_gian_bat_dau}</td>
+														<td>${dn.thoi_gian-ket_thuc}</td>
+														<td></td>
+														<td></td>
+														<td></td>
+
+														<td><a href="edit/${sv.id}"><button type="button"
+																	class="btn btn-warning btn-circle">Edit</button></a> <a
+															href="delete/${sv.id}"><button type="button"
+																	class="btn btn-danger btn-circle">Del</button></a></td>
+													</tr>
+												</c:forEach>
+											</tbody>
 										</table>
 									</div>
 									<!-- END id="list" -->
 
-									
+
 
 								</div>
 								<!-- END tab-content -->
@@ -132,7 +131,7 @@ td{
 	</div>
 	<jsp:include page="/WEB-INF/view/templates/footer.jsp" />
 
-	
+
 
 </body>
 </html>

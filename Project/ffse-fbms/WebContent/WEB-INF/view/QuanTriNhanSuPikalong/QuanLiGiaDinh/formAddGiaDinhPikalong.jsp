@@ -8,6 +8,15 @@
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-12 mb-2">
 				<h3 class="content-header-title mb-0">Thêm Gia Đình</h3>
+				<div class="row breadcrumbs-top">
+					<div class="breadcrumb-wrapper col-xs-12">
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item"><a href='<c:url value="/quantrinhansu/hosonhanvien/" />'>Danh Sách Nhân Viên</a></li>
+							<li class="breadcrumb-item"><a href='<c:url value="/QuanTriNhanSuPikalong/QuanLiGiaDinh/viewOneGiaDinh/${maNv}" />'>Gia Đình Nhân Viên</a></li>
+							<li class="breadcrumb-item active">Thêm mới Gia Đình</li>
+						</ol>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="content-body">
@@ -91,8 +100,8 @@
 											</div>
 											<div class="col-xl-12 col-lg-6 col-md-12 mb-1">
 												<div class="form-group">
-													<input class="btn btn-success" type="submit" value="Save" />
-													<a class="btn btn-info"
+													<input class="btn btn-outline-success round" type="submit" value="Save" />
+													<a class="btn btn-outline-info round"
 														href="/ffse-fbms/QuanTriNhanSuPikalong/QuanLiGiaDinh/viewOneGiaDinh/${maNv}">View</a>
 													<p style="color: red">${messageQuanHe}</p>
 												</div>

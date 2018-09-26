@@ -19,9 +19,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class HoSoNhanVienPikalong {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="MaNv")
-	private int maNv;
+	private String maNv;
 	
 	private String hoTenNv;
 	
@@ -41,7 +40,7 @@ public class HoSoNhanVienPikalong {
 	
 	private String noiOHienNay;
 	
-	private int cMND;
+	private String cMND;
 	
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -49,7 +48,7 @@ public class HoSoNhanVienPikalong {
 	
 	private String noiCap;
 	
-	private int sDT;
+	private String sDT;
 	
 	private String email;
 	
@@ -65,7 +64,7 @@ public class HoSoNhanVienPikalong {
 	
 	private int isActive;
 
-	public int getMaNv() {
+	public String getMaNv() {
 		return maNv;
 	}
 
@@ -97,7 +96,7 @@ public class HoSoNhanVienPikalong {
 		return noiOHienNay;
 	}
 
-	public int getcMND() {
+	public String getcMND() {
 		return cMND;
 	}
 
@@ -109,7 +108,7 @@ public class HoSoNhanVienPikalong {
 		return noiCap;
 	}
 
-	public int getsDT() {
+	public String getsDT() {
 		return sDT;
 	}
 
@@ -141,7 +140,7 @@ public class HoSoNhanVienPikalong {
 		return isActive;
 	}
 
-	public void setMaNv(int maNv) {
+	public void setMaNv(String maNv) {
 		this.maNv = maNv;
 	}
 
@@ -181,7 +180,7 @@ public class HoSoNhanVienPikalong {
 		this.noiOHienNay = noiOHienNay;
 	}
 
-	public void setcMND(int cMND) {
+	public void setcMND(String cMND) {
 		this.cMND = cMND;
 	}
 
@@ -193,7 +192,7 @@ public class HoSoNhanVienPikalong {
 		this.noiCap = noiCap;
 	}
 
-	public void setsDT(int sDT) {
+	public void setsDT(String sDT) {
 		this.sDT = sDT;
 	}
 

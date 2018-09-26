@@ -62,7 +62,7 @@ public class KhachHangTeam1DaoImpl implements KhachHangTeam1Dao{
 	@Override
 	public List<KhachHangTeam1> findAllForPaging(int startPosition, int maxResult) {
 		Session session = this.sessionFactory.getCurrentSession();
-		return session.createQuery("from khach_hang").setFirstResult(startPosition).setMaxResults(maxResult).list();
+		return session.createQuery("FROM KhachHangTeam1 where is_delete=0 ").setFirstResult(startPosition).setMaxResults(maxResult).list();
 	}
 	
 	

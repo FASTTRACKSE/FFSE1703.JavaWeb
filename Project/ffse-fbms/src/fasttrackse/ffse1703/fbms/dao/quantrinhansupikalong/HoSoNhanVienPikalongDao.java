@@ -7,10 +7,10 @@ import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 
 public interface HoSoNhanVienPikalongDao {
 	public List<HoSoNhanVienPikalong> listNhanVien();
-	public void delete(int maNv);
+	public void delete(String maNv);
 	public void insert(HoSoNhanVienPikalong hoSoNhanVien);
 	public String getAutoId();
-	public HoSoNhanVienPikalong getHoSoNhanVienById(int maNv);
-	public HoSoNhanVienPikalong getEdit(int maNv);
+	public HoSoNhanVienPikalong getHoSoNhanVienById(String maNv);
+	public HoSoNhanVienPikalong getEdit(String maNv);
 	public void update(HoSoNhanVienPikalong hoSoNhanVienPikalong);
 }

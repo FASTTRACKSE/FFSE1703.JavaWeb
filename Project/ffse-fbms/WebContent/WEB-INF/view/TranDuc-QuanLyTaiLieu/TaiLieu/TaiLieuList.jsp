@@ -29,8 +29,9 @@
 					<div role="group" aria-label="Button group with nested dropdown"
 						class="btn-group float-md-right" id="add-new">
 						<a class="btn btn-primary"
-							href='<c:url value = "/TranDuc-QuanLyTaiLieu/TaiLieu/add" />'><span
-							data-i18n="" class="ft-plus-square">Thêm Mới</span></a>
+							href='<c:url value = "/TranDuc-QuanLyTaiLieu/TaiLieu/add" />'>Thêm
+							Mới<span data-i18n="" class="ft-plus-square"></span>
+						</a>
 					</div>
 				</div>
 			</div>
@@ -78,9 +79,10 @@
 													<th>ID</th>
 													<th>Mã Tài Liệu</th>
 													<th>Tên Danh Mục</th>
-													<th>Hình Biểu Tượng</th>
+													<th>Icon</th>
 													<th>Tên Tài Liệu</th>
 													<th>Mã Phòng Ban</th>
+													<th>Mô Tả</th>
 													<th>Link</th>
 													<th>Trạng Thái</th>
 													<th>Action</th>
@@ -97,26 +99,56 @@
 															<td>${item.iconTL}</td>
 															<td>${item.tenTL}</td>
 															<td>${item.maPhongBan}</td>
-															<td>${item.link }</td>
-															<td>${item.trangthai }</td>
+															<td>${item.motaTL}
+															<td>${item.link}</td>
+															<td>${item.trangthai}</td>
 															<td class="tbl_actions"><a
 																href="<c:url value="/TranDuc-QuanLyTaiLieu/TaiLieu/view/${item.maTL}" />"
-																title="Xem"> <i class="fa fa-eye" aria-hidden="true"></i>
+																title="Xem"> <i class="fa fa-eye" aria-hidden="true">
+																</i>
 															</a> <a
 																href="<c:url value="/TranDuc-QuanLyTaiLieu/TaiLieu/sua/${item.maTL}" />"
 																title="Sửa"> <i class="fa fa-pencil-square-o blue"
-																	aria-hidden="true"></i>
+																	aria-hidden="true"> </i>
 															</a> <a
 																href="<c:url value="/TranDuc-QuanLyTaiLieu/TaiLieu/xoa/${item.maTL}" />"
 																title="Xóa"
 																onclick="return confirm('Bạn có chắc muốn xóa ?')">
-																	<i class="fa fa-trash red" aria-hidden="true"></i>
+																	<i class="fa fa-trash red" aria-hidden="true"> </i>
 															</a></td>
 														</tr>
 													</c:forEach>
 												</c:if>
 											</tbody>
 										</table>
+										<center>
+										<nav aria-label="Page navigation example">
+										<ul class="pagination">
+											<li class="page-item"><a class="page-link"
+												href="?page=1">First Page</a></li>
+											<c:if test="${currentPage > 2}">
+												<li class="page-item"><a class="page-link"
+													href="?page=${currentPage-2}">${currentPage-2}</a></li>
+											</c:if>
+											<c:if test="${currentPage > 1}">
+												<li class="page-item"><a class="page-link"
+													href="?page=${currentPage-1}">${currentPage-1}</a></li>
+											</c:if>
+											<li class="page-item active"><a class="page-link"
+												href="?page=${currentPage}">${currentPage}</a></li>
+											<c:if test="${currentPage < lastPage}">
+												<li class="page-item"><a class="page-link"
+													href="?page=${currentPage+1}">${currentPage+1}</a></li>
+											</c:if>
+											<c:if test="${currentPage < lastPage - 1}">
+												<li class="page-item"><a class="page-link"
+													href="?page=${currentPage+2}">${currentPage+2}</a></li>
+											</c:if>
+											<li class="page-item"><a class="page-link"
+												href="?page=${lastPage}">Last Page</a></li>
+										</ul>
+										</nav>
+										</center>
 									</div>
 								</div>
 							</div>

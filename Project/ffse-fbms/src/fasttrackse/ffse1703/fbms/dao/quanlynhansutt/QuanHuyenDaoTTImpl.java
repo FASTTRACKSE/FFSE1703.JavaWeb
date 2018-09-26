@@ -17,7 +17,7 @@ public class QuanHuyenDaoTTImpl implements QuanHuyenDaoTT {
 	private SessionFactory sessionFactory;
 
 	@Override
-	public List<QuanHuyenTT> listQuanHuyen(int maThanhPho) {
+	public List<QuanHuyenTT> listQuanHuyen(String maThanhPho) {
 		Session session = sessionFactory.getCurrentSession();
 		@SuppressWarnings("rawtypes")
 		Query query = session.createQuery("from QuanHuyenTT where maThanhPho = :maThanhPho");

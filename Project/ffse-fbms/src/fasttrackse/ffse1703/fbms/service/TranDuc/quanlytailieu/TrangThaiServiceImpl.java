@@ -2,33 +2,40 @@ package fasttrackse.ffse1703.fbms.service.TranDuc.quanlytailieu;
 
 import java.util.List;
 
-import fasttrackse.ffse1703.fbms.entity.qlvn.TrangThai;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-public class TrangThaiServiceImpl implements TrangThaiService{
+import fasttrackse.ffse1703.fbms.dao.TranDuc.quanlytailieu.TrangThaiDao;
+import fasttrackse.ffse1703.fbms.entity.TranDuc.quanlytailieu.TrangThaiTaiLieu;
+@Service
+public class TrangThaiServiceImpl implements TrangThaiService {
+
+	@Autowired
+	private TrangThaiDao daoTT;
 
 	@Override
-	public List<TrangThai> listAllTrangThai() {
-		return null;
+	public List<TrangThaiTaiLieu> listAllTrangThai() {
+		return daoTT.listAllTrangThai();
 	}
 
 	@Override
-	public void addTT(TrangThai tt) {
-		
+	public void addTT(TrangThaiTaiLieu tt) {
+		daoTT.addTT(tt);
 	}
 
 	@Override
-	public void updateTT(TrangThai tt) {
-		
+	public void updateTT(TrangThaiTaiLieu tt) {
+		daoTT.updateTT(tt);
 	}
 
 	@Override
-	public void deleteTT(int id) {
-		
+	public void deleteTT(String id) {
+		daoTT.deleteTT(id);
 	}
 
 	@Override
-	public TrangThai getTTbyID(int id) {
-		return null;
+	public TrangThaiTaiLieu getTTbyID(String id) {
+		return daoTT.getTTbyID(id);
 	}
 
 }

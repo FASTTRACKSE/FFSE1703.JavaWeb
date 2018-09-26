@@ -37,6 +37,12 @@ public class HopDongPikalongSeviceImpl implements HopDongPikalongSevice {
 	
 	@Override
 	@Transactional
+	public void update(HopDongPikalong hd) {
+		this.hopDongPikalongDao.update(hd);
+	}
+	
+	@Override
+	@Transactional
 	public String getAutoId() {
 		return this.hopDongPikalongDao.getAutoId();
 	}
@@ -48,7 +54,7 @@ public class HopDongPikalongSeviceImpl implements HopDongPikalongSevice {
 	}
 	@Override
 	@Transactional
-	public HopDongPikalong getHopDongById(int maNv) {
-		return this.hopDongPikalongDao.getHopDongById();
+	public HopDongPikalong getHopDongById(String maNv) {
+		return this.hopDongPikalongDao.getHopDongById(maNv);
 	}
 }

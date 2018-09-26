@@ -128,11 +128,11 @@
 											<c:forEach var="cv" items="${listCongViec}">
 												<tr>
 													<td>${cv.tenCongViec}</td>
-													<td>${cv.loaiCongViec}</td>
+													<td>${cv.maCongViec.loaiCongViec}</td>
 													<td>${cv.tgBatDau}</td>
 													<td>${cv.tgKetThuc}</td>
-													<td>${cv.phanCong}</td>
-													<td>${cv.trangThai}</td>
+													<td>${cv.phanCong.hoDem} ${cv.phanCong.ten}</td>
+													<td>${cv.maTrangThai.trangThai}</td>
 													<td style="letter-spacing: 5px">
 															<a href="/ffse-fbms/QuanLyNhiemVuMinhHQ/view/${cv.ID}"><i
 																class='fa fa-eye'></i></a> <a

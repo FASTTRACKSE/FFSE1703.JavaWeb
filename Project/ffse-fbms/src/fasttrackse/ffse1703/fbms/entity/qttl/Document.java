@@ -5,90 +5,48 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+//import javax.persistence.JoinColumn;
+//import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "tai_lieu")
 public class Document {
 	@Id
+	@NotNull
 	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	@Column(name = "ten_tai_lieu")
+	@NotEmpty
 	private String ten_tai_lieu;
 	
-
+	@Column(name = "ma_danh_muc")
+	@NotEmpty
+	private String ma_danh_muc;
+	
 	@Column(name = "file")
+	@NotEmpty
 	private String file;
 	
+	@Column(name = "ma_trang_thai")
+	@NotEmpty
+	private String ma_trang_thai;
+	
 	@Column(name = "mo_ta")
+	@NotEmpty
 	private String mo_ta;
-
+	
 	@Column(name = "ghi_chu")
+	@NotEmpty
 	private String ghi_chu;
 	
-	@ManyToOne
-	@JoinColumn(name = "ma_truy_cap", referencedColumnName = "ma_truy_cap")
-	private QuyenTruyCap ma_truy_cap;
+	@Column(name = "ma_phong_ban")
+	@NotEmpty
+	private String ma_phong_ban;
 
-	public QuyenTruyCap getMa_truy_cap() {
-		return ma_truy_cap;
-	}
-
-	public void setMa_truy_cap(QuyenTruyCap ma_truy_cap) {
-		this.ma_truy_cap = ma_truy_cap;
-	}
-
-	@ManyToOne
-	@JoinColumn(name = "ma_danh_muc", referencedColumnName = "ma_danh_muc")
-	private Category ma_danh_muc;
-
-	public Category getMa_danh_muc() {
-		return ma_danh_muc;
-	}
-
-	public void setMa_danh_muc(Category ma_danh_muc) {
-		this.ma_danh_muc = ma_danh_muc;
-	}
-
-	@ManyToOne
-	@JoinColumn(name = "ma_trang_thai", referencedColumnName = "ma_trang_thai")
-	private Status ma_trang_thai;
-
-	public Status getMa_trang_thai() {
-		return ma_trang_thai;
-	}
-
-	public void setMa_trang_thai(Status ma_trang_thai) {
-		this.ma_trang_thai = ma_trang_thai;
-	}
-
-	@ManyToOne
-	@JoinColumn(name = "ma_image", referencedColumnName = "ma_image")
-	private Image ma_image;
-
-	public Image getMa_image() {
-		return ma_image;
-	}
-
-	public void setMa_image(Image ma_image) {
-		this.ma_image = ma_image;
-	}
-
-	// getter and setter
-	 
-	
-	public String getMo_ta() {
-		return mo_ta;
-	}
-	
-	public void setMo_ta(String mo_ta) {
-		this.mo_ta = mo_ta;
-	}
-	
 	public int getId() {
 		return id;
 	}
@@ -104,8 +62,15 @@ public class Document {
 	public void setTen_tai_lieu(String ten_tai_lieu) {
 		this.ten_tai_lieu = ten_tai_lieu;
 	}
-	
-	
+
+	public String getMa_danh_muc() {
+		return ma_danh_muc;
+	}
+
+	public void setMa_danh_muc(String ma_danh_muc) {
+		this.ma_danh_muc = ma_danh_muc;
+	}
+
 	public String getFile() {
 		return file;
 	}
@@ -114,7 +79,21 @@ public class Document {
 		this.file = file;
 	}
 
+	public String getMa_trang_thai() {
+		return ma_trang_thai;
+	}
 
+	public void setMa_trang_thai(String ma_trang_thai) {
+		this.ma_trang_thai = ma_trang_thai;
+	}
+
+	public String getMo_ta() {
+		return mo_ta;
+	}
+
+	public void setMo_ta(String mo_ta) {
+		this.mo_ta = mo_ta;
+	}
 
 	public String getGhi_chu() {
 		return ghi_chu;
@@ -123,5 +102,31 @@ public class Document {
 	public void setGhi_chu(String ghi_chu) {
 		this.ghi_chu = ghi_chu;
 	}
+
+	public String getMa_phong_ban() {
+		return ma_phong_ban;
+	}
+
+	public void setMa_phong_ban(String ma_phong_ban) {
+		this.ma_phong_ban = ma_phong_ban;
+	}
+	public Document() {
+		super();
+	}
+	
+	public Document (int id, String ten_tai_lieu, String ma_danh_muc, String file, String ma_trang_thai, String mo_ta, String ghi_chu, String ma_phong_ban) {
+		super();
+		this.id = id;
+		this.ten_tai_lieu = ten_tai_lieu;
+		this.ma_danh_muc = ma_danh_muc;
+		this.file = file;
+		this.ma_trang_thai = ma_trang_thai;
+		this.mo_ta = mo_ta;
+		this.ghi_chu = ghi_chu;
+		this.ma_phong_ban = ma_phong_ban;
+	}
+	
+
+
 
 }

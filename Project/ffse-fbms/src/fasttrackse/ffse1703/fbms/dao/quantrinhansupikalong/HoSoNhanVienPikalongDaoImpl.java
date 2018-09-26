@@ -36,7 +36,7 @@ public class HoSoNhanVienPikalongDaoImpl implements HoSoNhanVienPikalongDao {
 
 	@Override
 	@SuppressWarnings("rawtypes")
-	public void delete(int maNv) {
+	public void delete(String maNv) {
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery("update HoSoNhanVienPikalong set isActive = :active" 
 												 + " where maNv = :maNv");
@@ -57,7 +57,7 @@ public class HoSoNhanVienPikalongDaoImpl implements HoSoNhanVienPikalongDao {
 
 
 	@Override
-	public HoSoNhanVienPikalong getEdit(int maNv) {
+	public HoSoNhanVienPikalong getEdit(String maNv) {
 		Session sesion = this.sessionFactory.getCurrentSession();
 		
 		return sesion.get(HoSoNhanVienPikalong.class, maNv);
@@ -83,7 +83,7 @@ public class HoSoNhanVienPikalongDaoImpl implements HoSoNhanVienPikalongDao {
 	}
 	
 	@Override
-	public HoSoNhanVienPikalong getHoSoNhanVienById (int maNv) {
+	public HoSoNhanVienPikalong getHoSoNhanVienById (String maNv) {
 		Session session = this.sessionFactory.getCurrentSession();
 		HoSoNhanVienPikalong hsnv = session.load(HoSoNhanVienPikalong.class, new Integer(maNv));
 		System.out.println(hsnv);

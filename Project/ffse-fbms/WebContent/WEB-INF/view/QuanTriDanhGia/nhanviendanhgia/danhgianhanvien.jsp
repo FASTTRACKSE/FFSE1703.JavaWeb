@@ -23,10 +23,12 @@
 		</div>
 		<c:if test="${listDanhGia == '' }">
 			<div class="row">
-				<div class="card">
-					<div class="card-content">
-						<div class="card-body" style="margin: 1em">
-							<h2>Chưa có phân công đánh giá nào</h2>
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-content">
+							<div class="card-body" style="margin: 1em">
+								<h2>Chưa có phân công đánh giá nào</h2>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -55,11 +57,10 @@
 											<th scope="row">1</th>
 											<td>Mark</td>
 											<td>Otto</td>
-											<td>
-											<a class="btn btn-info" href="<c:url value = "/quantridanhgia/danhgianhanvien/view" />">Xem</a>
-												<c:if test="${command.trangThai == 1 }">
-													<a></a>
-												</c:if>
+											<td><a class="btn btn-info"
+												href="<c:url value = "/quantridanhgia/danhgianhanvien/view" />">Xem</a>
+												<a class="btn btn-info"
+												href="<c:url value = "/quantridanhgia/nhanvien/danhgianhanvien/add" />">Tạo</a>
 											</td>
 										</tr>
 									</tbody>

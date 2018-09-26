@@ -2,14 +2,17 @@ package fasttrackse.ffse1703.fbms.service.qlynhiemvuminhhq;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
- import fasttrackse.ffse1703.fbms.dao.qlynhiemvuminhhq.*;
- import fasttrackse.ffse1703.fbms.entity.qlynhiemvuminhhq.CongViec;
+import fasttrackse.ffse1703.fbms.dao.qlynhiemvuminhhq.QLyNhiemvuMinhHQDao;
+import fasttrackse.ffse1703.fbms.entity.qlynhiemvuminhhq.CongViecMinhHQ;
+import fasttrackse.ffse1703.fbms.entity.qlynhiemvuminhhq.DuAnMinhHQ;
+import fasttrackse.ffse1703.fbms.entity.qlynhiemvuminhhq.LoaiCongViecMinhHQ;
+import fasttrackse.ffse1703.fbms.entity.qlynhiemvuminhhq.TrangThaiMinhHQ;
+import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 
 
 
@@ -23,33 +26,61 @@ public class CongViecServiceImpl implements CongViecService{
 	
 	@Override
 	@Transactional
-	public List<CongViec> findAll() {
+	public List<CongViecMinhHQ> findAll() {
 		return congViecDao.findAll();
 	}
 
 	@Override
-	public void addNew(CongViec cv) {
+	@Transactional
+	public void addNew(CongViecMinhHQ cv) {
 		congViecDao.addNew(cv);
 	}
 
 	@Override
-	public void update(CongViec cv) {
+	@Transactional
+	public void update(CongViecMinhHQ cv) {
 		congViecDao.update(cv);
 	}
 
 	@Override
-	public void delete(CongViec cv) {
+	@Transactional
+	public void delete(CongViecMinhHQ cv) {
 		congViecDao.delete(cv);
 	}
 
 	@Override
-	public CongViec findByID(int ID) {
+	@Transactional
+	public CongViecMinhHQ findByID(int ID) {
 		return congViecDao.findByID(ID);
 	}
 
 	@Override
-	public List<CongViec> findAll(int iDisplayStart, int iDisplayLength, String sql) {
+	public List<CongViecMinhHQ> findAll(int iDisplayStart, int iDisplayLength, String sql) {
 		return congViecDao.findAll(iDisplayStart, iDisplayLength, sql);
+	}
+
+	@Override
+	@Transactional
+	public List<TrangThaiMinhHQ> trangThai() {
+		return congViecDao.trangThai();
+	}
+
+	@Override
+	@Transactional
+	public List<LoaiCongViecMinhHQ> loaiCongViec() {
+		 return congViecDao.loaiCongViec();
+	}
+
+	@Override
+	@Transactional
+	public List<DuAnMinhHQ> duAn() {
+		return congViecDao.duAn();
+	}
+
+	@Override
+	@Transactional
+	public List<HoSoNhanVien> nhanVien() {
+		return congViecDao.nhanVien();
 	}
 
 //	@Override

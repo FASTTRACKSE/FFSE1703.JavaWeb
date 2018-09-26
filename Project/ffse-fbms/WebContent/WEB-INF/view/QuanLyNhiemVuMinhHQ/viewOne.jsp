@@ -55,7 +55,7 @@
 						</div>
 
 							<label>Dự án</label> 
-								<input class="form-control" value="${list.duAn}" readonly /> 
+								<input class="form-control" value="${list.duAn.tenDuAn}" readonly /> 
 							<label>Tên công việc</label> 
 								<input class="form-control" value="${list.tenCongViec}" readonly /> 
 							<label>Loại công việc</label> 
@@ -67,7 +67,7 @@
 							<label>Thời gian kết thúc</label> 
 								<input class="form-control" type="date" value="${list.tgKetThuc}" readonly /> 
 							<label>phân công</label> 
-								<input class="form-control" value="${list.phanCong}" readonly /> 
+								<input class="form-control" value="${list.phanCong.hoDem} ${list.phanCong.ten}" readonly /> 
 							<label>Thời	gian dự kiến</label> 
 								<input class="form-control" value="${list.tgDuKien}" readonly /> 
 							<label>Trạng thái</label> 

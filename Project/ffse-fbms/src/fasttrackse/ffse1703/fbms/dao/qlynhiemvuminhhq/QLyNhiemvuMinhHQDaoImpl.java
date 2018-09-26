@@ -4,13 +4,14 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import fasttrackse.ffse1703.fbms.entity.qlynhiemvuminhhq.CongViecMinhHQ;
+import fasttrackse.ffse1703.fbms.entity.qlynhiemvuminhhq.DuAnMinhHQ;
 import fasttrackse.ffse1703.fbms.entity.qlynhiemvuminhhq.LoaiCongViecMinhHQ;
 import fasttrackse.ffse1703.fbms.entity.qlynhiemvuminhhq.TrangThaiMinhHQ;
+import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 
 
 
@@ -23,43 +24,32 @@ public class QLyNhiemvuMinhHQDaoImpl implements QLyNhiemvuMinhHQDao{
 	@Override
 	public List<CongViecMinhHQ> findAll() {
 		Session session = this.sessionFactory.openSession();
-		List<CongViecMinhHQ> list = session.createQuery("from CongViecMinhHQ where is_delete ='1'").list();
-		session.close();
+		List<CongViecMinhHQ> list = session.createQuery("from CongViecMinhHQ where isDelete ='1'").list();
 		return list;
 	}
 
 	@Override
 	public void addNew(CongViecMinhHQ cv) {
-		Session session = this.sessionFactory.openSession();
-		Transaction tx = session.beginTransaction();
+		Session session = this.sessionFactory.getCurrentSession();
 		session.persist(cv);
-		tx.commit();
-		session.close();
 	}
 
 	@Override
 	public void update(CongViecMinhHQ cv) {
-		Session session = this.sessionFactory.openSession();
-		Transaction tx = session.beginTransaction();
+		Session session = this.sessionFactory.getCurrentSession();
 		session.update(cv);
-		tx.commit();
-		session.close();
 	}
 
 	@Override
 	public void delete(CongViecMinhHQ cv) {
-		Session session = this.sessionFactory.openSession();
-		Transaction tx = session.beginTransaction();
+		Session session = this.sessionFactory.getCurrentSession();
 		session.update(cv);
-		tx.commit();
-		session.close();
 	}
 
 	@Override
 	public CongViecMinhHQ findByID(int ID) {
-		Session session = this.sessionFactory.openSession();
+		Session session = this.sessionFactory.getCurrentSession();
 		CongViecMinhHQ pb = session.get(CongViecMinhHQ.class, ID);
-		session.close();
 		return pb;
 	}
 
@@ -69,7 +59,6 @@ public class QLyNhiemvuMinhHQDaoImpl implements QLyNhiemvuMinhHQDao{
 		Session session = this.sessionFactory.openSession();
 		List<CongViecMinhHQ> listCongViec = session.createQuery(sql).setFirstResult(iDisplayStart)
 				.setMaxResults(iDisplayLength).list();
-		session.close();
 		return listCongViec;
 	}
 
@@ -78,7 +67,6 @@ public class QLyNhiemvuMinhHQDaoImpl implements QLyNhiemvuMinhHQDao{
 	public List<TrangThaiMinhHQ> trangThai() {
 		Session session = sessionFactory.openSession();
 		List<TrangThaiMinhHQ> tt = session.createQuery("from TrangThaiMinhHQ").list();
-		session.close();
 		return tt;
 	}
 
@@ -87,7 +75,22 @@ public class QLyNhiemvuMinhHQDaoImpl implements QLyNhiemvuMinhHQDao{
 	public List<LoaiCongViecMinhHQ> loaiCongViec() {
 		Session session = sessionFactory.openSession();
 		List<LoaiCongViecMinhHQ> cv = session.createQuery("from LoaiCongViecMinhHQ").list();
-		session.close();
+		return cv;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<DuAnMinhHQ> duAn() {
+		Session session = sessionFactory.openSession();
+		List<DuAnMinhHQ> da = session.createQuery("from DuAnMinhHQ").list();
+		return da;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<HoSoNhanVien> nhanVien() {
+		Session session = sessionFactory.openSession();
+		List<HoSoNhanVien> cv = session.createQuery("from HoSoNhanVien").list();
 		return cv;
 	}
 

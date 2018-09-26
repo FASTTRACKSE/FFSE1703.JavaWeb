@@ -27,42 +27,59 @@
 			<div class="main-content">
 				<div class="row">
 					<form:form method="POST" modelAttribute="CongViec" action="/ffse-fbms/QuanLyNhiemVuMinhHQ/update">
-						<form:input type="hidden" path="ID" style="display:none" value="${congViec.ID}"/>
+						<form:input type="hidden" path="ID" style="display:none" />
 						<div class="form-group col-sm-6">
 						  	<label>Dự án</label>
-						  	<form:input class="form-control" path="duAn" value="${congViec.duAn}" readonly="true"/>
+							<form:select class="form-control" path="duAn.maDuAn" readonly="true">
+						  		<c:forEach items="${DuAn}" var="lb">
+						  			<form:option value="${lb.maDuAn}" label="${lb.tenDuAn}"></form:option>
+						  		</c:forEach>
+						  	</form:select>
 						</div>
 						<div class="form-group col-sm-6">
 						  	<label>Tên công việc</label>
-						  	<form:input class="form-control" path="tenCongViec" value="${congViec.tenCongViec}"/>
+						  	<form:input class="form-control" path="tenCongViec" />
 						</div>
 						<div class="form-group col-sm-6">
 						  	<label>Loại công việc</label>
-						  	<form:input class="form-control" path="loaiCongViec" value="${congViec.loaiCongViec}"/>
+						  	<form:select class="form-control" path="loaiCongViec" >
+						  		<c:forEach items="${LoaiCongViec}" var="cv">
+						  			<form:option value="${cv.loaiCongViec}" label="${cv.loaiCongViec}"></form:option>
+						  		</c:forEach>
+						  	</form:select>
 						</div>
 						<div class="form-group col-sm-6">
 						  	<label>Mô tả</label>
-						  	<form:textarea class="form-control" path="moTa" value="${congViec.moTa}"/>
+						  	<form:textarea class="form-control" path="moTa"/>
 						</div>
 						<div class="form-group col-sm-6">
 						  	<label>Thời gian bắt đầu</label>
-						  	<form:input class="form-control" type="date" path="tgBatDau" value="${congViec.tgBatDau}"/>
+						  	<form:input class="form-control" type="date" path="tgBatDau"/>
 						</div>
 						<div class="form-group col-sm-6">
 						  	<label>Thời gian kết thúc</label>
-						  	<form:input class="form-control" type="date" path="tgKetThuc" value="${congViec.tgKetThuc}"/>
+						  	<form:input class="form-control" type="date" path="tgKetThuc"/>
 						</div>
 						<div class="form-group col-sm-6">
 						  	<label>phân công</label>
-						  	<form:input class="form-control" path="phanCong" value="${congViec.phanCong}"/>
+						  	<form:select class="form-control" path="phanCong.maNhanVien">
+						  		<c:forEach items="${NhanVien}" var="nv">
+						  			<form:option value="${nv.maNhanVien}" label="${nv.hoDem} ${nv.ten}"></form:option>
+						  		</c:forEach>
+						  	</form:select>
 						</div>
 						<div class="form-group col-sm-6">
 						  	<label>Thời gian dự kiến</label>
-						  	<form:input class="form-control" path="tgDuKien" value="${congViec.tgDuKien}"/>
+						  	<form:input class="form-control" path="tgDuKien" />
 						</div>
 						<div class="form-group col-sm-6">
 						  	<label>Trạng thái</label>
-						  	<form:input class="form-control" path="trangThai" value="${congViec.trangThai}"/>
+						  	<form:select class="form-control" path="trangThai">
+						  		<c:forEach items="${TrangThai}" var="tt">
+						  			<form:option value="${tt.trangThai}" label="${tt.trangThai}"></form:option>
+						  		</c:forEach>
+						  	</form:select>
+						  	
 						</div>
 						<div class="col-sm-12 text-center">
 							<button type="submit" class="btn btn-success">Lưu thông tin</button>

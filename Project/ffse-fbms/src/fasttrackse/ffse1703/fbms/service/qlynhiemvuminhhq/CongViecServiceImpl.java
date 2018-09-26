@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 
 import fasttrackse.ffse1703.fbms.dao.qlynhiemvuminhhq.QLyNhiemvuMinhHQDao;
 import fasttrackse.ffse1703.fbms.entity.qlynhiemvuminhhq.CongViecMinhHQ;
+import fasttrackse.ffse1703.fbms.entity.qlynhiemvuminhhq.DuAnMinhHQ;
 import fasttrackse.ffse1703.fbms.entity.qlynhiemvuminhhq.LoaiCongViecMinhHQ;
 import fasttrackse.ffse1703.fbms.entity.qlynhiemvuminhhq.TrangThaiMinhHQ;
+import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 
 
 
@@ -29,21 +31,25 @@ public class CongViecServiceImpl implements CongViecService{
 	}
 
 	@Override
+	@Transactional
 	public void addNew(CongViecMinhHQ cv) {
 		congViecDao.addNew(cv);
 	}
 
 	@Override
+	@Transactional
 	public void update(CongViecMinhHQ cv) {
 		congViecDao.update(cv);
 	}
 
 	@Override
+	@Transactional
 	public void delete(CongViecMinhHQ cv) {
 		congViecDao.delete(cv);
 	}
 
 	@Override
+	@Transactional
 	public CongViecMinhHQ findByID(int ID) {
 		return congViecDao.findByID(ID);
 	}
@@ -63,6 +69,18 @@ public class CongViecServiceImpl implements CongViecService{
 	@Transactional
 	public List<LoaiCongViecMinhHQ> loaiCongViec() {
 		 return congViecDao.loaiCongViec();
+	}
+
+	@Override
+	@Transactional
+	public List<DuAnMinhHQ> duAn() {
+		return congViecDao.duAn();
+	}
+
+	@Override
+	@Transactional
+	public List<HoSoNhanVien> nhanVien() {
+		return congViecDao.nhanVien();
 	}
 
 //	@Override

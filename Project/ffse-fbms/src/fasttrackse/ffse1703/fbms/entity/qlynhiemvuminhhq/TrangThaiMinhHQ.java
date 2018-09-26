@@ -13,20 +13,20 @@ public class TrangThaiMinhHQ {
 
 	
 	@Id
-	@Column(name = "ID")
+	@Column(name = "ID_TT")
 	@NotNull
-	private int ID;
+	private int maTrangThai;
 
 	@Column(name = "Trang_thai")
 	@NotEmpty
 	private String trangThai;
 
-	public int getID() {
-		return ID;
+	public int getMaTrangThai() {
+		return maTrangThai;
 	}
 
-	public void setID(int iD) {
-		ID = iD;
+	public void setMaTrangThai(int maTrangThai) {
+		this.maTrangThai = maTrangThai;
 	}
 
 	public String getTrangThai() {

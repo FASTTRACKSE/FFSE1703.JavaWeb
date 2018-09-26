@@ -3,10 +3,15 @@ package fasttrackse.ffse1703.fbms.entity.qlynhiemvuminhhq;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+
+import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 
 @Entity
 @Table(name = "cong_viec")
@@ -21,14 +26,10 @@ public class CongViecMinhHQ {
 	@NotEmpty
 	private String tenCongViec;
 	
-//	@ManyToOne(fetch = FetchType.EAGER,cascade= CascadeType.MERGE)
-//	@JoinColumn(name="ma_tinh_trang",referencedColumnName="ma_tinh_trang", insertable=true, updatable=true)
-//	@NotNull
-//	private TinhTrang tinhTrang ;
-	
-	@Column(name = "loai_cong_viec")
-	@NotEmpty
-	private String loaiCongViec;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "ID_CV", nullable=false)
+	@NotNull
+	private LoaiCongViecMinhHQ maCongViec;
 	
 	@Column(name = "mo_ta")
 	@NotEmpty
@@ -42,27 +43,27 @@ public class CongViecMinhHQ {
 	@NotEmpty
 	private String tgKetThuc;
 	
-	@Column(name = "phan_cong_cho")
-	@NotEmpty
-	private String phanCong;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "ma_nhan_vien", nullable=false)
+	private HoSoNhanVien phanCong;
 	
 	@Column(name = "tg_du_kien")
 	@NotEmpty
 	private String tgDuKien;
 	
-	@Column(name = "trang_thai")
-	@NotEmpty
-	private String trangThai;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "ID_TT", nullable=false)
+	@NotNull
+	private TrangThaiMinhHQ maTrangThai;
 	
-	@Column(name = "du_an")
-	@NotEmpty
-	private String duAn;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "ma_du_an", nullable=false)
+	private DuAnMinhHQ duAn;
 	
 	@Column(name = "is_delete")
 	@NotNull
 	private int isDelete;
 	
-//	@OneToMany(mappedBy = "congViec")
 
 	public int getID() {
 		return ID;
@@ -80,12 +81,14 @@ public class CongViecMinhHQ {
 		this.tenCongViec = tenCongViec;
 	}
 
-	public String getLoaiCongViec() {
-		return loaiCongViec;
+	
+
+	public LoaiCongViecMinhHQ getMaCongViec() {
+		return maCongViec;
 	}
 
-	public void setLoaiCongViec(String loaiCongViec) {
-		this.loaiCongViec = loaiCongViec;
+	public void setMaCongViec(LoaiCongViecMinhHQ maCongViec) {
+		this.maCongViec = maCongViec;
 	}
 
 	public String getMoTa() {
@@ -112,11 +115,11 @@ public class CongViecMinhHQ {
 		this.tgKetThuc = tgKetThuc;
 	}
 
-	public String getPhanCong() {
+	public HoSoNhanVien getPhanCong() {
 		return phanCong;
 	}
 
-	public void setPhanCong(String phanCong) {
+	public void setPhanCong(HoSoNhanVien phanCong) {
 		this.phanCong = phanCong;
 	}
 
@@ -128,19 +131,21 @@ public class CongViecMinhHQ {
 		this.tgDuKien = tgDuKien;
 	}
 
-	public String getTrangThai() {
-		return trangThai;
+	
+
+	public TrangThaiMinhHQ getMaTrangThai() {
+		return maTrangThai;
 	}
 
-	public void setTrangThai(String trangThai) {
-		this.trangThai = trangThai;
+	public void setMaTrangThai(TrangThaiMinhHQ maTrangThai) {
+		this.maTrangThai = maTrangThai;
 	}
 
-	public String getDuAn() {
+	public DuAnMinhHQ getDuAn() {
 		return duAn;
 	}
 
-	public void setDuAn(String duAn) {
+	public void setDuAn(DuAnMinhHQ duAn) {
 		this.duAn = duAn;
 	}
 

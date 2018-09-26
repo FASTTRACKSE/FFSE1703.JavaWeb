@@ -42,8 +42,10 @@ public class QLyNhiemVuMinhHQController {
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String showForm(Model model) {
 		model.addAttribute("CongViec", new CongViecMinhHQ());
-		model.addAttribute("tt", congViecService.trangThai());
-		model.addAttribute("cv", congViecService.loaiCongViec());
+		model.addAttribute("TrangThai", congViecService.trangThai());
+		model.addAttribute("LoaiCongViec", congViecService.loaiCongViec());
+		model.addAttribute("DuAn", congViecService.duAn());
+		model.addAttribute("NhanVien", congViecService.nhanVien());
 		return "/QuanLyNhiemVuMinhHQ/add_form";
 	}
 
@@ -66,8 +68,10 @@ public class QLyNhiemVuMinhHQController {
 	@RequestMapping(value = "/edit/{ID}", method = RequestMethod.GET)
 	public String edit_view(@PathVariable("ID") int id, Model model) {
 		model.addAttribute("CongViec", congViecService.findByID(id));
-		model.addAttribute("tt", congViecService.trangThai());
-		model.addAttribute("cv", congViecService.loaiCongViec());
+		model.addAttribute("TrangThai", congViecService.trangThai());
+		model.addAttribute("LoaiCongViec", congViecService.loaiCongViec());
+		model.addAttribute("DuAn", congViecService.duAn());
+		model.addAttribute("NhanVien", congViecService.nhanVien());
 		return "/QuanLyNhiemVuMinhHQ/edit_form";
 	}
 

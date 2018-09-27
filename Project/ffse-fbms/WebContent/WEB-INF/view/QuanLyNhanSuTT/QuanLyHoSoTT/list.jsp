@@ -33,7 +33,7 @@ th, td {
 							<li class="breadcrumb-item"><a href="<c:url value = "/"/>"><spring:message
 										code="label.trangChu" /></a></li>
 							<li class="breadcrumb-item active">Danh Sách Nhân Viên</li>
-							<li class="breadcrumb-item"><a href="<c:url value = "/quanlynhansutt/ho_so/add"/>">thêm
+							<li class="breadcrumb-item"><a href="<c:url value = "#"/>">thêm
 									nhân viên</a></li>
 						</ol>
 					</div>

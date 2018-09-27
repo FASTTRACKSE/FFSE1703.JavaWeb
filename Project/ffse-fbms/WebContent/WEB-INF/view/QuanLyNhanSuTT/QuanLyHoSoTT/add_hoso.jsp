@@ -17,8 +17,7 @@
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/home" />'>Trang chủ</a></li>
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/quanlynhansutt/ho_so/" />'>Danh sách
-									nhân viên</a></li>
+								href='<c:url value="/quanlyhoso/" />'>Danh sách nhân viên</a></li>
 							<li class="breadcrumb-item active">Thêm nhân viên</li>
 						</ol>
 					</div>
@@ -47,8 +46,8 @@
 							</div>
 							<div class="card-body collapse in">
 								<div class="card-block">
-									<form:form method="POST" action="insert"
-										modelAttribute="formHoso" enctype="multipart/form-data">
+									<form:form method="POST" action=""
+										modelAttribute="hoSoNhanVienTT">
 										<div class="form-body">
 											<div class="row">
 												<div class="col-md-8">
@@ -66,20 +65,22 @@
 														</div>
 													</div>
 													<div class="row">
-													  <div class="form-group col-sm-6">
-															<div class="form-group">
-																<label>Lương Tháng 13</label>
-																<form:select class="custom-select form-control"
-																	path="gioiTinh">
-																	<option value="none">Chọn</option>
-																	<form:option value="1">Nam</form:option>
-																	<form:option value="2">Nữ</form:option>
-																</form:select>
-															</div>
+														<div class="form-group col-sm-6">
+
+															<label for="projectinput3">Giới tính</label>
+															<form:select path="gioiTinh" type="text"
+																id="projectinput3" class="form-control"
+																placeholder="Giới tính">
+																<option value="none" selected="selected">Chọn
+																	giới tính</option>
+																<option value="1">Nam</option>
+																<option value="2">Nữ</option>
+															</form:select>
+
 														</div>
 														<div class="form-group col-sm-6">
 															<label for="projectinput2">Tình trạng hôn nhân</label>
-															<form:select path="tinhTrangHonNhan.maTinhTrangHonNhan" type="text"
+															<form:select path="tinhTrangHonNhan" type="text"
 																id="projectinput2" class="form-control">
 																<option value="none" selected="selected">Chọn
 																	tình trạng hôn nhân</option>
@@ -93,8 +94,9 @@
 														<div class="form-group col-sm-6">
 															<div class="form-group">
 																<label for="projectinput4">Số CMND</label>
-																<form:input path="soCmnd" type="text" id="projectinput4"
-																	class="form-control" placeholder="Số CMND" />
+																<form:input path="soCmnd" type="number"
+																	id="projectinput4" class="form-control"
+																	placeholder="Số CMND" />
 															</div>
 														</div>
 														<div class="form-group col-sm-6">
@@ -107,19 +109,16 @@
 													</div>
 													<div class="row">
 														<div class="form-group col-sm-6">
+
 															<label for="projectinput4">Ngày cấp</label>
-															<fieldset class="form-group position-relative">
-																<form:input placeholder="Ngày cấp" type="date"
-																		class="form-control round" path="ngayCap" />
-																	<div class="form-control-position">
-																		<i class="fa fa-calendar-o"></i>
-																	</div>
-															</fieldset>
+															<form:input path="ngayCap" type="date" id="projectinput4"
+																class="form-control" placeholder="Ngày cấp" />
+
 														</div>
 														<div class="form-group col-sm-6">
 															<div class="form-group">
 																<label for="projectinput4">Dân tộc</label>
-																<form:select path="danToc.maDanToc" type="text"
+																<form:select path="danToc" type="text"
 																	id="projectinput4" class="form-control">
 																	<option value="none" selected="selected">Chọn
 																		dân tộc</option>
@@ -136,7 +135,7 @@
 														<div class="form-group col-sm-6">
 
 															<label for="projectinput4">Quốc tịch</label>
-															<form:select path="quocTich.maQuocTich" type="text"
+															<form:select path="quocTich" type="text"
 																id="projectinput4" class="form-control">
 																<option value="none" selected="selected">Chọn
 																	quốc tịch</option>
@@ -169,7 +168,7 @@
 													<div class="row">
 														<div class="form-group col-sm-6">
 															<label>tỉnh, thành phố</label>
-															<form:select path="thanhPho.maThanhPho" type="text" id="thanhPhoId"
+															<form:select path="thanhPho" type="text" id="thanhPhoId"
 																class="form-control" onchange="clickComboboxThanhPho()">
 																<option value="noThanhPho" selected="selected">Chọn
 																	thành phố</option>
@@ -180,7 +179,7 @@
 														</div>
 														<div class="form-group col-sm-6">
 															<label>quận, huyện</label>
-															<form:select path="quanHuyen.maQuanHuyen" id="quanHuyenId"
+															<form:select path="quanHuyen" id="quanHuyenId"
 																type="text" class="form-control" disabled="true"
 																onchange="clickComboboxQuan()" name="quanHuyen">
 																<option value="noQuanHuyen" selected="selected">Chọn
@@ -195,7 +194,7 @@
 														<div class="form-group col-sm-6">
 															<label>xã, phường</label>
 
-															<form:select path="xaPhuong.maXa" type="text" id="phuongXaId"
+															<form:select path="xaPhuong" type="text" id="phuongXaId"
 																class="form-control" name="phuongXaSelect"
 																disabled="true">
 																<option value="noPhuongXa" selected="selected">Chọn
@@ -222,7 +221,7 @@
 														<div class="form-group col-sm-6">
 															<label>phòng ban</label>
 
-															<form:select path="phongBan.maPhongBan" type="text" id="companyName"
+															<form:select path="phongBan" type="text" id="companyName"
 																class="form-control" name="phongBanSelect">
 																<option value="none" selected>Chọn Phòng ban</option>
 																<c:forEach items="${listPhongBan}" var="x">
@@ -232,9 +231,9 @@
 														</div>
 														<div class="form-group col-sm-6">
 															<label>chức danh</label>
-															<form:select path="chucDanh.maChucDanh" type="text"
-																id="companyName" class="form-control"
-																placeholder="Company Name" name="chucDanhSelect">
+															<form:select path="chucDanh" type="text" id="companyName"
+																class="form-control" placeholder="Company Name"
+																name="chucDanhSelect">
 																<option value="none" selected="selected">Chọn
 																	chức danh</option>
 																<c:forEach items="${listChucDanh}" var="x">
@@ -245,22 +244,23 @@
 													</div>
 													<div class="row">
 														<div class="form-group col-sm-6">
+															<label for="projectinput4">Ảnh đại diện</label>
+															<form:input path="anhDaiDien" type="text"
+																id="projectinput4" class="form-control"
+																placeholder="ảnh đại diện" />
+														</div>
+														<div class="form-group col-sm-6">
 															<label for="location1">Trạng Thái</label>
 															<form:select class="custom-select form-control"
 																path="trangThai">
 																<form:option value="1">Còn
-																		Làm Việc</form:option>
+																		Hợp Đồng</form:option>
 																<form:option value="2">Hết
-																		Làm Việc</form:option>
+																		Hợp Đồng</form:option>
 															</form:select>
 														</div>
-														<div class="form-group col-sm-6">
-															<label>Hình Ảnh:</label> <input id="imgUrl"
-																class="form-control" type="file" name="file" /> <br>
-															<img id="img" src="#" alt="your image" width="100"
-																height="150" />
-														</div>
 													</div>
+
 												</div>
 											</div>
 										</div>

@@ -210,8 +210,8 @@ public class HoSoNhanVienPikalongController {
 	
 	// page Hồ sơ chi tiết
 	@RequestMapping("hosochitiet/{maNv}")
-	public String details() {
-		
+	public String details(@PathVariable String maNv, Model model) {
+		model.addAttribute("hoSoNhanVien", hoSoNhanVienPikalongService.getEdit(maNv));
 		return "QuanTriNhanSuPikalong/ThongTinHoSo/hosochitiet";
 	}
 }

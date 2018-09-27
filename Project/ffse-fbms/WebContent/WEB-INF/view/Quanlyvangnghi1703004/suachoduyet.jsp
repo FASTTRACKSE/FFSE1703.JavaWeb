@@ -15,13 +15,15 @@
 				<form:form method="POST" modelAttribute="suachoduyet">
 					<div class="row">
 						<div class="form-group col-sm-6">
+							<%-- <form:hidden path="ngayNghi.soNgayDaNghi"/>
+							<form:hidden path="ngayNghi.soNgayConLai"/> --%>
 							<div>
 								<label>Mã đơn</label>
 								<form:input class="form-control round" path="id" readonly="true" />
 							</div>
 							<div>
 								<label> Mã nhân viên</label>
-								<form:select path="thongTinHoSoNhanVien.maNhanVien"
+								<form:select path="ngayNghi.maNhanVien"
 									class="custom-select block round" id="customSelect">
 									<c:forEach items="${hoso}" var="ld">
 										<form:option value="${ld.maNhanVien}" label="${ld.maNhanVien}" />

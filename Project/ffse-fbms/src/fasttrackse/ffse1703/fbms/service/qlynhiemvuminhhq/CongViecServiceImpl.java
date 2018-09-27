@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 
 import fasttrackse.ffse1703.fbms.dao.qlynhiemvuminhhq.QLyNhiemvuMinhHQDao;
 import fasttrackse.ffse1703.fbms.entity.qlynhiemvuminhhq.CongViecMinhHQ;
+import fasttrackse.ffse1703.fbms.entity.qlynhiemvuminhhq.DuAnMinhHQ;
 import fasttrackse.ffse1703.fbms.entity.qlynhiemvuminhhq.LoaiCongViecMinhHQ;
 import fasttrackse.ffse1703.fbms.entity.qlynhiemvuminhhq.TrangThaiMinhHQ;
+import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 
 
 
@@ -29,21 +31,25 @@ public class CongViecServiceImpl implements CongViecService{
 	}
 
 	@Override
+	@Transactional
 	public void addNew(CongViecMinhHQ cv) {
 		congViecDao.addNew(cv);
 	}
 
 	@Override
+	@Transactional
 	public void update(CongViecMinhHQ cv) {
 		congViecDao.update(cv);
 	}
 
 	@Override
+	@Transactional
 	public void delete(CongViecMinhHQ cv) {
 		congViecDao.delete(cv);
 	}
 
 	@Override
+	@Transactional
 	public CongViecMinhHQ findByID(int ID) {
 		return congViecDao.findByID(ID);
 	}
@@ -65,24 +71,23 @@ public class CongViecServiceImpl implements CongViecService{
 		 return congViecDao.loaiCongViec();
 	}
 
-//	@Override
-//	public String getRecordsTotal() {
-//		return congViecDao.getRecordsTotal();
-//	}
-//
-//	@Override
-//	public String getRecordsFiltered(String sql) {
-//		return congViecDao.getRecordsFiltered(sql);
-//	}
-	
-//		String action = "<a href='/ffse-fbms/QuanLyNhiemVuMinhHQ/view/" 
-//				+ ID + "'><i class='fa fa-eye'></i></a>"
-//				+ "<a href='/ffse-fbms/QuanLyNhiemVuMinhHQ/edit/"
-//				+ ID + "'><i class='fa fa-pencil'></i></a>"
-//				+ "<a href='javascript:void(0);' data-toggle='modal' data-target='#confirm-delete' data-href='/ffse-fbms/QuanLyNhiemVuMinhHQ/delete/"
-//				+ID + "'><i class='fa fa-trash'></i></a>";
+	@Override
+	@Transactional
+	public List<DuAnMinhHQ> duAn() {
+		return congViecDao.duAn();
+	}
 
-//		return "[\"" + tenCongViec + "\",\"" + loaiCongViec + "\",\"" + moTa + "\",\"" + tgBatDau + "\",\"" + tgKetThuc + "\",\"" + phanCong + "\",\"" + tgDuKien + "\",\"" + trangThai + "\",\"" + duAn + "\",\"" +  action + "\"]";
+	@Override
+	@Transactional
+	public List<HoSoNhanVien> nhanVien() {
+		return congViecDao.nhanVien();
+	}
+
+	@Override
+	@Transactional
+	public List<CongViecMinhHQ> findAllForPaging(int startPosition, int maxResult) {
+		return congViecDao.findAllForPaging(startPosition,maxResult);
+	}
 
 }
 

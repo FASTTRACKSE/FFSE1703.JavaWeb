@@ -4,7 +4,6 @@ import java.util.List;
 
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.DanhGiaBanThan;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.DanhGiaNhanVien;
-import fasttrackse.ffse1703.fbms.entity.quantridanhgia.PhanCongDanhGia;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.TruongPhongDanhGia;
 
 public interface NhanVienService {
@@ -16,7 +15,7 @@ public interface NhanVienService {
 
 	public void deleteDanhGiaBanThan(DanhGiaBanThan danhgia);
 
-	public List<PhanCongDanhGia> getListPhanCongDanhGia(int id);
+	public List<DanhGiaNhanVien> getListDanhGiaNhanVien(int id);
 
 	public void insertDanhGiaNhanVien(DanhGiaNhanVien danhGia);
 

@@ -1,6 +1,5 @@
 package fasttrackse.ffse1703.fbms.dao.qlvn1;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -25,17 +24,8 @@ public class QuanLyVangNghiDaoImpl implements QuanLyVangNghiDao {
 
 	@Override
 	public void addDon(DonNghi dn) {
-		Session session = this.sessionFactory.openSession();
-		Transaction tx = session.beginTransaction();
-		session.persist(dn);
-		tx.commit();
-		session.close();
-	}
-	
-	public List<DonNghi> listDonNghi() {
 		Session session = this.sessionFactory.getCurrentSession();
-		//List<DonNghi> listDonNghi = session.createQuery("from don_nghi").list();
-		return null;
+		session.persist(dn);
 	}
 
 
@@ -74,9 +64,28 @@ public class QuanLyVangNghiDaoImpl implements QuanLyVangNghiDao {
 		session.close();
 		return list;
 	}
-	
-	
 
+	@Override
+	public List<DonNghi> listDonNghi() {
+		Session session = this.sessionFactory.openSession();
+		@SuppressWarnings("unchecked")
+		List<DonNghi> listDn = session.createQuery("from DonNghi").list();
+		session.close();
+		return listDn;
+	}
 
+	@Override
+	public void insertTinhTrang(int id_nv, TinhTrangNghi tt) {
+		// TODO Auto-generated method stub
+		TinhTrangNghi tinhTrang = null;
+		Session session = null;
+		tinhTrang = getTinhTrang(id_nv);
+		session = this.sessionFactory.getCurrentSession();
+		if(tinhTrang==null) {
+			session.persist(tt);
+		}else {
+			session.update(tt);
+		}
+	}
 	
 }

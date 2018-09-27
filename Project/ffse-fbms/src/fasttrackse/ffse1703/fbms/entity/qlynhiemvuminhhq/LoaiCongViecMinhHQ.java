@@ -12,20 +12,20 @@ import javax.validation.constraints.NotNull;
 public class LoaiCongViecMinhHQ {
 
 	@Id
-	@Column(name = "ID")
+	@Column(name = "ID_CV")
 	@NotNull
-	private int ID;
+	private int maCongViec;
 
 	@Column(name = "loai")
 	@NotEmpty
 	private String loaiCongViec;
 
-	public int getID() {
-		return ID;
+	public int getMaCongViec() {
+		return maCongViec;
 	}
 
-	public void setID(int iD) {
-		ID = iD;
+	public void setMaCongViec(int maCongViec) {
+		this.maCongViec = maCongViec;
 	}
 
 	public String getLoaiCongViec() {

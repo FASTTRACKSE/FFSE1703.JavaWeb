@@ -17,20 +17,17 @@
 						<div class="form-group col-sm-6">
 							<div>
 								<label>Mã đơn</label>
-								<form:input class="form-control round" path="id" readonly="true" />
+								<form:input class="form-control round" path="id" readonly="true" value="3" />
 							</div>
 
 							<div>
 								<label> Mã nhân viên</label>
-								<form:select path="thongTinHoSoNhanVien.maNhanVien"
-									class="custom-select block round" id="customSelect">
-									<c:forEach items="${hoso}" var="ld">
-										<form:option value="${ld.maNhanVien}" label="${ld.maNhanVien}" />
-										<%-- <form:errors style="color:red" path="maNhanVien.maNhanVien" /> --%>
-									</c:forEach>
+								<form:select multiple="single" path="ngayNghi.maNhanVien" class="custom-select block round">
+									<form:options items="${hoso}" itemValue="maNhanVien" itemLabel="maNhanVien" />
 								</form:select>
 							</div>
 							<div>
+								
 								<label>Ngày bắt đầu</label>
 								<fieldset class="form-group position-relative">
 									<form:input type="date" class="form-control round" id="from"
@@ -137,7 +134,7 @@
 							</div>
 							<div>
 								<label>Ghi chú</label>
-								<form:input class="form-control round"  placeholder="ghiChu" path="ghiChu" />
+								<form:input class="form-control round"  placeholder="ghiChu"	 path="ghiChu" />
 							 <form:errors path="ghiChu" cssStyle="color: red" ></form:errors> 
 							</div>
 						</div>

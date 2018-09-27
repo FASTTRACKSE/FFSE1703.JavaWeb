@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import fasttrackse.ffse1703.fbms.dao.mvpquanliduan.ProjectDAO;
 import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Projects;
+import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 @Service
 @Transactional
 public class ProjectServiceImpl implements ProjectService {
@@ -55,6 +56,11 @@ public class ProjectServiceImpl implements ProjectService {
 	public int checkMaProjects(String idProjects) {
 	
 		return projectDAO.checkMaProjects(idProjects);
+	}
+
+	@Override
+	public List<HoSoNhanVien> getPm(String maPhongBan) {
+		return projectDAO.getPm(maPhongBan);
 	}
 
 }

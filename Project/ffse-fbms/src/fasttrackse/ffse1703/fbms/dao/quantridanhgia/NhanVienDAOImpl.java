@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.DanhGiaBanThan;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.DanhGiaNhanVien;
-import fasttrackse.ffse1703.fbms.entity.quantridanhgia.PhanCongDanhGia;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.TruongPhongDanhGia;
 
 @Repository
@@ -25,7 +24,7 @@ public class NhanVienDAOImpl implements NhanVienDAO {
 	@Override
 	public DanhGiaBanThan getDanhGiaBanThan(int maNhanVien) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.get(DanhGiaBanThan.class, maNhanVien);
+		return session.byNaturalId(DanhGiaBanThan.class).using("nhanVien", maNhanVien).load();
 	}
 
 	@Override
@@ -48,9 +47,9 @@ public class NhanVienDAOImpl implements NhanVienDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<PhanCongDanhGia> getListPhanCongDanhGia(int maNhanVien) {
+	public List<DanhGiaNhanVien> getListPhanCongDanhGia(int maNhanVien) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("from PhanCongDanhGia where nhanVienDanhGia = :nhanVien")
+		return session.createQuery("from DanhGiaNhanVien where nhanVienDanhGia = :nhanVien")
 				.setParameter("nhanVien", maNhanVien).list();
 	}
 
@@ -81,7 +80,7 @@ public class NhanVienDAOImpl implements NhanVienDAO {
 	@Override
 	public TruongPhongDanhGia getDanhGiaCuaTruongPhong(int maNhanVien) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.get(TruongPhongDanhGia.class, maNhanVien);
+		return session.byNaturalId(TruongPhongDanhGia.class).using("nhanVien", maNhanVien).load();
 	}
 
 }

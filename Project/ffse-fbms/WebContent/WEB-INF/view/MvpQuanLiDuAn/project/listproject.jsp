@@ -42,11 +42,20 @@
 					</a>
 				</div>
 				<div class="x_content">
-
+					
+			<!-- Show message -->
+			<c:if test="${messageSuccess ne null}">
+				<div class="alert alert-success alert-dismissable" role="alert">
+					<button type="button" class="close" data-dismiss="alert">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					${messageSuccess}
+				</div>
+			</c:if>
 					<table class="table table-striped" style="text-align: center">
 						<thead>
 							<tr>				
-								<th style="text-align: center">Mã Dự án</th>
+								<th style="text-align: center">Mã Dự án </th>
 								<th style="text-align: center">Dự án</th>
 								<th style="text-align: center">Khách hàng</th>
 								<th style="text-align: center">Trạng thái</th>
@@ -65,7 +74,9 @@
 										style="width: 50px; high: 50px; border-color: #00E5EE; border-radius: 100%;"
 										class="btn btn-outline-info "
 										href="<c:url value="/mvpquanliduan/project/detail-project/${project.idProject}" />"
-										title=""><i class="ft-edit"></i></a><button
+										title=""><i class="ft-edit"></i>
+										</a>
+										<button
 											style="width: 50px; high: 50px; border-color: #FF6A6A; border-radius: 100%;"
 											data-href="<c:url value="/mvpquanliduan/project/delete/${project.idProject}" />"
 											class="btn btn-outline-danger" data-toggle="modal"
@@ -77,9 +88,9 @@
 							</c:forEach>
 						</tbody>
 					</table>
-					<c:if test="${success != null }">
+					
 						${success}
-					</c:if>
+					
 				</div>
 			</div>
 		</div>
@@ -97,7 +108,7 @@
 				<h4 class="modal-title">Xác nhận</h4>
 			</div>
 			<div class="modal-body">
-				<p>Bạn muốn xóa Nhà cung cấp này???</p>
+				<p>Bạn muốn xóa Dự án này???</p>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>

@@ -68,6 +68,13 @@ public class ProgramingLanguageTeam1DaoImpl implements ProgramingLanguageTeam1Da
 		return  db.size();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ProgramingLanguageTeam1> findAllForPaging(int startPosition, int maxResult) {
+		Session session=this.sessionFactory.getCurrentSession();
+		return session.createQuery("from ProgramingLanguageTeam1 where isDelete =0").setFirstResult(startPosition).setMaxResults(maxResult).list();
+	}
+
 
 
 

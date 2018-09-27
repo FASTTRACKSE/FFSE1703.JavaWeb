@@ -3,22 +3,27 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <div class="app-content content container-fluid">
 	<div class="content-wrapper">
 
 		<!-- Path -->
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">Thêm mới hợp đồng</h3>
+				<h3 class="content-header-title mb-0">Thêm mới bằng cấp</h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/home" />'>Home</a></li>
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/quanlynhansutt/" />'>Danh sách hợp đồng</a></li>
-							<li class="breadcrumb-item active">Thêm mới hợp đồng</li>
+								href="<c:url value = "/quanlynhansutt/ho_so/"/>"><spring:message
+										code="label.quanLyNhanSu" /></a></li>
+							<li class="breadcrumb-item"><a
+								href='<c:url value="/quanlynhansutt/bang_cap/" />'>Danh sách
+									bằng cấp</a></li>
+							<li class="breadcrumb-item active">Thêm mới bằng cấp</li>
 						</ol>
 					</div>
 				</div>
@@ -34,16 +39,24 @@
 							<div>
 								<div>
 									<div class="row">
-										<form:form method="POST" action="save" modelAttribute="ttbc">
+										<form:form method="POST"
+											action="/ffse-fbms/quanlynhansutt/bang_cap/save"
+											modelAttribute="ttbc">
 											<div class="form-body">
 												<div class="row">
 													<div class="col-md-8">
 														<div class="row">
-															<div class="form-group col-sm-6">
-																<label>Mã Nhân Viên</label>
-																<form:input class="form-control"
-																	path="hoSoNhanVienTT.maNhanVien"
-																	placeholder="Mã Nhân Viên" />
+															<div class="col-md-6">
+																<div class="form-group">
+																	<label>Mã Nhân Viên</label>
+																	<fmt:formatNumber type="number" var="hosonv.maNhanVien"
+																		minIntegerDigits="5" groupingUsed="false"
+																		value="${hoSoNhanVienTT.maNhanVien}" />
+																	<input placeholder="Mã nhân viên" class="form-control"
+																		value="${hosonv.maNhanVien}"
+																		name="hoSoNhanVienTT.maNhanVien" readonly="readonly"
+																		type="text">
+																</div>
 															</div>
 														</div>
 													</div>

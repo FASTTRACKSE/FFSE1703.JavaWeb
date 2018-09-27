@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 //import javax.persistence.OneToMany;
 import javax.persistence.Table;
+//import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "danh_muc")
@@ -26,15 +27,18 @@ public class Category  {
 	public void setId(int id) {
 		this.id = id;
 	}
+	
+	@Column(name = "image")
+	private String image;
 
-	//@OneToMany(mappedBy="ma_danh_muc")
-	//private List<Document> Document;
-	//public List<Document> getDocument() {
-		//return Document;
-	//}
-	//public void setDocument(List<Document> document) {
-		//Document = document;
-	//}
+	
+
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
 
 	@Column(name = "ten_danh_muc")
 	private String ten_danh_muc;
@@ -58,11 +62,12 @@ public class Category  {
 		this.ma_danh_muc = ma_danh_muc;
 	}
 	
-	public Category(int id, String ma_danh_muc, String ten_danh_muc) {
+	public Category(int id, String ma_danh_muc, String ten_danh_muc, String image) {
 		super();
 		this.id = id;
 		this.ma_danh_muc = ma_danh_muc;
 		this.ten_danh_muc = ten_danh_muc;
+		this.image = image;
 	}
 	
 	public Category() {

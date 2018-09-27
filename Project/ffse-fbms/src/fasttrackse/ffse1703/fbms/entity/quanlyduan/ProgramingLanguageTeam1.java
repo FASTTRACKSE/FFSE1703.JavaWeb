@@ -10,12 +10,12 @@ import javax.validation.constraints.NotEmpty;
 @Table(name = "ngon_ngu")
 public class ProgramingLanguageTeam1 {
 	@Id
-	@NotEmpty
+	@NotEmpty(message="Mã ngôn ngữ không được rỗng!")
 	@Column(name = "ma_ngon_ngu")
 	 String maNn;
 	
 	@Column(name = "ten_ngon_ngu")
-	@NotEmpty
+	@NotEmpty(message="Tên ngôn ngữ không được rỗng!")
 	 String tenNn;
 	
 	@Column(name = "is_delete")

@@ -40,7 +40,7 @@ public class HoSoNhanVienPikalong {
 	
 	private String noiOHienNay;
 	
-	private int cMND;
+	private String cMND;
 	
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -48,7 +48,7 @@ public class HoSoNhanVienPikalong {
 	
 	private String noiCap;
 	
-	private int sDT;
+	private String sDT;
 	
 	private String email;
 	
@@ -96,7 +96,7 @@ public class HoSoNhanVienPikalong {
 		return noiOHienNay;
 	}
 
-	public int getcMND() {
+	public String getcMND() {
 		return cMND;
 	}
 
@@ -108,7 +108,7 @@ public class HoSoNhanVienPikalong {
 		return noiCap;
 	}
 
-	public int getsDT() {
+	public String getsDT() {
 		return sDT;
 	}
 
@@ -180,7 +180,7 @@ public class HoSoNhanVienPikalong {
 		this.noiOHienNay = noiOHienNay;
 	}
 
-	public void setcMND(int cMND) {
+	public void setcMND(String cMND) {
 		this.cMND = cMND;
 	}
 
@@ -192,7 +192,7 @@ public class HoSoNhanVienPikalong {
 		this.noiCap = noiCap;
 	}
 
-	public void setsDT(int sDT) {
+	public void setsDT(String sDT) {
 		this.sDT = sDT;
 	}
 

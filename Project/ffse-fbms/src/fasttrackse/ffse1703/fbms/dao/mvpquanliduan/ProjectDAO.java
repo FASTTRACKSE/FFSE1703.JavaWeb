@@ -3,6 +3,7 @@ package fasttrackse.ffse1703.fbms.dao.mvpquanliduan;
 import java.util.List;
 
 import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Projects;
+import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 
 public interface ProjectDAO {
 	public List<Projects> findAll();
@@ -12,4 +13,6 @@ public interface ProjectDAO {
 	public void delete(Projects projects);
 	public int checkNameProjects(String nameProjects);
 	public int checkMaProjects(String idProjects);
+	public List<HoSoNhanVien> getPm(String maPhongBan);
+	
 }

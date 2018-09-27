@@ -21,7 +21,7 @@
 				</div>
 			</div>
 		</div>
-		<c:if test="${listDanhGia == '' }">
+		<c:if test="${empty listDanhGiaNhanVien}">
 			<div class="row">
 				<div class="col-md-12">
 					<div class="card">
@@ -34,7 +34,7 @@
 				</div>
 			</div>
 		</c:if>
-		<c:if test="${listDanhGia !='' }">
+		<c:if test="${not empty listDanhGiaNhanVien}">
 			<div class="row">
 				<div class="card">
 					<div class="card-header">
@@ -53,16 +53,19 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<th scope="row">1</th>
-											<td>Mark</td>
-											<td>Otto</td>
-											<td><a class="btn btn-info"
-												href="<c:url value = "/quantridanhgia/danhgianhanvien/view" />">Xem</a>
-												<a class="btn btn-info"
-												href="<c:url value = "/quantridanhgia/nhanvien/danhgianhanvien/add" />">Tạo</a>
-											</td>
-										</tr>
+										<c:forEach items="${listDanhGiaNhanVien }" var="x"
+											varStatus="stt">
+											<tr>
+												<th scope="row">${stt.index + 1 }</th>
+												<td>${x.nhanVien }</td>
+												<td>${x.xepLoai }</td>
+												<td><a class="btn btn-info"
+													href="<c:url value = "/quantridanhgia/danhgianhanvien/view" />">Xem</a>
+													<a class="btn btn-info"
+													href="<c:url value = "/quantridanhgia/nhanvien/danhgianhanvien/add/${x.nhanVien }" />">Tạo</a>
+												</td>
+											</tr>
+										</c:forEach>
 									</tbody>
 								</table>
 							</div>

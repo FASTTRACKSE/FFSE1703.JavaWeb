@@ -29,7 +29,7 @@
 					<form:form method="POST" modelAttribute="add" action="add">
 						<div class="form-group col-sm-6">
 						  	<label>Dự án</label>
-						  <form:select path="duAn" class="custom-select block round"
+						  <form:select path="duAn.maDuan" class="custom-select block round"
 								id="customSelect">
 								<c:forEach items="${duan}" var="ld">
 									<form:option value="${ld.maDuan}" label="${ld.tenDuan}" />
@@ -38,22 +38,22 @@
 						</div>
 						<div class="form-group col-sm-6">
 						  	<label>Loại công việc</label>
-						 <form:select path="loaiCongviec" class="custom-select block round"
-								id="customSelect">
-								<c:forEach items="${congviec}" var="ld">
-									<form:option value="${ld.loaiCongviec}" label="${ld.loaiCongviec}" />
+						 <form:select path="idLoaiCongviec.IDcongviec" class="custom-select block round"
+								id="customSelect" >
+								<c:forEach items="${congviec}" var="ld" >
+									<form:option value="${ld.IDcongviec}" label="${ld.loaiCongviec}" />
 								</c:forEach>
 							</form:select>
 						</div>
 						<div class="form-group col-sm-6">
 						  	<label>Tên công việc</label>
-						  	<form:input class="form-control" path="tenCongviec" placeholder="Tên công việc" />
+						  	<form:input class="form-control" path="tenCongviec"  placeholder="Tên công việc" />
 						  	<form:errors path="tenCongviec" cssClass="error" />
 						</div>
 							<div class="form-group col-sm-6">
 						  	<label>Trạng thái</label>
-							<form:input path="loaiTrangthai" class="form-control" readonly="true" value="Mới"/>
-							<form:errors path="loaiTrangthai" cssClass="error" />
+							<input class="form-control" readonly value="Mới" />
+							<form:hidden path="idLoaiTrangthai.IDtrangthai" value="1" />
 						</div>
 						<div class="form-group col-sm-6">
 						  	<label>Thời gian bắt đầu</label>
@@ -67,8 +67,12 @@
 						</div>
 						<div class="form-group col-sm-6">
 						  	<label>Người được phân công</label>
-						  	<form:input class="form-control" path="nhanVien" placeholder="Người phân công" />
-						  	<form:errors path="nhanVien" cssClass="error" />
+						  	 <form:select path="nhanVien.maNhanVien" class="custom-select block round"
+								id="customSelect">
+								<c:forEach items="${nhanVienHLP}" var="ld">
+									<form:option value="${ld.maNhanVien}" label="${ld.hoDem} ${ld.ten}" />
+								</c:forEach>
+							</form:select>	
 						</div>
 						<div class="form-group col-sm-6">
 						  	<label>Thời gian dự kiến hoàn thành</label>

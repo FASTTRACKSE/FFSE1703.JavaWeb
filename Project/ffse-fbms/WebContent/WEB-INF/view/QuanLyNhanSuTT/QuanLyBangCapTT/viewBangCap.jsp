@@ -29,7 +29,7 @@
 		<div class="content-header row">
 			<div class="content-header-left col-md-9 col-xs-12 mb-2">
 				<h3 class="content-header-title mb-0">
-					<spring:message code="label.danhSachHopDong" />
+				Danh Sách Bằng Cấp
 				</h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
@@ -40,8 +40,7 @@
 										code="label.quanLyNhanSu" /></a></li>
 							<li class="breadcrumb-item"><a href="javascript:void(0)"><spring:message
 										code="label.quanLyHopDong" /></a></li>
-							<li class="breadcrumb-item active"><spring:message
-									code="label.danhSachHopDong" /></li>
+							<li class="breadcrumb-item active">Danh Sách Bằng Cấp</li>
 						</ol>
 					</div>
 				</div>
@@ -49,7 +48,7 @@
 			<div class="content-header-right col-md-3 col-xs-12">
 				<div role="group" aria-label="Button group with nested dropdown"
 					class="btn-group float-md-right" id="add-new">
-					<a href="<c:url value = "#"/>"
+					<a href="<c:url value = "/quanlynhansutt/bang_cap/add_bangcap/${maNhanVien}"/>"
 						class="btn btn-primary"><span class="fa fa-plus"></span> Thêm
 						mới</a>
 				</div>
@@ -103,8 +102,8 @@
 													
 													 <td
 														style="letter-spacing: 5px; min-width: 75px; text-align: center !important;">
-														<a href="<c:url value = "#"/>"><i class="fa fa-eye"></i></a>
-														<a href="<c:url value = "#"/>"><i class="fa fa-pencil"></i></a>
+														<a href="<c:url value = "/quanlynhansutt/bang_cap/viewOneBangCap/${hsnv.hoSoNhanVienTT.maNhanVien}"/>"><i class="fa fa-eye"></i></a>
+														<a href="<c:url value = "/quanlynhansutt/bang_cap/edit_bangcap/${hsnv.id}"/>"><i class="fa fa-pencil"></i></a>
 														<%-- <a href="<c:url value = ""/>"><i class="fa fa-trash"></i></a> --%>
 														<a
 											href='<c:url value = "#"></c:url>'
@@ -114,32 +113,7 @@
 													</td> 
 												</tr>
 											</c:forEach>
-										<!-- 	<div class="modal fade" id="confirm-delete" tabindex="-1"
-												role="dialog" aria-labelledby="myModalLabel"
-												aria-hidden="true">
-												<div class="modal-dialog">
-													<div class="modal-content">
-
-														<div class="modal-header">
-															<button type="button" class="close" data-dismiss="modal"
-																aria-hidden="true">&times;</button>
-															<h4 class="modal-title" id="myModalLabel">Bạn có
-																chắc muốn xóa</h4>
-														</div>
-
-														<div class="modal-body">
-															<p>Bạn có chắc muốn xóa</p>
-															<p class="debug-url"></p>
-														</div>
-
-														<div class="modal-footer">
-															<button type="button" class="btn btn-default"
-																data-dismiss="modal">Quay lại</button>
-															<a class="btn btn-danger btn-ok">Xóa</a>
-														</div>
-													</div>
-												</div>
-											</div> -->
+										
 										</tbody>
 									</table>
 								</div>
@@ -154,38 +128,4 @@
 	</div>
 </div>
 <!-- ////////////////////////////////////////////////////////////////////////////-->
-	<!-- 	<script>
-												window.onload = function() {
-													$('#confirm-delete')
-															.on(
-																	'show.bs.modal',
-																	function(e) {
-																		$(this)
-																				.find(
-																						'.btn-ok')
-																				.attr(
-																						'href',
-																						$(
-																								e.relatedTarget)
-																								.data(
-																										'href'));
-																	});
-													$("#datatable").dataTable()
-															.fnDestroy();
-													$("#datatable")
-															.dataTable(
-																	{
-																		responsive : true,
-																		"order" : [
-																				[
-																						6,
-																						"asc" ],
-																				[
-																						0,
-																						"desc" ] ],
-																		"bServerSide" : true,
-																		"sAjaxSource" : "/ffse-fbms/quanlynhansutt/${maPhongBan}/view/getListHopDong",
-																	});
-												};
-											</script> -->
 <jsp:include page="/WEB-INF/view/templates/footer.jsp" />

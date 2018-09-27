@@ -13,12 +13,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import fasttrackse.ffse1703.fbms.entity.qlvn.LyDoXinNghi;
-import fasttrackse.ffse1703.fbms.entity.qlvn.TrangThai;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 
 
@@ -37,9 +34,13 @@ public class DonXinPhepEntity {
 	private HoSoNhanVien maNhanVien;
 
 	@Column(name = "ngay_bat_dau")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
 	private Date ngayBatDau;
 
 	@Column(name = "ngay_ket_thuc")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
 	private Date ngayKetThuc;
 
 	@Column(name = "so_ngay_nghi")
@@ -54,9 +55,6 @@ public class DonXinPhepEntity {
 
 	@Column(name = "ghi_chu_truong_phong")
 	private String ghiChuTruongPhong;
-	
-	@Column(name="so_ngay_con_lai")
-	private int soNgayConLai;
 
 	@ManyToOne
 	@JoinColumn(name = "ten_trang_thai")
@@ -135,16 +133,6 @@ public class DonXinPhepEntity {
 	public void setTrangThai(TrangThaiEntity trangThai) {
 		this.trangThai = trangThai;
 	}
-
-	public int getSoNgayConLai() {
-		return soNgayConLai;
-	}
-
-	public void setSoNgayConLai(int soNgayConLai) {
-		this.soNgayConLai = soNgayConLai;
-	}
-
-
 
 }
 

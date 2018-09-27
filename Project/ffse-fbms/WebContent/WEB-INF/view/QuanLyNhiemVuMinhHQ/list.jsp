@@ -115,32 +115,35 @@
 										class="table table-striped table-bordered dataex-res-constructor">
 										<thead>
 											<tr>
+												<th>STT</th>
 												<th>Tên Công Việc</th>
-												<th>Loại công việc</th>
-												<th>Thời gian Bắt Đầu</th>
-												<th>Thời Gian Kết Thúc</th>
+												<th>Thuộc tính</th>
+												<th>Bắt Đầu</th>
+												<th>Kết Thúc</th>
 												<th>phân công</th>
 												<th>Trạng thái</th>
 												<th>Hoạt động</th>
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach var="cv" items="${listCongViec}">
+											<c:forEach var="cv" items="${listCongViec}" begin="0"
+												varStatus="counter">
 												<tr>
+													<td>${(page)*2 + counter.count}</td>
 													<td>${cv.tenCongViec}</td>
-													<td>${cv.loaiCongViec}</td>
+													<td>${cv.maCongViec.loaiCongViec}</td>
 													<td>${cv.tgBatDau}</td>
 													<td>${cv.tgKetThuc}</td>
-													<td>${cv.phanCong}</td>
-													<td>${cv.trangThai}</td>
-													<td style="letter-spacing: 5px">
-															<a href="/ffse-fbms/QuanLyNhiemVuMinhHQ/view/${cv.ID}"><i
-																class='fa fa-eye'></i></a> <a
-																href="/ffse-fbms/QuanLyNhiemVuMinhHQ/edit/${cv.ID}"><i
-																class='fa fa-pencil'></i></a> <a
-																href="/ffse-fbms/QuanLyNhiemVuMinhHQ/delete/${cv.ID}"><i
-																class='fa fa-trash'
-																onclick="return confirm('Bạn có muốn xóa sinh viên này?');"></i></a>
+													<td>${cv.phanCong.hoDem}${cv.phanCong.ten}</td>
+													<td>${cv.maTrangThai.trangThai}</td>
+													<td style="letter-spacing: 5px"><a
+														href="/ffse-fbms/QuanLyNhiemVuMinhHQ/view/${cv.ID}"><i
+															class='fa fa-eye'></i></a> <a
+														href="/ffse-fbms/QuanLyNhiemVuMinhHQ/edit/${cv.ID}"><i
+															class='fa fa-pencil'></i></a> <a
+														href="/ffse-fbms/QuanLyNhiemVuMinhHQ/delete/${cv.ID}"><i
+															class='fa fa-trash'
+															onclick="return confirm('Bạn có muốn xóa sinh viên này?');"></i></a>
 													</td>
 											</c:forEach>
 										</tbody>
@@ -148,6 +151,32 @@
 								</div>
 							</div>
 						</div>
+						<nav aria-label="Page navigation example">
+							<ul class="pagination">
+								<li class="page-item"><a class="page-link" href="?page=1">First
+										Page</a></li>
+								<c:if test="${currentPage > 2}">
+									<li class="page-item"><a class="page-link"
+										href="?page=${currentPage-2}">${currentPage-2}</a></li>
+								</c:if>
+								<c:if test="${currentPage > 1}">
+									<li class="page-item"><a class="page-link"
+										href="?page=${currentPage-1}">${currentPage-1}</a></li>
+								</c:if>
+								<li class="page-item active"><a class="page-link"
+									href="?page=${currentPage}">${currentPage}</a></li>
+								<c:if test="${currentPage < lastPage}">
+									<li class="page-item"><a class="page-link"
+										href="?page=${currentPage+1}">${currentPage+1}</a></li>
+								</c:if>
+								<c:if test="${currentPage < lastPage - 1}">
+									<li class="page-item"><a class="page-link"
+										href="?page=${currentPage+2}">${currentPage+2}</a></li>
+								</c:if>
+								<li class="page-item"><a class="page-link"
+									href="?page=${lastPage }">Last Page</a></li>
+							</ul>
+						</nav>
 					</div>
 				</div>
 			</div>

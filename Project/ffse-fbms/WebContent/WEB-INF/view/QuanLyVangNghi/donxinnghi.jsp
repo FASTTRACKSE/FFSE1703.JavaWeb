@@ -55,7 +55,7 @@
 			</div>
 			<div class="content-body">
 				<!-- Inputs Icons start -->
-<form method="GET" commandName="donNghi">
+                
 				<div class="row match-height">
 					<div class="col-md-12">
 						<div class="card">
@@ -92,8 +92,7 @@
 
 
 
-									<form id="donxinnghi" class="form"
-										action="QuanLyVangNghi/danhsach" method="post">
+									<form:form id="donxinnghi" class="form" method="POST" modelAttribute="donNghi" action="savenhap">
 										<div class="form-body">
 
 											<h4 class="form-section">
@@ -215,117 +214,7 @@
 															<i class="fa fa-calendar-o"></i>
 														</div>
 													</fieldset>
-													<script>
-															var today = new Date();
-															var dd = today
-																	.getDate();
-															var mm = todaygetMonth() + 1; // January is 0!
-															var yyyy = today
-																	.getFullYear();
-
-															if (dd < 10) {
-																dd = '0' + dd
-															}
-
-															if (mm < 10) {
-																mm = '0' + mm
-															}
-
-															today = yyyy + '-'
-																	+ mm + '-'
-																	+ dd;
-																	document.getElementById('from').value = today;
-															function myFunction() {
-																var today = new Date(
-																		document.getElementById("from").value);
-																var dd = today
-																		.getDate();
-																var mm = today
-																		.getMonth() + 1; // January is 0!
-																var yyyy = today
-																		.getFullYear();
-
-																if (dd < 10) {
-																	dd = '0'
-																			+ dd
-																}
-
-																if (mm < 10) {
-																	mm = '0'
-																			+ mm
-																}
-
-																today = yyyy
-																		+ '-'
-																		+ mm
-																		+ '-'
-																		+ dd;
-																document
-																		.getElementById(
-																				"to")
-																		.setAttribute(
-																				"min",
-																				today);
-																document
-																		.getElementById('to').value = new Date(
-																		document
-																				.getElementById("from").value)
-																		.toISOString()
-																		.substring(
-																				0,
-																				10);
-
-																var iWeeks, iDateDiff, iAdjust = 0;
-																var dDate1 = new Date(
-																		document
-																				.getElementById("from").value);
-																var dDate2 = new Date(
-																		document
-																				.getElementById("to").value);
-
-																if (dDate2 < dDate1)
-																	return -1; // error code if dates transposed
-
-																var iWeekday1 = dDate1
-																		.getDay(); // day of week
-																var iWeekday2 = dDate2
-																		.getDay();
-
-																iWeekday1 = (iWeekday1 == 0) ? 7
-																		: iWeekday1; // change Sunday from 0 to 7
-																iWeekday2 = (iWeekday2 == 0) ? 7
-																		: iWeekday2;
-
-																if ((iWeekday1 > 5)
-																		&& (iWeekday2 > 5))
-																	iAdjust = 1; // adjustment if both days on weekend
-
-																iWeekday1 = (iWeekday1 > 5) ? 5
-																		: iWeekday1; // only count weekdays
-																iWeekday2 = (iWeekday2 > 5) ? 5
-																		: iWeekday2;
-
-																// calculate differnece in weeks (1000mS * 60sec * 60min * 24hrs * 7 days = 604800000)
-																iWeeks = Math
-																		.floor((dDate2
-																				.getTime() - dDate1
-																				.getTime()) / 604800000)
-
-																if (iWeekday1 <= iWeekday2) {
-																	iDateDiff = (iWeeks * 5)
-																			+ (iWeekday2 - iWeekday1)
-																			+ 1
-																} else {
-																	iDateDiff = ((iWeeks + 1) * 5)
-																			- (iWeekday1 - iWeekday2)
-																			+ 1
-																}
-
-																iDateDiff -= iAdjust
-																document
-																		.getElementById("total").value = iDateDiff;
-															}
-														</script>
+													
 												</div>
 												<div class="form-group col-md-4 mb-2 has-icon-left">
 													<p>Ngày kết thúc*</p>
@@ -340,83 +229,7 @@
 													</fieldset>
 
 
-													<script>
-														var today = new Date();
-														var dd = today
-																.getDate();
-														var mm = today
-																.getMonth() + 1; // January is 0!
-														var yyyy = today
-																.getFullYear();
-
-														if (dd < 10) {
-															dd = '0' + dd
-														}
-
-														if (mm < 10) {
-															mm = '0' + mm
-														}
-
-														today = yyyy + '-' + mm
-																+ '-' + dd;
-														document
-																.getElementById(
-																		"to")
-																.setAttribute(
-																		"min",
-																		today);
-														function count() {
-															var iWeeks, iDateDiff, iAdjust = 0;
-															var dDate1 = new Date(
-																	document
-																			.getElementById("from").value);
-															var dDate2 = new Date(
-																	document
-																			.getElementById("to").value);
-
-															if (dDate2 < dDate1)
-																return -1; // error code if dates transposed
-
-															var iWeekday1 = dDate1
-																	.getDay(); // day of week
-															var iWeekday2 = dDate2
-																	.getDay();
-
-															iWeekday1 = (iWeekday1 == 0) ? 7
-																	: iWeekday1; // change Sunday from 0 to 7
-															iWeekday2 = (iWeekday2 == 0) ? 7
-																	: iWeekday2;
-
-															if ((iWeekday1 > 5)
-																	&& (iWeekday2 > 5))
-																iAdjust = 1; // adjustment if both days on weekend
-
-															iWeekday1 = (iWeekday1 > 5) ? 5
-																	: iWeekday1; // only count weekdays
-															iWeekday2 = (iWeekday2 > 5) ? 5
-																	: iWeekday2;
-
-															// calculate differnece in weeks (1000mS * 60sec * 60min * 24hrs * 7 days = 604800000)
-															iWeeks = Math
-																	.floor((dDate2
-																			.getTime() - dDate1
-																			.getTime()) / 604800000)
-
-															if (iWeekday1 <= iWeekday2) {
-																iDateDiff = (iWeeks * 5)
-																		+ (iWeekday2 - iWeekday1)
-																		+ 1
-															} else {
-																iDateDiff = ((iWeeks + 1) * 5)
-																		- (iWeekday1 - iWeekday2)
-																		+ 1
-															}
-
-															iDateDiff -= iAdjust
-															document
-																	.getElementById("total").value = iDateDiff;
-														}
-													</script>
+													
 												</div>												
 											</div>
 
@@ -440,44 +253,38 @@
 												<i class="fa fa-tags"></i> Ghi chú*
 											</h4>
 
-											<div class="row">
+											<!-- <div class="row">
 												<div class="form-group col-xs-12 mb-2 has-icon-left">
-													<textarea id="ghi_chu" name="ghi_chu"
-														placeholder="Ghi chú ... (Tối đa 255 kí tự)"
-														class="form-control round" rows="9"></textarea>
-
+													<input  name="ghi_chu" type="text"
+																class="form-control round" 	>
 													<div class="form-control-position">
 														<i class="fa fa-keyboard-o"></i>
 													</div>
 												</div>
-											</div>
-
+											</div> -->
+											<input  name="ghi_chu" type="text"
+																class="form-control round" 	>
 											<div class="form-actions">
-												<button type="submit" class="btn btn-primary"
-													formaction="savenhap">
+												<button type="submit" class="btn btn-primary">
 													<i class="fa ft-save"></i> Lưu nháp
 												</button>
-												<button type="submit" class="btn btn-success">
-													formaction="/QuanLyVangNghi/danhsach"> <i
-														class="fa fa-check-square-o"></i> Gửi đơn chờ phê duyệt
+												<button type="submit" class="btn btn-success" >
+													 <i class="fa fa-check-square-o"></i> Gửi đơn chờ phê duyệt
 												</button>
 												<a href="QuanLyVangNghi/danhsach">
 													<button type="button" class="btn btn-warning mr-1">
 														<i class="fa fa-arrow-circle-left"></i> Quay lại
 													</button>
 												</a>
-
-
 											</div>
 										</div>
-									</form>
+									</form:form>
 								</div>
 							</div>
 						</div>
 					</div>
 					<!-- Inputs Icons end -->
 				</div>
-				</form>
 			</div>
 		</div>
 	</div>

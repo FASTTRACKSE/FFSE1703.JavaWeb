@@ -29,7 +29,11 @@
 					<form:form method="POST" modelAttribute="CongViec" action="/ffse-fbms/QuanLyNhiemVuMinhHQ/create">
 						<div class="form-group col-sm-6">
 						  	<label>Dự án</label>
-						  	<form:input class="form-control" path="duAn"/>
+						  	<form:select class="form-control" path="duAn.maDuAn" >
+						  		<c:forEach items="${DuAn}" var="lb">
+						  			<form:option value="${lb.maDuAn}" label="${lb.tenDuAn}"></form:option>
+						  		</c:forEach>
+						  	</form:select>
 						</div>
 						<div class="form-group col-sm-6">
 						  	<label>Tên công việc</label>
@@ -37,9 +41,9 @@
 						</div>
 						<div class="form-group col-sm-6">
 						  	<label>Loại công việc</label>
-						  	<form:select class="form-control" path="loaiCongViec" >
-						  		<c:forEach items="${cv}" var="nv">
-						  			<form:option value="${nv.loaiCongViec}" label="${nv.loaiCongViec}"></form:option>
+						  	<form:select class="form-control" path="maCongViec.maCongViec" >
+						  		<c:forEach items="${LoaiCongViec}" var="cv">
+						  			<form:option value="${cv.maCongViec}" label="${cv.loaiCongViec}"></form:option>
 						  		</c:forEach>
 						  	</form:select>
 						</div>
@@ -57,7 +61,11 @@
 						</div>
 						<div class="form-group col-sm-6">
 						  	<label>phân công</label>
-						  	<form:input class="form-control" path="phanCong"/>
+						  	<form:select class="form-control" path="phanCong.maNhanVien">
+						  		<c:forEach items="${NhanVien}" var="nv">
+						  			<form:option value="${nv.maNhanVien}" label="${nv.hoDem} ${nv.ten}"></form:option>
+						  		</c:forEach>
+						  	</form:select>
 						</div>
 						<div class="form-group col-sm-6">
 						  	<label>Thời gian dự kiến</label>
@@ -65,7 +73,7 @@
 						</div>
 						<div class="form-group col-sm-6">
 						  	<label>Trạng thái</label>
-						  	<form:input class="form-control" path="trangThai" value="Mới" readonly="true"/>
+						  	<form:input class="form-control" path="maTrangThai.maTrangThai" value="1" readonly="true"/>
 
 						  	
 						</div>

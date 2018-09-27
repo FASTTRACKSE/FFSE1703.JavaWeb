@@ -49,19 +49,21 @@
 				<form:form method="POST" action="addnew">
 					<div class="form-body">
 						<h4 class="form-section">
-							<i class="ft-user"></i> Thông tin dự án
+							<i class="ft-user"></i> Thông tin dự án***
 						</h4>
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
-									<label for="projectinput1">Mã dự án</label>
+									<label for="projectinput1">Mã dự án*</label>
+									<p class="error">${messageMa}</p>
 									<form:input path="idProject" placeholder="Mã dự án"
 										class="form-control" />
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<label for="projectinput2">Tên dự án</label>
+									<label for="projectinput2">Tên dự án*</label>
+									<p class="error">${messageName}</p>
 									<form:input path="nameProject" placeholder="Tên dự án"
 										class="form-control" />
 								</div>
@@ -70,7 +72,7 @@
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
-									<label for="projectinput5">Khách hàng</label>
+									<label for="projectinput5">Khách hàng*</label>
 									<form:select multiple="single" path="khachHang.idKhachHang"
 										class="form-control">
 										<form:options items="${khachHang}" itemValue="idKhachHang"
@@ -80,7 +82,7 @@
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<label for="projectinput5">Phòng dự án</label>
+									<label for="projectinput5">Phòng dự án*</label>
 									<form:select multiple="single" path="roomProject.maPhongBan"
 										class="form-control">
 										<form:options items="${phongDuAn}" itemValue="maPhongBan"
@@ -92,26 +94,10 @@
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
-									<label for="projectinput5">Ngày bắt đầu</label>
-									<form:input path="startDate" cssClass="form-control round"
-														type="date" />
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-									<label for="projectinput5">Ngày kết thúc</label>
-									<form:input path="endDate" cssClass="form-control round"
-														type="date" />
-								</div>
-							</div>
-
-						</div>
-						<div class="row">
-							<div class="col-md-6">
-								<div class="form-group">
-									<label for="projectinput5">Nghiệp vụ</label>
+									<label for="projectinput5">Nghiệp vụ*</label>
 									<form:select multiple="single" path="domain.idDomain"
-										class="form-control">
+										class="form-control" id="idPhongBan"
+										onchange="clickComboboxPhongBan()">
 										<form:options items="${domain}" itemValue="idDomain"
 											itemLabel="nameDomain" />
 									</form:select>
@@ -119,26 +105,46 @@
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<label for="projectinput5">Nhà cung cấp</label>
-									<form:select path="vendor" items="${vendor}" multiple="true"
-										itemValue="idVendor" itemLabel="nameVendor"
-										class="form-control" />
+									<label for="projectinput5"> PM</label>
+									<%-- <form:select path="pm.maNhanVien" id="idPm" name="pm"
+										type="text" class="form-control" disabled="true">
+										<option value="" selected="selected">Chọn quận huyện</option>
+									</form:select> --%>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="projectinput5">Ngày bắt đầu*</label>
+									<form:input path="startDate" cssClass="form-control round"
+										type="date" />
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="projectinput5">Ngày kết thúc*</label>
+									<form:input path="endDate" cssClass="form-control round"
+										type="date" />
 								</div>
 							</div>
 
 						</div>
+
+
 					</div>
 
 					<h4 class="form-section">
 						<i class="fa fa-paperclip"></i> Công nghệ
 					</h4>
 					<div class="form-group">
-						<label for="companyName" style="text-align: center;">Kĩ thuật</label>
-						<form:select multiple="multiple" path="technical" title="technical"
-										class="form-control">
-										<form:options items="${technical}" itemValue="idTechnical"
-											itemLabel="nameTechnical" />
-									</form:select>
+						<label for="companyName" style="text-align: center;">Kĩ
+							thuật</label>
+						<form:select multiple="multiple" path="technical"
+							title="technical" class="form-control">
+							<form:options items="${technical}" itemValue="idTechnical"
+								itemLabel="nameTechnical" />
+						</form:select>
 					</div>
 					<div class="form-group text-center">
 						<label for="companyName">Database</label>
@@ -153,7 +159,7 @@
 								<form:select path="language" items="${language}" multiple="true"
 									itemValue="idLanguage" itemLabel="nameLanguage"
 									class="form-control" />
-								
+
 							</div>
 						</div>
 						<div class="col-md-6">
@@ -168,6 +174,17 @@
 					<h4 class="form-section">
 						<i class="fa fa-paperclip"></i> Mô tả dự án
 					</h4>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+								<label for="projectinput5">Nhà cung cấp</label>
+								<form:select path="vendor" items="${vendor}" multiple="true"
+									itemValue="idVendor" itemLabel="nameVendor"
+									class="form-control" />
+							</div>
+						</div>
+
+					</div>
 					<div class="form-group">
 						<label for="projectinput8">Mô tả dự án</label>
 
@@ -192,7 +209,6 @@
 							<i class="fa fa-check-circle"></i> Lưu thông tin
 						</button>
 					</div>
-
 				</form:form>
 			</div>
 		</div>
@@ -200,12 +216,47 @@
 </div>
 
 <script>
-	
 	var demo1 = $('select[name="technical"]').bootstrapDualListbox();
 	var demo2 = $('select[name="database"]').bootstrapDualListbox();
 	var demo3 = $('select[name="language"]').bootstrapDualListbox();
 	var demo4 = $('select[name="framework"]').bootstrapDualListbox();
 	var demo5 = $('select[name="vendor"]').bootstrapDualListbox();
+
+/* 	function clickComboboxPhongBan() {
+		var maPhongBan = $("#idPhongBan").val();
+		if (maPhongBan == '') {
+
+			$('#idPm option').remove();
+
+			$('#idPm').prop('disabled', true);
+
+		} else {
+
+			$('#idPm').prop('disabled', false);
+			$('#idPm option').remove();
+
+		}
+
+		$.ajax({
+			url : "/ffse-fbms/mvpquanliduan/project/get-pm/" + maPhongBan,
+			dataType : "json",
+			success : function(data) {
+				/* alert("Hello! I am an alert box!"); */
+		/* /* 		$('#idPm').append($('<option>', {
+					value : '',
+					text : 'Chọn PM'
+				}));
+
+				for (var i = 0; i < data.length; i++) {
+					$('#idPm').append($('<option>', {
+						value : data[i].maNhanVien,
+						text : data[i].tenNhanVien
+					}));
+				}
+
+			}
+		});
+	}; */
 </script>
 
 <!-- ////////////////////////////////////////////////////////////////////////////-->

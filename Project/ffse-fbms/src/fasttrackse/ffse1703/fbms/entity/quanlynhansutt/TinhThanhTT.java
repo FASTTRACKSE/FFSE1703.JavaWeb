@@ -18,7 +18,7 @@ public class TinhThanhTT implements Serializable {
 	@Id
 	@Column(name = "ma_thanh_pho", unique = true, nullable = false, length = 30)
 	@NotEmpty
-	private int maThanhPho;
+	private String maThanhPho;
 
 	@Column(name = "ten_thanh_pho", nullable = false, length = 255)
 	@NotEmpty
@@ -31,11 +31,11 @@ public class TinhThanhTT implements Serializable {
 	public TinhThanhTT() {
 	}
 
-	public int getMaThanhPho() {
+	public String getMaThanhPho() {
 		return maThanhPho;
 	}
 
-	public void setMaThanhPho(int maThanhPho) {
+	public void setMaThanhPho(String maThanhPho) {
 		this.maThanhPho = maThanhPho;
 	}
 

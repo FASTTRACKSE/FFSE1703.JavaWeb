@@ -17,7 +17,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.HopDongTT;
 import fasttrackse.ffse1703.fbms.service.quanlynhansutt.HopDongServiceTT;
 import fasttrackse.ffse1703.fbms.service.quanlynhansutt.LoaiHopDongServiceTT;
-import fasttrackse.ffse1703.fbms.service.quanlynhansutt.QuanLyHoSoServiceTT;
 
 @Controller
 @RequestMapping("/quanlynhansutt/hop_dong/")
@@ -25,9 +24,6 @@ public class QuanLyHopDongControllerTT {
 
 	@Autowired
 	private LoaiHopDongServiceTT loaiHopDongServiceTT;
-
-	@Autowired
-	private QuanLyHoSoServiceTT quanLyHoSoServiceTT;
 
 	@Autowired
 	private HopDongServiceTT hopDongServiceTT;
@@ -48,16 +44,14 @@ public class QuanLyHopDongControllerTT {
 		this.hopDongServiceTT = hopDongServiceTT;
 	}
 
-	public void setQuanLyHoSoServiceTT(QuanLyHoSoServiceTT quanLyHoSoServiceTT) {
-		this.quanLyHoSoServiceTT = quanLyHoSoServiceTT;
-	}
-    //List tất cả hợp đồng
+	// List tất cả hợp đồng
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String viewHopDong(Model model) {
 		model.addAttribute("listHopDong", hopDongServiceTT.getAllHopDong());
 		return "QuanLyNhanSuTT/QuanLyHopDongTT/list";
 	}
-    //thêm hợp đồng cho một nhân viên
+
+	// thêm hợp đồng cho một nhân viên
 	@RequestMapping(value = "/add_hopdong/{maNhanVien}", method = RequestMethod.GET)
 	public String showFormAdd(Model model, final RedirectAttributes redirectAttributes, @PathVariable int maNhanVien) {
 		model.addAttribute("hopDongTT", new HopDongTT());
@@ -65,7 +59,8 @@ public class QuanLyHopDongControllerTT {
 		model.addAttribute("listLoaiHopDong", loaiHopDongServiceTT.findAll());
 		return "QuanLyNhanSuTT/QuanLyHopDongTT/add_form";
 	}
-    //sửa hợp đồng cho nhân viên
+
+	// sửa hợp đồng cho nhân viên
 	@RequestMapping("/edit_hopdong/{maNhanVien}")
 	public String showFormUpdate(@PathVariable("maNhanVien") int maNhanVien, Model model)
 			throws IllegalStateException, IOException {
@@ -73,13 +68,17 @@ public class QuanLyHopDongControllerTT {
 		model.addAttribute("listLoaiHopDong", loaiHopDongServiceTT.findAll());
 		return "QuanLyNhanSuTT/QuanLyHopDongTT/edit_form";
 	}
-    //xóa hợp đồng
+
+	// xóa hợp đồng
 	@RequestMapping("/remove/{maHopDong}")
-	public String remove(@PathVariable("maHopDong") int maHopDong) {
-		hopDongServiceTT.removeHopDong(maHopDong);
-		return "redirect:/quanlynhansutt/";
+	public String remove(@PathVariable("maHopDong") int maHopDong, final RedirectAttributes redirectAttributes) {
+		HopDongTT hd = hopDongServiceTT.findByMaHopDong(maHopDong);
+		hd.setIsdelete(0);
+		hopDongServiceTT.updateHopDong(hd);
+		return "redirect:/quanlynhansutt/hop_dong/";
 	}
-    //lưu phần thêm,sửa cho nhân viên
+
+	// lưu phần thêm,sửa cho nhân viên
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String saveHopDong(@ModelAttribute("hopDongTT") @Valid HopDongTT hd, BindingResult result) {
 		if (hd.getMaHopDong() == 0) {
@@ -88,19 +87,22 @@ public class QuanLyHopDongControllerTT {
 				return "QuanLyNhanSuTT/QuanLyHopDongTT/add_form";
 
 			}
+			hd.setIsdelete(1);
 			hopDongServiceTT.addHopDong(hd);
 		} else {
 			// existing person, call update
 			if (result.hasErrors()) {
 				return "QuanLyNhanSuTT/QuanLyHopDongTT/edit_form";
 			}
+			hd.setIsdelete(1);
 			hopDongServiceTT.updateHopDong(hd);
 		}
 		return "redirect:/quanlynhansutt/hop_dong/";
 	}
-    //viewOneHopDong Nhân Viên
+
+	// viewOneHopDong Nhân Viên
 	@RequestMapping("/viewOneHopDong/{maNhanVien}")
-	public String viewOneBangCap(@PathVariable int maNhanVien, Model model) {
+	public String viewOneHopDong(@PathVariable int maNhanVien, Model model) {
 		model.addAttribute("viewOne", this.hopDongServiceTT.viewOne(maNhanVien));
 		model.addAttribute("maNhanVien", maNhanVien);
 		return "QuanLyNhanSuTT/QuanLyHopDongTT/viewOneHopDong";

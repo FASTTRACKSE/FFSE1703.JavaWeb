@@ -17,7 +17,7 @@ public interface HopDongServiceTT {
 
 	public void updateHopDong(HopDongTT tt);
 	
-	public void removeHopDong(int maHopDong);
+	public void removeHopDong(HopDongTT tt);
 
 	public String getAutoId();
 

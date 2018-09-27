@@ -3,6 +3,7 @@ package fasttrackse.ffse1703.fbms.dao.qlynhiemvuminhhq;
 import java.util.List;
 
 import fasttrackse.ffse1703.fbms.entity.qlynhiemvuminhhq.*;
+import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 
 
 
@@ -23,6 +24,12 @@ import fasttrackse.ffse1703.fbms.entity.qlynhiemvuminhhq.*;
  	public List<TrangThaiMinhHQ> trangThai();
  	
  	public List<LoaiCongViecMinhHQ> loaiCongViec();
+ 	
+ 	public List<DuAnMinhHQ> duAn();
+ 	
+ 	public List<HoSoNhanVien> nhanVien();
+ 	
+ 	public List<CongViecMinhHQ> findAllForPaging(int startPosition, int maxResult);
 	
 // 	public String getRecordsTotal();
 //	

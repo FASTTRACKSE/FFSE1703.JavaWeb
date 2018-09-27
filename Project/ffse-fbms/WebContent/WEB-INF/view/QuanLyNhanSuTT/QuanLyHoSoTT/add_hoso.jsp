@@ -17,7 +17,8 @@
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/home" />'>Trang chủ</a></li>
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/quanlyhoso/" />'>Danh sách nhân viên</a></li>
+								href='<c:url value="/quanlynhansutt/ho_so/" />'>Danh sách
+									nhân viên</a></li>
 							<li class="breadcrumb-item active">Thêm nhân viên</li>
 						</ol>
 					</div>
@@ -46,8 +47,8 @@
 							</div>
 							<div class="card-body collapse in">
 								<div class="card-block">
-									<form:form method="POST" action=""
-										modelAttribute="hoSoNhanVienTT">
+									<form:form method="POST" action="insert"
+										modelAttribute="formHoso" enctype="multipart/form-data">
 										<div class="form-body">
 											<div class="row">
 												<div class="col-md-8">
@@ -65,22 +66,20 @@
 														</div>
 													</div>
 													<div class="row">
-														<div class="form-group col-sm-6">
-
-															<label for="projectinput3">Giới tính</label>
-															<form:select path="gioiTinh" type="text"
-																id="projectinput3" class="form-control"
-																placeholder="Giới tính">
-																<option value="none" selected="selected">Chọn
-																	giới tính</option>
-																<option value="1">Nam</option>
-																<option value="2">Nữ</option>
-															</form:select>
-
+													  <div class="form-group col-sm-6">
+															<div class="form-group">
+																<label>Lương Tháng 13</label>
+																<form:select class="custom-select form-control"
+																	path="gioiTinh">
+																	<option value="none">Chọn</option>
+																	<form:option value="1">Nam</form:option>
+																	<form:option value="2">Nữ</form:option>
+																</form:select>
+															</div>
 														</div>
 														<div class="form-group col-sm-6">
 															<label for="projectinput2">Tình trạng hôn nhân</label>
-															<form:select path="tinhTrangHonNhan" type="text"
+															<form:select path="tinhTrangHonNhan.maTinhTrangHonNhan" type="text"
 																id="projectinput2" class="form-control">
 																<option value="none" selected="selected">Chọn
 																	tình trạng hôn nhân</option>
@@ -94,9 +93,8 @@
 														<div class="form-group col-sm-6">
 															<div class="form-group">
 																<label for="projectinput4">Số CMND</label>
-																<form:input path="soCmnd" type="number"
-																	id="projectinput4" class="form-control"
-																	placeholder="Số CMND" />
+																<form:input path="soCmnd" type="text" id="projectinput4"
+																	class="form-control" placeholder="Số CMND" />
 															</div>
 														</div>
 														<div class="form-group col-sm-6">
@@ -109,16 +107,19 @@
 													</div>
 													<div class="row">
 														<div class="form-group col-sm-6">
-
 															<label for="projectinput4">Ngày cấp</label>
-															<form:input path="ngayCap" type="date" id="projectinput4"
-																class="form-control" placeholder="Ngày cấp" />
-
+															<fieldset class="form-group position-relative">
+																<form:input placeholder="Ngày cấp" type="date"
+																		class="form-control round" path="ngayCap" />
+																	<div class="form-control-position">
+																		<i class="fa fa-calendar-o"></i>
+																	</div>
+															</fieldset>
 														</div>
 														<div class="form-group col-sm-6">
 															<div class="form-group">
 																<label for="projectinput4">Dân tộc</label>
-																<form:select path="danToc" type="text"
+																<form:select path="danToc.maDanToc" type="text"
 																	id="projectinput4" class="form-control">
 																	<option value="none" selected="selected">Chọn
 																		dân tộc</option>
@@ -135,7 +136,7 @@
 														<div class="form-group col-sm-6">
 
 															<label for="projectinput4">Quốc tịch</label>
-															<form:select path="quocTich" type="text"
+															<form:select path="quocTich.maQuocTich" type="text"
 																id="projectinput4" class="form-control">
 																<option value="none" selected="selected">Chọn
 																	quốc tịch</option>
@@ -168,7 +169,7 @@
 													<div class="row">
 														<div class="form-group col-sm-6">
 															<label>tỉnh, thành phố</label>
-															<form:select path="thanhPho" type="text" id="thanhPhoId"
+															<form:select path="thanhPho.maThanhPho" type="text" id="thanhPhoId"
 																class="form-control" onchange="clickComboboxThanhPho()">
 																<option value="noThanhPho" selected="selected">Chọn
 																	thành phố</option>
@@ -179,13 +180,13 @@
 														</div>
 														<div class="form-group col-sm-6">
 															<label>quận, huyện</label>
-															<form:select path="quanHuyen" id="quanHuyenId"
+															<form:select path="quanHuyen.maQuanHuyen" id="quanHuyenId"
 																type="text" class="form-control" disabled="true"
 																onchange="clickComboboxQuan()" name="quanHuyen">
 																<option value="noQuanHuyen" selected="selected">Chọn
 																	quận huyện</option>
 															</form:select>
-															
+
 														</div>
 
 													</div>
@@ -194,7 +195,7 @@
 														<div class="form-group col-sm-6">
 															<label>xã, phường</label>
 
-															<form:select path="xaPhuong" type="text" id="phuongXaId"
+															<form:select path="xaPhuong.maXa" type="text" id="phuongXaId"
 																class="form-control" name="phuongXaSelect"
 																disabled="true">
 																<option value="noPhuongXa" selected="selected">Chọn
@@ -221,7 +222,7 @@
 														<div class="form-group col-sm-6">
 															<label>phòng ban</label>
 
-															<form:select path="phongBan" type="text" id="companyName"
+															<form:select path="phongBan.maPhongBan" type="text" id="companyName"
 																class="form-control" name="phongBanSelect">
 																<option value="none" selected>Chọn Phòng ban</option>
 																<c:forEach items="${listPhongBan}" var="x">
@@ -231,9 +232,9 @@
 														</div>
 														<div class="form-group col-sm-6">
 															<label>chức danh</label>
-															<form:select path="chucDanh" type="text" id="companyName"
-																class="form-control" placeholder="Company Name"
-																name="chucDanhSelect">
+															<form:select path="chucDanh.maChucDanh" type="text"
+																id="companyName" class="form-control"
+																placeholder="Company Name" name="chucDanhSelect">
 																<option value="none" selected="selected">Chọn
 																	chức danh</option>
 																<c:forEach items="${listChucDanh}" var="x">
@@ -244,23 +245,22 @@
 													</div>
 													<div class="row">
 														<div class="form-group col-sm-6">
-															<label for="projectinput4">Ảnh đại diện</label>
-															<form:input path="anhDaiDien" type="text"
-																id="projectinput4" class="form-control"
-																placeholder="ảnh đại diện" />
-														</div>
-														<div class="form-group col-sm-6">
 															<label for="location1">Trạng Thái</label>
 															<form:select class="custom-select form-control"
 																path="trangThai">
 																<form:option value="1">Còn
-																		Hợp Đồng</form:option>
+																		Làm Việc</form:option>
 																<form:option value="2">Hết
-																		Hợp Đồng</form:option>
+																		Làm Việc</form:option>
 															</form:select>
 														</div>
+														<div class="form-group col-sm-6">
+															<label>Hình Ảnh:</label> <input id="imgUrl"
+																class="form-control" type="file" name="file" /> <br>
+															<img id="img" src="#" alt="your image" width="100"
+																height="150" />
+														</div>
 													</div>
-
 												</div>
 											</div>
 										</div>
@@ -279,15 +279,22 @@
 										function clickComboboxThanhPho() {
 											var maThanhPho = $("#thanhPhoId")
 													.val();
+
 											if (maThanhPho == 'noThanhPho') { // nếu người dùng chưa chọn thành phố
+
+												$('#quanHuyenId option')
+														.remove();
+												$('#quanHuyenId')
+														.append(
+																$(
+																		'<option>',
+																		{
+																			value : 'noQuanHuyen',
+																			text : 'Chọn Quận Huyện'
+																		}));
+
 												$('#quanHuyenId').prop(
 														'disabled', true); /*disable combobox quận huyện */
-												$(
-														'#phuongXaId option[value=noPhuongXa]')
-														.attr('selected',
-																'selected')
-												$('#phuongXaId').prop(
-														'disabled', true);
 
 											} else { // nếu người dùng đã chọn thành phố
 
@@ -299,7 +306,7 @@
 
 											$
 													.ajax({
-														url : "/ffse-fbms/quanlyhoso/selectquan/"
+														url : "/ffse-fbms/quanlynhansutt/ho_so/selectquan/"
 																+ maThanhPho,
 														dataType : "json",
 														success : function(data) {
@@ -330,26 +337,26 @@
 										};
 									</script>
 
-									 <script type="text/javascript">
+									<script type="text/javascript">
 									<!-- ajax select QuanHuyen -->
-									< function clickComboboxQuan() {
+										function clickComboboxQuan() {
 											var maQuanHuyen = $("#quanHuyenId")
 													.val();
-											if (maQuanHuyen == 'noQuanHuyen') { /* nếu người dùng chưa chọn thành phố */
+											if (maQuanHuyen == 'noQuanHuyen') { /* nếu người dùng chưa chọn quận huyện */
 												$('#phuongXaId').prop(
-														'disabled', true); /*disable combobox quận huyện */
+														'disabled', true); /*disable combobox phường xã */
 
-											} else { /* nếu người dùng đã chọn thành phố*/
+											} else { /* nếu người dùng đã chọn quận huyện*/
 
 												$('#phuongXaId').prop(
-														'disabled', false); // enable combobox quận huyện 
+														'disabled', false); // enable combobox phường xã
 												$('#phuongXaId option')
-														.remove(); // xóa những option quận huyện cũ
+														.remove(); // xóa những option phường xã cũ
 											}
 
 											$
 													.ajax({
-														url : "/ffse-fbms/quanlyhoso/selectphuong/"
+														url : "/ffse-fbms/quanlynhansutt/ho_so/selectphuong/"
 																+ maQuanHuyen,
 														dataType : "json",
 														success : function(data) {
@@ -370,15 +377,15 @@
 																				$(
 																						'<option>',
 																						{
-																							value : data[i].maPhuong,
-																							text : data[i].tenPhuong
+																							value : data[i].maXa,
+																							text : data[i].tenXa
 																						}));
 															}
 
 														}
 													});
 										};
-									</script>  
+									</script>
 								</div>
 							</div>
 						</div>

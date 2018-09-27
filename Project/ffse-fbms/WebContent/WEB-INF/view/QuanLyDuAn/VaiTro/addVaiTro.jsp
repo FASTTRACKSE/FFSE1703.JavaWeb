@@ -39,14 +39,14 @@
 					value="${_csrf.token}" /> <label>Mã Vai Trò</label>
 				<form:input class="form-control" path="mavt"
 					placeholder="Mã Vai Trò" />
-				<%--  <form:errors path="mavt" cssStyle="color: red"></form:errors> --%>
+				  <form:errors path="mavt" cssStyle="color: red"></form:errors> 
 
 			</div>
 			<div class="form-group col-sm-6">
 				<label>Tên Vai Trò</label>
 				<form:input class="form-control" path="tenvt"
 					placeholder="Tên Vai Trò" />
-				<!-- 	<form:errors path="tenvt" cssStyle="color: red"></form:errors> -->
+					<form:errors path="tenvt" cssStyle="color: red"></form:errors> 
 			</div>
 
 			<div class="col-sm-12 text-center">

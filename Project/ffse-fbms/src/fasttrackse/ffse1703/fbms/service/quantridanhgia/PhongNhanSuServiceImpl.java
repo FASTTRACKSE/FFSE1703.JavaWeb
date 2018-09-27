@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 
 import fasttrackse.ffse1703.fbms.dao.quantridanhgia.PhongNhanSuDAOImpl;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.DanhGiaBanThan;
+import fasttrackse.ffse1703.fbms.entity.quantridanhgia.DanhGiaNhanVien;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.KyDanhGia;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.LichDanhGia;
-import fasttrackse.ffse1703.fbms.entity.quantridanhgia.PhanCongDanhGia;
 
 @Service
 public class PhongNhanSuServiceImpl implements PhongNhanSuService {
@@ -87,7 +87,7 @@ public class PhongNhanSuServiceImpl implements PhongNhanSuService {
 
 	@Transactional
 	@Override
-	public void insertPhanCongDanhGia(List<PhanCongDanhGia> pc) {
+	public void insertPhanCongDanhGia(List<DanhGiaNhanVien> pc) {
 		this.dao.insertPhanCongDanhGia(pc);
 	}
 
@@ -96,22 +96,28 @@ public class PhongNhanSuServiceImpl implements PhongNhanSuService {
 	public List<DanhGiaBanThan> getListDanhGiaBanThan() {
 		return this.dao.getListDanhGiaBanThan();
 	}
-	
+
 	@Transactional
 	@Override
 	public List<DanhGiaBanThan> getListDanhGiaBanThanByKyDanhGia(String kyDanhGia) {
 		return this.dao.getListDanhGiaBanThanByKyDanhGia(kyDanhGia);
 	}
-	
+
 	@Transactional
 	@Override
 	public List<DanhGiaBanThan> getListDanhGiaBanThanByPhongBan(String phongBan) {
 		return this.dao.getListDanhGiaBanThanByPhongBan(phongBan);
 	}
-	
+
 	@Transactional
 	@Override
 	public List<DanhGiaBanThan> getListDanhGiaBanThan(String kyDanhGia, String phongBan) {
 		return this.dao.getListDanhGiaBanThan(kyDanhGia, phongBan);
+	}
+
+	@Transactional
+	@Override
+	public int checkActiveLichDanhGia() {
+		return this.dao.checkActiveLichDanhGia();
 	}
 }

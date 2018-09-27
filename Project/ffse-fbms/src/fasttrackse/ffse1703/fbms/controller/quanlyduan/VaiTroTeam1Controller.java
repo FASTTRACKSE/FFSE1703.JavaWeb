@@ -54,7 +54,7 @@ public class VaiTroTeam1Controller {
 			RedirectAttributes redirectAttributes) {
 
 		if (result.hasErrors()) {
-			return "QuanLyDuAn/VaiTro/add";
+			return "QuanLyDuAn/VaiTro/addVaiTro";
 		}
 
 		if (vaiTroService.getById(vaitro1.getMavt()) != null) {

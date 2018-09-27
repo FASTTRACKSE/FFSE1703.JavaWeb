@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+import org.springframework.web.bind.annotation.RequestParam;
 import fasttrackse.ffse1703.fbms.entity.qlynhiemvuminhhq.CongViecMinhHQ;
-import fasttrackse.ffse1703.fbms.service.qlynhiemvuminhhq.*;
+import fasttrackse.ffse1703.fbms.service.qlynhiemvuminhhq.CongViecService;
 
 
 
@@ -27,9 +27,29 @@ public class QLyNhiemVuMinhHQController {
 		this.congViecService = congViecService;
 	}
 
-	@RequestMapping(value= {"/","/list"})
-	public String index(Model model) {
-		model.addAttribute("listCongViec", congViecService.findAll());
+//	@RequestMapping(value= {"/","/list"})
+//	public String index(Model model) {
+//		model.addAttribute("listCongViec", congViecService.findAll());
+//		return "/QuanLyNhiemVuMinhHQ/list";
+//	}
+	
+	
+	
+	public int totalPage(int perPage) {
+		int totalPage = (int) Math.ceil((double) congViecService.findAll().size() / (double) perPage);
+		return totalPage;
+	}
+
+	@RequestMapping(value = {"/","/list"}, method = RequestMethod.GET)
+	public String viewTaiLieu(Model model,
+			@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage) {
+		int perPage = 2;
+		int totalPage = totalPage(perPage);
+		int start = (currentPage - 1) * perPage;
+		model.addAttribute("listCongViec", congViecService.findAllForPaging(start, perPage));
+		model.addAttribute("lastPage", totalPage);
+		model.addAttribute("currentPage", currentPage);
+
 		return "/QuanLyNhiemVuMinhHQ/list";
 	}
 
@@ -42,8 +62,10 @@ public class QLyNhiemVuMinhHQController {
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String showForm(Model model) {
 		model.addAttribute("CongViec", new CongViecMinhHQ());
-		model.addAttribute("tt", congViecService.trangThai());
-		model.addAttribute("cv", congViecService.loaiCongViec());
+		model.addAttribute("TrangThai", congViecService.trangThai());
+		model.addAttribute("LoaiCongViec", congViecService.loaiCongViec());
+		model.addAttribute("DuAn", congViecService.duAn());
+		model.addAttribute("NhanVien", congViecService.nhanVien());
 		return "/QuanLyNhiemVuMinhHQ/add_form";
 	}
 
@@ -66,8 +88,10 @@ public class QLyNhiemVuMinhHQController {
 	@RequestMapping(value = "/edit/{ID}", method = RequestMethod.GET)
 	public String edit_view(@PathVariable("ID") int id, Model model) {
 		model.addAttribute("CongViec", congViecService.findByID(id));
-		model.addAttribute("tt", congViecService.trangThai());
-		model.addAttribute("cv", congViecService.loaiCongViec());
+		model.addAttribute("TrangThai", congViecService.trangThai());
+		model.addAttribute("LoaiCongViec", congViecService.loaiCongViec());
+		model.addAttribute("DuAn", congViecService.duAn());
+		model.addAttribute("NhanVien", congViecService.nhanVien());
 		return "/QuanLyNhiemVuMinhHQ/edit_form";
 	}
 

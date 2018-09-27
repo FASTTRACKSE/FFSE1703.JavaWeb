@@ -4,7 +4,6 @@ import java.util.List;
 
 import fasttrackse.ffse1703.fbms.entity.qlvn.LyDoXinNghi;
 import fasttrackse.ffse1703.fbms.entity.qlvn.ThongKeDonXinPhep;
-import fasttrackse.ffse1703.fbms.entity.qlvn.ThongTinHoSoNhanVien;
 import fasttrackse.ffse1703.fbms.entity.qlvn.TrangThai;
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 
@@ -31,7 +30,7 @@ public interface QuanLyVangNghiService {
 	
 	public List<TrangThai> loadAllTrangThai();
 	
-	public List<ThongTinHoSoNhanVien> loadAllHoSo();
+	public List<HoSoNhanVien> loadAllHoSo();
 	
 	public ThongKeDonXinPhep findById(int id);
 	

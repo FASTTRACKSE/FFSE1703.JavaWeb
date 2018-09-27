@@ -49,7 +49,7 @@ public class VendorTeam1Controller {
 	
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String addForm(Model model, final RedirectAttributes redirectAttributes) {
-		model.addAttribute("command", new VendorTeam1());
+		model.addAttribute("vendor", new VendorTeam1());
 		return "QuanLyDuAn/Vendor/addVendor";
 	}
 	
@@ -58,7 +58,7 @@ public class VendorTeam1Controller {
 			RedirectAttributes redirectAttributes) {
 
 		if (result.hasErrors()) {
-			return "QuanLyDuAn/vendor/add";
+			return "QuanLyDuAn/Vendor/addVendor";
 		}
 
 		if (vendorServiceTeam1.getById(vendor1.getMavd()) != null) {

@@ -8,8 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 import fasttrackse.ffse1703.fbms.dao.qlvn.QuanLyVangNghiDao;
 import fasttrackse.ffse1703.fbms.entity.qlvn.LyDoXinNghi;
 import fasttrackse.ffse1703.fbms.entity.qlvn.ThongKeDonXinPhep;
-import fasttrackse.ffse1703.fbms.entity.qlvn.ThongTinHoSoNhanVien;
 import fasttrackse.ffse1703.fbms.entity.qlvn.TrangThai;
+import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 @Service
 @Transactional
 public class QuanLyVangNghiServiceIpml implements QuanLyVangNghiService {
@@ -42,7 +42,7 @@ public class QuanLyVangNghiServiceIpml implements QuanLyVangNghiService {
 	}
 
 
-	public List<ThongTinHoSoNhanVien> loadAllHoSo() {
+	public List<HoSoNhanVien> loadAllHoSo() {
 		return this.quanLyVangNghiDao.loadAllHoSo();
 	}
 

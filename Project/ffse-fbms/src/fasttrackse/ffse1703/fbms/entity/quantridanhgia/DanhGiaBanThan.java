@@ -8,77 +8,80 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
+import org.hibernate.annotations.NaturalId;
+
 @Entity
-@Table(name="danh_gia_ban_than")
+@Table(name = "danh_gia_ban_than")
 public class DanhGiaBanThan {
 
 	@Id
-	@Column(name="id")
+	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
-	@Column(name="ma_ky_danh_gia")
+
+	@Column(name = "ma_ky_danh_gia")
 	@NotEmpty
 	private String kyDanhGia;
-	
-	@Column(name="ma_phong_ban")
+
+	@Column(name = "ma_phong_ban")
 	@NotEmpty
 	private String phongBan;
-	
-	@Column(name="nhan_vien")
+
+	@NaturalId
+	@Column(name = "nhan_vien")
 	@NotEmpty
-	private String nhanVien;
-	
-	@Column(name="ky_luat_cong_viec_danh_gia")
+	private int nhanVien;
+
+	@Column(name = "ky_luat_cong_viec_danh_gia")
 	private int kyLuatCongViec_DG;
-	
-	@Column(name="ky_luat_cong_viec_mo_ta")
+
+	@Column(name = "ky_luat_cong_viec_mo_ta")
 	@NotEmpty
 	private String kyLuatCongViec_MT;
 
-	@Column(name="tinh_than_lam_viec_danh_gia")
+	@Column(name = "tinh_than_lam_viec_danh_gia")
 	private int tinhThanLamViec_DG;
-	
-	@Column(name="tinh_than_lam_viec_mo_ta")
+
+	@Column(name = "tinh_than_lam_viec_mo_ta")
 	@NotEmpty
 	private String tinhThanLamViec_MT;
-	
-	@Column(name="khoi_luong_cong_viec_danh_gia")
+
+	@Column(name = "khoi_luong_cong_viec_danh_gia")
 	@NotEmpty
 	private int khoiLuongCongViec_DG;
-	
-	@Column(name="khoi_luong_cong_viec_mo_ta")
+
+	@Column(name = "khoi_luong_cong_viec_mo_ta")
 	private String khoiLuongCongViec_MT;
-	
-	@Column(name="ket_qua_cong_viec_danh_gia")
+
+	@Column(name = "ket_qua_cong_viec_danh_gia")
 	@NotEmpty
 	private int ketQuaCongViec_DG;
-	
-	@Column(name="ket_qua_cong_viec_mo_ta")
+
+	@Column(name = "ket_qua_cong_viec_mo_ta")
 	private String ketQuaCongViec_MT;
-	
-	@Column(name="ky_nang_tich_luy_danh_gia")
+
+	@Column(name = "ky_nang_tich_luy_danh_gia")
 	private int kyNangTichLuy_DG;
-	
-	@Column(name="ky_nang_tich_luy_mo_ta")
+
+	@Column(name = "ky_nang_tich_luy_mo_ta")
 	@NotEmpty
 	private String kyNangTichLuy_MT;
-	
-	@Column(name="dinh_huong")
+
+	@Column(name = "dinh_huong")
 	@NotEmpty
 	private String dinhHuong;
-	
-	@Column(name="danh_gia_tong_the")
+
+	@Column(name = "danh_gia_tong_the")
 	private String danhGiaTongThe;
-	
-	@Column(name="ma_trang_thai")
+
+	@Column(name = "ma_trang_thai")
 	@NotEmpty
 	private int trangThai;
-	
-	@Column(name="is_delete")
+
+	@Column(name = "is_delete")
 	@NotEmpty
 	private int isDelete;
-	
+
 	public DanhGiaBanThan() {
 		super();
 	}
@@ -107,12 +110,12 @@ public class DanhGiaBanThan {
 		this.phongBan = phongBan;
 	}
 
-	public String getNhanVien() {
-		return nhanVien;
+	public void setNhanVien(int nhanVien) {
+		this.nhanVien = nhanVien;
 	}
 
-	public void setNhanVien(String nhanVien) {
-		this.nhanVien = nhanVien;
+	public int getNhanVien() {
+		return nhanVien;
 	}
 
 	public int getKyLuatCongViec_DG() {
@@ -227,5 +230,4 @@ public class DanhGiaBanThan {
 		this.isDelete = isDelete;
 	}
 
-	
 }

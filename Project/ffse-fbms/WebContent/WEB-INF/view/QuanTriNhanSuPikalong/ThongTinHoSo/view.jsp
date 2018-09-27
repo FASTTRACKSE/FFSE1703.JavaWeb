@@ -21,6 +21,7 @@ div.stroke:hover {
 
 div.stroke a button {
 	position: relative;
+	
 }
 
 div.stroke a button:hover:after {
@@ -29,10 +30,22 @@ div.stroke a button:hover:after {
 </style>
 <div class="app-content content container-fluid">
 	<div class="content-wrapper">
+	<h3 class="content-header-title mb-0">Thông Tin Của Nhân
+			Viên</h3>
+		<div class="row breadcrumbs-top">
+			<div class="breadcrumb-wrapper col-xs-12">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a
+						href='<c:url value="/quantrinhansu/hosonhanvien/" />'>Danh
+							Sách Nhân Viên</a></li>
+					<li class="breadcrumb-item active">Thông Tin Nhân Viên</li>
+				</ol>
+			</div>
+		</div>
 		<div class="row">
 			<div class="col-xl-6 col-lg-6 col-12">
 				<div class="stroke">
-					<a href="#">
+					<a href="/ffse-fbms/quantrinhansu/hosonhanvien/hosochitiet/${maNv}">
 						<button class="btn btn-default" style="background-color: #F5F7FA">
 							<div class="card">
 								<div class="card-content">

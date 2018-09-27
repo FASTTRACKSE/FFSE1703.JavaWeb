@@ -21,8 +21,8 @@ public class XaPhuongServiceTTImpl implements XaPhuongServiceTT{
 	
 	@Override
 	@Transactional
-	public List<XaPhuongTT> getAllXaPhuong(int maQuanHuyen) {
-		// TODO Auto-generated method stub
+	public List<XaPhuongTT> getAllXaPhuong(String maQuanHuyen) {
+	
 		return this.xaPhuongDaoTT.listXaPhuong(maQuanHuyen);
 	}
 }

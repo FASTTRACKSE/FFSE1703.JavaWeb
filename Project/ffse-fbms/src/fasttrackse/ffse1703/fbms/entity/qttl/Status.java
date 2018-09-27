@@ -1,28 +1,15 @@
 package fasttrackse.ffse1703.fbms.entity.qttl;
 
-import java.io.Serializable;
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "trang_thai")
-public class Status implements Serializable{
-
-	@OneToMany(mappedBy="ma_trang_thai")
-	private List<Document> Document;
-	public List<Document> getDocument() {
-		return Document;
-	}
-	public void setDocument(List<Document> document) {
-		Document = document;
-	}
+public class Status {
 	
 	@Id
 	@Column(name = "id")
@@ -35,7 +22,6 @@ public class Status implements Serializable{
 	@Column(name = "ten_trang_thai")
 	private String ten_trang_thai;
 
-	//
 	public String getMa_trang_thai() {
 		return ma_trang_thai;
 	}
@@ -61,6 +47,16 @@ public class Status implements Serializable{
 		this.id = id;
 	}
 	
+	public Status() {
+		super();
+	}
+	
+	public Status (int id, String ma_trang_thai, String ten_trang_thai) {
+		super();
+		this.id = id;
+		this.ma_trang_thai = ma_trang_thai;
+		this.ten_trang_thai = ten_trang_thai;
+	}
 	
 	
 }

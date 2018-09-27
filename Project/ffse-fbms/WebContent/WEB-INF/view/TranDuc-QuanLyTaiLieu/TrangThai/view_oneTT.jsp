@@ -15,7 +15,7 @@
 			<!-- Path -->
 			<div class="content-header row">
 				<div class="content-header-left col-md-6 col-xs-12 mb-2">
-					<h3 class="content-header-title mb-0">Sửa trạng thái</h3>
+					<h3 class="content-header-title mb-0">Thông tin trạng thái</h3>
 					<div class="row breadcrumbs-top">
 						<div class="breadcrumb-wrapper col-xs-12">
 							<ol class="breadcrumb">
@@ -53,9 +53,6 @@
 									<div class="table-responsive">
 										<table class="table">
 											<tr>
-												<td><label>ID</label> <input class="form-control"
-													value="${TrangThai.id}" placeholder="ID"
-													readonly /></td>
 												<td><label>Mã trạng thái</label> <input
 													class="form-control" value="${TrangThai.maTT}"
 													placeholder="Mã Trạng Thái" readonly /></td>

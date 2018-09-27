@@ -35,7 +35,6 @@
 				<div class="main-content">
 					<div class="row">
 						<form:form method="POST" modelAttribute="TrangThai" action="">
-							<form:input type="hidden" path="id" style="display:none" value="${TrangThai.id}" />
 							<div class="form-group col-sm-6">
 								<label>Mã Trạng Thái</label>
 								<form:input class="form-control" path="maTT"

@@ -13,9 +13,9 @@ public interface TaiLieuService {
 
 	public void updateTL(TaiLieu tl);
 
-	public void deleteTL(String maTL);
+	public void deleteTL(Integer idTL);
 
-	public TaiLieu getTLbyID(String id);
+	public TaiLieu getTLbyID(Integer idTL);
 
 	public List<TaiLieu> listAllPaging(int start, int limit);
 	

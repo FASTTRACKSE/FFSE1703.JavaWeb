@@ -13,14 +13,16 @@ public interface TaiLieuDao {
 
 	public void updateTL(TaiLieu tl);
 
-	public void deleteTL(String maTL);
+	public void deleteTL(Integer idTL);
 
-	public TaiLieu getTLbyID(String maTL);
+	public TaiLieu getTLbyID(Integer maTL);
 
 	public List<TaiLieu> listAll(int start,int limit);
 
 	public List<DanhMuc> listDanhMuc();
 
 	List<PhongBan> listPhongBan();
+
+	List<TaiLieu> listTaiLieu();
 
 }

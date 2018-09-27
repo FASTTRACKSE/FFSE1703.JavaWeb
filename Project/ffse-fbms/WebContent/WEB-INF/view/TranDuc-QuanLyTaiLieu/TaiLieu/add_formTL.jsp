@@ -25,8 +25,8 @@
 									href='<c:url value="/home" />'>Home</a></li>
 								<li class="breadcrumb-item"><a
 									href='<c:url value="/TranDuc-QuanLyTaiLieu/TaiLieu/" />'>Danh
-										sách chức danh</a></li>
-								<li class="breadcrumb-item active">Thêm mới chức danh</li>
+										sách Tài Liệu</a></li>
+								<li class="breadcrumb-item active">Thêm mới Tài Liệu</li>
 							</ol>
 						</div>
 					</div>
@@ -39,6 +39,7 @@
 					<div class="row">
 						<form:form method="POST" modelAttribute="TaiLieu" action=""
 							enctype="multipart/form-data">
+							<form:input type="hidden" path="idTL"/>
 							<div class="form-group col-sm-6">
 								<label>Mã Tài Liệu</label>
 								<form:input class="form-control" path="maTL"
@@ -47,11 +48,11 @@
 							<div class="form-group col-sm-6">
 								<fieldset class="form-group">
 									<label for="basicSelect">Danh Mục</label>
-									<form:select cssClass="form-control" path="tenDM">
+									<form:select cssClass="form-control" path="danhMuc.maDM">
 										<option title="DanhMuc"></option>
 										<c:forEach var="item" items="${listDanhMuc}" begin="0"
 											varStatus="counter">
-											<form:option value="${item.idDM}" label="${item.tenDM}"></form:option>
+											<form:option value="${item.maDM}" label="${item.tenDM}"></form:option>
 										</c:forEach>
 									</form:select>
 								</fieldset>
@@ -59,7 +60,7 @@
 							<div class="form-group col-sm-6">
 								<fieldset class="form-group">
 									<label for="basicSelect">Phòng Ban</label>
-									<form:select cssClass="form-control" path="maPhongBan">
+									<form:select cssClass="form-control" path="phongBan.maPhongBan">
 										<option></option>
 										<c:forEach var="item" items="${listPhongBan}" begin="0"
 											varStatus="counter">

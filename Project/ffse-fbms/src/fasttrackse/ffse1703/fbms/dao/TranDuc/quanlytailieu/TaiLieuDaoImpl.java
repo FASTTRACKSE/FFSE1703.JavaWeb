@@ -24,7 +24,6 @@ public class TaiLieuDaoImpl implements TaiLieuDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
 	public List<TaiLieu> listAll() {
 		Session session = this.sessionFactory.openSession();
 		List<TaiLieu> list = session.createQuery("from TaiLieu").list();
@@ -51,18 +50,18 @@ public class TaiLieuDaoImpl implements TaiLieuDao {
 	}
 
 	@Override
-	public void deleteTL(String maTL) {
+	public void deleteTL(Integer idTL) {
 		Session session = this.sessionFactory.openSession();
 		Transaction tl = session.beginTransaction();
-		session.delete(session.get(TaiLieu.class, maTL));
+		session.delete(session.get(TaiLieu.class, idTL));
 		tl.commit();
 		session.close();
 	}
 
 	@Override
-	public TaiLieu getTLbyID(String maTL) {
+	public TaiLieu getTLbyID(Integer idTL) {
 		Session session = this.sessionFactory.openSession();
-		TaiLieu tl = session.get(TaiLieu.class, maTL);
+		TaiLieu tl = session.get(TaiLieu.class, idTL);
 		session.close();
 		return tl;
 	}
@@ -88,6 +87,7 @@ public class TaiLieuDaoImpl implements TaiLieuDao {
 		return list;
 	}
 
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<DanhMuc> listDanhMuc() {
@@ -97,4 +97,25 @@ public class TaiLieuDaoImpl implements TaiLieuDao {
 		return list;
 	}
 
+	@Override
+	public List<TaiLieu> listTaiLieu() {
+//		Session session = sessionFactory.getCurrentSession();
+//		CriteriaBuilder cb = session.getCriteriaBuilder();
+//		CriteriaQuery<TaiLieu> cq = cb.createQuery(TaiLieu.class);
+//		Root<TaiLieu> root = cq.from(TaiLieu.class);
+//		Join<TaiLieu, TrangThaiTaiLieu> MaTrangThaiJoin = root.join("ma_trang_thai");
+//		Join<TaiLieu, PhongBan> MaPhongBanJoin = root.join("ma_phong_ban");
+//		cq.select(root).where(cb.and(cb.equal(MaTrangThaiJoin.get("ma_trang_thai"), "da_phe_duyet"),
+//				cb.equal(MaPhongBanJoin.get("ma_phong_ban"), "all")));
+//		List<TaiLieu> listPublicDocument = session.createQuery(cq).getResultList();
+//		return listPublicDocument;
+//		Session session = sessionFactory.getCurrentSession();
+//		CriteriaBuilder cb = session.getCriteriaBuilder();
+//		CriteriaQuery<TaiLieu> cq = cb.createQuery(TaiLieu.class);
+//		Root<TaiLieu> root = cq.from(TaiLieu.class);
+//		Join<TaiLieu, DanhMuc> addressJoin = root.join("ma_danh_muc");
+//		cq.select(root);
+//		List<TaiLieu> listTL = session.createQuery(cq).getResultList();
+		return null;
+	}
 }

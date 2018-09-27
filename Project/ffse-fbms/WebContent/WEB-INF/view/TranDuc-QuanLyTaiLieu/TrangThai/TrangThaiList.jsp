@@ -87,18 +87,18 @@
 													<c:forEach var="item" items="${listTrangThai}" begin="0"
 														varStatus="counter">
 														<tr>
-															<td>${item.id}</td>
+															<td>${counter.index+1}</td>
 															<td>${item.maTT}</td>
 															<td>${item.tenTT}</td>
 															<td class="tbl_actions"><a
-																href="<c:url value="/TranDuc-QuanLyTaiLieu/TrangThai/view/${item.id}" />"
+																href="<c:url value="/TranDuc-QuanLyTaiLieu/TrangThai/view/${item.maTT}" />"
 																title="Xem"> <i class="fa fa-eye" aria-hidden="true"></i>
 															</a> <a
-																href="<c:url value="/TranDuc-QuanLyTaiLieu/TrangThai/sua/${item.id}" />"
+																href="<c:url value="/TranDuc-QuanLyTaiLieu/TrangThai/sua/${item.maTT}" />"
 																title="Sửa"> <i class="fa fa-pencil-square-o blue"
 																	aria-hidden="true"></i>
 															</a> <a
-																href="<c:url value="/TranDuc-QuanLyTaiLieu/TrangThai/xoa/${item.id}" />"
+																href="<c:url value="/TranDuc-QuanLyTaiLieu/TrangThai/xoa/${item.maTT}" />"
 																title="Xóa"
 																onclick="return confirm('Bạn có chắc muốn xóa ?')">
 																	<i class="fa fa-trash red" aria-hidden="true"></i>

@@ -56,21 +56,24 @@
 							<div class="card-block">
 								<div class="table-responsive">
 
-									<label>Tên dự án</label> <input class="form-control"
-										value="${nv.duAn.tenDuan}" readonly /> <label>Tên công việc</label> <input
-										class="form-control" value="${nv.tenCongviec}" readonly /> <label>Loại
-										công việc</label> <input class="form-control"
-										value="${nv.idLoaiCongviec.loaiCongviec}" readonly /> <label>Mô Tả</label> <input
-										class="form-control" value="${nv.moTa}" readonly /> <label>Thời
-										gian bắt đầu</label> <input class="form-control"
-										value="${nv.tgBatdau}" readonly /> <label>Thời gian
-										kết thúc</label> <input class="form-control" value="${nv.tgKetthuc}"
-										readonly /> <label>Người được phân công</label> <input
-										class="form-control" value="${nv.nhanVien.hoDem} ${nv.nhanVien.ten}" readonly />
-									</td> <label>Thời gian dự kiếnhoàn thành</label> <input
-										class="form-control" value="${nv.tgDukienhoanthanh}" readonly />
-									</td> <label>Loại trạng thái</label> <input class="form-control"
-										value="${nv.idLoaiTrangthai.loaiTrangthai}" readonly />
+									<label>Tên dự án</label>
+										 <input class="form-control"value="${nv.duAn.tenDuan}" readonly />
+								    <label>Tên công việc</label> 
+								    	 <input class="form-control" value="${nv.tenCongviec}" readonly /> 
+									<label>Loại công việc</label>
+										 <input class="form-control" value="${nv.idLoaiCongviec.loaiCongviec}" readonly />
+									<label>Mô Tả</label> 
+										 <input class="form-control" value="${nv.moTa}" readonly /> 
+									<label>Thời gian bắt đầu</label> 
+										 <input class="form-control" value="${nv.tgBatdau}" readonly /> 
+									<label>Thời gian kết thúc</label>
+										 <input class="form-control" value="${nv.tgKetthuc}" readonly /> 
+									<label>Người được phân công</label> 
+										<input class="form-control" value="${nv.nhanVien.hoDem} ${nv.nhanVien.ten}" readonly />
+									<label>Thời gian dự kiếnhoàn thành</label> 
+										<input class="form-control" value="${nv.tgDukienhoanthanh}" readonly />
+									<label>Loại trạng thái</label>
+										 <input class="form-control" value="${nv.idLoaiTrangthai.loaiTrangthai}" readonly />
 
 								</div>
 
@@ -82,6 +85,6 @@
 		</div>
 	</div>
 </div>
-</div>
+
 
 <jsp:include page="/WEB-INF/view/templates/footer.jsp" />

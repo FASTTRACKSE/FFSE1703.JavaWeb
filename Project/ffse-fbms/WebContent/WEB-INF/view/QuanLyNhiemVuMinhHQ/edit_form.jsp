@@ -30,7 +30,7 @@
 						<form:input type="hidden" path="ID" style="display:none" />
 						<div class="form-group col-sm-6">
 						  	<label>Dự án</label>
-							<form:select class="form-control" path="duAn.maDuAn" readonly="true">
+							<form:select class="form-control block round" path="duAn.maDuAn" readonly="true">
 						  		<c:forEach items="${DuAn}" var="lb">
 						  			<form:option value="${lb.maDuAn}" label="${lb.tenDuAn}"></form:option>
 						  		</c:forEach>
@@ -38,31 +38,35 @@
 						</div>
 						<div class="form-group col-sm-6">
 						  	<label>Tên công việc</label>
-						  	<form:input class="form-control" path="tenCongViec" />
+						  	<form:input class="form-control block round" path="tenCongViec" />
 						</div>
 						<div class="form-group col-sm-6">
 						  	<label>Loại công việc</label>
-						  	<form:select class="form-control" path="loaiCongViec" >
+						  	<form:select class="custom-select block round" path="maCongViec.maCongViec" >
 						  		<c:forEach items="${LoaiCongViec}" var="cv">
-						  			<form:option value="${cv.loaiCongViec}" label="${cv.loaiCongViec}"></form:option>
+						  			<form:option value="${cv.maCongViec}" label="${cv.loaiCongViec}"></form:option>
 						  		</c:forEach>
 						  	</form:select>
 						</div>
 						<div class="form-group col-sm-6">
-						  	<label>Mô tả</label>
-						  	<form:textarea class="form-control" path="moTa"/>
+						  	<label>Trạng thái</label>
+						  	<form:select class="custom-select block round" path="maTrangThai.maTrangThai">
+						  		<c:forEach items="${TrangThai}" var="tt">
+						  			<form:option value="${tt.maTrangThai}" label="${tt.trangThai}"></form:option>
+						  		</c:forEach>
+						  	</form:select>
 						</div>
 						<div class="form-group col-sm-6">
 						  	<label>Thời gian bắt đầu</label>
-						  	<form:input class="form-control" type="date" path="tgBatDau"/>
+						  	<form:input class="form-control block round" type="date" path="tgBatDau"/>
 						</div>
 						<div class="form-group col-sm-6">
 						  	<label>Thời gian kết thúc</label>
-						  	<form:input class="form-control" type="date" path="tgKetThuc"/>
+						  	<form:input class="form-control block round" type="date" path="tgKetThuc"/>
 						</div>
 						<div class="form-group col-sm-6">
 						  	<label>phân công</label>
-						  	<form:select class="form-control" path="phanCong.maNhanVien">
+						  	<form:select class="custom-select block round" path="phanCong.maNhanVien">
 						  		<c:forEach items="${NhanVien}" var="nv">
 						  			<form:option value="${nv.maNhanVien}" label="${nv.hoDem} ${nv.ten}"></form:option>
 						  		</c:forEach>
@@ -70,19 +74,14 @@
 						</div>
 						<div class="form-group col-sm-6">
 						  	<label>Thời gian dự kiến</label>
-						  	<form:input class="form-control" path="tgDuKien" />
+						  	<form:input class="form-control block round" path="tgDuKien" />
 						</div>
 						<div class="form-group col-sm-6">
-						  	<label>Trạng thái</label>
-						  	<form:select class="form-control" path="trangThai">
-						  		<c:forEach items="${TrangThai}" var="tt">
-						  			<form:option value="${tt.trangThai}" label="${tt.trangThai}"></form:option>
-						  		</c:forEach>
-						  	</form:select>
-						  	
+						  	<label>Mô tả</label>
+						  	<form:textarea class="form-control block round" path="moTa"/>
 						</div>
 						<div class="col-sm-12 text-center">
-							<button type="submit" class="btn btn-success">Lưu thông tin</button>
+							<button type="submit" class="btn btn-success round">Lưu thông tin</button>
 						</div>
 						<form:hidden path="isDelete"/>
 					</form:form>

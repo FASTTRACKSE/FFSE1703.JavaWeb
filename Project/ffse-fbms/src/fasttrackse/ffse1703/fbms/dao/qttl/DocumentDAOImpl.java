@@ -7,9 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-
 import fasttrackse.ffse1703.fbms.entity.qttl.*;
-import fasttrackse.ffse1703.fbms.entity.quanlyduan.VendorTeam1;
 
 @Repository
 public class DocumentDAOImpl implements DocumentDAO {
@@ -61,7 +59,33 @@ public class DocumentDAOImpl implements DocumentDAO {
 		Session session = this.sessionFactory.getCurrentSession();
 		return session.createQuery("from Document").setFirstResult(startPosition).setMaxResults(maxResult).list();
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Category> listCategory() {
+		Session session = this.sessionFactory.openSession();
+		List<Category> list = session.createQuery("from Category").list();
+		session.close();
+		return list;
+	}
 
-
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Status> listStatus() {
+		Session session = this.sessionFactory.openSession();
+		List<Status> list = session.createQuery("from Status").list();
+		session.close();
+		return list;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Room> listRoom() {
+		Session session = this.sessionFactory.openSession();
+		List<Room> list = session.createQuery("from Room").list();
+		session.close();
+		return list;
+	}
+	
 
 }

@@ -29,18 +29,20 @@
 		<div class="content-header row">
 			<div class="content-header-left col-md-9 col-xs-12 mb-2">
 				<h3 class="content-header-title mb-0">
-				Danh Sách Bằng Cấp
+			      Bằng Cấp Nhân Viên
 				</h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="<c:url value = "/"/>"><spring:message
 										code="label.trangChu" /></a></li>
-							<li class="breadcrumb-item"><a href="javascript:void(0)"><spring:message
+							<li class="breadcrumb-item"><a
+								href="<c:url value = "/quanlynhansutt/ho_so/"/>"><spring:message
 										code="label.quanLyNhanSu" /></a></li>
-							<li class="breadcrumb-item"><a href="javascript:void(0)"><spring:message
-										code="label.quanLyHopDong" /></a></li>
-							<li class="breadcrumb-item active">Danh Sách Bằng Cấp</li>
+							<li class="breadcrumb-item"><a
+								href='<c:url value="/quanlynhansutt/bang_cap/" />'>Danh sách
+									bằng cấp</a></li>
+							<li class="breadcrumb-item active">Bằng Cấp Nhân Viên</li>
 						</ol>
 					</div>
 				</div>

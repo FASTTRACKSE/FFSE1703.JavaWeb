@@ -11,4 +11,6 @@ public interface HopDongPikalongDao {
 	public String getAutoId();
 	public String getLastMaHd();
 	public HopDongPikalong getHopDongById(String maNv);
+	public HopDongPikalong getMaHopDong(int maHopDong);
+	List<HopDongPikalong> viewOne(String maNv);
 }

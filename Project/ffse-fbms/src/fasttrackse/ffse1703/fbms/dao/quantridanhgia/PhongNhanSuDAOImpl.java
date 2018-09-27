@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.DanhGiaBanThan;
+import fasttrackse.ffse1703.fbms.entity.quantridanhgia.DanhGiaNhanVien;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.KyDanhGia;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.LichDanhGia;
-import fasttrackse.ffse1703.fbms.entity.quantridanhgia.PhanCongDanhGia;
 
 @Repository
 public class PhongNhanSuDAOImpl implements PhongNhanSuDAO {
@@ -54,7 +54,6 @@ public class PhongNhanSuDAOImpl implements PhongNhanSuDAO {
 		session.update(kyDanhGia);
 	}
 
-	
 	// Get mã nhân viên phong ban
 	@SuppressWarnings("unchecked")
 	@Override
@@ -64,12 +63,11 @@ public class PhongNhanSuDAOImpl implements PhongNhanSuDAO {
 		return session.createSQLQuery(sql).setParameter(1, phongBan).list();
 	}
 
-	
 	// Tạo phân công đánh giá
 	@Override
-	public void insertPhanCongDanhGia(List<PhanCongDanhGia> phanCong) {
+	public void insertPhanCongDanhGia(List<DanhGiaNhanVien> phanCong) {
 		Session session = sessionFactory.getCurrentSession();
-		for (PhanCongDanhGia x : phanCong) {
+		for (DanhGiaNhanVien x : phanCong) {
 			session.persist(x);
 		}
 	}
@@ -94,7 +92,6 @@ public class PhongNhanSuDAOImpl implements PhongNhanSuDAO {
 		return session.get(LichDanhGia.class, id);
 	}
 
-	
 	// Active lịch đánh giá
 	@Override
 	public void activeLichDanhGia(LichDanhGia lichDanhGia) {
@@ -118,28 +115,43 @@ public class PhongNhanSuDAOImpl implements PhongNhanSuDAO {
 		Session session = sessionFactory.getCurrentSession();
 		return session.createQuery("from DanhGiaBanThan").list();
 	}
-	
+
 	// Get list đánh giá bản thân theo kỳ đánh giá
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<DanhGiaBanThan> getListDanhGiaBanThanByKyDanhGia(String kyDanhGia) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("from DanhGiaBanThan where kyDanhGia = :kyDanhGia").setParameter("kyDanhGia", kyDanhGia).list();
+		return session.createQuery("from DanhGiaBanThan where kyDanhGia = :kyDanhGia")
+				.setParameter("kyDanhGia", kyDanhGia).list();
 	}
-	
+
 	// Get list đánh giá bản thân theo phòng ban
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<DanhGiaBanThan> getListDanhGiaBanThanByPhongBan(String phongBan) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("from DanhGiaBanThan where phongBan = :phongBan").setParameter("phongBan", phongBan).list();
+		return session.createQuery("from DanhGiaBanThan where phongBan = :phongBan").setParameter("phongBan", phongBan)
+				.list();
 	}
-	
+
 	// Get list đánh giá bản thân theo kỳ đánh giá và phòng ban
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<DanhGiaBanThan> getListDanhGiaBanThan(String kyDanhGia, String phongBan) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("from DanhGiaBanThan where kyDanhGia = :kyDanhGia and phongBan = :phongBan").setParameter("kyDanhGia", kyDanhGia).setParameter("phongBan", phongBan).list();
+		return session.createQuery("from DanhGiaBanThan where kyDanhGia = :kyDanhGia and phongBan = :phongBan")
+				.setParameter("kyDanhGia", kyDanhGia).setParameter("phongBan", phongBan).list();
+	}
+
+	@Override
+	public int checkActiveLichDanhGia() {
+		Session session = sessionFactory.getCurrentSession();
+		return session.createQuery("from LichDanhGia where isActive = 1").list().size();
+	}
+
+	@Override
+	public int checkCompleteLichDanhGia() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

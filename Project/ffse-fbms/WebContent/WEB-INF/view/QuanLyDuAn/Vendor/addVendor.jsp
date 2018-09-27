@@ -8,7 +8,7 @@
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 <div class="app-content content container-fluid">
 	<div class="content-wrapper">
-			<div class="content-header row">
+		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-xs-12 mb-2">
 				<h3 class="content-header-title mb-0">Thêm Vendor</h3>
 				<div class="row breadcrumbs-top">
@@ -31,35 +31,37 @@
 				</h1>
 			</div>
 		</div>
-		<form:form method="POST" action="/ffse-fbms/QuanLyDuAn/vendor/creat">
+		<form:form method="POST" action="/ffse-fbms/QuanLyDuAn/vendor/creat"
+			modelAttribute="vendor">
 			<div class="form-group col-sm-6">
 				<input type="hidden" name="${_csrf.parameterName}"
-					value="${_csrf.token}" /> <label>Mã Vendor</label>
+					value="${_csrf.token}" /> 
+					<label>Mã Vendor</label>
 				<form:input class="form-control" path="mavd" placeholder="Mã Vendor" />
-				<%--  <form:errors path="mavd" cssStyle="color: red"></form:errors> --%>
+				<form:errors path="mavd" cssStyle="color: red"></form:errors>
 
 			</div>
 			<div class="form-group col-sm-6">
 				<label>Tên Vendor</label>
 				<form:input class="form-control" path="tenvd"
 					placeholder="Tên Vendor " />
-				<!-- 	<form:errors path="tenvd" cssStyle="color: red"></form:errors> -->
+				<form:errors path="tenvd" cssStyle="color: red"></form:errors>
 			</div>
 			<div class="form-group col-sm-6">
 				<label>Địa Chỉ</label>
 				<form:input class="form-control" path="diachi" placeholder="Địa Chỉ" />
-				<%--  <form:errors path="diachi" cssStyle="color: red"></form:errors>--%>
+				<form:errors path="diachi" cssStyle="color: red"></form:errors>
 			</div>
 			<div class="form-group col-sm-6">
 				<label>Email</label>
 				<form:input class="form-control" path="email" placeholder="Email" />
-				<%-- <form:errors path="email" cssStyle="color: red"></form:errors> --%>
+				<form:errors path="email" cssStyle="color: red"></form:errors>
 			</div>
 			<div class="form-group col-sm-6">
 				<label>SĐT</label>
 				<form:input class="form-control" path="sdt"
 					placeholder="Số điện thoại" />
-				<%-- <form:errors path="email" cssStyle="color: red"></form:errors> --%>
+				<form:errors path="email" cssStyle="color: red"></form:errors>
 			</div>
 			<div class="col-sm-12 text-center">
 				<button type="submit" class="btn btn-success">Lưu thông tin</button>

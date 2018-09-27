@@ -5,7 +5,7 @@
 <jsp:include page="/WEB-INF/view/templates/header.jsp" /> 
 
 <div class="app-content content container-fluid">
-<a href="#"><button class="btn btn-success round btn-min-width mr-1 mb-1">Thêm Mới</button></a>
+<a href="/ffse-fbms/QuanTriNhanSu/quanlihopdong/formaddhd/${maNv}"><button class="btn btn-success round btn-min-width mr-1 mb-1">Thêm Mới</button></a>
 <div class="content-wrapper">
 	<table class="table mb-0">
 		<thead>
@@ -35,8 +35,7 @@
 				<td>
 					<div class="fonticon-container"><div style="line-height:0; height: 0; margin-bottom: 0;" class="fonticon-wrap">
 						<a href="view/${x.hoSoNhanVienPikalong.maNv}"><i style="font-size: 1em;" class="ft-eye"></i></a>
-						<a href="#"><i style="font-size: 1em;" class="ft-edit-2"></i></a>
-						<a href="#"><i style="font-size: 1em;" class="ft-trash"></i></a>
+						<a href="formedithd/${x.maHopDong}"><i style="font-size: 1em;" class="ft-edit-2"></i></a>
 					</div></div>
 				</td>
 			</tr>

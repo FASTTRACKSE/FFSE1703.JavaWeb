@@ -33,26 +33,27 @@
 			<div class="content-body">
 				<!-- Basic form layout section start -->
 				<section id="basic-form-layouts">
-					<c:if test="${empty tudanhgia}">
+					<c:if test="${empty danhGia}">
 						<div class="row">
 							<div class="col-md-12">
 								<div class="card">
 									<div class="card-content">
 										<div class="card-body" style="margin: 1em">
-											<h2>Bạn chưa có bản đánh giá bản thân nào</h2>
+											<h2>Bạn chưa có bản đánh giá bản thân</h2>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</c:if>
-					<c:if test="${not empty tudanhgia}">
+					<c:if test="${not empty danhGia}">
 						<div class="row">
 							<div class="col-md-12">
 								<div class="card">
 									<div class="card-content collpase show">
 										<div class="card-body" style="margin: 1em">
-											<form:form cssClass="form form-horizontal form-bordered">
+											<form:form cssClass="form form-horizontal form-bordered"
+												modelAttribute="danhGia">
 												<div class="form-body">
 													<h4 class="form-section">
 														<i class="ft-user"></i> Bản tự đánh giá
@@ -61,18 +62,15 @@
 														<label class="col-md-3 label-control">Kỷ luật công
 															việc</label>
 														<div class="col-md-9">
-															<div class="row">
-																<form:label path="kyLuatCongViec_DG"></form:label>
-																<form:label path="kyLuatCongViec_MT"></form:label>
-															</div>
+															<label>${danhGia.kyLuatCongViec_DG }</label> <label>${danhGia.kyLuatCongViec_MT }</label>
 														</div>
 													</div>
 													<div class="form-group row">
 														<label class="col-md-3 label-control">Tinh thần
 															làm việc</label>
 														<div class="col-md-9">
-															<form:label path="tinhThanLamViec_DG"></form:label>
-															<form:label path="tinhThanLamViec_MT"></form:label>
+															<label>${danhGia.tinhThanLamViec_DG }</label>
+															<label>${danhGia.tinhThanLamViec_MT }</label>
 														</div>
 													</div>
 
@@ -80,17 +78,16 @@
 														<label class="col-md-3 label-control">Khối lượng
 															công việc đạt được</label>
 														<div class="col-md-9">
-															<form:label path="khoiLuongCongViec_DG"></form:label>
-															<form:label path="khoiLuongCongViec_MT"></form:label>
-														</div>
+															<label>${danhGia.khoiLuongCongViec_DG }</label>
+															<label>${danhGia.khoiLuongCongViec_MT }</label>														</div>
 													</div>
 
 													<div class="form-group row">
 														<label class="col-md-3 label-control">Kết quả công
 															việc đạt được</label>
 														<div class="col-md-9">
-															<form:label path="ketQuaCongViec_DG"></form:label>
-															<form:label path="ketQuaCongViec_MT"></form:label>
+															<label>${danhGia.ketQuaCongViec_DG }</label>
+															<label>${danhGia.ketQuaCongViec_MT }</label>
 														</div>
 													</div>
 
@@ -98,15 +95,15 @@
 														<label class="col-md-3 label-control">Kỹ năng tích
 															lũy</label>
 														<div class="col-md-9">
-															<form:label path="kyNangTichLuy_DG"></form:label>
-															<form:label path="kyNangTichLuy_MT"></form:label>
+															<label>${danhGia.kyNangTichLuy_DG }</label>
+															<label>${danhGia.kyNangTichLuy_MT }</label>
 														</div>
 													</div>
 
 													<div class="form-group row">
 														<label class="col-md-3 label-control">Định hướng</label>
 														<div class="col-md-9">
-															<form:label path="dinhHuong"></form:label>
+															<label>${danhGia.dinhHuong }</label>
 														</div>
 													</div>
 
@@ -114,14 +111,12 @@
 														<label class="col-md-3 label-control">Đánh giá
 															tổng thể</label>
 														<div class="col-md-9">
-															<form:label path="danhGiaTongThe"></form:label>
+															<label>${danhGia.danhGiaTongThe }</label>
 														</div>
 													</div>
 												</div>
 
 												<div class="form-actions">
-													<a href="<c:url value="/quantridanhgia/home/"/>"
-														class="btn btn-danger btn-min-width mr-1 mb-1">Trở về</a>
 													<c:if test="${command.isDelete == 1 }">
 														<a
 															href="<c:url value="/quantridanhgia/tudanhgia/showform"/>"

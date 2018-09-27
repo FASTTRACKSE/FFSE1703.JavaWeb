@@ -3,7 +3,6 @@ package fasttrackse.ffse1703.fbms.entity.qlynhiemvuminhhq;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -26,7 +25,7 @@ public class CongViecMinhHQ {
 	@NotEmpty
 	private String tenCongViec;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "ID_CV", nullable=false)
 	@NotNull
 	private LoaiCongViecMinhHQ maCongViec;
@@ -43,7 +42,7 @@ public class CongViecMinhHQ {
 	@NotEmpty
 	private String tgKetThuc;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne
 	@JoinColumn(name = "ma_nhan_vien", nullable=false)
 	private HoSoNhanVien phanCong;
 	
@@ -51,12 +50,12 @@ public class CongViecMinhHQ {
 	@NotEmpty
 	private String tgDuKien;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne
 	@JoinColumn(name = "ID_TT", nullable=false)
 	@NotNull
 	private TrangThaiMinhHQ maTrangThai;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "ma_du_an", nullable=false)
 	private DuAnMinhHQ duAn;
 	

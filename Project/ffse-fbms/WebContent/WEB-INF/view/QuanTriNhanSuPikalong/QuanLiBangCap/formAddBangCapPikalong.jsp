@@ -11,8 +11,15 @@
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href='<c:url value="/quantrinhansu/hosonhanvien/" />'>Danh Sách Nhân Viên</a></li>
-							<li class="breadcrumb-item"><a href='<c:url value="/QuanTriNhanSuPikalong/QuanLiBangCap/viewOneBangCap/${maNv}" />'>Bằng Cấp Nhân Viên</a></li>
+							<li class="breadcrumb-item"><a
+								href='<c:url value="/quantrinhansu/hosonhanvien/" />'>Danh
+									Sách Nhân Viên</a></li>
+							<li class="breadcrumb-item"><a
+								href='<c:url value="/quantrinhansu/hosonhanvien/view/${maNv }" />'>Thông
+									Tin Nhân Viên</a></li>
+							<li class="breadcrumb-item"><a
+								href='<c:url value="/QuanTriNhanSuPikalong/QuanLiBangCap/viewOneBangCap/${maNv}" />'>Bằng
+									Cấp Nhân Viên</a></li>
 							<li class="breadcrumb-item active">Thêm mới Bằng Cấp</li>
 						</ol>
 					</div>
@@ -81,8 +88,8 @@
 											</div>
 											<div class="col-xl-6 col-lg-6 col-md-12 mb-1">
 												<div class="form-group">
-													<input class="btn btn-outline-success round" type="submit" value="Save" />
-													<a class="btn btn-outline-info round"
+													<input class="btn btn-outline-success round" type="submit"
+														value="Save" /> <a class="btn btn-outline-info round"
 														href="/ffse-fbms/QuanTriNhanSuPikalong/QuanLiBangCap/viewOneBangCap/${maNv}">View</a>
 												</div>
 											</div>

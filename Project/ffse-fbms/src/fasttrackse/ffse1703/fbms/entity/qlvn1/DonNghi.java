@@ -1,7 +1,7 @@
 package fasttrackse.ffse1703.fbms.entity.qlvn1;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "don_nghi")
@@ -25,7 +24,7 @@ public class DonNghi implements Serializable{
 	private String id_don;
 
 	@Column(name="id_nv")
-	private String id_nv;
+	private int id_nv;
 
 	@Column(name = "ten_nv")
 	private String ten_nv;
@@ -64,11 +63,11 @@ public class DonNghi implements Serializable{
 		this.id_don = id_don;
 	}
 
-	public String getId_nv() {
+	public int getId_nv() {
 		return id_nv;
 	}
 
-	public void setId_nv(String id_nv) {
+	public void setId_nv(int id_nv) {
 		this.id_nv = id_nv;
 	}
 

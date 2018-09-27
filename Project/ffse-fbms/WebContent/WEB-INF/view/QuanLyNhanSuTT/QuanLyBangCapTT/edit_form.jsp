@@ -16,8 +16,8 @@
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/home" />'>Home</a></li>
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/quanlynhansutt/hop_dong/" />'>Danh sách
-									hợp đồng</a></li>
+								href='<c:url value="/quanlynhansutt/bang_cap/" />'>Danh sách
+									bằng cấp</a></li>
 							<li class="breadcrumb-item active">Sửa Bằng Cấp</li>
 						</ol>
 					</div>

@@ -97,7 +97,7 @@ td {
 											<tbody>
 												<c:forEach var="dn" varStatus="counter" items="${list}">
 													<tr>
-														<td>${dn.id_nv}</td>
+														<td>${dn.getId_nv()}</td>
 														<td>${dn.ma_phong}</td>
 														<td>${dn.ly_do}</td>
 														<td>${dn.thoi_gian_bat_dau}</td>

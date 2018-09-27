@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 <style>
@@ -110,22 +111,88 @@
 						</div>
 						<div class="card-body collapse in">
 							<div class="card-block card-dashboard">
-								<div class="table-responsive">
-									<table id="datatable"
-										class="table table-striped table-bordered dataex-res-constructor">
+								<div class="datatable">
+									<table class="table table-striped table-bordered dataex-res-constructor no-footer dataTable">
+										<form:form method="GET">
+											<div class="form-group col-sm-10">
+												<div class="form-group col-sm-4">
+													<label>Dự án</label> <select
+														class="custom-select block round" name="maDuAn"
+														id="maDuAn">
+														<option value="0" label="Tất cả" />
+														<c:forEach items="${DuAn}" var="ld">
+															<option value="${ld.maDuAn}" label="${ld.tenDuAn}" />
+														</c:forEach>
+													</select>
+												</div>
+												<div class="form-group col-sm-4">
+													<label>Phân công</label> <select
+														class="custom-select block round" name="maNhanVien"
+														id="maNhanVien">
+														<option value="0" label="Tất cả" />
+														<c:forEach items="${NhanVien}" var="ld">
+															<option value="${ld.maNhanVien}"
+																label="${ld.hoDem} ${ld.ten}" />
+														</c:forEach>
+													</select>
+												</div>
+												<div class="form-group col-sm-4">
+													<label>Trạng thái</label> <select
+														class="custom-select block round" name="maTrangThai"
+														id="maTrangThai">
+														<option value="0" label="Tất cả" />
+														<c:forEach items="${TrangThai}" var="ld">
+															<option value="${ld.maTrangThai}" label="${ld.trangThai}" />
+														</c:forEach>
+													</select>
+												</div>
+											</div>
+											<script type="text/javascript">
+												maDuan =
+											<%=request.getParameter("maDuAn")%>
+												;
+												if (maDuan != 0
+														&& maDuan != null) {
+													$("#maDuAn").val(maDuAn);
+												}
+												maNhanVien =
+											<%=request.getParameter("maNhanVien")%>
+												;
+												if (maNhanVien != 0
+														&& maNhanVien != null) {
+													$("#maNhanVien").val(
+															maNhanVien);
+												}
+												IDtrangthai =
+											<%=request.getParameter("maTrangThai")%>
+												;
+												if (maTrangThai != 0
+														&& maTrangThai != null) {
+													$("#maTrangThai").val(
+															maTrangThai);
+												}
+											</script>
+											<div class="form-group col-sm-2">
+
+												<button class="btn btn-success block round" style="margin-top: 25px">
+													<i class="ft-search"></i> Áp dụng
+												</button>
+											</div>
+										</form:form>
 										<thead>
 											<tr>
-												<th>Tên Công Việc</th>
-												<th>Loại công việc</th>
-												<th>Thời gian Bắt Đầu</th>
-												<th>Thời Gian Kết Thúc</th>
-												<th>phân công</th>
+												<th>Công việc</th>
+												<th>Thuộc tính</th>
+												<th>Ngày bắt đầu</th>
+												<th>Ngày kết thúc</th>
+												<th>Người thực hiện</th>
 												<th>Trạng thái</th>
 												<th>Hoạt động</th>
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach var="cv" items="${listCongViec}">
+											<c:forEach var="cv" items="${listCongViec}" begin="0"
+												varStatus="counter">
 												<tr>
 													<td>${cv.tenCongViec}</td>
 													<td>${cv.maCongViec.loaiCongViec}</td>
@@ -133,14 +200,14 @@
 													<td>${cv.tgKetThuc}</td>
 													<td>${cv.phanCong.hoDem} ${cv.phanCong.ten}</td>
 													<td>${cv.maTrangThai.trangThai}</td>
-													<td style="letter-spacing: 5px">
-															<a href="/ffse-fbms/QuanLyNhiemVuMinhHQ/view/${cv.ID}"><i
-																class='fa fa-eye'></i></a> <a
-																href="/ffse-fbms/QuanLyNhiemVuMinhHQ/edit/${cv.ID}"><i
-																class='fa fa-pencil'></i></a> <a
-																href="/ffse-fbms/QuanLyNhiemVuMinhHQ/delete/${cv.ID}"><i
-																class='fa fa-trash'
-																onclick="return confirm('Bạn có muốn xóa sinh viên này?');"></i></a>
+													<td style="letter-spacing: 5px"><a
+														href="/ffse-fbms/QuanLyNhiemVuMinhHQ/view/${cv.ID}"><i
+															class='fa fa-eye'></i></a> <a
+														href="/ffse-fbms/QuanLyNhiemVuMinhHQ/edit/${cv.ID}"><i
+															class='fa fa-pencil'></i></a> <a
+														href="/ffse-fbms/QuanLyNhiemVuMinhHQ/delete/${cv.ID}"><i
+															class='fa fa-trash'
+															onclick="return confirm('Bạn có muốn xóa sinh viên này?');"></i></a>
 													</td>
 											</c:forEach>
 										</tbody>
@@ -148,6 +215,32 @@
 								</div>
 							</div>
 						</div>
+						<nav aria-label="Page navigation example">
+							<ul class="pagination">
+								<li class="page-item"><a class="page-link" href="?page=1">First
+										Page</a></li>
+								<c:if test="${currentPage > 2}">
+									<li class="page-item"><a class="page-link"
+										href="?page=${currentPage-2}">${currentPage-2}</a></li>
+								</c:if>
+								<c:if test="${currentPage > 1}">
+									<li class="page-item"><a class="page-link"
+										href="?page=${currentPage-1}">${currentPage-1}</a></li>
+								</c:if>
+								<li class="page-item active"><a class="page-link"
+									href="?page=${currentPage}">${currentPage}</a></li>
+								<c:if test="${currentPage < lastPage}">
+									<li class="page-item"><a class="page-link"
+										href="?page=${currentPage+1}">${currentPage+1}</a></li>
+								</c:if>
+								<c:if test="${currentPage < lastPage - 1}">
+									<li class="page-item"><a class="page-link"
+										href="?page=${currentPage+2}">${currentPage+2}</a></li>
+								</c:if>
+								<li class="page-item"><a class="page-link"
+									href="?page=${lastPage }">Last Page</a></li>
+							</ul>
+						</nav>
 					</div>
 				</div>
 			</div>

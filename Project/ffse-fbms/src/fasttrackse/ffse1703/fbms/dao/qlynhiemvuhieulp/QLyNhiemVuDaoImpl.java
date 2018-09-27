@@ -1,6 +1,5 @@
 package fasttrackse.ffse1703.fbms.dao.qlynhiemvuhieulp;
 
-
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -20,13 +19,14 @@ import fasttrackse.ffse1703.fbms.entity.qlynhiemvuhieulp.QLyNhiemVuEntity;
 
 @Repository
 public class QLyNhiemVuDaoImpl implements QLyNhiemVuDao {
-		
+
 	@Autowired
 	SessionFactory sessionFactory;
 
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
+
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
@@ -39,28 +39,32 @@ public class QLyNhiemVuDaoImpl implements QLyNhiemVuDao {
 		List<QLyNhiemVuEntity> list = session.createQuery("from QLyNhiemVuEntity where isDelete = 1").getResultList();
 		return list;
 	}
+
 	@Override
 	public void delete(QLyNhiemVuEntity nv) {
 		Session session = this.sessionFactory.getCurrentSession();
-		session.update(nv);	
+		session.update(nv);
 	}
+
 	@Override
 	public QLyNhiemVuEntity findById(int id) {
 		Session session = this.sessionFactory.getCurrentSession();
 		QLyNhiemVuEntity u = (QLyNhiemVuEntity) session.get(QLyNhiemVuEntity.class, id);
 		return u;
 	}
+
 	@Override
 	public void create(QLyNhiemVuEntity nv) {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.persist(nv);
 	}
-	
+
 	@Override
 	public void update(QLyNhiemVuEntity nv) {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.update(nv);
 	}
+
 	@Override
 	public List<LoaitrangthaiEntity> trangThai() {
 		Session session = sessionFactory.getCurrentSession();
@@ -71,6 +75,7 @@ public class QLyNhiemVuDaoImpl implements QLyNhiemVuDao {
 		Query<LoaitrangthaiEntity> query = session.createQuery(cq);
 		return query.getResultList();
 	}
+
 	@Override
 	public List<LoaicongviecEntity> congViec() {
 		Session session1 = sessionFactory.getCurrentSession();
@@ -81,6 +86,7 @@ public class QLyNhiemVuDaoImpl implements QLyNhiemVuDao {
 		Query<LoaicongviecEntity> query1 = session1.createQuery(cq1);
 		return query1.getResultList();
 	}
+
 	@Override
 	public List<DuAnEntityHieuLp> duAn() {
 		Session session2 = sessionFactory.getCurrentSession();
@@ -91,6 +97,7 @@ public class QLyNhiemVuDaoImpl implements QLyNhiemVuDao {
 		Query<DuAnEntityHieuLp> query2 = session2.createQuery(cq2);
 		return query2.getResultList();
 	}
+
 	@Override
 	public List<HoSoNhanVienHLP> nhanVienHLP() {
 		Session session3 = sessionFactory.openSession();
@@ -101,7 +108,23 @@ public class QLyNhiemVuDaoImpl implements QLyNhiemVuDao {
 		Query<HoSoNhanVienHLP> query3 = session3.createQuery(cq3);
 		return query3.getResultList();
 	}
-	
 
-	
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<QLyNhiemVuEntity> findAll(Integer offset, Integer maxResult, String search) {
+		Session session = sessionFactory.getCurrentSession();
+		// search = " and duAn.maDuan = ??? and nhanVien.maNhanVien = ??? and idLoaiTrangthai.IDtrangthai = ???"
+		//System.err.println(search);
+		List<QLyNhiemVuEntity> nhiemvuhlp = session.createQuery("from QLyNhiemVuEntity where isDelete = 1 " + search)
+				.setFirstResult(offset).setMaxResults(maxResult).list();
+		return nhiemvuhlp;
+	}
+
+	@Override
+	public int count() {
+		Session session = sessionFactory.getCurrentSession();
+		int rowCount = session.createQuery("from QLyNhiemVuEntity").list().size();
+		return rowCount;
+	}
+
 }

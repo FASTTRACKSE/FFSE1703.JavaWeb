@@ -1,5 +1,7 @@
 package fasttrackse.ffse1703.fbms.controller.qttl;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +38,7 @@ public class DocumentController {
 	public String index(Model model,
 			@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage) {
 		int totalRecords = documentService.getAll().size();
-		int recordsPerPage = 4;
+		int recordsPerPage = 3;
 		int totalPages = 0;
 		if ((totalRecords / recordsPerPage) % 2 == 0) {
 			totalPages = totalRecords / recordsPerPage;
@@ -53,6 +55,12 @@ public class DocumentController {
 	}
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String addForm(Model model, final RedirectAttributes redirectAttributes) {
+		List<Category> listcategory = documentService.listCategory();
+		model.addAttribute("listCategory", listcategory);
+		List<Status> liststatus = documentService.listStatus();
+		model.addAttribute("listStatus", liststatus);
+		List<Room> listroom = documentService.listRoom();
+		model.addAttribute("listRoom", listroom);
 		model.addAttribute("command", new Document());
 		return "QuanTriTaiLieu/TaiLieu/addTaiLieu";
 	}
@@ -84,6 +92,12 @@ public class DocumentController {
 	
 	@RequestMapping(value = "/edit/{id}")
 	public String edit(Model model, @PathVariable("id") int id) {
+		List<Category> listcategory = documentService.listCategory();
+		model.addAttribute("listCategory", listcategory);
+		List<Status> liststatus = documentService.listStatus();
+		model.addAttribute("listStatus", liststatus);
+		List<Room> listroom = documentService.listRoom();
+		model.addAttribute("listRoom", listroom);
 		model.addAttribute("document", documentService.getById(id));
 		return "QuanTriTaiLieu/TaiLieu/editTaiLieu";
 

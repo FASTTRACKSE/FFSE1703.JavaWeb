@@ -22,7 +22,6 @@ import fasttrackse.ffse1703.fbms.service.quanlyduan.ProgramingLanguageTeam1Servi
 public class ProgramingLanguageTeam1Controller {
 	@Autowired
 	ProgramingLanguageTeam1Service languageService;
-	
 
 	@RequestMapping("/list")
 	public String index(Model model,
@@ -54,7 +53,7 @@ public class ProgramingLanguageTeam1Controller {
 			RedirectAttributes redirectAttributes) {
 
 		if (result.hasErrors()) {
-			return "QuanLyDuAn/Language/add";
+			return "QuanLyDuAn/ProgramingLanguage/addLanguage";
 		}
 
 		if (languageService.getById(language1.getMaNn()) != null) {

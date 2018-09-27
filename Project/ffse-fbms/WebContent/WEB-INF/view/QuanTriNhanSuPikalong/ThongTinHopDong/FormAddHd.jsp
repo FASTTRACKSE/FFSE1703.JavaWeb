@@ -9,7 +9,7 @@
 <form:form class="form"  method="POST" modelAttribute="hopDongPikalong" action="/ffse-fbms/QuanTriNhanSu/quanlihopdong/save">
 	<div class="form-body">
 		<h4 class="form-section">Thêm Hợp Đồng</h4>
-		
+		<input name="action" value="add"/>
 		<div class="row">
 			<div class="col-md-6">
 				<div class="form-group">
@@ -63,7 +63,7 @@
 			</div>
 			<div class="col-md-4">
 				<div class="form-group">
-					<label>Trạng thái</label> <form:select path="luongThang13"
+					<label>Trạng thái</label> <form:select path="trangThai"
 						  class="form-control">
 						<form:option value="0" selected="true" disabled="true"> <--Chọn--> </form:option>
 						<form:option value="1">Hết hợp đồng</form:option>

@@ -13,6 +13,8 @@
 					<li class="breadcrumb-item"><a
 						href='<c:url value="/quantrinhansu/hosonhanvien/" />'>Danh
 							Sách Nhân Viên</a></li>
+							<li class="breadcrumb-item"><a
+						href='<c:url value="/quantrinhansu/hosonhanvien/view/${maNv }" />'>Thông Tin Nhân Viên</a></li>
 					<li class="breadcrumb-item active">Gia Đình Nhân Viên</li>
 				</ol>
 			</div>
@@ -33,7 +35,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<h1>${maNv }</h1>
+					<h1>${hosonhanvien.hoTenNv }</h1>
 					<c:forEach var="giadinh" items="${viewOne}">
 						<tr>
 							<td>${giadinh.hoTen}</td>

@@ -13,4 +13,5 @@ public interface QuanLyVangNghiService {
 	public UserAccount getThongTinUser(String username);
 	public TinhTrangNghi getTinhTrang(int id_nv);
 	public List<LyDo> listLyDo();
+	public void insertUpdateTinhTrang(int id_nv, TinhTrangNghi tt);
 }

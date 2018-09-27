@@ -16,13 +16,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.GiaDinhPikalong;
 import fasttrackse.ffse1703.fbms.service.quantrinhansupikalong.GiaDinhPikalongService;
+import fasttrackse.ffse1703.fbms.service.quantrinhansupikalong.HoSoNhanVienPikalongService;
 
 @Controller
 @RequestMapping(value = "/QuanTriNhanSuPikalong/QuanLiGiaDinh")
 public class GiaDinhPikalongController {
 	@Autowired
 	private GiaDinhPikalongService giaDinhPikalongService;
-
+	
+	@Autowired
+	private HoSoNhanVienPikalongService hoSoNhanVienPikalongService;
+	
 	public void setGiaDinhPikalongService(GiaDinhPikalongService giaDinhPikalongService) {
 		this.giaDinhPikalongService = giaDinhPikalongService;
 	}
@@ -63,7 +67,8 @@ public class GiaDinhPikalongController {
 	}
 
 	@RequestMapping("/viewOneGiaDinh/{maNV}")
-	public String viewOneBangCap(@PathVariable String maNV, Model model) {
+	public String viewOneGiaDinh(@PathVariable String maNV, Model model) {
+		//model.addAttribute("hosonhanvien", this.hoSoNhanVienPikalongService.getHoSoNhanVienById(maNV));
 		model.addAttribute("viewOne", this.giaDinhPikalongService.viewOne(maNV));
 		model.addAttribute("maNv", maNV);
 		return "QuanTriNhanSuPikalong/QuanLiGiaDinh/viewOneGiaDinhPikalong";
@@ -71,6 +76,7 @@ public class GiaDinhPikalongController {
 
 	@RequestMapping(value = "/add/{maNV}", method = RequestMethod.GET)
 	public String showFormAdd(Model model, HttpSession session, @PathVariable String maNV) {
+		
 		GiaDinhPikalong hsnv = new GiaDinhPikalong();
 		hsnv.setMaNV(maNV);
 		model.addAttribute("command", hsnv);

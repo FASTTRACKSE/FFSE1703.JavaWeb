@@ -1,68 +1,63 @@
 package fasttrackse.ffse1703.fbms.entity.qlvn;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 @Entity
 @Table(name="ngay_nghi")
 public class NgayNghi{
-	
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_ngay_nghi")
-    private int id;
+	@Column(name = "ma_nhan_vien")
+	private int maNhanVien;
 	
-	@ManyToOne
-	@JoinColumn(name = "ma_nhan_vien")
-	private ThongTinHoSoNhanVien maNhanVien;
+	@Column(name="so_ngay_da_nghi")
+	private int soNgayDaNghi;
 	
-	@ManyToOne
-	@JoinColumn(name="so_ngay_da_nghi")
-	private ThongTinHoSoNhanVien soNgayDaNghi;
-	
-	@ManyToOne
-	@JoinColumn(name="so_ngay_con_lai")
-	private ThongTinHoSoNhanVien soNgayConLai;
+	@Column(name="so_ngay_con_lai")
+	private int soNgayConLai;
 
-	public int getId() {
-		return id;
-	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public ThongTinHoSoNhanVien getMaNhanVien() {
+	public int getMaNhanVien() {
 		return maNhanVien;
 	}
 
-	public void setMaNhanVien(ThongTinHoSoNhanVien maNhanVien) {
+	public void setMaNhanVien(int maNhanVien) {
 		this.maNhanVien = maNhanVien;
 	}
 
-	public ThongTinHoSoNhanVien getSoNgayDaNghi() {
+	public int getSoNgayDaNghi() {
 		return soNgayDaNghi;
 	}
 
-	public void setSoNgayDaNghi(ThongTinHoSoNhanVien soNgayDaNghi) {
+	public void setSoNgayDaNghi(int soNgayDaNghi) {
 		this.soNgayDaNghi = soNgayDaNghi;
 	}
 
-	public ThongTinHoSoNhanVien getSoNgayConLai() {
+	public int getSoNgayConLai() {
 		return soNgayConLai;
 	}
 
-	public void setSoNgayConLai(ThongTinHoSoNhanVien soNgayConLai) {
+	public void setSoNgayConLai(int soNgayConLai) {
 		this.soNgayConLai = soNgayConLai;
 	}
 
-	
+	@Override
+	public String toString() {
+		return "NgayNghi [" + "maNhanVien=" + maNhanVien + ", soNgayDaNghi=" + soNgayDaNghi
+				+ ", soNgayConLai=" + soNgayConLai + "]";
+	}
+
 	
 }

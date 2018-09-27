@@ -19,7 +19,7 @@ import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 
  	public CongViecMinhHQ findByID(int ID);
 	
- 	public List<CongViecMinhHQ> findAll(int iDisplayStart, int iDisplayLength, String sql);
+ 	public List<CongViecMinhHQ> findAllForPaging(int iDisplayStart, int iDisplayLength, String search);
  	
  	public List<TrangThaiMinhHQ> trangThai();
  	
@@ -29,7 +29,4 @@ import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
  	
  	public List<HoSoNhanVien> nhanVien();
 	
-// 	public String getRecordsTotal();
-//	
-// 	public String getRecordsFiltered(String sql);
  }

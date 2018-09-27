@@ -117,6 +117,14 @@ public class HopDongPikalong {
 	public void setHoSoNhanVienPikalong(HoSoNhanVienPikalong hoSoNhanVienPikalong) {
 		this.hoSoNhanVienPikalong = hoSoNhanVienPikalong;
 	}
+
+	@Override
+	public String toString() {
+		return "HopDongPikalong [maHopDong=" + maHopDong + ", hoSoNhanVienPikalong=" + hoSoNhanVienPikalong
+				+ ", loaiHopDongPikalong=" + loaiHopDongPikalong + ", ngayKiKet=" + ngayKiKet + ", ngayKetThuc="
+				+ ngayKetThuc + ", soNgayNghiTrongNam=" + soNgayNghiTrongNam + ", luongThang13=" + luongThang13
+				+ ", trangThai=" + trangThai + "]";
+	}
 	
 }
 	

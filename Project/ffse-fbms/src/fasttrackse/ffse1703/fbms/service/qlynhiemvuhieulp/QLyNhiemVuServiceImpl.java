@@ -2,7 +2,6 @@ package fasttrackse.ffse1703.fbms.service.qlynhiemvuhieulp;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,7 +18,7 @@ public class QLyNhiemVuServiceImpl implements QLyNhiemVuService {
 	@Autowired
 	private QLyNhiemVuDao qLyNhiemVuDao;
 
-	public List<QLyNhiemVuEntity> getAll(){
+	public List<QLyNhiemVuEntity> getAll() {
 		return this.qLyNhiemVuDao.getAll();
 	}
 
@@ -28,11 +27,11 @@ public class QLyNhiemVuServiceImpl implements QLyNhiemVuService {
 	public void delete(QLyNhiemVuEntity nv) {
 		this.qLyNhiemVuDao.delete(nv);
 	}
-	
+
 	@Override
 	@Transactional
 	public QLyNhiemVuEntity findById(int id) {
-		return this.qLyNhiemVuDao.findById(id) ;
+		return this.qLyNhiemVuDao.findById(id);
 	}
 
 	@Override
@@ -40,6 +39,7 @@ public class QLyNhiemVuServiceImpl implements QLyNhiemVuService {
 	public void add(QLyNhiemVuEntity nv) {
 		this.qLyNhiemVuDao.create(nv);
 	}
+
 	@Override
 	@Transactional
 	public void update(QLyNhiemVuEntity nv) {
@@ -49,7 +49,7 @@ public class QLyNhiemVuServiceImpl implements QLyNhiemVuService {
 
 	@Override
 	@Transactional
-	public List<LoaitrangthaiEntity> trangThai() {	
+	public List<LoaitrangthaiEntity> trangThai() {
 		return this.qLyNhiemVuDao.trangThai();
 	}
 
@@ -66,9 +66,21 @@ public class QLyNhiemVuServiceImpl implements QLyNhiemVuService {
 	}
 
 	@Override
+	@Transactional
 	public List<HoSoNhanVienHLP> nhanVienHLP() {
 		return this.qLyNhiemVuDao.nhanVienHLP();
 	}
 
+	@Override
+	@Transactional
+	public List<QLyNhiemVuEntity> findAll(Integer offset, Integer maxResult, String search) {
+		return qLyNhiemVuDao.findAll(offset, maxResult, search);
+	}
+
+	@Override
+	@Transactional
+	public int count() {
+		return qLyNhiemVuDao.count();
+	}
 
 }

@@ -2,6 +2,7 @@ package fasttrackse.ffse1703.fbms.controller.quantrinhansupikalong;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +24,7 @@ import fasttrackse.ffse1703.fbms.service.quantrinhansupikalong.HopDongPikalongSe
 public class HopDongPikalongController {
 	@Autowired
 	private HoSoNhanVienPikalongService hoSoNhanVienPikalongService;
-	
-	
+
 	@Autowired
 	private HopDongPikalongSevice hopDongPikalongService;
 
@@ -35,44 +35,66 @@ public class HopDongPikalongController {
 		model.addAttribute("listHopDong", listHopDong);
 		return "QuanTriNhanSuPikalong/ThongTinHopDong/HopDong";
 	}
-	
-	@RequestMapping(value= "view/{maNv}", method = RequestMethod.GET)
+
+	@RequestMapping(value = "viewOneHopDong/view/{maNv}", method = RequestMethod.GET)
 	public String viewThongTinHopDong(@PathVariable("maNv") String maNv, Model model) {
 		HoSoNhanVienPikalong hsnv = this.hoSoNhanVienPikalongService.getEdit(maNv);
 		model.addAttribute("hsnv", hsnv);
 		HopDongPikalong hdById = this.hopDongPikalongService.getHopDongById(maNv);
 		model.addAttribute("hopDong", hdById);
-			return "QuanTriNhanSuPikalong/ThongTinHopDong/view/ViewThongTinHopDong";
+		return "QuanTriNhanSuPikalong/ThongTinHopDong/view/ViewThongTinHopDong";
 	}
-	
+
 	@RequestMapping(value = "formaddhd/{maNv}" + "", method = RequestMethod.GET)
 	public String addFormHd(@PathVariable String maNv, Model model) {
 		String lastMaHd = this.hopDongPikalongService.getLastMaHd();
 		System.out.println(lastMaHd);
-		
+
 		model.addAttribute("hsnv", hoSoNhanVienPikalongService.getEdit(maNv));
 		model.addAttribute("hopDongPikalong", new HopDongPikalong());
 		model.addAttribute("lastMaHd", lastMaHd);
-		return "QuanTriNhanSuPikalong/ThongTinHopDong/FormAddHd"; 
+		return "QuanTriNhanSuPikalong/ThongTinHopDong/FormAddHd";
 	}
-	
-	
-	@RequestMapping(value = "save", method = RequestMethod.POST)
-	public String addSaveHd(@ModelAttribute("formHopDong") HopDongPikalong hd, Model model) {
-		
-		String maNv= hd.getHoSoNhanVienPikalong().getMaNv();
-		HoSoNhanVienPikalong hsnv = this.hoSoNhanVienPikalongService.getEdit(maNv);
-	
-		hd.setMaHopDong(Integer.valueOf(this.hopDongPikalongService.getAutoId()));
-		this.hopDongPikalongService.insert(hd);
-		model.addAttribute("hoSoNhanVien", hsnv);
-		return "redirect:/QuanTriNhanSu/quanlihopdong/";
-	}
-	
-//	@RequestMapping(value = "formedithd", method = RequestMethod.GET)
-//	public String editFormHd(Model model) {
-//		
-//	}
-	
-}
 
+	@RequestMapping(value = "save", method = RequestMethod.POST)
+	public String addSaveHd(@ModelAttribute("hopDongPikalong") HopDongPikalong hd, Model model,
+			HttpServletRequest request) {
+			String maNv = hd.getHoSoNhanVienPikalong().getMaNv();
+			HoSoNhanVienPikalong hsnv = this.hoSoNhanVienPikalongService.getEdit(maNv);
+
+			hd.setMaHopDong(Integer.valueOf(this.hopDongPikalongService.getAutoId()));
+			this.hopDongPikalongService.insert(hd);
+			model.addAttribute("hoSoNhanVien", hsnv);
+			return "redirect:/QuanTriNhanSu/quanlihopdong/viewOneHopDong";
+	}
+
+	@RequestMapping(value = "viewOneHopDong/formedithd/{maHopDong}", method = RequestMethod.GET)
+	public String editFormHd(@PathVariable int maHopDong, Model model) {
+		String lastMaHd = this.hopDongPikalongService.getLastMaHd();
+		System.out.println(lastMaHd);
+		model.addAttribute("hsnv", hoSoNhanVienPikalongService.getEdit(hopDongPikalongService.getMaHopDong(maHopDong).getHoSoNhanVienPikalong().getMaNv()));
+		model.addAttribute("hopDongPikalong", hopDongPikalongService.getMaHopDong(maHopDong));
+		model.addAttribute("lastMaHd", lastMaHd);
+		
+		return "QuanTriNhanSuPikalong/ThongTinHopDong/FormEditHd";
+	}
+	
+	@RequestMapping(value = "edithd", method = RequestMethod.POST)
+	public String editsave(@ModelAttribute("hopDongPikalong") HopDongPikalong hd, Model model,
+			HttpServletRequest request) {
+		String maNv = hd.getHoSoNhanVienPikalong().getMaNv();
+		HoSoNhanVienPikalong hsnv = this.hoSoNhanVienPikalongService.getEdit(maNv);
+		
+		this.hopDongPikalongService.update(hd);
+		model.addAttribute("hoSoNhanVien", hsnv);
+		return "redirect:/QuanTriNhanSu/quanlihopdong/viewOneHopDong";
+	}
+	
+	@RequestMapping("viewOneHopDong/{maNv}")
+	public String viewOneHopDong( @PathVariable String maNv,Model model) {
+		model.addAttribute("listHopDong",this.hopDongPikalongService.viewOne(maNv));
+		model.addAttribute("maNv", maNv);
+		return "QuanTriNhanSuPikalong/ThongTinHopDong/HopDong";
+	}
+
+}

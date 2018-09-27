@@ -11,8 +11,13 @@ public interface DonXinPhepDao {
 	public List<DonXinPhepEntity> danhsachchoduyet003();
 	public List<DonXinPhepEntity> danhsachdaduyet003();
 	public List<DonXinPhepEntity> danhsachbituchoi003();
-	public void donxinphep003(DonXinPhepEntity DonXinPhepEntity);
 	public List<LyDoEntity> danhSachLyDo();
     public List<TrangThaiEntity> danhSachTrangThai();
 	public List<HoSoNhanVien> danhSachHoSo();
+	public void create(DonXinPhepEntity DonXinPhepEntity);
+	public void createcho(DonXinPhepEntity DonXinPhepEntity);
+	public void createduyet(DonXinPhepEntity DonXinPhepEntity);
+	public void createtuchoi(DonXinPhepEntity DonXinPhepEntity);
+	public DonXinPhepEntity findById(int id);
+	public void delete(int id);
 }

@@ -1,7 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 <style>
+th{ background-color: #2A2E30;
+    border-color: #3C4244;
+	color: #F5F7FA;
+}
 .tbl_actions a {
 	color: #333;
 	font-size: 13px;
@@ -48,13 +53,13 @@
 		<!-- Path -->
 		<div class="content-header row">
 			<div class="content-header-left col-md-9 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">Danh sách nhiệm vụ</h3>
+				<h3 class="content-header-title mb-0" >Danh sách nhiệm vụ</h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/home" />'>Home</a></li>
-							<li class="breadcrumb-item active">Danh sách nhiệm vụ</li>
+							<li class="breadcrumb-item active" >Danh sách nhiệm vụ</li>
 						</ol>
 					</div>
 				</div>
@@ -95,7 +100,7 @@
 				<div class="col-xs-12">
 					<div class="card">
 						<div class="card-header">
-							<h4 class="card-title">Danh sách nhiệm vụ</h4>
+							<h4 class="card-title" style="margin-left: 400px">Danh sách nhiệm vụ</h4>
 							<a class="heading-elements-toggle"><i
 								class="fa fa-ellipsis-v font-medium-3"></i></a>
 							<div class="heading-elements">
@@ -110,37 +115,116 @@
 						<div class="card-body collapse in">
 							<div class="card-block card-dashboard">
 								<div class="table-responsive">
-									<table id="datatable"
-										class="table table-striped table-bordered dataex-res-constructor">
-										<thead>
+						  	<form:form method="GET" action="">
+						  	<div class="form-group col-sm-10">
+								<div class="form-group col-sm-4">
+								 	<label>Dự án</label>
+								 	 <select class="custom-select block round" name= "maDuan"
+										id="maDuan">
+										<option value="0" label="Tất cả" />
+										<c:forEach items="${duan}" var="ld">
+											<option value="${ld.maDuan}" label="${ld.tenDuan}" />
+										</c:forEach>
+									</select>
+								</div>
+								<div class="form-group col-sm-4">
+								 	<label>Phân công cho</label>
+								 	 <select class="custom-select block round" name= "maNhanVien"
+										id="maNhanVien">
+										<option value="0" label="Tất cả" />
+										<c:forEach items="${nhanVienHLP}" var="ld">
+											<option value="${ld.maNhanVien}" label="${ld.hoDem} ${ld.ten}" />
+										</c:forEach>
+									</select>
+								</div>
+								<div class="form-group col-sm-4">
+								 	<label>Trạng thái</label>
+								 	 <select class="custom-select block round" name="IDtrangthai"
+										id="IDtrangthai">
+										<option value="0" label="Tất cả" />
+										<c:forEach items="${trangthai}" var="ld">
+											<option  value="${ld.IDtrangthai}" label="${ld.loaiTrangthai}" />
+										</c:forEach>
+									</select>
+								</div>
+							</div>
+								<script type="text/javascript">
+									maDuan = <%= request.getParameter("maDuan") %>;
+									if (maDuan != 0 && maDuan != null) {
+										$("#maDuan").val(maDuan);
+									}
+									maNhanVien = <%= request.getParameter("maNhanVien") %>;
+									if (maNhanVien != 0 && maNhanVien != null) {
+										$("#maNhanVien").val(maNhanVien);
+									}
+									IDtrangthai = <%= request.getParameter("IDtrangthai") %>;
+									if (IDtrangthai != 0 && IDtrangthai != null) {
+										$("#IDtrangthai").val(IDtrangthai);
+									}
+								</script>
+							<div class="form-group col-sm-2">
+							  
+						<button class="btn btn-success" style="margin-top: 25px"><i class="ft-search"></i> Áp dụng</button>
+							</div>
+							</form:form>
+									<table id="datatable" class="table ">
+										<thead class="thead-dark">
 											<tr>
-											    <th>STT</th>
-											    <th>Tên dự án</th>
-											    <th>Tên công việc</th>
-												<th>Loại công việc</th>
-												<th>Trạng thái</th>
-												<th>Người được phân công</th>
-												<th>Tùy chọn</th>
+											    <th scope="col">STT</th>
+											    <th scope="col">Tên dự án</th>
+											    <th scope="col">Tên công việc</th>
+												<th scope="col">Loại công việc</th>
+												<th scope="col">Trạng thái</th>
+												<th scope="col">Người được phân công</th>
+												<th scope="col">Tùy chọn</th>
 											</tr>
 										</thead>
 										<tbody>
-										<c:forEach items="${danhsach}" var="nv" varStatus="stt">
+										<c:forEach items="${list}" var="nv" varStatus="stt">
 										<tr>
-										        <td>${stt.count}</td>	
+										        <td>${(page-1)*10 + stt.count}</td>	
 										        <td>${nv.duAn.tenDuan}</td>		
 										        <td>${nv.tenCongviec} </td>						
 										        <td>${nv.idLoaiCongviec.loaiCongviec}</td>
 										        <td>${nv.idLoaiTrangthai.loaiTrangthai}</td>
 										        <td>${nv.nhanVien.hoDem} ${nv.nhanVien.ten}</td>
-												<td>
-													<a href="view/${nv.ID}"><button class="btn btn-default">Xem</button></a> 
-													<a href="edit/${nv.ID}"><button class="btn btn-success">Sửa</button></a> 
-													<a href="delete/${nv.ID}"><button class="btn btn-danger" onclick="return confirm('Bạn có muốn xóa công việc này?');">Xóa</button></a>
-												</td>
+												<td style="letter-spacing: 10px">
+													<a href="/ffse-fbms/HieuLP/view/${nv.ID}"><i class='fa fa-eye'></i></a> 
+													<a href="/ffse-fbms/HieuLP/edit/${nv.ID}"><i class='fa fa-pencil'></i></a>
+													<a href="/ffse-fbms/HieuLP/delete/${nv.ID}"><i class='fa fa-trash' onclick="return confirm('Bạn có muốn xóa sinh viên này?');"></i></a>
+													</td>
 												</tr>
 										</c:forEach>
 										</tbody>
+										
 									</table>
+									<nav aria-label="Page navigation example">
+										<ul class="pagination" style="margin-left: 450px">
+											<li class="page-item"><a class="page-link"
+												href="/ffse-fbms/HieuLP/danhsach/1">First Page</a></li>
+											<c:if test="${page > 2}">
+												<li class="page-item"><a class="page-link"
+													href="/ffse-fbms/HieuLP/danhsach/${page-2}">${page-2}</a></li>
+											</c:if>
+											<c:if test="${page > 1}">
+												<li class="page-item"><a class="page-link"
+													href="/ffse-fbms/HieuLP/danhsach/${page-1}">${page-1}</a></li>
+											</c:if>
+											<li class="page-item active"><a class="page-link"
+												href="/ffse-fbms/HieuLP/danhsach/${page}">${page}</a></li>
+											<c:if test="${page < total}">
+												<li class="page-item"><a class="page-link"
+													href="/ffse-fbms/HieuLP/danhsach/${page+1}">${page+1}</a></li>
+											</c:if>
+											<c:if test="${page < total - 1}">
+												<li class="page-item"><a class="page-link"
+													href="/ffse-fbms/HieuLP/danhsach/${page+2}">${page+2}</a></li>
+											</c:if>
+											<li class="page-item"><a class="page-link"
+												href="/ffse-fbms/HieuLP/danhsach/${total }">Last Page</a></li>
+
+										</ul>
+									</nav>
 								</div>
 							</div>
 						</div>
@@ -150,4 +234,7 @@
 		</div>
 	</div>
 </div>
+
+
+
 <jsp:include page="/WEB-INF/view/templates/footer.jsp" />

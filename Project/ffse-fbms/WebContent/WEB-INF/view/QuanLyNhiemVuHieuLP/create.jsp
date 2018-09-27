@@ -39,20 +39,20 @@
 						<div class="form-group col-sm-6">
 						  	<label>Loại công việc</label>
 						 <form:select path="idLoaiCongviec.IDcongviec" class="custom-select block round"
-								id="customSelect">
-								<c:forEach items="${congviec}" var="ld">
+								id="customSelect" >
+								<c:forEach items="${congviec}" var="ld" >
 									<form:option value="${ld.IDcongviec}" label="${ld.loaiCongviec}" />
 								</c:forEach>
 							</form:select>
 						</div>
 						<div class="form-group col-sm-6">
 						  	<label>Tên công việc</label>
-						  	<form:input class="form-control" path="tenCongviec" placeholder="Tên công việc" />
+						  	<form:input class="form-control" path="tenCongviec"  placeholder="Tên công việc" />
 						  	<form:errors path="tenCongviec" cssClass="error" />
 						</div>
 							<div class="form-group col-sm-6">
 						  	<label>Trạng thái</label>
-							<input class="form-control" readonly="true" value="Mới" />
+							<input class="form-control" readonly value="Mới" />
 							<form:hidden path="idLoaiTrangthai.IDtrangthai" value="1" />
 						</div>
 						<div class="form-group col-sm-6">

@@ -18,4 +18,10 @@ public interface DocumentService {
 	
 	public List<Document> findAllForPaging(int startPosition,int maxResult);
 	
+	public List<Category> listCategory();
+	
+	public List<Status> listStatus();
+	
+	public List<Room> listRoom();
+	
 }

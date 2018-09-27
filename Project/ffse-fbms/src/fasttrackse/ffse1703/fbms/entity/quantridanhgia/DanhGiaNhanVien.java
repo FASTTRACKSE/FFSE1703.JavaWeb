@@ -22,32 +22,32 @@ public class DanhGiaNhanVien {
 	@Column(name = "ma_phong_ban")
 	private String phongBan;
 
-	@Column(name = "nhan_vien")
-	private String nhanVien;
-
 	@Column(name = "nhan_vien_danh_gia")
-	private String nhanVienDanhGia;
+	private int nhanVienDanhGia;
 
-	@Column(name = "ky_luat_cong_viec")
+	@Column(name = "nhan_vien")
+	private int nhanVien;
+
+	@Column(name = "ky_luat_cong_viec", nullable = false)
 	private String kyLuatCongViec;
 
-	@Column(name = "tinh_than_lam_viec")
+	@Column(name = "tinh_than_lam_viec", nullable = false)
 	private String tinhThanLamViec;
 
-	@Column(name = "khoi_luong_cong_viec")
+	@Column(name = "khoi_luong_cong_viec", nullable = false)
 	private String khoiLuongCongViec;
 
-	@Column(name = "ket_qua_cong_viec")
+	@Column(name = "ket_qua_cong_viec", nullable = false)
 	private String ketQuaCongViec;
 
-	@Column(name = "ky_nang_tich_luy")
+	@Column(name = "ky_nang_tich_luy", nullable = false)
 	private String kyNangTichLuy;
 
-	@Column(name = "dinh_huong")
+	@Column(name = "dinh_huong", nullable = false)
 	private String dinhHuong;
 
-	@Column(name = "danh_gia_tong_the")
-	private int danhGiaTongThe;
+	@Column(name = "xep_loai")
+	private int xepLoai;
 
 	@Column(name = "ma_trang_thai")
 	private int trangThai;
@@ -83,20 +83,20 @@ public class DanhGiaNhanVien {
 		this.phongBan = phongBan;
 	}
 
-	public String getNhanVien() {
-		return nhanVien;
-	}
-
-	public void setNhanVien(String nhanVien) {
-		this.nhanVien = nhanVien;
-	}
-
-	public String getNhanVienDanhGia() {
+	public int getNhanVienDanhGia() {
 		return nhanVienDanhGia;
 	}
 
-	public void setNhanVienDanhGia(String nhanVienDanhGia) {
+	public void setNhanVienDanhGia(int nhanVienDanhGia) {
 		this.nhanVienDanhGia = nhanVienDanhGia;
+	}
+
+	public int getNhanVien() {
+		return nhanVien;
+	}
+
+	public void setNhanVien(int nhanVien) {
+		this.nhanVien = nhanVien;
 	}
 
 	public String getKyLuatCongViec() {
@@ -147,12 +147,12 @@ public class DanhGiaNhanVien {
 		this.dinhHuong = dinhHuong;
 	}
 
-	public int getDanhGiaTongThe() {
-		return danhGiaTongThe;
+	public int getXepLoai() {
+		return xepLoai;
 	}
 
-	public void setDanhGiaTongThe(int danhGiaTongThe) {
-		this.danhGiaTongThe = danhGiaTongThe;
+	public void setXepLoai(int xepLoai) {
+		this.xepLoai = xepLoai;
 	}
 
 	public int getTrangThai() {

@@ -84,6 +84,10 @@
 													</div>
 													<div class="row">
 														<div class="form-group col-sm-6">
+															<label>Mã Chức Danh</label>
+															<div class="form-control well">${hosonv.chucDanh.maChucDanh}</div>
+														</div>
+														<div class="form-group col-sm-6">
 															<label>Mã Loại Hợp Đồng</label>
 															<form:select path="loaiHopDong.maLoaiHopDong" type="text"
 																id="companyName" class="form-control"
@@ -93,11 +97,6 @@
 																	<option value="${x.maLoaiHopDong}">${x.tenHopDong}</option>
 																</c:forEach>
 															</form:select>
-
-														</div>
-														<div class="form-group col-sm-6">
-															<label>Mã Chức Danh</label>
-															<div class="form-control well">${hosonv.chucDanh.maChucDanh}</div>
 														</div>
 													</div>
 												</div>

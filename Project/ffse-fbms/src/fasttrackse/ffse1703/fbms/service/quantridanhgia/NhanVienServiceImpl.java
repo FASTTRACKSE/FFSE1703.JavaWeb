@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import fasttrackse.ffse1703.fbms.dao.quantridanhgia.NhanVienDAO;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.DanhGiaBanThan;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.DanhGiaNhanVien;
-import fasttrackse.ffse1703.fbms.entity.quantridanhgia.PhanCongDanhGia;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.TruongPhongDanhGia;
 
 @Service
@@ -49,7 +48,7 @@ public class NhanVienServiceImpl implements NhanVienService {
 
 	@Override
 	@Transactional
-	public List<PhanCongDanhGia> getListPhanCongDanhGia(int maNhanVien) {
+	public List<DanhGiaNhanVien> getListDanhGiaNhanVien(int maNhanVien) {
 		return dao.getListPhanCongDanhGia(maNhanVien);
 	}
 

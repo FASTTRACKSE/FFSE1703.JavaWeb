@@ -12,6 +12,8 @@
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href='<c:url value="/quantrinhansu/hosonhanvien/" />'>Danh Sách Nhân Viên</a></li>
+							<li class="breadcrumb-item"><a
+						href='<c:url value="/quantrinhansu/hosonhanvien/view/${maNv }" />'>Thông Tin Nhân Viên</a></li>
 							<li class="breadcrumb-item"><a href='<c:url value="/QuanTriNhanSuPikalong/QuanLiBangCap/viewOneBangCap/${maNv}" />'>Bằng Cấp Nhân Viên</a></li>
 							<li class="breadcrumb-item active">Update Bằng Cấp</li>
 						</ol>

@@ -24,12 +24,12 @@ public class QLyNhiemVuEntity {
 	private int ID;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "ma_du_an", nullable=false)
+	@JoinColumn(name = "ma_du_an", nullable = false)
 	@NotNull
 	private DuAnEntityHieuLp duAn;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "ID_loai_cong_viec", nullable=false)
+	@JoinColumn(name = "ID_loai_cong_viec", nullable = false)
 	private LoaicongviecEntity idLoaiCongviec;
 
 	@Column(name = "ten_cong_viec")
@@ -49,7 +49,7 @@ public class QLyNhiemVuEntity {
 	private Date tgKetthuc;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "ma_nhan_vien", nullable=false)
+	@JoinColumn(name = "ma_nhan_vien", nullable = false)
 	private HoSoNhanVienHLP nhanVien;
 
 	@Column(name = "tg_du_kien_hoan_thanh")
@@ -57,15 +57,12 @@ public class QLyNhiemVuEntity {
 	private String tgDukienhoanthanh;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "ID_loai_trang_thai", nullable=false)
+	@JoinColumn(name = "ID_loai_trang_thai", nullable = false)
 	private LoaitrangthaiEntity idLoaiTrangthai;
 
 	@Column(name = "is_delete")
 	private int isDelete;
 
-	
-	
-	
 	public QLyNhiemVuEntity() {
 		super();
 
@@ -86,7 +83,6 @@ public class QLyNhiemVuEntity {
 	public void setDuAn(DuAnEntityHieuLp duAn) {
 		this.duAn = duAn;
 	}
-
 
 	public String getTenCongviec() {
 		return tenCongviec;
@@ -143,7 +139,6 @@ public class QLyNhiemVuEntity {
 	public void setIsDelete(int isDelete) {
 		this.isDelete = isDelete;
 	}
-	
 
 	public LoaicongviecEntity getIdLoaiCongviec() {
 		return idLoaiCongviec;
@@ -160,6 +155,7 @@ public class QLyNhiemVuEntity {
 	public void setIdLoaiTrangthai(LoaitrangthaiEntity idLoaiTrangthai) {
 		this.idLoaiTrangthai = idLoaiTrangthai;
 	}
+
 	public HoSoNhanVienHLP getNhanVien() {
 		return nhanVien;
 	}

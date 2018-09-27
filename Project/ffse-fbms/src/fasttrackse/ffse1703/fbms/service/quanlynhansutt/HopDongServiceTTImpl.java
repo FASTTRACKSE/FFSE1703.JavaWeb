@@ -134,6 +134,13 @@ public class HopDongServiceTTImpl implements HopDongServiceTT {
 		return this.quanLyHopDongDaoTT.viewOne(maNhanVien);
 	}
 
+	@Override
+	@Transactional
+	public int checkloaiHopDong(String maHopDong, int maNhanVien) {
+		// TODO Auto-generated method stub
+		return this.quanLyHopDongDaoTT.checkloaiHopDong(maHopDong, maNhanVien);
+	}
+
 
 
 }

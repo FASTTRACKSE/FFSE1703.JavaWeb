@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fasttrackse.ffse1703.fbms.dao.quanlynhansutt.ThongTinGiaDinhDaoTT;
+import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.HoSoNhanVienTT;
 import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.ThongTinGiaDinhTT;
 
 @Service
@@ -17,21 +18,24 @@ public class ThongTinGiaDinhServiceTTImpl implements ThongTinGiaDinhServiceTT {
 	private ThongTinGiaDinhDaoTT thongTinGiaDinhDaoTT;
 
 	@Override
+	@Transactional
 	public void addGiaDinh(ThongTinGiaDinhTT p) {
 		// TODO Auto-generated method stub
-		
+		thongTinGiaDinhDaoTT.addGiaDinh(p);
 	}
 
 	@Override
+	@Transactional
 	public void updateGiaDinh(ThongTinGiaDinhTT p) {
 		// TODO Auto-generated method stub
-		
+		thongTinGiaDinhDaoTT.updateGiaDinh(p);
 	}
 
 	@Override
+	@Transactional
 	public ThongTinGiaDinhTT getGiaDinhById(int id) {
 		// TODO Auto-generated method stub
-		return null;
+		return this.thongTinGiaDinhDaoTT.getGiaDinhById(id);
 	}
 
 	@Override
@@ -48,9 +52,18 @@ public class ThongTinGiaDinhServiceTTImpl implements ThongTinGiaDinhServiceTT {
 	}
 
 	@Override
+	@Transactional
 	public int checkQuanHe(String quanHe, int maNhanVien) {
 		// TODO Auto-generated method stub
-		return 0;
+		return this.thongTinGiaDinhDaoTT.checkQuanHe(quanHe, maNhanVien);
+				
+	}
+
+	@Override
+	@Transactional
+	public HoSoNhanVienTT getHoSoNhanVienById(int maNhanVien) {
+		// TODO Auto-generated method stub
+		return  this.thongTinGiaDinhDaoTT.findByMaNhanVien(maNhanVien);
 	}
 
 }

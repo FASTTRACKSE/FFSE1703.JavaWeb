@@ -10,7 +10,7 @@ import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.ThongTinBangCapTT;
 public interface ThongTinBangCapServiceTT {
 	public void addThongTinBangCap(ThongTinBangCapTT ttbc);
 	public void updateThongTinBangCap(ThongTinBangCapTT ttbc);
-	public void deleteThongTinBangCap(int id);
+	public void deleteThongTinBangCap(ThongTinBangCapTT ttbc);
 	public List<String> getDeleteList(List<ThongTinBangCapTT> listThongTinBangcap);
 	public List<String> getErrorList(BindingResult bindingResult) ;
 	public List<ThongTinBangCapTT> listBangCap();

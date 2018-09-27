@@ -112,4 +112,15 @@ public class QuanLyHopDongDaoTTImpl implements QuanLyHopDongDaoTT {
 		return viewOne;
 	}
 
+	@Override
+	public int checkloaiHopDong( String loaiHopDong, int maNhanVien) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		List<HopDongTT> dm = session.createQuery(
+				"from HopDongTT where ma_loai_hop_dong = '" + loaiHopDong + "' and ma_nhan_vien = '" + maNhanVien + "'",
+				HopDongTT.class).list();
+		return dm.size();
+	}
+
+
 }

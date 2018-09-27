@@ -18,11 +18,8 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-
 /**
  * The persistent class for the hop_dong database table.
- *  e muốn list cái entity ni đsung k
- *  dạ 
  */
 @Entity
 @Table(name = "hop_dong")
@@ -52,7 +49,7 @@ public class HopDongTT implements Serializable {
 
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@Column(name = "ngay_ky", nullable = false)  
+	@Column(name = "ngay_ky", nullable = false)
 	@NotNull
 	private Date ngayKy;
 
@@ -74,7 +71,7 @@ public class HopDongTT implements Serializable {
 
 	@Column(name = "trang_thai", nullable = false)
 	private Integer trangThai;
-	
+
 	@Column(name = "isdelete", nullable = false)
 	private Integer isdelete;
 
@@ -153,7 +150,7 @@ public class HopDongTT implements Serializable {
 	public void setTrangThai(Integer trangThai) {
 		this.trangThai = trangThai;
 	}
-	
+
 	public Integer getIsdelete() {
 		return isdelete;
 	}
@@ -161,6 +158,5 @@ public class HopDongTT implements Serializable {
 	public void setIsdelete(Integer isdelete) {
 		this.isdelete = isdelete;
 	}
-
 
 }

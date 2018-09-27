@@ -27,27 +27,40 @@ public class ThongTinBangCapControllerTT {
 		this.thongTinBangCapServiceTT = thongTinBangCapServiceTT;
 	}
 
+	// Show all qualifications
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String viewBangCap(Model model) {
 		model.addAttribute("listBangCap", thongTinBangCapServiceTT.listBangCap());
 		return "QuanLyNhanSuTT/QuanLyBangCapTT/viewBangCap";
 	}
-	
-    //Thêm bằng cấp cho một nhân viên
+
+	// Add a degree to an employee
 	@RequestMapping(value = "/add_bangcap/{maNhanVien}", method = RequestMethod.GET)
-	public String showFormAdd(Model model, final RedirectAttributes redirectAttributes,  @PathVariable int maNhanVien) {
+	public String showFormAdd(Model model, final RedirectAttributes redirectAttributes, @PathVariable int maNhanVien) {
 		model.addAttribute("hosonv", thongTinBangCapServiceTT.getHoSoNhanVienById(maNhanVien));
 		ThongTinBangCapTT hsnv = new ThongTinBangCapTT();
 		model.addAttribute("ttbc", hsnv);
 		return "QuanLyNhanSuTT/QuanLyBangCapTT/add_form";
 	}
-	//Sửa bằng cấp cho một nhân viên
+
+	// Edit a degree for an employee
 	@RequestMapping("/edit_bangcap/{maNhanVien}")
-	public String showFormUpdate(@PathVariable("maNhanVien") int maNhanVien, Model model) throws IllegalStateException, IOException {
+	public String showFormUpdate(@PathVariable("maNhanVien") int maNhanVien, Model model)
+			throws IllegalStateException, IOException {
 		model.addAttribute("ttbc", thongTinBangCapServiceTT.findByBangCap(maNhanVien));
 		return "QuanLyNhanSuTT/QuanLyBangCapTT/edit_form";
 	}
 
+	// delete qualification for an employee
+	@RequestMapping("/remove/{id}")
+	public String remove(@PathVariable("id") int id, final RedirectAttributes redirectAttributes) {
+		ThongTinBangCapTT ttbc = thongTinBangCapServiceTT.findByBangCap(id);
+		ttbc.setIsdelete(0);
+		thongTinBangCapServiceTT.updateThongTinBangCap(ttbc);
+		return "redirect:/quanlynhansutt/bang_cap/";
+	}
+
+	// Processing additional information, correcting a degree for an employee
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String saveHopDong(@ModelAttribute("ttbc") @Valid ThongTinBangCapTT ttbc, BindingResult result) {
 		if (ttbc.getId() == 0) {
@@ -56,23 +69,24 @@ public class ThongTinBangCapControllerTT {
 				return "QuanLyNhanSuTT/QuanLyBangCapTT/add_form";
 
 			}
+			ttbc.setIsdelete(1);
 			thongTinBangCapServiceTT.addThongTinBangCap(ttbc);
 		} else {
 			// existing person, call update
 			if (result.hasErrors()) {
 				return "QuanLyNhanSuTT/QuanLyBangCapTT/edit_form";
 			}
+			ttbc.setIsdelete(1);
 			thongTinBangCapServiceTT.updateThongTinBangCap(ttbc);
 		}
-		return "redirect:/quanlynhansutt/bang_cap/";
+		return "redirect:/quanlynhansutt/ho_so/";
 	}
-   
-	
-	 //viewOneBangCap Nhân Viên
-		@RequestMapping("/viewOneBangCap/{maNhanVien}")
-		public String viewOneHopDong(@PathVariable int maNhanVien, Model model) {
-			model.addAttribute("viewOne", this.thongTinBangCapServiceTT.viewOne(maNhanVien));
-			model.addAttribute("maNhanVien", maNhanVien);
-			return "QuanLyNhanSuTT/QuanLyBangCapTT/viewOneBangCap";
-		}
+
+	// viewOneBangCap Staff
+	@RequestMapping("/viewOneBangCap/{maNhanVien}")
+	public String viewOneHopDong(@PathVariable int maNhanVien, Model model) {
+		model.addAttribute("viewOne", this.thongTinBangCapServiceTT.viewOne(maNhanVien));
+		model.addAttribute("maNhanVien", maNhanVien);
+		return "QuanLyNhanSuTT/QuanLyBangCapTT/viewOneBangCap";
+	}
 }

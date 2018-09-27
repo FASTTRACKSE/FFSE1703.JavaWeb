@@ -43,19 +43,19 @@ public class ThongTinBangCapTT implements Serializable {
 	private HoSoNhanVienTT hoSoNhanVienTT;
 
 	@Column(name = "ten_bang_cap", nullable = false, length = 250)
-	@NotEmpty
+	@NotEmpty(message="Degrees can not be empty!")	
 	private String tenBangCap;
 
 	@Column(name = "loai_bang_cap", nullable = false, length = 20)
-	@NotEmpty
+	@NotEmpty(message="You have not entered the type information by level!")	
 	private String loaiBangCap;
 
 	@Column(name = "don_vi_cap", nullable = false, length = 200)
-	@NotEmpty
+	@NotEmpty(message="You have not entered level information!")	
 	private String donViCap;
 
 	@Column(name = "noi_cap", nullable = false, length = 200)
-	@NotEmpty
+	@NotEmpty(message="You have not entered your information yet!")	
 	private String noiCap;
 
 	@Temporal(TemporalType.DATE)
@@ -63,6 +63,17 @@ public class ThongTinBangCapTT implements Serializable {
 	@Column(name = "ngay_cap", nullable = false)
 	@NotNull
 	private Date ngayCap;
+
+	@Column(name = "isdelete", nullable = false)
+	private Integer isdelete;
+
+	public Integer getIsdelete() {
+		return isdelete;
+	}
+
+	public void setIsdelete(Integer isdelete) {
+		this.isdelete = isdelete;
+	}
 
 	public ThongTinBangCapTT() {
 	}

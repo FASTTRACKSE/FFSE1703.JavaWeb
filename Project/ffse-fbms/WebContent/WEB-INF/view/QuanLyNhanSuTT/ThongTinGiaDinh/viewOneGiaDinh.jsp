@@ -49,7 +49,7 @@ th, td {
 				<div role="group" aria-label="Button group with nested dropdown"
 					class="btn-group float-md-right" id="add-new">
 					<a
-						href="<c:url value = "/quanlynhansutt/hop_dong/add_hopdong/${maNhanVien}"/>"
+						href="<c:url value = "/quanlynhansutt/gia_dinh/add_giadinh/${maNhanVien}"/>"
 						class="btn btn-primary"><span class="fa fa-plus"></span> Thêm
 						mới</a>
 				</div>
@@ -107,7 +107,7 @@ th, td {
 														style="letter-spacing: 5px; min-width: 75px; text-align: center !important;">
 														<a href="<c:url value = "#"/>"><i class="fa fa-eye"></i></a>
 														<a
-														href="<c:url value = "#"/>"><i
+														href="<c:url value = "/quanlynhansutt/gia_dinh/edit_giadinh/${ttgd.id}"/>"><i
 															class="fa fa-pencil"></i></a> <%-- <a href="<c:url value = ""/>"><i class="fa fa-trash"></i></a> --%>
 														<a
 														href='<c:url value = "#"></c:url>'

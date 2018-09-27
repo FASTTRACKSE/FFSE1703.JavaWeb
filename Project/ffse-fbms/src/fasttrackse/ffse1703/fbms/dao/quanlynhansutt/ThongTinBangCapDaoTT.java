@@ -12,7 +12,7 @@ public interface ThongTinBangCapDaoTT {
 
 	public void updateThongTinBangCap(ThongTinBangCapTT ttbc);
 
-	public void deleteThongTinBangCap(int id);
+	public void deleteThongTinBangCap(ThongTinBangCapTT ttbc);
 	
 	public ThongTinBangCapTT findByBangCap(int id);
 	

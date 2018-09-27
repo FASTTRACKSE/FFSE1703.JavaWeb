@@ -30,12 +30,9 @@ public class ThongTinBangCapDaoTTImpl implements ThongTinBangCapDaoTT {
 	}
 
 	@Override
-	public void deleteThongTinBangCap(int id) {
+	public void deleteThongTinBangCap(ThongTinBangCapTT ttbc) {
 		Session session = this.sessionFactory.getCurrentSession();
-		ThongTinBangCapTT ttbc = (ThongTinBangCapTT) session.load(ThongTinBangCapTT.class, id);
-		if (null != ttbc) {
-			session.delete(ttbc);
-		}
+		session.update(ttbc);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -43,7 +40,7 @@ public class ThongTinBangCapDaoTTImpl implements ThongTinBangCapDaoTT {
 	public List<ThongTinBangCapTT> ListBangCap() {
 		// TODO Auto-generated method stub
 		Session session = sessionFactory.getCurrentSession();
-		List<ThongTinBangCapTT> listBangCap = session.createQuery("from ThongTinBangCapTT").getResultList();
+		List<ThongTinBangCapTT> listBangCap = session.createQuery("from ThongTinBangCapTT where isdelete = 1").getResultList();
 		return listBangCap;
 	}
 
@@ -66,7 +63,7 @@ public class ThongTinBangCapDaoTTImpl implements ThongTinBangCapDaoTT {
 		// TODO Auto-generated method stub
 		Session session = this.sessionFactory.openSession();
 		@SuppressWarnings("rawtypes")
-		Query query = session.createQuery("from ThongTinBangCapTT where ma_nhan_vien = "+maNhanVien+" ");
+		Query query = session.createQuery("from ThongTinBangCapTT where ma_nhan_vien = "+maNhanVien+" and isdelete = 1");
 		@SuppressWarnings("unchecked")
 		List<ThongTinBangCapTT> viewOne = query.list();
 		return viewOne;

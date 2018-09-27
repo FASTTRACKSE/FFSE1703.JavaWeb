@@ -106,7 +106,7 @@
 														<a href="<c:url value = "/quanlynhansutt/bang_cap/edit_bangcap/${hsnv.id}"/>"><i class="fa fa-pencil"></i></a>
 														<%-- <a href="<c:url value = ""/>"><i class="fa fa-trash"></i></a> --%>
 														<a
-											href='<c:url value = "#"></c:url>'
+											href='<c:url value = "/quanlynhansutt/bang_cap/remove/${hsnv.id}"></c:url>'
 											class="fa fa-trash"
 											onclick="return confirm('Bạn có muốn xóa sinh viên này?');"></a>
 														

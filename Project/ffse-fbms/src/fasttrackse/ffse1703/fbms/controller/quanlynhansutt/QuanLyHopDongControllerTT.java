@@ -44,14 +44,14 @@ public class QuanLyHopDongControllerTT {
 		this.hopDongServiceTT = hopDongServiceTT;
 	}
 
-	// List tất cả hợp đồng
+	// List all contracts
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String viewHopDong(Model model) {
 		model.addAttribute("listHopDong", hopDongServiceTT.getAllHopDong());
 		return "QuanLyNhanSuTT/QuanLyHopDongTT/list";
 	}
 
-	// thêm hợp đồng cho một nhân viên
+	// add a contract to an employee
 	@RequestMapping(value = "/add_hopdong/{maNhanVien}", method = RequestMethod.GET)
 	public String showFormAdd(Model model, final RedirectAttributes redirectAttributes, @PathVariable int maNhanVien) {
 		model.addAttribute("hopDongTT", new HopDongTT());
@@ -60,7 +60,7 @@ public class QuanLyHopDongControllerTT {
 		return "QuanLyNhanSuTT/QuanLyHopDongTT/add_form";
 	}
 
-	// sửa hợp đồng cho nhân viên
+	// edit the contract for employees
 	@RequestMapping("/edit_hopdong/{maNhanVien}")
 	public String showFormUpdate(@PathVariable("maNhanVien") int maNhanVien, Model model)
 			throws IllegalStateException, IOException {
@@ -69,7 +69,7 @@ public class QuanLyHopDongControllerTT {
 		return "QuanLyNhanSuTT/QuanLyHopDongTT/edit_form";
 	}
 
-	// xóa hợp đồng
+	// delete an employee's contract
 	@RequestMapping("/remove/{maHopDong}")
 	public String remove(@PathVariable("maHopDong") int maHopDong, final RedirectAttributes redirectAttributes) {
 		HopDongTT hd = hopDongServiceTT.findByMaHopDong(maHopDong);
@@ -78,15 +78,25 @@ public class QuanLyHopDongControllerTT {
 		return "redirect:/quanlynhansutt/hop_dong/";
 	}
 
-	// lưu phần thêm,sửa cho nhân viên
+	// Processing additional information, correcting a degree for an employee
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String saveHopDong(@ModelAttribute("hopDongTT") @Valid HopDongTT hd, BindingResult result) {
+	public String saveHopDong(@ModelAttribute("hopDongTT") @Valid HopDongTT hd, BindingResult result, Model model) {
 		if (hd.getMaHopDong() == 0) {
 			// new person, add it
 			if (result.hasErrors()) {
 				return "QuanLyNhanSuTT/QuanLyHopDongTT/add_form";
 
 			}
+			// check trùng quan hệ
+						int checkloaiHopDong = hopDongServiceTT.checkloaiHopDong(hd.getLoaiHopDong().getTenHopDong(),hd.getHoSoNhanVienTT().getMaNhanVien());
+						System.out.println("nnnnn"+checkloaiHopDong);
+						System.out.println("nnnnn"+hd.getHoSoNhanVienTT().getMaNhanVien());
+						System.out.println("nnnnn"+hd.getLoaiHopDong().getTenHopDong());
+						if (checkloaiHopDong >= 1) {
+							model.addAttribute("messageQuanHe",
+									"<script>alert('Nhân Viên Đã Có " + hd.getLoaiHopDong() + "');</script>");
+							return "QuanLyNhanSuTT/QuanLyHopDongTT/add_form";
+						}
 			hd.setIsdelete(1);
 			hopDongServiceTT.addHopDong(hd);
 		} else {
@@ -97,10 +107,18 @@ public class QuanLyHopDongControllerTT {
 			hd.setIsdelete(1);
 			hopDongServiceTT.updateHopDong(hd);
 		}
-		return "redirect:/quanlynhansutt/hop_dong/";
+		return "redirect:/quanlynhansutt/ho_so/";
 	}
 
-	// viewOneHopDong Nhân Viên
+	/*int checkQuanHe = thongTinGiaDinhServiceTT.checkQuanHe(gd.getQuanHe(),
+			gd.getHoSoNhanVienTT().getMaNhanVien());
+	if (checkQuanHe >= 1) {
+		model.addAttribute("messageQuanHe",
+				"<script>alert('Nhân Viên Đã Có " + gd.getQuanHe() + "');</script>");
+		return "QuanLyNhanSuTT/ThongTinGiaDinh/add_form";
+	}*/
+	
+	// Show the contract to an employee
 	@RequestMapping("/viewOneHopDong/{maNhanVien}")
 	public String viewOneHopDong(@PathVariable int maNhanVien, Model model) {
 		model.addAttribute("viewOne", this.hopDongServiceTT.viewOne(maNhanVien));

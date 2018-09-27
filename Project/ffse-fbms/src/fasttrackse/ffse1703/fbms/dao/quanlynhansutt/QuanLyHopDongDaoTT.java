@@ -33,4 +33,6 @@ public interface QuanLyHopDongDaoTT {
 		
 	public List<HopDongTT> viewOne(int maNhanVien);
 	
+	int checkloaiHopDong(String loaiHopDong, int maNhanVien);
+	
 }

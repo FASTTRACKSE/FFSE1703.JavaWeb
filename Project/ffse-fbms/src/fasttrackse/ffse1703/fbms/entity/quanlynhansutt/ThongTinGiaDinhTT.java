@@ -22,42 +22,42 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @Table(name = "thong_tin_gia_dinh")
 public class ThongTinGiaDinhTT {
-	
+
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	// bi-directional many-to-one association to HoSoNhanVien
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ma_nhan_vien")
 	private HoSoNhanVienTT hoSoNhanVienTT;
-		
+
 	@Column(name = "ten")
-	@NotEmpty(message="Họ Tên Không được để trống !")
+	@NotEmpty(message = "Name and surname must not be blank!")
 	private String hoTen;
-	
+
 	@Column(name = "que_quan")
-	@NotEmpty(message="Quê Quán Không được để trống !")
+	@NotEmpty(message = "Please enter your country of residence!")
 	private String queQuan;
-	
+
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@Column(name = "nam_sinh", nullable = false)  
+	@Column(name = "nam_sinh", nullable = false)
 	@NotNull
 	private Date namSinh;
-	
+
 	@Column(name = "gioi_tinh", nullable = false)
 	@NotNull
 	private Integer gioiTinh;
-	
+
 	@Column(name = "so_dien_thoai")
-	@Size(min = 9, max= 12, message = "Số Điện Thoại sai định dạng !")
-	@NotEmpty(message="Số Điện Thoại Không được để trống !")
+	@Size(min = 9, max = 12, message = "You entered the wrong number format!")
+	@NotEmpty(message = "Please enter your phone number")
 	private String soDienThoai;
-	
+
 	@Column(name = "quan_he")
-	@NotEmpty(message="Quan Hệ Không được để trống !")
+	@NotEmpty(message = "Please enter the contact information!")
 	private String quanHe;
 
 	public int getId() {
@@ -123,5 +123,5 @@ public class ThongTinGiaDinhTT {
 	public void setQuanHe(String quanHe) {
 		this.quanHe = quanHe;
 	}
-	
+
 }

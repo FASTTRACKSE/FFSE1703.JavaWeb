@@ -128,7 +128,7 @@
 
 													</div>
 													<div class="row">
-														<div class="col-md-6">
+														<div class="form-group col-sm-6">
 															<div class="form-group">
 																<label for="date1">Ngày Ký</label>
 																<fieldset class="form-group position-relative">
@@ -137,12 +137,12 @@
 																	<div class="form-control-position">
 																		<i class="fa fa-calendar-o"></i>
 																	</div>
-
 																</fieldset>
-
+																<form:errors path="ngayKy"
+																	cssClass="invalid-feedback d-block" />
 															</div>
 														</div>
-														<div class="col-md-6">
+														<div class="form-group col-sm-6">
 															<div class="form-group">
 																<label for="date1">Hợp Đồng Từ Ngày</label>
 																<fieldset class="form-group position-relative">
@@ -151,12 +151,13 @@
 																	<div class="form-control-position">
 																		<i class="fa fa-calendar-o"></i>
 																	</div>
-
+																	<form:errors path="hopDongTuNgay"
+																		cssClass="invalid-feedback d-block" />
 																</fieldset>
 
 															</div>
 														</div>
-														<div class="col-md-6">
+														<div class="form-group col-sm-6">
 															<div class="form-group">
 																<label for="date1">Hợp Đồng Đến Ngày</label>
 																<fieldset class="form-group position-relative">
@@ -167,10 +168,11 @@
 																	</div>
 
 																</fieldset>
-
+																<form:errors path="hopDongDenNgay"
+																	cssClass="invalid-feedback d-block" />
 															</div>
 														</div>
-														<div class="col-md-6">
+														<div class="form-group col-sm-6">
 															<div class="form-group">
 																<label for="location1">Trạng Thái</label>
 																<form:select class="custom-select form-control"
@@ -189,6 +191,7 @@
 										</div>
 										<div class="form-actions center">
 											<input class="btn btn-success" type="submit" value="Save" />
+											<p style="color: red">${messageQuanHe}</p>
 											<%-- <a href="<c:url value = "/quanlynhansutt/add"/>"
 												class="btn btn-primary">Back</a>
  --%>

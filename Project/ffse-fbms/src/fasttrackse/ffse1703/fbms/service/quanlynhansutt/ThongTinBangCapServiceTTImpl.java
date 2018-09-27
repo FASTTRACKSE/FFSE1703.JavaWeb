@@ -33,8 +33,8 @@ public class ThongTinBangCapServiceTTImpl implements ThongTinBangCapServiceTT {
 
 	@Override
 	@Transactional
-	public void deleteThongTinBangCap(int id) {
-		this.thongTinBangCapDaoTT.deleteThongTinBangCap(id);
+	public void deleteThongTinBangCap(ThongTinBangCapTT ttbc) {
+		this.thongTinBangCapDaoTT.deleteThongTinBangCap(ttbc);
 	}
 	
 	@Override

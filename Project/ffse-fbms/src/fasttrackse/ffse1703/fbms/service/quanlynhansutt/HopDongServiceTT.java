@@ -40,4 +40,6 @@ public interface HopDongServiceTT {
 	public List<HoSoNhanVienTT> getAllNhanVien();
 	
 	public List<HopDongTT> viewOne(int maNhanVien);
+
+	int checkloaiHopDong(String maHopDong, int maNhanVien);
 }

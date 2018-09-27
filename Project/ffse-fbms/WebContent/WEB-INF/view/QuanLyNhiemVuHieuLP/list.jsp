@@ -95,12 +95,11 @@ th{ background-color: #2A2E30;
 				</div>
 			</c:if>
 			<!-- End Show message -->
-
 			<div class="row">
 				<div class="col-xs-12">
 					<div class="card">
 						<div class="card-header">
-							<h4 class="card-title" style="margin-left: 400px">Danh sách nhiệm vụ</h4>
+							<h4 class="content-header-title mb-0" style="margin-left: 400px">Danh sách nhiệm vụ</h4>
 							<a class="heading-elements-toggle"><i
 								class="fa fa-ellipsis-v font-medium-3"></i></a>
 							<div class="heading-elements">
@@ -118,7 +117,7 @@ th{ background-color: #2A2E30;
 						  	<form:form method="GET" action="">
 						  	<div class="form-group col-sm-10">
 								<div class="form-group col-sm-4">
-								 	<label>Dự án</label>
+								 	<label >Dự án</label>
 								 	 <select class="custom-select block round" name= "maDuan"
 										id="maDuan">
 										<option value="0" label="Tất cả" />
@@ -181,50 +180,63 @@ th{ background-color: #2A2E30;
 										</thead>
 										<tbody>
 										<c:forEach items="${list}" var="nv" varStatus="stt">
-										<tr>
-										        <td>${(page-1)*10 + stt.count}</td>	
-										        <td>${nv.duAn.tenDuan}</td>		
-										        <td>${nv.tenCongviec} </td>						
-										        <td>${nv.idLoaiCongviec.loaiCongviec}</td>
-										        <td>${nv.idLoaiTrangthai.loaiTrangthai}</td>
-										        <td>${nv.nhanVien.hoDem} ${nv.nhanVien.ten}</td>
-												<td style="letter-spacing: 10px">
-													<a href="/ffse-fbms/HieuLP/view/${nv.ID}"><i class='fa fa-eye'></i></a> 
-													<a href="/ffse-fbms/HieuLP/edit/${nv.ID}"><i class='fa fa-pencil'></i></a>
-													<a href="/ffse-fbms/HieuLP/delete/${nv.ID}"><i class='fa fa-trash' onclick="return confirm('Bạn có muốn xóa sinh viên này?');"></i></a>
+												<tr>
+											        <td>${(currentPage-1)*10 + stt.count}</td>	
+											        <td>${nv.duAn.tenDuan}</td>		
+											        <td>${nv.tenCongviec} </td>						
+											        <td>${nv.idLoaiCongviec.loaiCongviec}</td>
+											        <td>${nv.idLoaiTrangthai.loaiTrangthai}</td>
+											        <td>${nv.nhanVien.hoDem} ${nv.nhanVien.ten}</td>
+													<td style="letter-spacing: 10px">
+														<a href="/ffse-fbms/HieuLP/view/${nv.ID}"><i class='fa fa-eye'></i></a> 
+														<a href="/ffse-fbms/HieuLP/edit/${nv.ID}"><i class='fa fa-pencil'></i></a>
+														<a href="/ffse-fbms/HieuLP/delete/${nv.ID}"><i class='fa fa-trash' onclick="return confirm('Bạn có muốn xóa sinh viên này?');"></i></a>
 													</td>
 												</tr>
 										</c:forEach>
 										</tbody>
 										
 									</table>
+									<c:set scope="request" var="total" value="${total}" />
+									<% 	String query =  request.getQueryString();
+									// query = "maDuan=3&maNhanVien=8&IDtrangthai=0"
+										//String page = request.getParameter("page");
+									
+										
+										if (query == null) {
+											query = "";
+										} else {
+											query = "&" + query;
+										}
+										
+										String firstPage = "?page=1" + query;
+									%>
 									<nav aria-label="Page navigation example">
-										<ul class="pagination" style="margin-left: 450px">
-											<li class="page-item"><a class="page-link"
-												href="/ffse-fbms/HieuLP/danhsach/1">First Page</a></li>
-											<c:if test="${page > 2}">
-												<li class="page-item"><a class="page-link"
-													href="/ffse-fbms/HieuLP/danhsach/${page-2}">${page-2}</a></li>
-											</c:if>
-											<c:if test="${page > 1}">
-												<li class="page-item"><a class="page-link"
-													href="/ffse-fbms/HieuLP/danhsach/${page-1}">${page-1}</a></li>
-											</c:if>
-											<li class="page-item active"><a class="page-link"
-												href="/ffse-fbms/HieuLP/danhsach/${page}">${page}</a></li>
-											<c:if test="${page < total}">
-												<li class="page-item"><a class="page-link"
-													href="/ffse-fbms/HieuLP/danhsach/${page+1}">${page+1}</a></li>
-											</c:if>
-											<c:if test="${page < total - 1}">
-												<li class="page-item"><a class="page-link"
-													href="/ffse-fbms/HieuLP/danhsach/${page+2}">${page+2}</a></li>
-											</c:if>
-											<li class="page-item"><a class="page-link"
-												href="/ffse-fbms/HieuLP/danhsach/${total }">Last Page</a></li>
-
-										</ul>
-									</nav>
+							<ul class="pagination">
+								<li class="page-item"><a class="page-link" href="?page=1<%=query%>">First
+										Page</a></li>
+								<c:if test="${currentPage > 2}">
+									<li class="page-item"><a class="page-link"
+										href="?page=${currentPage-2}<%=query%>">${currentPage-2}</a></li>
+								</c:if>
+								<c:if test="${currentPage > 1}">
+									<li class="page-item"><a class="page-link"
+										href="?page=${currentPage-1}<%=query%>">${currentPage-1}</a></li>
+								</c:if>
+								<li class="page-item active"><a class="page-link"
+									href="?page=${currentPage}<%=query%>">${currentPage}</a></li>
+								<c:if test="${currentPage < lastPage}">
+									<li class="page-item"><a class="page-link"
+										href="?page=${currentPage+1}<%=query%>">${currentPage+1}</a></li>
+								</c:if>
+								<c:if test="${currentPage < lastPage - 1}">
+									<li class="page-item"><a class="page-link"
+										href="?page=${currentPage+2}<%=query%>">${currentPage+2}</a></li>
+								</c:if>
+								<li class="page-item"><a class="page-link"
+									href="">Last Page</a></li>
+							</ul>
+						</nav>
 								</div>
 							</div>
 						</div>
@@ -234,7 +246,12 @@ th{ background-color: #2A2E30;
 		</div>
 	</div>
 </div>
-
-
+<script type="text/javascript">
+window.setTimeout(function() {
+	$(".alert").fadeTo(500, 0).slideUp(500, function() {
+		$(this).remove();
+	});	
+}, 2500);
+</script>
 
 <jsp:include page="/WEB-INF/view/templates/footer.jsp" />

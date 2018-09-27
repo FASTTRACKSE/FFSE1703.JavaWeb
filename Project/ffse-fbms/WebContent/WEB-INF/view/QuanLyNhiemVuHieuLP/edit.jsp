@@ -32,11 +32,11 @@
 						<div class="form-group col-sm-6">
 							<label>Dự án</label>
 							<form:hidden path="duAn.maDuan" />
-							<form:input class="form-control" path="duAn.tenDuan" readonly="true" />
+							<form:input class="form-control block round" path="duAn.tenDuan" readonly="true" />
 						</div>
 						<div class="form-group col-sm-6">
 							<label>Tên công việc</label>
-							<form:input class="form-control" path="tenCongviec" />
+							<form:input class="form-control block round" path="tenCongviec" />
 						</div>
 					<div class="form-group col-sm-6">
 						  	<label>Loại công việc</label>
@@ -59,22 +59,22 @@
 						<div class="form-group col-sm-6">
 							<label>Thời gian bắt đầu</label>
 							<form:input path="tgBatdau"  type="date"
-								id="issueinput3" class="form-control" />
+								id="issueinput3" class="form-control block round" />
 						</div>
 						<div class="form-group col-sm-6">
 							<label>Thời gian kết thúc</label>
 							<form:input path="tgKetthuc" type="date"
-								id="issueinput3" class="form-control" />
+								id="issueinput3" class="form-control block round" />
 						</div>
 						<div class="form-group col-sm-6">
 							<label>Người được phân công</label>
 									<form:hidden path="nhanVien.maNhanVien" />
-									<form:input class="form-control" path="nhanVien.ten"  value="${duAn.nhanVien.hoDem} ${duAn.nhanVien.ten}" readonly="true" />
+									<form:input class="form-control block round" path="nhanVien.ten"  value="${duAn.nhanVien.hoDem} ${duAn.nhanVien.ten}" readonly="true" />
 						</div>
 						<div class="form-group col-sm-6">
 							<label>Thời gian dự kiến hoàn thành</label>
 			
-								  <form:input class="form-control" path="tgDukienhoanthanh" placeholder="Thời gian dự kiến hoàn thành	" />
+								  <form:input class="form-control block round" path="tgDukienhoanthanh" placeholder="Thời gian dự kiến hoàn thành	" />
 						</div>
 						<div class="form-group col-sm-6">
 							<label>Mô tả</label>

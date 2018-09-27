@@ -53,7 +53,7 @@ public class QLyNhiemVuEntity {
 	private HoSoNhanVienHLP nhanVien;
 
 	@Column(name = "tg_du_kien_hoan_thanh")
-	@NotNull
+	@NotEmpty
 	private String tgDukienhoanthanh;
 
 	@ManyToOne(fetch = FetchType.EAGER)

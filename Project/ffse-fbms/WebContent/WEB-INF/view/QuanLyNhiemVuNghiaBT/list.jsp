@@ -108,32 +108,35 @@
 										class="table table-striped table-bordered dataex-res-constructor">
 										<thead>
 											<tr>
+												<th>STT</th>
 												<th>Tên Công Việc</th>
-												<th>Loại công việc</th>
-												<th>Thời gian Bắt Đầu</th>
-												<th>Thời Gian Kết Thúc</th>
+												<th>Thuộc tính</th>
+												<th>Bắt Đầu</th>
+												<th>Kết Thúc</th>
 												<th>phân công</th>
 												<th>Trạng thái</th>
 												<th>Hoạt động</th>
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach var="cv" items="${listNhiemVu}">
+											<c:forEach var="cv" items="${listNhiemVu}" begin="0"
+												varStatus="counter">
 												<tr>
+													<td>${(page)*2 + counter.count}</td>
 													<td>${cv.tenCongViec}</td>
-<%-- 													<td>${cv.maCongViec.loaiCongViec}</td> --%>
+													<td>${cv.maCongViec.loaiCongViec}</td>
 													<td>${cv.tgBatDau}</td>
 													<td>${cv.tgKetThuc}</td>
-<%-- 													<td>${cv.phanCong.hoDem} ${cv.phanCong.ten}</td> --%>
-<%-- 													<td>${cv.maTrangThai.trangThai}</td> --%>
-													<td style="letter-spacing: 5px">
-															<a href="/ffse-fbms/QuanLyNhiemVuNghiaBT/view/${cv.ID}"><i
-																class='fa fa-eye'></i></a> <a
-																href="/ffse-fbms/QuanLyNhiemVuNghiaBT/edit/${cv.ID}"><i
-																class='fa fa-pencil'></i></a> <a
-																href="/ffse-fbms/QuanLyNhiemVuNghiaBT/delete/${cv.ID}"><i
-																class='fa fa-trash'
-																onclick="return confirm('Bạn có muốn xóa sinh viên này?');"></i></a>
+													<td>${cv.phanCong.hoDem}${cv.phanCong.ten}</td>
+													<td>${cv.maTrangThai.trangThai}</td>
+													<td style="letter-spacing: 5px"><a
+														href="/ffse-fbms/QuanLyNhiemVuNghiaBT/view/${cv.ID}"><i
+															class='fa fa-eye'></i></a> <a
+														href="/ffse-fbms/QuanLyNhiemVuNghiaBT/edit/${cv.ID}"><i
+															class='fa fa-pencil'></i></a> <a
+															href="/ffse-fbms/QuanLyNhiemVuNghiaBT/delete/${cv.ID}"><i
+															class='fa fa-trash'
+															onclick="return confirm('Bạn có muốn xóa sinh viên này?');"></i></a>
 													</td>
 											</c:forEach>
 										</tbody>
@@ -141,6 +144,7 @@
 								</div>
 							</div>
 						</div>
+						
 					</div>
 				</div>
 			</div>

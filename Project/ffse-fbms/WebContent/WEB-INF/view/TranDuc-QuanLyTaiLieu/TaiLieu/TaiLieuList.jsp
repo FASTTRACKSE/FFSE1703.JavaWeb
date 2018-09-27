@@ -95,13 +95,13 @@
 														<tr>
 															<td>${counter.index + 1}</td>
 															<td>${item.maTL}</td>
-															<td>${item.tenDM}</td>
+															<td>${item.danhMuc.maDM}</td>
 															<td>${item.iconTL}</td>
 															<td>${item.tenTL}</td>
-															<td>${item.maPhongBan}</td>
+															<td>${item.phongBan.maPhongBan}</td>
 															<td>${item.motaTL}
 															<td>${item.link}</td>
-															<td>${item.trangthai}</td>
+															<td>${item.trangThai.maTT}</td>
 															<td class="tbl_actions"><a
 																href="<c:url value="/TranDuc-QuanLyTaiLieu/TaiLieu/view/${item.maTL}" />"
 																title="Xem"> <i class="fa fa-eye" aria-hidden="true">

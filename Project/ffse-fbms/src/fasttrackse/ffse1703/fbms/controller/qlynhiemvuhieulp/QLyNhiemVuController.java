@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fasttrackse.ffse1703.fbms.entity.qlynhiemvuhieulp.QLyNhiemVuEntity;
 import fasttrackse.ffse1703.fbms.service.qlynhiemvuhieulp.QLyNhiemVuService;
@@ -31,6 +33,10 @@ public class QLyNhiemVuController {
 		model.addAttribute("nv", qLyNhiemVuService.findById(id));
 		return "QuanLyNhiemVuHieuLP/viewOne";
 	}
+	public int totalPage(int perPage) {
+		int totalPage = (int) Math.ceil((double) qLyNhiemVuService.getAll().size() / (double) perPage);
+		return totalPage;
+	}
 
 	// @RequestMapping(value = {"/","/danhsach"})
 	// public String danhSach(Model model ) {
@@ -39,19 +45,19 @@ public class QLyNhiemVuController {
 	// return "QuanLyNhiemVuHieuLP/list";
 	// }
 
-	@RequestMapping("/")
-	public String view(HttpSession session) {
-		int currentPage;
-		if (session.getAttribute("page") == null) {
-			currentPage = 1;
-		} else {
-			currentPage = (int) session.getAttribute("page");
-		}
-		return "redirect:/HieuLP/danhsach/" + currentPage;
-	}
+//	@RequestMapping("/")
+//	public String view(HttpSession session) {
+//		int currentPage;
+//		if (session.getAttribute("page") == null) {
+//			currentPage = 1;
+//		} else {
+//			currentPage = (int) session.getAttribute("page");
+//		}
+//		return "redirect:/HieuLP/danhsach/" + currentPage;
+//	}
 
-	@RequestMapping(value = "/danhsach/{page}")
-	public String listCustomer(Model model, @PathVariable("page") int page, HttpServletRequest request) {
+	@RequestMapping(value = {"/","/danhsach"}, method = RequestMethod.GET)
+	public String listCustomer(Model model, @RequestParam(name = "page", required = false, defaultValue = "1") int page, HttpServletRequest request) {
 		// search = " and duAn.maDuan = ??? and nhanVien.maNhanVien = ??? and idLoaiTrangthai.IDtrangthai = ???"
 		String maDuanSearch = " and duAn.maDuan = " + request.getParameter("maDuan");
 		if (request.getParameter("maDuan") == null || request.getParameter("maDuan").equals("0")) {
@@ -67,28 +73,30 @@ public class QLyNhiemVuController {
 		}
 		String search = maDuanSearch + maNhanVienSearch + IDtrangthaiSearch;
 		
+		int perPage = 10;
+		int totalPage = totalPage(perPage);
 		int start = (page - 1) * perPage;
 		List<QLyNhiemVuEntity> list = qLyNhiemVuService.findAll(start, perPage, search);
 		model.addAttribute("list", list);
-		model.addAttribute("total", totalPage(perPage));
-		model.addAttribute("page", page);
+		model.addAttribute("total", totalPage);
+		model.addAttribute("currentPage", page);
 		model.addAttribute("trangthai", qLyNhiemVuService.trangThai());
 		model.addAttribute("duan", qLyNhiemVuService.duAn());
 		model.addAttribute("nhanVienHLP", qLyNhiemVuService.nhanVienHLP());
 		return "QuanLyNhiemVuHieuLP/list";
+		
+
+		
+		
 	}
 
-	public int totalPage(int perPage) {
-		int totalPage = (int) Math.ceil((double) qLyNhiemVuService.count() / (double) perPage);
-		return totalPage;
-	}
-
+	
 	@RequestMapping("/delete/{id}")
 	public String delete(@PathVariable int id, HttpServletRequest request, Model model) {
 		QLyNhiemVuEntity entity = qLyNhiemVuService.findById(id);
 		entity.setIsDelete(0);
 		qLyNhiemVuService.delete(entity);
-		return "redirect:/HieuLP/danhsach/1";
+		return "redirect:/HieuLP/danhsach/";
 	}
 
 	@RequestMapping(value = "/create")
@@ -101,15 +109,22 @@ public class QLyNhiemVuController {
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String createNhiemVu(Model model, @ModelAttribute("add") @Valid QLyNhiemVuEntity nv,
-			HttpServletRequest request, BindingResult bindingResult) throws IllegalStateException, IOException {
-		if (bindingResult.hasErrors()) {
-			return "create";
+	public String createNhiemVu( @ModelAttribute("add") @Valid QLyNhiemVuEntity nv,
+			 BindingResult bindingResult,final RedirectAttributes redirectAttributes,Model model) {
+//		if (bindingResult.hasErrors()) {
+//			return "/QuanLyNhiemVuHieuLP/create";
+//		}
+//			nv.setIsDelete(1);
+//			qLyNhiemVuService.add(nv);	
+		try {
+			nv.setIsDelete(1);
+			qLyNhiemVuService.add(nv);
+			redirectAttributes.addFlashAttribute("messageSuccess", "Thêm mới thành công...");
+		} catch (Exception e) {
+			redirectAttributes.addFlashAttribute("messageError", "Lỗi. Vui lòng xin thử lại !");
 		}
-		;
-		nv.setIsDelete(1);
-		qLyNhiemVuService.add(nv);
-		return "redirect:/HieuLP/danhsach/1";
+
+		return "redirect:/HieuLP/danhsach/";
 	}
 
 	@RequestMapping(value = "/edit/{id}")
@@ -121,10 +136,16 @@ public class QLyNhiemVuController {
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String edit(Model model, @ModelAttribute("edit") @Valid QLyNhiemVuEntity nv, HttpServletRequest request)
-			throws IllegalStateException, IOException {
-		nv.setIsDelete(1);
-		qLyNhiemVuService.update(nv);
-		return "redirect:/HieuLP/danhsach/1";
+	public String edit(Model model, @ModelAttribute("edit") @Valid QLyNhiemVuEntity nv,final RedirectAttributes redirectAttributes){
+//		nv.setIsDelete(1);
+//		qLyNhiemVuService.update(nv);
+		try {
+			nv.setIsDelete(1);
+			qLyNhiemVuService.update(nv);
+			redirectAttributes.addFlashAttribute("messageSuccess", "Lưu mới thành công.");
+		} catch (Exception e) {
+			redirectAttributes.addFlashAttribute("messageError", " Lỗi.Vui lòng thử lại!");
+		}
+		return "redirect:/HieuLP/danhsach/";
 	}
 }

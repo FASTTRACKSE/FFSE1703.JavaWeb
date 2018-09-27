@@ -77,10 +77,5 @@ public class QLyNhiemVuServiceImpl implements QLyNhiemVuService {
 		return qLyNhiemVuDao.findAll(offset, maxResult, search);
 	}
 
-	@Override
-	@Transactional
-	public int count() {
-		return qLyNhiemVuDao.count();
-	}
-
+	
 }

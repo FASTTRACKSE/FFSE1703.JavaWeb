@@ -57,4 +57,5 @@ public class TrangThaiDaoImpl implements TrangThaiDao {
 		session.close();
 		return tt;
 	}
+	
 }

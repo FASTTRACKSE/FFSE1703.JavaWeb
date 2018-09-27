@@ -10,9 +10,6 @@ import javax.persistence.Table;
 public class TrangThaiTaiLieu {
 
 	@Id
-	@Column(name = "id")
-	private String id;
-
 	@Column(name = "ma_trang_thai")
 	private String maTT;
 
@@ -23,12 +20,10 @@ public class TrangThaiTaiLieu {
 
 	}
 
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
+	public TrangThaiTaiLieu( String maTT, String tenTT) {
+		super();
+		this.maTT = maTT;
+		this.tenTT = tenTT;
 	}
 
 	public String getMaTT() {

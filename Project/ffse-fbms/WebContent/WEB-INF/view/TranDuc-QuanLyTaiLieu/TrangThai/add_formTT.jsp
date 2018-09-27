@@ -38,11 +38,6 @@
 					<div class="row">
 						<form:form method="POST" modelAttribute="TrangThai" action="">
 							<div class="form-group col-sm-6">
-								<label>ID</label>
-								<form:input class="form-control" path="id" placeholder="ID" />
-								<form:errors path="id" cssClass="error" />
-							</div>
-							<div class="form-group col-sm-6">
 								<label>Mã Trạng Thái</label>
 								<form:input class="form-control" path="maTT"
 									placeholder="Mã Trạng Thái" />

@@ -31,15 +31,18 @@
 						  	<label>Dự án</label>
 						  <form:select path="duAn.maDuan" class="custom-select block round"
 								id="customSelect">
+								<option value="0" label="Chọn dự án" />
 								<c:forEach items="${duan}" var="ld">
 									<form:option value="${ld.maDuan}" label="${ld.tenDuan}" />
 								</c:forEach>
 							</form:select>
+							
 						</div>
 						<div class="form-group col-sm-6">
 						  	<label>Loại công việc</label>
 						 <form:select path="idLoaiCongviec.IDcongviec" class="custom-select block round"
 								id="customSelect" >
+								<option value="0" label="Chọn công việc" />
 								<c:forEach items="${congviec}" var="ld" >
 									<form:option value="${ld.IDcongviec}" label="${ld.loaiCongviec}" />
 								</c:forEach>
@@ -47,28 +50,30 @@
 						</div>
 						<div class="form-group col-sm-6">
 						  	<label>Tên công việc</label>
-						  	<form:input class="form-control" path="tenCongviec"  placeholder="Tên công việc" />
+						  	<form:input class="form-control block round" path="tenCongviec"  placeholder="Tên công việc" />
 						  	<form:errors path="tenCongviec" cssClass="error" />
 						</div>
 							<div class="form-group col-sm-6">
 						  	<label>Trạng thái</label>
-							<input class="form-control" readonly value="Mới" />
+							<input class="form-control block round" readonly value="Mới" />
 							<form:hidden path="idLoaiTrangthai.IDtrangthai" value="1" />
 						</div>
 						<div class="form-group col-sm-6">
 						  	<label>Thời gian bắt đầu</label>
-						    <form:input path="tgBatdau" type="date" id="issueinput3" class="form-control" />
+						    <form:input path="tgBatdau" type="date" id="issueinput3" class="form-control block round" />
 						  	<form:errors path="tgBatdau" cssClass="error" />
 						</div>
 						<div class="form-group col-sm-6">
 						  	<label>Thời gian kết thúc</label>
-						  <form:input path="tgKetthuc" type="date" id="issueinput3" class="form-control" />
+						  <form:input path="tgKetthuc" type="date" id="issueinput3" class="form-control block round" />
 						  	<form:errors path="tgKetthuc" cssClass="error" />
 						</div>
 						<div class="form-group col-sm-6">
 						  	<label>Người được phân công</label>
+						  
 						  	 <form:select path="nhanVien.maNhanVien" class="custom-select block round"
 								id="customSelect">
+									<option value="0" label="Chọn nhân viên" />
 								<c:forEach items="${nhanVienHLP}" var="ld">
 									<form:option value="${ld.maNhanVien}" label="${ld.hoDem} ${ld.ten}" />
 								</c:forEach>
@@ -76,7 +81,7 @@
 						</div>
 						<div class="form-group col-sm-6">
 						  	<label>Thời gian dự kiến hoàn thành</label>
-						   <form:input class="form-control" path="tgDukienhoanthanh" placeholder="Thời gian dự kiến hoàn thành	" />
+						   <form:input class="form-control block round" path="tgDukienhoanthanh" placeholder="Thời gian dự kiến hoàn thành	" />
 						  	<form:errors path="tgDukienhoanthanh" cssClass="error" />
 						</div>
 							<div class="form-group col-sm-6">
@@ -86,7 +91,7 @@
 						</div>
 					
 						<div class="col-sm-12 text-center">
-							<button type="submit" class="btn btn-success">Lưu thông tin</button>
+							<button type="submit" class="btn btn-success"> Lưu </button>
 						</div>
 					</form:form>
 				</div>

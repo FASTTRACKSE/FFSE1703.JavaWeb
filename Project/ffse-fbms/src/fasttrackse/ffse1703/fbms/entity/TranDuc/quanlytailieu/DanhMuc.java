@@ -9,8 +9,9 @@ import javax.persistence.Table;
 @Table(name = "danh_muc")
 public class DanhMuc {
 	@Id
-	@Column(name = "Ma_Danh_Muc")
-	String idDM;
+	@Column(name = "ma_danh_muc")
+	String maDM;
+
 	@Column(name = "Ten_Danh_Muc")
 	String tenDM;
 
@@ -18,12 +19,12 @@ public class DanhMuc {
 
 	}
 
-	public String getIdDM() {
-		return idDM;
+	public String getMaDM() {
+		return maDM;
 	}
 
-	public void setIdDM(String idDM) {
-		this.idDM = idDM;
+	public void setMaDM(String maDM) {
+		this.maDM = maDM;
 	}
 
 	public String getTenDM() {

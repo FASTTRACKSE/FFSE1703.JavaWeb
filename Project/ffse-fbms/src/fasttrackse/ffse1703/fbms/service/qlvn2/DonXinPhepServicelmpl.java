@@ -2,10 +2,8 @@ package fasttrackse.ffse1703.fbms.service.qlvn2;
 
 import java.util.List;
 
-import javax.transaction.TransactionScoped;
-
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -93,8 +91,24 @@ public class DonXinPhepServicelmpl implements DonXinPhepService {
 		
 	}
 
+	public void updatecho(DonXinPhepEntity DonXinPhepEntity) {
+		DonXinPhepDao.Updatecho(DonXinPhepEntity);
+		
+	}
 	
-
+	public List<DonXinPhepEntity> findAllForPagingnhap(int startPosition, int maxResult) {
+		return this.DonXinPhepDao.findAllForPagingnhap(startPosition, maxResult);
+	}
+	
+	public List<DonXinPhepEntity> findAllForPagingcho(int startPosition, int maxResult) {
+		return this.DonXinPhepDao.findAllForPagingcho(startPosition, maxResult);
+	}
+	public List<DonXinPhepEntity> findAllForPagingduyet(int startPosition, int maxResult) {
+		return this.DonXinPhepDao.findAllForPagingduyet(startPosition, maxResult);
+	}
+	public List<DonXinPhepEntity> findAllForPagingtuchoi(int startPosition, int maxResult) {
+		return this.DonXinPhepDao.findAllForPagingtuchoi(startPosition, maxResult);
+	}
 	
 	
 

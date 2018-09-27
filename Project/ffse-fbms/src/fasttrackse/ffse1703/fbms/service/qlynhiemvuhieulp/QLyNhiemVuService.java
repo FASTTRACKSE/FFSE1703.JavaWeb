@@ -31,5 +31,4 @@ public interface QLyNhiemVuService {
 
 	public List<QLyNhiemVuEntity> findAll(Integer offset, Integer maxResult, String seach);
 
-	public int count();
 }

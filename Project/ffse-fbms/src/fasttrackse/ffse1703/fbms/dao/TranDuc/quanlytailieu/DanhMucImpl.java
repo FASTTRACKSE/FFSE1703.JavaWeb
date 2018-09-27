@@ -39,24 +39,24 @@ public class DanhMucImpl implements DanhMucDao {
 	public void updateDM(DanhMuc dm) {
 		Session session = this.sessionFac.openSession();
 		Transaction tx = session.beginTransaction();
-		session.persist(dm);
+		session.update(dm);
 		tx.commit();
 		session.close();
 	}
 
 	@Override
-	public void deleteDM(String id) {
+	public void deleteDM(String maDM) {
 		Session session = this.sessionFac.openSession();
 		Transaction pb = session.beginTransaction();
-		session.delete(session.get(DanhMuc.class, id));
+		session.delete(session.get(DanhMuc.class, maDM));
 		pb.commit();
 		session.close();
 	}
 
 	@Override
-	public DanhMuc getDMbyID(String id) {
+	public DanhMuc getDMbyID(String maDM) {
 		Session session = this.sessionFac.openSession();
-		DanhMuc dm = session.get(DanhMuc.class, id);
+		DanhMuc dm = session.get(DanhMuc.class, maDM);
 		session.close();
 		return dm;
 	}

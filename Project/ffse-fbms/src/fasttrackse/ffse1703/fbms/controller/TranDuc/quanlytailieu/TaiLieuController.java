@@ -22,6 +22,7 @@ import fasttrackse.ffse1703.fbms.entity.TranDuc.quanlytailieu.DanhMuc;
 import fasttrackse.ffse1703.fbms.entity.TranDuc.quanlytailieu.TaiLieu;
 import fasttrackse.ffse1703.fbms.entity.security.PhongBan;
 import fasttrackse.ffse1703.fbms.service.TranDuc.quanlytailieu.TaiLieuService;
+import fasttrackse.ffse1703.fbms.service.TranDuc.quanlytailieu.TrangThaiService;
 
 @Controller
 @RequestMapping("/TranDuc-QuanLyTaiLieu/TaiLieu")
@@ -29,6 +30,8 @@ public class TaiLieuController {
 	private static final String UPLOAD_DIRECTORY = "/upload/";
 	@Autowired
 	private TaiLieuService serviceTL;
+	@Autowired
+	private TrangThaiService serviceTT;
 
 	public int totalPage(int perPage) {
 		int totalPage = (int) Math.ceil((double) serviceTL.listAll().size() / (double) perPage);
@@ -36,7 +39,7 @@ public class TaiLieuController {
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String viewTaiLieu(Model model, final RedirectAttributes redirectAttributes,
+	public String viewTaiLieu(Model model,
 			@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage) {
 		int perPage = 5;
 		int totalPage = totalPage(perPage);
@@ -76,7 +79,7 @@ public class TaiLieuController {
 			tl.setLink(fileDir.getAbsolutePath());
 			String format = nameFile.substring(nameFile.lastIndexOf(".") + 1, nameFile.length());
 			tl.setIconTL(format);
-			tl.setTrangthai("Wait");
+			tl.setTrangThai(serviceTT.getTTbyID("Wait"));
 			serviceTL.addTL(tl);
 			redirectAttributes.addFlashAttribute("messageSuccess", "Thêm Mới Thành Công !");
 		} catch (Exception e) {
@@ -104,7 +107,7 @@ public class TaiLieuController {
 			tl.setLink(fileDir.getAbsolutePath());
 			String format = nameFile.substring(nameFile.lastIndexOf(".") + 1, nameFile.length());
 			tl.setIconTL(format);
-			tl.setTrangthai("Draft");
+			tl.setTrangThai(serviceTT.getTTbyID("Draft"));
 			serviceTL.addTL(tl);
 			redirectAttributes.addFlashAttribute("messageSuccess", "Lưu Nháp Thành Công !");
 		} catch (Exception e) {
@@ -113,21 +116,21 @@ public class TaiLieuController {
 		return "redirect:/TranDuc-QuanLyTaiLieu/TaiLieu/";
 	}
 
-	@RequestMapping(value = "/sua/{maTL}", method = RequestMethod.GET)
-	public String editFormTL(@PathVariable("maTL") String maTL, Model model) {
-		model.addAttribute("TaiLieu", serviceTL.getTLbyID(maTL));
+	@RequestMapping(value = "/sua/{idTL}", method = RequestMethod.GET)
+	public String editFormTL(@PathVariable("idTL") Integer idTL, Model model) {
+		model.addAttribute("TaiLieu", serviceTL.getTLbyID(idTL));
 		return "TranDuc-QuanLyTaiLieu/TaiLieu/edit_formTL";
 	}
 
 	@RequestMapping(value = "/cancel")
-	public String cancelTL( Model model) {
+	public String cancelTL(Model model) {
 		return "redirect:/TranDuc-QuanLyTaiLieu/TaiLieu/";
 	}
 
-	@RequestMapping(value = "/xoa/{maTL}", method = RequestMethod.GET)
-	public String delete(@PathVariable("maTL") String maTL, final RedirectAttributes redirectAttributes) {
+	@RequestMapping(value = "/xoa/{idTL}", method = RequestMethod.GET)
+	public String delete(@PathVariable("idTL") Integer idTL, final RedirectAttributes redirectAttributes) {
 		try {
-			serviceTL.deleteTL(maTL);
+			serviceTL.deleteTL(idTL);
 			redirectAttributes.addFlashAttribute("messageSuccess", "Xóa Thành Công !");
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("messageError", "Có lỗi, xin thử lại !");
@@ -135,9 +138,9 @@ public class TaiLieuController {
 		return "redirect:/TranDuc-QuanLyTaiLieu/TaiLieu/";
 	}
 
-	@RequestMapping(value = "/view/{maTL}", method = RequestMethod.GET)
-	public String viewOneTL(@PathVariable("maTL") String maTL, Model model) {
-		model.addAttribute("TaiLieu", serviceTL.getTLbyID(maTL));
+	@RequestMapping(value = "/view/{idTL}", method = RequestMethod.GET)
+	public String viewOneTL(@PathVariable("idTL") Integer idTL, Model model) {
+		model.addAttribute("TaiLieu", serviceTL.getTLbyID(idTL));
 		return "TranDuc-QuanLyTaiLieu/TaiLieu/view_oneTL";
 	}
 

@@ -115,16 +115,10 @@ public class QLyNhiemVuDaoImpl implements QLyNhiemVuDao {
 		Session session = sessionFactory.getCurrentSession();
 		// search = " and duAn.maDuan = ??? and nhanVien.maNhanVien = ??? and idLoaiTrangthai.IDtrangthai = ???"
 		//System.err.println(search);
-		List<QLyNhiemVuEntity> nhiemvuhlp = session.createQuery("from QLyNhiemVuEntity where isDelete = 1 " + search)
-				.setFirstResult(offset).setMaxResults(maxResult).list();
+		List<QLyNhiemVuEntity> nhiemvuhlp = session.createQuery("from QLyNhiemVuEntity where isDelete = 1 " + search).setFirstResult(offset).setMaxResults(maxResult).list();
 		return nhiemvuhlp;
 	}
 
-	@Override
-	public int count() {
-		Session session = sessionFactory.getCurrentSession();
-		int rowCount = session.createQuery("from QLyNhiemVuEntity").list().size();
-		return rowCount;
-	}
+	
 
 }

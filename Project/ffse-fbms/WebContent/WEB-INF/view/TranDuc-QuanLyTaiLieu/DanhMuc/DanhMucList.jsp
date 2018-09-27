@@ -75,12 +75,12 @@
 											</tr>
 										</thead>
 										<tbody>
-											<c:if test="${not empty listDanhMuc}">
-												<c:forEach var="item" items="${listDanhMuc}" begin="0"
+											<c:if test="${not empty ListDanhMuc}">
+												<c:forEach var="item" items="${ListDanhMuc}" begin="0"
 													varStatus="counter">
 													<tr>
-														<td>${counter.index + 1}</td>
-														<td>${item.idDM}</td>
+														<td>${counter.index+1}</td>
+														<td>${item.maDM}</td>
 														<td>${item.tenDM}</td>
 														<td class="tbl_actions"><a
 															href="<c:url value="/TranDuc-QuanLyTaiLieu/DanhMuc/view/${item.maDM}" />"

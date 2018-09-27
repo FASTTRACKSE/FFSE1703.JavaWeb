@@ -42,28 +42,28 @@ public class TrangThaiController {
 		return "redirect:/TranDuc-QuanLyTaiLieu/TrangThai/";
 	}
 
-	@RequestMapping(value = "/sua/{id}", method = RequestMethod.GET)
-	public String editFormTT(@PathVariable("id") String id, Model model) {
-		model.addAttribute("TrangThai", serviceTT.getTTbyID(id));
+	@RequestMapping(value = "/sua/{maTT}", method = RequestMethod.GET)
+	public String editFormTT(@PathVariable("maTT") String maTT, Model model) {
+		model.addAttribute("TrangThai", serviceTT.getTTbyID(maTT));
 		return "TranDuc-QuanLyTaiLieu/TrangThai/edit_formTT";
 	}
 
-	@RequestMapping(value = "/sua/{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/sua/{maTT}", method = RequestMethod.POST)
 	public String doEditTT(Model model, @ModelAttribute("TrangThai") TrangThaiTaiLieu tt,
 			final RedirectAttributes redirectAttributes) {
-//		try {
+		try {
 			serviceTT.updateTT(tt);;
-//			redirectAttributes.addFlashAttribute("messageSuccess", "Update Thành Công !");
-//		} catch (Exception e) {
-//			redirectAttributes.addFlashAttribute("messageError", "Có Lỗi. Xin Thử Lại!");
-//		}
+			redirectAttributes.addFlashAttribute("messageSuccess", "Update Thành Công !");
+		} catch (Exception e) {
+			redirectAttributes.addFlashAttribute("messageError", "Có Lỗi. Xin Thử Lại!");
+		}
 		return "redirect:/TranDuc-QuanLyTaiLieu/TrangThai/";
 	}
 
-	@RequestMapping(value = "/xoa/{id}", method = RequestMethod.GET)
-	public String deleteTT(@PathVariable("id") String id, final RedirectAttributes redirectAttributes) {
+	@RequestMapping(value = "/xoa/{maTT}", method = RequestMethod.GET)
+	public String deleteTT(@PathVariable("maTT") String maTT, final RedirectAttributes redirectAttributes) {
 		try {
-			serviceTT.deleteTT(id);
+			serviceTT.deleteTT(maTT);
 			redirectAttributes.addFlashAttribute("messageSuccess", "Xóa Thành Công !");
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("messageError", "Có lỗi, xin thử lại !");
@@ -71,9 +71,9 @@ public class TrangThaiController {
 		return "redirect:/TranDuc-QuanLyTaiLieu/TrangThai/";
 	}
 
-	@RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
-	public String viewOneTT(@PathVariable("id") String id, Model model) {
-		model.addAttribute("TrangThai", serviceTT.getTTbyID(id));
+	@RequestMapping(value = "/view/{maTT}", method = RequestMethod.GET)
+	public String viewOneTT(@PathVariable("maTT") String maTT, Model model) {
+		model.addAttribute("TrangThai", serviceTT.getTTbyID(maTT));
 		return "TranDuc-QuanLyTaiLieu/TrangThai/view_oneTT";
 	}
 }

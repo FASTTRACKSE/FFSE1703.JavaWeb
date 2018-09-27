@@ -29,13 +29,13 @@ public class TaiLieuServiceImpl implements TaiLieuService {
 	}
 
 	@Override
-	public void deleteTL(String maTL) {
-		daoTL.deleteTL(maTL);
+	public void deleteTL(Integer idTL) {
+		daoTL.deleteTL(idTL);
 	}
 
 	@Override
-	public TaiLieu getTLbyID(String maTL) {
-		return daoTL.getTLbyID(maTL);
+	public TaiLieu getTLbyID(Integer idTL) {
+		return daoTL.getTLbyID(idTL);
 	}
 
 	@Override

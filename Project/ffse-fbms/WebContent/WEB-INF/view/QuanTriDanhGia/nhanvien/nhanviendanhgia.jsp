@@ -39,12 +39,15 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<th scope="row">1</th>
-										<td>Mark</td>
-										<td>Otto</td>
-										<td><a class="btn btn-info">Xem</a></td>
-									</tr>
+									<c:forEach items="${listDanhGia }" var="x" varStatus="stt">
+										<tr>
+											<th scope="row">${stt.index+1 }</th>
+											<td>Nhân viên ${stt.index+1 }</td>
+											<td>${x.xepLoai }</td>
+											<td><a class="btn btn-info"
+												href="<c:url value="/quantridanhgia/nhanvien/nhanviendanhgia/view/${x.id}" />">Xem</a></td>
+										</tr>
+									</c:forEach>
 								</tbody>
 							</table>
 						</div>

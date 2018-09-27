@@ -35,14 +35,8 @@
 											method="POST">
 											<div class="form-body">
 												<h4 class="form-section">
-													<i class="ft-user"></i> Nội dung đánh giá
+													<i class="ft-user"></i> Nội dung bản đánh giá
 												</h4>
-												<div class="form-group row">
-													<label class="col-md-3 label-control">Nhân viên</label>
-													<div class="col-md-9">
-														<h3>Tên nhân viên</h3>
-													</div>
-												</div>
 												<div class="form-group row">
 													<label class="col-md-3 label-control"> Kỷ luật công
 														việc </label>
@@ -97,11 +91,6 @@
 												<div class="form-actions">
 													<a href="<c:url value="/quantridanhgia/danhgianhanvien/"/>"
 														class="btn btn-danger btn-min-width mr-1 mb-1">Trở về</a>
-													<c:if test="${command.trangThai == 1 }">
-														<a
-															href="<c:url value="/quantridanhgia/danhgianhanvien/showform"/>"
-															class="btn btn-danger btn-min-width mr-1 mb-1">Trở về</a>
-													</c:if>
 												</div>
 											</div>
 										</form:form>

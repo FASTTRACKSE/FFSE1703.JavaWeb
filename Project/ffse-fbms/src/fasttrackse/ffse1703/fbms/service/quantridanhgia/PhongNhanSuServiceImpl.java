@@ -2,10 +2,10 @@ package fasttrackse.ffse1703.fbms.service.quantridanhgia;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import fasttrackse.ffse1703.fbms.dao.quantridanhgia.PhongNhanSuDAOImpl;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.DanhGiaBanThan;
@@ -23,6 +23,12 @@ public class PhongNhanSuServiceImpl implements PhongNhanSuService {
 	@Override
 	public List<KyDanhGia> getListKyDanhGia() {
 		return this.dao.getListKyDanhGia();
+	}
+
+	@Transactional
+	@Override
+	public List<KyDanhGia> getListKyDanhGia(int start, int maxItems) {
+		return this.dao.getListKyDanhGia(start, maxItems);
 	}
 
 	@Transactional
@@ -57,8 +63,8 @@ public class PhongNhanSuServiceImpl implements PhongNhanSuService {
 
 	@Transactional
 	@Override
-	public List<LichDanhGia> getListLichDanhGia() {
-		return this.dao.getListLichDanhGia();
+	public List<LichDanhGia> getListLichDanhGia(int start, int maxItems) {
+		return this.dao.getListLichDanhGia(start, maxItems);
 	}
 
 	@Transactional
@@ -93,31 +99,32 @@ public class PhongNhanSuServiceImpl implements PhongNhanSuService {
 
 	@Transactional
 	@Override
-	public List<DanhGiaBanThan> getListDanhGiaBanThan() {
-		return this.dao.getListDanhGiaBanThan();
-	}
-
-	@Transactional
-	@Override
-	public List<DanhGiaBanThan> getListDanhGiaBanThanByKyDanhGia(String kyDanhGia) {
-		return this.dao.getListDanhGiaBanThanByKyDanhGia(kyDanhGia);
-	}
-
-	@Transactional
-	@Override
-	public List<DanhGiaBanThan> getListDanhGiaBanThanByPhongBan(String phongBan) {
-		return this.dao.getListDanhGiaBanThanByPhongBan(phongBan);
-	}
-
-	@Transactional
-	@Override
-	public List<DanhGiaBanThan> getListDanhGiaBanThan(String kyDanhGia, String phongBan) {
-		return this.dao.getListDanhGiaBanThan(kyDanhGia, phongBan);
+	public List<DanhGiaBanThan> getListDanhGiaBanThan(int start, int maxItems) {
+		return this.dao.getListDanhGiaBanThan(start, maxItems);
 	}
 
 	@Transactional
 	@Override
 	public int checkActiveLichDanhGia() {
 		return this.dao.checkActiveLichDanhGia();
+	}
+
+	@Transactional
+	@Override
+	public int checkCompleteLichDanhGia() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Transactional
+	@Override
+	public List<DanhGiaBanThan> getListDanhGiaBanThan() {
+		return dao.getListDanhGiaBanThan();
+	}
+
+	@Transactional
+	@Override
+	public List<LichDanhGia> getListLichDanhGia() {
+		return dao.getListLichDanhGia();
 	}
 }

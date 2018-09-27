@@ -51,11 +51,16 @@
 													<h4 class="form-section">
 														<i class="ft-user"></i> Bản đánh giá
 													</h4>
+													<form:hidden path="id" />
+													<form:hidden path="kyDanhGia"/>
+													<form:hidden path="phongBan" />
+													<form:hidden path="nhanVienDanhGia"/>
+													<form:hidden path="nhanVien"/>
 													<div class="form-group row">
 														<label class="col-md-3 label-control">Tên nhân
 															viên</label>
 														<div class="col-md-9">
-															<h3>${nhanVien.nhanVien }</h3>
+															<h3>${danhGia.nhanVien }</h3>
 														</div>
 													</div>
 													<div class="form-group row">
@@ -64,12 +69,12 @@
 														<div class="col-md-9">
 															<div class="col-md-2">
 																<input class="form-control"
-																	value="${nhanVien.kyLuatCongViec_DG }"
+																	value="${danhGia.kyLuatCongViec_DG }"
 																	readonly="readonly">
 															</div>
 															<div class="col-md-10">
 																<textarea class="form-control" rows="3"
-																	readonly="readonly">${nhanVien.kyLuatCongViec_MT }</textarea>
+																	readonly="readonly">${danhGia.kyLuatCongViec_MT }</textarea>
 																<label></label>
 																<form:textarea rows="5" cssClass="form-control"
 																	path="kyLuatCongViec" />
@@ -82,12 +87,12 @@
 														<div class="col-md-9">
 															<div class="col-md-2">
 																<input class="form-control"
-																	value="${nhanVien.tinhThanLamViec_DG }"
+																	value="${danhGia.tinhThanLamViec_DG }"
 																	readonly="readonly">
 															</div>
 															<div class="col-md-10">
 																<textarea class="form-control" rows="3"
-																	readonly="readonly">${nhanVien.tinhThanLamViec_MT }</textarea>
+																	readonly="readonly">${danhGia.tinhThanLamViec_MT }</textarea>
 																<label></label>
 																<form:textarea rows="5" cssClass="form-control"
 																	path="tinhThanLamViec" />
@@ -101,12 +106,12 @@
 														<div class="col-md-9">
 															<div class="col-md-2">
 																<input class="form-control"
-																	value="${nhanVien.khoiLuongCongViec_DG }"
+																	value="${danhGia.khoiLuongCongViec_DG }"
 																	readonly="readonly">
 															</div>
 															<div class="col-md-10">
 																<textarea class="form-control" rows="3"
-																	readonly="readonly">${nhanVien.khoiLuongCongViec_MT }</textarea>
+																	readonly="readonly">${danhGia.khoiLuongCongViec_MT }</textarea>
 																<label></label>
 																<form:textarea rows="5" cssClass="form-control"
 																	path="khoiLuongCongViec" />
@@ -120,12 +125,12 @@
 														<div class="col-md-9">
 															<div class="col-md-2">
 																<input class="form-control"
-																	value="${nhanVien.ketQuaCongViec_DG }"
+																	value="${danhGia.ketQuaCongViec_DG }"
 																	readonly="readonly">
 															</div>
 															<div class="col-md-10">
 																<textarea class="form-control" rows="3"
-																	readonly="readonly">${nhanVien.ketQuaCongViec_MT }</textarea>
+																	readonly="readonly">${danhGia.ketQuaCongViec_MT }</textarea>
 																<label></label>
 																<form:textarea rows="5" cssClass="form-control"
 																	path="ketQuaCongViec" />
@@ -139,12 +144,12 @@
 														<div class="col-md-9">
 															<div class="col-md-2">
 																<input class="form-control"
-																	value="${nhanVien.kyNangTichLuy_DG }"
+																	value="${danhGia.kyNangTichLuy_DG }"
 																	readonly="readonly">
 															</div>
 															<div class="col-md-10">
 																<textarea class="form-control" rows="3"
-																	readonly="readonly">${nhanVien.kyNangTichLuy_MT }</textarea>
+																	readonly="readonly">${danhGia.kyNangTichLuy_MT }</textarea>
 																<label></label>
 																<form:textarea readonly="readonly" rows="5"
 																	cssClass="form-control" path="kyLuatCongViec" />
@@ -175,28 +180,16 @@
 													</div>
 												</div>
 												<div class="form-actions">
-													<a href="<c:url value="/quantridanhgia/danhgianhanvien/"/>"
+													<a
+														href="<c:url value="/quantridanhgia/nhanvien/danhgianhanvien"/>"
 														class="btn btn-danger btn-min-width mr-1 mb-1">Trở về</a>
-													<c:if test="${command.trangThai == 1 }">
-														<button type="submit"
-															formaction="<c:url value="/quantridanhgia/danhgianhanvien/drafts"/>"
-															class="btn btn-info btn-min-width mr-1 mb-1">Lưu
-															nháp</button>
-														<button type="submit"
-															formaction="<c:url value="/quantridanhgia/danhgianhanvien/update"/>"
-															class="btn btn-success btn-min-width mr-1 mb-1">Đánh
-															giá</button>
-													</c:if>
-													<c:if test="${command.trangThai == 0 }">
-														<button type="submit"
-															formaction="<c:url value="/quantridanhgia/danhgianhanvien/drafts"/>"
-															class="btn btn-info btn-min-width mr-1 mb-1">Lưu
-															nháp</button>
-														<button type="submit"
-															formaction="<c:url value="/quantridanhgia/danhgianhanvien/new"/>"
-															class="btn btn-success btn-min-width mr-1 mb-1">Đánh
-															giá</button>
-													</c:if>
+													<button type="submit"
+														formaction="<c:url value="/quantridanhgia/nhanvien/danhgianhanvien/draft"/>"
+														class="btn btn-info btn-min-width mr-1 mb-1">Lưu nháp</button>
+													<button type="submit"
+														formaction="<c:url value="/quantridanhgia/nhanvien/danhgianhanvien/submit"/>"
+														class="btn btn-info btn-min-width mr-1 mb-1">Đánh
+														giá</button>
 												</div>
 											</form:form>
 										</div>

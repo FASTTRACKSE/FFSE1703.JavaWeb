@@ -24,6 +24,10 @@ public interface NhanVienDAO {
 	public void updateDanhGiaNhanVien(DanhGiaNhanVien danhGia);
 
 	public void deleteDanhGiaNhanVien(DanhGiaNhanVien danhGia);
-	
+
+	public List<DanhGiaNhanVien> getListNhanVienDanhGia(int maNhanVien);
+
+	public DanhGiaNhanVien getNhanVienDanhGia(int id);
+
 	public TruongPhongDanhGia getDanhGiaCuaTruongPhong(int maNhanVien);
 }

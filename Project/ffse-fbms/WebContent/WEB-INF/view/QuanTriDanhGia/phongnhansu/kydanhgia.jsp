@@ -94,6 +94,25 @@
 										</c:forEach>
 									</tbody>
 								</table>
+								<ul class="pagination firstLast1-links">
+									<c:if test="${pageKy > 1 }">
+										<li class="page-item first"><a
+											href="<c:url value="/quantridanhgia/phongnhansu/lichdanhgia/1" />"
+											class="page-link">First</a></li>
+										<li class="page-item prev"><a
+											href="<c:url value="/quantridanhgia/phongnhansu/lichdanhgia/${pageKy-1 }" />"
+											class="page-link">Prev</a></li>
+									</c:if>
+									<li class="page-item active"><a href="#" class="page-link">${pageKy}</a></li>
+									<c:if test="${pageKy < total }">
+										<li class="page-item next"><a
+											href="<c:url value="/quantridanhgia/phongnhansu/lichdanhgia/${pageKy+1 }" />"
+											class="page-link">Next</a></li>
+										<li class="page-item last"><a
+											href="<c:url value="/quantridanhgia/phongnhansu/lichdanhgia/${total}" />"
+											class="page-link">Last</a></li>
+									</c:if>
+								</ul>
 							</div>
 						</div>
 					</div>

@@ -30,6 +30,13 @@ public class PhongNhanSuDAOImpl implements PhongNhanSuDAO {
 		return session.createQuery("from KyDanhGia").list();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<KyDanhGia> getListKyDanhGia(int start, int maxItems) {
+		Session session = sessionFactory.getCurrentSession();
+		return session.createQuery("from KyDanhGia").setFirstResult(start).setMaxResults(maxItems).list();
+	}
+
 	@Override
 	public void insertKyDanhGia(KyDanhGia kyDanhGia) {
 		Session session = sessionFactory.getCurrentSession();
@@ -75,6 +82,13 @@ public class PhongNhanSuDAOImpl implements PhongNhanSuDAO {
 	// CRUD lịch đánh giá
 	@Override
 	@SuppressWarnings("unchecked")
+	public List<LichDanhGia> getListLichDanhGia(int start, int maxItems) {
+		Session session = sessionFactory.getCurrentSession();
+		return session.createQuery("from LichDanhGia").setFirstResult(start).setMaxResults(maxItems).list();
+	}
+	
+	@Override
+	@SuppressWarnings("unchecked")
 	public List<LichDanhGia> getListLichDanhGia() {
 		Session session = sessionFactory.getCurrentSession();
 		return session.createQuery("from LichDanhGia").list();
@@ -111,36 +125,9 @@ public class PhongNhanSuDAOImpl implements PhongNhanSuDAO {
 	// Get list đánh giá bản thân của toàn công ty
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<DanhGiaBanThan> getListDanhGiaBanThan() {
+	public List<DanhGiaBanThan> getListDanhGiaBanThan(int start, int maxItems) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("from DanhGiaBanThan").list();
-	}
-
-	// Get list đánh giá bản thân theo kỳ đánh giá
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<DanhGiaBanThan> getListDanhGiaBanThanByKyDanhGia(String kyDanhGia) {
-		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("from DanhGiaBanThan where kyDanhGia = :kyDanhGia")
-				.setParameter("kyDanhGia", kyDanhGia).list();
-	}
-
-	// Get list đánh giá bản thân theo phòng ban
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<DanhGiaBanThan> getListDanhGiaBanThanByPhongBan(String phongBan) {
-		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("from DanhGiaBanThan where phongBan = :phongBan").setParameter("phongBan", phongBan)
-				.list();
-	}
-
-	// Get list đánh giá bản thân theo kỳ đánh giá và phòng ban
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<DanhGiaBanThan> getListDanhGiaBanThan(String kyDanhGia, String phongBan) {
-		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("from DanhGiaBanThan where kyDanhGia = :kyDanhGia and phongBan = :phongBan")
-				.setParameter("kyDanhGia", kyDanhGia).setParameter("phongBan", phongBan).list();
+		return session.createQuery("from DanhGiaBanThan").setFirstResult(start).setMaxResults(maxItems).list();
 	}
 
 	@Override
@@ -153,5 +140,12 @@ public class PhongNhanSuDAOImpl implements PhongNhanSuDAO {
 	public int checkCompleteLichDanhGia() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<DanhGiaBanThan> getListDanhGiaBanThan() {
+		Session session = sessionFactory.getCurrentSession();
+		return session.createQuery("from DanhGiaBanThan").list();
 	}
 }

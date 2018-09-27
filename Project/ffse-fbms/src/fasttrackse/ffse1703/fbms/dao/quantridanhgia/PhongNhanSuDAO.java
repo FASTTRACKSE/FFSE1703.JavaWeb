@@ -10,6 +10,8 @@ import fasttrackse.ffse1703.fbms.entity.quantridanhgia.LichDanhGia;
 public interface PhongNhanSuDAO {
 
 	public List<KyDanhGia> getListKyDanhGia();
+	
+	public List<KyDanhGia> getListKyDanhGia(int start, int maxItems);
 
 	public void insertKyDanhGia(KyDanhGia kyDanhGia);
 
@@ -21,7 +23,7 @@ public interface PhongNhanSuDAO {
 
 	public List<Integer> getNhanVienPhongBan(String phongBan);
 
-	public List<LichDanhGia> getListLichDanhGia();
+	public List<LichDanhGia> getListLichDanhGia(int start, int maxItems);
 
 	public int checkLichDanhGia(LichDanhGia lichDanhGia);
 
@@ -38,11 +40,9 @@ public interface PhongNhanSuDAO {
 	public void insertPhanCongDanhGia(List<DanhGiaNhanVien> pc);
 
 	public List<DanhGiaBanThan> getListDanhGiaBanThan();
+	
+	public List<DanhGiaBanThan> getListDanhGiaBanThan(int start, int maxItems);
 
-	public List<DanhGiaBanThan> getListDanhGiaBanThanByKyDanhGia(String kyDanhGia);
-
-	public List<DanhGiaBanThan> getListDanhGiaBanThanByPhongBan(String phongBan);
-
-	public List<DanhGiaBanThan> getListDanhGiaBanThan(String kyDanhGia, String phongBan);
+	public List<LichDanhGia> getListLichDanhGia();
 
 }

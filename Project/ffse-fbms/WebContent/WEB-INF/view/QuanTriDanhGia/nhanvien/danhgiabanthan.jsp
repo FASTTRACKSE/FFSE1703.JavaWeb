@@ -52,8 +52,7 @@
 								<div class="card">
 									<div class="card-content collpase show">
 										<div class="card-body" style="margin: 1em">
-											<form:form cssClass="form form-horizontal form-bordered"
-												modelAttribute="danhGia">
+											<div class="form form-horizontal form-bordered">
 												<div class="form-body">
 													<h4 class="form-section">
 														<i class="ft-user"></i> Bản tự đánh giá
@@ -69,44 +68,36 @@
 														<label class="col-md-3 label-control">Tinh thần
 															làm việc</label>
 														<div class="col-md-9">
-															<label>${danhGia.tinhThanLamViec_DG }</label>
-															<label>${danhGia.tinhThanLamViec_MT }</label>
+															<label>${danhGia.tinhThanLamViec_DG }</label> <label>${danhGia.tinhThanLamViec_MT }</label>
 														</div>
 													</div>
-
 													<div class="form-group row">
 														<label class="col-md-3 label-control">Khối lượng
 															công việc đạt được</label>
 														<div class="col-md-9">
-															<label>${danhGia.khoiLuongCongViec_DG }</label>
-															<label>${danhGia.khoiLuongCongViec_MT }</label>														</div>
+															<label>${danhGia.khoiLuongCongViec_DG }</label> <label>${danhGia.khoiLuongCongViec_MT }</label>
+														</div>
 													</div>
-
 													<div class="form-group row">
 														<label class="col-md-3 label-control">Kết quả công
 															việc đạt được</label>
 														<div class="col-md-9">
-															<label>${danhGia.ketQuaCongViec_DG }</label>
-															<label>${danhGia.ketQuaCongViec_MT }</label>
+															<label>${danhGia.ketQuaCongViec_DG }</label> <label>${danhGia.ketQuaCongViec_MT }</label>
 														</div>
 													</div>
-
 													<div class="form-group row">
 														<label class="col-md-3 label-control">Kỹ năng tích
 															lũy</label>
 														<div class="col-md-9">
-															<label>${danhGia.kyNangTichLuy_DG }</label>
-															<label>${danhGia.kyNangTichLuy_MT }</label>
+															<label>${danhGia.kyNangTichLuy_DG }</label> <label>${danhGia.kyNangTichLuy_MT }</label>
 														</div>
 													</div>
-
 													<div class="form-group row">
 														<label class="col-md-3 label-control">Định hướng</label>
 														<div class="col-md-9">
 															<label>${danhGia.dinhHuong }</label>
 														</div>
 													</div>
-
 													<div class="form-group last">
 														<label class="col-md-3 label-control">Đánh giá
 															tổng thể</label>
@@ -115,7 +106,6 @@
 														</div>
 													</div>
 												</div>
-
 												<div class="form-actions">
 													<c:if test="${command.isDelete == 1 }">
 														<a
@@ -123,8 +113,7 @@
 															class="btn btn-success">Cập nhật</a>
 													</c:if>
 												</div>
-
-											</form:form>
+											</div>
 										</div>
 									</div>
 								</div>

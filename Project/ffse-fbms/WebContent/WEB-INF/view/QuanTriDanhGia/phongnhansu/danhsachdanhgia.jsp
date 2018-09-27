@@ -25,7 +25,8 @@
 			<div class="card">
 				<div class="card-content">
 					<div class="card-body" style="margin: 1em">
-						<form:form cssClass="form" action="/ffse-fbms/quantridanhgia/phongnhansu/danhsachdanhgia/search">
+						<form:form cssClass="form"
+							action="/ffse-fbms/quantridanhgia/phongnhansu/danhsachdanhgia/search">
 							<div class="form-body">
 								<h4 class="form-section">
 									<i class="fa fa-plus"></i>Tìm kiếm đánh giá
@@ -35,7 +36,7 @@
 										<div class="form-group">
 											<label for="projectinput1">Kỳ đánh giá</label>
 											<form:select path="kyDanhGia" cssClass="form-control">
-											<form:option value="">Chọn kỳ đánh giá</form:option>
+												<form:option value="">Chọn kỳ đánh giá</form:option>
 												<c:forEach items="${listKyDanhGia }" var="x">
 													<form:option value="${x.maKy }" label="${x.tenKy}"></form:option>
 												</c:forEach>
@@ -46,7 +47,7 @@
 										<div class="form-group">
 											<label for="projectinput2">Phòng ban</label>
 											<form:select path="phongBan" cssClass="form-control">
-											<form:option value="">Chọn phòng ban</form:option>
+												<form:option value="">Chọn phòng ban</form:option>
 												<c:forEach items="${listPhongBan }" var="x">
 													<form:option value="${x.maPhongBan }"
 														label="${x.tenPhongBan}"></form:option>
@@ -67,7 +68,7 @@
 				</div>
 			</div>
 		</div>
-		<c:if test="${empty listDanhGia}">
+		<c:if test="${empty listDanhgia}">
 			<div class="row">
 				<div class="card">
 					<div class="card-header">
@@ -76,7 +77,7 @@
 				</div>
 			</div>
 		</c:if>
-		<c:if test="${not empty listDanhGia}">
+		<c:if test="${not empty listDanhgia}">
 			<div class="row">
 				<div class="card">
 					<div class="card-header">
@@ -95,7 +96,7 @@
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach items="${listLichDanhGia}" var="x" varStatus="stt">
+										<c:forEach items="${listDanhgia}" var="x" varStatus="stt">
 											<tr>
 												<th scope="row">${stt.index+1}</th>
 												<td>${x.nhanVien }</td>
@@ -105,6 +106,31 @@
 										</c:forEach>
 									</tbody>
 								</table>
+								<ul class="pagination firstLast1-links">
+									<c:if test="${pageDanhGia > 1 }">
+										<li class="page-item first"><a
+											href="<c:url value="/quantridanhgia/phongnhansu/danhsachdanhgia/1" />"
+											class="page-link">First</a></li>
+										<li class="page-item prev"><a
+											href="<c:url value="/quantridanhgia/phongnhansu/danhsachdanhgia/${pageDanhGia-1 }" />"
+											class="page-link">Prev</a></li>
+										<li class="page-item prev"><a
+											href="<c:url value="/quantridanhgia/phongnhansu/danhsachdanhgia/${pageDanhGia-1 }" />"
+											class="page-link">${pageDanhGia-1 }</a></li>
+									</c:if>
+									<li class="page-item active"><a href="#" class="page-link">${pageDanhGia}</a></li>
+									<c:if test="${pageDanhGia < total }">
+										<li class="page-item next"><a
+											href="<c:url value="/quantridanhgia/phongnhansu/danhsachdanhgia/${pageDanhGia+1 }" />"
+											class="page-link">${pageDanhGia+1 }</a></li>
+										<li class="page-item next"><a
+											href="<c:url value="/quantridanhgia/phongnhansu/danhsachdanhgia/${pageDanhGia+1 }" />"
+											class="page-link">Next</a></li>
+										<li class="page-item last"><a
+											href="<c:url value="/quantridanhgia/phongnhansu/danhsachdanhgia/${total}" />"
+											class="page-link">Last</a></li>
+									</c:if>
+								</ul>
 							</div>
 						</div>
 					</div>

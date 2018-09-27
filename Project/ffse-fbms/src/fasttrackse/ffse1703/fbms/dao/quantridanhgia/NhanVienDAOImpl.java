@@ -83,4 +83,17 @@ public class NhanVienDAOImpl implements NhanVienDAO {
 		return session.byNaturalId(TruongPhongDanhGia.class).using("nhanVien", maNhanVien).load();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<DanhGiaNhanVien> getListNhanVienDanhGia(int maNhanVien) {
+		Session session = sessionFactory.getCurrentSession();
+		return session.createQuery("from DanhGiaNhanVien where nhanVien = :nhanVien").setParameter("nhanVien", maNhanVien).list();
+	}
+
+	@Override
+	public DanhGiaNhanVien getNhanVienDanhGia(int id) {
+		Session session = sessionFactory.getCurrentSession();
+		return session.get(DanhGiaNhanVien.class, id);
+	}
+
 }

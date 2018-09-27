@@ -67,22 +67,31 @@ public class NhanVienServiceImpl implements NhanVienService {
 	@Override
 	@Transactional
 	public void updateDanhGiaNhanVien(DanhGiaNhanVien danhGia) {
-		// TODO Auto-generated method stub
-
+		dao.updateDanhGiaNhanVien(danhGia);
 	}
 
 	@Override
 	@Transactional
 	public void deleteDanhGiaNhanVien(DanhGiaNhanVien danhGia) {
-		// TODO Auto-generated method stub
-
+		dao.deleteDanhGiaNhanVien(danhGia);
 	}
 
 	@Override
 	@Transactional
 	public TruongPhongDanhGia getDanhGiaCuaTruongPhong(int maNhanVien) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.getDanhGiaCuaTruongPhong(maNhanVien);
+	}
+
+	@Transactional
+	@Override
+	public List<DanhGiaNhanVien> getListNhanVienDanhGia(int maNhanVien) {
+		return dao.getListNhanVienDanhGia(maNhanVien);
+	}
+
+	@Transactional
+	@Override
+	public DanhGiaNhanVien getNhanVienDanhGia(int id) {
+		return dao.getNhanVienDanhGia(id);
 	}
 
 }

@@ -42,9 +42,9 @@
 						</div>
 						<div class="form-group col-sm-6">
 						  	<label>Loại công việc</label>
-						  	<form:select class="form-control" path="loaiCongViec" >
+						  	<form:select class="form-control" path="maCongViec.maCongViec" >
 						  		<c:forEach items="${LoaiCongViec}" var="cv">
-						  			<form:option value="${cv.loaiCongViec}" label="${cv.loaiCongViec}"></form:option>
+						  			<form:option value="${cv.maCongViec}" label="${cv.loaiCongViec}"></form:option>
 						  		</c:forEach>
 						  	</form:select>
 						</div>
@@ -74,9 +74,9 @@
 						</div>
 						<div class="form-group col-sm-6">
 						  	<label>Trạng thái</label>
-						  	<form:select class="form-control" path="trangThai">
+						  	<form:select class="form-control" path="maTrangThai.maTrangThai">
 						  		<c:forEach items="${TrangThai}" var="tt">
-						  			<form:option value="${tt.trangThai}" label="${tt.trangThai}"></form:option>
+						  			<form:option value="${tt.maTrangThai}" label="${tt.trangThai}"></form:option>
 						  		</c:forEach>
 						  	</form:select>
 						  	

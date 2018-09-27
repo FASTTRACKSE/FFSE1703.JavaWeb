@@ -28,6 +28,8 @@ import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
  	public List<DuAnMinhHQ> duAn();
  	
  	public List<HoSoNhanVien> nhanVien();
+ 	
+ 	public List<CongViecMinhHQ> findAllForPaging(int startPosition, int maxResult);
 	
 // 	public String getRecordsTotal();
 //	

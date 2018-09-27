@@ -31,9 +31,8 @@ import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
  	public List<DuAnMinhHQ> duAn();
  	
  	public List<HoSoNhanVien> nhanVien();
-// 	public String getRecordsTotal();
-//	
-// 	public String getRecordsFiltered(String sql);
-//	
+ 	
+ 	public List<CongViecMinhHQ> findAllForPaging(int startPosition, int maxResult);
+
 	
  }

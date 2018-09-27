@@ -83,24 +83,11 @@ public class CongViecServiceImpl implements CongViecService{
 		return congViecDao.nhanVien();
 	}
 
-//	@Override
-//	public String getRecordsTotal() {
-//		return congViecDao.getRecordsTotal();
-//	}
-//
-//	@Override
-//	public String getRecordsFiltered(String sql) {
-//		return congViecDao.getRecordsFiltered(sql);
-//	}
-	
-//		String action = "<a href='/ffse-fbms/QuanLyNhiemVuMinhHQ/view/" 
-//				+ ID + "'><i class='fa fa-eye'></i></a>"
-//				+ "<a href='/ffse-fbms/QuanLyNhiemVuMinhHQ/edit/"
-//				+ ID + "'><i class='fa fa-pencil'></i></a>"
-//				+ "<a href='javascript:void(0);' data-toggle='modal' data-target='#confirm-delete' data-href='/ffse-fbms/QuanLyNhiemVuMinhHQ/delete/"
-//				+ID + "'><i class='fa fa-trash'></i></a>";
-
-//		return "[\"" + tenCongViec + "\",\"" + loaiCongViec + "\",\"" + moTa + "\",\"" + tgBatDau + "\",\"" + tgKetThuc + "\",\"" + phanCong + "\",\"" + tgDuKien + "\",\"" + trangThai + "\",\"" + duAn + "\",\"" +  action + "\"]";
+	@Override
+	@Transactional
+	public List<CongViecMinhHQ> findAllForPaging(int startPosition, int maxResult) {
+		return congViecDao.findAllForPaging(startPosition,maxResult);
+	}
 
 }
 

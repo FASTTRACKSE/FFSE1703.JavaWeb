@@ -77,5 +77,15 @@ public class DocumentDAOImpl implements DocumentDAO {
 		session.close();
 		return list;
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Room> listRoom() {
+		Session session = this.sessionFactory.openSession();
+		List<Room> list = session.createQuery("from Room").list();
+		session.close();
+		return list;
+	}
+	
 
 }

@@ -22,4 +22,6 @@ public interface DocumentService {
 	
 	public List<Status> listStatus();
 	
+	public List<Room> listRoom();
+	
 }

@@ -8,6 +8,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.BangCapPikalong;
 import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.HopDongPikalong;
 
 @Repository
@@ -64,6 +65,13 @@ public class HopDongPikalongDaoImpl implements HopDongPikalongDao {
 		return lastMaHd;
 		
 	}
+	
+	@Override
+	public HopDongPikalong getMaHopDong(int maHopDong) {
+		Session session = this.sessionFactory.getCurrentSession();
+		return session.get(HopDongPikalong.class, maHopDong);
+	}
+	
 	@SuppressWarnings("rawtypes")
 	@Override
 	public HopDongPikalong getHopDongById(String maNv) {
@@ -72,4 +80,15 @@ public class HopDongPikalongDaoImpl implements HopDongPikalongDao {
 		HopDongPikalong lastIdHopDong = (HopDongPikalong) query.getSingleResult();
 		return lastIdHopDong;
 	}
+	@Override
+	public List<HopDongPikalong> viewOne(String maNv) {
+		Session session = this.sessionFactory.openSession();
+		@SuppressWarnings("rawtypes")
+		Query query = session.createQuery("from HopDongPikalong where MaNv = :MaNv");
+		query.setParameter("MaNv", maNv);
+		@SuppressWarnings("unchecked")
+		List<HopDongPikalong> viewOne = query.list();
+		return viewOne;
+	}
+
 }

@@ -59,6 +59,8 @@ public class DocumentController {
 		model.addAttribute("listCategory", listcategory);
 		List<Status> liststatus = documentService.listStatus();
 		model.addAttribute("listStatus", liststatus);
+		List<Room> listroom = documentService.listRoom();
+		model.addAttribute("listRoom", listroom);
 		model.addAttribute("command", new Document());
 		return "QuanTriTaiLieu/TaiLieu/addTaiLieu";
 	}
@@ -90,6 +92,12 @@ public class DocumentController {
 	
 	@RequestMapping(value = "/edit/{id}")
 	public String edit(Model model, @PathVariable("id") int id) {
+		List<Category> listcategory = documentService.listCategory();
+		model.addAttribute("listCategory", listcategory);
+		List<Status> liststatus = documentService.listStatus();
+		model.addAttribute("listStatus", liststatus);
+		List<Room> listroom = documentService.listRoom();
+		model.addAttribute("listRoom", listroom);
 		model.addAttribute("document", documentService.getById(id));
 		return "QuanTriTaiLieu/TaiLieu/editTaiLieu";
 

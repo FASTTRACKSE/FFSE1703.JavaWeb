@@ -16,7 +16,7 @@
 							<li class="breadcrumb-item"><a href="/ffse-fbms/home">Home</a></li>
 							<li class="breadcrumb-item"><a
 								href="/ffse-fbms/QuanTriTaiLieu/TaiLieu/">Danh tài liệu</a></li>
-							<li class="breadcrumb-item active">Update Vendor</li>
+							<li class="breadcrumb-item active">Update tài liệu</li>
 						</ol>
 					</div>
 				</div>
@@ -27,7 +27,7 @@
 			<div class="col-sm-4"></div>
 			<div class="col-sm-4">
 				<h1>
-					<strong>Update Document</strong>
+					<strong>Update tài liệu</strong>
 
 				</h1>
 			</div>
@@ -50,7 +50,13 @@
 				 <form:hidden class="form-control" path="id" /> 
 			<div class="form-group col-sm-6">
 				<label>Mã danh mục</label>
-				<form:input class="form-control" path="ma_danh_muc" placeholder="Mã danh mục" />
+				<form:select cssClass="form-control" path="ma_danh_muc">
+										<option title="Mã danh mục"></option>
+										<c:forEach var="sv" items="${listCategory}" begin="0"
+											varStatus="counter">
+											<form:option value="${sv.ma_danh_muc}" label="${sv.ma_danh_muc}"></form:option>
+										</c:forEach>
+									</form:select>
 				<form:errors path="ma_danh_muc" cssStyle="color: red"></form:errors>
 
 			</div>
@@ -62,7 +68,13 @@
 			</div>
 			<div class="form-group col-sm-6">
 				<label>Mã trạng thái</label>
-				<form:input class="form-control" path="ma_trang_thai" placeholder="Mã trạng thái" />
+				<form:select cssClass="form-control" path="ma_trang_thai">
+										<option title="Mã trạng thái"></option>
+										<c:forEach var="sv" items="${listStatus}" begin="0"
+											varStatus="counter">
+											<form:option value="${sv.ma_trang_thai}" label="${sv.ma_trang_thai}"></form:option>
+										</c:forEach>
+									</form:select>
 			<form:errors path="ma_trang_thai" cssStyle="color: red"></form:errors>
 
 			</div>
@@ -80,7 +92,13 @@
 			</div>
 			<div class="form-group col-sm-6">
 				<label>Mã phòng ban</label>
-				<form:input class="form-control" path="ma_phong_ban" placeholder="Mã phòng ban" />
+				<form:select cssClass="form-control" path="ma_phong_ban">
+										<option title="Mã phòng ban"></option>
+										<c:forEach var="sv" items="${listRoom}" begin="0"
+											varStatus="counter">
+											<form:option value="${sv.ma_phong_ban}" label="${sv.ma_phong_ban}"></form:option>
+										</c:forEach>
+									</form:select>
 				<form:errors path="ma_phong_ban" cssStyle="color: red"></form:errors> 
 
 			</div>

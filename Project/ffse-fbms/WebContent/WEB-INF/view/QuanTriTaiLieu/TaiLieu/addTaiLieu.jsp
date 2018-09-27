@@ -86,8 +86,13 @@
 			</div>
 			<div class="form-group col-sm-6">
 				<label>Mã phòng ban</label>
-				<form:input class="form-control" path="ma_phong_ban"
-					placeholder="Mã phòng ban" />
+				<form:select cssClass="form-control" path="ma_phong_ban">
+										<option title="Mã phòng ban"></option>
+										<c:forEach var="sv" items="${listRoom}" begin="0"
+											varStatus="counter">
+											<form:option value="${sv.ma_phong_ban}" label="${sv.ma_phong_ban}"></form:option>
+										</c:forEach>
+									</form:select>
 				<%-- <form:errors path="ma_phong_ban" cssStyle="color: red"></form:errors> --%>
 			</div>
 			<div class="col-sm-12 text-center">

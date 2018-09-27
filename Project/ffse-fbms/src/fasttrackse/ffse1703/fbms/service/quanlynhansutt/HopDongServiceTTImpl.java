@@ -113,15 +113,6 @@ public class HopDongServiceTTImpl implements HopDongServiceTT {
 		return this.quanLyHopDongDaoTT.findByMaHopDong(maHopDong);
 	}
 
-/*	@Override
-	@Transactional
-	public void removeHopDong(int maHopDong) {
-		// TODO Auto-generated method stub
-		this.quanLyHopDongDaoTT.removeHopDong(maHopDong);
-		
-	}*/
-
-	
 	@Transactional
 	public List<HoSoNhanVienTT> getAllNhanVien() {
 		return this.quanLyHopDongDaoTT.getAllNhanVien();

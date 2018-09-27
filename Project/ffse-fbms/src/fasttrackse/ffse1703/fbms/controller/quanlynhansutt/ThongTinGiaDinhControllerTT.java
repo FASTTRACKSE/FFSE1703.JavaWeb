@@ -45,6 +45,15 @@ public class ThongTinGiaDinhControllerTT {
 		return "QuanLyNhanSuTT/ThongTinGiaDinh/edit_form";
 	}
 
+	// delete an employee's contract
+	@RequestMapping("/remove/{id}")
+	public String remove(@PathVariable("id") int id, final RedirectAttributes redirectAttributes) {
+		ThongTinGiaDinhTT ttgd = thongTinGiaDinhServiceTT.getGiaDinhById(id);
+		ttgd.setIsdelete(0);
+		thongTinGiaDinhServiceTT.updateGiaDinh(ttgd);
+		return "redirect:/quanlynhansutt/ho_so/";
+	}
+
 	// Show an employee's family information
 	@RequestMapping("/viewOneGiaDinh/{maNhanVien}")
 	public String viewOneGiaDinh(@PathVariable int maNhanVien, Model model) {
@@ -70,14 +79,14 @@ public class ThongTinGiaDinhControllerTT {
 						"<script>alert('Nhân Viên Đã Có " + gd.getQuanHe() + "');</script>");
 				return "QuanLyNhanSuTT/ThongTinGiaDinh/add_form";
 			}
-			/* hd.setIsdelete(1); */
+			gd.setIsdelete(1); 
 			thongTinGiaDinhServiceTT.addGiaDinh(gd);
 		} else {
 			// existing person, call update
 			if (result.hasErrors()) {
 				return "QuanLyNhanSuTT/ThongTinGiaDinh/edit_form";
 			}
-			/* hd.setIsdelete(1); */
+			gd.setIsdelete(1); 
 			thongTinGiaDinhServiceTT.updateGiaDinh(gd);
 		}
 		return "redirect:/quanlynhansutt/ho_so/";

@@ -59,6 +59,17 @@ public class ThongTinGiaDinhTT {
 	@Column(name = "quan_he")
 	@NotEmpty(message = "Please enter the contact information!")
 	private String quanHe;
+	
+	@Column(name = "isdelete", nullable = false)
+	private Integer isdelete;
+
+	public Integer getIsdelete() {
+		return isdelete;
+	}
+
+	public void setIsdelete(Integer isdelete) {
+		this.isdelete = isdelete;
+	}
 
 	public int getId() {
 		return id;

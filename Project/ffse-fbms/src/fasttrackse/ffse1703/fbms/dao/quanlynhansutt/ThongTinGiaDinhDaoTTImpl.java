@@ -31,19 +31,19 @@ public class ThongTinGiaDinhDaoTTImpl implements ThongTinGiaDinhDaoTT {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.update(p);
 	}
+	
+	@Override
+	public void removeGiaDinh(ThongTinGiaDinhTT p) {
+		// TODO Auto-generated method stub
+		Session session = this.sessionFactory.getCurrentSession();
+		session.update(p);
+	}
 
 	@Override
 	public ThongTinGiaDinhTT getGiaDinhById(int id) {
 		// TODO Auto-generated method stub
-		Session session = this.sessionFactory.openSession();
-		ThongTinGiaDinhTT p = (ThongTinGiaDinhTT) session.load(ThongTinGiaDinhTT.class, new Integer(id));
-		return p;
-	}
-
-	@Override
-	public void removeGiaDinh(int id) {
-		// TODO Auto-generated method stub
-
+		Session session = this.sessionFactory.getCurrentSession();
+		return session.get(ThongTinGiaDinhTT.class, id);
 	}
 
 	@Override
@@ -57,7 +57,7 @@ public class ThongTinGiaDinhDaoTTImpl implements ThongTinGiaDinhDaoTT {
 		// TODO Auto-generated method stub
 		Session session = this.sessionFactory.openSession();
 		@SuppressWarnings("rawtypes")
-		Query query = session.createQuery("from ThongTinGiaDinhTT where ma_nhan_vien = " + maNhanVien + " ");
+		Query query = session.createQuery("from ThongTinGiaDinhTT where ma_nhan_vien = " + maNhanVien + " and isdelete = 1");
 		@SuppressWarnings("unchecked")
 		List<ThongTinGiaDinhTT> viewOne = query.list();
 		return viewOne;

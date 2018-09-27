@@ -110,7 +110,7 @@ th, td {
 														href="<c:url value = "/quanlynhansutt/gia_dinh/edit_giadinh/${ttgd.id}"/>"><i
 															class="fa fa-pencil"></i></a> <%-- <a href="<c:url value = ""/>"><i class="fa fa-trash"></i></a> --%>
 														<a
-														href='<c:url value = "#"></c:url>'
+														href='<c:url value = "/quanlynhansutt/gia_dinh/remove/${ttgd.id}"></c:url>'
 														class="fa fa-trash"
 														onclick="return confirm('Bạn có muốn xóa sinh viên này?');"></a>
 													</td>

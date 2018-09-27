@@ -9,12 +9,12 @@ public interface ThongTinGiaDinhDaoTT {
 	public void addGiaDinh(ThongTinGiaDinhTT p);
 
 	public void updateGiaDinh(ThongTinGiaDinhTT p);
+	
+	public void removeGiaDinh(ThongTinGiaDinhTT p);
 
 	public ThongTinGiaDinhTT getGiaDinhById(int id);
 
 	public HoSoNhanVienTT findByMaNhanVien(int maNhanVien);
-
-	public void removeGiaDinh(int id);
 
 	public int total();
 

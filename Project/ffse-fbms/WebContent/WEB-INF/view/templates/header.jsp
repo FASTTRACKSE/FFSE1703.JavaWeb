@@ -285,24 +285,19 @@
 						<ul class="menu-content">
 							<li><a class="menu-item"
 								href="/ffse-fbms/quanlynhansutt/ho_so/">Hồ Sơ Nhân Viên</a></li>
-							<li><a class="menu-item" href="#">Thông Tin Gia Đình</a></li>
 						</ul></li>
 					<li class=" nav-item"><a href="#"><i class="ft-layers"></i><span
 							class="menu-title" data-i18n="">Quản Lý Hợp Đồng</span></a>
 						<ul class="menu-content">
-							<li><a class="menu-item" href="#">Hồ Sơ Hợp Đồng</a></li>
 							<li><a class="menu-item"
-								href="/ffse-fbms/quanlynhansutt/hop_dong/">Danh Sách Hợp
-									Đồng</a></li>
+								href="/ffse-fbms/quanlynhansutt/hop_dong/">Hồ Sơ Hợp Đồng</a></li>
 						</ul></li>
 					<li class=" nav-item"><a href="#"><i
 							class="fa fa-id-card-o"></i><span class="menu-title" data-i18n="">Quản
 								Lý Bằng Cấp</span></a>
 						<ul class="menu-content">
-							<li><a class="menu-item" href="#">Hồ Sơ Bằng Cấp</a></li>
 							<li><a class="menu-item"
-								href="/ffse-fbms/quanlynhansutt/bang_cap/">Danh Sách Bằng
-									Cấp</a></li>
+								href="/ffse-fbms/quanlynhansutt/bang_cap/">Hồ Sơ Bằng Cấp</a></li>
 						</ul></li>
 					<!-- Quản Lý Nhân Sự TT  -->
 					<!--  MVP- Quản lí Dự Án -->

@@ -33,16 +33,18 @@ public class ThongTinGiaDinhServiceTTImpl implements ThongTinGiaDinhServiceTT {
 
 	@Override
 	@Transactional
+	public void removeGiaDinh(ThongTinGiaDinhTT p) {
+		// TODO Auto-generated method stub
+		thongTinGiaDinhDaoTT.removeGiaDinh(p);
+	}
+	
+	@Override
+	@Transactional
 	public ThongTinGiaDinhTT getGiaDinhById(int id) {
 		// TODO Auto-generated method stub
 		return this.thongTinGiaDinhDaoTT.getGiaDinhById(id);
 	}
 
-	@Override
-	public void removeGiaDinh(int id) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	@Transactional
@@ -65,5 +67,6 @@ public class ThongTinGiaDinhServiceTTImpl implements ThongTinGiaDinhServiceTT {
 		// TODO Auto-generated method stub
 		return  this.thongTinGiaDinhDaoTT.findByMaNhanVien(maNhanVien);
 	}
+
 
 }

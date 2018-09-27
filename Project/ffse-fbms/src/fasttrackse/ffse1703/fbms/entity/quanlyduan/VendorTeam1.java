@@ -10,28 +10,29 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
+
 @Entity
 @Table(name = "doi_tac")
 public class VendorTeam1 {
 	@Id
-	@NotEmpty
+	@NotEmpty(message="Mã không được để trống !")
 	@Column(name = "ma_doi_tac")
 	 String mavd;
 	
 	@Column(name = "ten_doi_tac")
-	@NotEmpty
+	@NotEmpty(message="Tên không được để trống !")
 	 String tenvd;
 	
 	@Column(name = "dia_chi")
-	@NotEmpty
+	@NotEmpty(message="Địa chỉ không được để trống !")
 	 String diachi;
 	
 	@Column(name = "so_dien_thoai")
-	@NotEmpty
+	@NotEmpty(message="Số điện thoại không được để trống !")
 	 String sdt;
 	
 	@Column(name = "email")
-	@NotEmpty
+	@NotEmpty(message="Email không được để trống !")
 	 String email;
 
 	

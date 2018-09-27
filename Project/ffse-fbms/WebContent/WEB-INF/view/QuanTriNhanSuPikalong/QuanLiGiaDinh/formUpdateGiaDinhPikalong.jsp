@@ -11,8 +11,15 @@
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href='<c:url value="/quantrinhansu/hosonhanvien/" />'>Danh Sách Nhân Viên</a></li>
-							<li class="breadcrumb-item"><a href='<c:url value="/QuanTriNhanSuPikalong/QuanLiGiaDinh/viewOneGiaDinh/${maNv}" />'>Gia Đình Nhân Viên</a></li>
+							<li class="breadcrumb-item"><a
+								href='<c:url value="/quantrinhansu/hosonhanvien/" />'>Danh
+									Sách Nhân Viên</a></li>
+							<li class="breadcrumb-item"><a
+								href='<c:url value="/quantrinhansu/hosonhanvien/view/${maNv }" />'>Thông
+									Tin Nhân Viên</a></li>
+							<li class="breadcrumb-item"><a
+								href='<c:url value="/QuanTriNhanSuPikalong/QuanLiGiaDinh/viewOneGiaDinh/${maNv}" />'>Gia
+									Đình Nhân Viên</a></li>
 							<li class="breadcrumb-item active">Update Gia Đình</li>
 						</ol>
 					</div>
@@ -97,14 +104,13 @@
 													<label for="roundText">SDT</label>
 													<form:input path="sdt" type="text" id="roundText"
 														class="form-control round" />
-													<form:errors path="sdt"
-														cssStyle="color:red;display:block"></form:errors>
+													<form:errors path="sdt" cssStyle="color:red;display:block"></form:errors>
 												</div>
 											</div>
 											<div class="col-xl-12 col-lg-6 col-md-12 mb-1">
 												<div class="form-group">
-													<input class="btn btn-outline-success round" type="submit" value="Save" />
-													<a class="btn btn-outline-info round"
+													<input class="btn btn-outline-success round" type="submit"
+														value="Save" /> <a class="btn btn-outline-info round"
 														href="/ffse-fbms/QuanTriNhanSuPikalong/QuanLiGiaDinh/viewOneGiaDinh/${maNv}">View</a>
 												</div>
 											</div>

@@ -273,7 +273,7 @@
 							class="menu-title" data-i18n="">Quản Lý Hồ Sơ</span></a>
 						<ul class="menu-content">
 							<li><a class="menu-item"
-								href="/ffse-fbms/quantrinhansu/hosonhanvien/">Hồ Sơ Nhân Viên</a></li>
+								href="/ffse-fbms/quantrinhansu/hosonhanvien/">Danh Sách Nhân Viên</a></li>
 						</ul></li>
 					<!-- Quản Lý Nhân Sự Pikalong -->
 					<!-- Quản Lý Nhân Sự TT -->

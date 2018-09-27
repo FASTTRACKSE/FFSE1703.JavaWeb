@@ -7,12 +7,14 @@
 	<div class="content-wrapper">
 		<h3 class="content-header-title mb-0">Danh sách Bằng Cấp Của Nhân
 			Viên</h3>
-			<div class="row breadcrumbs-top">
+		<div class="row breadcrumbs-top">
 			<div class="breadcrumb-wrapper col-xs-12">
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a
 						href='<c:url value="/quantrinhansu/hosonhanvien/" />'>Danh
 							Sách Nhân Viên</a></li>
+					<li class="breadcrumb-item"><a
+						href='<c:url value="/quantrinhansu/hosonhanvien/view/${maNv }" />'>Thông Tin Nhân Viên</a></li>
 					<li class="breadcrumb-item active">Bằng Cấp Nhân Viên</li>
 				</ol>
 			</div>

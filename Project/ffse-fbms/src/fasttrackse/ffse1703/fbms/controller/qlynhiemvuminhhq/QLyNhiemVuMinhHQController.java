@@ -6,16 +6,16 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import fasttrackse.ffse1703.fbms.entity.qlynhiemvuminhhq.CongViecMinhHQ;
 import fasttrackse.ffse1703.fbms.service.qlynhiemvuminhhq.CongViecService;
-
-
-
 
 @Controller
 @RequestMapping("/QuanLyNhiemVuMinhHQ")
@@ -27,38 +27,54 @@ public class QLyNhiemVuMinhHQController {
 		this.congViecService = congViecService;
 	}
 
-//	@RequestMapping(value= {"/","/list"})
-//	public String index(Model model) {
-//		model.addAttribute("listCongViec", congViecService.findAll());
-//		return "/QuanLyNhiemVuMinhHQ/list";
-//	}
-	
-	
-	
+	// @RequestMapping(value= {"/","/list"})
+	// public String index(Model model) {
+	// model.addAttribute("listCongViec", congViecService.findAll());
+	// return "/QuanLyNhiemVuMinhHQ/list";
+	// }
+
 	public int totalPage(int perPage) {
 		int totalPage = (int) Math.ceil((double) congViecService.findAll().size() / (double) perPage);
 		return totalPage;
 	}
 
-	@RequestMapping(value = {"/","/list"}, method = RequestMethod.GET)
+	@RequestMapping(value = { "/", "/list" }, method = RequestMethod.GET)
 	public String viewTaiLieu(Model model,
-			@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage) {
-		int perPage = 2;
+			@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage,
+			HttpServletRequest request) {
+
+		String maDuanSearch = " and duAn.maDuAn = " + request.getParameter("maDuAn");
+		if (request.getParameter("maDuAn") == null || request.getParameter("maDuAn").equals("0")) {
+			maDuanSearch = "";
+		}
+		String maNhanVienSearch = " and phanCong.maNhanVien = " + request.getParameter("maNhanVien");
+		if (request.getParameter("maNhanVien") == null || request.getParameter("maNhanVien").equals("0")) {
+			maNhanVienSearch = "";
+		}
+		String IDtrangthaiSearch = " and maTrangThai.maTrangThai = " + request.getParameter("maTrangThai");
+		if (request.getParameter("maTrangThai") == null || request.getParameter("maTrangThai").equals("0")) {
+			IDtrangthaiSearch = "";
+		}
+		String search = maDuanSearch + maNhanVienSearch + IDtrangthaiSearch;
+
+		int perPage = 10;
 		int totalPage = totalPage(perPage);
 		int start = (currentPage - 1) * perPage;
-		model.addAttribute("listCongViec", congViecService.findAllForPaging(start, perPage));
+		model.addAttribute("listCongViec", congViecService.findAllForPaging(start, perPage, search));
 		model.addAttribute("lastPage", totalPage);
 		model.addAttribute("currentPage", currentPage);
-
+		model.addAttribute("TrangThai", congViecService.trangThai());
+		model.addAttribute("DuAn", congViecService.duAn());
+		model.addAttribute("NhanVien", congViecService.nhanVien());
 		return "/QuanLyNhiemVuMinhHQ/list";
 	}
 
-	@RequestMapping(value= "/view/{ID}")
+	@RequestMapping(value = "/view/{ID}")
 	public String viewOne(@PathVariable("ID") int id, HttpServletRequest request, Model model) {
 		model.addAttribute("list", congViecService.findByID(id));
 		return "/QuanLyNhiemVuMinhHQ/viewOne";
 	}
-	
+
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String showForm(Model model) {
 		model.addAttribute("CongViec", new CongViecMinhHQ());
@@ -70,10 +86,16 @@ public class QLyNhiemVuMinhHQController {
 	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public String createCongViec(Model model, @ModelAttribute("CongViec") @Valid CongViecMinhHQ cv, HttpServletRequest request) throws IllegalStateException {
-		cv.setIsDelete(1);
-		congViecService.addNew(cv);
-		;
+	public String createCongViec( Model model, @ModelAttribute("CongViec") @Valid CongViecMinhHQ cv,final RedirectAttributes redirectAttributes
+			 ){
+		try {
+			cv.setIsDelete(1);
+			congViecService.addNew(cv);
+			redirectAttributes.addFlashAttribute("messageSuccess", "Thêm mới thành công...");
+		} catch (Exception e) {
+		
+			redirectAttributes.addFlashAttribute("messageError", "Lỗi. Xin thử lại!");
+		}
 		return "redirect:/QuanLyNhiemVuMinhHQ/list";
 	}
 
@@ -96,9 +118,8 @@ public class QLyNhiemVuMinhHQController {
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String edit(Model model, @ModelAttribute("CongViec") @Valid CongViecMinhHQ CongViec, HttpServletRequest request
-			)
-			throws IllegalStateException {
+	public String edit(Model model, @ModelAttribute("CongViec") @Valid CongViecMinhHQ CongViec,
+			HttpServletRequest request) throws IllegalStateException {
 		congViecService.update(CongViec);
 		return "redirect:/QuanLyNhiemVuMinhHQ/list";
 	}

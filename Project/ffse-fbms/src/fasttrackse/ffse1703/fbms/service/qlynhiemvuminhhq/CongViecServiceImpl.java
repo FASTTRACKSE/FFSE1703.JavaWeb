@@ -55,8 +55,9 @@ public class CongViecServiceImpl implements CongViecService{
 	}
 
 	@Override
-	public List<CongViecMinhHQ> findAll(int iDisplayStart, int iDisplayLength, String sql) {
-		return congViecDao.findAll(iDisplayStart, iDisplayLength, sql);
+	@Transactional
+	public List<CongViecMinhHQ> findAllForPaging(int iDisplayStart, int iDisplayLength, String search) {
+		return congViecDao.findAllForPaging(iDisplayStart, iDisplayLength, search);
 	}
 
 	@Override
@@ -82,12 +83,5 @@ public class CongViecServiceImpl implements CongViecService{
 	public List<HoSoNhanVien> nhanVien() {
 		return congViecDao.nhanVien();
 	}
-
-	@Override
-	@Transactional
-	public List<CongViecMinhHQ> findAllForPaging(int startPosition, int maxResult) {
-		return congViecDao.findAllForPaging(startPosition,maxResult);
-	}
-
 }
 

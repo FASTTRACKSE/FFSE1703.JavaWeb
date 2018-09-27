@@ -6,7 +6,6 @@ import javax.transaction.Transactional;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -67,9 +66,9 @@ public class QLyNhiemvuMinhHQDaoImpl implements QLyNhiemvuMinhHQDao{
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<CongViecMinhHQ> findAll(int iDisplayStart, int iDisplayLength, String sql) {
+	public List<CongViecMinhHQ> findAllForPaging(int iDisplayStart, int iDisplayLength, String search) {
 		Session session = this.sessionFactory.getCurrentSession();
-		List<CongViecMinhHQ> listCongViec = session.createQuery(sql).setFirstResult(iDisplayStart)
+		List<CongViecMinhHQ> listCongViec = session.createQuery("from CongViecMinhHQ where isDelete = 1 " + search).setFirstResult(iDisplayStart)
 				.setMaxResults(iDisplayLength).list();
 		return listCongViec;
 	}
@@ -105,19 +104,5 @@ public class QLyNhiemvuMinhHQDaoImpl implements QLyNhiemvuMinhHQDao{
 		List<HoSoNhanVien> cv = session.createQuery("from HoSoNhanVien").list();
 		return cv;
 	}
-
-
-
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	@Override
-	public List<CongViecMinhHQ> findAllForPaging(int startPosition, int maxResult) {
-		Session session = this.sessionFactory.getCurrentSession();
-		Query q = session.createQuery("from CongViecMinhHQ where isDelete ='1'");
-		q.setFirstResult(startPosition);
-		q.setMaxResults(maxResult);
-		
-		return q.list();		
-	}
-
 }
 

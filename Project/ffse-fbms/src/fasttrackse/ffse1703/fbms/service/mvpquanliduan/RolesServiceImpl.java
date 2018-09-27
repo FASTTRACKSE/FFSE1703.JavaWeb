@@ -56,6 +56,20 @@ public class RolesServiceImpl implements RolesService{
 		return rolesDAO.checkNameRoles(nameRoles);
 	}
 
+	@Override
+	@Transactional
+	public List<Roles> listRoles(int start, int maxRows) {
+		
+		return rolesDAO.listRoles(start, maxRows);
+	}
+
+	@Override
+	@Transactional
+	public int countRoles() {
+		
+		return rolesDAO.countRoles();
+	}
+
 
 
 }

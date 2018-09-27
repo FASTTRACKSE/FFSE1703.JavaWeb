@@ -55,4 +55,16 @@ public class StatusServiceImpl implements StatusService{
 		return statusDAO.checkNameStatus(nameStatus);
 	}
 
+	@Override
+	@Transactional
+	public List<StatusProject> listStatusProject(int start, int maxRows) {
+		return statusDAO.listStatusProject(start, maxRows);
+	}
+
+	@Override
+	@Transactional
+	public int countStatusProject() {
+		return statusDAO.countStatusProject();
+	}
+
 }

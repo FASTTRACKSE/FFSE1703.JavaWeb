@@ -2,6 +2,7 @@ package fasttrackse.ffse1703.fbms.controller.mvpquanliduan;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,9 +32,28 @@ public class DatabaseControllers {
 	}
 
 	@RequestMapping("/list-database")
-	public String listDatabase(Model model) {
-		List<Database> list = databaseService.findAll();
-		model.addAttribute("listDatabase", list);
+	public String listDatabase(HttpSession session) {
+		int pageId = 0;
+		if (session.getAttribute("pageIds") == null) {
+			pageId = 1;
+		} else {
+			pageId = (int) session.getAttribute("pageIds");
+		}
+		return "redirect: list-database/"+pageId;
+	}
+	@RequestMapping(value = "/list-database/{pageId}", method = RequestMethod.GET)
+	public String listPersons(@PathVariable int pageId, Model model,HttpSession session) {
+		int maxRows= 5;
+		int start = (pageId - 1) * maxRows;
+		int totalDatabase = databaseService.countDatabase();
+		int totalPage = (int) Math.ceil(totalDatabase / (double) maxRows);
+		if (pageId == 0) {
+			pageId = 1;
+		}
+		model.addAttribute("listDatabase", this.databaseService.listDatabase(start, maxRows));
+		model.addAttribute("pageId", pageId);
+		model.addAttribute("totalPage", totalPage);
+		session.setAttribute("pageIds", pageId);
 		return "MvpQuanLiDuAn/database/listdatabase";
 	}
 

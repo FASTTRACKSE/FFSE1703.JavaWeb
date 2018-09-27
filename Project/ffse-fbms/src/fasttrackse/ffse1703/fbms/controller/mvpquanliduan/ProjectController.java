@@ -33,6 +33,7 @@ import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Projects;
 import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.StatusProject;
 import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Technical;
 import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Vendor;
+import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.HoSoNhanVienPikalong;
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 import fasttrackse.ffse1703.fbms.entity.security.PhongBan;
 import fasttrackse.ffse1703.fbms.service.mvpquanliduan.DatabaseServices;
@@ -82,6 +83,10 @@ public class ProjectController {
 	
 	@RequestMapping(value= "/list-project")
 	public String listproject(Model model) {
+		List<HoSoNhanVienPikalong> nv= projectService.getPm("PDA");
+		for(HoSoNhanVienPikalong x: nv) {
+			System.out.println("nhan vien la"+x.getMaNv());
+		}
 		List<Projects> list = projectService.findAll();
 		model.addAttribute("listProject", list);
 		return "MvpQuanLiDuAn/project/listproject";
@@ -111,7 +116,7 @@ public class ProjectController {
 			final RedirectAttributes redirectAttributes,Model model) {
 		if (result.hasErrors()) {
 			model.addAttribute("projects", project);
-			return "MvpQuanLiDuAn/domain/updatedomain";
+			return "MvpQuanLiDuAn/project/updateproject";
 		}
 		project.setIsDelete(1);
 		projectService.update(project);
@@ -183,27 +188,46 @@ public class ProjectController {
 				setValue(vendorService.findById(text));
 			}
 		});
+		binder.registerCustomEditor(KhachHang.class, "khachHang", new PropertyEditorSupport() {
+			@Override
+			public void setAsText(String text) throws IllegalArgumentException {
+				setValue(khachHangService.getById(Integer.parseInt(text)));
+			}
+		});
+		binder.registerCustomEditor(Domain.class, "domain", new PropertyEditorSupport() {
+			@Override
+			public void setAsText(String text) throws IllegalArgumentException {
+				setValue(domainService.findById(text));
+			}
+		});
+		binder.registerCustomEditor(StatusProject.class, "status", new PropertyEditorSupport() {
+			@Override
+			public void setAsText(String text) throws IllegalArgumentException {
+				setValue(statusService.findById(Integer.parseInt(text)));
+			}
+		});
+		
 	}
-//	@RequestMapping(value= "get-pm/{maPhongBan}", method= RequestMethod.GET, produces= "text/plain;charset=UTF-8")
-//	@ResponseBody
-//	public String selectQuan(@PathVariable String maPhongBan) {
-//		List<HoSoNhanVien> listPM = projectService.getPm(maPhongBan);
-//		
-//		String json = "[";
-//		
-//		for(int i =0; i < listPM.size(); i++) {
-//			
-//			if (i == listPM.size() - 1) {
-//				json += "{\"maNhanVien\":" + "\"" + listPM.get(i).getMaNhanVien() + "\"" + ", \"tenNhanVien\" :" + "\"" + listPM.get(i).getHoDem() + listPM.get(i).getTen() + "\"" + "}";
-//			} else {
-//				json += "{\"maNhanVien\":" + "\"" + listPM.get(i).getMaNhanVien() + "\"" + ", \"tenNhanVien\" :" + "\"" + listPM.get(i).getHoDem()  + listPM.get(i).getTen() + "\"" + "},";
-//			}
-//		}
-//		json += "]";
-//		
-//		return json;
-//		
-//	}
+	@RequestMapping(value= "get-pm/{maPhongBan}", method= RequestMethod.GET, produces= "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String selectQuan(@PathVariable String maPhongBan) {
+		List<HoSoNhanVienPikalong> listPM = projectService.getPm(maPhongBan);
+		
+		String json = "[";
+		
+		for(int i =0; i < listPM.size(); i++) {
+			
+			if (i == listPM.size() - 1) {
+				json += "{\"maNhanVien\":" + "\"" + listPM.get(i).getMaNv() + "\"" + ", \"tenNhanVien\" :" + "\"" + listPM.get(i).getHoTenNv()  + "\"" + "}";
+			} else {
+				json += "{\"maNhanVien\":" + "\"" + listPM.get(i).getMaNv()+ "\"" + ", \"tenNhanVien\" :" + "\"" + listPM.get(i).getHoTenNv()+ "\"" + "},";
+			}
+		}
+		json += "]";
+		
+		return json;
+		
+	}
 	
 	//Get model cho các form
 	@ModelAttribute("khachHang")
@@ -243,4 +267,5 @@ public class ProjectController {
 	public List<PhongBan> itemPhongDuAn(){
 		return phongBanService.findAll();
 	}
+
 }

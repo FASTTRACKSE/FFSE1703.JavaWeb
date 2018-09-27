@@ -2,6 +2,7 @@ package fasttrackse.ffse1703.fbms.controller.mvpquanliduan;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +30,29 @@ public class DomainController {
 	}
 
 	@RequestMapping("/list-domain")
-	public String listDomain(Model model) {
-		List<Domain> list = domainService.findAll();
-		model.addAttribute("listDomain", list);
+	public String listDomain(HttpSession session) {
+		int pageId = 0;
+		if (session.getAttribute("pageIds") == null) {
+			pageId = 1;
+		} else {
+			pageId = (int) session.getAttribute("pageIds");
+		}
+		return "redirect: list-domain/"+pageId;
+	}
+	@RequestMapping(value = "/list-domain/{pageId}", method = RequestMethod.GET)
+	public String listPersons(@PathVariable int pageId, Model model,HttpSession session) {
+		int maxRows= 5;
+		int start = (pageId - 1) * maxRows;
+		int totalDomain = domainService.countDomain();
+		int totalPage = (int) Math.ceil(totalDomain / (double) maxRows);
+		if (pageId == 0) {
+			pageId = 1;
+		}
+		
+		model.addAttribute("listDomain", this.domainService.listDomain(start, maxRows));
+		model.addAttribute("pageId", pageId);
+		model.addAttribute("totalPage", totalPage);
+		session.setAttribute("pageIds", pageId);
 		return "MvpQuanLiDuAn/domain/listdomain";
 	}
 

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Vendor;
+import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Vendor;
 
 @Repository
 public class VendorDAOImpl implements VendorDAO {
@@ -23,6 +24,22 @@ public class VendorDAOImpl implements VendorDAO {
 		Session session = sessionFactory.getCurrentSession();
 		return session.createQuery("from Vendor where status = 1", Vendor.class).list();
 		
+	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Vendor> listVendor(int start, int maxRows) {
+		Session session = this.sessionFactory.getCurrentSession();
+		List<Vendor> List = (List<Vendor>) session.createQuery("FROM Vendor where status = 1").setFirstResult(start)
+				.setMaxResults(maxRows).list();
+		
+		return List;
+	}
+	
+	@Override
+	public int countVendor() {
+		Session session = sessionFactory.getCurrentSession();
+		List<Vendor> dm = session.createQuery("from Vendor where status = 1", Vendor.class).list();
+		return  dm.size();
 	}
 
 	@Override

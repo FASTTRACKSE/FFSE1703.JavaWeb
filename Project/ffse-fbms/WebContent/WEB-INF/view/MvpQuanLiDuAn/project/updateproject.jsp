@@ -20,7 +20,7 @@
 	font-weight: bold;
 }
 </style>
-<div class="app-content content container-fluid">
+<div class="app-content content container-fluid" >
 
 	<div class="content-wrapper">
 		<!-- Path -->
@@ -51,7 +51,7 @@
 			<h4 class="card-title" id="basic-layout-form">Project Info</h4>
 			<div class="card-body">
 
-				<form:form method="POST" action="/ffse-fbms/mvpquanliduan/project/update" modelAttribute="projects">
+				<form:form method="POST" action="/ffse-fbms/mvpquanliduan/project/update" modelAttribute="projects" >
 					<div class="form-body">
 						<h4 class="form-section">
 							<i class="ft-user"></i> Thông tin dự án***
@@ -60,6 +60,7 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label for="projectinput1">Mã dự án*</label>
+									<form:errors path="idProject" cssClass="error" />
 									<form:input path="idProject" placeholder="Mã dự án"
 										class="form-control" readonly="true"/>
 								</div>
@@ -67,6 +68,7 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label for="projectinput2">Tên dự án*</label>
+									<form:errors path="nameProject" cssClass="error" />
 									<form:input path="nameProject" placeholder="Tên dự án"
 										class="form-control" />
 								</div>
@@ -76,6 +78,7 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label for="projectinput5">Khách hàng*</label>
+									<form:errors path="khachHang.idKhachHang" cssClass="error" />
 									<form:select multiple="single" path="khachHang.idKhachHang"
 										class="form-control">
 										<form:options items="${khachHang}" itemValue="idKhachHang"
@@ -86,8 +89,9 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label for="projectinput5">Phòng dự án*</label>
+									<form:errors path="roomProject.maPhongBan" cssClass="error" />
 									<form:select multiple="single" path="roomProject.maPhongBan"
-										class="form-control">
+										class="form-control"  onchange="myFunction()" id="idPhongBan" >
 										<form:options items="${phongDuAn}" itemValue="maPhongBan"
 											itemLabel="tenPhongBan" />
 									</form:select>
@@ -98,6 +102,7 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label for="projectinput5">Nghiệp vụ*</label>
+									<form:errors path="domain.idDomain" cssClass="error" />
 									<form:select multiple="single" path="domain.idDomain"
 										class="form-control">
 										<form:options items="${domain}" itemValue="idDomain"
@@ -105,21 +110,22 @@
 									</form:select>
 								</div>
 							</div>
-							<%-- <div class="col-md-6">
+							<div class="col-md-6">
 								<div class="form-group">
-									<label for="projectinput5">Project manager*</label>
-									<form:select multiple="single" path="domain.idDomain"
-										class="form-control">
-										<form:options items="${domain}" itemValue="idDomain"
-											itemLabel="nameDomain" />
+									<label for="projectinput5">PM*</label>
+									<form:errors path="pm.maNv" cssClass="error" />
+									<form:select multiple="single" path="pm.maNv"
+										class="form-control" id="idPm" name="pm">
+										
 									</form:select>
 								</div>
-							</div> --%>
+							</div> 
 						</div>
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
 									<label for="projectinput5">Ngày bắt đầu*</label>
+									<form:errors path="startDate" cssClass="error" />
 									<form:input path="startDate" cssClass="form-control round"
 										type="date" />
 								</div>
@@ -127,6 +133,7 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label for="projectinput5">Ngày kết thúc*</label>
+									<form:errors path="endDate" cssClass="error" />
 									<form:input path="endDate" cssClass="form-control round"
 										type="date" />
 								</div>
@@ -253,6 +260,47 @@
 	var demo3 = $('select[name="language"]').bootstrapDualListbox();
 	var demo4 = $('select[name="framework"]').bootstrapDualListbox();
 	var demo5 = $('select[name="vendor"]').bootstrapDualListbox();
+</script>
+<script>
+window.onload = myFunction();
+function myFunctionOnload() {
+	myFunction()
+	
+}
+</script>
+
+<script>
+function myFunction() {
+	
+	var maPhongBan = $("#idPhongBan").val();
+	if (maPhongBan == '') {
+
+		$('#idPm option').remove();
+	} else {
+		$('#idPm').prop('disabled', false);
+		$('#idPm option').remove();
+	}
+
+	$.ajax({
+		url : "/ffse-fbms/mvpquanliduan/project/get-pm/" + maPhongBan,
+		dataType : "json",
+		success : function(data) {
+			alert(maPhongBan);
+	 		$('#idPm').append($('<option>', {
+				value : '',
+				text : 'Chọn PM'
+			}));
+
+			for (var i = 0; i < data.length; i++) {
+				$('#idPm').append($('<option>', {
+					value : data[i].maNhanVien,
+					text : data[i].tenNhanVien
+				}));
+				$('#idPm option[value=${project.pm.maNv}]').attr('selected', 'selected')
+			}
+		}
+	});
+}
 </script>
 
 <!-- ////////////////////////////////////////////////////////////////////////////-->

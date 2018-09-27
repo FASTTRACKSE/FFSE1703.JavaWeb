@@ -11,4 +11,6 @@ public interface StatusDAO {
 	public void update(StatusProject status);
 	public void delete(StatusProject status);
 	public int checkNameStatus(String nameStatus);
+	public List<StatusProject> listStatusProject(int start, int maxRows);
+	public int countStatusProject() ;
 }

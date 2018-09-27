@@ -56,6 +56,7 @@
 								<div class="form-group">
 									<label for="projectinput1">Mã dự án*</label>
 									<p class="error">${messageMa}</p>
+									<form:errors path="idProject" cssClass="error" />
 									<form:input path="idProject" placeholder="Mã dự án"
 										class="form-control" />
 								</div>
@@ -64,6 +65,7 @@
 								<div class="form-group">
 									<label for="projectinput2">Tên dự án*</label>
 									<p class="error">${messageName}</p>
+									<form:errors path="nameProject" cssClass="error" />
 									<form:input path="nameProject" placeholder="Tên dự án"
 										class="form-control" />
 								</div>
@@ -73,8 +75,10 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label for="projectinput5">Khách hàng*</label>
-									<form:select multiple="single" path="khachHang.idKhachHang"
+										<form:errors path="khachHang.idKhachHang" cssClass="error" />
+									<form:select multiple="single" path="khachHang.idKhachHang"  
 										class="form-control">
+										<option value="" selected ="selected"> --Chọn  khach hang--</option>
 										<form:options items="${khachHang}" itemValue="idKhachHang"
 											itemLabel="fullname" />
 									</form:select>
@@ -83,8 +87,10 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label for="projectinput5">Phòng dự án*</label>
-									<form:select multiple="single" path="roomProject.maPhongBan"
-										class="form-control">
+									<form:errors path="roomProject.maPhongBan" cssClass="error" />
+									<form:select id="idPhongBan" multiple="single" path="roomProject.maPhongBan"
+										class="form-control" onchange="myFunction()">
+										<option value="" selected ="selected"> --Chọn phòng ban--</option>
 										<form:options items="${phongDuAn}" itemValue="maPhongBan"
 											itemLabel="tenPhongBan" />
 									</form:select>
@@ -95,9 +101,10 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label for="projectinput5">Nghiệp vụ*</label>
+									<form:errors path="domain.idDomain" cssClass="error" />
 									<form:select multiple="single" path="domain.idDomain"
-										class="form-control" id="idPhongBan"
-										onchange="clickComboboxPhongBan()">
+										class="form-control">
+										<option value="" selected ="selected"> --Chọn  nghiệp vụ--</option>
 										<form:options items="${domain}" itemValue="idDomain"
 											itemLabel="nameDomain" />
 									</form:select>
@@ -105,18 +112,20 @@
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<label for="projectinput5"> PM</label>
-									<%-- <form:select path="pm.maNhanVien" id="idPm" name="pm"
-										type="text" class="form-control" disabled="true">
-										<option value="" selected="selected">Chọn quận huyện</option>
-									</form:select> --%>
-								</div>
+									<label for="projectinput5"> PM</label>	
+									<form:errors path="pm.maNv" cssClass="error" />								
+									 <form:select path="pm.maNv" id="idPm" name="pm"
+										type="text" class="form-control" >
+										<option value="" selected="selected">Chọn PM</option>
+									</form:select> 
 							</div>
+						</div>
 						</div>
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
 									<label for="projectinput5">Ngày bắt đầu*</label>
+									<form:errors path="startDate" cssClass="error" />
 									<form:input path="startDate" cssClass="form-control round"
 										type="date" />
 								</div>
@@ -124,6 +133,7 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label for="projectinput5">Ngày kết thúc*</label>
+									<form:errors path="endDate" cssClass="error" />
 									<form:input path="endDate" cssClass="form-control round"
 										type="date" />
 								</div>
@@ -131,8 +141,9 @@
 
 						</div>
 
-
+						
 					</div>
+					
 
 					<h4 class="form-section">
 						<i class="fa fa-paperclip"></i> Công nghệ
@@ -159,7 +170,6 @@
 								<form:select path="language" items="${language}" multiple="true"
 									itemValue="idLanguage" itemLabel="nameLanguage"
 									class="form-control" />
-
 							</div>
 						</div>
 						<div class="col-md-6">
@@ -222,43 +232,40 @@
 	var demo4 = $('select[name="framework"]').bootstrapDualListbox();
 	var demo5 = $('select[name="vendor"]').bootstrapDualListbox();
 
-/* 	function clickComboboxPhongBan() {
-		var maPhongBan = $("#idPhongBan").val();
-		if (maPhongBan == '') {
-
-			$('#idPm option').remove();
-
-			$('#idPm').prop('disabled', true);
-
-		} else {
-
-			$('#idPm').prop('disabled', false);
-			$('#idPm option').remove();
-
-		}
-
-		$.ajax({
-			url : "/ffse-fbms/mvpquanliduan/project/get-pm/" + maPhongBan,
-			dataType : "json",
-			success : function(data) {
-				/* alert("Hello! I am an alert box!"); */
-		/* /* 		$('#idPm').append($('<option>', {
-					value : '',
-					text : 'Chọn PM'
-				}));
-
-				for (var i = 0; i < data.length; i++) {
-					$('#idPm').append($('<option>', {
-						value : data[i].maNhanVien,
-						text : data[i].tenNhanVien
-					}));
-				}
-
-			}
-		});
-	}; */
+ 	
 </script>
+<script>
+function myFunction() {
+	
+	var maPhongBan = $("#idPhongBan").val();
+	if (maPhongBan == '') {
 
+		$('#idPm option').remove();
+	} else {
+		$('#idPm').prop('disabled', false);
+		$('#idPm option').remove();
+	}
+
+	$.ajax({
+		url : "/ffse-fbms/mvpquanliduan/project/get-pm/" + maPhongBan,
+		dataType : "json",
+		success : function(data) {
+			/* alert("Hello! I am an alert box!"); */
+	 		$('#idPm').append($('<option>', {
+				value : '',
+				text : 'Chọn PM'
+			}));
+
+			for (var i = 0; i < data.length; i++) {
+				$('#idPm').append($('<option>', {
+					value : data[i].maNhanVien,
+					text : data[i].tenNhanVien
+				}));
+			}
+		}
+	});
+}
+</script>
 <!-- ////////////////////////////////////////////////////////////////////////////-->
 
 <jsp:include page="/WEB-INF/view/templates/footer.jsp" />

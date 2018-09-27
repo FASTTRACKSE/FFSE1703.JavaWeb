@@ -2,6 +2,7 @@ package fasttrackse.ffse1703.fbms.controller.mvpquanliduan;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,12 +31,30 @@ public class RolesController {
 	}
 
 	@RequestMapping("/list-roles")
-	public String listRoles(Model model) {
-		List<Roles> list = rolesService.findAll();
-		model.addAttribute("listRoles", list);
+	public String listRoles(HttpSession session) {
+		int pageId = 0;
+		if (session.getAttribute("pageIds") == null) {
+			pageId = 1;
+		} else {
+			pageId = (int) session.getAttribute("pageIds");
+		}
+		return "redirect: list-roles/"+pageId;
+	}
+	@RequestMapping(value = "/list-roles/{pageId}", method = RequestMethod.GET)
+	public String listPersons(@PathVariable int pageId, Model model,HttpSession session) {
+		int maxRows= 5;
+		int start = (pageId - 1) * maxRows;
+		int totalRoles = rolesService.countRoles();
+		int totalPage = (int) Math.ceil(totalRoles / (double) maxRows);
+		if (pageId == 0) {
+			pageId = 1;
+		}
+		model.addAttribute("listRoles", this.rolesService.listRoles(start, maxRows));
+		model.addAttribute("pageId", pageId);
+		model.addAttribute("totalPage", totalPage);
+		session.setAttribute("pageIds", pageId);
 		return "MvpQuanLiDuAn/roles/listroles";
 	}
-
 	@RequestMapping("/show-form-add")
 	public String showFormAdd(Model model) {
 		model.addAttribute("command", new Roles());

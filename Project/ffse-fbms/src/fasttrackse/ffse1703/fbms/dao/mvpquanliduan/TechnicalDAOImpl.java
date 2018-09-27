@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Database;
 import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Domain;
 import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Technical;
 @Repository
@@ -19,6 +20,22 @@ public class TechnicalDAOImpl implements TechnicalDAO{
 		Session session = sessionFactory.getCurrentSession();
 		return session.createQuery("from Technical where status = 1", Technical.class).list();
 		
+	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Technical> listTechnical(int start, int maxRows) {
+		Session session = this.sessionFactory.getCurrentSession();
+		List<Technical> List = (List<Technical>) session.createQuery("FROM Technical where status = 1").setFirstResult(start)
+				.setMaxResults(maxRows).list();
+		
+		return List;
+	}
+	
+	@Override
+	public int countTechnical() {
+		Session session = sessionFactory.getCurrentSession();
+		List<Technical> dm = session.createQuery("from Technical where status = 1", Technical.class).list();
+		return  dm.size();
 	}
 
 	@Override

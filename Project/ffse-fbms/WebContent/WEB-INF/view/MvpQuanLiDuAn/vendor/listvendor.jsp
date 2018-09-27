@@ -43,8 +43,8 @@
 				</div>
 				<div class="x_content">
 
-					<table class="table table-striped" style="text-align: center">
-						<thead>
+					<table class="table table-striped" style="text-align: center;background: white">
+						<thead style="background: #AEEEEE">
 							<tr style="text-align: center">
 								<th>Stt</th>
 								<th>Mã Nhà cung cấp</th>
@@ -86,9 +86,22 @@
 
 						</tbody>
 					</table>
-					<c:if test="${success != null }">
-							${success}
-						</c:if>
+					<div class="text-center" style="float: right;margin-right: 50px">
+						<ul class="pagination firstLast1-links">
+							<c:if test="${pageId > 1}">
+								<li class="page-item"><a href="1" class="page-link">First</a></li>
+								<li class="page-item"><a href="${pageId-1 }"
+									class="page-link">${pageId-1 }</a></li>
+							</c:if>
+							<li class="page-item active"><a href="#" class="page-link">${pageId }</a></li>
+							<c:if test="${pageId < totalPage}">
+								<li class="page-item"><a href="${pageId+1 }"
+									class="page-link">${pageId+1 }</a></li>
+								<li class="page-item"><a href="${totalPage }"
+									class="page-link">Last</a></li>
+							</c:if>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>

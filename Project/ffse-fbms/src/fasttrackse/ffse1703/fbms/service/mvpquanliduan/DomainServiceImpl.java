@@ -58,4 +58,18 @@ public class DomainServiceImpl implements DomainService {
 		return domainDAO.checkMaDomain(idDomain);
 	}
 
+	@Override
+	@Transactional
+	public List<Domain> listDomain(int start, int maxRows) {
+		
+		return domainDAO.listDomain(start, maxRows);
+	}
+
+	@Override
+	@Transactional
+	public int countDomain() {
+		// TODO Auto-generated method stub
+		return domainDAO.countDomain();
+	}
+
 }

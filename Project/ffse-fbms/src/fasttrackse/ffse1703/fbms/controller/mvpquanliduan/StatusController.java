@@ -2,6 +2,7 @@ package fasttrackse.ffse1703.fbms.controller.mvpquanliduan;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,12 +32,29 @@ public class StatusController {
 	}
 
 	@RequestMapping("/list-status")
-	public String listStatus(Model model) {
-		List<StatusProject> list = statusService.findAll();
-		model.addAttribute("listStatus", list);
+	public String listStatus(HttpSession session) {
+		int pageId = 0;
+		if (session.getAttribute("pageIds") == null) {
+			pageId = 1;
+		} else {
+			pageId = (int) session.getAttribute("pageIds");
+		}
+		return "redirect: list-status/"+pageId;
+	}
+	@RequestMapping(value = "/list-status/{pageId}", method = RequestMethod.GET)
+	public String listPersons(@PathVariable int pageId, Model model,HttpSession session) {
+		int maxRows= 5;
+		int start = (pageId - 1) * maxRows;
+		int totalStatus = statusService.countStatusProject();
+		int totalPage = (int) Math.ceil(totalStatus / (double) maxRows);
+		if (pageId == 0) {
+			pageId = 1;
+		}
+		model.addAttribute("listStatus", this.statusService.listStatusProject(start, maxRows));
+		model.addAttribute("totalPage", totalPage);
+		session.setAttribute("pageIds", pageId);
 		return "MvpQuanLiDuAn/statuss/liststatus";
 	}
-
 	@RequestMapping("/show-form-add")
 	public String showFormAdd(Model model) {
 		model.addAttribute("command", new StatusProject());

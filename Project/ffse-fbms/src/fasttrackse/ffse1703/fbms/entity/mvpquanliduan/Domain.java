@@ -28,17 +28,7 @@ public class Domain {
 	private String nameDomain;
 
 	private int status;
-	
-	@ManyToMany(targetEntity = Projects.class, mappedBy = "domain", fetch = FetchType.EAGER)
-	private List<Projects> project;
-	
-	public List<Projects> getProject() {
-		return project;
-	}
 
-	public void setProject(List<Projects> project) {
-		this.project = project;
-	}
 
 	public String getIdDomain() {
 		return idDomain;

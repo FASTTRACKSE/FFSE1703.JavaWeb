@@ -42,55 +42,56 @@
 					</a>
 				</div>
 				<div class="x_content">
-					
-			<!-- Show message -->
-			<c:if test="${messageSuccess ne null}">
-				<div class="alert alert-success alert-dismissable" role="alert">
-					<button type="button" class="close" data-dismiss="alert">
-						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-					</button>
-					${messageSuccess}
-				</div>
-			</c:if>
-					<table class="table table-striped" style="text-align: center">
-						<thead>
-							<tr>				
-								<th style="text-align: center">Mã Dự án </th>
+
+					<!-- Show message -->
+					<c:if test="${messageSuccess ne null}">
+						<div class="alert alert-success alert-dismissable" role="alert">
+							<button type="button" class="close" data-dismiss="alert">
+								<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+							</button>
+							${messageSuccess}
+						</div>
+					</c:if>
+					<table class="table table-striped"
+						style="text-align: center; background: white">
+						<thead style="background: #AEEEEE">
+							<tr>
+								<th style="text-align: center">Mã Dự án</th>
 								<th style="text-align: center">Dự án</th>
 								<th style="text-align: center">Khách hàng</th>
+								<th style="text-align: center">PM</th>
 								<th style="text-align: center">Trạng thái</th>
 								<th style="text-align: center">chức năng</th>
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach var="project" items="${listProject}" >
+							<c:forEach var="project" items="${listProject}">
 								<tr>
 									<td style="text-align: left">${project.idProject}</td>
 									<td style="text-align: left">${project.nameProject}</td>
 									<td style="text-align: left">${project.khachHang.fullname}</td>
-									<td style="text-align: left">${project.status.nameStatus}</td>
-									
-									<td><a
-										style="width: 50px; high: 50px; border-color: #00E5EE; border-radius: 100%;"
-										class="btn btn-outline-info "
+									<td style="text-align: left">${project.pm.hoTenNv}</td>
+									<td style="text-align: left"><button id="content"
+											class="btn" width="50px"
+											style="background: ${project.status.color};width: 100px">${project.status.nameStatus}</button></td>
+
+									<td><a class="btn btn-outline-info  "
 										href="<c:url value="/mvpquanliduan/project/detail-project/${project.idProject}" />"
-										title=""><i class="ft-edit"></i>
-										</a>
+										title=""><i class="fa fa-camera"></i> </a>
 										<button
-											style="width: 50px; high: 50px; border-color: #FF6A6A; border-radius: 100%;"
 											data-href="<c:url value="/mvpquanliduan/project/delete/${project.idProject}" />"
 											class="btn btn-outline-danger" data-toggle="modal"
 											data-target="#xoa_pr">
-											<i class="ft-delete"></i>
+											<i class="icon-shield"></i>
 										</button>
 								</tr>
 
 							</c:forEach>
 						</tbody>
 					</table>
-					
-						${success}
-					
+
+					${success}
+
 				</div>
 			</div>
 		</div>

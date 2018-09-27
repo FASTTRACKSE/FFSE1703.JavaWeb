@@ -61,4 +61,17 @@ public class DatabaseServiceImpls implements DatabaseServices{
 	
 		return databaseDAO.checkMaDatabase(idDatabase);
 	}
+
+	@Override
+	@Transactional
+	public int countDatabase() {
+		return databaseDAO.countDatabase();
+	}
+
+	@Override
+	@Transactional
+	public List<Database> listDatabase(int start, int maxRows) {
+		
+		return databaseDAO.listDatabase(start, maxRows);
+	}
 }

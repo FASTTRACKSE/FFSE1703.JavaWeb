@@ -32,7 +32,7 @@
 		<hr>
 		<!-- End Path -->
 
-		<div class="content-body">	
+		<div class="content-body">
 			<div class="x_panel">
 				<div class="x_title">
 					<a class="btn btn-outline-success round btn-min-width mr-1 mb-1"
@@ -43,11 +43,13 @@
 				</div>
 				<div class="x_content">
 
-					<table class="table table-striped" style="text-align: center">
-						<thead>
+					<table class="table table-striped"
+						style="text-align: center; background: white">
+						<thead style="background: #AEEEEE">
 							<tr>
 								<th style="text-align: center">Stt</th>
-								<th style="width: 60%; text-align: center">Trạng thái</th>
+								<th style="width: 40%; text-align: center">Trạng thái</th>
+								<th style="text-align: center">Trạng thái hiển thị</th>
 								<th style="text-align: center">Chức năng</th>
 							</tr>
 						</thead>
@@ -57,11 +59,16 @@
 
 									<th scope="row">${count.count  }</th>
 									<td style="text-align: left">${status.nameStatus}</td>
+									<td style="text-align: left">
+										<button id="content" class="btn" width= "50px"
+											style="background: ${status.color};width: 100px">${status.nameStatus}</button>
+									</td>
 									<td><a
 										style="width: 50px; high: 50px; border-color: #00E5EE; border-radius: 100%;"
 										class="btn btn-outline-info "
 										href="<c:url value="/mvpquanliduan/status/show-form-edit/${status.idStatus }" />"
-										title=""><i class="ft-edit"></i></a><button
+										title=""><i class="ft-edit"></i></a>
+									<button
 											style="width: 50px; high: 50px; border-color: #FF6A6A; border-radius: 100%;"
 											data-href="<c:url value="/mvpquanliduan/status/delete/${status.idStatus }" />"
 											class="btn btn-outline-danger" data-toggle="modal"
@@ -73,9 +80,22 @@
 							</c:forEach>
 						</tbody>
 					</table>
-					<c:if test="${success != null }">
-						${success}
-					</c:if>
+					<div class="text-center" style="float: right; margin-right: 50px">
+						<ul class="pagination firstLast1-links">
+							<c:if test="${pageId > 1}">
+								<li class="page-item"><a href="1" class="page-link">First</a></li>
+								<li class="page-item"><a href="${pageId-1 }"
+									class="page-link">${pageId-1 }</a></li>
+							</c:if>
+							<li class="page-item active"><a href="#" class="page-link">${pageId }</a></li>
+							<c:if test="${pageId < totalPage}">
+								<li class="page-item"><a href="${pageId+1 }"
+									class="page-link">${pageId+1 }</a></li>
+								<li class="page-item"><a href="${totalPage }"
+									class="page-link">Last</a></li>
+							</c:if>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>

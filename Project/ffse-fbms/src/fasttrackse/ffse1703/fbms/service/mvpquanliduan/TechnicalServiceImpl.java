@@ -69,4 +69,17 @@ public class TechnicalServiceImpl implements TechnicalService {
 		return technicalDAO.checkMaTechnical(idTechnical);
 	}
 
+	@Override
+	@Transactional
+	public List<Technical> listTechnical(int start, int maxRows) {
+		
+		return technicalDAO.listTechnical(start, maxRows);
+	}
+
+	@Override
+	@Transactional
+	public int countTechnical() {
+		return technicalDAO.countTechnical();
+	}
+
 }

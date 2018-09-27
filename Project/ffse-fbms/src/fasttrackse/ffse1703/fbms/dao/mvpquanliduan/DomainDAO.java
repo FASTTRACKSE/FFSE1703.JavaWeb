@@ -12,4 +12,6 @@ public interface DomainDAO {
 	public void delete(Domain domain);
 	public int checkNameDomain(String nameDomain);
 	public int checkMaDomain(String idDomain);
+	public List<Domain> listDomain(int start, int maxRows);
+	public int countDomain();
 }

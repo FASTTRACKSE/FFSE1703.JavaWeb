@@ -48,6 +48,11 @@
 							<form:input path="nameStatus" class="form-control round"
 								placeholder="Tên Trạng thái" />
 						</div>
+							<div class="form-group col-sm-6">
+							
+							<label>Màu trạng thái</label><br>
+							<form:input path="color" type="color" id="color" value="${status.color }"/>
+						</div>
 						<div class="col-sm-12 text-center">
 							<button type="submit" class="btn btn-outline-success round btn-min-width mr-1 mb-1"><i class="fa fa-check-square-o"></i> Lưu </button>
 						</div>	

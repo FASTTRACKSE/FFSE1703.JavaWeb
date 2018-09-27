@@ -11,4 +11,6 @@ public interface VendorService {
 	public void update(Vendor vendor);
 	public void delete(Vendor vendor);
 	public int checkVendor(String nameVendor);
+	public List<Vendor> listVendor(int start, int maxRows);
+	public int countVendor();
 }

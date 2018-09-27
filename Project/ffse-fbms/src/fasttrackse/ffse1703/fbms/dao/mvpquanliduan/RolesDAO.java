@@ -11,4 +11,6 @@ public interface RolesDAO {
 	public void update(Roles roles);
 	public void delete(Roles roles);
 	public int checkNameRoles(String nameRoles);
+	public List<Roles> listRoles(int start, int maxRows);
+	public int countRoles();
 }

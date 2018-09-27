@@ -20,10 +20,21 @@ public class StatusProject {
 	@Column(name="status")
 	private String nameStatus;
 	
+	@NotEmpty
+	private String color;
+	
 	@Column(name="isdelete")
 	private int status;
 
 
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
 
 	public int getIdStatus() {
 		return idStatus;

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Database;
+import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Domain;
 @Repository
 public class DatabaseDAOImpls implements DatabaseDAOs{
 
@@ -18,6 +19,22 @@ public class DatabaseDAOImpls implements DatabaseDAOs{
 	public List<Database> findAll() {
 		Session session = sessionFactory.getCurrentSession();
 		return session.createQuery("from Database where status = 1", Database.class).list();
+	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Database> listDatabase(int start, int maxRows) {
+		Session session = this.sessionFactory.getCurrentSession();
+		List<Database> List = (List<Database>) session.createQuery("FROM Database where status = 1").setFirstResult(start)
+				.setMaxResults(maxRows).list();
+		
+		return List;
+	}
+	
+	@Override
+	public int countDatabase() {
+		Session session = sessionFactory.getCurrentSession();
+		List<Database> dm = session.createQuery("from Database where status = 1", Database.class).list();
+		return  dm.size();
 	}
 	@Override
 	public int checkNameDatabase(String nameDatabase) {

@@ -30,20 +30,19 @@
 			</div>
 		</div>
 		<hr>
-		<a
-			style="float: right; margin: 0px 10px 10px 0px"
-			class="btn btn-outline-info "
+		<h3>Dự án: ${project.nameProject }</h3>
+		<a style="float: right; margin: 0px 10px 10px 0px"
+			class="btn btn-warning round btn-min-width mr-1 mb-1"
 			href="<c:url value="/mvpquanliduan/project/show-form-edit/${project.idProject}" />"
-			title=""><i class="ft-edit"> Chỉnh sửa Dự án</i></a>
-			<br>
+			title=""><i class="ft-edit">Chi tiết Dự án</i></a> <br>
 		<!-- End Path -->
 		<div class="content-body">
 			<div class="x_panel">
 				<div class="x_content">
-					<table class="table table-bordered">
+					<table class="table table-bordered" style="background: white;">
 						<tbody>
 							<tr>
-								<th colspan="2" style="text-align: center;"><h3>Thông
+								<th colspan="2" style="text-align: center; background: #ADD8E6"><h3>Thông
 										tin dự án</h3></th>
 
 							</tr>
@@ -58,6 +57,14 @@
 							<tr>
 								<th>Khách hàng</th>
 								<td>${project.khachHang.fullname }</td>
+							</tr>
+							<tr>
+								<th>Phòng dự án</th>
+								<td>${project.roomProject.tenPhongBan }</td>
+							</tr>
+							<tr>
+								<th>PM</th>
+								<td>${project.pm.hoTenNv }</td>
 							</tr>
 							<tr>
 								<th>Thời gian</th>
@@ -84,7 +91,7 @@
 								<td>${project.status.nameStatus }</td>
 							</tr>
 							<tr>
-								<th colspan="2" style="text-align: center;"><h3>Công
+								<th colspan="2" style="text-align: center; background: #ADD8E6"><h3>Công
 										nghệ sử dụng</h3></th>
 
 							</tr>
@@ -98,21 +105,54 @@
 								<th>Database</th>
 								<td><c:forEach items="${project.database }" var="db">
 															- ${db.nameDatabase  }<br>
-								</c:forEach></td>
+									</c:forEach></td>
 							</tr>
 							<tr>
 								<th>Ngôn ngữ lập trình</th>
-								<td><c:forEach items="${project.language }" var="lang">
+
+								<td><c:if test="${project.language == null}">
+										<p style="color: red;">chưa có ngôn ngữ lập trình</p>
+									</c:if> <c:forEach items="${project.language }" var="lang">
 									- ${lang.nameLanguage } <br>
-								</c:forEach></td>
+									</c:forEach></td>
 							</tr>
 
 							<tr>
 								<th>Kĩ thuật</th>
-								<td><c:forEach items="${project.technical }"
-										var="technical">
+
+								<c:if test="${project.technical != null}">
+									<td><c:forEach items="${project.technical }"
+											var="technical">
 									- ${technical.nameTechnical} <br>
-								</c:forEach></td>
+										</c:forEach></td>
+								</c:if>
+								<c:if test="${project.technical == null}">
+									<td>
+										<p style="color: red;">chưa có kĩ thuật</p> <br>
+									</td>
+								</c:if>
+							</tr>
+							<tr>
+								<th colspan="2" style="text-align: center; background: #ADD8E6"><h3>Vai trò dự án</h3></th>
+
+							</tr>
+							<tr>
+								<th>Technical lead</th>
+								<td></td>
+							</tr>
+							<tr>
+								<th>Tem lead</th>
+								<td></td>
+							</tr>
+							<tr>
+								<th>Developer</th>
+
+								<td></td>
+							</tr>
+
+							<tr>
+								<th>Tester</th>
+
 							</tr>
 						</tbody>
 					</table>

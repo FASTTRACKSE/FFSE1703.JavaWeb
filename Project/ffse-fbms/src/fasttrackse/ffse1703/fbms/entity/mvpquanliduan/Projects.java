@@ -2,7 +2,6 @@ package fasttrackse.ffse1703.fbms.entity.mvpquanliduan;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -19,10 +18,11 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.format.annotation.DateTimeFormat;
-
-import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
+import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.HoSoNhanVienPikalong;
 import fasttrackse.ffse1703.fbms.entity.security.PhongBan;
 
 @Entity
@@ -35,22 +35,23 @@ public class Projects implements Serializable {
 
 	@Id
 	@Column(name = "id_project")
-	@NotEmpty
+	@NotEmpty(message="Mã Dự án bắt buộc nhập")
+	@Size(min=6,max=10,message="Mã dự án 6 đến 10 kí tự")
 	private String idProject;
 
 	@Column(name = "name_project")
-	@NotEmpty
+	@NotEmpty(message="Tên Dự án bắt buộc nhập")
 	private String nameProject;
 
 	@Column(name = "start_date")
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	@NotNull
+	@NotNull(message="thời gian Dự án bắt buộc nhập")
 	private Date startDate;
 
 	@Column(name = "end_date")
 	@Temporal(TemporalType.DATE)
-	@NotNull
+	@NotNull(message="thời gian Dự án bắt buộc nhập")
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date endDate;
 
@@ -61,26 +62,33 @@ public class Projects implements Serializable {
 	// bi-directional many-to-one association to KhachHang
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "id_customer", referencedColumnName = "id_customer", insertable = true, updatable = true)
-	@NotEmpty
+	@NotNull(message="Bạn chưa chọn khách hàng")
+	@Value("#{new Integer('${CONNECTION.TIME.OUT}')}")
 	private KhachHang khachHang;
 	
 	// bi-directional many-to-one association to PhongBan
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "id_project_room", referencedColumnName = "ma_phong_ban", insertable = true, updatable = true)
-	@NotEmpty
+	@NotNull(message="Bạn chưa chọn phòng dự án")
 	private PhongBan roomProject;
 	
 	// bi-directional many-to-one association to Status
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "id_status", referencedColumnName = "id_status", insertable = true, updatable = true)
-	@NotEmpty
+	@NotNull(message="Bạn chưa chọn Trạng thái")
 	private StatusProject status;
 
 	// bi-directional many-to-one association to Doamin
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "id_domain", referencedColumnName = "id_domain", insertable = true, updatable = true)
-	@NotEmpty
+	@NotNull(message="Bạn chưa chọn nghiệp vụ")
 	private Domain domain;
+	
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	@JoinColumn(name = "id_pm", referencedColumnName = "MaNv", insertable = true, updatable = true)
+	@NotNull(message="Bạn chưa PM")
+	@Value("#{new Integer('${CONNECTION.TIME.OUT}')}")
+	private HoSoNhanVienPikalong pm;
 	
 	// bi-directional many-to-many association to Technical
 	@ManyToMany(targetEntity = Technical.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -126,6 +134,18 @@ public class Projects implements Serializable {
 	public String getIdProject() {
 		return idProject;
 	}
+
+	
+
+	public HoSoNhanVienPikalong getPm() {
+		return pm;
+	}
+
+	public void setPm(HoSoNhanVienPikalong pm) {
+		this.pm = pm;
+	}
+
+
 
 	public void setIdProject(String idProject) {
 		this.idProject = idProject;

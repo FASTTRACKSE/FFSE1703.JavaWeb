@@ -58,4 +58,18 @@ public class VendorServiceImpl implements VendorService {
 		return vendorDAO.checkVendor(nameVendor);
 	}
 
+	@Override
+	@Transactional
+	public List<Vendor> listVendor(int start, int maxRows) {
+		
+		return vendorDAO.listVendor(start, maxRows);
+	}
+
+	@Override
+	@Transactional
+	public int countVendor() {
+		
+		return vendorDAO.countVendor();
+	}
+
 }

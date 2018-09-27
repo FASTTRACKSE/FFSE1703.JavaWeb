@@ -18,4 +18,8 @@ public interface DatabaseServices {
 	public int checkNameDatabase(String nameDatabase);
 
 	public int checkMaDatabase(String idDatabase);
+	
+	public int countDatabase();
+	
+	public List<Database> listDatabase(int start, int maxRows);
 }

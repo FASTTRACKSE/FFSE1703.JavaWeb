@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,12 +33,32 @@ public class TechnicalController {
 	}
 
 
-	@RequestMapping(value="/list-technical")
-	public String  listTechnical(Model model) {
-		List<Technical> list= technicalService.findAll() ;
-		model.addAttribute("listTechnical", list);
+	@RequestMapping("/list-technical")
+	public String listTechnical(HttpSession session) {
+		int pageId = 0;
+		if (session.getAttribute("pageIds") == null) {
+			pageId = 1;
+		} else {
+			pageId = (int) session.getAttribute("pageIds");
+		}
+		return "redirect: list-technical/"+pageId;
+	}
+	@RequestMapping(value = "/list-technical/{pageId}", method = RequestMethod.GET)
+	public String listPersons(@PathVariable int pageId, Model model,HttpSession session) {
+		int maxRows= 5;
+		int start = (pageId - 1) * maxRows;
+		int totalTechnical = technicalService.countTechnical();
+		int totalPage = (int) Math.ceil(totalTechnical / (double) maxRows);
+		if (pageId == 0) {
+			pageId = 1;
+		}
+		model.addAttribute("listTechnical", this.technicalService.listTechnical(start, maxRows));
+		model.addAttribute("pageId", pageId);
+		model.addAttribute("totalPage", totalPage);
+		session.setAttribute("pageIds", pageId);
 		return "MvpQuanLiDuAn/technical/listtechnical";
 	}
+
 	@RequestMapping("/show-form-add")
 	public String showFormAdd(Model model) {
 		model.addAttribute("command", new Technical());

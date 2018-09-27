@@ -39,17 +39,27 @@
 			<div class="main-content">
 				<div class="row">
 					<form:form method="POST" action="addnew">
-						
+
 						<div class="form-group col-sm-6">
 							<label>Tên Trạng thái</label><br>
-							<p Class="error" >${messageName}</p>
+							<p Class="error">${messageName}</p>
 							<form:errors path="nameStatus" cssClass="error" />
 							<form:input path="nameStatus" class="form-control round"
-								placeholder="Tên Trạng thái" />
-							
+								placeholder="Tên Trạng thái" id="name" />
+
 						</div>
+						<div class="form-group col-sm-6">
+							<label>Màu Trạng thái</label><br>
+							<p Class="error"></p>
+							<form:input path="color" type="color" id="color" value="#e66465"/>
+
+						</div>
+						
 						<div class="col-sm-12 text-center">
-							<button type="submit" class="btn btn-outline-success round btn-min-width mr-1 mb-1"><i class="fa fa-check-square-o"></i> Lưu </button>
+							<button type="submit"
+								class="btn btn-outline-success round btn-min-width mr-1 mb-1">
+								<i class="fa fa-check-square-o"></i> Lưu
+							</button>
 						</div>
 					</form:form>
 				</div>
@@ -57,6 +67,7 @@
 		</div>
 	</div>
 </div>
+
 <!-- ////////////////////////////////////////////////////////////////////////////-->
 
 <jsp:include page="/WEB-INF/view/templates/footer.jsp" />

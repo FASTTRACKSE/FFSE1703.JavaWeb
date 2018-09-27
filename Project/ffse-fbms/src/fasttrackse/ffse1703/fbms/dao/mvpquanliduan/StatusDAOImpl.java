@@ -19,6 +19,22 @@ public class StatusDAOImpl implements StatusDAO {
 		Session session = sessionFactory.getCurrentSession();
 		return session.createQuery("from StatusProject where status = 1", StatusProject.class).list();
 	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<StatusProject> listStatusProject(int start, int maxRows) {
+		Session session = this.sessionFactory.getCurrentSession();
+		List<StatusProject> List = (List<StatusProject>) session.createQuery("FROM StatusProject where status = 1").setFirstResult(start)
+				.setMaxResults(maxRows).list();
+		
+		return List;
+	}
+	
+	@Override
+	public int countStatusProject() {
+		Session session = sessionFactory.getCurrentSession();
+		List<StatusProject> dm = session.createQuery("from StatusProject where status = 1", StatusProject.class).list();
+		return  dm.size();
+	}
 	@Override
 	public int checkNameStatus(String nameStatus) {
 		Session session = sessionFactory.getCurrentSession();

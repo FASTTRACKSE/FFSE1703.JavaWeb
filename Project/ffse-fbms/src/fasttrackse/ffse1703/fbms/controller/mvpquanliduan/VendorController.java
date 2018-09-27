@@ -2,6 +2,7 @@ package fasttrackse.ffse1703.fbms.controller.mvpquanliduan;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,10 +28,29 @@ public class VendorController {
 	public void setVendorService(VendorService vendorService) {
 		this.vendorService = vendorService;
 	}
-	@RequestMapping(value="/list-vendor")
-	public String listVendor(Model model) {
-		List<Vendor> list = vendorService.findAll();
-		model.addAttribute("listVendor", list);
+	@RequestMapping("/list-vendor")
+	public String listVendor(HttpSession session) {
+		int pageId = 0;
+		if (session.getAttribute("pageIds") == null) {
+			pageId = 1;
+		} else {
+			pageId = (int) session.getAttribute("pageIds");
+		}
+		return "redirect: list-vendor/"+pageId;
+	}
+	@RequestMapping(value = "/list-vendor/{pageId}", method = RequestMethod.GET)
+	public String listPersons(@PathVariable int pageId, Model model,HttpSession session) {
+		int maxRows= 5;
+		int start = (pageId - 1) * maxRows;
+		int totalVendor = vendorService.countVendor();
+		int totalPage = (int) Math.ceil(totalVendor / (double) maxRows);
+		if (pageId == 0) {
+			pageId = 1;
+		}
+		model.addAttribute("listVendor", this.vendorService.listVendor(start, maxRows));
+		model.addAttribute("pageId", pageId);
+		model.addAttribute("totalPage", totalPage);
+		session.setAttribute("pageIds", pageId);
 		return "MvpQuanLiDuAn/vendor/listvendor";
 	}
 	@RequestMapping(value= "/show-form-add")

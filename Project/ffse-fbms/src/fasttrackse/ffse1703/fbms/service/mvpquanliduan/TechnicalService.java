@@ -12,4 +12,6 @@ public interface TechnicalService {
 	public void delete(Technical technical);
 	public int checkNameTechnical(String nameTechnical);
 	public int checkMaTechnical(String idTechnical);
+	public List<Technical> listTechnical(int start, int maxRows);
+	public int countTechnical();
 }

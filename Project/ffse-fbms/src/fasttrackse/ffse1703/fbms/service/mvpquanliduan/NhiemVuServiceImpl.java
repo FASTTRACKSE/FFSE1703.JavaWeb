@@ -27,7 +27,7 @@ private NhiemVuDao nhiemVuDao;
 	}
 
 	@Override
-	public List<Nhiemvu> getByDuAn(int idProjects) {
+	public List<Nhiemvu> getByDuAn(String idProjects) {
 		
 		return nhiemVuDao.getByDuAn(idProjects);
 	}

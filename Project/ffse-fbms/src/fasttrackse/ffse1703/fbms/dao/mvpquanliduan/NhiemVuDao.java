@@ -10,7 +10,7 @@ public interface NhiemVuDao {
 
 	public Nhiemvu getByID(int id);
 
-	public List<Nhiemvu> getByDuAn(int idProjects);
+	public List<Nhiemvu> getByDuAn(String idProjects);
 
 	public void update(Nhiemvu nhiemVu);
 

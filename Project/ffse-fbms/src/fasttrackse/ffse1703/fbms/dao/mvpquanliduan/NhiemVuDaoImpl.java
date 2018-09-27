@@ -35,9 +35,9 @@ public class NhiemVuDaoImpl implements NhiemVuDao {
 	}
 
 	@Override
-	public List<Nhiemvu> getByDuAn(int idProjects) {
+	public List<Nhiemvu> getByDuAn(String idProjects) {
 		Session session = this.sessionFactory.getCurrentSession();
-		return session.createQuery("from Nhiemvu where status =1 and idProjects="+idProjects, Nhiemvu.class).list();
+		return session.createQuery("from Nhiemvu where status =1 and projects.idProject='"+idProjects+"'", Nhiemvu.class).list();
 	}
 
 	@Override

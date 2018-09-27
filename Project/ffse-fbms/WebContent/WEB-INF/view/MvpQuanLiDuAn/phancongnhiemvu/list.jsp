@@ -48,6 +48,7 @@
 							<tr>
 
 								<th style="text-align: center">Mã Dự Án</th>
+								<th style="text-align: center">Tên Dự Án</th>
 								<th style="text-align: center">Mã Nhân Viên</th>
 								<th style="text-align: center">Tên Nhân Viên</th>
 
@@ -60,9 +61,10 @@
 								<tr>
 
 
-									<td style="text-align: left">${nhiemVu.idProjects}</td>
-									<td style="text-align: left">${nhiemVu.hoSoNhanVien.maNhanVien}</td>
-									<td style="text-align: left">${nhiemVu.hoSoNhanVien.ten}</td>
+									<td style="text-align: left">${nhiemVu.projects.idProject}</td>
+									<td style="text-align: left">${nhiemVu.projects.nameProject}</td>
+									<td style="text-align: left">${nhiemVu.hoSoNhanVien.maNv}</td>
+									<td style="text-align: left">${nhiemVu.hoSoNhanVien.hoTenNv}</td>
 									<td style="text-align: left">${nhiemVu.roles.nameRoles}</td>
 
 									<td><a

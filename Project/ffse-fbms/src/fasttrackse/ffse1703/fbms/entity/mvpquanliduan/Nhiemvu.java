@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.HoSoNhanVienPikalong;
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 
 @Entity
@@ -17,11 +18,12 @@ public class Nhiemvu {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column(name = "id_project")
-	private int idProjects;
+	 @ManyToOne
+	@JoinColumn(name = "id_project")
+	private Projects projects;
 	 @ManyToOne
 	 @JoinColumn(name="id_employee")
-	 private HoSoNhanVien hoSoNhanVien;
+	 private HoSoNhanVienPikalong hoSoNhanVien;
 	
 
 	
@@ -38,12 +40,13 @@ public class Nhiemvu {
 		this.id = id;
 	}
 
-	public int getIdProjects() {
-		return idProjects;
+
+	public Projects getProjects() {
+		return projects;
 	}
 
-	public void setIdProjects(int idProjects) {
-		this.idProjects = idProjects;
+	public void setProjects(Projects projects) {
+		this.projects = projects;
 	}
 
 	public int getStatus() {
@@ -54,11 +57,11 @@ public class Nhiemvu {
 		this.status = status;
 	}
 
-	public HoSoNhanVien getHoSoNhanVien() {
+	public HoSoNhanVienPikalong getHoSoNhanVien() {
 		return hoSoNhanVien;
 	}
 
-	public void setHoSoNhanVien(HoSoNhanVien hoSoNhanVien) {
+	public void setHoSoNhanVien(HoSoNhanVienPikalong hoSoNhanVien) {
 		this.hoSoNhanVien = hoSoNhanVien;
 	}
 

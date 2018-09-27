@@ -16,28 +16,45 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.KhachHang;
 import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Nhiemvu;
+import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Projects;
+import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Roles;
+import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.HoSoNhanVienPikalong;
 import fasttrackse.ffse1703.fbms.service.mvpquanliduan.NhiemVuService;
+import fasttrackse.ffse1703.fbms.service.mvpquanliduan.ProjectService;
+import fasttrackse.ffse1703.fbms.service.mvpquanliduan.RolesService;
+import fasttrackse.ffse1703.fbms.service.quantrinhansupikalong.HoSoNhanVienPikalongService;
 
 @Controller
 @RequestMapping("/mvpquanliduan/nhiemvu")
 public class NhiemVuController {
 	@Autowired
 	private NhiemVuService nhiemVuService;
-
+	@Autowired
+	private HoSoNhanVienPikalongService hoSoNhanVienPikalongService;
+	@Autowired
+	private RolesService rolesService;
+	@Autowired
+	private ProjectService projectService;
 	
 	public void setNhiemVuService(NhiemVuService nhiemVuService) {
 		this.nhiemVuService = nhiemVuService;
 	}
 	@RequestMapping(value = "/list-nhiemvu/{idProjects}")
-	public String listNhiemVu(Model model,@PathVariable int idProjects) {
+	public String listNhiemVu(Model model,@PathVariable String idProjects) {
 		List<Nhiemvu> list=nhiemVuService.getByDuAn(idProjects);
 		model.addAttribute("idProjects", idProjects);
 		model.addAttribute("listNhiemVu", list);
 		return "MvpQuanLiDuAn/phancongnhiemvu/list";
 	}
-	@RequestMapping("/show-form-add")
-	public String showFormAdd(Model model) {
-		model.addAttribute("command", new KhachHang());
+	@RequestMapping("/show-form-add/{idProjects}")
+	public String showFormAdd(Model model,@PathVariable String idProjects) {
+		Projects pr = projectService.findById(idProjects);
+		model.addAttribute("duAn", pr);
+		model.addAttribute("command", new Nhiemvu());
+		List<HoSoNhanVienPikalong> nhanVienList = hoSoNhanVienPikalongService.listNhanVien();
+		model.addAttribute("nhanVienList", nhanVienList);
+		List<Roles> list = rolesService.findAll();
+		model.addAttribute("listRoles", list);
 		return "MvpQuanLiDuAn/phancongnhiemvu/add_form";
 	}
 	@RequestMapping(value = "/addnew", method = RequestMethod.POST)

@@ -2,12 +2,9 @@ package fasttrackse.ffse1703.fbms.controller.quantrinhansupikalong;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
-import java.util.Random;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
@@ -24,13 +21,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.HoSoNhanVienPikalong;
 import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.PhuongPikalong;
 import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.QuanHuyenPikalong;
-import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.ThanhPhoPikalong;
-import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 import fasttrackse.ffse1703.fbms.service.quantrinhansupikalong.HoSoNhanVienPikalongService;
 import fasttrackse.ffse1703.fbms.service.quantrinhansupikalong.PhuongPikalongService;
 import fasttrackse.ffse1703.fbms.service.quantrinhansupikalong.QuanHuyenPikalongService;

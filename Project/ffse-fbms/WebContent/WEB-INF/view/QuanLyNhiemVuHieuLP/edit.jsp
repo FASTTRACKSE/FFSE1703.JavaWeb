@@ -69,7 +69,7 @@
 						<div class="form-group col-sm-6">
 							<label>Người được phân công</label>
 									<form:hidden path="nhanVien.maNhanVien" />
-									<form:input class="form-control" path="nhanVien.ten"  value="${duAn.nhanVien.ten} ${duAn.nhanVien.ten}" readonly="true" />
+									<form:input class="form-control" path="nhanVien.ten"  value="${duAn.nhanVien.hoDem} ${duAn.nhanVien.ten}" readonly="true" />
 						</div>
 						<div class="form-group col-sm-6">
 							<label>Thời gian dự kiến hoàn thành</label>
@@ -89,5 +89,4 @@
 		</div>
 	</div>
 </div>
-
 <jsp:include page="/WEB-INF/view/templates/footer.jsp" />

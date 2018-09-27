@@ -77,7 +77,7 @@ public class HoSoNhanVienHLP {
 	private ChucDanh chucDanh;
 
 	public HoSoNhanVienHLP() {
-		}
+	}
 
 	public int getMaNhanVien() {
 		return this.maNhanVien;

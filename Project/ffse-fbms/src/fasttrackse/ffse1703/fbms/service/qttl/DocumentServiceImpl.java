@@ -56,4 +56,9 @@ public class DocumentServiceImpl implements DocumentService{
 		return documentDao.listStatus();
 	}
 	
+	@Override
+	public List<Room> listRoom() {
+		return documentDao.listRoom();
+	}
+	
 }

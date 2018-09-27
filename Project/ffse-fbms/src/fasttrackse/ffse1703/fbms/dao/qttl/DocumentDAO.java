@@ -21,5 +21,7 @@ public interface DocumentDAO {
 	public List<Category> listCategory();
 	
 	public List<Status> listStatus();
+	
+	public List<Room> listRoom();
 
 }

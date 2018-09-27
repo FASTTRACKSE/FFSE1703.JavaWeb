@@ -44,7 +44,7 @@
 					<td>${nv.ghiChuTruongPhong}</td>
 				      <td>${nv.trangThai.trangThai}</td>
 					<%-- <td>${nv.trangThai}</td> --%>
-					<td><a  href="suanhap/${nv.id }"><button class="btn btn-success">
+					<td><a  href="suadonnhap/${nv.id }"><button class="btn btn-success">
 									Sửa</button></a>  <a href="delete/${nv.id }"><button class="btn btn-danger"
 									onclick="return confirm('Bạn có muốn xóa sinh viên này?');">Xóa</button></a>
 					</td>
@@ -52,6 +52,31 @@
 				</c:forEach>
 				</tbody>
 		</table>
+		<nav aria-label="Page navigation example">
+	<ul class="pagination">
+		<li class="page-item"><a class="page-link" href="?page=1">First
+				Page</a></li>
+		<c:if test="${currentPage > 2}">
+				<li class="page-item"><a class="page-link"
+					href="?page=${currentPage-2}">${currentPage-2}</a></li>
+			</c:if>
+			<c:if test="${currentPage > 1}">
+				<li class="page-item"><a class="page-link"
+					href="?page=${currentPage-1}">${currentPage-1}</a></li>
+			</c:if>
+			<li class="page-item active"><a class="page-link"
+				href="?page=${currentPage}">${currentPage}</a></li>
+			<c:if test="${currentPage < lastPage}">
+				<li class="page-item"><a class="page-link"
+					href="?page=${currentPage+1}">${currentPage+1}</a></li>
+			</c:if>
+			<c:if test="${currentPage < lastPage - 1}">
+				<li class="page-item"><a class="page-link"
+					href="?page=${currentPage+2}">${currentPage+2}</a></li>
+			</c:if>
+		<li class="page-item"><a class="page-link" href="?page=${lastPage }">Last Page</a></li>
+	</ul>
+	</nav>
 		</div>
 		</div>
 		</div>

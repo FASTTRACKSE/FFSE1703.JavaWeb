@@ -21,7 +21,7 @@
 							</div>
 							<div>
 								<label> Mã nhân viên</label>
-								<form:select path="maNhanVien.maNhanVien"
+								<form:select path="maNhanVien.maNhanVien" 
 									class="custom-select block round" id="customSelect">
 									<c:forEach items="${hoso}" var="ld">
 										<form:option value="${ld.maNhanVien}" label="${ld.maNhanVien}" />
@@ -81,13 +81,13 @@
 						<div>
 							<div class="col-md-2">
 								<button type=submit  class="btn btn-outline-danger round  mr-1 mb-1"
-									formaction="<%=request.getContextPath()%>/QuanlyvangnghiDanhL">Từ
+									formaction="<%=request.getContextPath()%>/QuanlyvangnghiDanhLT/updatechoduyet/tuchoi">Từ
 									chối</button>
 							</div>
 							<div class="col-md-4">
 								<div class="col-md-2">
 									<button type="submit" class="btn btn-outline-success round  mr-1 mb-1"
-										formaction="<%=request.getContextPath()%>/QuanlyvangnghiDanhL">Duyệt</button>
+										formaction="<%=request.getContextPath()%>/QuanlyvangnghiDanhLT/updatechoduyet/daduyet">Duyệt</button>
 								</div>
 							</div>
 						</div>

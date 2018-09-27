@@ -105,7 +105,36 @@ public class DonXinPhepDaolmpl implements DonXinPhepDao{
 		session.save(DonXinPhepEntity);
 		session.createQuery("update DonXinPhepEntity set trangThai = '4'  where id =" + DonXinPhepEntity.getId()).executeUpdate();
 	}
-
+	
+	public void Updatecho(DonXinPhepEntity DonXinPhepEntity) {
+		Session session = this.sessionFactory.getCurrentSession();;
+		session.update(DonXinPhepEntity);
+		
+	}
+	@SuppressWarnings("unchecked")
+	
+	public List<DonXinPhepEntity> findAllForPagingnhap(int startPosition, int maxResult) {
+		Session session = this.sessionFactory.getCurrentSession();
+		return session.createQuery("from DonXinPhepEntity where trangThai ='1' ").setFirstResult(startPosition).setMaxResults(maxResult).list();
+	}
+   @SuppressWarnings("unchecked")
+	
+	public List<DonXinPhepEntity> findAllForPagingcho(int startPosition, int maxResult) {
+		Session session = this.sessionFactory.getCurrentSession();
+		return session.createQuery("from DonXinPhepEntity where trangThai ='2' ").setFirstResult(startPosition).setMaxResults(maxResult).list();
+	}
+   @SuppressWarnings("unchecked")
+	
+	public List<DonXinPhepEntity> findAllForPagingduyet(int startPosition, int maxResult) {
+		Session session = this.sessionFactory.getCurrentSession();
+		return session.createQuery("from DonXinPhepEntity where trangThai ='3' ").setFirstResult(startPosition).setMaxResults(maxResult).list();
+	}
+   @SuppressWarnings("unchecked")
+	
+	public List<DonXinPhepEntity> findAllForPagingtuchoi(int startPosition, int maxResult) {
+		Session session = this.sessionFactory.getCurrentSession();
+		return session.createQuery("from DonXinPhepEntity where trangThai ='4' ").setFirstResult(startPosition).setMaxResults(maxResult).list();
+	}
 	
 
 }

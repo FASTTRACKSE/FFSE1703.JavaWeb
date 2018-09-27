@@ -22,36 +22,36 @@
 				<label>Mã Khách Hàng</label>
 				<form:input class="form-control" path="makh" readonly = "true"
 					placeholder="Mã khách hàng " />
-				<%--  <form:errors path="makh" cssStyle="color: red"></form:errors>--%>
+				  <form:errors path="makh" cssStyle="color: red"></form:errors>
 
 			</div>
 			<div class="form-group col-sm-6">
 				<label>Tên Khách Hàng</label>
 				<form:input class="form-control" path="tenkh"
 					placeholder="Tên khách hàng " />
-				<%--  <form:errors path="tenkh" cssStyle="color: red"></form:errors>--%>
+			  <form:errors path="tenkh" cssStyle="color: red"></form:errors>
 			</div>
 			
 			<div class="form-group col-sm-6">
 				<label>Địa Chỉ</label>
 				<form:input class="form-control" path="diachi"
 					placeholder="địa chỉ" />
-				<%--  <form:errors path="diachi" cssStyle="color: red"></form:errors> --%>
+				  <form:errors path="diachi" cssStyle="color: red"></form:errors> 
 			</div>
 			
 			<div class="form-group col-sm-6">
 				<label>Số Điện Thoại</label>
 				<form:input class="form-control" path="sdt"
-					placeholder="Mã khách hàng " />
-				<%--  <form:errors path="sdt" cssStyle="color: red"></form:errors>--%>
+					placeholder="số điện thoại " />
+				 <form:errors path="sdt" cssStyle="color: red"></form:errors>
 			</div>
 			
 			<div class="form-group col-sm-6">
 				<label>Email</label>
 				<form:input class="form-control" path="email"
-					placeholder="số điện thoại
+					placeholder="email
 					 " />
-				<%--  <form:errors path="email" cssStyle="color: red"></form:errors> --%>
+				 <form:errors path="email" cssStyle="color: red"></form:errors>
 			</div>
 			
 			<div class="form-group col-sm-6">

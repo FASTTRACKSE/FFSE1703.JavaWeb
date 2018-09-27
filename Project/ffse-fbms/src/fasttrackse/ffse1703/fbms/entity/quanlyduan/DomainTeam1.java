@@ -12,13 +12,14 @@ import javax.validation.constraints.NotEmpty;
 @Entity
 @Table(name = "nghiep_vu")
 public class DomainTeam1 {
+	
 	@Id
 	@Column(name = "ma_nghiep_vu")
-	@NotEmpty
+	@NotEmpty(message = "mã nghiệp vụ không được để rỗng !!!")
 	 String maNghiepVu;
 	
 	@Column(name = "ten_nghiep_vu")
-	@NotEmpty
+	@NotEmpty(message = "tên nghiệp vụ không được để rỗng !!!")
 	 String tenNghiepVu;
 	
 	@Column(name = "is_delete")

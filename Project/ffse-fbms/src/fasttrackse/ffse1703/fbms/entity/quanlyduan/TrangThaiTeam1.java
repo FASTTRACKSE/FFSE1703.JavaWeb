@@ -16,11 +16,11 @@ import javax.validation.constraints.NotEmpty;
 public class TrangThaiTeam1 {
 	@Id
 	@Column(name = "ma_tinh_trang")
-	@NotEmpty
+	@NotEmpty(message = "mã trạng thái không được để rỗng !!!")
 	 String maTrangThai;
 	
 	@Column(name = "ten_tinh_trang")
-	@NotEmpty
+	@NotEmpty(message = "tên trạng thái không được để rỗng !!!")
 	 String tenTrangThai;
 	
 	@Column(name = "is_delete")

@@ -16,15 +16,15 @@ import javax.validation.constraints.NotEmpty;
 public class KhachHangTeam1 {
 	@Id
 	@Column(name = "ma_khach_hang")
-	@NotEmpty
+	@NotEmpty(message = "mã khách hàng không được để rỗng !!!")
 	 String makh;
 	
 	@Column(name = "ten_khach_hang")
-	@NotEmpty
+	@NotEmpty(message = "tên khách hàng không được để rỗng !!!")
 	 String tenkh;
 	
 	@Column(name = "dia_chi")
-	@NotEmpty
+	@NotEmpty(message = "địa chỉ không được để rỗng !!!")
 	 String diachi;
 	
 	public Set<DuAnTeam1> getDuAn() {
@@ -36,11 +36,11 @@ public class KhachHangTeam1 {
 	}
 
 	@Column(name = "so_dien_thoai")
-	@NotEmpty
+	@NotEmpty(message = "số điện thoại không được để rỗng !!!")
 	 String sdt;
 	
 	@Column(name = "email")
-	@NotEmpty
+	@NotEmpty(message = "email không được để rỗng !!!")
 	 String email;
 	
 	@Column(name = "is_delete")

@@ -23,14 +23,14 @@
 				<label>Mã Nghiệp Vụ</label>
 				<form:input class="form-control" path="maNghiepVu" readonly = "true"
 					placeholder="Mã nghiệp vụ " />
-				<%--  <form:errors path="makh" cssStyle="color: red"></form:errors>--%>
+				  <form:errors path="maNghiepVu" cssStyle="color: red"></form:errors>
 
 			</div>
 			<div class="form-group col-sm-6">
 				<label>Tên Nghiệp Vụ</label>
 				<form:input class="form-control" path="tenNghiepVu"
 					placeholder="Tên nghiệp vụ " />
-				<%--  <form:errors path="tenkh" cssStyle="color: red"></form:errors>--%>
+				  <form:errors path="tenNghiepVu" cssStyle="color: red"></form:errors>
 			</div>
 			<form:hidden class="form-control" path="is_delete" />
 

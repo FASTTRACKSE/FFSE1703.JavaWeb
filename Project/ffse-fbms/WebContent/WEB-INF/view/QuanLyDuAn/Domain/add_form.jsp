@@ -24,7 +24,7 @@
 				<label>Mã Nghiệp Vụ</label>
 				<form:input class="form-control" path="maNghiepVu"
 					placeholder="Mã nghiệp vụ " />
-				<%--  <form:errors path="" cssStyle="color: red"></form:errors>--%>
+				<form:errors path="maNghiepVu" cssStyle="color: red"></form:errors>
 
 			</div>
 			<div class="form-group col-sm-6">
@@ -33,14 +33,14 @@
 					placeholder="Tên nghiệp vụ " />
 				<form:errors path="tenNghiepVu" cssStyle="color: red"></form:errors>
 			</div>
-			
+
 			<div class="form-group col-sm-6">
-			
+
 				<form:hidden class="form-control" path="is_delete" value="0" />
-				  <form:errors path="is_delete" cssStyle="color: red"></form:errors> 
+				<form:errors path="is_delete" cssStyle="color: red"></form:errors>
 			</div>
 
-	
+
 			<div class="col-sm-12 text-center">
 				<button type="submit" class="btn btn-success">Lưu thông tin</button>
 			</div>

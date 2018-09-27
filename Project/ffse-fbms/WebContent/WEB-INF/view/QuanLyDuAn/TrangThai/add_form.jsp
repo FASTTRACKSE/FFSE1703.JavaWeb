@@ -24,14 +24,14 @@
 				<label>Mã Trạng Thái</label>
 				<form:input class="form-control" path="maTrangThai"
 					placeholder="Mã trạng thái " />
-				<%--  <form:errors path="makh" cssStyle="color: red"></form:errors>--%>
+				  <form:errors path="maTrangThai" cssStyle="color: red"></form:errors>
 
 			</div>
 			<div class="form-group col-sm-6">
 				<label>Tên Trạng Thái</label>
 				<form:input class="form-control" path="tenTrangThai"
 					placeholder="Tên trạng thái " />
-				<%--  <form:errors path="tenkh" cssStyle="color: red"></form:errors>--%>
+				  <form:errors path="tenTrangThai" cssStyle="color: red"></form:errors>
 			</div>
 			
 			<div class="form-group col-sm-6">

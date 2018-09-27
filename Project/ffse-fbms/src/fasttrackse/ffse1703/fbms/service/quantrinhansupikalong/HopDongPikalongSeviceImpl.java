@@ -52,9 +52,22 @@ public class HopDongPikalongSeviceImpl implements HopDongPikalongSevice {
 	public String getLastMaHd() {
 		return this.hopDongPikalongDao.getLastMaHd();
 	}
+	
+	@Override 
+	@Transactional
+	public HopDongPikalong getMaHopDong(int maHopDong) {
+		return this.hopDongPikalongDao.getMaHopDong(maHopDong);
+	}
+	
 	@Override
 	@Transactional
 	public HopDongPikalong getHopDongById(String maNv) {
 		return this.hopDongPikalongDao.getHopDongById(maNv);
+	}
+
+	@Override
+	@Transactional
+	public List<HopDongPikalong> viewOne(String maNv) {
+		return this.hopDongPikalongDao.viewOne(maNv);
 	}
 }

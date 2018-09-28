@@ -265,6 +265,14 @@
 								href="<c:url value="/Quanlyvangnghi1703004/danhsachngaynghi"/>"
 								class="menu-item">Danh sách ngày nghỉ</a></li>
 						</ul></li>
+				    <li class=" nav-item pbho_so"><a href="#"><i
+							class="ft-users"></i><span data-i18n="" class="menu-title">Thống
+								kê trạng thái</span></a>
+						<ul class="menu-content">
+							<li><a
+								href="<c:url value="/Quanlyvangnghi1703004/danhsachtrangthai"/>"
+								class="menu-item">Danh sách trạng thái</a></li>
+						</ul></li>
 					<!-- Quản Lý Nhân Sự Pikalong -->
 					<li class=" navigation-header"><span>PKL-Quản Trị Nhân
 							Sự</span><i class=" ft-minus" data-toggle="tooltip"

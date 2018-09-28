@@ -64,7 +64,7 @@ public class ThongKeDonXinPhep {
 
 	@ManyToOne
 	@JoinColumn(name = "trang_thai")
-	private TrangThai trangThai;
+	private TrangThaiVN trangThai;
 
 	public int getId() {
 		return id;
@@ -130,11 +130,11 @@ public class ThongKeDonXinPhep {
 		this.ghiChuTruongPhong = ghiChuTruongPhong;
 	}
 
-	public TrangThai getTrangThai() {
+	public TrangThaiVN getTrangThai() {
 		return trangThai;
 	}
 
-	public void setTrangThai(TrangThai trangThai) {
+	public void setTrangThai(TrangThaiVN trangThai) {
 		this.trangThai = trangThai;
 	}
 

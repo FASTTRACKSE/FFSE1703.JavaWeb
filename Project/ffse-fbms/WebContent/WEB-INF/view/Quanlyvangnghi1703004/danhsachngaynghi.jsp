@@ -67,7 +67,7 @@
 											</c:if>
 
 											<li class="paginate_button page-item "><a
-												href="<%=request.getContextPath()%>/Quanlyvangnghi1703004danhsachngaynghi?page=${currentPage}"
+												href="<%=request.getContextPath()%>/Quanlyvangnghi1703004/danhsachngaynghi?page=${currentPage}"
 												aria-controls="DataTables_Table_5" class="page-link">${currentPage}</a></li>
 
 											<c:if test="${currentPage != lastPage}">

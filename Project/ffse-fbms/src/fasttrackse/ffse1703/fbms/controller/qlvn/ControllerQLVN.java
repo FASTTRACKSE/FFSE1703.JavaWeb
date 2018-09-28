@@ -18,7 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fasttrackse.ffse1703.fbms.entity.qlvn.LyDoXinNghi;
 import fasttrackse.ffse1703.fbms.entity.qlvn.ThongKeDonXinPhep;
-import fasttrackse.ffse1703.fbms.entity.qlvn.TrangThai;
+import fasttrackse.ffse1703.fbms.entity.qlvn.TrangThaiVN;
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 import fasttrackse.ffse1703.fbms.service.qlvn.QuanLyVangNghiService;
 
@@ -38,7 +38,7 @@ public class ControllerQLVN {
 	public String danhSachChoDuyet(Model model,
 			@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage) {
 		int totalRecords = service.danhSachXinNghiChoDuyet().size();
-		int recordsPerPage = 2;
+		int recordsPerPage = 4;
 		int totalPages = (int)Math.ceil((double)totalRecords/recordsPerPage);
 		int startPosition = recordsPerPage * (currentPage - 1);
 		model.addAttribute("danhsachcho", service.findAllForPagingCD(startPosition, recordsPerPage));
@@ -52,7 +52,7 @@ public class ControllerQLVN {
 	public String danhSachDuyet(Model model,
 			@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage) {
 		int totalRecords = service.danhSachXinNghiDuyet().size();
-		int recordsPerPage = 2;
+		int recordsPerPage = 4;
 		int totalPages = (int)Math.ceil((double)totalRecords/recordsPerPage);
 		int startPosition = recordsPerPage * (currentPage - 1);
 		model.addAttribute("danhsachduyet", service.findAllForPagingD(startPosition, recordsPerPage));
@@ -65,7 +65,7 @@ public class ControllerQLVN {
 	public String danhSachNhap(Model model,
 			@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage) {
 		int totalRecords = service.danhSachXinNghiNhap().size();
-		int recordsPerPage = 2;
+		int recordsPerPage = 4;
 		int totalPages = (int)Math.ceil((double)totalRecords/recordsPerPage);
 		int startPosition = recordsPerPage * (currentPage - 1);
 		model.addAttribute("danhsachnhap", service.findAllForPaging(startPosition, recordsPerPage));
@@ -78,7 +78,7 @@ public class ControllerQLVN {
 	public String danhSachTuChoi(Model model,
 			@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage) {
 		int totalRecords = service.danhSachXinNghiTuChoi().size();
-		int recordsPerPage = 2;
+		int recordsPerPage = 4;
 		int totalPages = (int)Math.ceil((double)totalRecords/recordsPerPage);
 		int startPosition = recordsPerPage * (currentPage - 1);
 		model.addAttribute("danhsachtuchoi", service.findAllForPagingTC(startPosition, recordsPerPage));
@@ -91,7 +91,7 @@ public class ControllerQLVN {
 	public String danhSachNgayNghi(Model model,
 			@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage) {
 		int totalRecords = service.danhSachNgayNghi().size();
-		int recordsPerPage = 2;
+		int recordsPerPage = 4;
 		int totalPages = (int)Math.ceil((double)totalRecords/recordsPerPage);
 		int startPosition = recordsPerPage * (currentPage - 1);
 		model.addAttribute("danhsachngaynghi", service.findAllForPagingNN(startPosition, recordsPerPage));
@@ -100,10 +100,10 @@ public class ControllerQLVN {
 		return "Quanlyvangnghi1703004/danhsachngaynghi";
 	}
 	
-	@RequestMapping(value = {"/deleteDate/${maNhanVien}"})
+	@RequestMapping(value ="/deleteDate/${maNhanVien}")
 	public String deleteDateOff(@PathVariable int maNhanVien, HttpSession session, Model model) {
-		service.delete(maNhanVien);
-		return "Quanlyvangnghi1703004/danhsachngaynghi";
+		service.deleteDateOff(maNhanVien);
+		return "redirect:/Quanlyvangnghi1703004/danhsachngaynghi";
 	}
 	
 	
@@ -136,11 +136,6 @@ public class ControllerQLVN {
 	@ModelAttribute("lydo")
 	public List<LyDoXinNghi> danhSachLyDo() {
 		return this.service.loadAllLyDo();
-	}
-	
-	@ModelAttribute("trangthai")
-	public List<TrangThai> danhSachTrangThai() {
-		return this.service.loadAllTrangThai();
 	}
 	
 	@ModelAttribute("hoso")
@@ -215,4 +210,47 @@ public class ControllerQLVN {
 		service.createfeedback(nv);
 		return "redirect:/Quanlyvangnghi1703004/danhsachbituchoi";
 	}
+	
+	@RequestMapping(value = "/danhsachtrangthai", method = RequestMethod.GET)
+	public String danhSachTrangThai(Model model,
+			@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage) {
+		int totalRecords = service.danhSachTrangThai().size();
+		int recordsPerPage = 4;
+		int totalPages = (int)Math.ceil((double)totalRecords/recordsPerPage);
+		int startPosition = recordsPerPage * (currentPage - 1);
+		model.addAttribute("danhsachtrangthai", service.findAllForPagingTrangThai(startPosition, recordsPerPage));
+		model.addAttribute("lastPage", totalPages);
+		model.addAttribute("currentPage", currentPage);
+		return "Quanlyvangnghi1703004/danhsachtrangthai";
+	}
+		@RequestMapping(value = "/createstatus", method = RequestMethod.GET)
+		public String listDonTrangThai(Model model) {
+			model.addAttribute("createstatus", new TrangThaiVN());
+			return "Quanlyvangnghi1703004/createstatus";
+}
+		@RequestMapping(value = {"/createstatus/submit"}, method = RequestMethod.POST)
+		public String createTrangThai( @ModelAttribute("createstatus") @Valid TrangThaiVN tt,
+				BindingResult result,Model model,final RedirectAttributes redirectAttributes) {
+			service.createTrangThai(tt);
+			return "redirect:/Quanlyvangnghi1703004/danhsachtrangthai";
+		}
+		
+		@RequestMapping(value = {"/deleteStatus/${.id}"})
+		public String deleteStatus(@PathVariable int id, HttpSession session, Model model) {
+			service.deleteTrangThai(id);;
+			return "redirect:/Quanlyvangnghi1703004/danhsachtrangthai";
+		}
+		
+		@RequestMapping(value = "/suatrangthai/{id}", method = RequestMethod.GET)
+		public String listFormStatus(@PathVariable("id") int id, Model model) {
+			model.addAttribute("editStatus", service.findByIdTrangThai(id));
+			return "Quanlyvangnghi1703004/editstatus";
+		}
+		
+		@RequestMapping(value = "/editstatus/save", method = RequestMethod.POST)
+		public String editStatus(  @ModelAttribute("editStatus") @Valid TrangThaiVN tt,Model model,
+				BindingResult result) {
+			service.updateTrangThai(tt);;
+			return "redirect:/Quanlyvangnghi1703004/danhsachtrangthai";
+		}
 }

@@ -1,9 +1,16 @@
 package fasttrackse.ffse1703.fbms.controller.qttl;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.List;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -14,6 +21,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fasttrackse.ffse1703.fbms.entity.qttl.*;
@@ -24,6 +32,10 @@ import fasttrackse.ffse1703.fbms.service.qttl.*;
 @Controller
 @RequestMapping("/QuanTriTaiLieu/TaiLieu")
 public class DocumentController {
+	
+	private static final String UPLOAD_DIRECTORY = "/upload";
+	private static final int THRESHOLD_SIZE = 1024 * 1024 * 3;
+	
 	@Autowired
 	DocumentService documentService;
 	
@@ -66,8 +78,25 @@ public class DocumentController {
 	}
 	
 	@RequestMapping(value = { "/creat" }, method = RequestMethod.POST)
-	public String creat(@ModelAttribute("document") @Valid Document document, BindingResult result,
-			RedirectAttributes redirectAttributes) {
+	public String creat(@ModelAttribute("document") @Valid Document document, BindingResult result, @RequestParam MultipartFile file, HttpSession session,
+			RedirectAttributes redirectAttributes) throws Exception {
+		
+		DiskFileItemFactory factory = new DiskFileItemFactory();
+		factory.setSizeThreshold(THRESHOLD_SIZE);
+		factory.setRepository(new File(System.getProperty("java.io.tmpdir")));
+
+		ServletFileUpload upload = new ServletFileUpload(factory);
+		ServletContext context = session.getServletContext();
+
+		String uploadPath = context.getRealPath(UPLOAD_DIRECTORY);
+		System.out.println(uploadPath);
+
+		byte[] bytes = file.getBytes();
+		BufferedOutputStream stream = new BufferedOutputStream(
+				new FileOutputStream(new File(uploadPath + File.separator + file.getOriginalFilename())));
+		stream.write(bytes);
+		stream.flush();
+		stream.close();
 
 		if (result.hasErrors()) {
 			return "QuanTriTaiLieu/TaiLieu/add";

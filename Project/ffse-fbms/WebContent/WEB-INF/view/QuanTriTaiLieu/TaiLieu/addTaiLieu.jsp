@@ -32,7 +32,7 @@
 			</div>
 		</div>
 		
-		<form:form method="POST"
+		<form:form method="POST" enctype="multipart/form-data" 
 			action="/ffse-fbms/QuanTriTaiLieu/TaiLieu/creat">
  			<div class="form-group col-sm-6">
 				<label>Id</label>
@@ -48,7 +48,7 @@
 			</div>
 			<div class="form-group col-sm-6">
 				<label>Mã danh mục</label>
-				<form:select cssClass="form-control" path="ma_danh_muc">
+				<form:select cssClass="form-control" path="ma_danh_muc" >
 										<option title="Mã danh mục"></option>
 										<c:forEach var="sv" items="${listCategory}" begin="0"
 											varStatus="counter">
@@ -59,7 +59,7 @@
 			</div>
 			<div class="form-group col-sm-6">
 				<label>File</label>
-				<form:input class="form-control" path="file" placeholder="File" />
+				<input name="file" id="fileToUpload" type="File"  />
 				<%-- <form:errors path="file" cssStyle="color: red"></form:errors> --%>
 			</div>
 			<div class="form-group col-sm-6">

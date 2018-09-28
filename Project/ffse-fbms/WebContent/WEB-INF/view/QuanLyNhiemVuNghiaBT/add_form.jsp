@@ -24,6 +24,16 @@
 		<!-- End Path -->
 
 		<div class="content-body">
+		<c:if test="${messageError ne null}">
+				<div class="alert alert-danger alert-dismissable" role="alert">
+					<button type="button" class="close" data-dismiss="alert">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					${messageError}
+				</div>
+			</c:if>
+			
+			
 			<div class="main-content">
 				<div class="row">
 					<form:form method="POST" modelAttribute="NhiemVu" action="/ffse-fbms/QuanLyNhiemVuNghiaBT/create">
@@ -72,10 +82,9 @@
 						  	<form:input class="form-control" path="tgDuKien"/>
 						</div>
 						<div class="form-group col-sm-6">
-						  	<label>Trạng thái</label>
-						  	<form:input class="form-control" path="maTrangThai.maTrangThai" value="1" readonly="true"/>
-
-						  	
+							<label>Trạng thái</label> 
+							<input class="form-control block round" readonly value="Mới" />
+							<form:hidden path="maTrangThai.maTrangThai" value="1" />
 						</div>
 						<div class="col-sm-12 text-center">
 							<button type="submit" class="btn btn-success">Lưu thông tin</button>
@@ -86,5 +95,11 @@
 		</div>
 	</div>
 </div>
-
+<script type="text/javascript">
+window.setTimeout(function() {
+	$(".alert").fadeTo(500, 0).slideUp(500, function() {
+		$(this).remove();
+	});
+}, 2500);
+</script>
 <jsp:include page="/WEB-INF/view/templates/footer.jsp" />

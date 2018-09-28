@@ -2,8 +2,10 @@ package fasttrackse.ffse1703.fbms.dao.qlynhiemvunghiabt;
 
 import java.util.List;
 
-import fasttrackse.ffse1703.fbms.entity.qlynhiemvuminhhq.CongViecMinhHQ;
-import fasttrackse.ffse1703.fbms.entity.qlynhiemvunghiabt.*;
+import fasttrackse.ffse1703.fbms.entity.qlynhiemvunghiabt.DuAnNghiaBT;
+import fasttrackse.ffse1703.fbms.entity.qlynhiemvunghiabt.LoaiCongViecNghiaBT;
+import fasttrackse.ffse1703.fbms.entity.qlynhiemvunghiabt.NhiemVu;
+import fasttrackse.ffse1703.fbms.entity.qlynhiemvunghiabt.TrangThaiNghiaBT;
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 
 

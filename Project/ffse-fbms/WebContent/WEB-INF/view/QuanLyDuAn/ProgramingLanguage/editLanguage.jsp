@@ -15,7 +15,7 @@
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="/ffse-fbms/home">Home</a></li>
 							<li class="breadcrumb-item"><a
-								href="/ffse-fbms/QuanLyDuAn/Language/">Danh sách Ngôn Ngữ</a></li>
+								href="/ffse-fbms/QuanLyDuAn/Language/list">Danh sách Ngôn Ngữ</a></li>
 							<li class="breadcrumb-item active">Update ngôn ngữ</li>
 						</ol>
 					</div>
@@ -35,15 +35,9 @@
 			action="/ffse-fbms/QuanLyDuAn/Language/update"
 			modelAttribute="language">
 
-
-			<%-- 			<div class="form-group col-sm-6">
-				<input type="hidden" name="${_csrf.parameterName}"
-					value="${_csrf.token}" />
-
-			</div> --%>
 			<div class="form-group col-sm-6">
 				<label>Mã Ngôn Ngữ</label>
-				<form:input class="form-control" path="maNn"
+				<form:input class="form-control" path="maNn" readonly="true"
 					placeholder="Mã Ngôn Ngữ" />
 				<form:errors path="maNn" cssStyle="color: red"></form:errors>
 

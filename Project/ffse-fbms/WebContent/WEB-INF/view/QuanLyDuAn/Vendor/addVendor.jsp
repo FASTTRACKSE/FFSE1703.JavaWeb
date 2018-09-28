@@ -39,7 +39,6 @@
 					<label>Mã Vendor</label>
 				<form:input class="form-control" path="mavd" placeholder="Mã Vendor" />
 				<form:errors path="mavd" cssStyle="color: red"></form:errors>
-
 			</div>
 			<div class="form-group col-sm-6">
 				<label>Tên Vendor</label>
@@ -61,7 +60,7 @@
 				<label>SĐT</label>
 				<form:input class="form-control" path="sdt"
 					placeholder="Số điện thoại" />
-				<form:errors path="email" cssStyle="color: red"></form:errors>
+				<form:errors path="sdt" cssStyle="color: red"></form:errors>
 			</div>
 			<div class="col-sm-12 text-center">
 				<button type="submit" class="btn btn-success">Lưu thông tin</button>

@@ -15,14 +15,13 @@
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="/ffse-fbms/home">Home</a></li>
 							<li class="breadcrumb-item"><a
-								href="/ffse-fbms/QuanLyDuAn/vendor/">Danh sách Vendor</a></li>
+								href="/ffse-fbms/QuanLyDuAn/vendor/list">Danh sách Vendor</a></li>
 							<li class="breadcrumb-item active">Update Vendor</li>
 						</ol>
 					</div>
 				</div>
 			</div>
 		</div>
-
 		<div class="row">
 			<div class="col-sm-4"></div>
 			<div class="col-sm-4">
@@ -35,7 +34,6 @@
 		<form:form method="POST" action="/ffse-fbms/QuanLyDuAn/vendor/update"
 			modelAttribute="vendor">
 
-
 <%-- 			<div class="form-group col-sm-6">
 				<input type="hidden" name="${_csrf.parameterName}"
 					value="${_csrf.token}" />
@@ -43,7 +41,7 @@
 			</div> --%>
 			<div class="form-group col-sm-6">
 				<label>Mã Vendor</label>
-				<form:input class="form-control" path="mavd" placeholder="Mã Vendor" />
+				<form:input class="form-control" path="mavd" readonly="true" placeholder="Mã Vendor" />
 				<form:errors path="mavd" cssStyle="color: red"></form:errors> 
 
 			</div>

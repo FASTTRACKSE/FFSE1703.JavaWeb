@@ -15,7 +15,7 @@
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="/ffse-fbms/home">Home</a></li>
 							<li class="breadcrumb-item"><a
-								href="/ffse-fbms/QuanLyDuAn/VaiTro/">Danh sách Vai Trò</a></li>
+								href="/ffse-fbms/QuanLyDuAn/VaiTro/list">Danh sách Vai Trò</a></li>
 							<li class="breadcrumb-item active">Update Vai Trò</li>
 						</ol>
 					</div>
@@ -35,17 +35,11 @@
 		<form:form method="POST" action="/ffse-fbms/QuanLyDuAn/VaiTro/update"
 			modelAttribute="vaitro">
 
-
-			<%-- 			<div class="form-group col-sm-6">
-				<input type="hidden" name="${_csrf.parameterName}"
-					value="${_csrf.token}" />
-
-			</div> --%>
 			<div class="form-group col-sm-6">
 				<label>Mã Vai Trò</label>
-				<form:input class="form-control" path="mavt"
+				<form:input class="form-control" path="mavt" readonly="true"
 					placeholder="Mã Vai Trò" />
-				<form:errors path="mavt" cssStyle="color: red"></form:errors>
+				<form:errors path="mavt"  cssStyle="color: red"></form:errors>
 
 			</div>
 			<div class="form-group col-sm-6">
@@ -53,7 +47,6 @@
 				<form:input class="form-control" path="tenvt"
 					placeholder="Tên Vai Trò" />
 				<form:errors path="tenvt" cssStyle="color: red"></form:errors>
-
 			</div>
 			<div class="col-sm-12 text-center">
 				<button type="submit" class="btn btn-success">Sữa thông tin</button>

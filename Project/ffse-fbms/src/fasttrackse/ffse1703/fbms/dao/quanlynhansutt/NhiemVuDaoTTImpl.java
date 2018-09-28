@@ -62,7 +62,7 @@ public class NhiemVuDaoTTImpl implements NhiemVuDaoTT {
 	}
 
 	@Override
-	public List<NhiemVuTT> getByMaNhanVien(String idNv) {
+	public List<NhiemVuTT> getByMaNhanVien(int idNv) {
 		// TODO Auto-generated method stub
 		Session session = this.sessionFactory.getCurrentSession();
 		return session.createQuery("from NhiemVuTT where status = 1 and hoSoNhanVienTT.maNhanVien='" + idNv + "'",

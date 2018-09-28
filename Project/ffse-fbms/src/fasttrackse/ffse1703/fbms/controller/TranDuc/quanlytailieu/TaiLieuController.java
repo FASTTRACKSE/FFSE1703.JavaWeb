@@ -19,8 +19,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fasttrackse.ffse1703.fbms.entity.TranDuc.quanlytailieu.DanhMuc;
+import fasttrackse.ffse1703.fbms.entity.TranDuc.quanlytailieu.IconTaiLieu;
 import fasttrackse.ffse1703.fbms.entity.TranDuc.quanlytailieu.TaiLieu;
 import fasttrackse.ffse1703.fbms.entity.security.PhongBan;
+import fasttrackse.ffse1703.fbms.service.TranDuc.quanlytailieu.IconService;
 import fasttrackse.ffse1703.fbms.service.TranDuc.quanlytailieu.TaiLieuService;
 import fasttrackse.ffse1703.fbms.service.TranDuc.quanlytailieu.TrangThaiService;
 
@@ -32,7 +34,9 @@ public class TaiLieuController {
 	private TaiLieuService serviceTL;
 	@Autowired
 	private TrangThaiService serviceTT;
-
+	@Autowired
+	private IconService serviceIC;
+	
 	public int totalPage(int perPage) {
 		int totalPage = (int) Math.ceil((double) serviceTL.listAll().size() / (double) perPage);
 		return totalPage;
@@ -78,7 +82,14 @@ public class TaiLieuController {
 			tl.setTenTL(nameFile);
 			tl.setLink(fileDir.getAbsolutePath());
 			String format = nameFile.substring(nameFile.lastIndexOf(".") + 1, nameFile.length());
-			tl.setIconTL(format);
+			List<IconTaiLieu> listIC = serviceIC.listAllIconTaiLieu();
+			for(IconTaiLieu x:listIC) {
+				if(x.getMaIcon().equalsIgnoreCase(format)) {
+					tl.setIconTL(format);
+				} else {
+					tl.setIconTL("unknow");
+				}
+			}
 			tl.setTrangThai(serviceTT.getTTbyID("Wait"));
 			serviceTL.addTL(tl);
 			redirectAttributes.addFlashAttribute("messageSuccess", "Thêm Mới Thành Công !");
@@ -106,7 +117,14 @@ public class TaiLieuController {
 			tl.setTenTL(nameFile);
 			tl.setLink(fileDir.getAbsolutePath());
 			String format = nameFile.substring(nameFile.lastIndexOf(".") + 1, nameFile.length());
-			tl.setIconTL(format);
+			List<IconTaiLieu> listIC = serviceIC.listAllIconTaiLieu();
+			for(IconTaiLieu x:listIC) {
+				if(x.getMaIcon().equalsIgnoreCase(format)) {
+					tl.setIconTL(format);
+				} else {
+					tl.setIconTL("unknow");
+				}
+			}
 			tl.setTrangThai(serviceTT.getTTbyID("Draft"));
 			serviceTL.addTL(tl);
 			redirectAttributes.addFlashAttribute("messageSuccess", "Lưu Nháp Thành Công !");
@@ -141,6 +159,7 @@ public class TaiLieuController {
 	@RequestMapping(value = "/view/{idTL}", method = RequestMethod.GET)
 	public String viewOneTL(@PathVariable("idTL") Integer idTL, Model model) {
 		model.addAttribute("TaiLieu", serviceTL.getTLbyID(idTL));
+		model.addAttribute("icon",serviceIC.getICbyID(serviceTL.getTLbyID(idTL).getIconTL()));
 		return "TranDuc-QuanLyTaiLieu/TaiLieu/view_oneTL";
 	}
 

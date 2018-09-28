@@ -22,4 +22,10 @@ public class TinhTrangHonNhanServiceTTImpl implements TinhTrangHonNhanServiceTT 
 		return this.tinhTrangHonNhanDaoTT.getAllTinhTrangHonNhan();
 	}
 
+	@Override
+	@Transactional
+	public List<TinhTrangHonNhanTT> findAll() {
+		return tinhTrangHonNhanDaoTT.findAll();
+	}
+
 }

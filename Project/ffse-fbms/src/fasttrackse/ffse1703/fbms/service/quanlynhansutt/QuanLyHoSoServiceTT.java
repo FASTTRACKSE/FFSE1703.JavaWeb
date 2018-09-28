@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.HoSoNhanVienTT;
 
+
 public interface QuanLyHoSoServiceTT {
 	public List<HoSoNhanVienTT> getAllHoSo();
 
@@ -24,5 +25,7 @@ public interface QuanLyHoSoServiceTT {
 	public void deleteHoSoNhanVien(int maNhanVien);
 	
 	public HoSoNhanVienTT findByMaNhanVien(int maNhanVien);
+	
+	public List<HoSoNhanVienTT> viewOne(int maNhanVien);
 
 }

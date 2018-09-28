@@ -33,7 +33,7 @@ th, td {
 							<li class="breadcrumb-item"><a href="<c:url value = "/"/>"><spring:message
 										code="label.trangChu" /></a></li>
 							<li class="breadcrumb-item active">Danh Sách Nhân Viên</li>
-							<li class="breadcrumb-item"><a href="<c:url value = "#"/>">thêm
+							<li class="breadcrumb-item"><a href="<c:url value = "/quanlynhansutt/ho_so/add"/>">thêm
 									nhân viên</a></li>
 						</ol>
 					</div>
@@ -103,13 +103,18 @@ th, td {
 													<td>${hsnv.chucDanh.tenChucDanh}</td>
 													<td>${hsnv.tenNhanVien}</td>
 													<td>${hsnv.namSinh}</td>
-													<td>${hsnv.gioiTinh}</td>
+													<td>
+													<c:if test="${hsnv.gioiTinh == 1}">
+															<spring:message code="label.nam" />
+														</c:if> <c:if test="${hsnv.gioiTinh == 2}">
+															<spring:message code="label.nu" />
+														</c:if></td>
 													<td>${hsnv.diaChi}</td>
 													<td>${hsnv.soDienThoai}</td>
 													<td
 														style="letter-spacing: 5px; min-width: 75px; text-align: center !important;">
 														<a href="<c:url value = "/quanlynhansutt/ho_so/view/${hsnv.maNhanVien}"/>"><i class="fa fa-eye"></i></a>
-														<a href="<c:url value = "#"/>"><i class="fa fa-pencil"></i></a>
+														<a href="<c:url value = "/quanlynhansutt/ho_so/edit/${hsnv.maNhanVien}"/>"><i class="fa fa-pencil"></i></a>
 														<a href='<c:url value = "#"></c:url>' class="fa fa-trash"
 														onclick="return confirm('Bạn có muốn xóa sinh viên này?');"></a>
 													</td>

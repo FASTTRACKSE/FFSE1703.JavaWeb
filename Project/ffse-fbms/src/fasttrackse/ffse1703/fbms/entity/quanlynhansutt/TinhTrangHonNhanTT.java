@@ -55,4 +55,5 @@ public class TinhTrangHonNhanTT {
 	public TinhTrangHonNhanTT() {
 	}
 
+
 }

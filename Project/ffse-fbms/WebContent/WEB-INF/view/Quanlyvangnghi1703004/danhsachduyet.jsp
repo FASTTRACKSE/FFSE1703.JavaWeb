@@ -27,8 +27,8 @@
 					<th >Ngày kết thúc</th>
 					<th >Số ngày nghỉ</th>
 					<th >Lý do</th>
-					<th >Ghi chú</th>
-					<th >Ghi chú của trưởng phòng</th>
+					<th >Ghi chú nhân viên</th>
+					<th >Ghi chú trưởng phòng</th>
 					<th >Trạng thái</th>
 					<th>Chức năng</th>
 				</tr>

@@ -9,7 +9,7 @@ import fasttrackse.ffse1703.fbms.dao.qlvn.QuanLyVangNghiDao;
 import fasttrackse.ffse1703.fbms.entity.qlvn.LyDoXinNghi;
 import fasttrackse.ffse1703.fbms.entity.qlvn.NgayNghi;
 import fasttrackse.ffse1703.fbms.entity.qlvn.ThongKeDonXinPhep;
-import fasttrackse.ffse1703.fbms.entity.qlvn.TrangThai;
+import fasttrackse.ffse1703.fbms.entity.qlvn.TrangThaiVN;
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 @Service
 @Transactional
@@ -38,8 +38,8 @@ public class QuanLyVangNghiServiceIpml implements QuanLyVangNghiService {
 		return this.quanLyVangNghiDao.loadAllLyDo();
 	}
 
-	public List<TrangThai> loadAllTrangThai() {
-		return this.quanLyVangNghiDao.loadAllTrangThai();
+	public List<TrangThaiVN> danhSachTrangThai(){
+		return this.quanLyVangNghiDao.danhSachTrangThai();
 	}
 
 
@@ -93,12 +93,12 @@ public class QuanLyVangNghiServiceIpml implements QuanLyVangNghiService {
 		return this.quanLyVangNghiDao.danhSachNgayNghi();
 	}
 
-	public NgayNghi findByIdDateOff(int id) {
-		return this.quanLyVangNghiDao.findByIdDateOff(id);
+	public NgayNghi findByIdDateOff(int maNhanVien) {
+		return this.quanLyVangNghiDao.findByIdDateOff(maNhanVien);
 	}
 
-	public void deleteDateOff(int id) {
-		quanLyVangNghiDao.deleteDateOff(id);
+	public void deleteDateOff(int maNhanVien) {
+		quanLyVangNghiDao.deleteDateOff(maNhanVien);
 		
 	}
 
@@ -120,6 +120,26 @@ public class QuanLyVangNghiServiceIpml implements QuanLyVangNghiService {
 
 	public List<NgayNghi> findAllForPagingNN(int startPosition, int maxResult) {
 		return this.quanLyVangNghiDao.findAllForPagingNN(startPosition, maxResult);
+	}
+
+	public List<TrangThaiVN> findAllForPagingTrangThai(int startPosition, int maxResult) {
+		return this.quanLyVangNghiDao.findAllForPagingTrangThai(startPosition, maxResult);
+	}
+
+	public TrangThaiVN findByIdTrangThai(int id) {
+		return this.quanLyVangNghiDao.findByIdTrangThai(id);
+	}
+
+	public void createTrangThai(TrangThaiVN trangThai) {
+		quanLyVangNghiDao.createTrangThai(trangThai);
+	}
+
+	public void deleteTrangThai(int id) {
+		quanLyVangNghiDao.deleteTrangThai(id);
+	}
+
+	public void updateTrangThai(TrangThaiVN trangThai) {
+		quanLyVangNghiDao.updateTrangThai(trangThai);
 	}
 	
 	

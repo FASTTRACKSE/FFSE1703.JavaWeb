@@ -10,7 +10,7 @@
 		<!-- Path -->
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">Thêm nhân viên</h3>
+				<h3 class="content-header-title mb-0">Sửa Nhân Viên</h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
@@ -19,7 +19,7 @@
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/quanlynhansutt/ho_so/" />'>Danh sách
 									nhân viên</a></li>
-							<li class="breadcrumb-item active">Thêm nhân viên</li>
+							<li class="breadcrumb-item active">Sửa Nhân Viên</li>
 						</ol>
 					</div>
 				</div>
@@ -47,9 +47,20 @@
 							</div>
 							<div class="card-body collapse in">
 								<div class="card-block">
-									<form:form method="POST" action="insert"
+									<form:form method="POST" action="update"
 										modelAttribute="formHoso" enctype="multipart/form-data">
 										<div class="form-body">
+											<%-- <div class="form-group col-sm-6">
+												<label>Mã Hợp Đồng</label>
+												<form:input class="form-control" readonly="true"
+													path="maNhanVien" placeholder="Mã Hợp Đồng" />
+											</div>
+
+											<div class="form-group col-sm-6">
+												<label>tên nhân viên</label>
+												<form:input class="form-control" path="tenNhanVien"
+													placeholder="tên nhân viên" />
+											</div> --%>
 											<div class="row">
 												<div class="col-md-8">
 													<div class="row">
@@ -66,7 +77,7 @@
 														</div>
 													</div>
 													<div class="row">
-													  <div class="form-group col-sm-6">
+														<div class="form-group col-sm-6">
 															<div class="form-group">
 																<label>giới tính</label>
 																<form:select class="custom-select form-control"
@@ -79,8 +90,8 @@
 														</div>
 														<div class="form-group col-sm-6">
 															<label for="projectinput2">Tình trạng hôn nhân</label>
-															<form:select path="tinhTrangHonNhan.maTinhTrangHonNhan" type="text"
-																id="projectinput2" class="form-control">
+															<form:select path="tinhTrangHonNhan.maTinhTrangHonNhan"
+																type="text" id="projectinput2" class="form-control">
 																<option value="none" selected="selected">Chọn
 																	tình trạng hôn nhân</option>
 																<c:forEach items="${listTrangTrangHonNhan}" var="x">
@@ -89,7 +100,6 @@
 															</form:select>
 														</div>
 													</div>
-
 													<div class="row">
 														<div class="form-group col-sm-6">
 															<div class="form-group">
@@ -99,11 +109,9 @@
 															</div>
 														</div>
 														<div class="form-group col-sm-6">
-
 															<label for="projectinput4">Nơi cấp</label>
 															<form:input path="noiCap" type="text" id="projectinput4"
 																class="form-control" placeholder="Nơi cấp" />
-
 														</div>
 													</div>
 													<div class="row">
@@ -111,10 +119,10 @@
 															<label for="projectinput4">Ngày cấp</label>
 															<fieldset class="form-group position-relative">
 																<form:input placeholder="Ngày cấp" type="date"
-																		class="form-control round" path="ngayCap" />
-																	<div class="form-control-position">
-																		<i class="fa fa-calendar-o"></i>
-																	</div>
+																	class="form-control round" path="ngayCap" />
+																<div class="form-control-position">
+																	<i class="fa fa-calendar-o"></i>
+																</div>
 															</fieldset>
 														</div>
 														<div class="form-group col-sm-6">
@@ -131,8 +139,6 @@
 															</div>
 														</div>
 													</div>
-
-
 													<div class="row">
 														<div class="form-group col-sm-6">
 
@@ -145,7 +151,6 @@
 																	<option value="${x.maQuocTich}">${x.tenQuocTich}</option>
 																</c:forEach>
 															</form:select>
-
 														</div>
 													</div>
 												</div>
@@ -170,8 +175,9 @@
 													<div class="row">
 														<div class="form-group col-sm-6">
 															<label>tỉnh, thành phố</label>
-															<form:select path="thanhPho.maThanhPho" type="text" id="thanhPhoId"
-																class="form-control" onchange="clickComboboxThanhPho()">
+															<form:select path="thanhPho.maThanhPho" type="text"
+																id="thanhPhoId" class="form-control"
+																onchange="clickComboboxThanhPho()">
 																<option value="noThanhPho" selected="selected">Chọn
 																	thành phố</option>
 																<c:forEach items="${listThanhPho}" var="x">
@@ -181,27 +187,23 @@
 														</div>
 														<div class="form-group col-sm-6">
 															<label>quận, huyện</label>
-															<form:select path="quanHuyen.maQuanHuyen" id="quanHuyenId"
-																type="text" class="form-control" disabled="true"
-																onchange="clickComboboxQuan()" name="quanHuyen">
+															<form:select path="quanHuyen.maQuanHuyen"
+																id="quanHuyenId" type="text" class="form-control"
+																disabled="true" onchange="clickComboboxQuan()"
+																name="quanHuyen">
 																<option value="noQuanHuyen" selected="selected">Chọn
 																	quận huyện</option>
 															</form:select>
-
 														</div>
-
 													</div>
 													<div class="row">
-
 														<div class="form-group col-sm-6">
 															<label>xã, phường</label>
-
-															<form:select path="xaPhuong.maXa" type="text" id="phuongXaId"
-																class="form-control" name="phuongXaSelect"
-																disabled="true">
+															<form:select path="xaPhuong.maXa" type="text"
+																id="phuongXaId" class="form-control"
+																name="phuongXaSelect" disabled="true">
 																<option value="noPhuongXa" selected="selected">Chọn
 																	xã, phường</option>
-
 															</form:select>
 														</div>
 														<div class="form-group col-sm-6">
@@ -210,8 +212,6 @@
 																placeholder="địa chỉ" />
 														</div>
 													</div>
-
-
 												</div>
 											</div>
 											<h4 class="form-section">
@@ -222,9 +222,9 @@
 													<div class="row">
 														<div class="form-group col-sm-6">
 															<label>phòng ban</label>
-
-															<form:select path="phongBan.maPhongBan" type="text" id="companyName"
-																class="form-control" name="phongBanSelect">
+															<form:select path="phongBan.maPhongBan" type="text"
+																id="companyName" class="form-control"
+																name="phongBanSelect">
 																<option value="none" selected>Chọn Phòng ban</option>
 																<c:forEach items="${listPhongBan}" var="x">
 																	<option value="${x.maPhongBan}">${x.tenPhongBan}</option>
@@ -255,11 +255,20 @@
 																		Làm Việc</form:option>
 															</form:select>
 														</div>
-														<div class="form-group col-sm-6">
+														<!-- <div class="form-group col-sm-6">
 															<label>Hình Ảnh:</label> <input id="imgUrl"
 																class="form-control" type="file" name="file" /> <br>
 															<img id="img" src="#" alt="your image" width="100"
 																height="150" />
+														</div> -->
+														<div class="form-group col-sm-6">
+															<label>Hình Ảnh:</label> <input id="imgUrl"
+																class="form-control" type="file" name="file" /> <br>
+															<img
+																src="<c:url value="/uploads/${formHoso.anhDaiDien}" />"
+																width="100" height="150"> <img id="img" src="#"
+																alt="your image" width="100" height="150" />
+
 														</div>
 													</div>
 												</div>
@@ -267,9 +276,6 @@
 										</div>
 										<div class="form-actions center">
 											<input class="btn btn-success" type="submit" value="Save" />
-											<%-- <a href="<c:url value = "/quanlynhansutt/add"/>"
-												class="btn btn-primary">Back</a>
- 											--%>
 										</div>
 									</form:form>
 									<script type="text/javascript">
@@ -387,22 +393,23 @@
 													});
 										};
 									</script>
-									
-									<!-- preview image -->  
-                     <script type="text/javascript">
-						function readURL(input) {
-						if (input.files && input.files[0]) {
-						var reader = new FileReader();
-						reader.onload = function(e) {
-						$('#img').attr('src', e.target.result);
-						}
-						reader.readAsDataURL(input.files[0]);
-						}
-						}
-						$("#imgUrl").change(function() {
-						readURL(this);
-						});
-					</script>
+									<!-- preview image -->
+									<script type="text/javascript">
+										function readURL(input) {
+											if (input.files && input.files[0]) {
+												var reader = new FileReader();
+												reader.onload = function(e) {
+													$('#img').attr('src',
+															e.target.result);
+												}
+												reader
+														.readAsDataURL(input.files[0]);
+											}
+										}
+										$("#imgUrl").change(function() {
+											readURL(this);
+										});
+									</script>
 								</div>
 							</div>
 						</div>

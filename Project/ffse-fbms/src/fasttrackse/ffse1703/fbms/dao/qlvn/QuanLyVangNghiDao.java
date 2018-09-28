@@ -5,7 +5,7 @@ import java.util.List;
 import fasttrackse.ffse1703.fbms.entity.qlvn.LyDoXinNghi;
 import fasttrackse.ffse1703.fbms.entity.qlvn.NgayNghi;
 import fasttrackse.ffse1703.fbms.entity.qlvn.ThongKeDonXinPhep;
-import fasttrackse.ffse1703.fbms.entity.qlvn.TrangThai;
+import fasttrackse.ffse1703.fbms.entity.qlvn.TrangThaiVN;
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 
 public interface QuanLyVangNghiDao {
@@ -26,8 +26,6 @@ public interface QuanLyVangNghiDao {
 	public int KiemTraNgayNghi(ThongKeDonXinPhep maNhanVien);
 	
 	public List<LyDoXinNghi> loadAllLyDo();
-	
-	public List<TrangThai> loadAllTrangThai();
 	
 	public List<HoSoNhanVien> loadAllHoSo();
 	
@@ -56,4 +54,16 @@ public interface QuanLyVangNghiDao {
 	public NgayNghi findByIdDateOff(int id);
 	
 	public void deleteDateOff(int id); 
+	
+	public List<TrangThaiVN> danhSachTrangThai();
+	
+	public List<TrangThaiVN> findAllForPagingTrangThai(int startPosition, int maxResult);
+	
+	public TrangThaiVN findByIdTrangThai(int id);
+	
+	public void createTrangThai(TrangThaiVN trangThai);
+	
+	public void deleteTrangThai(int id);
+	
+	public void updateTrangThai(TrangThaiVN trangThai);
 }

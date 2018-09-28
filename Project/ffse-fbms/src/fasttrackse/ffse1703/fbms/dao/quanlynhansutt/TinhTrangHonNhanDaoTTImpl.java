@@ -19,10 +19,19 @@ public class TinhTrangHonNhanDaoTTImpl implements TinhTrangHonNhanDaoTT {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<TinhTrangHonNhanTT> getAllTinhTrangHonNhan() {
 		Session session = this.sessionFactory.getCurrentSession();
-		Query query = session.createQuery("from TinhTrangHonNhan");
+		Query query = session.createQuery("from TinhTrangHonNhanTT");
 		List<TinhTrangHonNhanTT> listTinhTrangHonNhan = query.list();
 
 		return listTinhTrangHonNhan;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<TinhTrangHonNhanTT> findAll() {
+		Session session = this.sessionFactory.openSession();
+		List<TinhTrangHonNhanTT> list = session.createQuery("from TinhTrangHonNhanTT").list();
+		session.close();
+		return list;
 	}
 
 }

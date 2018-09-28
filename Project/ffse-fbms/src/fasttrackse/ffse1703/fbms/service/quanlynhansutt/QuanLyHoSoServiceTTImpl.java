@@ -70,7 +70,7 @@ public class QuanLyHoSoServiceTTImpl implements QuanLyHoSoServiceTT {
 	@Transactional
 	public void updateHoSoNhanVien(HoSoNhanVienTT hsnv) {
 		// TODO Auto-generated method stub
-
+		quanLyHoSoDaoTT.updateHoSoNhanVien(hsnv);
 	}
 	@Override
 	@Transactional
@@ -83,7 +83,13 @@ public class QuanLyHoSoServiceTTImpl implements QuanLyHoSoServiceTT {
 	@Transactional
 	public HoSoNhanVienTT findByMaNhanVien(int maNhanVien) {
 		// TODO Auto-generated method stub
-		return this.quanLyHoSoDaoTT.findByMaHopDong(maNhanVien);
+		return this.quanLyHoSoDaoTT.findByMaNhanVien(maNhanVien);
+	}
+
+	@Override
+	public List<HoSoNhanVienTT> viewOne(int maNhanVien) {
+		// TODO Auto-generated method stub
+		return this.quanLyHoSoDaoTT.viewOne(maNhanVien);
 	}
 
 }

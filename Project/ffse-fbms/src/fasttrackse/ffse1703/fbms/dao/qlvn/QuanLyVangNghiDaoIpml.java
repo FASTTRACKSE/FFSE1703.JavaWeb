@@ -1,18 +1,18 @@
 package fasttrackse.ffse1703.fbms.dao.qlvn;
+
 import java.util.List;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
 import fasttrackse.ffse1703.fbms.entity.qlvn.LyDoXinNghi;
 import fasttrackse.ffse1703.fbms.entity.qlvn.NgayNghi;
 import fasttrackse.ffse1703.fbms.entity.qlvn.ThongKeDonXinPhep;
-import fasttrackse.ffse1703.fbms.entity.qlvn.TrangThai;
+import fasttrackse.ffse1703.fbms.entity.qlvn.TrangThaiVN;
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 
 @Repository(value = "quanLyVangNghiDao")
@@ -28,124 +28,130 @@ public class QuanLyVangNghiDaoIpml implements QuanLyVangNghiDao {
 
 	public List<ThongKeDonXinPhep> danhSachXinNghiChoDuyet() {
 		Session session = sessionFactory.getCurrentSession();
-		List<ThongKeDonXinPhep> list = session.createQuery("from ThongKeDonXinPhep where trangThai = '2'").getResultList();
+		List<ThongKeDonXinPhep> list = session.createQuery("from ThongKeDonXinPhep where trangThai = '2'")
+				.getResultList();
 		return list;
 	}
-	
+
 	public List<ThongKeDonXinPhep> danhSachXinNghiDuyet() {
 		Session session = sessionFactory.getCurrentSession();
-		List<ThongKeDonXinPhep> list = session.createQuery("from ThongKeDonXinPhep where trangThai = '3'").getResultList();
+		List<ThongKeDonXinPhep> list = session.createQuery("from ThongKeDonXinPhep where trangThai = '3'")
+				.getResultList();
 		return list;
 	}
-	
+
 	public List<ThongKeDonXinPhep> danhSachXinNghiNhap() {
 		Session session = sessionFactory.getCurrentSession();
-		List<ThongKeDonXinPhep> list = session.createQuery("from ThongKeDonXinPhep where trangThai = '1'").getResultList();
+		List<ThongKeDonXinPhep> list = session.createQuery("from ThongKeDonXinPhep where trangThai = '1'")
+				.getResultList();
 		return list;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<ThongKeDonXinPhep> findAllForPaging(int startPosition, int maxResult) {
 		Session session = this.sessionFactory.getCurrentSession();
 		Query q = session.createQuery("from ThongKeDonXinPhep where trangThai = '1'");
 		q.setFirstResult(startPosition);
 		q.setMaxResults(maxResult);
-		
-		return q.list();		
+
+		return q.list();
 	}
-	
+
 	public long totalRecords() {
 		Session session = this.sessionFactory.getCurrentSession();
 		String queryString = "SELECT count(*) FROM ThongKeDonXinPhep WHERE trang_thai = 'Nháp'";
 		Query<?> query = session.createQuery(queryString);
 		return (Long) query.uniqueResult();
 	}
-	
+
 	public List<ThongKeDonXinPhep> danhSachXinNghiTuChoi() {
 		Session session = sessionFactory.getCurrentSession();
-		List<ThongKeDonXinPhep> list = session.createQuery("from ThongKeDonXinPhep where trangThai = '4'").getResultList();
+		List<ThongKeDonXinPhep> list = session.createQuery("from ThongKeDonXinPhep where trangThai = '4'")
+				.getResultList();
 		return list;
 	}
-	
 
-	public List<LyDoXinNghi> loadAllLyDo(){
+	public List<LyDoXinNghi> loadAllLyDo() {
 		Session session = sessionFactory.getCurrentSession();
 		List<LyDoXinNghi> list = session.createQuery("from LyDoXinNghi").list();
 		return list;
 	}
-	
-	public List<TrangThai> loadAllTrangThai(){
-		Session session = sessionFactory.getCurrentSession();
-		List<TrangThai> list = session.createSQLQuery("select * from trang_thai").list();
-		return list;
-	}
-	
-	public List<HoSoNhanVien> loadAllHoSo(){
+
+	public List<HoSoNhanVien> loadAllHoSo() {
 		Session session = sessionFactory.getCurrentSession();
 		List<HoSoNhanVien> list = session.createQuery("from HoSoNhanVien").list();
 		return list;
-		
+
 	}
 
-      public int KiemTraNgayNghi(ThongKeDonXinPhep thongKeDonXinPhep) {
-    		Session session = sessionFactory.getCurrentSession();
-    		String rowCount = session.createSQLQuery("select count(*) from `ngay_nghi` where `ma_nhan_vien` = '" + thongKeDonXinPhep.getNgayNghi().getMaNhanVien() + "'").getSingleResult().toString();
-    		return Integer.parseInt(rowCount);
-      }
+	public int KiemTraNgayNghi(ThongKeDonXinPhep thongKeDonXinPhep) {
+		Session session = sessionFactory.getCurrentSession();
+		String rowCount = session.createSQLQuery("select count(*) from `ngay_nghi` where `ma_nhan_vien` = '"
+				+ thongKeDonXinPhep.getNgayNghi().getMaNhanVien() + "'").getSingleResult().toString();
+		return Integer.parseInt(rowCount);
+	}
 
 	public void create(ThongKeDonXinPhep thongKeDonXinPhep) {
 		Session session = this.sessionFactory.getCurrentSession();
 		if (KiemTraNgayNghi(thongKeDonXinPhep) == 0) {
-			session.createSQLQuery("INSERT INTO `ngay_nghi`(`ma_nhan_vien`,`so_ngay_da_nghi`,`so_ngay_con_lai`) VALUES ('" + 
-		thongKeDonXinPhep.getNgayNghi().getMaNhanVien()+"', '0', '12')").executeUpdate();			
+			session.createSQLQuery(
+					"INSERT INTO `ngay_nghi`(`ma_nhan_vien`,`so_ngay_da_nghi`,`so_ngay_con_lai`) VALUES ('"
+							+ thongKeDonXinPhep.getNgayNghi().getMaNhanVien() + "', '0', '12')")
+					.executeUpdate();
 		}
 		session.save(thongKeDonXinPhep);
-		session.createQuery("update ThongKeDonXinPhep set trangThai = '1'  where id =" + thongKeDonXinPhep.getId()).executeUpdate();
+		session.createQuery("update ThongKeDonXinPhep set trangThai = '1'  where id =" + thongKeDonXinPhep.getId())
+				.executeUpdate();
 	}
-	
+
 	public void createWait(ThongKeDonXinPhep thongKeDonXinPhep) {
 		Session session = this.sessionFactory.getCurrentSession();
 		if (KiemTraNgayNghi(thongKeDonXinPhep) == 0) {
-			session.createSQLQuery("INSERT INTO `ngay_nghi`(`ma_nhan_vien`,`so_ngay_da_nghi`,`so_ngay_con_lai`) VALUES ('" + 
-		thongKeDonXinPhep.getNgayNghi().getMaNhanVien()+"', '0', '12')").executeUpdate();			
+			session.createSQLQuery(
+					"INSERT INTO `ngay_nghi`(`ma_nhan_vien`,`so_ngay_da_nghi`,`so_ngay_con_lai`) VALUES ('"
+							+ thongKeDonXinPhep.getNgayNghi().getMaNhanVien() + "', '0', '12')")
+					.executeUpdate();
 		}
 		session.save(thongKeDonXinPhep);
-		session.createQuery("update ThongKeDonXinPhep set trangThai = '2'  where id =" + thongKeDonXinPhep.getId()).executeUpdate();
-		
+		session.createQuery("update ThongKeDonXinPhep set trangThai = '2'  where id =" + thongKeDonXinPhep.getId())
+				.executeUpdate();
+
 	}
 
 	public void createBrowse(ThongKeDonXinPhep thongKeDonXinPhep) {
 		Session session = this.sessionFactory.getCurrentSession();
-		 session.save(thongKeDonXinPhep);
-		session.createQuery("update ThongKeDonXinPhep set trangThai = '3'  where id =" + thongKeDonXinPhep.getId()).executeUpdate();
+		session.save(thongKeDonXinPhep);
+		session.createQuery("update ThongKeDonXinPhep set trangThai = '3'  where id =" + thongKeDonXinPhep.getId())
+				.executeUpdate();
 		int soNgayNghi = thongKeDonXinPhep.getSoNgayNghi();
 		int soNgayDaNghi = thongKeDonXinPhep.getNgayNghi().getSoNgayDaNghi();
 		int soNgayConLai = thongKeDonXinPhep.getNgayNghi().getSoNgayConLai();
-        int maNhanVien = thongKeDonXinPhep.getNgayNghi().getMaNhanVien();
-        if (soNgayConLai == 0) {
+		int maNhanVien = thongKeDonXinPhep.getNgayNghi().getMaNhanVien();
+		if (soNgayConLai == 0) {
 			session.createQuery("update NgayNghi set soNgayDaNghi = " + (soNgayDaNghi + soNgayNghi)
 					+ "where maNhanVien = " + maNhanVien).executeUpdate();
 		} else if (soNgayNghi > soNgayConLai) {
-			session.createQuery("update NgayNghi set soNgayConLai = 0,soNgayDaNghi = "
-					+ (soNgayDaNghi + soNgayNghi) + "where maNhanVien = " + maNhanVien).executeUpdate();
+			session.createQuery("update NgayNghi set soNgayConLai = 0,soNgayDaNghi = " + (soNgayDaNghi + soNgayNghi)
+					+ "where maNhanVien = " + maNhanVien).executeUpdate();
 		} else {
-			session.createQuery("update NgayNghi set soNgayConLai = " + (soNgayConLai - soNgayNghi)
-					+ ",soNgayDaNghi = " + (soNgayDaNghi + soNgayNghi) + "where maNhanVien = " + maNhanVien)
-					.executeUpdate();
+			session.createQuery("update NgayNghi set soNgayConLai = " + (soNgayConLai - soNgayNghi) + ",soNgayDaNghi = "
+					+ (soNgayDaNghi + soNgayNghi) + "where maNhanVien = " + maNhanVien).executeUpdate();
 		}
 
 	}
 
-
 	public void createfeedback(ThongKeDonXinPhep thongKeDonXinPhep) {
 		Session session = this.sessionFactory.getCurrentSession();
 		if (KiemTraNgayNghi(thongKeDonXinPhep) == 0) {
-			session.createSQLQuery("INSERT INTO `ngay_nghi`(`ma_nhan_vien`,`so_ngay_da_nghi`,`so_ngay_con_lai`) VALUES ('" + 
-		thongKeDonXinPhep.getNgayNghi().getMaNhanVien()+"', '0', '12')").executeUpdate();			
+			session.createSQLQuery(
+					"INSERT INTO `ngay_nghi`(`ma_nhan_vien`,`so_ngay_da_nghi`,`so_ngay_con_lai`) VALUES ('"
+							+ thongKeDonXinPhep.getNgayNghi().getMaNhanVien() + "', '0', '12')")
+					.executeUpdate();
 		}
 		session.save(thongKeDonXinPhep);
-		session.createQuery("update ThongKeDonXinPhep set trangThai = '4'  where id =" + thongKeDonXinPhep.getId()).executeUpdate();
-		
+		session.createQuery("update ThongKeDonXinPhep set trangThai = '4'  where id =" + thongKeDonXinPhep.getId())
+				.executeUpdate();
+
 	}
 
 	public ThongKeDonXinPhep findById(int id) {
@@ -158,14 +164,14 @@ public class QuanLyVangNghiDaoIpml implements QuanLyVangNghiDao {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.delete(findById(id));
 	}
-	
-	
+
 	public void updateNhap(ThongKeDonXinPhep thongKeDonXinPhep) {
-		Session session = this.sessionFactory.getCurrentSession();;
+		Session session = this.sessionFactory.getCurrentSession();
+		;
 		session.update(thongKeDonXinPhep);
-		
+
 	}
-	
+
 	public List<NgayNghi> danhSachNgayNghi() {
 		Session session = sessionFactory.getCurrentSession();
 		List<NgayNghi> list = session.createQuery("from NgayNghi").getResultList();
@@ -177,10 +183,10 @@ public class QuanLyVangNghiDaoIpml implements QuanLyVangNghiDao {
 		NgayNghi list = (NgayNghi) session.get(NgayNghi.class, maNhanVien);
 		return list;
 	}
-	
+
 	public void deleteDateOff(int maNhanVien) {
 		Session session = this.sessionFactory.getCurrentSession();
-		session.delete(findById(maNhanVien));	
+		session.delete(findById(maNhanVien));
 	}
 
 	public List<ThongKeDonXinPhep> findAllForPagingCD(int startPosition, int maxResult) {
@@ -188,7 +194,7 @@ public class QuanLyVangNghiDaoIpml implements QuanLyVangNghiDao {
 		Query q = session.createQuery("from ThongKeDonXinPhep where trangThai = '2'");
 		q.setFirstResult(startPosition);
 		q.setMaxResults(maxResult);
-		
+
 		return q.list();
 	}
 
@@ -197,7 +203,7 @@ public class QuanLyVangNghiDaoIpml implements QuanLyVangNghiDao {
 		Query q = session.createQuery("from ThongKeDonXinPhep where trangThai = '3'");
 		q.setFirstResult(startPosition);
 		q.setMaxResults(maxResult);
-		
+
 		return q.list();
 	}
 
@@ -206,19 +212,53 @@ public class QuanLyVangNghiDaoIpml implements QuanLyVangNghiDao {
 		Query q = session.createQuery("from ThongKeDonXinPhep where trangThai = '4'");
 		q.setFirstResult(startPosition);
 		q.setMaxResults(maxResult);
-		
+
 		return q.list();
 	}
-	
+
 	public List<NgayNghi> findAllForPagingNN(int startPosition, int maxResult) {
 		Session session = this.sessionFactory.getCurrentSession();
 		Query q = session.createQuery("from NgayNghi ");
 		q.setFirstResult(startPosition);
 		q.setMaxResults(maxResult);
-		
+
 		return q.list();
 	}
-	
-	
-	
+
+	public List<TrangThaiVN> findAllForPagingTrangThai(int startPosition, int maxResult) {
+		Session session = this.sessionFactory.getCurrentSession();
+		Query q = session.createQuery("from TrangThaiVN ");
+		q.setFirstResult(startPosition);
+		q.setMaxResults(maxResult);
+
+		return q.list();
 	}
+
+	public List<TrangThaiVN> danhSachTrangThai() {
+		Session session = sessionFactory.getCurrentSession();
+		List<TrangThaiVN> list = session.createQuery("from TrangThaiVN").getResultList();
+		return list;
+	}
+
+	public TrangThaiVN findByIdTrangThai(int id) {
+		Session sesion = sessionFactory.getCurrentSession();
+		TrangThaiVN list = (TrangThaiVN) sesion.get(TrangThaiVN.class, id);
+		return list;
+	}
+
+	public void createTrangThai(TrangThaiVN trangThai) {
+		Session session = this.sessionFactory.getCurrentSession();
+		session.save(trangThai);
+	}
+
+	public void deleteTrangThai(int id) {
+		Session session = sessionFactory.getCurrentSession();
+		session.delete(findByIdTrangThai(id));
+	}
+
+	public void updateTrangThai(TrangThaiVN trangThai) {
+		Session session = sessionFactory.getCurrentSession();
+		session.update(trangThai);
+	}
+
+}

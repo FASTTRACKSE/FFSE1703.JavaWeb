@@ -1,10 +1,8 @@
 package fasttrackse.ffse1703.fbms.controller.qlynhiemvuhieulp;
 
-import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +22,7 @@ import fasttrackse.ffse1703.fbms.service.qlynhiemvuhieulp.QLyNhiemVuService;
 @Controller
 @RequestMapping("/HieuLP")
 public class QLyNhiemVuController {
-	private int perPage = 10;
+	
 	@Autowired
 	private QLyNhiemVuService qLyNhiemVuService;
 
@@ -45,15 +43,15 @@ public class QLyNhiemVuController {
 	// return "QuanLyNhiemVuHieuLP/list";
 	// }
 
-//	@RequestMapping("/")
-//	public String view(HttpSession session) {
-//		int currentPage;
-//		if (session.getAttribute("page") == null) {
-//			currentPage = 1;
-//		} else {
-//			currentPage = (int) session.getAttribute("page");
-//		}
-//		return "redirect:/HieuLP/danhsach/" + currentPage;
+	// @RequestMapping("/")
+	// public String view(HttpSession session) {
+	// int currentPage;
+	// if (session.getAttribute("page") == null) {
+	// currentPage = 1;
+	// } else {
+	// currentPage = (int) session.getAttribute("page");
+	// }
+	// return "redirect:/HieuLP/danhsach/" + currentPage;
 //	}
 
 	@RequestMapping(value = {"/","/danhsach"}, method = RequestMethod.GET)
@@ -84,10 +82,6 @@ public class QLyNhiemVuController {
 		model.addAttribute("duan", qLyNhiemVuService.duAn());
 		model.addAttribute("nhanVienHLP", qLyNhiemVuService.nhanVienHLP());
 		return "QuanLyNhiemVuHieuLP/list";
-		
-
-		
-		
 	}
 
 	
@@ -120,11 +114,13 @@ public class QLyNhiemVuController {
 			nv.setIsDelete(1);
 			qLyNhiemVuService.add(nv);
 			redirectAttributes.addFlashAttribute("messageSuccess", "Thêm mới thành công...");
+			
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("messageError", "Lỗi. Vui lòng xin thử lại !");
+			return "redirect:/HieuLP/create/";
 		}
-
 		return "redirect:/HieuLP/danhsach/";
+		
 	}
 
 	@RequestMapping(value = "/edit/{id}")
@@ -136,15 +132,19 @@ public class QLyNhiemVuController {
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String edit(Model model, @ModelAttribute("edit") @Valid QLyNhiemVuEntity nv,final RedirectAttributes redirectAttributes){
+	public String edit(Model model, @ModelAttribute("edit") @Valid QLyNhiemVuEntity nv, BindingResult bindingResult,
+			final RedirectAttributes redirectAttributes) {
 //		nv.setIsDelete(1);
 //		qLyNhiemVuService.update(nv);
 		try {
 			nv.setIsDelete(1);
 			qLyNhiemVuService.update(nv);
-			redirectAttributes.addFlashAttribute("messageSuccess", "Lưu mới thành công.");
+			redirectAttributes.addFlashAttribute("messageSuccess", "Lưu mới thành công...");
+			
 		} catch (Exception e) {
-			redirectAttributes.addFlashAttribute("messageError", " Lỗi.Vui lòng thử lại!");
+			redirectAttributes.addFlashAttribute("messageError", " Lỗi. Vui lòng xin thử lại!");
+			return "redirect:/HieuLP/edit/"+nv.getID();
+			
 		}
 		return "redirect:/HieuLP/danhsach/";
 	}

@@ -23,7 +23,18 @@ public class PhongBanTeam1 {
 	@NotEmpty
 	@Column(name = "ten_phong_ban")
 	private String tenPhongBan;
-	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "phongBan",cascade=CascadeType.MERGE)
+	private Set<DuAnTeam1> duAn = new HashSet<DuAnTeam1>(0);
+
+
+	public Set<DuAnTeam1> getDuAn() {
+		return duAn;
+	}
+
+
+	public void setDuAn(Set<DuAnTeam1> duAn) {
+		this.duAn = duAn;
+	}
 
 
 	public String getMaPhongBan() {

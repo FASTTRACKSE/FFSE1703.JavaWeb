@@ -25,7 +25,7 @@ public class DomainTeam1 {
 	@Column(name = "is_delete")
 	String is_delete;
 	
-	@ManyToMany(fetch = FetchType.EAGER,mappedBy="Domain",targetEntity=DuAnTeam1.class)
+	@ManyToMany(fetch = FetchType.EAGER,mappedBy="domain",targetEntity=DuAnTeam1.class)
 	private Set<DuAnTeam1> duAn;
 
 	

@@ -26,7 +26,7 @@ public class TrangThaiTeam1 {
 	@Column(name = "is_delete")
 	String is_delete;
 	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "TrangThai",cascade=CascadeType.MERGE)
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "trangThai",cascade=CascadeType.MERGE)
 	private Set<DuAnTeam1> duAn = new HashSet<DuAnTeam1>(0);
 	
 	

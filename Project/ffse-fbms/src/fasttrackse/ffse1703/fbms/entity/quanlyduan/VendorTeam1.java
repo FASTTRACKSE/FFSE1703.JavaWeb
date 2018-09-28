@@ -41,7 +41,7 @@ public class VendorTeam1 {
 	
 
 
-	@ManyToMany(fetch = FetchType.EAGER,mappedBy="Vendor",targetEntity=DuAnTeam1.class)
+	@ManyToMany(fetch = FetchType.EAGER,mappedBy="vendor",targetEntity=DuAnTeam1.class)
 	private Set<DuAnTeam1> duAn;
 
 

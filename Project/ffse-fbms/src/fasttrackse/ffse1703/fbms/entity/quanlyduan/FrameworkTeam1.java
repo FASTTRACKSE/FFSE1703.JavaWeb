@@ -25,7 +25,7 @@ public class FrameworkTeam1 {
 	@Column(name = "is_delete")
 	private int is_delete;
 
-	@ManyToMany(fetch = FetchType.EAGER,mappedBy="Framework",targetEntity=DuAnTeam1.class)
+	@ManyToMany(fetch = FetchType.EAGER,mappedBy="framework",targetEntity=DuAnTeam1.class)
 	private Set<DuAnTeam1> duAn;
 
 	

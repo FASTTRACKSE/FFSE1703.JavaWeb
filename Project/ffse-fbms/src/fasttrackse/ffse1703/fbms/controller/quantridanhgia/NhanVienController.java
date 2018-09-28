@@ -129,7 +129,7 @@ public class NhanVienController {
 
 	@RequestMapping("/nhanviendanhgia/view/{id}")
 	public String viewNhanVienDanhGia(Model model, @PathVariable int id) {
-		model.addAttribute("command", nhanVienService.getNhanVienDanhGia(id));
+		model.addAttribute("danhGia", nhanVienService.getNhanVienDanhGia(id));
 		return "QuanTriDanhGia/nhanvien/viewnhanviendanhgia";
 	}
 }

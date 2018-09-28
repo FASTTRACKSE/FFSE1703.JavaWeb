@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fasttrackse.ffse1703.fbms.dao.quanlyduan.DuAnTeam1Dao;
 import fasttrackse.ffse1703.fbms.entity.quanlyduan.DuAnTeam1;
+import fasttrackse.ffse1703.fbms.entity.quanlyduan.KhachHangTeam1;
 
 
 @Service
@@ -58,8 +59,8 @@ public class DuAnTeam1ServiceImpl implements DuAnTeam1Service {
 
 	@Override
 	@Transactional
-	public List<DuAnTeam1> findAll(Integer offset, Integer maxResult) {
-		return this.duAnTeam1Dao.findAll(offset, maxResult);
+	public List<DuAnTeam1> findAll(Integer offset, Integer maxResult,String search) {
+		return this.duAnTeam1Dao.findAll(offset, maxResult,search);
 		}
 
 	@Override
@@ -67,6 +68,13 @@ public class DuAnTeam1ServiceImpl implements DuAnTeam1Service {
 	public int count() {
 		return duAnTeam1Dao.count();
 	}
+	
+	@Override
+	@Transactional
+	public List<DuAnTeam1>getAll() {
+		return this.duAnTeam1Dao.getAll();
+	}
+
 
 	
 }

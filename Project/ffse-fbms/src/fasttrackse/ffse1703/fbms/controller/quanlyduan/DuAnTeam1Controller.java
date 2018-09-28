@@ -3,6 +3,7 @@ package fasttrackse.ffse1703.fbms.controller.quanlyduan;
 import java.beans.PropertyEditorSupport;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -89,12 +90,36 @@ public class DuAnTeam1Controller {
 	}
 
 	@RequestMapping(value = "/list/{page}")
-	public String listDuAn(Model model, @PathVariable("page") int page) {
+	public String listDuAn(Model model, @PathVariable("page") int page, HttpServletRequest request) {
+		String maDuanSearch = " and maDuAn = '" + request.getParameter("maDuAn") + "'";
+		if (request.getParameter("maDuAn") == null || request.getParameter("maDuAn").equals("0")) {
+			maDuanSearch = "";
+		}
+		String maKhachHangSearch = " and khachHang.makh = '" + request.getParameter("makh") + "'";
+		if (request.getParameter("makh") == null || request.getParameter("makh").equals("0")) {
+			maKhachHangSearch = "";
+		}
+		String maPhongBanSearch = " and phongBan.maPhongBan = '" + request.getParameter("maPhongBan") + "'";
+		if (request.getParameter("maPhongBan") == null || request.getParameter("maPhongBan").equals("0")) {
+			maPhongBanSearch = "";
+		}
+		String trangThaiSearch = " and trangThai.maTrangThai = '" + request.getParameter("maTrangThai") + "'";
+		if (request.getParameter("maTrangThai") == null || request.getParameter("maTrangThai").equals("0")) {
+			trangThaiSearch = "";
+		}
+		String search = maDuanSearch + maKhachHangSearch + maPhongBanSearch + trangThaiSearch;
+		
 		int start = (page - 1) * perPage;
-		List<DuAnTeam1> list = duAnTeam1Service.findAll(start, perPage);
+		List<DuAnTeam1> list = duAnTeam1Service.findAll(start, perPage, search);
+		
 		model.addAttribute("list", list);
 		model.addAttribute("total", totalPage(perPage));
 		model.addAttribute("page", page);
+		model.addAttribute("duan", duAnTeam1Service.getAll());
+		model.addAttribute("khachHang", khachHangTeam1Service.getAll());
+		model.addAttribute("phongBan", phongBanService.findAll());
+		model.addAttribute("trangThai", trangThaiTeam1Service.getAll());
+		
 		return "QuanLyDuAn/DuAn/list";
 	}
 
@@ -125,7 +150,7 @@ public class DuAnTeam1Controller {
 		System.out.println(duAn.getpM().getMaNhanVien());
 		int checkTen = duAnTeam1Service.getName(duAn.getTenDuAn());
 		if (checkTen >= 1) {
-			redirectAttributes.addFlashAttribute("message", "<script>alert('Tên dự án đã tồn tại.');</script>");
+			redirectAttributes.addFlashAttribute("message", "<script>alert('TÃªn dá»± Ã¡n Ä‘Ã£ tá»“n táº¡i.');</script>");
 			getData(model);
 			return "redirect:/qlda/DuAn/add_form";
 		}
@@ -136,7 +161,7 @@ public class DuAnTeam1Controller {
 				return "redirect:list";
 
 			} else {
-				redirectAttributes.addFlashAttribute("message", "<script>alert('Mã dự án đã tồn tại.');</script>");
+				redirectAttributes.addFlashAttribute("message", "<script>alert('MÃ£ dá»± Ã¡n Ä‘Ã£ tá»“n táº¡i.');</script>");
 				getData(model);
 				return "redirect:/qlda/DuAn/add_form";
 			}
@@ -186,7 +211,7 @@ public class DuAnTeam1Controller {
 	}
 
 	@RequestMapping(value = "selectPhongBan/{phongBan}", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
-	@ResponseBody // khi return ko trả về trang jsp mà  trả về code html
+	@ResponseBody // khi return ko tráº£ vá»� trang jsp mÃ Â  tráº£ vá»� code html
 	public String select(@PathVariable String phongBan,Model model) {
 		List<HoSoNhanVienTeam1> listNhanVien = hoSoNhanVienTeam1Service.findAll(phongBan);
 
@@ -209,7 +234,7 @@ public class DuAnTeam1Controller {
 
 	}
 
-	/////////////////////////////////////////// PHÂN CÔNG NV
+	/////////////////////////////////////////// PHÃ‚N CÃ”NG NV
 
 	@RequestMapping(value = { "/PhanCongNhienVu/create/{maDuAn}" })
 	public String phanCongNhiemVu(@PathVariable("maDuAn") String maDuAn, Model model) {

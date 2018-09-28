@@ -41,28 +41,29 @@
 													<label class="col-md-3 label-control"> Kỷ luật công
 														việc </label>
 													<div class="col-md-9">
-														<form:label cssClass="form-control" path="kyLuatCongViec" />
+														<label>${danhGia.kyLuatCongViec }</label>
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-md-3 label-control">Tinh thần làm
 														việc</label>
 													<div class="col-md-9">
-														<form:label cssClass="form-control" path="tinhThanLamViec" />
+														<label>${danhGia.tinhThanLamViec }</label>
 													</div>
 												</div>
 
 												<div class="form-group row">
 													<label class="col-md-3 label-control">Khối lượng
 														công việc đạt được</label>
-													<form:label cssClass="form-control"
-														path="khoiLuongCongViec" />
+													<div class="col-md-3">
+														<label>${danhGia.khoiLuongCongViec }</label>
+													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-md-3 label-control">Kết quả công
 														việc đạt được</label>
 													<div class="col-md-9">
-														<form:label cssClass="form-control" path="ketQuaCongViec" />
+														<label>${danhGia.ketQuaCongViec }</label>
 													</div>
 												</div>
 
@@ -70,28 +71,28 @@
 													<label class="col-md-3 label-control">Kỹ năng tích
 														lũy</label>
 													<div class="col-md-9">
-														<form:label readonly="readonly" cssClass="form-control"
-															path="kyLuatCongViec" />
+														<label>${danhGia.kyNangTichLuy }</label>
 													</div>
 												</div>
 
 												<div class="form-group row">
 													<label class="col-md-3 label-control">Định hướng</label>
 													<div class="col-md-9">
-														<form:label cssClass="form-control" path="dinhHuong" />
+														<label>${danhGia.dinhHuong }</label>
 													</div>
 												</div>
 
 												<div class="form-group last">
 													<label class="col-md-3 label-control">Xếp loại</label>
 													<div class="col-md-9">
-														<form:label cssClass="form-control" path="xepLoai" />
+														<label>${danhGia.xepLoai }</label>
 													</div>
 												</div>
-												<div class="form-actions">
-													<a href="<c:url value="/quantridanhgia/danhgianhanvien/"/>"
-														class="btn btn-danger btn-min-width mr-1 mb-1">Trở về</a>
-												</div>
+											</div>
+											<div class="form-actions">
+												<a
+													href="<c:url value="/quantridanhgia/nhanvien/nhanviendanhgia"/>"
+													class="btn btn-danger btn-min-width mr-1 mb-1">Trở về</a>
 											</div>
 										</form:form>
 									</div>

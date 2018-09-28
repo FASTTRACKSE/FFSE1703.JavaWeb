@@ -44,7 +44,7 @@
 													<label for="roundText">Mã Nhân Viên</label>
 													<form:input path="maNV" type="text"
 														class="form-control round" readonly="true" />
-													<form:errors path="maNV" cssStyle="color:red;display:block"></form:errors>
+													<form:errors path="maNV" cssStyle="color:red;display:block"/>
 												</div>
 											</div>
 											<div class="col-xl-4 col-lg-6 col-md-12 mb-1">
@@ -60,7 +60,7 @@
 														<form:option value="Vợ">Vợ</form:option>
 													</form:select>
 													<form:errors path="quanHe"
-														cssStyle="color:red;display:block"></form:errors>
+														cssStyle="color:red;display:block"/>
 												</div>
 											</div>
 											<div class="col-xl-4 col-lg-6 col-md-12 mb-1">
@@ -69,7 +69,7 @@
 													<form:input path="hoTen" type="text" id="roundText"
 														class="form-control round" />
 													<form:errors path="hoTen"
-														cssStyle="color:red;display:block"></form:errors>
+														cssStyle="color:red;display:block"/>
 												</div>
 											</div>
 											<div class="col-xl-4 col-lg-6 col-md-12 mb-1">
@@ -78,7 +78,7 @@
 													<form:input path="queQuan" type="text" id="roundText"
 														class="form-control round" />
 													<form:errors path="queQuan"
-														cssStyle="color:red;display:block"></form:errors>
+														cssStyle="color:red;display:block"/>
 												</div>
 											</div>
 											<div class="col-xl-4 col-lg-6 col-md-12 mb-1">
@@ -87,7 +87,7 @@
 													<form:input path="noiOHienNay" type="text" id="roundText"
 														class="form-control round" />
 													<form:errors path="noiOHienNay"
-														cssStyle="color:red;display:block"></form:errors>
+														cssStyle="color:red;display:block"/>
 												</div>
 											</div>
 											<div class="col-xl-4 col-lg-6 col-md-12 mb-1">
@@ -96,7 +96,7 @@
 													<form:input path="ngheNghiep" type="text" id="roundText"
 														class="form-control round" />
 													<form:errors path="ngheNghiep"
-														cssStyle="color:red;display:block"></form:errors>
+														cssStyle="color:red;display:block"/>
 												</div>
 											</div>
 											<div class="col-xl-4 col-lg-6 col-md-12 mb-1">
@@ -104,7 +104,7 @@
 													<label for="roundText">SDT</label>
 													<form:input path="sdt" type="text" id="roundText"
 														class="form-control round" />
-													<form:errors path="sdt" cssStyle="color:red;display:block"></form:errors>
+													<form:errors path="sdt" cssStyle="color:red;display:block"/>
 												</div>
 											</div>
 											<div class="col-xl-12 col-lg-6 col-md-12 mb-1">

@@ -68,7 +68,7 @@ public class GiaDinhPikalongController {
 
 	@RequestMapping("/viewOneGiaDinh/{maNV}")
 	public String viewOneGiaDinh(@PathVariable String maNV, Model model) {
-		//model.addAttribute("hosonhanvien", this.hoSoNhanVienPikalongService.getHoSoNhanVienById(maNV));
+		model.addAttribute("hosonhanvien", this.hoSoNhanVienPikalongService.getEdit(maNV));
 		model.addAttribute("viewOne", this.giaDinhPikalongService.viewOne(maNV));
 		model.addAttribute("maNv", maNV);
 		return "QuanTriNhanSuPikalong/QuanLiGiaDinh/viewOneGiaDinhPikalong";

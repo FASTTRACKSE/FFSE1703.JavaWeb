@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.BangCapPikalong;
 import fasttrackse.ffse1703.fbms.service.quantrinhansupikalong.BangCapPikalongService;
+import fasttrackse.ffse1703.fbms.service.quantrinhansupikalong.HoSoNhanVienPikalongService;
 
 @Controller
 @RequestMapping(value = "/QuanTriNhanSuPikalong/QuanLiBangCap")
@@ -36,6 +37,8 @@ public class BangCapPikalongController {
 	@Autowired
 	private BangCapPikalongService bangCapPikalongService;
 
+	@Autowired
+	private HoSoNhanVienPikalongService hoSoNhanVienPikalongService;
 
 	public void setBangCapPikalongService(BangCapPikalongService bangCapPikalongService) {
 		this.bangCapPikalongService = bangCapPikalongService;
@@ -73,6 +76,7 @@ public class BangCapPikalongController {
 	
 	@RequestMapping("/viewOneBangCap/{maNV}")
 	public String viewOneBangCap( @PathVariable String maNV,Model model) {
+		model.addAttribute("hosonhanvien", this.hoSoNhanVienPikalongService.getEdit(maNV));
 		model.addAttribute("viewOne",this.bangCapPikalongService.viewOne(maNV));
 		model.addAttribute("maNv", maNV);
 		return "QuanTriNhanSuPikalong/QuanLiBangCap/viewOneBangCapPikalong";

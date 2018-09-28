@@ -5,8 +5,11 @@
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 <div class="app-content content container-fluid">
 	<div class="content-wrapper">
-		<h3 class="content-header-title mb-0">Danh sách Gia Đình Của Nhân
+		<h3 class="content-header-title mb-0">Gia Đình Của Nhân
 			Viên</h3>
+		<h4>${hosonhanvien.hoTenNv}</h4>
+		<p>Chức Danh: ${hosonhanvien.maChucDanh } // Phòng:
+			${hosonhanvien.maPhongBan }</p>
 		<div class="row breadcrumbs-top">
 			<div class="breadcrumb-wrapper col-xs-12">
 				<ol class="breadcrumb">
@@ -35,7 +38,6 @@
 					</tr>
 				</thead>
 				<tbody>
-					<h1>${hosonhanvien.hoTenNv }</h1>
 					<c:forEach var="giadinh" items="${viewOne}">
 						<tr>
 							<td>${giadinh.hoTen}</td>

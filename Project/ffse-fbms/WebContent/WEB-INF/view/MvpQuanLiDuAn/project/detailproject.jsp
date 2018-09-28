@@ -14,7 +14,7 @@
 		<!-- Path -->
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">Chỉnh sửa dự án</h3>
+				<h3 class="content-header-title mb-0">Chi tiết dự án</h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
@@ -34,7 +34,7 @@
 		<a style="float: right; margin: 0px 10px 10px 0px"
 			class="btn btn-warning round btn-min-width mr-1 mb-1"
 			href="<c:url value="/mvpquanliduan/project/show-form-edit/${project.idProject}" />"
-			title=""><i class="ft-edit">Chi tiết Dự án</i></a> <br>
+			title=""><i class="ft-edit">Chỉnh sửa Dự án</i></a> <br>
 		<!-- End Path -->
 		<div class="content-body">
 			<div class="x_panel">
@@ -119,41 +119,18 @@
 
 							<tr>
 								<th>Kĩ thuật</th>
+									
 
-								<c:if test="${project.technical != null}">
-									<td><c:forEach items="${project.technical }"
-											var="technical">
+								<td><c:forEach items="${project.technical }"
+										var="technical">
+										
+											
 									- ${technical.nameTechnical} <br>
-										</c:forEach></td>
-								</c:if>
-								<c:if test="${project.technical == null}">
-									<td>
-										<p style="color: red;">chưa có kĩ thuật</p> <br>
-									</td>
-								</c:if>
-							</tr>
-							<tr>
-								<th colspan="2" style="text-align: center; background: #ADD8E6"><h3>Vai trò dự án</h3></th>
+									</c:forEach></td>
 
-							</tr>
-							<tr>
-								<th>Technical lead</th>
-								<td></td>
-							</tr>
-							<tr>
-								<th>Tem lead</th>
-								<td></td>
-							</tr>
-							<tr>
-								<th>Developer</th>
-
-								<td></td>
+									
 							</tr>
 
-							<tr>
-								<th>Tester</th>
-
-							</tr>
 						</tbody>
 					</table>
 					<c:if test="${success != null }">

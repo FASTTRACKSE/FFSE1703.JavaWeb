@@ -112,11 +112,11 @@
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<label for="projectinput5">PM*</label>
+									<label for="projectinput5">PM* </label>
 									<form:errors path="pm.maNv" cssClass="error" />
 									<form:select multiple="single" path="pm.maNv"
 										class="form-control" id="idPm" name="pm">
-										
+										<option value="${projects.pm.maNv }">${projects.pm.hoTenNv }</option>
 									</form:select>
 								</div>
 							</div> 
@@ -262,33 +262,25 @@
 	var demo5 = $('select[name="vendor"]').bootstrapDualListbox();
 </script>
 <script>
-window.onload = myFunction();
-function myFunctionOnload() {
-	myFunction()
-	
-}
+
 </script>
 
 <script>
 function myFunction() {
 	
 	var maPhongBan = $("#idPhongBan").val();
-	if (maPhongBan == '') {
-
+	
 		$('#idPm option').remove();
-	} else {
-		$('#idPm').prop('disabled', false);
-		$('#idPm option').remove();
-	}
+	
 
 	$.ajax({
 		url : "/ffse-fbms/mvpquanliduan/project/get-pm/" + maPhongBan,
 		dataType : "json",
 		success : function(data) {
-			alert(maPhongBan);
+			
 	 		$('#idPm').append($('<option>', {
 				value : '',
-				text : 'Chọn PM'
+				text : '--Chọn PM--'
 			}));
 
 			for (var i = 0; i < data.length; i++) {

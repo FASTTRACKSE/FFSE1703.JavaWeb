@@ -87,7 +87,6 @@ public class Projects implements Serializable {
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "id_pm", referencedColumnName = "MaNv", insertable = true, updatable = true)
 	@NotNull(message="Bạn chưa PM")
-	@Value("#{new Integer('${CONNECTION.TIME.OUT}')}")
 	private HoSoNhanVienPikalong pm;
 	
 	// bi-directional many-to-many association to Technical

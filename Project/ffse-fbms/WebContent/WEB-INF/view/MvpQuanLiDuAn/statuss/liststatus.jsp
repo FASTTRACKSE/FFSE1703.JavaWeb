@@ -49,7 +49,6 @@
 							<tr>
 								<th style="text-align: center">Stt</th>
 								<th style="width: 40%; text-align: center">Trạng thái</th>
-								<th style="text-align: center">Trạng thái hiển thị</th>
 								<th style="text-align: center">Chức năng</th>
 							</tr>
 						</thead>
@@ -58,11 +57,8 @@
 								<tr>
 
 									<th scope="row">${count.count  }</th>
-									<td style="text-align: left">${status.nameStatus}</td>
-									<td style="text-align: left">
-										<button id="content" class="btn" width= "50px"
-											style="background: ${status.color};width: 100px">${status.nameStatus}</button>
-									</td>
+									<td style= "color: ${status.color}">${status.nameStatus}</td>
+									
 									<td><a
 										style="width: 50px; high: 50px; border-color: #00E5EE; border-radius: 100%;"
 										class="btn btn-outline-info "

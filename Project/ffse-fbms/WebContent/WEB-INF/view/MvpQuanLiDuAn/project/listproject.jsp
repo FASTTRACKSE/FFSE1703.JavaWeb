@@ -71,9 +71,7 @@
 									<td style="text-align: left">${project.nameProject}</td>
 									<td style="text-align: left">${project.khachHang.fullname}</td>
 									<td style="text-align: left">${project.pm.hoTenNv}</td>
-									<td style="text-align: left"><button id="content"
-											class="btn" width="50px"
-											style="background: ${project.status.color};width: 100px">${project.status.nameStatus}</button></td>
+									<td style="text-align: left;color: ${project.status.color}">${project.status.nameStatus}</td>
 
 									<td><a class="btn btn-outline-info  "
 										href="<c:url value="/mvpquanliduan/project/detail-project/${project.idProject}" />"

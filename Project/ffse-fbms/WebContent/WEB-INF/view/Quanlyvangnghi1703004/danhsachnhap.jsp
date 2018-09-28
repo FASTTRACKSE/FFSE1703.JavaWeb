@@ -21,8 +21,9 @@
 						<table class="table mb-0">
 							<thead>
 				<tr>
+					<th>STT</th>
 					<th >Mã đơn</th>
-					<th ><spring:message code="label.maNhanVien" /></th>
+					<th >Mã nhân viên</th>
 					<th >Ngày bắt đầu</th>
 					<th >Ngày kết thúc</th>
 					<th >Lý do</th>
@@ -33,8 +34,9 @@
 				</tr>
 				</thead>
 				<tbody>
-			<c:forEach var="nv" items="${danhsachnhap}">
-					<tr>
+			<c:forEach var="nv" items="${danhsachnhap}" varStatus="count"   >
+                        <tr>
+                     <td scope="row">${count.count}</td>
 					<td>${nv.id}</td>
 					<td>${nv.ngayNghi.maNhanVien}</td>
 					<td>${nv.ngayBatDau}</td>

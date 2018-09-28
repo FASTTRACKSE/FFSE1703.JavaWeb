@@ -3,6 +3,7 @@ package fasttrackse.ffse1703.fbms.service.qlvn;
 import java.util.List;
 
 import fasttrackse.ffse1703.fbms.entity.qlvn.LyDoXinNghi;
+import fasttrackse.ffse1703.fbms.entity.qlvn.NgayNghi;
 import fasttrackse.ffse1703.fbms.entity.qlvn.ThongKeDonXinPhep;
 import fasttrackse.ffse1703.fbms.entity.qlvn.TrangThai;
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
@@ -12,7 +13,17 @@ public interface QuanLyVangNghiService {
 
 	public List<ThongKeDonXinPhep> danhSachXinNghiDuyet();
 
-	public List<ThongKeDonXinPhep> danhSachXinNghiNhap(int page);
+	public List<ThongKeDonXinPhep> danhSachXinNghiNhap();
+	
+	public List<ThongKeDonXinPhep> findAllForPaging(int startPosition, int maxResult);
+	
+    public List<ThongKeDonXinPhep> findAllForPagingCD(int startPosition, int maxResult);
+	
+	public List<ThongKeDonXinPhep> findAllForPagingD(int startPosition, int maxResult);
+	
+	public List<ThongKeDonXinPhep> findAllForPagingTC(int startPosition, int maxResult);
+	
+	public List<NgayNghi> findAllForPagingNN(int startPosition, int maxResult);
 	
 	public long totalRecords();
 	
@@ -37,5 +48,11 @@ public interface QuanLyVangNghiService {
 	public void delete(int id);
 	
 	public void updateNhap(ThongKeDonXinPhep thongKeDonXinPhep) ;
+	
+    public List<NgayNghi> danhSachNgayNghi();
+	
+	public NgayNghi findByIdDateOff(int id);
+	
+	public void deleteDateOff(int id); 
 }
 

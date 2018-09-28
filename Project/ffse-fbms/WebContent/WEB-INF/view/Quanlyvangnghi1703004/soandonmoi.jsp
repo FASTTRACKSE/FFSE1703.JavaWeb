@@ -18,6 +18,8 @@
 							<div>
 								<label>Mã đơn</label>
 								<form:input class="form-control round" path="id" readonly="true" value="3" />
+								 <form:hidden path="ngayNghi.soNgayDaNghi"/>
+							<form:hidden path="ngayNghi.soNgayConLai"/> 
 							</div>
 
 							<div>
@@ -30,6 +32,7 @@
 								
 								<label>Ngày bắt đầu</label>
 								<fieldset class="form-group position-relative">
+								<form:errors style="color:red" path="ngayBatDau" />
 									<form:input type="date" class="form-control round" id="from"
 									onchange="myFunction()"  path="ngayBatDau"  />
 									<div class="form-control-position">
@@ -148,17 +151,18 @@
 										<form:option value="${ld.id}" label="${ld.lyDo}" />
 									</c:forEach>
 								</form:select>
-							<%-- 	<form:errors style="color:red" path="lyDo.id" /> --%>
 							</div>
 							
 							<div>
 								<label>Số ngày nghỉ</label>
 								<form:input type="text" class="form-control round" id="total"  readonly="true" path="soNgayNghi" />
+								<form:errors style="color:red" path="soNgayNghi"  />
 							</div>
 							
 							<div>
 								<label>Ngày kết thúc</label>
 								<fieldset class="form-group position-relative">
+								 <form:errors style="color:red" path="ngayKetThuc" />
 									<form:input type="date" class="form-control round" id="to"
 									onchange="count()"  path="ngayKetThuc"  />
 									<div class="form-control-position">

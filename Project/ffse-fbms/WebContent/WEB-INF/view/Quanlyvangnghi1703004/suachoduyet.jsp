@@ -15,8 +15,8 @@
 				<form:form method="POST" modelAttribute="suachoduyet">
 					<div class="row">
 						<div class="form-group col-sm-6">
-							<%-- <form:hidden path="ngayNghi.soNgayDaNghi"/>
-							<form:hidden path="ngayNghi.soNgayConLai"/> --%>
+							 <form:hidden path="ngayNghi.soNgayDaNghi"/>
+							<form:hidden path="ngayNghi.soNgayConLai"/> 
 							<div>
 								<label>Mã đơn</label>
 								<form:input class="form-control round" path="id" readonly="true" />
@@ -62,6 +62,7 @@
 
 								<label>Số ngày nghỉ</label>
 								<form:input class="form-control round" path="soNgayNghi" />
+								<form:errors style="color:red" path="soNgayNghi"  />
 							</div>
 							<div>
 								<label>Ngày kết thúc</label>

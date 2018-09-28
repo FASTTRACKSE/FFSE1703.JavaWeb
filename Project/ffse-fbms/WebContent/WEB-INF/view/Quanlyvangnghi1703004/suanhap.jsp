@@ -17,7 +17,8 @@
 						<div class="form-group col-sm-6">
 							<div>
 								<label>Mã đơn</label>
-
+                              <form:hidden path="ngayNghi.soNgayDaNghi"/>
+						    	<form:hidden path="ngayNghi.soNgayConLai"/> 
 								<form:input class="form-control round" path="id" readonly="true" />
 
 							</div>
@@ -34,7 +35,7 @@
 							<div>
 								<label>Ngày bắt đầu</label>
 								<fieldset class="form-group position-relative">
-							
+							 <form:errors style="color:red" path="ngayBatDau" />
 									<form:input type="date" class="form-control round" id="from"
 									onchange="myFunction()"  path="ngayBatDau"  />
 									<div class="form-control-position">
@@ -159,11 +160,12 @@
 							<div>
 								<label>Số ngày nghỉ</label>
 								<form:input type="text" class="form-control round" id="total"  readonly="true" path="soNgayNghi" />
+								<form:errors style="color:red" path="soNgayNghi"  />
 							</div>
 							<div>
 								<label>Ngày kết thúc</label>
 								<fieldset class="form-group position-relative">
-						<%-- 		<form:errors style="color:red" path="ngayKetThuc" /> --%>
+					         <form:errors style="color:red" path="ngayKetThuc" />
 									<form:input type="date" class="form-control round" id="to"
 									onchange="count()"  path="ngayKetThuc"  />
 									<div class="form-control-position">

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import fasttrackse.ffse1703.fbms.dao.qlvn.QuanLyVangNghiDao;
 import fasttrackse.ffse1703.fbms.entity.qlvn.LyDoXinNghi;
+import fasttrackse.ffse1703.fbms.entity.qlvn.NgayNghi;
 import fasttrackse.ffse1703.fbms.entity.qlvn.ThongKeDonXinPhep;
 import fasttrackse.ffse1703.fbms.entity.qlvn.TrangThai;
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
@@ -84,8 +85,41 @@ public class QuanLyVangNghiServiceIpml implements QuanLyVangNghiService {
 		return this.quanLyVangNghiDao.totalRecords();
 	}
 
-	public List<ThongKeDonXinPhep> danhSachXinNghiNhap(int page) {
-		return this.quanLyVangNghiDao.danhSachXinNghiNhap(page);
+	public List<ThongKeDonXinPhep> danhSachXinNghiNhap() {
+		return this.quanLyVangNghiDao.danhSachXinNghiNhap();
+	}
+
+	public List<NgayNghi> danhSachNgayNghi() {
+		return this.quanLyVangNghiDao.danhSachNgayNghi();
+	}
+
+	public NgayNghi findByIdDateOff(int id) {
+		return this.quanLyVangNghiDao.findByIdDateOff(id);
+	}
+
+	public void deleteDateOff(int id) {
+		quanLyVangNghiDao.deleteDateOff(id);
+		
+	}
+
+	public List<ThongKeDonXinPhep> findAllForPaging(int startPosition, int maxResult) {
+		return this.quanLyVangNghiDao.findAllForPaging(startPosition, maxResult);
+	}
+
+	public List<ThongKeDonXinPhep> findAllForPagingCD(int startPosition, int maxResult) {
+		return this.quanLyVangNghiDao.findAllForPagingCD(startPosition, maxResult);
+	}
+
+	public List<ThongKeDonXinPhep> findAllForPagingD(int startPosition, int maxResult) {
+		return this.quanLyVangNghiDao.findAllForPagingD(startPosition, maxResult);
+	}
+
+	public List<ThongKeDonXinPhep> findAllForPagingTC(int startPosition, int maxResult) {
+		return this.quanLyVangNghiDao.findAllForPagingTC(startPosition, maxResult);
+	}
+
+	public List<NgayNghi> findAllForPagingNN(int startPosition, int maxResult) {
+		return this.quanLyVangNghiDao.findAllForPagingNN(startPosition, maxResult);
 	}
 	
 	

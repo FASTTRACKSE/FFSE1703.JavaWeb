@@ -1,8 +1,14 @@
 package fasttrackse.ffse1703.fbms.entity.quanlyduan;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
@@ -17,10 +23,13 @@ public class PhongBanTeam1 {
 	@NotEmpty
 	@Column(name = "ten_phong_ban")
 	private String tenPhongBan;
+	
+
 
 	public String getMaPhongBan() {
 		return maPhongBan;
 	}
+
 
 	public void setMaPhongBan(String maPhongBan) {
 		this.maPhongBan = maPhongBan;

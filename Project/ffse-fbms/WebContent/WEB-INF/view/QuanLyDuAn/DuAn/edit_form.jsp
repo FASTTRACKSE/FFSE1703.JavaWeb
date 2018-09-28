@@ -20,6 +20,7 @@
 					</div>
 				</div>
 			</div>
+			
 		</div>
 	</div>
 	<div class="row">
@@ -48,25 +49,26 @@
 
 		<div class="form-group col-sm-6">
 			<label>Mô tả dự án</label>
-			<form:textarea path="moTaDuAn" cssClass="form-control round" />
+			<form:textarea path="moTaDuAn" cssClass="form-control round"  style="height:calc(2.95rem - 2px);"/>
 			<form:errors path="moTaDuAn" cssStyle="color: red"></form:errors>
 		</div>
+		
 		<c:set var="khang" value="${duAn.khachHang.makh }"></c:set>
 		<div class="form-group col-sm-6">
 			<label>Tên Khách Hàng</label>
-			<form:select path="KhachHang" cssClass="form-control round"
+			<form:select path="khachHang" cssClass="form-control round"
 				mutiple="mutiple">
 				<option value=""></option>
 				<c:forEach items="${khachhang}" var="kh">
 					<option value="${kh.makh }"
-						<c:if test="${kh.makh == khang }" >selected="selected"</c:if>>${kh.tenkh }</option>
+						<c:if test="${kh.makh == khang }" >selected="selected"</c:if>>${kh.tenkh}</option>
 				</c:forEach>
 				<form:errors path="KhachHang" cssStyle="color: red"></form:errors>
 			</form:select>
 		</div>
 		<div class="form-group col-sm-6">
 			<label>Trạng thái</label>
-			<form:select path="TrangThai" cssClass="form-control round"
+			<form:select path="trangThai" cssClass="form-control round"
 				mutiple="true">
 				<c:forEach items="${TrangThai}" var="tt">
 					<option value="${tt.maTrangThai }">${tt.tenTrangThai}</option>
@@ -126,6 +128,16 @@
 				</c:forEach>
 			</form:select>
 		</div>
+	<div class="form-group col-sm-6">
+			<label>Ngôn ngữ</label>
+
+			<form:select path="ngonNgu" cssClass="form-control round"
+				mutiple="true">
+				<c:forEach items="${NgonNgu}" var="vd">
+					<option value="${vd.maNn }">${vd.tenNn }</option>
+				</c:forEach>
+			</form:select>
+		</div>
 		<div class="form-group col-sm-6">
 			<label>Start Date</label>
 			<form:input path="startDate" cssClass="form-control round"
@@ -139,6 +151,9 @@
 			<form:errors path="endDate" cssStyle="color: red"></form:errors>
 			<div class="help-block"></div>
 		</div>
+
+
+
 
 		<div class="col-sm-12 text-center">
 			<button type="submit" class="btn btn-success">Lưu thông tin</button>

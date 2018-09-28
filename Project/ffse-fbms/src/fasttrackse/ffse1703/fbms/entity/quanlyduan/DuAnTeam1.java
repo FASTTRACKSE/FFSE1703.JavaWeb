@@ -16,11 +16,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
+
+import fasttrackse.ffse1703.fbms.entity.security.PhongBan;
 
 @Entity
 @Table(name="du_an")
@@ -29,17 +29,17 @@ public class DuAnTeam1 implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@NotEmpty
+//	@NotEmpty
 	@Column(name="ma_du_an")
 	private String maDuAn;
 	
 	@Column(name="ten_du_an")
-	@NotEmpty
+//	@NotEmpty
 	@Length(min=5,max=200)
 	private String tenDuAn;
 	
 	@Column(name="mo_ta_du_an")
-	@NotEmpty
+//	@NotEmpty
 	private String moTaDuAn;
 	
 
@@ -49,96 +49,145 @@ public class DuAnTeam1 implements Serializable {
 	@Column (name="start_date")
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
-	@NotNull
+//	@NotNull
 	private Date startDate;
 	
 	@Column (name="end_date")
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	@NotNull
+//	@NotNull
 	private Date endDate;
 	
 	@ManyToMany(targetEntity = DatabaseTeam1.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "database_du_an", joinColumns = {
 	@JoinColumn(name = "ma_du_an", referencedColumnName = "ma_du_an",  updatable = true,insertable=true) }, inverseJoinColumns = {
 	@JoinColumn(name = "ma_database", referencedColumnName = "ma_database", nullable = true, updatable = false,insertable=true) })
-	@NotEmpty
+//	@NotEmpty
 	private Set<DatabaseTeam1> database;
 
 	@ManyToMany(targetEntity = TechnicalTeam1.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "cong_nghe_du_an", joinColumns = {
 	@JoinColumn(name = "ma_du_an", referencedColumnName = "ma_du_an",  updatable = true,insertable=true) }, inverseJoinColumns = {
 	@JoinColumn(name = "ma_cong_nghe", referencedColumnName = "ma_cong_nghe", nullable = true, updatable = false,insertable=true) })
-	@NotEmpty
-	private Set<TechnicalTeam1> Technical;
+//	@NotEmpty
+	private Set<TechnicalTeam1> technical;
 	
 	@ManyToMany(targetEntity = FrameworkTeam1.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "framework_du_an", joinColumns = {
 	@JoinColumn(name = "ma_du_an", referencedColumnName = "ma_du_an",  updatable = true,insertable=true) }, inverseJoinColumns = {
 	@JoinColumn(name = "ma_framework", referencedColumnName = "ma_framework", nullable = true, updatable = false,insertable=true) })
-	@NotEmpty
-	private Set<FrameworkTeam1> Framework;
+//	@NotEmpty
+	private Set<FrameworkTeam1> framework;
 	
+	@ManyToMany(targetEntity = ProgramingLanguageTeam1.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable(name = "ngon_ngu_du_an", joinColumns = {
+	@JoinColumn(name = "ma_du_an", referencedColumnName = "ma_du_an",  updatable = true,insertable=true) }, inverseJoinColumns = {
+	@JoinColumn(name = "ma_ngon_ngu", referencedColumnName = "ma_ngon_ngu", nullable = true, updatable = false,insertable=true) })
+//	@NotEmpty
+	private Set<ProgramingLanguageTeam1> ngonNgu;
+
+
 	@ManyToMany(targetEntity = VendorTeam1.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "doi_tac_du_an", joinColumns = {
 	@JoinColumn(name = "ma_du_an", referencedColumnName = "ma_du_an",  updatable = true,insertable=true) }, inverseJoinColumns = {
 	@JoinColumn(name = "ma_doi_tac", referencedColumnName = "ma_doi_tac", nullable = true, updatable = false,insertable=true) })
-	@NotEmpty
-	private Set<VendorTeam1> Vendor;
+//	@NotEmpty
+	private Set<VendorTeam1> vendor;
 
-
-	public Set<VendorTeam1> getVendor() {
-		return Vendor;
-	}
-
-	public void setVendor(Set<VendorTeam1> vendor) {
-		Vendor = vendor;
-	}
-
-	public Set<FrameworkTeam1> getFramework() {
-		return Framework;
-	}
-
-	public void setFramework(Set<FrameworkTeam1> framework) {
-		Framework = framework;
-	}
 
 	@ManyToOne(fetch = FetchType.EAGER,cascade= CascadeType.ALL)
 	@JoinColumn(name="ma_khach_hang",referencedColumnName="ma_khach_hang", insertable=true, updatable=true)
-	@NotNull
-	private KhachHangTeam1 khachHang  ;
+//	@NotNull
+	private KhachHangTeam1 khachHang;
 	
 	@ManyToOne(fetch = FetchType.EAGER,cascade= CascadeType.ALL)
 	@JoinColumn(name="ma_tinh_trang",referencedColumnName="ma_tinh_trang", insertable=true, updatable=true)
-	@NotNull
-	private TrangThaiTeam1 TrangThai;
+//	@NotNull
+	private TrangThaiTeam1 trangThai;
 	
 	@ManyToOne(fetch = FetchType.EAGER,cascade= CascadeType.ALL)
 	@JoinColumn(name="ma_nghiep_vu",referencedColumnName="ma_nghiep_vu", insertable=true, updatable=true)
-	@NotNull
-	private DomainTeam1 Domain;	
+//	@NotNull
+	private DomainTeam1 domain;	
 	
-	public DomainTeam1 getDomain() {
-		return Domain;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="ma_phong_ban",referencedColumnName="ma_phong_ban", insertable=true, updatable=true)
+//	@NotNull
+	private PhongBan phongBan;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="ma_nhan_vien",referencedColumnName="ma_nhan_vien", insertable=true, updatable=true)
+//	@NotNull
+	private HoSoNhanVienTeam1 pM;
+	
+	@ManyToMany(targetEntity = HoSoNhanVienTeam1.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable(name = "nhiem_vu", joinColumns = {
+	@JoinColumn(name = "ma_du_an", referencedColumnName = "ma_du_an",  updatable = true,insertable=true) }, inverseJoinColumns = {
+	@JoinColumn(name = "ma_nhan_vien", referencedColumnName = "ma_nhan_vien", nullable = true, updatable = false,insertable=true) })
+//	@NotEmpty
+	private Set<HoSoNhanVienTeam1> nhiemVu;
+	
+	public Set<HoSoNhanVienTeam1> getNhiemVu() {
+		return nhiemVu;
+	}
+
+	public void setNhiemVu(Set<HoSoNhanVienTeam1> nhiemVu) {
+		this.nhiemVu = nhiemVu;
+	}
+
+	public Set<ProgramingLanguageTeam1> getNgonNgu() {
+		return ngonNgu;
+	}
+
+	public void setNgonNgu(Set<ProgramingLanguageTeam1> ngonNgu) {
+		this.ngonNgu = ngonNgu;
 	}
 	public Set<TechnicalTeam1> getTechnical() {
-		return Technical;
+		return technical;
 	}
 
 	public void setTechnical(Set<TechnicalTeam1> technical) {
-		Technical = technical;
+		this.technical = technical;
 	}
 
-	public void setDomain(DomainTeam1 domain) {
-		Domain = domain;
+	public Set<FrameworkTeam1> getFramework() {
+		return framework;
+	}
+
+	public HoSoNhanVienTeam1 getpM() {
+		return pM;
+	}
+
+	public void setpM(HoSoNhanVienTeam1 pM) {
+		this.pM = pM;
+	}
+
+	public void setFramework(Set<FrameworkTeam1> framework) {
+		this.framework = framework;
+	}
+
+	public Set<VendorTeam1> getVendor() {
+		return vendor;
+	}
+
+	public void setVendor(Set<VendorTeam1> vendor) {
+		this.vendor = vendor;
 	}
 
 	public TrangThaiTeam1 getTrangThai() {
-		return TrangThai;
+		return trangThai;
 	}
 
 	public void setTrangThai(TrangThaiTeam1 trangThai) {
-		TrangThai = trangThai;
+		this.trangThai = trangThai;
+	}
+
+	public DomainTeam1 getDomain() {
+		return domain;
+	}
+
+	public void setDomain(DomainTeam1 domain) {
+		this.domain = domain;
 	}
 
 	public KhachHangTeam1 getKhachHang() {
@@ -203,6 +252,23 @@ public class DuAnTeam1 implements Serializable {
 
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
+	}
+
+	public PhongBan getPhongBan() {
+		return phongBan;
+	}
+
+	public void setPhongBan(PhongBan phongBan) {
+		this.phongBan = phongBan;
+	}
+
+	@Override
+	public String toString() {
+		return "DuAnTeam1 [maDuAn=" + maDuAn + ", tenDuAn=" + tenDuAn + ", moTaDuAn=" + moTaDuAn + ", isDelete="
+				+ isDelete + ", startDate=" + startDate + ", endDate=" + endDate + ", database=" + database
+				+ ", technical=" + technical + ", framework=" + framework + ", ngonNgu=" + ngonNgu + ", vendor="
+				+ vendor + ", khachHang=" + khachHang + ", trangThai=" + trangThai + ", domain=" + domain
+				+ ", phongBan=" + phongBan + ", pM=" + pM + ", nhiemVu=" + nhiemVu + "]";
 	}
 
 }

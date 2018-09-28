@@ -32,6 +32,8 @@ public class PhongBan implements Serializable {
 	// bi-directional many-to-one association to HoSoNhanVien
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "phongBan")
 	private List<HoSoNhanVien> hoSoNhanViens;
+	
+	
 
 	public PhongBan() {
 	}

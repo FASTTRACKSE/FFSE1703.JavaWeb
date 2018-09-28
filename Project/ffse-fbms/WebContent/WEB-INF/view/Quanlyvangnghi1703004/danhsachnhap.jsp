@@ -22,7 +22,7 @@
 							<thead>
 				<tr>
 					<th >Mã đơn</th>
-					<th >Mã nhân viên</th>
+					<th ><spring:message code="label.maNhanVien" /></th>
 					<th >Ngày bắt đầu</th>
 					<th >Ngày kết thúc</th>
 					<th >Lý do</th>

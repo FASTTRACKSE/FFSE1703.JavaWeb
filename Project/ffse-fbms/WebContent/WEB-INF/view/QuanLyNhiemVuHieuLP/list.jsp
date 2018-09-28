@@ -86,14 +86,7 @@ th{ background-color: #2A2E30;
 					${messageSuccess}
 				</div>
 			</c:if>
-			<c:if test="${messageError ne null}">
-				<div class="alert alert-danger alert-dismissable" role="alert">
-					<button type="button" class="close" data-dismiss="alert">
-						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-					</button>
-					${messageError}
-				</div>
-			</c:if>
+		
 			<!-- End Show message -->
 			<div class="row">
 				<div class="col-xs-12">
@@ -198,21 +191,18 @@ th{ background-color: #2A2E30;
 										
 									</table>
 									<c:set scope="request" var="total" value="${total}" />
-									<% 	String query =  request.getQueryString();
-									// query = "maDuan=3&maNhanVien=8&IDtrangthai=0"
-										//String page = request.getParameter("page");
-									
+									<% 	
+										String cPage = request.getParameter("page");
+										String query =  "&maDuan="+request.getParameter("maDuan")+"&maNhanVien="+request.getParameter("maNhanVien")+"&IDtrangthai="+request.getParameter("IDtrangthai");
+										boolean search = !(request.getParameter("maDuan") == null);
+										// query = "maDuan=3&maNhanVien=8&IDtrangthai=0"
+										//if (cPage == null) {
+											query = search ? query : "";
+										//}
 										
-										if (query == null) {
-											query = "";
-										} else {
-											query = "&" + query;
-										}
-										
-										String firstPage = "?page=1" + query;
 									%>
 									<nav aria-label="Page navigation example">
-							<ul class="pagination">
+							<ul class="pagination" style="margin-left: 450px">
 								<li class="page-item"><a class="page-link" href="?page=1<%=query%>">First
 										Page</a></li>
 								<c:if test="${currentPage > 2}">
@@ -225,16 +215,16 @@ th{ background-color: #2A2E30;
 								</c:if>
 								<li class="page-item active"><a class="page-link"
 									href="?page=${currentPage}<%=query%>">${currentPage}</a></li>
-								<c:if test="${currentPage < lastPage}">
+								<c:if test="${currentPage < total}">
 									<li class="page-item"><a class="page-link"
 										href="?page=${currentPage+1}<%=query%>">${currentPage+1}</a></li>
 								</c:if>
-								<c:if test="${currentPage < lastPage - 1}">
+								<c:if test="${currentPage < total - 1}">
 									<li class="page-item"><a class="page-link"
 										href="?page=${currentPage+2}<%=query%>">${currentPage+2}</a></li>
 								</c:if>
 								<li class="page-item"><a class="page-link"
-									href="">Last Page</a></li>
+									href="?page=${total}<%=query%>">Last Page</a></li>
 							</ul>
 						</nav>
 								</div>

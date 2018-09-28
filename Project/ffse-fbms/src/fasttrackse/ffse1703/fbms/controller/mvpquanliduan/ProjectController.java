@@ -191,7 +191,7 @@ public class ProjectController {
 		binder.registerCustomEditor(KhachHang.class, "khachHang", new PropertyEditorSupport() {
 			@Override
 			public void setAsText(String text) throws IllegalArgumentException {
-				setValue(khachHangService.getById(Integer.parseInt(text)));
+				setValue(khachHangService.getById(text));
 			}
 		});
 		binder.registerCustomEditor(Domain.class, "domain", new PropertyEditorSupport() {

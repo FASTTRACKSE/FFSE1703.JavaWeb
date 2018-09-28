@@ -43,4 +43,10 @@ private NhiemVuDao nhiemVuDao;
 		nhiemVuDao.delete(id);
 	}
 
+	@Override
+	public List<Nhiemvu> getByMaNhanVien(String idNv) {
+		
+		return nhiemVuDao.getByMaNhanVien(idNv);
+	}
+
 }

@@ -39,6 +39,11 @@ public class NhiemVuDaoImpl implements NhiemVuDao {
 		Session session = this.sessionFactory.getCurrentSession();
 		return session.createQuery("from Nhiemvu where status =1 and projects.idProject='"+idProjects+"'", Nhiemvu.class).list();
 	}
+	@Override
+	public List<Nhiemvu> getByMaNhanVien(String idNv) {
+		Session session = this.sessionFactory.getCurrentSession();
+		return session.createQuery("from Nhiemvu where status = 1 and hoSoNhanVien.maNv='"+idNv+"'", Nhiemvu.class).list();
+	}
 
 	@Override
 	public void update(Nhiemvu nhiemVu) {

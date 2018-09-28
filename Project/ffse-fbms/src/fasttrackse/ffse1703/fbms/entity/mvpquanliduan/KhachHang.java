@@ -15,9 +15,8 @@ import javax.validation.constraints.Size;
 @Table(name = "qlda_khach_hang")
 public class KhachHang {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_customer", unique = true, nullable = false)
-	private int idKhachHang;
+	@Column(name = "id_customer")
+	private String idKhachHang;
 	@NotEmpty(message = "Họ tên không được để trống")
 	private String fullname;
 	@NotEmpty
@@ -32,11 +31,12 @@ public class KhachHang {
 	private int status;
 
 
-	public int getIdKhachHang() {
+
+	public String getIdKhachHang() {
 		return idKhachHang;
 	}
 
-	public void setIdKhachHang(int idKhachHang) {
+	public void setIdKhachHang(String idKhachHang) {
 		this.idKhachHang = idKhachHang;
 	}
 

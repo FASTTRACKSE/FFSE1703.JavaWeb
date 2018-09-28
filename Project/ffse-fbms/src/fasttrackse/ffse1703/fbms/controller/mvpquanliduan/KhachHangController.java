@@ -52,12 +52,12 @@ public class KhachHangController {
 		khachHang.setStatus(1);
 		khachHangService.add(khachHang);
 		;
-		redirectAttributes.addFlashAttribute("success", "<script>alert('Thêm thành công');</script>");
+		redirectAttributes.addFlashAttribute("success", "<script>alert('Thï¿½m thï¿½nh cï¿½ng');</script>");
 		return "redirect: list-khachhang";
 	}
 
 	@RequestMapping(value = "/show-form-edit/{id}")
-	public String showFormEdit(Model model, @PathVariable int id) {
+	public String showFormEdit(Model model, @PathVariable String id) {
 		KhachHang khachHang = khachHangService.getById(id);
 		model.addAttribute("khachHang", khachHang);
 		return "MvpQuanLiDuAn/khachhang/update_form";
@@ -75,7 +75,7 @@ public class KhachHangController {
 	}
 
 	@RequestMapping(value = "/delete/{id}")
-	public String delete(@PathVariable int id, final RedirectAttributes redirectAttributes) {
+	public String delete(@PathVariable String id, final RedirectAttributes redirectAttributes) {
 		KhachHang khachHang = khachHangService.getById(id);
 		khachHang.setStatus(0);
 		khachHangService.update(khachHang);

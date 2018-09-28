@@ -27,7 +27,11 @@
 			<div class="main-content">
 				<div class="row">
 					<form:form method="POST"  action="/ffse-fbms/mvpquanliduan/khachhang/update" modelAttribute="khachHang">
-					<form:hidden path="idKhachHang"/>
+					
+					<div class="form-group col-sm-6">
+						  	<label>Mã khách hàng</label>
+						  	<form:input class="form-control" path="idKhachHang" placeholder="Mã khách hàng" />
+						</div>
 						<div class="form-group col-sm-6">
 						  	<label>Tên khách hàng</label>
 						  	<form:input class="form-control" path="fullname" placeholder="Tên khách hàng" />
@@ -42,16 +46,21 @@
 						  	<form:input class="form-control" path="phone" placeholder="Phone" />
 						  
 						</div>
-						<div class="form-group col-sm-6">
-						  	<label>Giới tính</label>
-						  	<form:input class="form-control" path="gender" placeholder="Giới tính" />
-						  
-						</div>
+					
 						
 						<div class="form-group col-sm-6">
 						  	<label>Địa chỉ</label>
 						  	<form:input class="form-control" path="address" placeholder="Địa chỉ" />
 						  
+						</div>
+						<div class="form-group col-sm-12">
+							<label>Giới tính</label>
+							<form:radiobutton path="gender" value="Nam" />
+							Nam
+							<form:radiobutton path="gender" value="Nữ" />
+							Nữ
+
+							<form:errors path="gender" cssStyle="color: red"></form:errors>
 						</div>
 						
 						<div class="col-sm-12 text-center">

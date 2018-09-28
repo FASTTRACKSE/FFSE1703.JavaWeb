@@ -30,7 +30,7 @@ public class KhachHangDaoImpl implements KhachHangDao {
 	}
 
 	@Override
-	public KhachHang getById(int id) {
+	public KhachHang getById(String id) {
 		Session session = sessionFactory.getCurrentSession();
 		return session.get(KhachHang.class, id);
 	}
@@ -49,7 +49,7 @@ public class KhachHangDaoImpl implements KhachHangDao {
 	}
 
 	@Override
-	public void delete(int id) {
+	public void delete(String id) {
 		Session session = sessionFactory.getCurrentSession();
 		KhachHang khachHang = session.get(KhachHang.class, id);
 		khachHang.setStatus(0);

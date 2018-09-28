@@ -15,4 +15,6 @@ public interface NhiemVuDao {
 	public void update(Nhiemvu nhiemVu);
 
 	public void delete(int id);
+	
+	public List<Nhiemvu> getByMaNhanVien(String idNv);
 }

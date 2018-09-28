@@ -22,7 +22,7 @@ public class KhachHangServiceImpl implements KhachHangService {
 	}
 
 	@Override
-	public KhachHang getById(int id) {
+	public KhachHang getById(String id) {
 		return this.khachHangDao.getById(id);
 	}
 
@@ -38,7 +38,7 @@ public class KhachHangServiceImpl implements KhachHangService {
 	}
 
 	@Override
-	public void delete(int id) {
+	public void delete(String id) {
 		this.khachHangDao.delete(id);
 
 	}

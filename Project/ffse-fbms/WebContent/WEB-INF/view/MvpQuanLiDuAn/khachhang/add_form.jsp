@@ -32,6 +32,12 @@
 				<div class="row">
 					<form:form method="POST" action="addnew">
 						<div class="form-group col-sm-6">
+							<label>Mã khach hang</label>
+							<form:input class="form-control" path="idKhachHang" placeholder="Mã khách hàng" />
+							<form:errors path="email" cssStyle="color: red"></form:errors>
+
+						</div>
+						<div class="form-group col-sm-6">
 							<label>Tên khách hàng</label>
 							<form:input class="form-control" path="fullname"
 								placeholder="Tên khách hàng" />

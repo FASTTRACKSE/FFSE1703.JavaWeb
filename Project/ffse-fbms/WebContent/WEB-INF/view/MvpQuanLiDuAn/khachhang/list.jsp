@@ -67,42 +67,60 @@
 									<td style="text-align: left">${khachHang.gender}</td>
 									<td style="text-align: left">${khachHang.address}</td>
 									
-									<td><%-- <a
+									<td><a
 										style="width: 50px; high: 50px; border-color: #00E5EE; border-radius: 100%;"
 										class="btn btn-outline-info "
-<<<<<<< HEAD
-										href="<c:url value="/mvpquanliduan/khachhang/show-form-edit/${khachhang.idKhachHang }" />"
-=======
-										href="<c:url value="/mvpquanliduan/khachhang/show-form-edit/${khachHang.idKhachHang }" />"
->>>>>>> 8b94f4e29fb752d434d99a01d8a972e6481a723d
-										title=""><i class="ft-edit"></i></a> <a
-										onclick=" if(!confirm('Bạn muốn xóa nghiệp vụ này?')){return false;}"
-										style="width: 50px; high: 50px; border-color: #FF6A6A; border-radius: 100%;"
-										class="btn btn-outline-danger "
-<<<<<<< HEAD
-										href="<c:url value="/mvpquanliduan/khachhang/delete/${khachhang.idKhachHang }" />"
-=======
-										href="<c:url value="/mvpquanliduan/khachhang/delete/${khachHang.idKhachHang }" />"
->>>>>>> 8b94f4e29fb752d434d99a01d8a972e6481a723d
-										title=""><i class="ft-delete"></i></a> --%>
+										href="<c:url value="/mvpquanliduan/khachhang/show-form-edit/${khachHang.idKhachHang}" />"
+										title=""><i class="ft-edit"></i></a>
+										<button
+											style="width: 50px; high: 50px; border-color: #FF6A6A; border-radius: 100%;"
+											data-href="<c:url value="/mvpquanliduan/khachhang/delete/${khachHang.idKhachHang}" />"
+											class="btn btn-outline-danger" data-toggle="modal"
+											data-target="#xoa_pr">
+											<i class="ft-delete"></i>
+										</button>
 								</tr>
 
+
 							</c:forEach>
-							
-									
-								<!--<script type="text/javascript"> window.onload = alertName; </script>	  -->	
-						
+															
 						</tbody>
 						
 					</table>
-						<c:if test="${success != null }">
-							${success}
-						</c:if>
+						
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+<!--                 Css for confirm delete -->
+<div class="modal fade" id="xoa_pr" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title">Xác nhận</h4>
+			</div>
+			<div class="modal-body">
+				<p>Bạn muốn xóa Khách hàng này???</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+				<a class="btn btn-primary del_pr">Xóa</a>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<script type="text/javascript">
+	$('#xoa_pr').on('show.bs.modal', function(e) {
+			$(this).find('.del_pr').attr('href', $(e.relatedTarget).data('href'));
+	});
+</script>
 
 <!-- ////////////////////////////////////////////////////////////////////////////-->
 

@@ -8,20 +8,20 @@
 
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 <style type="text/css">
-		.table td {
-			vertical-align: baseline;
-		}
-		
-		th, td {
-			padding-left: 1rem !important;
-			padding-right: 1rem !important;
-		}
-		
-		#datatable tr td:last-child {
-			letter-spacing: 15px;
-			min-width: 100px;
-			text-align: center !important;
-		}
+.table td {
+	vertical-align: baseline;
+}
+
+th, td {
+	padding-left: 1rem !important;
+	padding-right: 1rem !important;
+}
+
+#datatable tr td:last-child {
+	letter-spacing: 15px;
+	min-width: 100px;
+	text-align: center !important;
+}
 </style>
 <div class="app-content content container-fluid">
 	<div class="content-wrapper">
@@ -29,7 +29,7 @@
 		<div class="content-header row">
 			<div class="content-header-left col-md-9 col-xs-12 mb-2">
 				<h3 class="content-header-title mb-0">
-				Danh Sách Bằng Cấp
+					<spring:message code="label.thongTinBangCap" />
 				</h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
@@ -40,7 +40,8 @@
 										code="label.quanLyNhanSu" /></a></li>
 							<li class="breadcrumb-item"><a href="javascript:void(0)"><spring:message
 										code="label.quanLyHopDong" /></a></li>
-							<li class="breadcrumb-item active">Danh Sách Bằng Cấp</li>
+							<li class="breadcrumb-item active"><spring:message
+									code="label.thongTinBangCap" /></li>
 						</ol>
 					</div>
 				</div>
@@ -48,9 +49,10 @@
 			<div class="content-header-right col-md-3 col-xs-12">
 				<div role="group" aria-label="Button group with nested dropdown"
 					class="btn-group float-md-right" id="add-new">
-					<a href="<c:url value = "/quanlynhansutt/bang_cap/add_bangcap/${maNhanVien}"/>"
-						class="btn btn-primary"><span class="fa fa-plus"></span> Thêm
-						mới</a>
+					<a
+						href="<c:url value = "/quanlynhansutt/bang_cap/add_bangcap/${maNhanVien}"/>"
+						class="btn btn-primary"><span class="fa fa-plus"></span>
+					<spring:message code="label.themMoi" /></a>
 				</div>
 			</div>
 		</div>
@@ -79,14 +81,13 @@
 										<thead>
 											<tr>
 												<th>ID</th>
-												<th>Mã nhân viên</th>
-												<th>Tên Bằng Cấp</th>
-												<th>Loại Bằng Cấp</th>
-												<th>Đơn Vị Cấp</th>
-												<th>Nơi Cấp</th>
-												<th>Ngày Cấp</th>
+												<th><spring:message code="label.maNhanVien" /></th>
+												<th><spring:message code="label.tenBangCap" /></th>
+												<th><spring:message code="label.loaiBangCap" /></th>
+												<th><spring:message code="label.noiCapBang" /></th>
+												<th><spring:message code="label.noiCap" /></th>
+												<th><spring:message code="label.ngayCap" /></th>
 												<th>Chức Năng</th>
-
 											</tr>
 										</thead>
 										<tbody>
@@ -99,21 +100,22 @@
 													<td>${hsnv.donViCap}</td>
 													<td>${hsnv.noiCap}</td>
 													<td>${hsnv.ngayCap}</td>
-													
-													 <td
+													<td
 														style="letter-spacing: 5px; min-width: 75px; text-align: center !important;">
-														<a href="<c:url value = "/quanlynhansutt/bang_cap/viewOneBangCap/${hsnv.hoSoNhanVienTT.maNhanVien}"/>"><i class="fa fa-eye"></i></a>
-														<a href="<c:url value = "/quanlynhansutt/bang_cap/edit_bangcap/${hsnv.id}"/>"><i class="fa fa-pencil"></i></a>
-														<%-- <a href="<c:url value = ""/>"><i class="fa fa-trash"></i></a> --%>
+														<a href="<c:url value = "/quanlynhansutt/bang_cap/viewOneBangCap/${hsnv.hoSoNhanVienTT.maNhanVien}"/>">
+														   <i class="fa fa-eye"></i>		
+														</a> 
+														<a href="<c:url value = "/quanlynhansutt/bang_cap/edit_bangcap/${hsnv.id}"/>">
+														    <i class="fa fa-pencil"></i>
+														</a>
 														<a
-											href='<c:url value = "/quanlynhansutt/bang_cap/remove/${hsnv.id}"></c:url>'
-											class="fa fa-trash"
-											onclick="return confirm('Bạn có muốn xóa sinh viên này?');"></a>
-														
-													</td> 
+														  href='<c:url value = "/quanlynhansutt/bang_cap/remove/${hsnv.id}"></c:url>'
+														  class="fa fa-trash"
+														  onclick="return confirm('Bạn có muốn xóa sinh viên này?');">
+														</a>
+													</td>
 												</tr>
 											</c:forEach>
-										
 										</tbody>
 									</table>
 								</div>

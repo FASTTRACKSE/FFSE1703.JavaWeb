@@ -82,16 +82,36 @@ td{
 										<table class=" table-striped table-bordered table-list">
 											<thead>
 												<tr>
-													<th>Họ Và Tên</th>
 													<th>Mã Nhân Viên</th>
+													<th>Tên Nhân Viên</th>
 													<th>Lý Do</th>
-													<th>Thời gian Từ</th>
-													<th>Đến Thời gian</th>
-													<th>Đến Thời gian</th>
+													<th>Phòng Ban</th>
+													<th>Ngày Bắt Đầu</th>
+													<th>Ngày Kết Thúc</th>
+													<th>Ghi Chú</th>
 													<th>Chức năng</th>
 													
 												</tr>
 											</thead>
+									<tbody>
+												<c:forEach var="dn" varStatus="counter" items="${list}">
+													<tr>
+														<td>${dn.getId_nv()}</td>
+														<td>${dn.getTen_nv()}</td>
+														<td>${dn.getLy_do()}</td>
+														<td>${dn.getPhong_ban()}</td>
+														<td>${dn.getTg_bat_dau()}</td>
+														<td>${dn.getTg_ket_thuc()}</td>
+														<td>${dn.getGhi_chu()}</td>
+
+														<td><a href="edit/${dn.getId_don()}"><button type="button"
+																	class="btn btn-warning btn-circle">Edit</button></a> <a
+															href="#"><button type="button"
+																	class="btn btn-danger btn-circle">Del</button></a></td>
+													</tr>
+												</c:forEach>
+											</tbody>		
+											
 											
 										</table>
 									</div>

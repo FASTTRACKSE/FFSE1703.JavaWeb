@@ -1,6 +1,5 @@
 package fasttrackse.ffse1703.fbms.service.qlvn1;
 
-
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -18,23 +17,23 @@ import fasttrackse.ffse1703.fbms.entity.security.UserAccount;
 public class QuanLyVangNghiServiceImpl implements QuanLyVangNghiService {
 	@Autowired
 	private QuanLyVangNghiDao qlvnDao;
-	
+
 	public void setQuanLyVangNghiDao(QuanLyVangNghiDao personDAO) {
 		this.qlvnDao = personDAO;
 	}
-	
+
 	@Transactional
 	@Override
 	public void addDon(DonNghi dn) {
 		this.qlvnDao.addDon(dn);
-		
+
 	}
-	
+
 	@Transactional
 	@Override
-	public List<DonNghi> listDonNghi() {
-	
-		return this.qlvnDao.listDonNghi();
+	public List<DonNghi> listDonNghiNhap(int id_nv) {
+
+		return this.qlvnDao.listDonNghiNhap(id_nv);
 	}
 
 	@Transactional
@@ -58,12 +57,29 @@ public class QuanLyVangNghiServiceImpl implements QuanLyVangNghiService {
 	@Transactional
 	@Override
 	public void insertUpdateTinhTrang(int id_nv, TinhTrangNghi tt) {
-		// TODO Auto-generated method stub
 		this.qlvnDao.insertTinhTrang(id_nv, tt);
 	}
 
-	
-	
-	
+
+
+	@Transactional
+	@Override
+	public List<DonNghi> listDonNghiChoDuyet(int id_nv) {
+		// TODO Auto-generated method stub
+		return this.qlvnDao.listDonNghiChoDuyet(id_nv);
+	}
+
+	@Transactional
+	@Override
+	public DonNghi getDonNghiNv(int id_don) {
+		return this.qlvnDao.getDonNghiNv(id_don);
+	}
+
+	@Transactional
+	@Override
+	public void updateDon(DonNghi dn) {
+		this.qlvnDao.updateDon(dn);
+		
+	}
 
 }

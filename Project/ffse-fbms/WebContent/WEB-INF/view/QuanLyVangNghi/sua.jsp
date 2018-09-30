@@ -92,7 +92,7 @@
 
 
 
-									<form:form id="donxinnghi" class="form" method="POST" modelAttribute="donNghi" action="savenhap">
+									<form:form id="donxinnghi" class="form" method="POST" modelAttribute="donNghi" action="saveedit">
 										<div class="form-body">
 
 											<h4 class="form-section">
@@ -104,10 +104,10 @@
 														class="form-group position-relative has-icon-left">
 														<input disabled="disabled" id="iconLeft10" type="text"
 															class="form-control round"
-															value="${nhanVien.getMaNhanVien()}"> 
+															value="${donNghi.getId_nv()}"> 
 															<input
 															type="hidden" name="id_nv"
-															value="${nhanVien.getMaNhanVien()}">
+															value="${donNghi.getId_nv()}">
 														<div class="form-control-position">
 															<i class="fa fa-user-circle-o"></i>
 														</div>
@@ -124,9 +124,9 @@
 														<input disabled="disabled" id="iconLeft10"
 															type="text"
 															class="form-control round"
-															value="${nhanVien.getHoDem()+=' '+=nhanVien.getTen()} ">
+															value="${donNghi.getTen_nv()} ">
 														<input type="hidden" name="ten_nv"
-															value="${nhanVien.getHoDem()+=' '+=nhanVien.getTen()}">
+															value="${donNghi.getTen_nv()}">
 														<div class="form-control-position">
 															<i class="fa fa-user-circle-o"></i>
 														</div>
@@ -140,11 +140,11 @@
 												<div class="form-group col-md-12 mb-2">
 													<fieldset
 														class="form-group position-relative has-icon-left">
-														<input disabled="disabled" id="iconLeft10"
+														<input disabled="disabled" id="phong_ban"
 															 type="text" class="form-control round"
-															value="${nhanVien.getPhongBan().getTenPhongBan()}">
+															value="${donNghi.getPhong_ban()}">
 														<input type="hidden" name="phong_ban"
-															value="${nhanVien.getPhongBan().getTenPhongBan()}">
+															value="${donNghi.getPhong_ban()}">
 														<div class="form-control-position">
 															<i class="fa fa-users"></i>
 														</div>
@@ -207,7 +207,7 @@
 
 													<fieldset class="form-group position-relative">
 														<input name="tg_bat_dau" type="date"
-															class="form-control round" id="from"
+															class="form-control round" id="from" value="${donNghi.getTg_bat_dau()}" 
 															onchange="myFunction()" />
 
 														<div class="form-control-position">
@@ -221,7 +221,7 @@
 
 													<fieldset class="form-group position-relative">
 														<input id="to" name="tg_ket_thuc" type="date"
-															class="form-control round" onchange="count()" value=""
+															class="form-control round" onchange="count()" value="${donNghi.getTg_ket_thuc()}"
 															min="2018-09-20">
 														<div class="form-control-position">
 															<i class="fa fa-calendar"></i>
@@ -240,7 +240,7 @@
 											<div class="row">
 												<div class="form-group col-md-12 mb-2">
 													<select id="customSelect" name="ly_do"
-														class="custom-select block round">
+														class="custom-select block round" value="${donNghi.getLy_do()}">
 														<c:forEach items="${arrLyDo}" var="lyDo" >
 															<option value="${lyDo.getTen_loai_nghi()}">${lyDo.getTen_loai_nghi()}</option>
 														</c:forEach>
@@ -252,24 +252,11 @@
 											<h4 class="form-section">
 												<i class="fa fa-tags"></i> Ghi chú*
 											</h4>
-
-											<!-- <div class="row">
-												<div class="form-group col-xs-12 mb-2 has-icon-left">
-													<input  name="ghi_chu" type="text"
-																class="form-control round" 	>
-													<div class="form-control-position">
-														<i class="fa fa-keyboard-o"></i>
-													</div>
-												</div>
-											</div> -->
 											<input  name="ghi_chu" type="text"
-																class="form-control round" 	>
+																class="form-control round" 	value ="${donNghi.getLy_do()}">
 											<div class="form-actions">
-												<button type="submit" class="btn btn-primary" formaction="savenhap">
-													<i class="fa ft-save"></i> Lưu nháp
-												</button>
-												<button type="submit" class="btn btn-success" formaction="savechoduyet">
-													 <i class="fa fa-check-square-o"></i> Gửi đơn chờ phê duyệt
+												<button type="submit" class="btn btn-primary" >
+													<i class="fa ft-save"></i> Lưu Thông Tin
 												</button>
 												<a href="QuanLyVangNghi/danhsach">
 													<button type="button" class="btn btn-warning mr-1">

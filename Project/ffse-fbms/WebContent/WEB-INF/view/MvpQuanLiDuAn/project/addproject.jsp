@@ -78,7 +78,7 @@
 										<form:errors path="khachHang.idKhachHang" cssClass="error" />
 									<form:select multiple="single" path="khachHang.idKhachHang"  
 										class="form-control">
-										<option value="" selected ="selected"> --Chọn  khach hang--</option>
+										<form:option value="" selected = "true" disabled = "true"> --Chọn khach hang--</form:option>
 										<form:options items="${khachHang}" itemValue="idKhachHang"
 											itemLabel="fullname" />
 									</form:select>
@@ -116,7 +116,7 @@
 									<form:errors path="pm.maNv" cssClass="error" />								
 									 <form:select path="pm.maNv" id="idPm" name="pm"
 										type="text" class="form-control" >
-										<option value="" selected="selected">Chọn PM</option>
+										<option value="" selected="selected">--Chọn PM--</option>
 									</form:select> 
 							</div>
 						</div>
@@ -206,7 +206,7 @@
 						<div class="form-group">
 							<label for="projectinput6">Trạng thái</label>
 							<form:select multiple="single" path="status.idStatus"
-								class="form-control">
+								class="form-control " disabled="true">
 								<form:options items="${status}" itemValue="idStatus"
 									itemLabel="nameStatus" />
 							</form:select>

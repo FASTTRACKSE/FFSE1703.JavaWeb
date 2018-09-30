@@ -65,7 +65,7 @@ public class HopDongPikalongController {
 			hd.setMaHopDong(Integer.valueOf(this.hopDongPikalongService.getAutoId()));
 			this.hopDongPikalongService.insert(hd);
 			model.addAttribute("hoSoNhanVien", hsnv);
-			return "redirect:/QuanTriNhanSu/quanlihopdong/viewOneHopDong";
+			return "redirect:/QuanTriNhanSu/quanlihopdong/viewOneHopDong/{maNv}";
 	}
 
 	@RequestMapping(value = "viewOneHopDong/formedithd/{maHopDong}", method = RequestMethod.GET)
@@ -87,7 +87,7 @@ public class HopDongPikalongController {
 		
 		this.hopDongPikalongService.update(hd);
 		model.addAttribute("hoSoNhanVien", hsnv);
-		return "redirect:/QuanTriNhanSu/quanlihopdong/viewOneHopDong";
+		return "redirect:/QuanTriNhanSu/quanlihopdong/viewOneHopDong/{maNv}";
 	}
 	
 	@RequestMapping("viewOneHopDong/{maNv}")

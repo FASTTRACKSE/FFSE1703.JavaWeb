@@ -39,7 +39,14 @@
 			<div class="main-content">
 				<div class="row">
 					<form:form method="POST" action="addnew">
-						
+						<div class="form-group col-sm-6">
+							<label>Mã Framework</label><br>
+							<p Class="error">${messageMa}</p>
+							<form:errors path="idFrame" cssStyle="color: red"></form:errors>
+							<form:input path="idFrame" class="form-control round"
+								placeholder="Mã Framework" />
+
+						</div>
 						<div class="form-group col-sm-6">
 							<label>Tên Framework</label><br>
 							<p Class="error">${messageName}</p>

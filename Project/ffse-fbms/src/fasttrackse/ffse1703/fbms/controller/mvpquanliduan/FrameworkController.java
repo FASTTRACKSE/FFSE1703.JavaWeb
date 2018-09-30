@@ -2,6 +2,7 @@ package fasttrackse.ffse1703.fbms.controller.mvpquanliduan;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,10 +29,31 @@ public class FrameworkController {
 		this.frameworkService = frameworkService;
 	}
 
-	@RequestMapping(value = "/list-framework")
-	public String listFramework(Model model) {
-		List<Framework> list = frameworkService.getAll();
-		model.addAttribute("listFramework", list);
+
+	@RequestMapping("/list-framework")
+	public String listFramework(HttpSession session) {
+		int pageId = 0;
+		if (session.getAttribute("pageIds") == null) {
+			pageId = 1;
+		} else {
+			pageId = (int) session.getAttribute("pageIds");
+		}
+		return "redirect: list-framework/"+pageId;
+	}
+	@RequestMapping(value = "/list-framework/{pageId}", method = RequestMethod.GET)
+	public String listPersons(@PathVariable int pageId, Model model,HttpSession session) {
+		int maxRows= 5;
+		int start = (pageId - 1) * maxRows;
+		int totalFramework = frameworkService.countFramework();
+		int totalPage = (int) Math.ceil(totalFramework / (double) maxRows);
+		if (pageId == 0) {
+			pageId = 1;
+		}
+		
+		model.addAttribute("listFramework", this.frameworkService.listFramework(start, maxRows));
+		model.addAttribute("pageId", pageId);
+		model.addAttribute("totalPage", totalPage);
+		session.setAttribute("pageIds", pageId);
 		return "MvpQuanLiDuAn/framework/list";
 	}
 
@@ -51,12 +73,12 @@ public class FrameworkController {
 		framework.setStatus(1);
 		frameworkService.add(framework);
 		;
-		redirectAttributes.addFlashAttribute("success", "<script>alert('Thêm thành công');</script>");
+		redirectAttributes.addFlashAttribute("success", "<script>alert('Thï¿½m thï¿½nh cï¿½ng');</script>");
 		return "redirect: list-framework";
 	}
 
 	@RequestMapping(value = "/show-form-edit/{id}")
-	public String showFormEdit(Model model, @PathVariable int id) {
+	public String showFormEdit(Model model, @PathVariable String id) {
 		Framework framework = frameworkService.getById(id);
 		model.addAttribute("framework", framework);
 		return "MvpQuanLiDuAn/framework/update_form";
@@ -69,12 +91,13 @@ public class FrameworkController {
 			return "MvpQuanLiDuAn/framework/update_form";
 		}
 		framework.setStatus(1);
+		System.out.println(framework);
 		frameworkService.update(framework);
 		return "redirect: /ffse-fbms/mvpquanliduan/framework/list-framework";
 	}
 
 	@RequestMapping(value = "/delete/{id}")
-	public String delete(@PathVariable int id, final RedirectAttributes redirectAttributes) {
+	public String delete(@PathVariable String id, final RedirectAttributes redirectAttributes) {
 		Framework framework = frameworkService.getById(id);
 		framework.setStatus(0);
 		frameworkService.update(framework);

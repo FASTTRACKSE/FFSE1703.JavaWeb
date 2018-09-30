@@ -2,6 +2,7 @@ package fasttrackse.ffse1703.fbms.controller.mvpquanliduan;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +26,30 @@ public class LanguageController {
 	public void setLanguageService(LanguageService languageService) {
 		this.languageService=languageService;
 	}
-	@RequestMapping(value = "/list-language")
-	public String listLanguage(Model model) {
-		List<Language> list = languageService.getAll();
-		model.addAttribute("listLanguage", list);
+	@RequestMapping("/list-language")
+	public String listLanguage(HttpSession session) {
+		int pageId = 0;
+		if (session.getAttribute("pageIds") == null) {
+			pageId = 1;
+		} else {
+			pageId = (int) session.getAttribute("pageIds");
+		}
+		return "redirect: list-language/"+pageId;
+	}
+	@RequestMapping(value = "/list-language/{pageId}", method = RequestMethod.GET)
+	public String listPersons(@PathVariable int pageId, Model model,HttpSession session) {
+		int maxRows= 5;
+		int start = (pageId - 1) * maxRows;
+		int totalLanguage = languageService.countLanguage();
+		int totalPage = (int) Math.ceil(totalLanguage / (double) maxRows);
+		if (pageId == 0) {
+			pageId = 1;
+		}
+		
+		model.addAttribute("listLanguage", this.languageService.listLanguage(start, maxRows));
+		model.addAttribute("pageId", pageId);
+		model.addAttribute("totalPage", totalPage);
+		session.setAttribute("pageIds", pageId);
 		return "MvpQuanLiDuAn/programlanguage/list";
 	}
 
@@ -49,12 +70,12 @@ public class LanguageController {
 		language.setStatus(1);
 		languageService.add(language);
 		;
-		redirectAttributes.addFlashAttribute("success", "<script>alert('Thêm thành công');</script>");
+		redirectAttributes.addFlashAttribute("success", "<script>alert('Thï¿½m thï¿½nh cï¿½ng');</script>");
 		return "redirect: list-language";
 	}
 
 	@RequestMapping(value = "/show-form-edit/{id}")
-	public String showFormEdit(Model model, @PathVariable int id) {
+	public String showFormEdit(Model model, @PathVariable String id) {
 		Language language= 		languageService.getById(id);
 		model.addAttribute("language", language);
 		return "MvpQuanLiDuAn/programlanguage/update_form";
@@ -72,7 +93,7 @@ public class LanguageController {
 	}
 
 	@RequestMapping(value = "/delete/{id}")
-	public String delete(@PathVariable int id, final RedirectAttributes redirectAttributes) {
+	public String delete(@PathVariable String id, final RedirectAttributes redirectAttributes) {
 		Language language = languageService.getById(id);
 		language.setStatus(0);
 		languageService.update(language);

@@ -21,7 +21,7 @@ private LanguageDao languageDao;
 	}
 
 	@Override
-	public Language getById(int id) {
+	public Language getById(String id) {
 		// TODO Auto-generated method stub
 		return languageDao.getById(id);
 	}
@@ -39,7 +39,7 @@ private LanguageDao languageDao;
 	}
 
 	@Override
-	public void delete(int id) {
+	public void delete(String id) {
 		languageDao.delete(id);
 
 	}
@@ -48,6 +48,18 @@ private LanguageDao languageDao;
 	public int checkNameLanguage(String nameLanguage) {
 		// TODO Auto-generated method stub
 		return languageDao.checkNameLanguage(nameLanguage);
+	}
+
+	@Override
+	public List<Language> listLanguage(int start, int maxRows) {
+		
+		return languageDao.listLanguage(start, maxRows);
+	}
+
+	@Override
+	public int countLanguage() {
+		
+		return languageDao.countLanguage();
 	}
 
 }

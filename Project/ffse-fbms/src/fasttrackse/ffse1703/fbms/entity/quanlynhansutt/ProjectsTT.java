@@ -92,7 +92,7 @@ public class ProjectsTT implements Serializable {
 	private Domain domain;
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-	@JoinColumn(name = "id_pm", referencedColumnName = "MaNv", insertable = true, updatable = true)
+	@JoinColumn(name = "id_pm", referencedColumnName = "ma_nhan_vien", insertable = true, updatable = true)
 	@NotNull(message = "Bạn chưa PM")
 	private HoSoNhanVienTT pm;
 

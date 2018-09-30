@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
@@ -6,9 +6,25 @@
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 <div class="app-content content container-fluid">
 <div class="content-wrapper">
+<h3 class="content-header-title mb-0">View Thông Tin Hợp Đồng</h3>
+		<div class="row breadcrumbs-top">
+			<div class="breadcrumb-wrapper col-xs-12">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a
+						href='<c:url value="/quantrinhansu/hosonhanvien/" />'>Danh
+							Sách Nhân Viên</a></li>
+					<li class="breadcrumb-item"><a
+						href='<c:url value="/quantrinhansu/hosonhanvien/view/${maNv }" />'>Thông
+							Tin Nhân Viên</a></li>
+					<li class="breadcrumb-item"><a
+								href='<c:url value="/QuanTriNhanSu/quanlihopdong/viewOneHopDong/view/${maNv}" />'>Hợp Đồng Nhân Viên</a></li>
+					<li class="breadcrumb-item active">View Hợp Đồng </li>
+				</ol>
+			</div>
+		</div>
 <form:form class="form"  method="GET" modelAttribute="hopDong" action="">
 	<div class="form-body">
-		
+		<div class="form-section"></div>
 		<div class="row">
 			<div class="col-md-6">
 				<div class="form-group">

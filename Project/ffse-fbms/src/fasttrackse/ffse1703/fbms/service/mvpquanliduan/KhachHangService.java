@@ -10,6 +10,7 @@ public interface KhachHangService {
 	public List<KhachHang> getAll();
 	public void update(KhachHang khachHang);
 	public void delete(String id);
-	
+	public List<KhachHang> listKhachHang(int start, int maxRows);
+	public int countKhachHang() ;
 	
 }

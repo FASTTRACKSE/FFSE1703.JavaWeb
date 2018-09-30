@@ -9,7 +9,6 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-
 import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.KhachHang;
 
 @Repository
@@ -28,6 +27,23 @@ public class KhachHangDaoImpl implements KhachHangDao {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.persist(khachHang);
 	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<KhachHang> listKhachHang(int start, int maxRows) {
+		Session session = this.sessionFactory.getCurrentSession();
+		List<KhachHang> List = (List<KhachHang>) session.createQuery("FROM KhachHang where status = 1").setFirstResult(start)
+				.setMaxResults(maxRows).list();
+		
+		return List;
+	}
+	@SuppressWarnings("deprecation")
+	@Override
+	public int countKhachHang() {
+		Session session = sessionFactory.getCurrentSession();
+		List<KhachHang> dm = session.createQuery("from KhachHang where status = 1", KhachHang.class).list();
+		return  dm.size();
+	}
+	
 
 	@Override
 	public KhachHang getById(String id) {

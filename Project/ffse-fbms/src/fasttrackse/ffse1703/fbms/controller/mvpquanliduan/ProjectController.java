@@ -107,7 +107,10 @@ public class ProjectController {
 	}
 	@RequestMapping(value = "/show-form-edit/{id}")
 	public String showFormEdit(Model model, @PathVariable String id) {
+		
 		Projects pr = projectService.findById(id);
+		String maPB = pr.getRoomProject().getMaPhongBan();
+		model.addAttribute("pm", projectService.getPm(maPB));
 		model.addAttribute("projects", pr);
 		return "MvpQuanLiDuAn/project/updateproject";
 	}
@@ -173,13 +176,13 @@ public class ProjectController {
 		binder.registerCustomEditor(Framework.class, "framework", new PropertyEditorSupport() {
 			@Override
 			public void setAsText(String text) throws IllegalArgumentException {
-				setValue(frameworkService.getById(Integer.parseInt(text)));
+				setValue(frameworkService.getById(text));
 			}
 		});
 		binder.registerCustomEditor(Language.class, "language", new PropertyEditorSupport() {
 			@Override
 			public void setAsText(String text) throws IllegalArgumentException {
-				setValue(languageService.getById(Integer.parseInt(text)));
+				setValue(languageService.getById(text));
 			}
 		});
 		binder.registerCustomEditor(Vendor.class, "vendor", new PropertyEditorSupport() {

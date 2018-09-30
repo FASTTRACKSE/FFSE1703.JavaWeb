@@ -1,19 +1,19 @@
 package fasttrackse.ffse1703.fbms.controller.quanlynhansutt;
 
-import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
+//import org.springframework.ui.Model;
+//import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import fasttrackse.ffse1703.fbms.service.mvpquanliduan.NhiemVuServiceImpl;
-import fasttrackse.ffse1703.fbms.service.quanlynhansutt.QuanLyHoSoServiceTT;
+//import fasttrackse.ffse1703.fbms.service.mvpquanliduan.NhiemVuServiceImpl;
+//import fasttrackse.ffse1703.fbms.service.quanlynhansutt.QuanLyHoSoServiceTT;
 
 @Controller
 @RequestMapping("/quanlynhansutt/kinh_Nghiem/")
 public class ThongTinKinhNghiemTTController {
   
-	@Autowired
+	/*@Autowired
 	private NhiemVuServiceImpl nhiemVuServiceImpl;
 	
 	@Autowired 
@@ -33,5 +33,5 @@ public class ThongTinKinhNghiemTTController {
 			model.addAttribute("viewOne", this.nhiemVuServiceImpl.getByID(maNhanVien));
 			model.addAttribute("maNhanVien", maNhanVien);
 			return "QuanLyNhanSuTT/ThongTinKinhNghiem/viewOneKinhNghiem";
-		}
+		}*/
 }

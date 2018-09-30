@@ -11,6 +11,8 @@ public interface KhachHangDao {
 	public void update(KhachHang khachHang);
 	public void delete(String id);
 	public void add(KhachHang khachHang);
+	public List<KhachHang> listKhachHang(int start, int maxRows);
+	public int countKhachHang() ;
 	
 	
 	

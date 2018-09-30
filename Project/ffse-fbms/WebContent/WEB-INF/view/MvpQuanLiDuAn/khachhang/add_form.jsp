@@ -63,15 +63,13 @@
 							<form:errors path="address" cssStyle="color: red"></form:errors>
 
 						</div>
-						<div class="form-group col-sm-12">
+						<div class="form-group col-sm-6">
 							<label>Giới tính</label>
 							<form:radiobutton path="gender" value="Nam" />
 							Nam
 							<form:radiobutton path="gender" value="Nữ" />
 							Nữ
-
 							<form:errors path="gender" cssStyle="color: red"></form:errors>
-
 						</div>
 
 						<div class="col-sm-12 text-center">

@@ -63,7 +63,6 @@ public class Projects implements Serializable {
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "id_customer", referencedColumnName = "id_customer", insertable = true, updatable = true)
 	@NotNull(message="Bạn chưa chọn khách hàng")
-	@Value("#{new Integer('${CONNECTION.TIME.OUT}')}")
 	private KhachHang khachHang;
 	
 	// bi-directional many-to-one association to PhongBan

@@ -16,9 +16,8 @@ import javax.validation.constraints.NotEmpty;
 @Table(name = "qlda_framework")
 public class Framework {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_framework", unique = true, nullable = false)
-	private int idFrame;
+	private String idFrame;
 	@NotEmpty
 	@Column(name = "name_framework", unique = true, nullable = false)
 	private String nameFramework;
@@ -36,11 +35,11 @@ public class Framework {
 		this.project = project;
 	}
 
-	public int getIdFrame() {
+	public String getIdFrame() {
 		return idFrame;
 	}
 
-	public void setIdFrame(int idFrame) {
+	public void setIdFrame(String idFrame) {
 		this.idFrame = idFrame;
 	}
 
@@ -59,4 +58,10 @@ public class Framework {
 	public void setStatus(int status) {
 		this.status = status;
 	}
+
+	@Override
+	public String toString() {
+		return "Framework [idFrame=" + idFrame + ", nameFramework=" + nameFramework + ", status=" + status + "]";
+	}
+	
 }

@@ -42,7 +42,7 @@ public class DonNghi implements Serializable{
 	private Date tg_ket_thuc;
 
 	@Column(name = "tinh_trang")
-	private String tinh_trang;
+	private int tinh_trang;
 	
 	@Column(name = "ghi_chu")
 	private String ghi_chu;
@@ -87,11 +87,11 @@ public class DonNghi implements Serializable{
 		this.tg_ket_thuc = tg_ket_thuc;
 	}
 
-	public String getTinh_trang() {
+	public int getTinh_trang() {
 		return tinh_trang;
 	}
 
-	public void setTinh_trang(String tinh_trang) {
+	public void setTinh_trang(int tinh_trang) {
 		this.tinh_trang = tinh_trang;
 	}
 

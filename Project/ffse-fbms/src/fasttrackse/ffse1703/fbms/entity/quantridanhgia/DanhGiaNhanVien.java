@@ -49,9 +49,6 @@ public class DanhGiaNhanVien {
 	@Column(name = "xep_loai")
 	private int xepLoai;
 
-	@Column(name = "ma_trang_thai")
-	private int trangThai;
-
 	@Column(name = "is_delete")
 	private int isDelete;
 
@@ -153,14 +150,6 @@ public class DanhGiaNhanVien {
 
 	public void setXepLoai(int xepLoai) {
 		this.xepLoai = xepLoai;
-	}
-
-	public int getTrangThai() {
-		return trangThai;
-	}
-
-	public void setTrangThai(int trangThai) {
-		this.trangThai = trangThai;
 	}
 
 	public int getIsDelete() {

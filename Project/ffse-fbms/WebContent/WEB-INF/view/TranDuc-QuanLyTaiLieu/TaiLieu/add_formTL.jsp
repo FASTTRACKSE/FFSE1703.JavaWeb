@@ -87,6 +87,7 @@
 										id="basicInputFile" name="file">
 								</fieldset>
 							</div>
+							<center>
 							<div class="col-sm-12 text-center">
 								<button type="submit" class="btn btn-success"
 									formaction="<%=request.getContextPath()%>/TranDuc-QuanLyTaiLieu/TaiLieu/submit">
@@ -98,6 +99,7 @@
 									formaction="<%=request.getContextPath()%>/TranDuc-QuanLyTaiLieu/TaiLieu/cancel">
 									Cancel</button>
 							</div>
+							</center>
 						</form:form>
 					</div>
 				</div>

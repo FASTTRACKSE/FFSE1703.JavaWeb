@@ -160,6 +160,7 @@ public class QuanLyHoSoControllerTT {
 		stream.write(bytes);
 		stream.flush();
 		stream.close();
+		hoSoNhanVienTT.setIsdelete(1);
 		quanLyHoSoServiceTT.addHoSoNhanVien(hoSoNhanVienTT);
 		return "redirect:/quanlynhansutt/ho_so/";
 	}
@@ -200,6 +201,7 @@ public class QuanLyHoSoControllerTT {
 			stream.flush();
 			stream.close();
 		}
+		hoSoNhanVienTT.setIsdelete(1);
 		quanLyHoSoServiceTT.updateHoSoNhanVien(hoSoNhanVienTT);
 		return "redirect:/quanlynhansutt/ho_so/";
 	}
@@ -264,5 +266,14 @@ public class QuanLyHoSoControllerTT {
 //		  model.addAttribute("listThanhPho", tinhThanhServiceTT.getAllTinhThanh());
 		return "QuanLyNhanSuTT/QuanLyHoSoTT/view";
 	}
+	
+	// delete an employee's contract
+		@RequestMapping("/delete/{maNhanVien}")
+		public String remove(@PathVariable("maNhanVien") int maNhanVien, final RedirectAttributes redirectAttributes) {
+			HoSoNhanVienTT hd = quanLyHoSoServiceTT.findByMaNhanVien(maNhanVien);
+			hd.setIsdelete(0);
+			quanLyHoSoServiceTT.updateHoSoNhanVien(hd);
+			return "redirect:/quanlynhansutt/ho_so/";
+		}
 
 }

@@ -43,4 +43,20 @@ public class KhachHangServiceImpl implements KhachHangService {
 
 	}
 
+	@Override
+	public List<KhachHang> listKhachHang(int start, int maxRows) {
+		
+		return khachHangDao.listKhachHang(start, maxRows);
+	}
+
+	@Override
+	public int countKhachHang() {
+		return khachHangDao.countKhachHang();
+	}
+
+	@Override
+	public int checkIdKhachHang(String idKhachHang) {
+				return khachHangDao.checkIdKhachHang(idKhachHang);
+	}
+
 }

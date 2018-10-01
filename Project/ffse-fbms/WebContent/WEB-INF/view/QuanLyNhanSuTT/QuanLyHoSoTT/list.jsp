@@ -115,7 +115,7 @@ th, td {
 														style="letter-spacing: 5px; min-width: 75px; text-align: center !important;">
 														<a href="<c:url value = "/quanlynhansutt/ho_so/view/${hsnv.maNhanVien}"/>"><i class="fa fa-eye"></i></a>
 														<a href="<c:url value = "/quanlynhansutt/ho_so/edit/${hsnv.maNhanVien}"/>"><i class="fa fa-pencil"></i></a>
-														<a href='<c:url value = "#"></c:url>' class="fa fa-trash"
+														<a href='<c:url value = "/quanlynhansutt/ho_so/delete/${hsnv.maNhanVien}"></c:url>' class="fa fa-trash"
 														onclick="return confirm('Bạn có muốn xóa sinh viên này?');"></a>
 													</td>
 												</tr>

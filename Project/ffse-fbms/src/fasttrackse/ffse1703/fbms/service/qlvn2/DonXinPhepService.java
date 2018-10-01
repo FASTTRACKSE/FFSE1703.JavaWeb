@@ -3,6 +3,7 @@ package fasttrackse.ffse1703.fbms.service.qlvn2;
 import java.util.List;
 import fasttrackse.ffse1703.fbms.entity.qlvn2.DonXinPhepEntity;
 import fasttrackse.ffse1703.fbms.entity.qlvn2.LyDoEntity;
+import fasttrackse.ffse1703.fbms.entity.qlvn2.SoNgayNghiEntity;
 import fasttrackse.ffse1703.fbms.entity.qlvn2.TrangThaiEntity;
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 
@@ -35,10 +36,16 @@ public interface DonXinPhepService {
 
 	public void updatecho(DonXinPhepEntity DonXinPhepEntity);
 	
-	public List<DonXinPhepEntity>  findAllForPagingnhap(int startPosition,int maxResult);
-	public List<DonXinPhepEntity>  findAllForPagingcho(int startPosition,int maxResult);
-	public List<DonXinPhepEntity>  findAllForPagingduyet(int startPosition,int maxResult);
-	public List<DonXinPhepEntity>  findAllForPagingtuchoi(int startPosition,int maxResult);
+	public List<DonXinPhepEntity>  findAllForPaging1(int startPosition,int maxResult);
+	public List<DonXinPhepEntity>  findAllForPaging2(int startPosition,int maxResult);
+	public List<DonXinPhepEntity>  findAllForPaging3(int startPosition,int maxResult);
+	public List<DonXinPhepEntity>  findAllForPaging4(int startPosition,int maxResult);
 
+    public List<SoNgayNghiEntity> bangNgayNghi();
+	
+	public SoNgayNghiEntity findByIdngay(int id);
+	
+	public void deletengay(int id); 
+	public List<DonXinPhepEntity>  findAllForPagingngaynghi(int startPosition,int maxResult);
 
 }

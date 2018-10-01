@@ -22,7 +22,7 @@ public class FrameworkServiceImpl implements FrameworkService {
 
 	@Override
 	@Transactional
-	public Framework getById(int id) {
+	public Framework getById(String id) {
 		return frameworkDao.getById(id);
 	}
 
@@ -42,7 +42,7 @@ public class FrameworkServiceImpl implements FrameworkService {
 
 	@Override
 	@Transactional
-	public void delete(int id) {
+	public void delete(String id) {
 		frameworkDao.delete(id);
 	}
 
@@ -52,5 +52,19 @@ public class FrameworkServiceImpl implements FrameworkService {
 		
 		return frameworkDao.checkNameFramework(nameFramework);
 	}
+
+	@Override
+	public List<Framework> listFramework(int start, int maxRows) {
+		
+		return frameworkDao.listFramework(start, maxRows);
+	}
+
+	@Override
+	public int countFramework() {
+		
+		return frameworkDao.countFramework();
+	}
+
+
 
 }

@@ -94,7 +94,7 @@ public class QuanLyHopDongControllerTT {
 						System.out.println("nnnnn"+hd.getLoaiHopDong().getTenHopDong());
 						if (checkloaiHopDong >= 1) {
 							model.addAttribute("messageQuanHe",
-									"<script>alert('Nhân Viên Đã Có " + hd.getLoaiHopDong() + "');</script>");
+									"<script>alert('Nhân Viên Đã Có " + hd.getLoaiHopDong().getTenHopDong() + "');</script>");
 							return "QuanLyNhanSuTT/QuanLyHopDongTT/add_form";
 						}
 			hd.setIsdelete(1);

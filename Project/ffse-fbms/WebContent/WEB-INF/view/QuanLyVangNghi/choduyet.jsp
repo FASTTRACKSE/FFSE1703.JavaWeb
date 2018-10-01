@@ -38,6 +38,108 @@
 td {
 	padding: 5px;
 }
+
+.ques {
+	color: darkslateblue;
+}
+
+.switch {
+	position: relative;
+	display: inline-block;
+	width: 130px;
+	height: 50px;
+}
+
+.switch input {
+	display: none;
+}
+
+.slider {
+	position: absolute;
+	cursor: pointer;
+	overflow: hidden;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #f2f2f2;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+
+.slider:before {
+	position: absolute;
+	z-index: 2;
+	content: "";
+	height: 48px;
+	width: 48px;
+	left: 2px;
+	bottom: 2px;
+	background-color: darkslategrey;
+	-webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.22);
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.22);
+	-webkit-transition: .4s;
+	transition: all 0.4s ease-in-out;
+}
+
+.slider:after {
+	position: absolute;
+	left: 0;
+	z-index: 1;
+	content: "Đã duyệt";
+	font-size: 15px;
+	text-align: left !important;
+	line-height: 47px;
+	padding-left: 0;
+	width: 130px;
+	color: #fff;
+	height: 50px;
+	border-radius: 50px;
+	background-color: #ff6418;
+	-webkit-transform: translateX(-80px);
+	-ms-transform: translateX(-80px);
+	transform: translateX(-80px);
+	transition: all 0.4s ease-in-out;
+}
+
+input:checked+.slider:after {
+	-webkit-transform: translateX(0px);
+	-ms-transform: translateX(0px);
+	transform: translateX(0px);
+	/*width: 120px;*/
+	padding-left: 13px;
+}
+
+input:checked+.slider:before {
+	background-color: #fff;
+}
+
+input:checked+.slider:before {
+	-webkit-transform: translateX(80px);
+	-ms-transform: translateX(80px);
+	transform: translateX(80px);
+}
+
+/* Rounded sliders */
+.slider.round {
+	border-radius: 50px;
+}
+
+.slider.round:before {
+	border-radius: 50%;
+}
+
+.absolute-no {
+	position: absolute;
+	left: 0;
+	color: darkslategrey;
+	text-align: right !important;
+	font-size: 12px;
+	width: calc(100% - 13px);
+	height: 50px;
+	line-height: 47px;
+	cursor: pointer;
+}
 </style>
 </head>
 <body>
@@ -94,7 +196,39 @@ td {
 													<th>Duyệt Đợt 2</em></th>
 												</tr>
 											</thead>
-											
+											<tbody>
+												<c:forEach var="dn" varStatus="counter" items="${list}">
+													<tr>
+														<td>${dn.getId_nv()}</td>
+														<td>${dn.getTen_nv()}</td>
+														<td>${dn.getLy_do()}</td>
+														<td>${dn.getPhong_ban()}</td>
+														<td>${dn.getTg_bat_dau()}</td>
+														<td>${dn.getTg_ket_thuc()}</td>
+														<td>${dn.getGhi_chu()}</td>
+														<td>
+														<c:if test="${dn.getTinh_trang() == 1 }">
+																<label class="switch"> <input> <span
+																	class="slider round"></span> <span class="absolute-no">Chưa
+																		Duyệt</span>
+																</label>
+														</c:if> 
+															<c:if test="${dn.getTinh_trang() == 2 }">
+																<label class="switch"> <input
+																type="checkbox" checked disabled="disabled"> <span
+																class="slider round" ></span> <span class="absolute-no">Chờ Duyệt</span>
+														</label>
+															</c:if>
+															</td>
+														<td>
+															<label class="switch"> <input> <span
+																	class="slider round"></span> <span class="absolute-no">Chưa
+																		Duyệt</span>
+																</label>
+														</td>
+													</tr>
+												</c:forEach>
+											</tbody>
 										</table>
 									</div>
 									<!-- END id="list" -->

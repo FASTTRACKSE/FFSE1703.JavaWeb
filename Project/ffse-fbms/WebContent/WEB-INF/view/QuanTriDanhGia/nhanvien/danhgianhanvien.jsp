@@ -49,7 +49,6 @@
 											<th scope="col">#</th>
 											<th scope="col">Nhân viên</th>
 											<th scope="col">Xếp loại</th>
-											<th scope="col">Trạng thái</th>
 											<th scope="col">Hoạt động</th>
 										</tr>
 									</thead>
@@ -60,11 +59,10 @@
 												<th scope="row">${stt.index + 1 }</th>
 												<td>${x.nhanVien }</td>
 												<td>${x.xepLoai }</td>
-												<td>${x.trangThai }</td>
-												<td><c:if test="${x.trangThai !=0 }">
+												<td><c:if test="${x.xepLoai !=0 }">
 														<a class="btn btn-info"
 															href="<c:url value = "/quantridanhgia/nhanvien/danhgianhanvien/view/${x.id }" />">Xem</a>
-													</c:if> <c:if test="${x.trangThai == 0 }">
+													</c:if> <c:if test="${x.xepLoai == 0 }">
 														<a class="btn btn-info"
 															href="<c:url value = "/quantridanhgia/nhanvien/danhgianhanvien/add/${x.nhanVien }/${x.id }" />">Tạo</a>
 													</c:if></td>

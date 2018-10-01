@@ -48,7 +48,7 @@ i.fa {
 									href="<c:url value = "/quanlynhansutt/bang_cap/viewOneBangCap/${maNhanVien}"/>"
 									class="dropdown-item"><i class="fa fa-graduation-cap"></i>
 									<spring:message code="label.thongTinBangCap" /></a> <a
-									href="<c:url value = "#"/>" class="dropdown-item"><i
+									href="<c:url value = "/quanlynhansutt/gia_dinh/viewOneGiaDinh/${maNhanVien}"/>" class="dropdown-item"><i
 									class="fa fa-users"></i> <spring:message
 										code="label.thongTinGiaDinh" /></a> <a
 									href="<c:url value = "#"/>" class="dropdown-item"><i
@@ -163,7 +163,7 @@ i.fa {
 																	<div class="form-group col-sm-6">
 																		<div class="form-group">
 																			<label for="projectinput4">Dân tộc</label>
-																			
+
 																		</div>
 																	</div>
 																</div>
@@ -202,17 +202,17 @@ i.fa {
 																<div class="row">
 																	<div class="form-group col-sm-6">
 																		<label>tỉnh, thành phố</label>
-																		
+
 																	</div>
 																	<div class="form-group col-sm-6">
 																		<label>quận, huyện</label>
-																		
+
 																	</div>
 																</div>
 																<div class="row">
 																	<div class="form-group col-sm-6">
 																		<label>xã, phường</label>
-																		
+
 																	</div>
 																	<div class="form-group col-sm-6">
 																		<label>địa chỉ</label>
@@ -227,18 +227,18 @@ i.fa {
 																<div class="row">
 																	<div class="form-group col-sm-6">
 																		<label>phòng ban</label>
-																		
+
 																	</div>
 																	<div class="form-group col-sm-6">
 																		<label>chức danh</label>
-																		
-																		
+
+
 																	</div>
 																</div>
 																<div class="row">
 																	<div class="form-group col-sm-6">
 																		<label for="location1">Trạng Thái</label>
-																		
+
 																	</div>
 																	<div class="form-group col-sm-6">
 																		<label>Hình Ảnh:</label> <img id="img" src="#"

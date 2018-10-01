@@ -12,19 +12,21 @@ import javax.validation.constraints.NotEmpty;
 @Table(name = "qlda_program_language")
 public class Language {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_program_language", unique = true, nullable = false)
-	private int idLanguage;
+	@Column(name = "id_program_language")
+	private String idLanguage;
 	@NotEmpty
-	@Column(name = "name_language", unique = true, nullable = false)	
+	@Column(name = "name_language")	
 	private String nameLanguage;
+	
 	private int status;
-	public int getIdLanguage() {
+
+	public String getIdLanguage() {
 		return idLanguage;
 	}
-	public void setIdLanguage(int idLanguage) {
+	public void setIdLanguage(String idLanguage) {
 		this.idLanguage = idLanguage;
 	}
+
 	public String getNameLanguage() {
 		return nameLanguage;
 	}

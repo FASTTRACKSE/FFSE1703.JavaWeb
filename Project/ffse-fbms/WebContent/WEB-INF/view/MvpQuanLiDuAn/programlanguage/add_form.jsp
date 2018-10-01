@@ -39,7 +39,14 @@
 			<div class="main-content">
 				<div class="row">
 					<form:form method="POST" action="addnew">
-						
+						<div class="form-group col-sm-6">
+							<label>Mã Ngôn Ngữ</label><br>
+							<p Class="error">${messageMa}</p>
+							<form:errors path="idLanguage" cssStyle="color: red"></form:errors>
+							<form:input path="idLanguage" class="form-control round"
+								placeholder="Mã ngôn ngữ" />
+
+						</div>
 						<div class="form-group col-sm-6">
 							<label>Tên Ngôn Ngữ</label><br>
 							<p Class="error">${messageName}</p>

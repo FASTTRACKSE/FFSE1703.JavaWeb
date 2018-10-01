@@ -52,8 +52,8 @@ th, td {
 					class="btn-group float-md-right" id="add-new">
 					<a
 						href="<c:url value = "/quanlynhansutt/hop_dong/add_hopdong/${maNhanVien}"/>"
-						class="btn btn-primary"><span class="fa fa-plus"></span> Thêm
-						mới</a>
+						class="btn btn-primary"><span class="fa fa-plus"></span><spring:message
+							code="label.themMoi" /></a>
 				</div>
 			</div>
 		</div>
@@ -81,17 +81,16 @@ th, td {
 										class="table table-striped table-bordered zero-configuration">
 										<thead>
 											<tr>
-												<th>Mã hợp đồng</th>
-												<th>Mã nhân viên</th>
-												<th>Tên loại hợp đồng</th>
-												<th>Lương Tháng 13</th>
-												<th>Số Ngày Phép</th>
+												<th><spring:message code="label.maHopDong" /></th>
+												<th><spring:message code="label.maNhanVien" /></th>
+												<th><spring:message code="label.tenHopDong" /></th>
+												<th><spring:message code="label.luongThang13" /></th>
+												<th><spring:message code="label.soNgayPhep" /></th>
 												<th>Ngày Ký</th>
 												<th>Hợp Đồng Từ Ngày</th>
 												<th>Hợp Đồng Đến Ngày</th>
-												<th>Trạng Thái</th>
+												<th><spring:message code="label.trangThai" /></th>
 												<th>Chức Năng</th>
-
 											</tr>
 										</thead>
 										<tbody>

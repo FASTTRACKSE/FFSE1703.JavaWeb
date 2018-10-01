@@ -39,8 +39,15 @@
 			<div class="main-content">
 				<div class="row">
 					<form:form method="POST" action="/ffse-fbms/mvpquanliduan/language/update" modelAttribute="language">
-					<form:hidden path="idLanguage"/>
-						
+					
+						<div class="form-group col-sm-12">
+							<label>Mã Ngôn Ngữ</label><br>
+							<p Class="error" >${messageMa}</p>
+							<form:errors path="idLanguage" cssClass="error" />
+							<form:input path="idLanguage" class="form-control round"
+								placeholder="Mã ngôn ngữ" />
+							
+						</div>
 						<div class="form-group col-sm-12">
 							<label>Tên Ngôn Ngữ</label><br>
 							<p Class="error" >${messageName}</p>

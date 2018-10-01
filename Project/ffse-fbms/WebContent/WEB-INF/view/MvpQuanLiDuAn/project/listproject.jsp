@@ -34,13 +34,7 @@
 
 		<div class="content-body">
 			<div class="x_panel">
-				<div class="x_title">
-					<a class="btn btn-outline-success round btn-min-width mr-1 mb-1"
-						href="<c:url value="/mvpquanliduan/project/show-form-add" />">
-						<h5class="ft-plus-circle">Thêm Dự án
-						</h5>
-					</a>
-				</div>
+				
 				<div class="x_content">
 
 					<!-- Show message -->
@@ -75,12 +69,12 @@
 
 									<td><a class="btn btn-outline-info  "
 										href="<c:url value="/mvpquanliduan/project/detail-project/${project.idProject}" />"
-										title=""><i class="fa fa-camera"></i> </a>
+										title=""><i class="icon-eye"></i> </a>
 										<button
 											data-href="<c:url value="/mvpquanliduan/project/delete/${project.idProject}" />"
 											class="btn btn-outline-danger" data-toggle="modal"
 											data-target="#xoa_pr">
-											<i class="icon-shield"></i>
+											<i class="icon-close"></i>
 										</button>
 								</tr>
 

@@ -29,57 +29,54 @@ public class DanhGiaBanThan {
 
 	@NaturalId
 	@Column(name = "nhan_vien")
-	@NotEmpty
 	private int nhanVien;
 
 	@Column(name = "ky_luat_cong_viec_danh_gia")
 	private int kyLuatCongViec_DG;
 
-	@Column(name = "ky_luat_cong_viec_mo_ta")
+	@Column(name = "ky_luat_cong_viec_mo_ta", nullable = false)
 	@NotEmpty
 	private String kyLuatCongViec_MT;
 
 	@Column(name = "tinh_than_lam_viec_danh_gia")
 	private int tinhThanLamViec_DG;
 
-	@Column(name = "tinh_than_lam_viec_mo_ta")
+	@Column(name = "tinh_than_lam_viec_mo_ta", nullable = false)
 	@NotEmpty
 	private String tinhThanLamViec_MT;
 
 	@Column(name = "khoi_luong_cong_viec_danh_gia")
-	@NotEmpty
 	private int khoiLuongCongViec_DG;
 
-	@Column(name = "khoi_luong_cong_viec_mo_ta")
+	@Column(name = "khoi_luong_cong_viec_mo_ta", nullable = false)
+	@NotEmpty
 	private String khoiLuongCongViec_MT;
 
 	@Column(name = "ket_qua_cong_viec_danh_gia")
-	@NotEmpty
 	private int ketQuaCongViec_DG;
 
-	@Column(name = "ket_qua_cong_viec_mo_ta")
+	@Column(name = "ket_qua_cong_viec_mo_ta", nullable = false)
+	@NotEmpty
 	private String ketQuaCongViec_MT;
 
 	@Column(name = "ky_nang_tich_luy_danh_gia")
 	private int kyNangTichLuy_DG;
 
-	@Column(name = "ky_nang_tich_luy_mo_ta")
+	@Column(name = "ky_nang_tich_luy_mo_ta", nullable = false)
 	@NotEmpty
 	private String kyNangTichLuy_MT;
 
-	@Column(name = "dinh_huong")
+	@Column(name = "dinh_huong", nullable = false)
 	@NotEmpty
 	private String dinhHuong;
 
 	@Column(name = "danh_gia_tong_the")
-	private String danhGiaTongThe;
+	private int danhGiaTongThe;
 
 	@Column(name = "ma_trang_thai")
-	@NotEmpty
 	private int trangThai;
 
 	@Column(name = "is_delete")
-	@NotEmpty
 	private int isDelete;
 
 	public DanhGiaBanThan() {
@@ -206,11 +203,11 @@ public class DanhGiaBanThan {
 		this.dinhHuong = dinhHuong;
 	}
 
-	public String getDanhGiaTongThe() {
+	public int getDanhGiaTongThe() {
 		return danhGiaTongThe;
 	}
 
-	public void setDanhGiaTongThe(String danhGiaTongThe) {
+	public void setDanhGiaTongThe(int danhGiaTongThe) {
 		this.danhGiaTongThe = danhGiaTongThe;
 	}
 

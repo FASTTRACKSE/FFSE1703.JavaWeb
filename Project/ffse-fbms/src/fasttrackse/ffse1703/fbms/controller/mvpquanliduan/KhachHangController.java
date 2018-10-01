@@ -2,6 +2,7 @@ package fasttrackse.ffse1703.fbms.controller.mvpquanliduan;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,10 +29,31 @@ public class KhachHangController {
 		this.khachHangService = khachHangService;
 	}
 
-	@RequestMapping(value = "/list-khachhang")
-	public String listKhachHang(Model model) {
-		List<KhachHang> list = khachHangService.getAll();
-		model.addAttribute("listKhachHang", list);
+
+	@RequestMapping("/list-khachhang")
+	public String listKhachHang(HttpSession session) {
+		int pageId = 0;
+		if (session.getAttribute("pageIds") == null) {
+			pageId = 1;
+		} else {
+			pageId = (int) session.getAttribute("pageIds");
+		}
+		return "redirect: list-khachhang/"+pageId;
+	}
+	@RequestMapping(value = "/list-khachhang/{pageId}", method = RequestMethod.GET)
+	public String listPersons(@PathVariable int pageId, Model model,HttpSession session) {
+		int maxRows= 5;
+		int start = (pageId - 1) * maxRows;
+		int totalKhachHang = khachHangService.countKhachHang();
+		int totalPage = (int) Math.ceil(totalKhachHang / (double) maxRows);
+		if (pageId == 0) {
+			pageId = 1;
+		}
+		
+		model.addAttribute("listKhachHang", this.khachHangService.listKhachHang(start, maxRows));
+		model.addAttribute("pageId", pageId);
+		model.addAttribute("totalPage", totalPage);
+		session.setAttribute("pageIds", pageId);
 		return "MvpQuanLiDuAn/khachhang/list";
 	}
 
@@ -47,7 +69,11 @@ public class KhachHangController {
 		if (result.hasErrors()) {
 			return "MvpQuanLiDuAn/khachhang/add_form";
 		}
-		
+		int checkMa=khachHangService.checkIdKhachHang(khachHang.getIdKhachHang());
+		if(checkMa >=1) {
+			model.addAttribute("messageMa", "Mã khách hàng đã được sử dụng");
+			return "MvpQuanLiDuAn/khachhang/add_form";
+		}
 		
 		khachHang.setStatus(1);
 		khachHangService.add(khachHang);

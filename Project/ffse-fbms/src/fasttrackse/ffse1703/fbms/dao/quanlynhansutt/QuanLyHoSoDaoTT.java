@@ -4,8 +4,6 @@ import java.util.List;
 
 import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.HoSoNhanVienTT;
 
-
-
 public interface QuanLyHoSoDaoTT {
 	public List<HoSoNhanVienTT> getAllHoSo();
 

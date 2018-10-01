@@ -9,9 +9,12 @@ import fasttrackse.ffse1703.fbms.entity.security.UserAccount;
 
 public interface QuanLyVangNghiService {
 	public void addDon(DonNghi dn);
-	public List<DonNghi> listDonNghi();
+	public List<DonNghi> listDonNghiNhap(int id_nv);
 	public UserAccount getThongTinUser(String username);
 	public TinhTrangNghi getTinhTrang(int id_nv);
 	public List<LyDo> listLyDo();
 	public void insertUpdateTinhTrang(int id_nv, TinhTrangNghi tt);
+	public List<DonNghi> listDonNghiChoDuyet(int id_nv);
+	public DonNghi getDonNghiNv(int id_don);
+	public void updateDon(DonNghi dn); 
 }

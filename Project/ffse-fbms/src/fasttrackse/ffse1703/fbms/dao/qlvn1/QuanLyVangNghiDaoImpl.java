@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -66,10 +65,10 @@ public class QuanLyVangNghiDaoImpl implements QuanLyVangNghiDao {
 	}
 
 	@Override
-	public List<DonNghi> listDonNghi() {
+	public List<DonNghi> listDonNghiNhap(int id_nv) {
 		Session session = this.sessionFactory.openSession();
 		@SuppressWarnings("unchecked")
-		List<DonNghi> listDn = session.createQuery("from DonNghi").list();
+		List<DonNghi> listDn = session.createQuery("from DonNghi where id_nv ='"+id_nv+"' and tinh_trang = "+0+" ").list();
 		session.close();
 		return listDn;
 	}
@@ -86,6 +85,32 @@ public class QuanLyVangNghiDaoImpl implements QuanLyVangNghiDao {
 		}else {
 			session.update(tt);
 		}
+	}
+
+
+	@Override
+	public List<DonNghi> listDonNghiChoDuyet(int id_nv) {
+		// TODO Auto-generated method stub
+		Session session = this.sessionFactory.openSession();
+		@SuppressWarnings("unchecked")
+		List<DonNghi> listDn = session.createQuery("from DonNghi where id_nv ='"+id_nv+"' and ( tinh_trang = "+1+" or tinh_trang = "+2+")").list();
+		session.close();
+		return listDn;
+	}
+
+	@Override
+	public DonNghi getDonNghiNv(int id_don) {
+		// TODO Auto-generated method stub
+		Session session = this.sessionFactory.openSession();
+		DonNghi donNghi = new DonNghi();
+		donNghi = session.createQuery("from DonNghi where id_don=" + id_don + "", DonNghi.class).getSingleResult();
+		return donNghi;
+	}
+
+	@Override
+	public void updateDon(DonNghi dn) {
+		Session session = this.sessionFactory.getCurrentSession();
+		session.update(dn);
 	}
 	
 }

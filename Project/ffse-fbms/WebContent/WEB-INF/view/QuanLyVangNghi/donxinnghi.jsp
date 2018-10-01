@@ -190,7 +190,7 @@
 														<c:if test="${tinhTrang.getNgay_con_lai() != null}">
 															<input id="iconLeft10" name="ngay_con_lai" type="text"
 																class="form-control round" readonly="readonly"
-																value="${tinhTrang.getNgay_con_lai() != null}">
+																value="${tinhTrang.getNgay_con_lai() }">
 														</c:if>
 														<div class="form-control-position">
 															<i class="fa fa-clock-o"></i>
@@ -265,10 +265,10 @@
 											<input  name="ghi_chu" type="text"
 																class="form-control round" 	>
 											<div class="form-actions">
-												<button type="submit" class="btn btn-primary">
+												<button type="submit" class="btn btn-primary" formaction="savenhap">
 													<i class="fa ft-save"></i> Lưu nháp
 												</button>
-												<button type="submit" class="btn btn-success" >
+												<button type="submit" class="btn btn-success" formaction="savechoduyet">
 													 <i class="fa fa-check-square-o"></i> Gửi đơn chờ phê duyệt
 												</button>
 												<a href="QuanLyVangNghi/danhsach">

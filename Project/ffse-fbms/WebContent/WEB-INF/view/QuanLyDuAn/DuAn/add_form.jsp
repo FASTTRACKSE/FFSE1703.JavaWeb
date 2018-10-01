@@ -5,7 +5,7 @@
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 
 <div class="app-content content container-fluid"
-	style="background-color: #FFAEB9; font-weight: bold;">
+	style="background-color: white; font-weight: bold; color: white">
 	<div class="content-wrapper">
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-xs-12 mb-2">
@@ -34,10 +34,10 @@
 
 		</div>
 	</div>
-	<div class="row">
+	<div class="row" style="background-color: #DDDDDD; color: white">
 		<div class="col-xs-12">
 			<div class="card">
-				<div class="card-header" style="background-color: white;">
+				<div class="card-header" >
 
 
 					<div class="heading-elements">

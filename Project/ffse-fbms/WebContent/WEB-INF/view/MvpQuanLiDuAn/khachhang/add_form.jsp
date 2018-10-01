@@ -33,6 +33,7 @@
 					<form:form method="POST" action="addnew">
 						<div class="form-group col-sm-6">
 							<label>Mã khach hang</label>
+							<p Class="error">${messageMa}</p>
 							<form:input class="form-control" path="idKhachHang" placeholder="Mã khách hàng" />
 							<form:errors path="email" cssStyle="color: red"></form:errors>
 
@@ -63,15 +64,13 @@
 							<form:errors path="address" cssStyle="color: red"></form:errors>
 
 						</div>
-						<div class="form-group col-sm-12">
+						<div class="form-group col-sm-6">
 							<label>Giới tính</label>
 							<form:radiobutton path="gender" value="Nam" />
 							Nam
 							<form:radiobutton path="gender" value="Nữ" />
 							Nữ
-
 							<form:errors path="gender" cssStyle="color: red"></form:errors>
-
 						</div>
 
 						<div class="col-sm-12 text-center">

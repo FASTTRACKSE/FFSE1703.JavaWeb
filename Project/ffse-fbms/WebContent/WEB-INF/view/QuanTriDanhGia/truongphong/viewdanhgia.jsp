@@ -96,15 +96,14 @@
 														<label>${danhGia.danhGiaTongThe }</label>
 													</div>
 												</div>
-												<div class="form-actions">
-													<a href="<c:url value="/quantridanhgia/truongphong"/>"
-														class="btn btn-danger btn-min-width mr-1 mb-1">Trở về</a>
-													<a href="<c:url value="/quantridanhgia/truongphong/accept"/>"
-														class="btn btn-danger btn-min-width mr-1 mb-1">Duyệt</a>
-													<a
-														href="<c:url value="/quantridanhgia/truongphong/ignore"/>"
-														class="btn btn-danger btn-min-width mr-1 mb-1">Hủy</a>
-												</div>
+											</div>
+											<div class="form-actions">
+												<a href="<c:url value="/quantridanhgia/truongphong"/>"
+													class="btn btn-danger btn-min-width mr-1 mb-1">Trở về</a> <a
+													href="<c:url value="/quantridanhgia/truongphong/accept"/>"
+													class="btn btn-success btn-min-width mr-1 mb-1">Duyệt</a> <a
+													href="<c:url value="/quantridanhgia/truongphong/ignore"/>"
+													class="btn btn-warning btn-min-width mr-1 mb-1">Hủy</a>
 											</div>
 										</form:form>
 									</div>

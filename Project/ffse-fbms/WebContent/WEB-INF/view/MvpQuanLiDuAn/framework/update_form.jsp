@@ -39,9 +39,14 @@
 			<div class="main-content">
 				<div class="row">
 					<form:form method="POST" action="/ffse-fbms/mvpquanliduan/framework/update" modelAttribute="framework">
-					<form:hidden path="idFrame"/>
-						
-						<div class="form-group col-sm-12">
+						<div class="form-group col-sm-6">
+							<label>Mã Framework</label><br>
+							<p Class="error" ></p>
+							<form:input path="idFrame" class="form-control round"
+								placeholder="Mã Framework" readonly="true"/>
+							
+						</div>
+						<div class="form-group col-sm-6">
 							<label>Tên Framework</label><br>
 							<p Class="error" >${messageName}</p>
 							<form:errors path="nameFramework" cssClass="error" />

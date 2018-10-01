@@ -2,22 +2,26 @@ package fasttrackse.ffse1703.fbms.service.quantridanhgia;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import fasttrackse.ffse1703.fbms.dao.quantridanhgia.PhongNhanSuDAOImpl;
+import fasttrackse.ffse1703.fbms.dao.quantridanhgia.PhongNhanSuDAO;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.DanhGiaBanThan;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.DanhGiaNhanVien;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.KyDanhGia;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.LichDanhGia;
+import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 
 @Service
 public class PhongNhanSuServiceImpl implements PhongNhanSuService {
 
 	@Autowired
-	public PhongNhanSuDAOImpl dao;
+	public PhongNhanSuDAO dao;
+
+	public void setDao(PhongNhanSuDAO dao) {
+		this.dao = dao;
+	}
 
 	@Transactional
 	@Override
@@ -57,7 +61,7 @@ public class PhongNhanSuServiceImpl implements PhongNhanSuService {
 
 	@Transactional
 	@Override
-	public List<Integer> getNhanVienPhongBan(String phongBan) {
+	public List<HoSoNhanVien> getNhanVienPhongBan(String phongBan) {
 		return this.dao.getNhanVienPhongBan(phongBan);
 	}
 
@@ -93,8 +97,8 @@ public class PhongNhanSuServiceImpl implements PhongNhanSuService {
 
 	@Transactional
 	@Override
-	public void insertPhanCongDanhGia(List<DanhGiaNhanVien> pc) {
-		this.dao.insertPhanCongDanhGia(pc);
+	public void createPhanCongDanhGia(List<DanhGiaNhanVien> pc) {
+		this.dao.createPhanCongDanhGia(pc);
 	}
 
 	@Transactional
@@ -105,13 +109,13 @@ public class PhongNhanSuServiceImpl implements PhongNhanSuService {
 
 	@Transactional
 	@Override
-	public int checkActiveLichDanhGia() {
-		return this.dao.checkActiveLichDanhGia();
+	public int checkActiveLichDanhGia(String phongBan) {
+		return this.dao.checkActiveLichDanhGia(phongBan);
 	}
 
 	@Transactional
 	@Override
-	public int checkCompleteLichDanhGia() {
+	public int checkCompleteLichDanhGia(String phongBan) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -127,4 +131,23 @@ public class PhongNhanSuServiceImpl implements PhongNhanSuService {
 	public List<LichDanhGia> getListLichDanhGia() {
 		return dao.getListLichDanhGia();
 	}
+
+	@Override
+	@Transactional
+	public int countNhanVienPhongBan(String phongBan) {
+		return dao.countDanhGiaPhongBan(phongBan);
+	}
+
+	@Override
+	@Transactional
+	public int countDanhGiaPhongBan(String phongBan) {
+		return dao.countDanhGiaPhongBan(phongBan);
+	}
+
+	@Transactional
+	@Override
+	public void createDanhGiaBanThan(List<DanhGiaBanThan> danhGia) {
+		dao.createDanhGiaBanThan(danhGia);
+	}
+
 }

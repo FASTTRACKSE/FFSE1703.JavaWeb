@@ -8,14 +8,14 @@
 	<div class="content-wrapper">
 		<div class="content-header row">
 			<div class="content-header-left col-md-9 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">Đánh giá nhân viên</h3>
+				<h3 class="content-header-title mb-0">Duyệt đánh giá</h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a
 								href="<c:url value = "/quantridanhgia/home/"/>">Quản trị
 									đánh giá</a></li>
-							<li class="breadcrumb-item active">Đánh giá nhân viên</li>
+							<li class="breadcrumb-item active">Duyệt đánh giá</li>
 						</ol>
 					</div>
 				</div>
@@ -24,7 +24,7 @@
 		<div class="row">
 			<div class="card">
 				<div class="card-header">
-					<h4 class="card-title">Danh sách nhân viên cần đánh giá</h4>
+					<h4 class="card-title">Danh sách đánh giá</h4>
 				</div>
 				<div class="card-content">
 					<div class="card-body" style="margin: 1em">
@@ -41,11 +41,11 @@
 								<tbody>
 									<c:forEach items="${listNhanVien }" var="x" varStatus="stt">
 										<tr>
-											<th scope="row">${stt.index }</th>
-											<td>{x.nhanVien}</td>
-											<td>${x.xepLoai }</td>
+											<th scope="row">${stt.index +1}</th>
+											<td>${x.nhanVien}</td>
+											<td>${x.danhGiaTongThe }</td>
 											<td>
-												<a href="">Đánh giá</a>
+												<a class="btn btn-primary" href="<c:url value="/quantridanhgia/truongphong/duyetdanhgia/view/${x.id }" />">Đánh giá</a>
 											</td>
 										</tr>
 									</c:forEach>

@@ -11,6 +11,7 @@ import fasttrackse.ffse1703.fbms.entity.quantridanhgia.DanhGiaBanThan;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.DanhGiaNhanVien;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.KyDanhGia;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.LichDanhGia;
+import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 
 @Repository
 public class PhongNhanSuDAOImpl implements PhongNhanSuDAO {
@@ -61,18 +62,18 @@ public class PhongNhanSuDAOImpl implements PhongNhanSuDAO {
 		session.update(kyDanhGia);
 	}
 
-	// Get mã nhân viên phong ban
+	// Get nhân viên phong ban
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Integer> getNhanVienPhongBan(String phongBan) {
+	public List<HoSoNhanVien> getNhanVienPhongBan(String phongBan) {
 		Session session = sessionFactory.getCurrentSession();
-		String sql = "SELECT ma_nhan_vien FROM ho_so_nhan_vien WHERE ma_phong_ban = ? and ma_chuc_danh = 'NV'";
-		return session.createSQLQuery(sql).setParameter(1, phongBan).list();
+		return session.createQuery("from HoSoNhanVien where phongBan.maPhongBan = :phongBan and chucDanh.maChucDanh = 'NV'").setParameter("phongBan", phongBan).list();
 	}
 
 	// Tạo phân công đánh giá
+	
 	@Override
-	public void insertPhanCongDanhGia(List<DanhGiaNhanVien> phanCong) {
+	public void createPhanCongDanhGia(List<DanhGiaNhanVien> phanCong) {
 		Session session = sessionFactory.getCurrentSession();
 		for (DanhGiaNhanVien x : phanCong) {
 			session.persist(x);
@@ -131,13 +132,13 @@ public class PhongNhanSuDAOImpl implements PhongNhanSuDAO {
 	}
 
 	@Override
-	public int checkActiveLichDanhGia() {
+	public int checkActiveLichDanhGia(String phongBan) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("from LichDanhGia where isActive = 1").list().size();
+		return session.createQuery("from LichDanhGia where phongBan = :phongBan and isActive = 1").setParameter("phongBan", phongBan).list().size();
 	}
 
 	@Override
-	public int checkCompleteLichDanhGia() {
+	public int checkCompleteLichDanhGia(String phongBan) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -147,5 +148,25 @@ public class PhongNhanSuDAOImpl implements PhongNhanSuDAO {
 	public List<DanhGiaBanThan> getListDanhGiaBanThan() {
 		Session session = sessionFactory.getCurrentSession();
 		return session.createQuery("from DanhGiaBanThan").list();
+	}
+
+	@Override
+	public int countNhanVienPhongBan(String phongBan) {
+		Session session = sessionFactory.getCurrentSession();
+		return session.createQuery("from HoSoNhanVien").list().size();
+	}
+
+	@Override
+	public int countDanhGiaPhongBan(String phongBan) {
+		Session session = sessionFactory.getCurrentSession();
+		return session.createQuery("from DanhGiaBanThan where trangThai = 3").list().size();
+	}
+
+	@Override
+	public void createDanhGiaBanThan(List<DanhGiaBanThan> danhGia) {
+		Session session = sessionFactory.getCurrentSession();
+		for (DanhGiaBanThan x : danhGia) {
+			session.persist(x);
+		}
 	}
 }

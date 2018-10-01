@@ -25,7 +25,7 @@ public class TruongPhongDanhGia {
 
 	@NaturalId
 	@Column(name = "nhan_vien")
-	private String nhanVien;
+	private int nhanVien;
 
 	@Column(name = "ky_luat_cong_viec")
 	private int kyLuatCongViec;
@@ -79,11 +79,11 @@ public class TruongPhongDanhGia {
 		this.phongBan = phongBan;
 	}
 
-	public String getNhanVien() {
+	public int getNhanVien() {
 		return nhanVien;
 	}
 
-	public void setNhanVien(String nhanVien) {
+	public void setNhanVien(int nhanVien) {
 		this.nhanVien = nhanVien;
 	}
 

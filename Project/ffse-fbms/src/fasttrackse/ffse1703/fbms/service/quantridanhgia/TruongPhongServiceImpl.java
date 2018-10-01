@@ -8,7 +8,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fasttrackse.ffse1703.fbms.dao.quantridanhgia.TruongPhongDAO;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.DanhGiaBanThan;
+import fasttrackse.ffse1703.fbms.entity.quantridanhgia.LichDanhGia;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.TruongPhongDanhGia;
+import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 
 @Service
 public class TruongPhongServiceImpl implements TruongPhongService {
@@ -46,14 +48,32 @@ public class TruongPhongServiceImpl implements TruongPhongService {
 
 	@Override
 	@Transactional
-	public void updateDanhGiaNhanVien(TruongPhongDanhGia danhGia) {
-		dao.updateDanhGiaNhanVien(danhGia);
+	public void createListNhanVienPhongBan(List<TruongPhongDanhGia> danhGia) {
+		dao.createListNhanVienPhongBan(danhGia);
 	}
 
 	@Override
 	@Transactional
-	public void deleteDanhGiaNhanVien(TruongPhongDanhGia danhGia) {
-		dao.deleteDanhGiaNhanVien(danhGia);
+	public void updateNhanVienTuDanhGia(DanhGiaBanThan danhGia) {
+		dao.updateNhanVienTuDanhGia(danhGia);
+	}
+
+	@Override
+	@Transactional
+	public List<DanhGiaBanThan> getListDanhGiaBanThan(String phongBan) {
+		return dao.getListDanhGiaBanThan(phongBan);
+	}
+
+	@Override
+	@Transactional
+	public List<HoSoNhanVien> getNhanVienPhongBan(String phongBan) {
+		return dao.getNhanVienPhongBan(phongBan);
+	}
+
+	@Override
+	public LichDanhGia getActiveLichDanhGia(String phongBan) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

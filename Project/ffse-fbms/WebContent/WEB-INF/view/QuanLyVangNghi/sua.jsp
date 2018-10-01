@@ -55,7 +55,7 @@
 			</div>
 			<div class="content-body">
 				<!-- Inputs Icons start -->
-                
+
 				<div class="row match-height">
 					<div class="col-md-12">
 						<div class="card">
@@ -92,7 +92,9 @@
 
 
 
-									<form:form id="donxinnghi" class="form" method="POST" modelAttribute="donNghi" action="saveedit">
+									<form:form id="donxinnghi" class="form" method="POST"
+										modelAttribute="donNghi"
+										action="/ffse-fbms/QuanLyVangNghi/saveedit">
 										<div class="form-body">
 
 											<h4 class="form-section">
@@ -100,18 +102,16 @@
 											</h4>
 											<div class="row">
 												<div class="form-group col-md-12 mb-2">
-													<fieldset
-														class="form-group position-relative has-icon-left">
-														<input disabled="disabled" id="iconLeft10" type="text"
-															class="form-control round"
-															value="${donNghi.getId_nv()}"> 
-															<input
-															type="hidden" name="id_nv"
-															value="${donNghi.getId_nv()}">
-														<div class="form-control-position">
-															<i class="fa fa-user-circle-o"></i>
-														</div>
-													</fieldset>
+
+													<form:input id="iconLeft10" type="hidden"
+														class="form-control round" path="id_don" />
+													<input disabled="disabled" id="iconLeft10" type="text"
+														class="form-control round" value="${donNghi.getId_nv()}" />
+
+													<form:input id="iconLeft10" type="hidden"
+														class="form-control round" path="id_nv" />
+
+
 												</div>
 											</div>
 											<h4 class="form-section">
@@ -119,18 +119,12 @@
 											</h4>
 											<div class="row">
 												<div class="form-group col-md-12 mb-2">
-													<fieldset
-														class="form-group position-relative has-icon-left">
-														<input disabled="disabled" id="iconLeft10"
-															type="text"
-															class="form-control round"
-															value="${donNghi.getTen_nv()} ">
-														<input type="hidden" name="ten_nv"
-															value="${donNghi.getTen_nv()}">
-														<div class="form-control-position">
-															<i class="fa fa-user-circle-o"></i>
-														</div>
-													</fieldset>
+
+													<input disabled="disabled" id="iconLeft10" type="text"
+														class="form-control round" value="${donNghi.getTen_nv()}" />
+													<form:input id="iconLeft10" type="hidden"
+														class="form-control round" path="ten_nv" />
+
 												</div>
 											</div>
 											<h4 class="form-section">
@@ -138,17 +132,15 @@
 											</h4>
 											<div class="row">
 												<div class="form-group col-md-12 mb-2">
-													<fieldset
-														class="form-group position-relative has-icon-left">
-														<input disabled="disabled" id="phong_ban"
-															 type="text" class="form-control round"
-															value="${donNghi.getPhong_ban()}">
-														<input type="hidden" name="phong_ban"
-															value="${donNghi.getPhong_ban()}">
-														<div class="form-control-position">
-															<i class="fa fa-users"></i>
-														</div>
-													</fieldset>
+
+													<input disabled="disabled" id="iconLeft10" type="text"
+														class="form-control round"
+														value="${donNghi.getPhong_ban()}" />
+													<form:input id="phong_ban" type="text"
+														class="form-control round" path="phong_ban" />
+
+
+
 												</div>
 											</div>
 											<h4 class="form-section">
@@ -159,12 +151,15 @@
 													<fieldset
 														class="form-group position-relative has-icon-left">
 														<c:if test="${tinhTrang.getNgay_da_nghi() == null}">
-															<input id="iconLeft10" name="ngay_da_nghi" type="text"
-																class="form-control round" readonly="readonly" value="0">
+
+															<input disabled="disabled" id="iconLeft10"
+																name="ngay_da_nghi" type="text"
+																class="form-control round" value="0" />
 
 														</c:if>
 														<c:if test="${tinhTrang.getNgay_da_nghi() != null}">
-															<input id="iconLeft10" name="ngay_da_nghi" type="text"
+															<input disabled="disabled" id="iconLeft10"
+																name="ngay_da_nghi" type="text"
 																class="form-control round" readonly="readonly"
 																value="${tinhTrang.getNgay_da_nghi()}">
 														</c:if>
@@ -183,14 +178,14 @@
 													<fieldset
 														class="form-group position-relative has-icon-left">
 														<c:if test="${tinhTrang.getNgay_con_lai() == null}">
-															<input id="iconLeft10" name="ngay_con_lai" type="text"
+															<input disabled="disabled" id="iconLeft10" type="text"
 																class="form-control round" readonly="readonly"
 																value="12">
 														</c:if>
 														<c:if test="${tinhTrang.getNgay_con_lai() != null}">
-															<input id="iconLeft10" name="ngay_con_lai" type="text"
+															<input disabled="disabled" id="iconLeft10" type="text"
 																class="form-control round" readonly="readonly"
-																value="${tinhTrang.getNgay_con_lai() }">
+																value="${tinhTrang.getNgay_con_lai()}" />
 														</c:if>
 														<div class="form-control-position">
 															<i class="fa fa-clock-o"></i>
@@ -206,31 +201,31 @@
 													<p>Ngày bắt đầu*</p>
 
 													<fieldset class="form-group position-relative">
-														<input name="tg_bat_dau" type="date"
-															class="form-control round" id="from" value="${donNghi.getTg_bat_dau()}" 
+														<form:input name="tg_bat_dau" type="date"
+															class="form-control round" id="from" path="tg_bat_dau"
 															onchange="myFunction()" />
 
 														<div class="form-control-position">
 															<i class="fa fa-calendar-o"></i>
 														</div>
 													</fieldset>
-													
+
 												</div>
 												<div class="form-group col-md-4 mb-2 has-icon-left">
 													<p>Ngày kết thúc*</p>
 
 													<fieldset class="form-group position-relative">
-														<input id="to" name="tg_ket_thuc" type="date"
-															class="form-control round" onchange="count()" value="${donNghi.getTg_ket_thuc()}"
-															min="2018-09-20">
+														<form:input id="to" name="tg_ket_thuc" type="date"
+															class="form-control round" onchange="count()"
+															path="tg_ket_thuc" />
 														<div class="form-control-position">
 															<i class="fa fa-calendar"></i>
 														</div>
 													</fieldset>
 
 
-													
-												</div>												
+
+												</div>
 											</div>
 
 											<h4 class="form-section">
@@ -240,9 +235,10 @@
 											<div class="row">
 												<div class="form-group col-md-12 mb-2">
 													<select id="customSelect" name="ly_do"
-														class="custom-select block round" value="${donNghi.getLy_do()}">
-														<c:forEach items="${arrLyDo}" var="lyDo" >
-															<option value="${lyDo.getTen_loai_nghi()}">${lyDo.getTen_loai_nghi()}</option>
+														class="custom-select block round">
+														<c:forEach items="${arrLyDo}" var="lyDo">
+															<option value="${lyDo.getTen_loai_nghi()}"
+																<c:if test="${donNghi.getLy_do() == lyDo.ten_loai_nghi }"> selected="selected"</c:if>>${lyDo.getTen_loai_nghi()}</option>
 														</c:forEach>
 													</select>
 												</div>
@@ -252,10 +248,10 @@
 											<h4 class="form-section">
 												<i class="fa fa-tags"></i> Ghi chú*
 											</h4>
-											<input  name="ghi_chu" type="text"
-																class="form-control round" 	value ="${donNghi.getLy_do()}">
+											<form:input name="ghi_chu" type="text"
+												class="form-control round" path="ghi_chu" />
 											<div class="form-actions">
-												<button type="submit" class="btn btn-primary" >
+												<button type="submit" class="btn btn-primary">
 													<i class="fa ft-save"></i> Lưu Thông Tin
 												</button>
 												<a href="QuanLyVangNghi/danhsach">

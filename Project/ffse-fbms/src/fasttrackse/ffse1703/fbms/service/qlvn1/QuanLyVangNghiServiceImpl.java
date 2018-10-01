@@ -82,4 +82,29 @@ public class QuanLyVangNghiServiceImpl implements QuanLyVangNghiService {
 		
 	}
 
+	@Transactional
+	@Override
+	public void deleteDon(DonNghi dn) {
+		this.qlvnDao.deleteDon(dn);
+		
+	}
+	@Transactional
+	@Override
+	public void removeDonNhap(int id_don) {
+		this.qlvnDao.removeDonNhap(id_don);
+		
+	}
+	@Transactional
+	@Override
+	public List<DonNghi> listDonNghiPheDuyet1() {
+		return this.qlvnDao.listDonNghiPheDuyet1();
+	}
+
+	@Transactional
+	@Override
+	public void updateTinhTrang(TinhTrangNghi tt) {
+		// TODO Auto-generated method stub
+		this.qlvnDao.updateTinhTrang(tt);
+	}
+	
 }

@@ -50,12 +50,7 @@ td{
 							<div class="panel-heading " style="padding: 5px;">
 								<div class="row">
 									<div class="col col-xs-3 text-left">
-										<a  class="btn btn-default" 
-											role="tab" data-toggle="tab"><i class="fa fa-picture-o"
-											aria-hidden="true"></i>Chờ Duyệt</a>
-											<a  class="btn btn-default" 
-											role="tab" data-toggle="tab"><i class="fa fa-picture-o"
-											></i>Đã Duyệt</a>
+								
 									</div>
 									<div class="col col-xs-5 text-center">
 										<h3 class="panel-title"><b>Danh Sách Lưu Nháp</b></h3>
@@ -105,9 +100,13 @@ td{
 														<td>${dn.getGhi_chu()}</td>
 
 														<td><a href="edit/${dn.getId_don()}"><button type="button"
-																	class="btn btn-warning btn-circle">Edit</button></a> <a
-															href="#"><button type="button"
-																	class="btn btn-danger btn-circle">Del</button></a></td>
+																	class="btn btn-warning btn-circle">Sửa</button></a> <a
+															href="remove/${dn.getId_don()}"><button type="button"
+																	class="btn btn-danger btn-circle">Xoá</button></a>
+																	<a
+															href="savechoduyetnhap/${dn.getId_don()}"><button type="button"
+																	class="btn btn-danger btn-circle">Gửi Đơn</button></a>
+																	</td>
 													</tr>
 												</c:forEach>
 											</tbody>		

@@ -43,11 +43,29 @@ public class DonXinNghiCotroller {
 		return "QuanLyVangNghi/donxinnghi";
 	}
 
+	@RequestMapping(value = "/duyetvong1", method = RequestMethod.GET)
+	public String viewDuyetVong1(Model model) {
+		List<DonNghi> dn = new ArrayList<DonNghi>();
+		dn = service.listDonNghiPheDuyet1();
+		model.addAttribute("list", dn);
+		return "QuanLyVangNghi/duyetvong1";
+	}
+	
+	@RequestMapping(value = "/duyetvong2", method = RequestMethod.GET)
+	public String viewDuyetVong2(Model model, Authentication auth) {
+		UserAccount user = service.getThongTinUser(auth.getName());
+		HoSoNhanVien nhanVien = user.getNhanVien();
+		List<DonNghi> dn = new ArrayList<DonNghi>();
+		dn = service.listDonNghiChoDuyet(nhanVien.getMaNhanVien());
+		model.addAttribute("list", dn);
+		return "QuanLyVangNghi/duyetvong2";
+	}
+
 	@RequestMapping(value = "/daduyet", method = RequestMethod.GET)
 	public String viewDaDuyet(Model model) {
 		return "QuanLyVangNghi/daduyet";
 	}
-
+	
 	@RequestMapping(value = "/savenhap", method = RequestMethod.POST)
 	public String saveNhapPost(Model model, @ModelAttribute("donNghi") DonNghi dn) {
 		dn.setTinh_trang(0);
@@ -70,6 +88,7 @@ public class DonXinNghiCotroller {
 		} else {
 			tt.setNgay_da_nghi((ngay_da_nghi + days));
 			tt.setNgay_con_lai((ngay_con_lai - days));
+			
 		}
 		service.insertUpdateTinhTrang(dn.getId_nv(), tt);
 		return "redirect:choduyet";
@@ -97,8 +116,7 @@ public class DonXinNghiCotroller {
 	}
 
 	@RequestMapping(value = "/edit/{id_don}", method = RequestMethod.GET)
-	public String viewSua(@PathVariable("id_don") int id_don, Model model) {
-		DonNghi donNghi = new DonNghi();
+	public String viewSua(@PathVariable("id_don") int id_don, Model model, DonNghi donNghi) {
 		donNghi = service.getDonNghiNv(id_don);
 		model.addAttribute("donNghi", donNghi);
 		TinhTrangNghi tinhTrang = service.getTinhTrang(donNghi.getId_nv());
@@ -115,4 +133,32 @@ public class DonXinNghiCotroller {
 		service.updateDon(dn);
 		return "redirect:luunhap";
 	}
-}
+	
+	@RequestMapping(value = "/savechoduyetnhap/{id_don}", method = RequestMethod.GET)
+	public String saveChoDuyetNhap(@PathVariable("id_don") int id_don, Model model, DonNghi donNghi) {
+		donNghi = service.getDonNghiNv(id_don);
+		TinhTrangNghi tinhTrang = service.getTinhTrang(donNghi.getId_nv());
+		donNghi.setTinh_trang(1);
+		donNghi.getTg_bat_dau();		
+		int days = (int) ((donNghi.getTg_ket_thuc().getTime() - donNghi.getTg_bat_dau().getTime()) / (1000 * 60 * 60 * 24));
+		TinhTrangNghi tt = new TinhTrangNghi();
+		if(tinhTrang == null) {			
+			tt.setId_nv(donNghi.getId_nv());
+			tt.setNgay_da_nghi(days);
+			tt.setNgay_con_lai((12 - days));
+			service.insertUpdateTinhTrang(donNghi.getId_nv(), tt);
+		}else {
+			tt.setId_nv(donNghi.getId_nv());
+			tt.setNgay_da_nghi((tinhTrang.getNgay_da_nghi() + days));
+			tt.setNgay_con_lai((tinhTrang.getNgay_con_lai() - days));
+			TinhTrangNghi ttCu = service.getTinhTrang(donNghi.getId_nv());
+			tt.setId_tinh_trang(ttCu.getId_tinh_trang());
+			service.updateTinhTrang(tt);
+		}		
+		
+		service.updateDon(donNghi);
+		return "redirect:choduyet";
+	}
+	
+}	
+	

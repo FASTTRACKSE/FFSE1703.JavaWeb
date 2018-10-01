@@ -27,19 +27,19 @@ public class QLyNhiemVuDaoImplNghiaBT implements QLyNhiemVuDaoNghiaBT{
 		List<NhiemVu> list = session.createQuery("from NhiemVu where isDelete ='0'").list();
 		return list;
 	}
-
+//thêm
 	@Override
 	public void addNew(NhiemVu cv) {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.persist(cv);
 	}
-
+//sửa
 	@Override
 	public void update(NhiemVu cv) {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.update(cv);
 	}
-
+//xóa
 	@Override
 	public void delete(NhiemVu cv) {
 		Session session = this.sessionFactory.getCurrentSession();

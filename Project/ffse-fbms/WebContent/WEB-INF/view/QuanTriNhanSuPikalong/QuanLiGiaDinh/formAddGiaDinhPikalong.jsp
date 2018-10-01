@@ -2,25 +2,23 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 <div class="app-content content">
 	<div class="content-wrapper">
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-12 mb-2">
-				<h3 class="content-header-title mb-0">Thêm Gia Đình</h3>
+				<h3 class="content-header-title mb-0"><spring:message code="label.themGiaDinh" /></h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/quantrinhansu/hosonhanvien/" />'>Danh
-									Sách Nhân Viên</a></li>
+								href='<c:url value="/quantrinhansu/hosonhanvien/" />'><spring:message code="label.danhSachNhanVien" /></a></li>
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/quantrinhansu/hosonhanvien/view/${maNv }" />'>Thông
-									Tin Nhân Viên</a></li>
+								href='<c:url value="/quantrinhansu/hosonhanvien/view/${maNv }" />'><spring:message code="label.thongTinCaNhan" /></a></li>
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/QuanTriNhanSuPikalong/QuanLiGiaDinh/viewOneGiaDinh/${maNv}" />'>Gia
-									Đình Nhân Viên</a></li>
-							<li class="breadcrumb-item active">Thêm mới Gia Đình</li>
+								href='<c:url value="/QuanTriNhanSuPikalong/QuanLiGiaDinh/viewOneGiaDinh/${maNv}" />'><spring:message code="label.thongTinGiaDinh" /></a></li>
+							<li class="breadcrumb-item active"><spring:message code="label.themGiaDinh" /></li>
 						</ol>
 					</div>
 				</div>
@@ -40,16 +38,16 @@
 											class="form-horizontal">
 											<div class="col-xl-4 col-lg-6 col-md-12 mb-1">
 												<div class="form-group">
-													<label for="roundText">Mã Nhân Viên</label>
+													<label for="roundText"><spring:message code="label.maNhanVien" /></label>
 													<form:input path="maNV" type="text"
 														class="form-control round" readonly="true" />
 												</div>
 											</div>
 											<div class="col-xl-4 col-lg-6 col-md-12 mb-1">
 												<div class="form-group">
-													<label for="roundText">Quan Hệ</label>
+													<label for="roundText"><spring:message code="label.quanHe" /></label>
 													<form:select path="quanHe" class="form-control round">
-														<form:option value="">Chọn Quan Hệ</form:option>
+														<form:option value=""><spring:message code="label.chonQuanHe" /></form:option>
 														<form:option value="Bố">Bố</form:option>
 														<form:option value="Mẹ">Mẹ</form:option>
 														<form:option value="Anh">Anh</form:option>
@@ -63,7 +61,7 @@
 											</div>
 											<div class="col-xl-4 col-lg-6 col-md-12 mb-1">
 												<div class="form-group">
-													<label for="roundText">Họ Tên</label>
+													<label for="roundText"><spring:message code="label.hoTen" /></label>
 													<form:input path="hoTen" type="text" id="roundText"
 														class="form-control round" />
 													<form:errors path="hoTen"
@@ -72,7 +70,7 @@
 											</div>
 											<div class="col-xl-4 col-lg-6 col-md-12 mb-1">
 												<div class="form-group">
-													<label for="roundText">Quê Quán</label>
+													<label for="roundText"><spring:message code="label.queQuan" /></label>
 													<form:input path="queQuan" type="text" id="roundText"
 														class="form-control round" />
 													<form:errors path="queQuan"
@@ -81,7 +79,7 @@
 											</div>
 											<div class="col-xl-4 col-lg-6 col-md-12 mb-1">
 												<div class="form-group">
-													<label for="roundText">Nơi Ở Hiện Nay</label>
+													<label for="roundText"><spring:message code="label.noiOHienNay" /></label>
 													<form:input path="noiOHienNay" type="text" id="roundText"
 														class="form-control round" />
 													<form:errors path="noiOHienNay"
@@ -90,7 +88,7 @@
 											</div>
 											<div class="col-xl-4 col-lg-6 col-md-12 mb-1">
 												<div class="form-group">
-													<label for="roundText">Nghề Nghiệp</label>
+													<label for="roundText"><spring:message code="label.ngheNghiep" /></label>
 													<form:input path="ngheNghiep" type="text" id="roundText"
 														class="form-control round" />
 													<form:errors path="ngheNghiep"
@@ -99,7 +97,7 @@
 											</div>
 											<div class="col-xl-4 col-lg-6 col-md-12 mb-1">
 												<div class="form-group">
-													<label for="roundText">SDT</label>
+													<label for="roundText"><spring:message code="label.sdt" /></label>
 													<form:input path="sdt" type="text" id="roundText"
 														class="form-control round" />
 													<form:errors path="sdt" cssStyle="color:red;display:block"></form:errors>
@@ -108,8 +106,10 @@
 											<div class="col-xl-12 col-lg-6 col-md-12 mb-1">
 												<div class="form-group">
 													<input class="btn btn-outline-success round" type="submit"
-														value="Save" /> <a class="btn btn-outline-info round"
-														href="/ffse-fbms/QuanTriNhanSuPikalong/QuanLiGiaDinh/viewOneGiaDinh/${maNv}">View</a>
+														value="<spring:message code="label.luu" />" /> <a
+														class="btn btn-outline-danger round"
+														href="/ffse-fbms/QuanTriNhanSuPikalong/QuanLiGiaDinh/viewOneGiaDinh/${maNv}"><spring:message
+															code="label.huy" /></a>
 													<p style="color: red">${messageQuanHe}</p>
 												</div>
 											</div>

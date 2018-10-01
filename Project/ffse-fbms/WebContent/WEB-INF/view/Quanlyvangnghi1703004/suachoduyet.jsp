@@ -31,7 +31,7 @@
 								</form:select>
 							</div>
 							<div>
-								<label><spring:message code="label.ngaybaatdau"/></label>
+								<label><spring:message code="label.ngaybatdau"/></label>
 								<fieldset class="form-group position-relative">
 									<form:input type="date" class="form-control round" id="from"
 										path="ngayBatDau" />
@@ -75,7 +75,7 @@
 								</fieldset>
 							</div>
 							<div>
-								<label><spring:message code="label.ngayketthuc"/></label>
+								<label><spring:message code="label.ghichutruongphong"/></label>
 								<form:input class="form-control round" path="ghiChuTruongPhong" />
 								 <form:errors style="color:red" path="ghiChuTruongPhong"  /> 
 								

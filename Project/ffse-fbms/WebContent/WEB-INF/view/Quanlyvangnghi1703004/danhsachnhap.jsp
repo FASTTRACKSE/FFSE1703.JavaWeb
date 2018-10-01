@@ -18,8 +18,8 @@
 			<div><a  class="btn btn-outline-success round btn-min-width mr-1 mb-1" href="soandonmoi"><h4><spring:message code="label.soandonmoi"/></h4></a></div>
 			<div class="container">
 			    <div class="table-responsive">
-						<table class="table mb-0">
-							<thead>
+						<table class="table">
+							<thead class="thead-dark">
 				<tr>
 					<th ><spring:message code="label.madon"/></th>
 					<th ><spring:message code="label.maNhanVien"/></th>

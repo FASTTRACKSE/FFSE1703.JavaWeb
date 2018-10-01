@@ -17,7 +17,7 @@
 						<div class="form-group col-sm-6">
 							<div>
 								<label><spring:message code="label.madon"/></label>
-								<form:input class="form-control round" path="id" readonly="true" value="3" />
+								<form:input class="form-control round" path="id" readonly="true" value="" />
 								 <form:hidden path="ngayNghi.soNgayDaNghi"/>
 							<form:hidden path="ngayNghi.soNgayConLai"/> 
 							</div>

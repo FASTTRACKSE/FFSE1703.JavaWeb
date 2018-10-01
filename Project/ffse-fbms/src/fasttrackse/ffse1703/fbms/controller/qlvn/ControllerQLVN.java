@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fasttrackse.ffse1703.fbms.entity.qlvn.LyDoXinNghi;
+import fasttrackse.ffse1703.fbms.entity.qlvn.NgayNghi;
 import fasttrackse.ffse1703.fbms.entity.qlvn.ThongKeDonXinPhep;
 import fasttrackse.ffse1703.fbms.entity.qlvn.TrangThaiVN;
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
@@ -100,11 +101,37 @@ public class ControllerQLVN {
 		return "Quanlyvangnghi1703004/danhsachngaynghi";
 	}
 	
-	@RequestMapping(value ="/deleteDate/${maNhanVien}")
-	public String deleteDateOff(@PathVariable int maNhanVien, HttpSession session, Model model) {
+	@RequestMapping(value ="/deleteDate/{maNhanVien}")
+	public String deleteDateOff( Model model,@PathVariable int maNhanVien, HttpSession session) {
 		service.deleteDateOff(maNhanVien);
 		return "redirect:/Quanlyvangnghi1703004/danhsachngaynghi";
 	}
+	
+	@RequestMapping(value = "/updateDate/{maNhanVien}", method = RequestMethod.GET)
+	public String editDate(@PathVariable("maNhanVien") int maNhanVien, Model model) {
+		model.addAttribute("editDate", service.findByIdDateOff(maNhanVien));
+		return "Quanlyvangnghi1703004/editDate";
+	}
+	
+	@RequestMapping(value = "/editDate/save", method = RequestMethod.POST)
+	public String editStatus(  @ModelAttribute("editDate") @Valid NgayNghi nn,Model model,
+			BindingResult result) {
+		service.updateNgayNghi(nn);
+		return "redirect:/Quanlyvangnghi1703004/danhsachngaynghi";
+	}
+	
+	@RequestMapping(value = "/themmoi", method = RequestMethod.GET)
+	public String listDonNgayNghi(Model model) {
+		model.addAttribute("createDate", new NgayNghi());
+		return "Quanlyvangnghi1703004/createDate";
+}
+	@RequestMapping(value = {"/createDate/submit"}, method = RequestMethod.POST)
+	public String createTrangThai( @ModelAttribute("createDate") @Valid NgayNghi nn,
+			BindingResult result,Model model,final RedirectAttributes redirectAttributes) {
+		service.createNgayNghi(nn);
+		return "redirect:/Quanlyvangnghi1703004/danhsachngaynghi";
+	}
+	
 	
 	
 	@RequestMapping(value = "/soandonmoi", method = RequestMethod.GET)
@@ -235,7 +262,7 @@ public class ControllerQLVN {
 			return "redirect:/Quanlyvangnghi1703004/danhsachtrangthai";
 		}
 		
-		@RequestMapping(value = {"/deleteStatus/${.id}"})
+		@RequestMapping(value = {"/deleteStatus/{id}"})
 		public String deleteStatus(@PathVariable int id, HttpSession session, Model model) {
 			service.deleteTrangThai(id);;
 			return "redirect:/Quanlyvangnghi1703004/danhsachtrangthai";

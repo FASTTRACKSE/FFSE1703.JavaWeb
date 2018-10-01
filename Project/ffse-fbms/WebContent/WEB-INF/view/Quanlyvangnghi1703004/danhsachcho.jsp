@@ -12,7 +12,7 @@
 		<div class="content-header row">
 		<div>
 		<div class="col-md-5"></div>
-			<h3 class="content-header-title mb-0"><spring:message code="label.danhsachcho"/></h3>
+			<h3 class="content-header-title mb-0"><spring:message code="label.danhsachchoduyet"/></h3>
 		</div>
 			<div>
 

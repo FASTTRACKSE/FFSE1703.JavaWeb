@@ -62,33 +62,33 @@
 								<tbody>
 									<tr>
 										<th scope="row">Tên Dự Án</th>
-										<td>${duAn.tenDuAn}</td>
+										<td>-${duAn.tenDuAn}</td>
 
 									</tr>
 									<tr>
 										<th scope="row">Tên Khách Hàng</th>
-										<td>${duAn.khachHang.tenkh}</td>
+										<td>-${duAn.khachHang.tenkh}</td>
 									</tr>
 									<tr>
 										<th scope="row">Mô Tả Dự Án</th>
-										<td>${duAn.moTaDuAn}</td>
+										<td>-${duAn.moTaDuAn}</td>
 
 									</tr>
 									<tr>
 										<th scope="row">Phòng Dự Án</th>
-										<td>${duAn.phongBan.tenPhongBan}</td>
+										<td>-IT</td>
 									</tr>
 									<tr>
 										<th scope="row">PM</th>
-										<td>${duAn.pM.hoDem} ${duAn.pM.ten} </td>
+										<td>-.......</td>
 									</tr>
 									<tr>
 										<th scope="row">Start Date</th>
-										<td>${duAn.startDate}</td>
+										<td>-${duAn.startDate}</td>
 									</tr>
 									<tr>
 										<th scope="row">End Date</th>
-										<td>${duAn.endDate}</td>
+										<td>-${duAn.endDate}</td>
 									</tr>
 									<tr>
 										<th scope="row">Domain</th>
@@ -96,7 +96,7 @@
 									</tr>
 									<tr>
 										<th scope="row">Trạng Thái</th>
-										<td>${duAn.trangThai.tenTrangThai}</td>
+										<td>-${duAn.trangThai.tenTrangThai}</td>
 									</tr>
 									<tr>
 										<th scope="row">Database</th>

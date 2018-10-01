@@ -2,8 +2,6 @@ package fasttrackse.ffse1703.fbms.entity.qttl;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 //import javax.persistence.GeneratedValue;
 //import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,38 +9,40 @@ import javax.persistence.Id;
 //import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "tai_lieu")
 public class Document {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@NotNull
 	@Column(name = "id")
 	private int id;
 
 	@Column(name = "ten_tai_lieu")
 	@NotEmpty
 	private String ten_tai_lieu;
-
+	
 	@Column(name = "ma_danh_muc")
 	@NotEmpty
 	private String ma_danh_muc;
-
+	
 	@Column(name = "file")
-	private String fileName;
-
+	@NotEmpty
+	private String file;
+	
 	@Column(name = "ma_trang_thai")
 	@NotEmpty
 	private String ma_trang_thai;
-
+	
 	@Column(name = "mo_ta")
 	@NotEmpty
 	private String mo_ta;
-
+	
 	@Column(name = "ghi_chu")
 	@NotEmpty
 	private String ghi_chu;
-
+	
 	@Column(name = "ma_phong_ban")
 	@NotEmpty
 	private String ma_phong_ban;
@@ -71,12 +71,12 @@ public class Document {
 		this.ma_danh_muc = ma_danh_muc;
 	}
 
-	public String getFileName() {
-		return fileName;
+	public String getFile() {
+		return file;
 	}
 
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
+	public void setFile(String file) {
+		this.file = file;
 	}
 
 	public String getMa_trang_thai() {
@@ -110,9 +110,23 @@ public class Document {
 	public void setMa_phong_ban(String ma_phong_ban) {
 		this.ma_phong_ban = ma_phong_ban;
 	}
-
 	public Document() {
 		super();
 	}
+	
+	public Document (int id, String ten_tai_lieu, String ma_danh_muc, String file, String ma_trang_thai, String mo_ta, String ghi_chu, String ma_phong_ban) {
+		super();
+		this.id = id;
+		this.ten_tai_lieu = ten_tai_lieu;
+		this.ma_danh_muc = ma_danh_muc;
+		this.file = file;
+		this.ma_trang_thai = ma_trang_thai;
+		this.mo_ta = mo_ta;
+		this.ghi_chu = ghi_chu;
+		this.ma_phong_ban = ma_phong_ban;
+	}
+	
+
+
 
 }

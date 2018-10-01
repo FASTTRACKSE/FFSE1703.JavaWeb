@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -175,23 +176,21 @@
 				</div>
 			</div>
 		</div>
-		<% String query =  "&maDuAn="+request.getParameter("maDuAn")+"&makh="+request.getParameter("makh")+"&maPhongBan="+request.getParameter("maPhongBan")+"&maTrangThai="+request.getParameter("maTrangThai");
-										boolean search = !(request.getParameter("maDuAn") == null);
-										query = search ? query : "";%>
+
 		<nav aria-label="Page navigation example">
 			<ul class="pagination">
 				<li class="page-item"><a class="page-link"
-					href="/ffse-fbms/qlda/DuAn/list/1"<%=query %>>First Page</a></li>
+					href="/ffse-fbms/qlda/DuAn/list/1">First Page</a></li>
 				<c:if test="${currentPage > 2}">
 					<li class="page-item"><a class="page-link"
-						href="/ffse-fbms/qlda/DuAn/list/<%=query %>${page-2}">${page-2}</a></li>
+						href="/ffse-fbms/qlda/DuAn/list/${page-2}">${page-2}</a></li>
 				</c:if>
 				<c:if test="${page > 1}">
 					<li class="page-item"><a class="page-link"
-						href="/ffse-fbms/qlda/DuAn/list/<%=query %>${page-1}">${page-1}</a></li>
+						href="/ffse-fbms/qlda/DuAn/list/${page-1}">${page-1}</a></li>
 				</c:if>
 				<li class="page-item active"><a class="page-link"
-					href="/ffse-fbms/qlda/DuAn/list/<%=query %>${page}">${page}</a></li>
+					href="/ffse-fbms/qlda/DuAn/list/${page}">${page}</a></li>
 				<c:if test="${page < total}">
 					<li class="page-item"><a class="page-link"
 						href="/ffse-fbms/qlda/DuAn/list/${page+1}">${page+1}</a></li>

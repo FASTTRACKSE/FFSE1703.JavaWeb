@@ -25,11 +25,5 @@ public class HoSoNhanVienTeam1ServiceImpl implements HoSoNhanVienTeam1Service {
 	public List<HoSoNhanVienTeam1> getAll() {
 		return hoSoNhanVienTeam1Dao.getAll();
 	}
-	@Transactional
-	@Override
-	public HoSoNhanVienTeam1 getById(int maNhanVien) {
-		return hoSoNhanVienTeam1Dao.getById(maNhanVien);
-
-	}
 
 }

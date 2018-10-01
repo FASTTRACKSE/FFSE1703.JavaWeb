@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fasttrackse.ffse1703.fbms.dao.quanlyduan.DuAnTeam1Dao;
 import fasttrackse.ffse1703.fbms.entity.quanlyduan.DuAnTeam1;
+import fasttrackse.ffse1703.fbms.entity.quanlyduan.KhachHangTeam1;
 
 
 @Service

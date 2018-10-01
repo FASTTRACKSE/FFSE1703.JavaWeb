@@ -16,8 +16,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -31,17 +29,17 @@ public class DuAnTeam1 implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@NotEmpty
+//	@NotEmpty
 	@Column(name="ma_du_an")
 	private String maDuAn;
 	
 	@Column(name="ten_du_an")
-	@NotEmpty
+//	@NotEmpty
 	@Length(min=5,max=200)
 	private String tenDuAn;
 	
 	@Column(name="mo_ta_du_an")
-	@NotEmpty
+//	@NotEmpty
 	private String moTaDuAn;
 	
 
@@ -51,41 +49,41 @@ public class DuAnTeam1 implements Serializable {
 	@Column (name="start_date")
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
-	@NotNull
+//	@NotNull
 	private Date startDate;
 	
 	@Column (name="end_date")
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	@NotNull
+//	@NotNull
 	private Date endDate;
 	
 	@ManyToMany(targetEntity = DatabaseTeam1.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "database_du_an", joinColumns = {
 	@JoinColumn(name = "ma_du_an", referencedColumnName = "ma_du_an",  updatable = true,insertable=true) }, inverseJoinColumns = {
 	@JoinColumn(name = "ma_database", referencedColumnName = "ma_database", nullable = true, updatable = false,insertable=true) })
-	@NotEmpty
+//	@NotEmpty
 	private Set<DatabaseTeam1> database;
 
 	@ManyToMany(targetEntity = TechnicalTeam1.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "cong_nghe_du_an", joinColumns = {
 	@JoinColumn(name = "ma_du_an", referencedColumnName = "ma_du_an",  updatable = true,insertable=true) }, inverseJoinColumns = {
 	@JoinColumn(name = "ma_cong_nghe", referencedColumnName = "ma_cong_nghe", nullable = true, updatable = false,insertable=true) })
-	@NotEmpty
+//	@NotEmpty
 	private Set<TechnicalTeam1> technical;
 	
 	@ManyToMany(targetEntity = FrameworkTeam1.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "framework_du_an", joinColumns = {
 	@JoinColumn(name = "ma_du_an", referencedColumnName = "ma_du_an",  updatable = true,insertable=true) }, inverseJoinColumns = {
 	@JoinColumn(name = "ma_framework", referencedColumnName = "ma_framework", nullable = true, updatable = false,insertable=true) })
-	@NotEmpty
+//	@NotEmpty
 	private Set<FrameworkTeam1> framework;
 	
 	@ManyToMany(targetEntity = ProgramingLanguageTeam1.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "ngon_ngu_du_an", joinColumns = {
 	@JoinColumn(name = "ma_du_an", referencedColumnName = "ma_du_an",  updatable = true,insertable=true) }, inverseJoinColumns = {
 	@JoinColumn(name = "ma_ngon_ngu", referencedColumnName = "ma_ngon_ngu", nullable = true, updatable = false,insertable=true) })
-	@NotEmpty
+//	@NotEmpty
 	private Set<ProgramingLanguageTeam1> ngonNgu;
 
 
@@ -99,7 +97,7 @@ public class DuAnTeam1 implements Serializable {
 
 	@ManyToOne(fetch = FetchType.EAGER,cascade= CascadeType.ALL)
 	@JoinColumn(name="ma_khach_hang",referencedColumnName="ma_khach_hang", insertable=true, updatable=true)
-	@NotNull
+//	@NotNull
 	private KhachHangTeam1 khachHang;
 	
 	@ManyToOne(fetch = FetchType.EAGER,cascade= CascadeType.ALL)

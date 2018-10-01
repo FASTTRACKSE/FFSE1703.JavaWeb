@@ -15,24 +15,24 @@
 				<form:form method="POST"  modelAttribute="editStatus">
 					<div class="row">
 							<div>
-								<label><spring:message code="label.madon"/></label>
+								<label>ID</label>
 								<form:input class="form-control round" path="id" readonly="true" value="" />
 
 							</div>
 
 							<div>
-								<label> <spring:message code="label.matrangthai"/></label>
+								<label> Mã trạng thái</label>
 								<form:input class="form-control round" path="maTrangThai" />
 							</div>
 								
 							<div>
-								<label><spring:message code="label.tentrangthai"/></label>
+								<label>Tên trạng thái</label>
 								<form:input class="form-control round" path="trangThai"  />
 							</div>
 						<br>
 						<div >
 								<button type="submit"  class="btn btn-outline-danger round  mr-1 mb-1"
-									formaction="<%=request.getContextPath()%>/Quanlyvangnghi1703004/editstatus/save"><spring:message code="label.gui"/></button>
+									formaction="<%=request.getContextPath()%>/Quanlyvangnghi1703004/editstatus/save">Gửi</button>
 							</div>
 					</div>
 

@@ -1,10 +1,11 @@
-package fasttrackse.ffse1703.fbms.dao.quanlynhansutt;
+package fasttrackse.ffse1703.fbms.service.quanlynhansutt;
 
 import java.util.List;
 
 import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.NhiemVuTT;
 
-public interface NhiemVuDaoTT {
+public interface NhiemVuServiceTT {
+
 	public void add(NhiemVuTT nhiemVu);
 
 	public NhiemVuTT getByID(int id);

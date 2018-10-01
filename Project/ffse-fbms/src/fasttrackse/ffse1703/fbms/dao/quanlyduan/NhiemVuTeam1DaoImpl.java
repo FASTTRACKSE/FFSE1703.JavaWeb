@@ -34,9 +34,8 @@ public class NhiemVuTeam1DaoImpl implements NhiemVuTeam1Dao {
 
 	@Override
 	public NhiemVuTeam1 getDetailNhiemVu(String maDuAn, int maNhanVien, String maVaiTro) {
-		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("from NhiemVuTeam1 where maDuAn ='" + maDuAn + "' and maNhanVien='" + maNhanVien
-				+ "' and maVaiTro='" + maVaiTro + "'", NhiemVuTeam1.class).getSingleResult();	}
+		return null;
+	}
 
 	@Override
 	public void delete(NhiemVuTeam1 nhiemvu) {

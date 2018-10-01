@@ -61,10 +61,6 @@ public interface QuanLyVangNghiDao {
 	
 	public TrangThaiVN findByIdTrangThai(int id);
 	
-	public void createNgayNghi(NgayNghi ngayNghi);
-	
-	public void updateNgayNghi(NgayNghi ngayNghi);
-	
 	public void createTrangThai(TrangThaiVN trangThai);
 	
 	public void deleteTrangThai(int id);

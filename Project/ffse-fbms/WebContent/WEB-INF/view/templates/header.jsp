@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -283,44 +284,41 @@
 					<!--  ////////////////////////////////////////////// -->
 
 					<!--  Quản lí Vắng nghỉ -->
-					<li class="navigation-header"><span><spring:message code="label.quanlyvangnghi" /></span><i
+					<li class="navigation-header"><span>Quản lý vắng nghỉ</span><i
 						class=" ft-minus" data-toggle="tooltip" data-placement="right"
 						data-original-title="Components"></i></li>
 					<li class=" nav-item pbho_so"><a href="#"><i
-							class="ft-users"></i><span data-i18n="" class="menu-title">
-							<spring:message code="label.thongketinhhinh" />
-							</span></a>
+							class="ft-users"></i><span data-i18n="" class="menu-title">Thống
+								kê tình hình</span></a>
 						<ul class="menu-content">
 							<li><a
 								href="<c:url value="/Quanlyvangnghi1703004/danhsachnhap"/>"
-								class="menu-item"><spring:message code="label.danhsachnhap" /></a></li>
+								class="menu-item">Danh sách nháp</a></li>
 							<li><a
 								href="<c:url value="/Quanlyvangnghi1703004/danhsachcho"/>"
-								class="menu-item"><spring:message code="label.danhsachchoduyet" /></a></li>
+								class="menu-item">Danh sách chờ duyệt</a></li>
 							<li><a
 								href="<c:url value="/Quanlyvangnghi1703004/danhsachduyet"/>"
-								class="menu-item"><spring:message code="label.danhsachduyet" /></a></li>
+								class="menu-item">Danh sách đã duyệt</a></li>
 							<li><a
 								href="<c:url value="/Quanlyvangnghi1703004/danhsachbituchoi"/>"
-								class="menu-item"><spring:message code="label.danhsachtuchoi" /></a></li>
+								class="menu-item">Danh sách bị từ chối</a></li>
 						</ul></li>
 					<li class=" nav-item pbho_so"><a href="#"><i
-							class="ft-users"></i><span data-i18n="" class="menu-title">
-							<spring:message code="label.thongkengaynghi" />
-							</span></a>
+							class="ft-users"></i><span data-i18n="" class="menu-title">Thống
+								kê ngày nghỉ</span></a>
 						<ul class="menu-content">
 							<li><a
 								href="<c:url value="/Quanlyvangnghi1703004/danhsachngaynghi"/>"
-								class="menu-item"><spring:message code="label.danhsachngaynghi" /></a></li>
+								class="menu-item">Danh sách ngày nghỉ</a></li>
 						</ul></li>
 					<li class=" nav-item pbho_so"><a href="#"><i
-							class="ft-users"></i><span data-i18n="" class="menu-title">
-							<spring:message code="label.thongketrangthai" />
-							</span></a>
+							class="ft-users"></i><span data-i18n="" class="menu-title">Thống
+								kê trạng thái</span></a>
 						<ul class="menu-content">
 							<li><a
 								href="<c:url value="/Quanlyvangnghi1703004/danhsachtrangthai"/>"
-								class="menu-item"><spring:message code="label.danhsachtrangthai" /></a></li>
+								class="menu-item">Danh sách trạng thái</a></li>
 						</ul></li>
 					<!-- Quản Lý Nhân Sự Pikalong -->
 					<li class=" navigation-header"><span>PKL-Quản Trị Nhân
@@ -362,17 +360,18 @@
 					<!-- Quản trị dự án -->
 				</sec:authorize>
 
-				<li class=" navigation-header"><span>Black-Quản Lý Dự Án</span><i class=" ft-minus" data-toggle="tooltip"
+				<li class=" navigation-header"><span>Black - Quản Lý Dự
+						Án</span><i class=" ft-minus" data-toggle="tooltip"
 					data-placement="right" data-original-title="Others"></i></li>
 				<li class=" nav-item"><a href="#"><i class="ft-layers"></i><span
 						class="menu-title" data-i18n="">DANH MỤC</span></a>
 					<ul class="menu-content">
-						<li><a class="menu-item" href="<c:url value="/qlda/khachhang/list"/>">Khách hàng</a></li>
-						<li><a class="menu-item" href="<c:url value="/qlda/domain/list"/>">Domain</a></li>
-						<li><a class="menu-item" href="<c:url value="/qlda/Framework"/>">Framework</a></li>
-						<li><a class="menu-item" href="<c:url value="/qlda/Technical"/>">Technical</a></li>
-						<li><a class="menu-item"  href="<c:url value="/QuanLyDuAn/Language/list"/>">Programming Language</a></li>
-						<li><a class="menu-item" href="<c:url value="/qlda/Database"/>">Database</a></li>
+						<li><a class="menu-item" href="#">Khách hàng</a></li>
+						<li><a class="menu-item" href="#">Domain</a></li>
+						<li><a class="menu-item" href="#">Framework</a></li>
+						<li><a class="menu-item" href="#">Technica</a></li>
+						<li><a class="menu-item" href="#">Programming Language</a></li>
+						<li><a class="menu-item" href="#">Database</a></li>
 
 					</ul></li>
 
@@ -380,7 +379,7 @@
 				<li class=" nav-item"><a href="#"><i class="ft-align-left"></i><span
 						class="menu-title" data-i18n="">THÔNG TIN DỰ ÁN</span></a>
 					<ul class="menu-content">
-						<li><a class="menu-item" href="<c:url value="/qlda/DuAn/"/>">Dự Án</a></li>
+						<li><a class="menu-item" href="#">Dự Án</a></li>
 					</ul></li>
 			</ul>
 

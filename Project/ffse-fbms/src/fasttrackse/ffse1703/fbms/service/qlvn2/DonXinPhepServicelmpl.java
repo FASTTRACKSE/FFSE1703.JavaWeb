@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import fasttrackse.ffse1703.fbms.dao.qlvn2.DonXinPhepDao;
 import fasttrackse.ffse1703.fbms.entity.qlvn2.DonXinPhepEntity;
 import fasttrackse.ffse1703.fbms.entity.qlvn2.LyDoEntity;
+import fasttrackse.ffse1703.fbms.entity.qlvn2.SoNgayNghiEntity;
 import fasttrackse.ffse1703.fbms.entity.qlvn2.TrangThaiEntity;
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 
@@ -96,18 +97,39 @@ public class DonXinPhepServicelmpl implements DonXinPhepService {
 		
 	}
 	
-	public List<DonXinPhepEntity> findAllForPagingnhap(int startPosition, int maxResult) {
-		return this.DonXinPhepDao.findAllForPagingnhap(startPosition, maxResult);
+	public List<DonXinPhepEntity> findAllForPaging1(int startPosition, int maxResult) {
+		return this.DonXinPhepDao.findAllForPaging1(startPosition, maxResult);
 	}
 	
-	public List<DonXinPhepEntity> findAllForPagingcho(int startPosition, int maxResult) {
-		return this.DonXinPhepDao.findAllForPagingcho(startPosition, maxResult);
+	public List<DonXinPhepEntity> findAllForPaging2(int startPosition, int maxResult) {
+		return this.DonXinPhepDao.findAllForPaging2(startPosition, maxResult);
 	}
-	public List<DonXinPhepEntity> findAllForPagingduyet(int startPosition, int maxResult) {
-		return this.DonXinPhepDao.findAllForPagingduyet(startPosition, maxResult);
+	public List<DonXinPhepEntity> findAllForPaging3(int startPosition, int maxResult) {
+		return this.DonXinPhepDao.findAllForPaging3(startPosition, maxResult);
 	}
-	public List<DonXinPhepEntity> findAllForPagingtuchoi(int startPosition, int maxResult) {
-		return this.DonXinPhepDao.findAllForPagingtuchoi(startPosition, maxResult);
+	public List<DonXinPhepEntity> findAllForPaging4(int startPosition, int maxResult) {
+		return this.DonXinPhepDao.findAllForPaging4(startPosition, maxResult);
+	}
+
+
+	public List<SoNgayNghiEntity> bangNgayNghi() {
+		return this.DonXinPhepDao.bangNgayNghi();
+	}
+
+
+	public SoNgayNghiEntity findByIdngay(int id) {
+		return this.DonXinPhepDao.findByIdngay(id);
+	}
+
+	public void deletengay(int id) {
+		DonXinPhepDao.delete(id);
+		
+	}
+
+	@Override
+	public List<DonXinPhepEntity> findAllForPagingngaynghi(int startPosition, int maxResult) {
+		
+		return null;
 	}
 	
 	

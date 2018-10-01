@@ -16,7 +16,7 @@ import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
+
 
 
 @Entity
@@ -31,7 +31,7 @@ public class DonXinPhepEntity {
 
 	@ManyToOne
 	@JoinColumn(name = "ma_nhan_vien")
-	private HoSoNhanVien maNhanVien;
+	private SoNgayNghiEntity ngayNghi;
 
 	@Column(name = "ngay_bat_dau")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -68,12 +68,19 @@ public class DonXinPhepEntity {
 		this.id = id;
 	}
 
-	public HoSoNhanVien getMaNhanVien() {
-		return maNhanVien;
+	
+
+
+
+	
+
+
+	public SoNgayNghiEntity getNgayNghi() {
+		return ngayNghi;
 	}
 
-	public void setMaNhanVien(HoSoNhanVien maNhanVien) {
-		this.maNhanVien = maNhanVien;
+	public void setNgayNghi(SoNgayNghiEntity ngayNghi) {
+		this.ngayNghi = ngayNghi;
 	}
 
 	public Date getNgayBatDau() {

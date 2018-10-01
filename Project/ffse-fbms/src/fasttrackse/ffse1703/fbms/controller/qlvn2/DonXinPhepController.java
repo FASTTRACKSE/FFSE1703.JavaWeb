@@ -40,11 +40,11 @@ public class DonXinPhepController {
 //		model.addAttribute("danhsachchoduyet003", DonXinPhepService.danhsachchoduyet003());
 //		return "QuanlyvangnghiDanhLT/danhsachchoduyet003";
 //    }
-//	@RequestMapping(value = {"/danhsachdaduyet003"}, method = RequestMethod.GET)
-//	public String danhsachdaduyet003(Model model ) {
-//		model.addAttribute("danhsachdaduyet003", DonXinPhepService.danhsachdaduyet003());
-//		return "QuanlyvangnghiDanhLT/danhsachdaduyet003";
-//    }
+	@RequestMapping(value = {"/danhsachdaduyet003"}, method = RequestMethod.GET)
+	public String danhsachdaduyet003(Model model ) {
+		model.addAttribute("danhsachdaduyet003", DonXinPhepService.danhsachdaduyet003());
+		return "QuanlyvangnghiDanhLT/danhsachdaduyet003";
+    }
 //	@RequestMapping(value = {"/danhsachbituchoi003"}, method = RequestMethod.GET)
 //	public String danhsachbituchoi003(Model model ) {
 //		model.addAttribute("danhsachbituchoi003", DonXinPhepService.danhsachbituchoi003());
@@ -173,7 +173,7 @@ public class DonXinPhepController {
 		}
 		int startPosition = recordsPerPage * (currentPage - 1);
 
-		model.addAttribute("danhsachnhap003", DonXinPhepService.findAllForPagingnhap(startPosition, recordsPerPage));
+		model.addAttribute("danhsachnhap003", DonXinPhepService.findAllForPaging1(startPosition, recordsPerPage));
 		model.addAttribute("lastPage", totalPages);
 		model.addAttribute("currentPage", currentPage);
 
@@ -192,14 +192,15 @@ public class DonXinPhepController {
 		}
 		int startPosition = recordsPerPage * (currentPage - 1);
 
-		model.addAttribute("danhsachchoduyet003", DonXinPhepService.findAllForPagingcho(startPosition, recordsPerPage));
+		model.addAttribute("danhsachchoduyet003", DonXinPhepService.findAllForPaging2(startPosition, recordsPerPage));
 		model.addAttribute("lastPage", totalPages);
 		model.addAttribute("currentPage", currentPage);
 
 		return "QuanlyvangnghiDanhLT/danhsachchoduyet003";	}
-	//
+	
+	
 	@RequestMapping("/danhsachdaduyet003")
-	public String indexduyet(Model model,
+	public String indexdaduyet(Model model,
 			@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage) {
 		int totalRecords = DonXinPhepService.danhsachdaduyet003().size();
 		int recordsPerPage = 2;
@@ -211,12 +212,12 @@ public class DonXinPhepController {
 		}
 		int startPosition = recordsPerPage * (currentPage - 1);
 
-		model.addAttribute("danhsachdaduyet003", DonXinPhepService.findAllForPagingduyet(startPosition, recordsPerPage));
+		model.addAttribute("danhsachdaduyet003", DonXinPhepService.findAllForPaging3(startPosition, recordsPerPage));
 		model.addAttribute("lastPage", totalPages);
 		model.addAttribute("currentPage", currentPage);
 
 		return "QuanlyvangnghiDanhLT/danhsachdaduyet003";	}
-	//
+	
 	@RequestMapping("/danhsachbituchoi003")
 	public String indextuchoi(Model model,
 			@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage) {
@@ -230,9 +231,28 @@ public class DonXinPhepController {
 		}
 		int startPosition = recordsPerPage * (currentPage - 1);
 
-		model.addAttribute("danhsachbituchoi003", DonXinPhepService.findAllForPagingtuchoi(startPosition, recordsPerPage));
+		model.addAttribute("danhsachbituchoi003", DonXinPhepService.findAllForPaging4(startPosition, recordsPerPage));
 		model.addAttribute("lastPage", totalPages);
 		model.addAttribute("currentPage", currentPage);
 
 		return "QuanlyvangnghiDanhLT/danhsachbituchoi003";	}
+	//
+	
+//	@RequestMapping(value = {"/ngaynghiphep" }, method = RequestMethod.GET)
+//	public String danhSachNgayNghi(Model model,
+////			@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage) {
+////		int totalRecords = DonXinPhepService.bangNgayNghi().size();
+////		int recordsPerPage = 4;
+////		int totalPages = (int)Math.ceil((double)totalRecords/recordsPerPage);
+////		int startPosition = recordsPerPage * (currentPage - 1);
+////		model.addAttribute("ngaynghiphep", DonXinPhepService.findAllForPagingngaynghi(startPosition, recordsPerPage));
+////		model.addAttribute("lastPage", totalPages);
+////		model.addAttribute("currentPage", currentPage);
+//		return "QuanlyvangnghiDanhLt/ngaynghiphep";
+//	}
+//	@RequestMapping(value = {"/danhsachbituchoi003"}, method = RequestMethod.GET)
+//	public String danhsachbituchoi003(Model model ) {
+//		model.addAttribute("danhsachbituchoi003", DonXinPhepService.danhsachbituchoi003());
+//		return "QuanlyvangnghiDanhLT/danhsachbituchoi003";
+//    }
 }

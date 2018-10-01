@@ -386,7 +386,7 @@
 			<ul id="main-menu-navigation" data-menu="menu-navigation"
 				class="navigation navigation-main">
 				<!-- Quản trị tài liệu của Đức -->
-				<li class=" navigation-header"><span>Đứcdz - Quản Lý Tài
+				<li class=" navigation-header"><span>Trần Đức-Quản Lý Tài
 						Liệu</span><i data-toggle="tooltip" data-placement="right"
 					data-original-title="Đức Đẹp Trai" class=" ft-minus"></i></li>
 				<li class=" nav-item"><a
@@ -401,6 +401,9 @@
 					href="<c:url value = "/TranDuc-QuanLyTaiLieu/TrangThai/"/>"><i
 						class="ft-users"></i><span data-i18n="" class="menu-title">Trạng
 							Thái</span></a></li>
+				<li class=" nav-item"><a href="<c:url value = "/TranDuc-QuanLyTaiLieu/Icon/"/>"><i
+						class="ft-octagon"></i><span data-i18n="" class="menu-title">Icon</span></a></li>
+						<li><hr/></li>
 			</ul>
 		</div>
 	</div>

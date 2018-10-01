@@ -222,9 +222,9 @@ public class HoSoNhanVienPikalongController {
 	}
 	
 	// export flie excel
-	@RequestMapping("exportexcel/{maNv}")
-	public ModelAndView exportExcelFile(@PathVariable String maNv, Model model) {
-		
-		return new ModelAndView("HoSoNhanVienExcelId", "hoSoNhanVien", hoSoNhanVienPikalongService.getEdit(maNv));
-	}
+//	@RequestMapping("exportexcel/{maNv}")
+//	public ModelAndView exportExcelFile(@PathVariable String maNv, Model model) {
+//		
+//		return new ModelAndView("HoSoNhanVienExcelId", "hoSoNhanVien", hoSoNhanVienPikalongService.getEdit(maNv));
+//	}
 }

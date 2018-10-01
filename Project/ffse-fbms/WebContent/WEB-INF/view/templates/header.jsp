@@ -235,12 +235,12 @@
 					<!-- Quản Trị Nhân Sự -->
 				</sec:authorize>
 				<sec:authorize access="!hasRole('ROLE_NV') or hasRole('ROLE_PNS')">
-				
-				 	   <!--  -----------------MVP- Quản lí Dự Án ----------------------->
-				 	   
-					<li class="navigation-header"><span>꧁༺M̤̮V̤̮P̤̮-Quản lý dự án</span><i
-						class=" ft-minus" data-toggle="tooltip" data-placement="right"
-						data-original-title="Components"></i></li>
+
+					<!--  -----------------MVP- Quản lí Dự Án ----------------------->
+
+					<li class="navigation-header"><span>꧁༺M̤̮V̤̮P̤̮-Quản lý
+							dự án</span><i class=" ft-minus" data-toggle="tooltip"
+						data-placement="right" data-original-title="Components"></i></li>
 					<li class="nav-item has-sub"><a href="#"><i
 							class="ft-briefcase"></i><span class="menu-title" data-i18n="">Danh
 								Mục Dự Án</span></a>
@@ -284,41 +284,38 @@
 					<!--  ////////////////////////////////////////////// -->
 
 					<!--  Quản lí Vắng nghỉ -->
-					<li class="navigation-header"><span>Quản lý vắng nghỉ</span><i
+					<li class="navigation-header"><span><spring:message code="label.quanlyvangnghi" /></span><i
 						class=" ft-minus" data-toggle="tooltip" data-placement="right"
 						data-original-title="Components"></i></li>
 					<li class=" nav-item pbho_so"><a href="#"><i
-							class="ft-users"></i><span data-i18n="" class="menu-title">Thống
-								kê tình hình</span></a>
+							class="ft-users"></i><span data-i18n="" class="menu-title"><spring:message code="label.thongketinhhinh" /></span></a>
 						<ul class="menu-content">
 							<li><a
 								href="<c:url value="/Quanlyvangnghi1703004/danhsachnhap"/>"
-								class="menu-item">Danh sách nháp</a></li>
+								class="menu-item"><spring:message code="label.danhsachnhap" /></a></li>
 							<li><a
 								href="<c:url value="/Quanlyvangnghi1703004/danhsachcho"/>"
-								class="menu-item">Danh sách chờ duyệt</a></li>
+								class="menu-item"><spring:message code="label.danhsachchoduyet" /></a></li>
 							<li><a
 								href="<c:url value="/Quanlyvangnghi1703004/danhsachduyet"/>"
-								class="menu-item">Danh sách đã duyệt</a></li>
+								class="menu-item"><spring:message code="label.danhsachduyet" /></a></li>
 							<li><a
 								href="<c:url value="/Quanlyvangnghi1703004/danhsachbituchoi"/>"
-								class="menu-item">Danh sách bị từ chối</a></li>
+								class="menu-item"><spring:message code="label.danhsachtuchoi" /></a></li>
 						</ul></li>
 					<li class=" nav-item pbho_so"><a href="#"><i
-							class="ft-users"></i><span data-i18n="" class="menu-title">Thống
-								kê ngày nghỉ</span></a>
+							class="ft-users"></i><span data-i18n="" class="menu-title"><spring:message code="label.thongkengaynghi" /></span></a>
 						<ul class="menu-content">
 							<li><a
 								href="<c:url value="/Quanlyvangnghi1703004/danhsachngaynghi"/>"
-								class="menu-item">Danh sách ngày nghỉ</a></li>
+								class="menu-item"><spring:message code="label.danhsachngaynghi" /></a></li>
 						</ul></li>
 					<li class=" nav-item pbho_so"><a href="#"><i
-							class="ft-users"></i><span data-i18n="" class="menu-title">Thống
-								kê trạng thái</span></a>
+							class="ft-users"></i><span data-i18n="" class="menu-title"><spring:message code="label.thongketrangthai" /></span></a>
 						<ul class="menu-content">
 							<li><a
 								href="<c:url value="/Quanlyvangnghi1703004/danhsachtrangthai"/>"
-								class="menu-item">Danh sách trạng thái</a></li>
+								class="menu-item">D<spring:message code="label.danhsachtrangthai" /></a></li>
 						</ul></li>
 					<!-- Quản Lý Nhân Sự Pikalong -->
 					<li class=" navigation-header"><span>PKL-Quản Trị Nhân
@@ -401,6 +398,10 @@
 					href="<c:url value = "/TranDuc-QuanLyTaiLieu/TrangThai/"/>"><i
 						class="ft-users"></i><span data-i18n="" class="menu-title">Trạng
 							Thái</span></a></li>
+				<li class=" nav-item"><a
+					href="<c:url value = "/TranDuc-QuanLyTaiLieu/Icon/"/>"><i
+						class="ft-octagon"></i><span data-i18n="" class="menu-title">Icon</span></a></li>
+				<li><hr /></li>
 			</ul>
 		</div>
 	</div>

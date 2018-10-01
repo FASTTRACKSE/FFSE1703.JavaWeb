@@ -13,7 +13,7 @@ public interface KhachHangDao {
 	public void add(KhachHang khachHang);
 	public List<KhachHang> listKhachHang(int start, int maxRows);
 	public int countKhachHang() ;
-	
+	public int checkIdKhachHang(String idKhachHang);
 	
 	
 }

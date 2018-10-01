@@ -141,6 +141,16 @@ public class QuanLyVangNghiServiceIpml implements QuanLyVangNghiService {
 	public void updateTrangThai(TrangThaiVN trangThai) {
 		quanLyVangNghiDao.updateTrangThai(trangThai);
 	}
+
+	public void createNgayNghi(NgayNghi ngayNghi) {
+		quanLyVangNghiDao.createNgayNghi(ngayNghi);
+	}
+
+	@Override
+	public void updateNgayNghi(NgayNghi ngayNghi) {
+		quanLyVangNghiDao.updateNgayNghi(ngayNghi);
+		
+	}
 	
 	
 }

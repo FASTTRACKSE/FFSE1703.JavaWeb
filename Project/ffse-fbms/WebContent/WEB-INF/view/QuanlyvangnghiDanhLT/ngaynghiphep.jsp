@@ -11,46 +11,40 @@
 		<!-- Path -->
 		<div class="content-header row">
 		<div>
-		<div class="col-md-5"></div>
-			<h3 >Danh sách đang chờ duyệt</h3>
+		<div  class="col-md-6"></div>
+		<div class="col-md-6">
+			<h3 class="content-header-title mb-0">bảng thống kế </h3>
+		</div>
 		</div>
 			<div>
-			<div><a href="donxinphep003"><h4>Thêm đơn mới</h4></a></div>
+			<div><a  class="btn btn-outline-success round btn-min-width mr-1 mb-1" href="themmoi"><h4><spring:message code="label.themMoi"/></h4></a></div>
 			<div class="container">
 			    <div class="table-responsive">
 						<table class="table mb-0">
 							<thead>
 				<tr>
-					<th >Mã đơn</th>
-					<th >Mã nhân viên</th>
-					<th >Ngày bắt đầu</th>
-					<th >Ngày kết thúc</th>
-					<th >Lý do</th>
-					<th >Ghi chú</th>
-					<th >Ghi chú của trưởng phòng</th>
-					<th >Trạng thái</th>
-					<th>Chức năng</th>
+					<th >STT</th>
+					<th>Mã Nhân Viên</th>
+					<th>số ngày  dã nghi</th>
+					<th>số ngày còn lại</th>
+					<th>chức năng</th>
 				</tr>
 				</thead>
 				<tbody>
-			<c:forEach var="nv" items="${danhsachchoduyet003}">
-					<tr>
-					<td>${nv.id}</td>
-					<td>${nv.ngayNghi.maNhanVien}</td>
-					<td>${nv.ngayBatDau}</td>
-					<td>${nv.ngayKetThuc}</td>
-					<td>${nv.lyDo.lyDo}</td>
-					<td>${nv.ghiChu}</td>
-					<td>${nv.ghiChuTruongPhong}</td>
-					<td>${nv.trangThai.trangThai}</td>
-					<td><a  href="suadoncho/${nv.id }"><button class="btn btn-success">
-									Sửa</button></a> 
+			<c:forEach var="nn" items="${ngaynghiphep}" varStatus="count"   >
+                    <tr> 
+                     <th scope="row">${count.count  }</th>
+					<td>${nn.maNhanVien}</td>
+					<td>${nn.soNgayNghi}</td>
+					<td>${nn.ngayNghiConLai}</td>
+					<td><a href="deleteDate/${nn.maNhanVien}" class="btn btn-outline-danger round  mr-1 mb-1"
+									onclick="return confirm('Bạn có muốn xóa sinh viên này?');">xóa</a>
+						<a href="updateDate/${nn.maNhanVien}" class="btn btn-outline-danger round  mr-1 mb-1">sửa</a>
 					</td>
 						</tr>
 				</c:forEach>
 				</tbody>
 		</table>
-		
 		<nav aria-label="Page navigation example">
 	<ul class="pagination">
 		<li class="page-item"><a class="page-link" href="?page=1">First
@@ -82,9 +76,6 @@
 		</div>
 		</div>
 		</div>
-<script>
-		function canhbao() {
-			return confirm("Bạn Có Chắc Muốn Xóa Không?");
-		}
-	</script>
+
+
 <jsp:include page="/WEB-INF/view/templates/footer.jsp" />

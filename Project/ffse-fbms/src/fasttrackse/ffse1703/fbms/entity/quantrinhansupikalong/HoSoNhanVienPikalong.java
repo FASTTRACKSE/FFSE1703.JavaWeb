@@ -7,12 +7,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.validator.constraints.CodePointLength;
 import org.springframework.format.annotation.DateTimeFormat;
+
+import fasttrackse.ffse1703.fbms.entity.security.ChucDanh;
+import fasttrackse.ffse1703.fbms.entity.security.PhongBan;
 
 @Entity
 @Table(name= "ThongTinHoSo")
@@ -32,11 +37,17 @@ public class HoSoNhanVienPikalong {
 	
 	private Integer tinhTrangHonNhan;
 	
-	private String thanhPho;
+	@ManyToOne
+	@JoinColumn(name="ThanhPho")
+	private ThanhPhoPikalong thanhPho;
 	
-	private String quanHuyen;
+	@ManyToOne
+	@JoinColumn(name="QuanHuyen")
+	private QuanHuyenPikalong quanHuyen;
 	
-	private String phuongXa;
+	@ManyToOne
+	@JoinColumn(name="PhuongXa")
+	private PhuongPikalong phuongXa;
 	
 	private String noiOHienNay;
 	
@@ -55,10 +66,13 @@ public class HoSoNhanVienPikalong {
 	private String danToc;
 	
 	private String quocTich;
+	@ManyToOne
+	@JoinColumn(name="MaChucDanh")
+	private ChucDanh maChucDanh;
 	
-	private String maChucDanh;
-	
-	private String maPhongBan;
+	@ManyToOne
+	@JoinColumn(name="MaPhongBan")
+	private PhongBan maPhongBan;
 	
 	private String avatar;
 	
@@ -80,15 +94,15 @@ public class HoSoNhanVienPikalong {
 		return ngaySinh;
 	}
 
-	public String getThanhPho() {
+	public ThanhPhoPikalong getThanhPho() {
 		return thanhPho;
 	}
 
-	public String getQuanHuyen() {
+	public QuanHuyenPikalong getQuanHuyen() {
 		return quanHuyen;
 	}
 
-	public String getPhuongXa() {
+	public PhuongPikalong getPhuongXa() {
 		return phuongXa;
 	}
 
@@ -124,11 +138,11 @@ public class HoSoNhanVienPikalong {
 		return quocTich;
 	}
 
-	public String getMaChucDanh() {
+	public ChucDanh getMaChucDanh() {
 		return maChucDanh;
 	}
 
-	public String getMaPhongBan() {
+	public PhongBan getMaPhongBan() {
 		return maPhongBan;
 	}
 
@@ -164,15 +178,15 @@ public class HoSoNhanVienPikalong {
 		this.tinhTrangHonNhan = tinhTrangHonNhan;
 	}
 
-	public void setThanhPho(String thanhPho) {
+	public void setThanhPho(ThanhPhoPikalong thanhPho) {
 		this.thanhPho = thanhPho;
 	}
 
-	public void setQuanHuyen(String quanHuyen) {
+	public void setQuanHuyen(QuanHuyenPikalong quanHuyen) {
 		this.quanHuyen = quanHuyen;
 	}
 
-	public void setPhuongXa(String phuongXa) {
+	public void setPhuongXa(PhuongPikalong phuongXa) {
 		this.phuongXa = phuongXa;
 	}
 
@@ -208,11 +222,11 @@ public class HoSoNhanVienPikalong {
 		this.quocTich = quocTich;
 	}
 
-	public void setMaChucDanh(String maChucDanh) {
+	public void setMaChucDanh(ChucDanh maChucDanh) {
 		this.maChucDanh = maChucDanh;
 	}
 
-	public void setMaPhongBan(String maPhongBan) {
+	public void setMaPhongBan(PhongBan maPhongBan) {
 		this.maPhongBan = maPhongBan;
 	}
 

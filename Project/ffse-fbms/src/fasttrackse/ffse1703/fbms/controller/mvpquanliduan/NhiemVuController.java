@@ -58,7 +58,7 @@ public class NhiemVuController {
 		return "MvpQuanLiDuAn/phancongnhiemvu/add_form";
 	}
 	@RequestMapping(value = "/addnew", method = RequestMethod.POST)
-	public String addNew(@Valid @ModelAttribute("command") Nhiemvu nhiemVu, BindingResult result,
+	public String addNew(@Valid @ModelAttribute("nhiemVu") Nhiemvu nhiemVu, BindingResult result,
 			final RedirectAttributes redirectAttributes, Model model) {
 		if (result.hasErrors()) {
 			return "MvpQuanLiDuAn/phancongnhiemvu/add_form";
@@ -68,7 +68,7 @@ public class NhiemVuController {
 		nhiemVu.setStatus(1);
 		nhiemVuService.add(nhiemVu);
 		;
-		redirectAttributes.addFlashAttribute("success", "<script>alert('Thêm thành công');</script>");
+		redirectAttributes.addFlashAttribute("success", "<script>alert('Thï¿½m thï¿½nh cï¿½ng');</script>");
 		return "redirect: list-nhiemvu";
 	}
 

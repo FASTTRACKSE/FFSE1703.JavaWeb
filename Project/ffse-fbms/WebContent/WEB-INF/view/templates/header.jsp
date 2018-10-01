@@ -235,12 +235,12 @@
 					<!-- Quản Trị Nhân Sự -->
 				</sec:authorize>
 				<sec:authorize access="!hasRole('ROLE_NV') or hasRole('ROLE_PNS')">
-				
-				 	   <!--  -----------------MVP- Quản lí Dự Án ----------------------->
-				 	   
-					<li class="navigation-header"><span>꧁༺M̤̮V̤̮P̤̮-Quản lý dự án</span><i
-						class=" ft-minus" data-toggle="tooltip" data-placement="right"
-						data-original-title="Components"></i></li>
+
+					<!--  -----------------MVP- Quản lí Dự Án ----------------------->
+
+					<li class="navigation-header"><span>꧁༺M̤̮V̤̮P̤̮-Quản lý
+							dự án</span><i class=" ft-minus" data-toggle="tooltip"
+						data-placement="right" data-original-title="Components"></i></li>
 					<li class="nav-item has-sub"><a href="#"><i
 							class="ft-briefcase"></i><span class="menu-title" data-i18n="">Danh
 								Mục Dự Án</span></a>
@@ -401,6 +401,10 @@
 					href="<c:url value = "/TranDuc-QuanLyTaiLieu/TrangThai/"/>"><i
 						class="ft-users"></i><span data-i18n="" class="menu-title">Trạng
 							Thái</span></a></li>
+				<li class=" nav-item"><a
+					href="<c:url value = "/TranDuc-QuanLyTaiLieu/Icon/"/>"><i
+						class="ft-octagon"></i><span data-i18n="" class="menu-title">Icon</span></a></li>
+				<li><hr /></li>
 			</ul>
 		</div>
 	</div>

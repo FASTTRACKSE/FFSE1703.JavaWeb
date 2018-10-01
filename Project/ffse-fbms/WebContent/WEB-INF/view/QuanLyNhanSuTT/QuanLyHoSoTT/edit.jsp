@@ -47,7 +47,7 @@
 							</div>
 							<div class="card-body collapse in">
 								<div class="card-block">
-									<form:form method="POST" action="update"
+									<form:form method="POST" action="/ffse-fbms/quanlynhansutt/ho_so/update"
 										modelAttribute="formHoso" enctype="multipart/form-data">
 										<div class="form-body">
 											<%-- <div class="form-group col-sm-6">
@@ -95,7 +95,7 @@
 																<option value="none" selected="selected">Chọn
 																	tình trạng hôn nhân</option>
 																<c:forEach items="${listTrangTrangHonNhan}" var="x">
-																	<option value="${x.maTinhTrangHonNhan}">${x.tinhTrangHonNhan}</option>
+																	<form:option value="${x.maTinhTrangHonNhan}">${x.tinhTrangHonNhan}</form:option>
 																</c:forEach>
 															</form:select>
 														</div>
@@ -133,7 +133,7 @@
 																	<option value="none" selected="selected">Chọn
 																		dân tộc</option>
 																	<c:forEach items="${listDanToc}" var="x">
-																		<option value="${x.maDanToc}">${x.tenDanToc}</option>
+																		<form:option value="${x.maDanToc}">${x.tenDanToc}</form:option>
 																	</c:forEach>
 																</form:select>
 															</div>
@@ -148,7 +148,7 @@
 																<option value="none" selected="selected">Chọn
 																	quốc tịch</option>
 																<c:forEach items="${listQuocTich}" var="x">
-																	<option value="${x.maQuocTich}">${x.tenQuocTich}</option>
+																	<form:option value="${x.maQuocTich}">${x.tenQuocTich}</form:option>
 																</c:forEach>
 															</form:select>
 														</div>

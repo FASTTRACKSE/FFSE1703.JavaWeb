@@ -20,8 +20,8 @@
 								href="<c:url value = "/quanlynhansutt/ho_so/"/>"><spring:message
 										code="label.quanLyNhanSu" /></a></li>
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/quanlynhansutt/hop_dong/" />'><spring:message
-										code="label.danhSachHopDong" /></a></li>
+								href='<c:url value="/quanlynhansutt/hop_dong/" />'>Danh sách
+									hợp đồng</a></li>
 							<li class="breadcrumb-item active">Sửa hợp đồng</li>
 						</ol>
 					</div>
@@ -37,9 +37,8 @@
 						<div class="col-md-12">
 							<div class="card">
 								<div class="card-header">
-									<h4 class="card-title" id="horz-layout-basic">
-										<spring:message code="label.thongTinCoBan" />
-									</h4>
+									<h4 class="card-title" id="horz-layout-basic">Thông Tin
+										Chính</h4>
 									<a class="heading-elements-toggle"><i
 										class="fa fa-ellipsis-v font-medium-3"></i></a>
 									<div class="heading-elements">
@@ -60,12 +59,12 @@
 													<div class="col-md-8">
 														<div class="row">
 															<div class="form-group col-sm-6">
-																<label><spring:message code="label.maHopDong" /></label>
+																<label>Mã Hợp Đồng</label>
 																<form:input class="form-control" readonly="true"
 																	path="maHopDong" placeholder="Mã Hợp Đồng" />
 															</div>
 															<div class="form-group col-sm-6">
-																<label><spring:message code="label.maNhanVien" /></label>
+																<label>Mã Nhân Viên</label>
 																<form:input class="form-control" readonly="true"
 																	path="hoSoNhanVienTT.maNhanVien"
 																	placeholder="Mã Nhân Viên" />
@@ -74,46 +73,37 @@
 														</div>
 														<div class="row">
 															<div class="form-group col-sm-6">
-																<label><spring:message code="label.tenHopDong" /></label>
+																<label>Tên Loại Hợp Đồng</label>
 																<form:select path="loaiHopDong.maLoaiHopDong"
 																	type="text" id="companyName" class="form-control"
 																	name="loaiHopDongSelect">
-																	<option value="none"><spring:message
-																			code="label.chonHopDong" /></option>
+																	<option value="none">Chọn Loại Hợp Đồng</option>
 																	<c:forEach items="${listLoaiHopDong}" var="x">
 																		<option value="${x.maLoaiHopDong}">${x.tenHopDong}</option>
 																	</c:forEach>
 																</form:select>
+
+
 															</div>
 														</div>
 													</div>
 												</div>
 												<h4 class="form-section">
-													<i class="ft-user"><spring:message
-															code="label.thongTinHopDong" /></i>
+													<i class="ft-user"> Thông Tin Hợp Đồng</i>
 												</h4>
 												<div class="row">
 													<div class="col-md-8">
 														<div class="row">
 															<div class="form-group col-sm-6">
 																<div class="form-group">
-																	<label><spring:message
-																			code="label.luongThang13" /></label>
-																	<form:select class="custom-select form-control"
-																		path="luongThang13">
-																		<option value="none"><spring:message
-																				code="label.chonLuongThang13" /></option>
-																		<form:option value="1">
-																			<spring:message code="label.co" />
-																		</form:option>
-																		<form:option value="2">
-																			<spring:message code="label.khong" />
-																		</form:option>
-																	</form:select>
+																	<label>Lương Tháng 13</label>
+																	<form:input class="form-control" path="luongThang13"
+																		placeholder="Lương Tháng 13" />
+
 																</div>
 															</div>
 															<div class="form-group col-sm-6">
-																<label><spring:message code="label.soNgayPhep" /></label>
+																<label>Số Ngày Phép</label>
 																<form:input class="form-control" path="soNgayPhep"
 																	placeholder="Số Ngày Phép" />
 															</div>
@@ -157,16 +147,11 @@
 															</div>
 															<div class="col-md-6">
 																<div class="form-group">
-																	<label for="location1"><spring:message
-																			code="label.trangThai" /></label>
+																	<label for="location1">Trạng Thái</label>
 																	<form:select class="custom-select form-control"
 																		path="trangThai">
-																		<form:option value="1">
-																			<spring:message code="label.conHopDong" />
-																		</form:option>
-																		<form:option value="2">
-																			<spring:message code="label.hetHopDong" />
-																		</form:option>
+																		<form:option value="1">Còn Hợp Đồng</form:option>
+																		<form:option value="2">Hết Hợp Đồng</form:option>
 																	</form:select>
 																</div>
 															</div>
@@ -175,8 +160,7 @@
 												</div>
 											</div>
 											<div class="form-actions center">
-												<a
-													href="<c:url value = "/quanlynhansutt/hop_dong/viewOneHopDong/${maNhanVien}"/>"
+												<a href="<c:url value = "/quanlynhansutt/hop_dong/viewOneHopDong/${maNhanVien}"/>"
 													class="btn btn-primary">Back</a> <input
 													class="btn btn-success" type="submit" value="Save" />
 											</div>

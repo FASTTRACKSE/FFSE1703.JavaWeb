@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Nhiemvu;
 import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.NhiemVuTT;
 
 @Repository
@@ -40,7 +41,7 @@ public class NhiemVuDaoTTImpl implements NhiemVuDaoTT {
 	public List<NhiemVuTT> getByDuAn(String idProjects) {
 		// TODO Auto-generated method stub
 		Session session = this.sessionFactory.getCurrentSession();
-		return session.createQuery("from NhiemVuTT where status =1 and projectsTT.idProject='" + idProjects + "'",
+		return session.createQuery("from NhiemVuTT where status =1 and projects.idProject='" + idProjects + "'",
 				NhiemVuTT.class).list();
 	}
 
@@ -55,16 +56,16 @@ public class NhiemVuDaoTTImpl implements NhiemVuDaoTT {
 	public void delete(int id) {
 		// TODO Auto-generated method stub
 		Session session = sessionFactory.getCurrentSession();
-		NhiemVuTT nhiemVu = session.get(NhiemVuTT.class, id);
+		Nhiemvu nhiemVu = session.get(Nhiemvu.class, id);
 		nhiemVu.setStatus(0);
 		session.update(nhiemVu);
 	}
 
 	@Override
-	public List<NhiemVuTT> getByMaNhanVien(int maNhanVien) {
+	public List<NhiemVuTT> getByMaNhanVien(int idNv) {
 		// TODO Auto-generated method stub
 		Session session = this.sessionFactory.getCurrentSession();
-		return session.createQuery("from NhiemVuTT where status = 1 and hoSoNhanVienTT.maNhanVien='" + maNhanVien + "'",
+		return session.createQuery("from NhiemVuTT where status = 1 and hoSoNhanVienTT.maNhanVien='" + idNv + "'",
 				NhiemVuTT.class).list();
 	}
 

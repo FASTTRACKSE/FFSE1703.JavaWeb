@@ -169,7 +169,6 @@ public class QuanLyVangNghiDaoIpml implements QuanLyVangNghiDao {
 		Session session = this.sessionFactory.getCurrentSession();
 		;
 		session.update(thongKeDonXinPhep);
-
 	}
 
 	public List<NgayNghi> danhSachNgayNghi() {
@@ -186,7 +185,7 @@ public class QuanLyVangNghiDaoIpml implements QuanLyVangNghiDao {
 
 	public void deleteDateOff(int maNhanVien) {
 		Session session = this.sessionFactory.getCurrentSession();
-		session.delete(findById(maNhanVien));
+		session.delete(findByIdDateOff(maNhanVien));
 	}
 
 	public List<ThongKeDonXinPhep> findAllForPagingCD(int startPosition, int maxResult) {
@@ -218,11 +217,12 @@ public class QuanLyVangNghiDaoIpml implements QuanLyVangNghiDao {
 
 	public List<NgayNghi> findAllForPagingNN(int startPosition, int maxResult) {
 		Session session = this.sessionFactory.getCurrentSession();
-		Query q = session.createQuery("from NgayNghi ");
+		Query q = session.createQuery("from NgayNghi"
+				+ " ");
 		q.setFirstResult(startPosition);
 		q.setMaxResults(maxResult);
 
-		return q.list();
+		return q.list(); 
 	}
 
 	public List<TrangThaiVN> findAllForPagingTrangThai(int startPosition, int maxResult) {
@@ -244,6 +244,16 @@ public class QuanLyVangNghiDaoIpml implements QuanLyVangNghiDao {
 		Session sesion = sessionFactory.getCurrentSession();
 		TrangThaiVN list = (TrangThaiVN) sesion.get(TrangThaiVN.class, id);
 		return list;
+	}
+	
+	public void createNgayNghi(NgayNghi ngayNghi) {
+		Session session = this.sessionFactory.getCurrentSession();
+		session.save(ngayNghi);
+	}
+	
+	public void updateNgayNghi(NgayNghi ngayNghi) {
+		Session session = this.sessionFactory.getCurrentSession();
+		session.update(ngayNghi);
 	}
 
 	public void createTrangThai(TrangThaiVN trangThai) {

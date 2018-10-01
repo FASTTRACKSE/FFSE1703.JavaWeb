@@ -33,34 +33,34 @@
 		</div>
 		
 		<form:form method="POST" enctype="multipart/form-data" 
-			action="/ffse-fbms/QuanTriTaiLieu/TaiLieu/creat">
- 			<div class="form-group col-sm-6">
+			action="/ffse-fbms/QuanTriTaiLieu/TaiLieu/creat" modelAttribute="document">
+ 			<%-- <div class="form-group col-sm-6">
 				<label>Id</label>
 				 <form:input class="form-control" path="id" placeholder="Id" /> 
-				 <%-- <form:errors path="id" cssStyle="color: red"></form:errors> --%>
+				 <form:errors path="id" cssStyle="color: red"></form:errors>
 
-			</div> 
+			</div>  --%>
 			<div class="form-group col-sm-6">
 				<label>Tên tài liệu</label>
 				<form:input class="form-control" path="ten_tai_lieu"
 					placeholder="Tên tài liệu " />
-				<!-- 	<form:errors path="ten_tai_lieu" cssStyle="color: red"></form:errors> -->
+					<form:errors path="ten_tai_lieu" cssStyle="color: red"></form:errors>
 			</div>
 			<div class="form-group col-sm-6">
 				<label>Mã danh mục</label>
 				<form:select cssClass="form-control" path="ma_danh_muc" >
-										<option title="Mã danh mục"></option>
+										<form:option value="" title="Mã danh mục"/>
 										<c:forEach var="sv" items="${listCategory}" begin="0"
 											varStatus="counter">
 											<form:option value="${sv.ma_danh_muc}" label="${sv.ma_danh_muc}"></form:option>
 										</c:forEach>
 									</form:select>
-				<%--  <form:errors path="ma_danh_muc" cssStyle="color: red"></form:errors>--%>
+				 <form:errors path="ma_danh_muc" cssStyle="color: red"></form:errors>
 			</div>
 			<div class="form-group col-sm-6">
 				<label>File</label>
 				<input name="file" id="fileToUpload" type="File"  />
-				<%-- <form:errors path="file" cssStyle="color: red"></form:errors> --%>
+				<form:errors path="fileName" cssStyle="color: red"></form:errors>
 			</div>
 			<div class="form-group col-sm-6">
 				<label>Mã trạng thái</label>
@@ -71,18 +71,18 @@
 											<form:option value="${sv.ma_trang_thai}" label="${sv.ma_trang_thai}"></form:option>
 										</c:forEach>
 									</form:select>
-				<%-- <form:errors path="ma_trang_thai" cssStyle="color: red"></form:errors> --%>
+				<form:errors path="ma_trang_thai" cssStyle="color: red"></form:errors>
 			</div>
 			<div class="form-group col-sm-6">
 				<label>Mô tả</label>
 				<form:input class="form-control" path="mo_ta" placeholder="Mô tả" />
-				<%-- <form:errors path="mo_ta" cssStyle="color: red"></form:errors> --%>
+				<form:errors path="mo_ta" cssStyle="color: red"></form:errors>
 			</div>
 			<div class="form-group col-sm-6">
 				<label>Ghi chú</label>
 				<form:input class="form-control" path="ghi_chu"
 					placeholder="Ghi chú" />
-				<%-- <form:errors path="ghi_chu" cssStyle="color: red"></form:errors> --%>
+				<form:errors path="ghi_chu" cssStyle="color: red"></form:errors>
 			</div>
 			<div class="form-group col-sm-6">
 				<label>Mã phòng ban</label>
@@ -93,7 +93,7 @@
 											<form:option value="${sv.ma_phong_ban}" label="${sv.ma_phong_ban}"></form:option>
 										</c:forEach>
 									</form:select>
-				<%-- <form:errors path="ma_phong_ban" cssStyle="color: red"></form:errors> --%>
+				<form:errors path="ma_phong_ban" cssStyle="color: red"></form:errors>
 			</div>
 			<div class="col-sm-12 text-center">
 				<button type="submit" class="btn btn-success">Lưu thông tin</button>

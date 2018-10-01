@@ -16,21 +16,21 @@
 					<div class="row">
 						<div class="form-group col-sm-6">
 							<div>
-								<label>Mã đơn</label>
-								<form:input class="form-control round" path="id" readonly="true" value="3" />
+								<label><spring:message code="label.madon"/></label>
+								<form:input class="form-control round" path="id" readonly="true" value="" />
 								 <form:hidden path="ngayNghi.soNgayDaNghi"/>
 							<form:hidden path="ngayNghi.soNgayConLai"/> 
 							</div>
 
 							<div>
-								<label> Mã nhân viên</label>
+								<label> <spring:message code="label.maNhanVien"/></label>
 								<form:select multiple="single" path="ngayNghi.maNhanVien" class="custom-select block round">
 									<form:options items="${hoso}" itemValue="maNhanVien" itemLabel="maNhanVien" />
 								</form:select>
 							</div>
 							<div>
 								
-								<label>Ngày bắt đầu</label>
+								<label><spring:message code="label.ngaybatdau"/></label>
 								<fieldset class="form-group position-relative">
 								<form:errors style="color:red" path="ngayBatDau" />
 									<form:input type="date" class="form-control round" id="from"
@@ -136,7 +136,7 @@
 												</script>
 							</div>
 							<div>
-								<label>Ghi chú</label>
+								<label><spring:message code="label.ghichu"/></label>
 								<form:input class="form-control round"  placeholder="ghiChu"	 path="ghiChu" />
 							 <form:errors path="ghiChu" cssStyle="color: red" ></form:errors> 
 							</div>
@@ -144,7 +144,7 @@
 
 						<div class="form-group col-sm-6">
 							<div>
-								<label>Ly do</label>
+								<label><spring:message code="label.lydo"/></label>
 								<form:select path="lyDo.id" class="custom-select block round"
 									id="customSelect">
 									<c:forEach items="${lydo}" var="ld">
@@ -154,13 +154,13 @@
 							</div>
 							
 							<div>
-								<label>Số ngày nghỉ</label>
+								<label><spring:message code="label.songaynghi"/></label>
 								<form:input type="text" class="form-control round" id="total"  readonly="true" path="soNgayNghi" />
 								<form:errors style="color:red" path="soNgayNghi"  />
 							</div>
 							
 							<div>
-								<label>Ngày kết thúc</label>
+								<label><spring:message code="label.ngayketthuc"/></label>
 								<fieldset class="form-group position-relative">
 								 <form:errors style="color:red" path="ngayKetThuc" />
 									<form:input type="date" class="form-control round" id="to"
@@ -233,7 +233,7 @@
 							     </div>
 							
 							<div>
-								<label>Ghi chú trưởng phòng</label>
+								<label><spring:message code="label.ghichutruongphong"/></label>
 								<form:input class="form-control round" path="ghiChuTruongPhong" readonly="true" />
 							</div>
 						</div>
@@ -242,14 +242,13 @@
 						<div  class="row">
 							<div class="col-md-2">
 								<button type="submit"  class="btn btn-outline-danger round  mr-1 mb-1"
-									formaction="<%=request.getContextPath()%>/Quanlyvangnghi1703004/taodonmoi/nhap">Lưu
-									nháp</button>
+									formaction="<%=request.getContextPath()%>/Quanlyvangnghi1703004/taodonmoi/nhap"><spring:message code="label.luunhap"/></button>
 							</div>
 							
 						<div class="col-md-4">
 								<div class="col-md-2">
 									<button type="submit"  class="btn btn-outline-success round  mr-1 mb-1"
-										formaction="<%=request.getContextPath()%>/Quanlyvangnghi1703004/taodonmoi/choduyet">Gửi</button>
+										formaction="<%=request.getContextPath()%>/Quanlyvangnghi1703004/taodonmoi/choduyet"><spring:message code="label.gui"/></button>
 								</div>
 						</div>
 						</div>

@@ -28,8 +28,7 @@ th, td {
 		<!-- Path -->
 		<div class="content-header row">
 			<div class="content-header-left col-md-9 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0"><spring:message
-										code="label.thongTinGiaDinh" /></h3>
+				<h3 class="content-header-title mb-0">Gia Đình Nhân Viên</h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
@@ -39,10 +38,9 @@ th, td {
 								href="<c:url value = "/quanlynhansutt/ho_so/"/>"><spring:message
 										code="label.quanLyNhanSu" /></a></li>
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/quanlynhansutt/hop_dong/" />'><spring:message
-										code="label.thongTinHopDong" /></a></li>
-							<li class="breadcrumb-item active"><spring:message
-										code="label.thongTinGiaDinh" /></li>
+								href='<c:url value="/quanlynhansutt/hop_dong/" />'>Danh sách
+									hợp đồng</a></li>
+							<li class="breadcrumb-item active">Gia Đình Nhân Viên</li>
 						</ol>
 					</div>
 				</div>
@@ -52,7 +50,8 @@ th, td {
 					class="btn-group float-md-right" id="add-new">
 					<a
 						href="<c:url value = "/quanlynhansutt/gia_dinh/add_giadinh/${maNhanVien}"/>"
-						class="btn btn-primary"><span class="fa fa-plus"></span><spring:message code="label.themMoi" /></a>
+						class="btn btn-primary"><span class="fa fa-plus"></span> Thêm
+						mới</a>
 				</div>
 			</div>
 		</div>
@@ -81,12 +80,12 @@ th, td {
 										<thead>
 											<tr>
 
-												<th><spring:message code="label.hoTen" /></th>
-												<th><spring:message code="label.queQuan" /></th>
-												<th><spring:message code="label.ngaySinh" /></th>
-												<th><spring:message code="label.gioiTinh" /></th>
-												<th><spring:message code="label.dienThoai" /></th>
-												<th><spring:message code="label.quanHe" /></th>
+												<th>Tên</th>
+												<th>Quê Quán</th>
+												<th>Năm Sinh</th>
+												<th>Giới Tính</th>
+												<th>Số Điện Thoại</th>
+												<th>Quan Hệ</th>
 												<th>Chức Năng</th>
 											</tr>
 										</thead>
@@ -100,21 +99,20 @@ th, td {
 															<spring:message code="label.nam" />
 														</c:if> <c:if test="${ttgd.gioiTinh == 2}">
 															<spring:message code="label.nu" />
-														</c:if></td>
+														</c:if>
+													</td>
 													<td>${ttgd.soDienThoai}</td>
 													<td>${ttgd.quanHe}</td>
 													<td
 														style="letter-spacing: 5px; min-width: 75px; text-align: center !important;">
 														<a href="<c:url value = "#"/>"><i class="fa fa-eye"></i></a>
 														<a
-														  href="<c:url value = "/quanlynhansutt/gia_dinh/edit_giadinh/${ttgd.id}"/>"><i
-															class="fa fa-pencil"></i>
-														</a>
+														href="<c:url value = "/quanlynhansutt/gia_dinh/edit_giadinh/${ttgd.id}"/>"><i
+															class="fa fa-pencil"></i></a> <%-- <a href="<c:url value = ""/>"><i class="fa fa-trash"></i></a> --%>
 														<a
-														 href='<c:url value = "/quanlynhansutt/gia_dinh/remove/${ttgd.id}"></c:url>'
-														 class="fa fa-trash"
-														 onclick="return confirm('Bạn có muốn xóa sinh viên này?');">
-													   </a>
+														href='<c:url value = "/quanlynhansutt/gia_dinh/remove/${ttgd.id}"></c:url>'
+														class="fa fa-trash"
+														onclick="return confirm('Bạn có muốn xóa sinh viên này?');"></a>
 													</td>
 												</tr>
 											</c:forEach>

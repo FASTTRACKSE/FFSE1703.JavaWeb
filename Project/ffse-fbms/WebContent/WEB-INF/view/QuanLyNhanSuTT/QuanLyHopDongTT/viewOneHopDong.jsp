@@ -28,9 +28,7 @@ th, td {
 		<!-- Path -->
 		<div class="content-header row">
 			<div class="content-header-left col-md-9 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">
-					<spring:message code="label.hopDongLaoDong" />
-				</h3>
+				<h3 class="content-header-title mb-0">Hợp Đồng Nhân Viên</h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
@@ -40,10 +38,9 @@ th, td {
 								href="<c:url value = "/quanlynhansutt/ho_so/"/>"><spring:message
 										code="label.quanLyNhanSu" /></a></li>
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/quanlynhansutt/hop_dong/" />'><spring:message
-										code="label.danhSachHopDong" /></a></li>
-							<li class="breadcrumb-item active"><spring:message
-									code="label.hopDongLaoDong" /></li>
+								href='<c:url value="/quanlynhansutt/hop_dong/" />'>Danh sách
+									hợp đồng</a></li>
+							<li class="breadcrumb-item active">Hợp Đồng Nhân Viên</li>
 						</ol>
 					</div>
 				</div>
@@ -53,8 +50,8 @@ th, td {
 					class="btn-group float-md-right" id="add-new">
 					<a
 						href="<c:url value = "/quanlynhansutt/hop_dong/add_hopdong/${maNhanVien}"/>"
-						class="btn btn-primary"><span class="fa fa-plus"></span> <spring:message
-							code="label.themMoi" /></a>
+						class="btn btn-primary"><span class="fa fa-plus"></span> Thêm
+						mới</a>
 				</div>
 			</div>
 		</div>
@@ -82,13 +79,14 @@ th, td {
 										class="table table-striped table-bordered zero-configuration">
 										<thead>
 											<tr>
-												<th><spring:message code="label.tenHopDong" /></th>
-												<th><spring:message code="label.luongThang13" /></th>
-												<th><spring:message code="label.soNgayPhep" /></th>
+
+												<th>Tên loại hợp đồng</th>
+												<th>Lương Tháng 13</th>
+												<th>Số Ngày Phép</th>
 												<th>Ngày Ký</th>
 												<th>Hợp Đồng Từ Ngày</th>
 												<th>Hợp Đồng Đến Ngày</th>
-												<th><spring:message code="label.trangThai" /></th>
+												<th>Trạng Thái</th>
 												<th>Chức Năng</th>
 
 											</tr>
@@ -125,6 +123,7 @@ th, td {
 													</td>
 												</tr>
 											</c:forEach>
+
 										</tbody>
 									</table>
 								</div>
@@ -133,6 +132,7 @@ th, td {
 					</div>
 				</div>
 			</section>
+
 			<!--/ Zero configuration table -->
 		</div>
 	</div>

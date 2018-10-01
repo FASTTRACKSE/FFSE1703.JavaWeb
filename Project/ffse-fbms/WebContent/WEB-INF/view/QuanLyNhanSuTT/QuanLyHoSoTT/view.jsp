@@ -58,7 +58,7 @@ i.fa {
 									class="dropdown-item"><i class="fa fa-handshake-o"></i> <spring:message
 										code="label.thongTinHopDong" /></a>
 								<div class="dropdown-divider"></div>
-								<a href="<c:url value = "#"/>"
+								<a href="<c:url value = "/quanlynhansutt/ho_so/viewOne/${maNhanVien}"/>"
 									class="dropdown-item text-xs-center"><spring:message
 										code="label.xemTatCa" /></a>
 							</div>

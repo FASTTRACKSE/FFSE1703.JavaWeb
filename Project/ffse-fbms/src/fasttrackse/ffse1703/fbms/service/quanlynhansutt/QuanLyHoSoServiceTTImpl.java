@@ -74,9 +74,9 @@ public class QuanLyHoSoServiceTTImpl implements QuanLyHoSoServiceTT {
 	}
 	@Override
 	@Transactional
-	public void deleteHoSoNhanVien(int maNhanVien) {
+	public void deleteHoSoNhanVien(HoSoNhanVienTT hsnv) {
 		// TODO Auto-generated method stub
-
+            quanLyHoSoDaoTT.deleteHoSoNhanVien(hsnv);
 	}
 
 	@Override

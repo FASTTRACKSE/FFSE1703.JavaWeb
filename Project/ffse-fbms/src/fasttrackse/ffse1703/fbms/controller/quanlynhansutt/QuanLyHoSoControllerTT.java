@@ -30,6 +30,7 @@ import fasttrackse.ffse1703.fbms.service.quanlynhansutt.DanTocServiceTT;
 import fasttrackse.ffse1703.fbms.service.quanlynhansutt.QuanHuyenServiceTT;
 import fasttrackse.ffse1703.fbms.service.quanlynhansutt.QuanLyHoSoServiceTT;
 import fasttrackse.ffse1703.fbms.service.quanlynhansutt.QuocTichServiceTT;
+import fasttrackse.ffse1703.fbms.service.quanlynhansutt.ThongTinBangCapServiceTT;
 import fasttrackse.ffse1703.fbms.service.quanlynhansutt.TinhThanhServiceTT;
 import fasttrackse.ffse1703.fbms.service.quanlynhansutt.TinhTrangHonNhanServiceTT;
 import fasttrackse.ffse1703.fbms.service.quanlynhansutt.XaPhuongServiceTT;
@@ -63,6 +64,13 @@ public class QuanLyHoSoControllerTT {
 
 	@Autowired
 	private PhongBanService phongBanService;
+ 
+	@Autowired
+	private ThongTinBangCapServiceTT thongTinBangCapServiceTT;
+	
+	public void setThongTinBangCapServiceTT(ThongTinBangCapServiceTT thongTinBangCapServiceTT) {
+		this.thongTinBangCapServiceTT = thongTinBangCapServiceTT;
+	}
 
 	@Autowired
 	private TinhTrangHonNhanServiceTT tinhTrangHonNhanServiceTT;
@@ -124,6 +132,7 @@ public class QuanLyHoSoControllerTT {
 	@RequestMapping(value = "/viewOne/{maNhanVien}", method = RequestMethod.GET)
 	public String viewOne(@PathVariable("maNhanVien") int maNhanVien, Model model) {
 		model.addAttribute("hoSoNhanVienTT", quanLyHoSoServiceTT.findByMaNhanVien(maNhanVien));
+		model.addAttribute("thongTinBangCap", thongTinBangCapServiceTT.viewOne(maNhanVien));
 		return "QuanLyNhanSuTT/QuanLyHoSoTT/viewOne";
 	}
 	

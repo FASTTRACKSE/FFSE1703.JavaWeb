@@ -22,7 +22,7 @@ public class QuanLyHoSoDaoTTImlp implements QuanLyHoSoDaoTT {
 	public List<HoSoNhanVienTT> getAllHoSo() {
 		// TODO Auto-generated method stub
 		Session session = sessionFactory.getCurrentSession();
-		List<HoSoNhanVienTT> listHoSo = session.createQuery("from HoSoNhanVienTT").getResultList();
+		List<HoSoNhanVienTT> listHoSo = session.createQuery("from HoSoNhanVienTT where isdelete = 1").getResultList();
 		return listHoSo;
 	}
 
@@ -59,9 +59,10 @@ public class QuanLyHoSoDaoTTImlp implements QuanLyHoSoDaoTT {
 	}
 
 	@Override
-	public void deleteHoSoNhanVien(int maNhanVien) {
+	public void deleteHoSoNhanVien(HoSoNhanVienTT hsnv) {
 		// TODO Auto-generated method stub
-
+		Session session = this.sessionFactory.getCurrentSession();
+		session.update(hsnv);
 	}
 
 	@Override
@@ -77,7 +78,7 @@ public class QuanLyHoSoDaoTTImlp implements QuanLyHoSoDaoTT {
 		// TODO Auto-generated method stub
 		Session session = this.sessionFactory.openSession();
 		@SuppressWarnings("rawtypes")
-		Query query = session.createQuery("from HoSoNhanVienTT where ma_nhan_vien = "+maNhanVien+" and trang_thai = 1 ");
+		Query query = session.createQuery("from HoSoNhanVienTT where ma_nhan_vien = "+maNhanVien+" and trang_thai = 1 and isdelete = 1");
 		@SuppressWarnings("unchecked")
 		List<HoSoNhanVienTT> viewOne = query.list();
 		return viewOne;

@@ -160,7 +160,7 @@
 										<thead class="thead-dark">
 											<tr style="background-color: #2A2E30; border-color: black; color: #F5F7FA;">
 												<th scope="col">STT</th>
-												<th scope="col"><spring:message code="label.tenDuan"/></th>
+												<th scope="col">Tên dự án</th>
 												<th scope="col">Tên công việc</th>
 												<th scope="col">Loại công việc</th>
 												<th scope="col">Trạng thái</th>

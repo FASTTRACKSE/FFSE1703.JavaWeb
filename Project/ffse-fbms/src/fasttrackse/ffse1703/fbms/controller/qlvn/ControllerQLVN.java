@@ -193,11 +193,7 @@ public class ControllerQLVN {
 	public String editNhap( @ModelAttribute("suadon") @Valid ThongKeDonXinPhep nv,
 			BindingResult result,Model model)
 			throws SQLException {
-		if(result.hasErrors()) {
-			return "/Quanlyvangnghi1703004/suanhap";
-		}
-		service.create(nv);
-		return "redirect:/Quanlyvangnghi1703004/danhsachnhap";
+		return "Quanlyvangnghi1703004/danhsachnhap";
 	}
 	
 	@RequestMapping(value = "/updatenhap/choduyet", method = RequestMethod.POST)

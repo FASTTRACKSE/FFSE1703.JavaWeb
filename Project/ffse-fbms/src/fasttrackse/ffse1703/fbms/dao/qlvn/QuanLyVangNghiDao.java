@@ -70,4 +70,6 @@ public interface QuanLyVangNghiDao {
 	public void deleteTrangThai(int id);
 	
 	public void updateTrangThai(TrangThaiVN trangThai);
+	
+
 }

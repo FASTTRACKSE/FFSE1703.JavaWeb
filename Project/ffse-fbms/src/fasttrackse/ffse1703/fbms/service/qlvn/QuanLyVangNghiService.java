@@ -68,5 +68,5 @@ public interface QuanLyVangNghiService {
     public void createNgayNghi(NgayNghi ngayNghi);
 	
 	public void updateNgayNghi(NgayNghi ngayNghi);
-}
 
+}

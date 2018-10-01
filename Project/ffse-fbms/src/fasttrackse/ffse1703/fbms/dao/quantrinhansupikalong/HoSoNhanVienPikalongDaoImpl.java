@@ -28,6 +28,7 @@ public class HoSoNhanVienPikalongDaoImpl implements HoSoNhanVienPikalongDao {
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery("from HoSoNhanVienPikalong where isActive = :active");
 		query.setParameter("active", 0);
+		
 		@SuppressWarnings("unchecked")
 		List<HoSoNhanVienPikalong> nhanVienList = query.list();
 		return nhanVienList;

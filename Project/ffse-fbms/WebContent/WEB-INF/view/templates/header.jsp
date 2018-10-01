@@ -50,6 +50,11 @@
 	href="<c:url value="/resources/fonts/meteocons/style.css"/>">
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/vendors/css/charts/morris.css"/>">
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/vendors/css/calendars/fullcalendar.min.css"/>">
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/css/plugins/calendars/fullcalendar.min.css"/>">
+
 <!-- END VENDOR CSS-->
 <!-- BEGIN STACK CSS-->
 <link rel="stylesheet" type="text/css"
@@ -95,6 +100,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
 <script>
 	$(document).ready(
 			function() {

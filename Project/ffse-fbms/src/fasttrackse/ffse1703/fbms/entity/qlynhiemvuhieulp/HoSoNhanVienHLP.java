@@ -64,13 +64,11 @@ public class HoSoNhanVienHLP {
 	@NotNull
 	private Integer trangThai;
 
-	// bi-directional many-to-one association to PhongBan
 	@ManyToOne
 	@JoinColumn(name = "ma_phong_ban", nullable = false)
 	@NotNull
 	private PhongBan phongBan;
 
-	// bi-directional many-to-one association to ChucDanh
 	@ManyToOne
 	@JoinColumn(name = "ma_chuc_danh", nullable = false)
 	@NotNull

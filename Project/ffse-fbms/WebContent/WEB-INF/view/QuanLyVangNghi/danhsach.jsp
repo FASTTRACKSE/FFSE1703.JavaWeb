@@ -38,6 +38,102 @@
 td {
 	padding: 5px;
 }
+.ques {
+    color: darkslateblue;
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 130px;
+  height: 50px;
+}
+
+.switch input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #f2f2f2;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  z-index: 2;
+  content: "";
+  height: 48px;
+  width: 48px;
+  left: 2px;
+  bottom: 2px;
+  background-color: darkslategrey;
+      -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.22);
+  -webkit-transition: .4s;
+  transition: all 0.4s ease-in-out;
+}
+.slider:after {
+  position: absolute;
+  left: 0;
+  z-index: 1;
+  content: "Đã duyệt";
+    font-size: 15px;
+    text-align: left !important;
+    line-height: 47px;
+  padding-left: 0;
+    width: 130px;
+    color: #fff;
+    height: 50px;
+    border-radius: 50px;
+    background-color: #ff6418;
+    -webkit-transform: translateX(-80px);
+    -ms-transform: translateX(-80px);
+    transform: translateX(-80px);
+    transition: all 0.4s ease-in-out;
+}
+
+input:checked + .slider:after {
+  -webkit-transform: translateX(0px);
+  -ms-transform: translateX(0px);
+  transform: translateX(0px);
+  /*width: 120px;*/
+  padding-left: 13px;
+}
+
+input:checked + .slider:before {
+  background-color: #fff;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(80px);
+  -ms-transform: translateX(80px);
+  transform: translateX(80px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 50px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+.absolute-no {
+	position: absolute;
+	left: 0;
+	color: darkslategrey;
+	text-align: right !important;
+    font-size: 23px;
+    width: calc(100% - 13px);
+    height: 50px;
+    line-height: 47px;
+    cursor: pointer;
+}
 </style>
 </head>
 <body>
@@ -50,30 +146,21 @@ td {
 						<div class="panel panel-primary panel-table animated slideInDown">
 							<div class="panel-heading " style="padding: 5px;">
 								<div class="row">
-									<div class="col col-xs-3 text-left">
+									<div class="col col-xs-6 text-left">
 										<a href="choduyet" class="btn btn-default" role="tab"
 											data-toggle="tab"><i class="fa fa-picture-o"
-											aria-hidden="true"></i>Chờ Duyệt</a> <a href="daduyet"
+											aria-hidden="true"></i>Chờ Duyệt</a> 
+											<a href="daduyet"
 											class="btn btn-default" role="tab" data-toggle="tab"><i
 											class="fa fa-picture-o"></i>Đã Duyệt</a>
+											<a href="tuchoi"
+											class="btn btn-default" role="tab" data-toggle="tab"><i
+											class="fa fa-picture-o"></i>Từ Chối</a>
 									</div>
 									<div class="col col-xs-5 text-center">
 										<h3 class="panel-title">
-											<b>Danh Sách Đơn Nghỉ Phép</b>
+											<b>Danh Sách Chờ Duyệt</b>
 										</h3>
-									</div>
-									<div class="col col-xs-2 well text-center"
-										style="padding: 1px;">
-										<button type="button" class="btn  btn-warning ">DANH
-											SÁCH</button>
-									</div>
-									<div class="col col-xs-2 text-right ">
-										<a href="donxinnghi">
-											<button type="button" class="btn  btn-success ">
-												Thêm Mới <i class="fa fa-plus-square"></i>
-											</button>
-										</a>
-
 									</div>
 								</div>
 							</div>
@@ -83,9 +170,9 @@ td {
 										<table class=" table-striped table-bordered table-list">
 											<thead>
 												<tr>
-													<th>STT</th>
-													<th>Họ Và Tên</th>
 													<th>Mã Nhân Viên</th>
+													<th>Họ Và Tên</th>
+													<th>Phòng Ban</th>
 													<th>Lý Do</th>
 													<th>Thời gian Từ</th>
 													<th>Đến Thời gian</th>
@@ -98,18 +185,20 @@ td {
 												<c:forEach var="dn" varStatus="counter" items="${list}">
 													<tr>
 														<td>${dn.getId_nv()}</td>
-														<td>${dn.ma_phong}</td>
-														<td>${dn.ly_do}</td>
-														<td>${dn.thoi_gian_bat_dau}</td>
-														<td>${dn.thoi_gian-ket_thuc}</td>
-														<td></td>
-														<td></td>
-														<td></td>
-
-														<td><a href="edit/${sv.id}"><button type="button"
-																	class="btn btn-warning btn-circle">Edit</button></a> <a
-															href="delete/${sv.id}"><button type="button"
-																	class="btn btn-danger btn-circle">Del</button></a></td>
+														<td>${dn.getTen_nv()}</td>
+														<td>${dn.getLy_do()}</td>
+														<td>${dn.getPhong_ban()}</td>
+														<td>${dn.getTg_bat_dau()}</td>
+														<td>${dn.getTg_ket_thuc()}</td>
+														<td>${dn.getGhi_chu()}</td>
+														<td><label class="switch"> <input
+																type="checkbox" checked> <span
+																class="slider round"></span> <span class="absolute-no">NO</span>
+														</label></td>
+														<td><label class="switch"> <input
+																type="checkbox" checked> <span
+																class="slider round"></span> <span class="absolute-no">NO</span>
+														</label></td>
 													</tr>
 												</c:forEach>
 											</tbody>

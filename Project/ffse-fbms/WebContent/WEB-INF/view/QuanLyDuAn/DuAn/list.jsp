@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -91,8 +90,7 @@
 												id="maTrangThai">
 												<option value="0" label="Tất cả" />
 												<c:forEach items="${trangThai}" var="ld">
-													<option value="${ld.maTrangThai}"
-														label="${ld.tenTrangThai}" />
+													<option value="${ld.maTrangThai}" label="${ld.tenTrangThai}" />
 												</c:forEach>
 											</select>
 										</div>
@@ -117,13 +115,13 @@
 										$("#maPhongBan").val(maPhongBan);
 									}
 									TrangThai =
-								<%=request.getParameter("TrangThai")%>
-									;
-									if (TrangThai != 0 && TrangThai != null) {
-										$("#TrangThai").val(TrangThai);
-									}
+										<%=request.getParameter("TrangThai")%>
+											;
+											if (TrangThai != 0 && TrangThai != null) {
+												$("#TrangThai").val(TrangThai);
+											}
 								</script>
-
+								
 								<div class="form-group col-sm-4">
 
 									<button class="btn btn-success" style="margin-top: 25px">
@@ -137,9 +135,6 @@
 										<tr>
 											<th>Mã Dự Án</th>
 											<th>Tên Dự Án</th>
-											<th>Tên Khách Hàng</th>
-											<th>Tên Phòng Ban</th>
-											<th>Tên Trạng Thái</th>
 											<th>Action</th>
 										</tr>
 									</thead>
@@ -148,9 +143,6 @@
 											<tr>
 												<td>${entities.maDuAn}</td>
 												<td>${entities.tenDuAn}</td>
-												<td>${entities.khachHang.tenkh}</td>
-												<td>${entities.phongBan.tenPhongBan}</td>
-												<td>${entities.trangThai.tenTrangThai}</td>
 												<td><a
 													href="/ffse-fbms/qlda/DuAn/edit/${entities.maDuAn}"
 													data-toggle="tooltip" title="edit">
@@ -183,21 +175,23 @@
 				</div>
 			</div>
 		</div>
-
+		<% String query =  "&maDuAn="+request.getParameter("maDuAn")+"&makh="+request.getParameter("makh")+"&maPhongBan="+request.getParameter("maPhongBan")+"&maTrangThai="+request.getParameter("maTrangThai");
+										boolean search = !(request.getParameter("maDuAn") == null);
+										query = search ? query : "";%>
 		<nav aria-label="Page navigation example">
 			<ul class="pagination">
 				<li class="page-item"><a class="page-link"
-					href="/ffse-fbms/qlda/DuAn/list/1">First Page</a></li>
+					href="/ffse-fbms/qlda/DuAn/list/1"<%=query %>>First Page</a></li>
 				<c:if test="${currentPage > 2}">
 					<li class="page-item"><a class="page-link"
-						href="/ffse-fbms/qlda/DuAn/list/${page-2}">${page-2}</a></li>
+						href="/ffse-fbms/qlda/DuAn/list/<%=query %>${page-2}">${page-2}</a></li>
 				</c:if>
 				<c:if test="${page > 1}">
 					<li class="page-item"><a class="page-link"
-						href="/ffse-fbms/qlda/DuAn/list/${page-1}">${page-1}</a></li>
+						href="/ffse-fbms/qlda/DuAn/list/<%=query %>${page-1}">${page-1}</a></li>
 				</c:if>
 				<li class="page-item active"><a class="page-link"
-					href="/ffse-fbms/qlda/DuAn/list/${page}">${page}</a></li>
+					href="/ffse-fbms/qlda/DuAn/list/<%=query %>${page}">${page}</a></li>
 				<c:if test="${page < total}">
 					<li class="page-item"><a class="page-link"
 						href="/ffse-fbms/qlda/DuAn/list/${page+1}">${page+1}</a></li>

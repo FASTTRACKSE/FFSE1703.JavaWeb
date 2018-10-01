@@ -14,4 +14,5 @@ public interface ProjectService {
 	public int checkNameProjects(String nameProjects);
 	public int checkMaProjects(String idProjects);
 	public List<HoSoNhanVienPikalong> getPm(String maPhongBan);
+	public List<Projects> listProject(String search,int start,int maxRows);
 }

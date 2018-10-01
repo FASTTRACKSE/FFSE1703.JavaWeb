@@ -43,13 +43,14 @@ public class DomainController {
 	public String listPersons(@PathVariable int pageId, Model model,HttpSession session) {
 		int maxRows= 5;
 		int start = (pageId - 1) * maxRows;
-		int totalDomain = domainService.countDomain();
+		List<Domain> list = this.domainService.listDomain(start, maxRows);
+		int totalDomain =this.domainService.countDomain();
 		int totalPage = (int) Math.ceil(totalDomain / (double) maxRows);
 		if (pageId == 0) {
 			pageId = 1;
 		}
 		
-		model.addAttribute("listDomain", this.domainService.listDomain(start, maxRows));
+		model.addAttribute("listDomain", list );
 		model.addAttribute("pageId", pageId);
 		model.addAttribute("totalPage", totalPage);
 		session.setAttribute("pageIds", pageId);

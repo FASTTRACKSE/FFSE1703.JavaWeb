@@ -34,18 +34,107 @@
 
 		<div class="content-body">
 			<div class="x_panel">
-				
+
 				<div class="x_content">
 
 					<!-- Show message -->
-					<c:if test="${messageSuccess ne null}">
+					<c:if test="${success ne null}">
 						<div class="alert alert-success alert-dismissable" role="alert">
 							<button type="button" class="close" data-dismiss="alert">
 								<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 							</button>
-							${messageSuccess}
+							${success}
 						</div>
 					</c:if>
+					<form method="GET" action="">
+						<div class="col-md-3"></div>
+						<div class="col-md-2">
+							<div class="form-group">
+								Khách hàng <select name="khachhang"
+									class="form-control form-control-sm" id="khachhang">
+									<option value="0" selected="selected">--Tất cả--</option>
+									<c:forEach items="${khachHang}" var="kh">
+										<option value="${kh.idKhachHang }"
+										<c:if test="${khachHangs == kh.idKhachHang }"> selected="selected"</c:if>
+										>${kh.idKhachHang }-${kh.fullname }</option>
+									</c:forEach>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-2">
+							<div class="form-group">
+								Phòng dự án<select name="roomproject"
+									class="form-control form-control-sm" id="roomproject">
+									<option value="0" selected="selected">--Tất cả--</option>
+									<c:forEach items="${phongDuAn}" var="kh">
+										<option value="${kh.maPhongBan }"
+										<c:if test="${phongDuAns == kh.maPhongBan }"> selected="selected"</c:if>
+										>${kh.tenPhongBan }</option>
+									</c:forEach>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-2">
+							<div class="form-group">
+								Nghiệp vụ <select name="domain"
+									class="form-control form-control-sm" id="domain">
+									<option value="0" selected="selected">--Tất cả--</option>
+									<c:forEach items="${domain}" var="kh">
+										<option value="${kh.idDomain }"
+										<c:if test="${domains == kh.idDomain }"> selected="selected"</c:if>
+										>${kh.nameDomain }</option>
+									</c:forEach>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-2">
+							<div class="form-group">
+								Trạng thái <select name="status"
+									class="form-control form-control-sm" id="status">
+								<option value="0" selected="selected">--Tất cả--</option>
+									<c:forEach items="${status}" var="kh">
+										<option value="${kh.idStatus }"
+											<c:if test="${statuss == kh.idStatus }"> selected="selected"</c:if>
+										>${kh.nameStatus }</option>
+									</c:forEach>
+								</select>
+
+							</div>
+						</div>
+						<div class="col-md-1" style="margin-top: 20px">
+							<label></label>
+							<button type="submit" class="btn mr-1 mb-1 btn-success btn-sm">
+								<i class="fa fa-search"></i> Lọc
+							</button>
+						</div>
+						<script type="text/javascript">
+							khachhang =
+						<%=request.getParameter("khachhang")%>
+							;
+							if (khachhang != 0 && khachhang != null) {
+								$("#khachhang").val(khachhang);
+							}
+							roomproject =
+						<%=request.getParameter("roomproject")%>
+							;
+							if (roomproject != 0 && roomproject != null) {
+								$("#roomproject").val(roomproject);
+							}
+							domain =
+						<%=request.getParameter("domain")%>
+							;
+							if (domain != 0 && domain != null) {
+								$("#domain").val(domain);
+							}
+							status =
+						<%=request.getParameter("status")%>
+							;
+							if (status != 0 && status != null) {
+								$("#status").val(status);
+							}
+						</script>
+
+					</form>
 					<table class="table table-striped"
 						style="text-align: center; background: white">
 						<thead style="background: #AEEEEE">
@@ -53,7 +142,8 @@
 								<th style="text-align: center">Mã Dự án</th>
 								<th style="text-align: center">Dự án</th>
 								<th style="text-align: center">Khách hàng</th>
-								<th style="text-align: center">PM</th>
+								<th style="text-align: center">Phòng dự án</th>
+								<th style="text-align: center">Nghiệp vụ</th>
 								<th style="text-align: center">Trạng thái</th>
 								<th style="text-align: center">chức năng</th>
 							</tr>
@@ -64,8 +154,11 @@
 									<td style="text-align: left">${project.idProject}</td>
 									<td style="text-align: left">${project.nameProject}</td>
 									<td style="text-align: left">${project.khachHang.fullname}</td>
-									<td style="text-align: left">${project.pm.hoTenNv}</td>
-									<td style="text-align: left;color: ${project.status.color}">${project.status.nameStatus}</td>
+									<td style="text-align: left">${project.roomProject.tenPhongBan}</td>
+									<td style="text-align: left">${project.domain.nameDomain}</td>
+									<td style="text-align: left;color: ${project.status.color}"><h6>
+											<b>${project.status.nameStatus}</b>
+										</h6></td>
 
 									<td><a class="btn btn-outline-info  "
 										href="<c:url value="/mvpquanliduan/project/detail-project/${project.idProject}" />"
@@ -81,9 +174,24 @@
 							</c:forEach>
 						</tbody>
 					</table>
-
-					${success}
-
+					<c:if test="${totalPage > 1}">
+					<div class="text-center" style="float: right;margin-right: 50px">
+						<ul class="pagination firstLast1-links">
+							<c:if test="${pageId > 1}">
+								<li class="page-item"><a href="1" class="page-link">First</a></li>
+								<li class="page-item"><a href="${pageId-1 }"
+									class="page-link">${pageId-1 }</a></li>
+							</c:if>
+							<li class="page-item active"><a href="#" class="page-link">${pageId } </a></li>
+							<c:if test="${pageId < totalPage}">
+								<li class="page-item"><a href="${pageId+1 }"
+									class="page-link">${pageId+1 }</a></li>
+								<li class="page-item"><a href="${totalPage }"
+									class="page-link">Last</a></li>
+							</c:if>
+						</ul>
+					</div>
+					</c:if>
 				</div>
 			</div>
 		</div>

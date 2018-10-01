@@ -73,12 +73,12 @@ public class DocumentController {
 		model.addAttribute("listStatus", liststatus);
 		List<Room> listroom = documentService.listRoom();
 		model.addAttribute("listRoom", listroom);
-		model.addAttribute("command", new Document());
+		model.addAttribute("document", new Document());
 		return "QuanTriTaiLieu/TaiLieu/addTaiLieu";
 	}
 	
 	@RequestMapping(value = { "/creat" }, method = RequestMethod.POST)
-	public String creat(@ModelAttribute("document") @Valid Document document, BindingResult result, @RequestParam MultipartFile file, HttpSession session,
+	public String creat(@ModelAttribute("document") @Valid Document document, BindingResult result, @RequestParam("file") MultipartFile file, HttpSession session,
 			RedirectAttributes redirectAttributes) throws Exception {
 		
 		DiskFileItemFactory factory = new DiskFileItemFactory();
@@ -89,30 +89,29 @@ public class DocumentController {
 		ServletContext context = session.getServletContext();
 
 		String uploadPath = context.getRealPath(UPLOAD_DIRECTORY);
-		System.out.println(uploadPath);
-
+		String fileName = file.getOriginalFilename();
+		document.setFileName(fileName);
 		byte[] bytes = file.getBytes();
 		BufferedOutputStream stream = new BufferedOutputStream(
 				new FileOutputStream(new File(uploadPath + File.separator + file.getOriginalFilename())));
 		stream.write(bytes);
 		stream.flush();
 		stream.close();
-
 		if (result.hasErrors()) {
-			return "QuanTriTaiLieu/TaiLieu/add";
+			return "QuanTriTaiLieu/TaiLieu/addTaiLieu";
 		}
 
-		if (documentService.getById(document.getId()) != null) {
-			Document db = documentService.getById(document.getId());
-			if (db.getId() == 1) {
-				documentService.update(document);
-				return "redirect:list";
-
-			} else {
-				redirectAttributes.addFlashAttribute("message", "<script>alert('Mã đã tồn tại.');</script>");
-				return "redirect:/QuanTriTaiLieu/TaiLieu/add";
-			}
-		}
+//		if (documentService.getById(document.getId()) != null) {
+//			Document db = documentService.getById(document.getId());
+//			if (db.getId() == 1) {
+//				documentService.update(document);
+//				return "redirect:list";
+//
+//			} else {
+//				redirectAttributes.addFlashAttribute("message", "<script>alert('Mã đã tồn tại.');</script>");
+//				return "redirect:/QuanTriTaiLieu/TaiLieu/add";
+//			}
+//		}
 		
 		redirectAttributes.addFlashAttribute("message", "<script>alert('Creat successfully.');</script>");
 		documentService.addNew(document);

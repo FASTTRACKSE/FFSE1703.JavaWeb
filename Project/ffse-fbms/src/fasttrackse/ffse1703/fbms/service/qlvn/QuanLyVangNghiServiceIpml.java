@@ -141,6 +141,7 @@ public class QuanLyVangNghiServiceIpml implements QuanLyVangNghiService {
 	public void updateTrangThai(TrangThaiVN trangThai) {
 		quanLyVangNghiDao.updateTrangThai(trangThai);
 	}
+<<<<<<< HEAD
 
 	public void createNgayNghi(NgayNghi ngayNghi) {
 		quanLyVangNghiDao.createNgayNghi(ngayNghi);
@@ -150,5 +151,8 @@ public class QuanLyVangNghiServiceIpml implements QuanLyVangNghiService {
 		quanLyVangNghiDao.updateNgayNghi(ngayNghi);
 	}
 
+=======
+	
+>>>>>>> 8e7890720b717cfae70ccc99054703d2dc19a22e
 	
 }

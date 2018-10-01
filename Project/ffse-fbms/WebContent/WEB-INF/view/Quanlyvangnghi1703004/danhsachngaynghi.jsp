@@ -11,23 +11,28 @@
 		<!-- Path -->
 		<div class="content-header row">
 		<div>
+<<<<<<< HEAD
 		<div  class="col-md-5"></div>
 		<div>
 			<h3 class="content-header-title mb-0"><spring:message code="label.danhsachngaynghi"/></h3>
 		</div>
+=======
+		<div class="col-md-5"></div>
+			<h3 class="content-header-title mb-0">Danh sách ngày nghỉ</h3>
+>>>>>>> 8e7890720b717cfae70ccc99054703d2dc19a22e
 		</div>
+			
 			<div>
-			<div><a  class="btn btn-outline-success round btn-min-width mr-1 mb-1" href="themmoi"><h4><spring:message code="label.themMoi"/></h4></a></div>
 			<div class="container">
 			    <div class="table-responsive">
 						<table class="table mb-0">
 							<thead>
 				<tr>
 					<th >STT</th>
-					<th><spring:message code="label.maNhanVien"/></th>
-					<th><spring:message code="label.songaydanghi"/></th>
-					<th><spring:message code="label.songayconlai"/></th>
-					<th><spring:message code="label.chucnang"/></th>
+					<th>Mã nhân viên</th>
+					<th>Số ngày đã nghi</th>
+					<th>Số ngày còn lại</th>
+					<th>Chức năng</th>
 				</tr>
 				</thead>
 				<tbody>
@@ -37,9 +42,8 @@
 					<td>${nn.maNhanVien}</td>
 					<td>${nn.soNgayDaNghi}</td>
 					<td>${nn.soNgayConLai}</td>
-					<td><a href="deleteDate/${nn.maNhanVien}" class="btn btn-outline-danger round  mr-1 mb-1"
-									onclick="return confirm('Bạn có muốn xóa sinh viên này?');"><spring:message code="label.xoa"/></a>
-						<a href="updateDate/${nn.maNhanVien}" class="btn btn-outline-danger round  mr-1 mb-1"><spring:message code="label.chinhSua"/></a>
+					<td><a href="deleteDate/${nn.maNhanVien}"><button class="btn btn-outline-danger round  mr-1 mb-1"
+									onclick="return confirm('Bạn có muốn xóa sinh viên này?');">Xóa</button></a>
 					</td>
 						</tr>
 				</c:forEach>
@@ -54,13 +58,13 @@
 													id="DataTables_Table_5_first"
 													${currentPage == 1 ? 'd-none' : ''}><a
 													href="<%=request.getContextPath()%>/Quanlyvangnghi1703004/danhsachngaynghi?page=1"
-													aria-controls="DataTables_Table_5" class="page-link"><spring:message code="label.trangdau"/></a></li>
+													aria-controls="DataTables_Table_5" class="page-link">First</a></li>
 
 												<li class="paginate_button page-item previous"
 													id="DataTables_Table_5_previous"><a
 													href="<%=request.getContextPath()%>/Quanlyvangnghi1703004/danhsachngaynghi?page=${currentPage-1}"
 													aria-controls="DataTables_Table_5" tabindex="0"
-													class="page-link"><spring:message code="label.trangtruoc"/></a></li>
+													class="page-link">Previous</a></li>
 											</c:if>
 
 											<c:if test="${currentPage != 1}">
@@ -82,14 +86,14 @@
 													id="DataTables_Table_5_next"><a
 													href="<%=request.getContextPath()%>/Quanlyvangnghi1703004/danhsachngaynghi?page=${currentPage+1}"
 													aria-controls="DataTables_Table_5" data-dt-idx="8"
-													tabindex="0" class="page-link"><spring:message code="label.trangtiep"/></a></li>
+													tabindex="0" class="page-link">Next</a></li>
 											</c:if>
 
 											<li class="paginate_button page-item last"
 												id="DataTables_Table_5_last"><a
 												href="<%=request.getContextPath()%>/Quanlyvangnghi1703004/danhsachngaynghi?page=${lastPage}"
 												aria-controls="DataTables_Table_5" data-dt-idx="9"
-												tabindex="0" class="page-link"><spring:message code="label.trangcuoi"/></a></li>
+												tabindex="0" class="page-link">Last</a></li>
 										</ul>
 									</div>
 								</div>

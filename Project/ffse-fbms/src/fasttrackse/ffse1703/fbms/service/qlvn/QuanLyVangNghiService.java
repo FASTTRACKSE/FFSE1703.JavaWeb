@@ -64,9 +64,13 @@ public interface QuanLyVangNghiService {
 	public void deleteTrangThai(int id);
 	
 	public void updateTrangThai(TrangThaiVN trangThai);
+<<<<<<< HEAD
 	
     public void createNgayNghi(NgayNghi ngayNghi);
 	
 	public void updateNgayNghi(NgayNghi ngayNghi);
+=======
+}
+>>>>>>> 8e7890720b717cfae70ccc99054703d2dc19a22e
 
 }

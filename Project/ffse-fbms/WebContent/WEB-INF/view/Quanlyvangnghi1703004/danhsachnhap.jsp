@@ -12,31 +12,29 @@
 		<div class="content-header row">
 		<div>
 		<div class="col-md-5"></div>
-			<h3 class="content-header-title mb-0">Danh sách đã nháp</h3>
+			<h3 class="content-header-title mb-0"><spring:message code="label.danhsachnhap"/></h3>
 		</div>
 			<div>
-			<div><a  class="btn btn-outline-success round btn-min-width mr-1 mb-1" href="soandonmoi"><h4>Soạn đơn mới</h4></a></div>
+			<div><a  class="btn btn-outline-success round btn-min-width mr-1 mb-1" href="soandonmoi"><h4><spring:message code="label.soandonmoi"/></h4></a></div>
 			<div class="container">
 			    <div class="table-responsive">
-						<table class="table mb-0">
-							<thead>
+						<table class="table">
+							<thead class="thead-dark">
 				<tr>
-					<th>STT</th>
-					<th >Mã đơn</th>
-					<th >Mã nhân viên</th>
-					<th >Ngày bắt đầu</th>
-					<th >Ngày kết thúc</th>
-					<th >Lý do</th>
-					<th >Ghi chú nhân viên</th>
-					<th >Ghi chú trưởng phòng</th>
-					<th >Trạng thái</th>
-					<th>Chức năng</th>
+					<th ><spring:message code="label.madon"/></th>
+					<th ><spring:message code="label.maNhanVien"/></th>
+					<th ><spring:message code="label.ngaybatdau"/></th>
+					<th ><spring:message code="label.ngayketthuc"/></th>
+					<th ><spring:message code="label.lydo"/></th>
+					<th ><spring:message code="label.ghichu"/></th>
+					<th ><spring:message code="label.ghichutruongphong"/></th>
+					<th ><spring:message code="label.trangThai"/></th>
+					<th><spring:message code="label.chucnang"/></th>
 				</tr>
 				</thead>
 				<tbody>
-			<c:forEach var="nv" items="${danhsachnhap}" varStatus="count"   >
+			<c:forEach var="nv" items="${danhsachnhap}"  >
                         <tr>
-                     <td scope="row">${count.count}</td>
 					<td>${nv.id}</td>
 					<td>${nv.ngayNghi.maNhanVien}</td>
 					<td>${nv.ngayBatDau}</td>
@@ -47,9 +45,9 @@
 					<td>${nv.trangThai.trangThai}</td>
 					<td><a class="btn btn-outline-success round  mr-1 mb-1" 
 					 href="suanhap/${nv.id }">
-									Sửa</a>  <a class="btn btn-outline-danger round  mr-1 mb-1"
+					<spring:message code="label.chinhSua"/></a>  <a class="btn btn-outline-danger round  mr-1 mb-1"
 									onclick="return confirm('Bạn có muốn xóa sinh viên này?');"
-									  href="delete/${nv.id }">Xóa</a>
+									  href="delete/${nv.id }"><spring:message code="label.xoa"/></a>
 					</td>
 						</tr>
 				</c:forEach>
@@ -64,13 +62,13 @@
 													id="DataTables_Table_5_first"
 													${currentPage == 1 ? 'd-none' : ''}><a
 													href="<%=request.getContextPath()%>/Quanlyvangnghi1703004/danhsachnhap?page=1"
-													aria-controls="DataTables_Table_5" class="page-link">First</a></li>
+													aria-controls="DataTables_Table_5" class="page-link"><spring:message code="label.trangdau"/></a></li>
 
 												<li class="paginate_button page-item previous"
 													id="DataTables_Table_5_previous"><a
 													href="<%=request.getContextPath()%>/Quanlyvangnghi1703004/danhsachnhap?page=${currentPage-1}"
 													aria-controls="DataTables_Table_5" tabindex="0"
-													class="page-link">Previous</a></li>
+													class="page-link"><spring:message code="label.trangtruoc"/></a></li>
 											</c:if>
 
 											<c:if test="${currentPage != 1}">
@@ -92,14 +90,14 @@
 													id="DataTables_Table_5_next"><a
 													href="<%=request.getContextPath()%>/Quanlyvangnghi1703004/danhsachnhap?page=${currentPage+1}"
 													aria-controls="DataTables_Table_5" data-dt-idx="8"
-													tabindex="0" class="page-link">Next</a></li>
+													tabindex="0" class="page-link"><spring:message code="label.trangtiep"/></a></li>
 											</c:if>
 
 											<li class="paginate_button page-item last"
 												id="DataTables_Table_5_last"><a
 												href="<%=request.getContextPath()%>/Quanlyvangnghi1703004/danhsachnhap?page=${lastPage}"
 												aria-controls="DataTables_Table_5" data-dt-idx="9"
-												tabindex="0" class="page-link">Last</a></li>
+												tabindex="0" class="page-link"><spring:message code="label.trangcuoi"/></a></li>
 										</ul>
 									</div>
 								</div>

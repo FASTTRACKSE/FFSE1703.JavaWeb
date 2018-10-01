@@ -21,8 +21,8 @@
 								href="<c:url value = "/quanlynhansutt/ho_so/"/>"><spring:message
 										code="label.quanLyNhanSu" /></a></li>
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/quanlynhansutt/bang_cap/" />'><spring:message
-										code="label.thongTinBangCap" /></a></li>
+								href='<c:url value="/quanlynhansutt/bang_cap/" />'>Danh sách
+									bằng cấp</a></li>
 							<li class="breadcrumb-item active">Thêm mới gia đình</li>
 						</ol>
 					</div>
@@ -48,7 +48,7 @@
 														<div class="row">
 															<div class="col-md-6">
 																<div class="form-group">
-																	<label><spring:message code="label.maNhanVien" /></label>
+																	<label>Mã Nhân Viên</label>
 																	<fmt:formatNumber type="number" var="hosonv.maNhanVien"
 																		minIntegerDigits="5" groupingUsed="false"
 																		value="${hoSoNhanVienTT.maNhanVien}" />
@@ -62,14 +62,13 @@
 													</div>
 												</div>
 												<h4 class="form-section">
-													<i class="ft-user"><label><spring:message
-																code="label.thongTinGiaDinh" /></label></i>
+													<i class="ft-user"> Thông Tin Gia Đình</i>
 												</h4>
 												<div class="row">
 													<div class="col-md-8">
 														<div class="row">
 															<div class="form-group col-sm-6">
-																<label><spring:message code="label.hoTen" /></label>
+																<label>Họ Và Tên</label>
 																<form:input class="form-control" path="hoTen"
 																	placeholder="Họ Và Tên" />
 																<form:errors path="hoTen"
@@ -77,8 +76,7 @@
 															</div>
 															<div class="form-group col-sm-6">
 																<div class="form-group">
-																	<label for="date1"><spring:message
-																			code="label.ngaySinh" /></label>
+																	<label for="date1">Năm Sinh</label>
 																	<fieldset class="form-group position-relative">
 																		<form:input placeholder="Năm Sinh" type="date"
 																			class="form-control round" id="date1" path="namSinh" />
@@ -91,14 +89,14 @@
 														</div>
 														<div class="row">
 															<div class="form-group col-sm-6">
-																<label><spring:message code="label.queQuan" /></label>
+																<label>Quê Quán</label>
 																<form:input class="form-control" path="queQuan"
 																	placeholder="Quê Quán" />
 																<form:errors path="queQuan"
 																	cssClass="invalid-feedback d-block" />
 															</div>
 															<div class="form-group col-sm-6">
-																<label><spring:message code="label.dienThoai" /></label>
+																<label>Số Điện Thoại</label>
 																<form:input class="form-control" path="soDienThoai"
 																	placeholder="Số Điện Thoại" />
 																<form:errors path="soDienThoai"
@@ -108,22 +106,17 @@
 														<div class="row">
 															<div class="form-group col-sm-6">
 																<div class="form-group">
-																	<label><spring:message code="label.gioiTinh" /></label>
+																	<label>Giới Tính</label>
 																	<form:select class="custom-select form-control"
 																		path="gioiTinh">
-																		<option value="none"><spring:message
-																				code="label.chonGioiTinh" /></option>
-																		<form:option value="1">
-																			<spring:message code="label.nam" />
-																		</form:option>
-																		<form:option value="2">
-																			<spring:message code="label.nu" />
-																		</form:option>
+																		<option value="none">Chọn</option>
+																		<form:option value="1">Nam</form:option>
+																		<form:option value="2">Nữ</form:option>
 																	</form:select>
 																</div>
 															</div>
 															<div class="form-group col-sm-6">
-																<label><spring:message code="label.quanHe" /></label>
+																<label>Quan Hệ</label>
 																<form:input class="form-control" path="quanHe"
 																	placeholder="Nơi Cấp" />
 																<form:errors path="quanHe"
@@ -140,7 +133,7 @@
 												class="btn btn-primary">Back</a>
 												
  --%>
-
+ 
 											</div>
 										</form:form>
 									</div>

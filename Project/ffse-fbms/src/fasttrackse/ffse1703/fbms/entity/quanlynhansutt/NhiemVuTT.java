@@ -8,6 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Projects;
 import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Roles;
 
 @Entity
@@ -18,17 +19,11 @@ public class NhiemVuTT {
 	private int id;
 	@ManyToOne
 	@JoinColumn(name = "id_project")
-	private ProjectsTT projectsTT;
-	
+	private Projects projects;
 	@ManyToOne
 	@JoinColumn(name = "id_employee")
 	private HoSoNhanVienTT hoSoNhanVienTT;
 
-	//text thu
-//	@ManyToOne
-//	@JoinColumn(name = "ma_nhan_vien")
-//	private HoSoNhanVienTT hoSoNhanVienTT;
-	
 	@ManyToOne
 	@JoinColumn(name = "id_role")
 	private Roles roles;
@@ -42,12 +37,12 @@ public class NhiemVuTT {
 		this.id = id;
 	}
 
-	public ProjectsTT getProjectsTT() {
-		return projectsTT;
+	public Projects getProjects() {
+		return projects;
 	}
 
-	public void setProjectsTT(ProjectsTT projectsTT) {
-		this.projectsTT = projectsTT;
+	public void setProjects(Projects projects) {
+		this.projects = projects;
 	}
 
 	public int getStatus() {

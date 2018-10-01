@@ -12,27 +12,28 @@
 		<div class="content-body">
 			<div class="main-content">
 
-				<form:form method="POST"  modelAttribute="editStatus">
+				<form:form method="POST"  modelAttribute="createDate">
 					<div class="row">
 							<div>
-								<label><spring:message code="label.madon"/></label>
-								<form:input class="form-control round" path="id" readonly="true" value="" />
-
+								<label> <spring:message code="label.maNhanVien"/></label>
+								<form:select multiple="single" path="maNhanVien" class="custom-select block round">
+									<form:options items="${hoso}" itemValue="maNhanVien" itemLabel="maNhanVien" />
+								</form:select>
 							</div>
 
 							<div>
-								<label> <spring:message code="label.matrangthai"/></label>
-								<form:input class="form-control round" path="maTrangThai" />
+								<label><spring:message code="label.songaydanghi"/></label>
+								<form:input class="form-control round" path="soNgayDaNghi" />
 							</div>
 								
 							<div>
-								<label><spring:message code="label.tentrangthai"/></label>
-								<form:input class="form-control round" path="trangThai"  />
+								<label><spring:message code="label.songayconlai"/></label>
+								<form:input class="form-control round" path="soNgayConLai"  />
 							</div>
 						<br>
 						<div >
 								<button type="submit"  class="btn btn-outline-danger round  mr-1 mb-1"
-									formaction="<%=request.getContextPath()%>/Quanlyvangnghi1703004/editstatus/save"><spring:message code="label.gui"/></button>
+									formaction="<%=request.getContextPath()%>/Quanlyvangnghi1703004/createDate/submit"><spring:message code="label.gui"/></button>
 							</div>
 					</div>
 

@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Domain;
 import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.KhachHang;
 
 @Repository
@@ -70,6 +71,13 @@ public class KhachHangDaoImpl implements KhachHangDao {
 		KhachHang khachHang = session.get(KhachHang.class, id);
 		khachHang.setStatus(0);
 		session.update(khachHang);
+	}
+
+	@Override
+	public int checkIdKhachHang(String idKhachHang) {
+		Session session = sessionFactory.getCurrentSession();
+		List<KhachHang> kh=session.createQuery("from KhachHang where idKhachHang = '"+idKhachHang+"' ", KhachHang.class).list();
+		return kh.size();
 	}
 	
 

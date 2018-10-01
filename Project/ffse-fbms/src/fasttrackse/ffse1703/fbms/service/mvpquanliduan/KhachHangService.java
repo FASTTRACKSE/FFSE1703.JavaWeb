@@ -12,5 +12,6 @@ public interface KhachHangService {
 	public void delete(String id);
 	public List<KhachHang> listKhachHang(int start, int maxRows);
 	public int countKhachHang() ;
+	public int checkIdKhachHang(String idKhachHang);
 	
 }

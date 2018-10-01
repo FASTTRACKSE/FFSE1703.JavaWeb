@@ -21,7 +21,7 @@
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/home" />'>Home</a></li>
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/mvpquanliduan/phancongnhiemvu/list-nhiemvu" />'>Phân
+								href='<c:url value="/mvpquanliduan/nhiemvu/list-nhiemvu/{$idProjects}" />'>Phân
 									công nhiệm vụ</a></li>
 
 						</ol>
@@ -36,7 +36,7 @@
 			<div class="x_panel">
 				<div class="x_title">
 					<a class="btn btn-outline-success round btn-min-width mr-1 mb-1"
-						href="<c:url value="/mvpquanliduan/phancongnhiemvu/show-form-add/${idProjects}" />">
+						href="<c:url value="/mvpquanliduan/nhiemvu/show-form-add/${idProjects}" />">
 						<h5class="ft-plus-circle">Thêm phân công nhiệm vụ
 						</h5>
 					</a>

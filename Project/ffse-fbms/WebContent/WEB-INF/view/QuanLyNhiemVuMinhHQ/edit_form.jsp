@@ -24,6 +24,16 @@
 		<!-- End Path -->
 
 		<div class="content-body">
+		<!-- Show message -->
+			<c:if test="${messageError ne null}">
+				<div class="alert alert-danger alert-dismissable" role="alert">
+					<button type="button" class="close" data-dismiss="alert">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					${messageError}
+				</div>
+			</c:if>
+			<!-- End Show message -->
 			<div class="main-content">
 				<div class="row">
 					<form:form method="POST" modelAttribute="CongViec" action="/ffse-fbms/QuanLyNhiemVuMinhHQ/update">
@@ -90,5 +100,13 @@
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+window.setTimeout(function() {
+	$(".alert").fadeTo(500, 0).slideUp(500, function(){
+		$(this).remove(); 
+	});
+}, 2500);
+</script>
 
 <jsp:include page="/WEB-INF/view/templates/footer.jsp" />

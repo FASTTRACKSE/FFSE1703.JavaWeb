@@ -57,7 +57,7 @@ public class QLyNhiemVuMinhHQController {
 		}
 		String search = maDuanSearch + maNhanVienSearch + IDtrangthaiSearch;
 
-		int perPage = 10;
+		int perPage = 5;
 		int totalPage = totalPage(perPage);
 		int start = (currentPage - 1) * perPage;
 		model.addAttribute("listCongViec", congViecService.findAllForPaging(start, perPage, search));
@@ -70,7 +70,7 @@ public class QLyNhiemVuMinhHQController {
 	}
 
 	@RequestMapping(value = "/view/{ID}")
-	public String viewOne(@PathVariable("ID") int id, HttpServletRequest request, Model model) {
+	public String viewOne(@PathVariable("ID") int id, Model model) {
 		model.addAttribute("list", congViecService.findByID(id));
 		return "/QuanLyNhiemVuMinhHQ/viewOne";
 	}
@@ -86,15 +86,15 @@ public class QLyNhiemVuMinhHQController {
 	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public String createCongViec( Model model, @ModelAttribute("CongViec") @Valid CongViecMinhHQ cv,final RedirectAttributes redirectAttributes
-			 ){
+	public String createCongViec( Model model,@ModelAttribute("CongViec") @Valid CongViecMinhHQ cv, BindingResult bindingResult,
+			final RedirectAttributes redirectAttributes) {
 		try {
 			cv.setIsDelete(1);
 			congViecService.addNew(cv);
 			redirectAttributes.addFlashAttribute("messageSuccess", "Thêm mới thành công...");
 		} catch (Exception e) {
-		
 			redirectAttributes.addFlashAttribute("messageError", "Lỗi. Xin thử lại!");
+			return "redirect:/QuanLyNhiemVuMinhHQ/create";
 		}
 		return "redirect:/QuanLyNhiemVuMinhHQ/list";
 	}
@@ -118,8 +118,15 @@ public class QLyNhiemVuMinhHQController {
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String edit(Model model, @ModelAttribute("CongViec") @Valid CongViecMinhHQ CongViec,
-			HttpServletRequest request) throws IllegalStateException {
+	public String edit(Model model, @ModelAttribute("CongViec") @Valid CongViecMinhHQ CongViec,BindingResult bindingResult,
+			final RedirectAttributes redirectAttributes) {
+		try {
+			congViecService.update(CongViec);
+			redirectAttributes.addFlashAttribute("messageSuccess", "Thêm mới thành công...");
+		} catch (Exception e) {
+			redirectAttributes.addFlashAttribute("messageError", "Lỗi. Xin thử lại!");
+			return "redirect:/QuanLyNhiemVuMinhHQ/edit/" + CongViec.getID();
+		}
 		congViecService.update(CongViec);
 		return "redirect:/QuanLyNhiemVuMinhHQ/list";
 	}

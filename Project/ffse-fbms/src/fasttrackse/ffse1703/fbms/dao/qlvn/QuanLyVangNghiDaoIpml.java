@@ -258,6 +258,14 @@ public class QuanLyVangNghiDaoIpml implements QuanLyVangNghiDao {
 		session.update(trangThai);
 	}
 
-
+	public void createNgayNghi(NgayNghi ngayNghi) {
+		Session session = this.sessionFactory.getCurrentSession();
+		session.save(ngayNghi);
+	}
+	
+	public void updateNgayNghi(NgayNghi ngayNghi) {
+		Session session = this.sessionFactory.getCurrentSession();
+		session.update(ngayNghi);
+	}
 
 }

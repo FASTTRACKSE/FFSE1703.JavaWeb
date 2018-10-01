@@ -11,17 +11,11 @@
 		<!-- Path -->
 		<div class="content-header row">
 		<div>
-<<<<<<< HEAD
 		<div  class="col-md-5"></div>
 		<div>
 			<h3 class="content-header-title mb-0"><spring:message code="label.danhsachngaynghi"/></h3>
 		</div>
-=======
-		<div class="col-md-5"></div>
-			<h3 class="content-header-title mb-0">Danh sách ngày nghỉ</h3>
->>>>>>> 8e7890720b717cfae70ccc99054703d2dc19a22e
 		</div>
-			
 			<div>
 			<div class="container">
 			    <div class="table-responsive">

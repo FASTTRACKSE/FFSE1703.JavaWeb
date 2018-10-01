@@ -91,7 +91,8 @@
 												id="maTrangThai">
 												<option value="0" label="Tất cả" />
 												<c:forEach items="${trangThai}" var="ld">
-													<option value="${ld.maTrangThai}" label="${ld.tenTrangThai}" />
+													<option value="${ld.maTrangThai}"
+														label="${ld.tenTrangThai}" />
 												</c:forEach>
 											</select>
 										</div>
@@ -116,13 +117,13 @@
 										$("#maPhongBan").val(maPhongBan);
 									}
 									TrangThai =
-										<%=request.getParameter("TrangThai")%>
-											;
-											if (TrangThai != 0 && TrangThai != null) {
-												$("#TrangThai").val(TrangThai);
-											}
+								<%=request.getParameter("TrangThai")%>
+									;
+									if (TrangThai != 0 && TrangThai != null) {
+										$("#TrangThai").val(TrangThai);
+									}
 								</script>
-								
+
 								<div class="form-group col-sm-4">
 
 									<button class="btn btn-success" style="margin-top: 25px">
@@ -136,6 +137,9 @@
 										<tr>
 											<th>Mã Dự Án</th>
 											<th>Tên Dự Án</th>
+											<th>Tên Khách Hàng</th>
+											<th>Tên Phòng Ban</th>
+											<th>Tên Trạng Thái</th>
 											<th>Action</th>
 										</tr>
 									</thead>
@@ -144,6 +148,9 @@
 											<tr>
 												<td>${entities.maDuAn}</td>
 												<td>${entities.tenDuAn}</td>
+												<td>${entities.khachHang.tenkh}</td>
+												<td>${entities.phongBan.tenPhongBan}</td>
+												<td>${entities.trangThai.tenTrangThai}</td>
 												<td><a
 													href="/ffse-fbms/qlda/DuAn/edit/${entities.maDuAn}"
 													data-toggle="tooltip" title="edit">

@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import fasttrackse.ffse1703.fbms.entity.quanlyduan.DuAnTeam1;
 import fasttrackse.ffse1703.fbms.entity.quanlyduan.HoSoNhanVienTeam1;
 
 @Repository
@@ -29,6 +30,12 @@ public class HoSoNhanVienTeam1DaoImpl implements HoSoNhanVienTeam1Dao {
 	public List<HoSoNhanVienTeam1> getAll() {
 		Session session = this.sessionFactory.getCurrentSession();
 		return session.createQuery("from HoSoNhanVienTeam1 where Trang_Thai =1 ", HoSoNhanVienTeam1.class).list();
+	}
+
+	@Override
+	public HoSoNhanVienTeam1 getById(int maNhanVien) {
+		Session session = this.sessionFactory.getCurrentSession();
+		return session.get(HoSoNhanVienTeam1.class, maNhanVien);
 	}
 
 }

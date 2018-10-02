@@ -51,6 +51,7 @@
 										action="/ffse-fbms/quanlynhansutt/ho_so/update"
 										modelAttribute="formHoso" enctype="multipart/form-data">
 										<div class="form-body">
+											<form:hidden path="maNhanVien"/>
 											<%-- <div class="form-group col-sm-6">
 												<label>Mã Hợp Đồng</label>
 												<form:input class="form-control" readonly="true"

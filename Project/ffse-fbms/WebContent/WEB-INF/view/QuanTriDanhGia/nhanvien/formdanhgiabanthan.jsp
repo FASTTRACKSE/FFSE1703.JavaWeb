@@ -130,7 +130,7 @@
 													<div class="col-md-9">
 														<div class="col-md-2">
 															<form:select cssClass="form-control"
-																path="kyLuatCongViec_DG">
+																path="kyNangTichLuy_DG">
 																<form:option value="1">1 Sao</form:option>
 																<form:option value="2">2 Sao</form:option>
 																<form:option value="3">3 Sao</form:option>
@@ -140,7 +140,7 @@
 														</div>
 														<div class="col-md-10">
 															<form:textarea rows="5" cssClass="form-control"
-																path="kyLuatCongViec_MT" />
+																path="kyNangTichLuy_MT" />
 														</div>
 													</div>
 												</div>
@@ -167,13 +167,13 @@
 													</div>
 												</div>
 											</div>
-											<form:hidden path="trangThai"/>
+											<form:hidden path="trangThai" />
 											<div class="form-actions">
 												<a
 													href="<c:url value="/quantridanhgia/nhanvien/danhgiabanthan/"/>"
 													class="btn btn-danger btn-min-width mr-1 mb-1">Trở về</a>
 												<button type="submit"
-													formaction="<c:url value="/quantridanhgia/nhanvien/danhgiabanthan/drafts"/>"
+													formaction="<c:url value="/quantridanhgia/nhanvien/danhgiabanthan/draft"/>"
 													class="btn btn-info btn-min-width mr-1 mb-1">Lưu
 													nháp</button>
 												<button type="submit"

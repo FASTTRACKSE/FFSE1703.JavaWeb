@@ -53,11 +53,20 @@ public class QLyNhiemVuDaoImplNghiaBT implements QLyNhiemVuDaoNghiaBT{
 		return pb;
 	}
 
+//	@Override
+//	@SuppressWarnings("unchecked")
+//	public List<NhiemVu> findAll(int iDisplayStart, int iDisplayLength, String sql) {
+//		Session session = this.sessionFactory.openSession();
+//		List<NhiemVu> listNhiemVu = session.createQuery(sql).setFirstResult(iDisplayStart)
+//				.setMaxResults(iDisplayLength).list();
+//		return listNhiemVu;
+//	}
+	
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<NhiemVu> findAll(int iDisplayStart, int iDisplayLength, String sql) {
-		Session session = this.sessionFactory.openSession();
-		List<NhiemVu> listNhiemVu = session.createQuery(sql).setFirstResult(iDisplayStart)
+	public List<NhiemVu> findAllForPaging(int iDisplayStart, int iDisplayLength, String search) {
+		Session session = this.sessionFactory.getCurrentSession();
+		List<NhiemVu> listNhiemVu = session.createQuery("from NhiemVu where isDelete = 0 " + search).setFirstResult(iDisplayStart)
 				.setMaxResults(iDisplayLength).list();
 		return listNhiemVu;
 	}

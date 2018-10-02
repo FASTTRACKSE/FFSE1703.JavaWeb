@@ -9,7 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 import fasttrackse.ffse1703.fbms.dao.quantridanhgia.NhanVienDAO;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.DanhGiaBanThan;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.DanhGiaNhanVien;
+import fasttrackse.ffse1703.fbms.entity.quantridanhgia.LichDanhGia;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.TruongPhongDanhGia;
+import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 
 @Service
 public class NhanVienServiceImpl implements NhanVienService {
@@ -92,6 +94,30 @@ public class NhanVienServiceImpl implements NhanVienService {
 	@Override
 	public DanhGiaNhanVien getNhanVienDanhGia(int id) {
 		return dao.getNhanVienDanhGia(id);
+	}
+
+	@Transactional
+	@Override
+	public LichDanhGia getLichDanhGiaActive(String phongBan) {
+		return dao.getLichDanhGiaActive(phongBan);
+	}
+
+	@Override
+	@Transactional
+	public List<HoSoNhanVien> getListNhanVienLimit(int id, String phongBan) {
+		return dao.getListNhanVienLimit(id, phongBan);
+	}
+
+	@Override
+	@Transactional
+	public void createDanhGiaNhanVien(List<DanhGiaNhanVien> danhGia) {
+		dao.createDanhGiaNhanVien(danhGia);
+	}
+
+	@Override
+	@Transactional
+	public List<HoSoNhanVien> getListNhanVienPhongBan(String phongBan) {
+		return dao.getListNhanVienPhongBan(phongBan);
 	}
 
 }

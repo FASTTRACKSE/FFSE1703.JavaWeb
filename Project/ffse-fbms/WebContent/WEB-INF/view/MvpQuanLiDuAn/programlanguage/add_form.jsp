@@ -39,27 +39,34 @@
 			<div class="main-content">
 				<div class="row">
 					<form:form method="POST" action="addnew">
-						<div class="form-group col-sm-6">
-							<label>Mã Ngôn Ngữ</label><br>
-							<p Class="error">${messageMa}</p>
-							<form:errors path="idLanguage" cssStyle="color: red"></form:errors>
-							<form:input path="idLanguage" class="form-control round"
-								placeholder="Mã ngôn ngữ" />
+						<div class="row">
+							<div class="form-group col-sm-6">
+								<label>Mã Ngôn Ngữ</label><br>
 
-						</div>
-						<div class="form-group col-sm-6">
-							<label>Tên Ngôn Ngữ</label><br>
-							<p Class="error">${messageName}</p>
-							<form:errors path="nameLanguage" cssStyle="color: red"></form:errors>
-							<form:input path="nameLanguage" class="form-control round"
-								placeholder="Tên ngôn ngữ" />
+								
+								<form:input path="idLanguage" class="form-control round"
+									placeholder="Mã ngôn ngữ" />
+								<span Class="error">${messageMa}</span>
+								<form:errors path="idLanguage" cssStyle="color: red"></form:errors>
 
+							</div>
+							<div class="form-group col-sm-6">
+								<label>Tên Ngôn Ngữ</label><br>
+								
+								
+								<form:input path="nameLanguage" class="form-control round"
+									placeholder="Tên ngôn ngữ" />
+									<span Class="error">${messageName}</span>
+									<form:errors path="nameLanguage" cssStyle="color: red"></form:errors>
+
+							</div>
 						</div>
 						<div class="col-sm-12 text-center">
 							<button type="submit"
 								class="btn btn-outline-success round btn-min-width mr-1 mb-1">Lưu
 							</button>
 						</div>
+
 					</form:form>
 				</div>
 			</div>

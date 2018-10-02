@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 <style>
@@ -12,26 +13,33 @@
 	border-radius: 5px;
 	background-color: #FFF;
 }
+
 .tbl_actions a i {
 	margin-right: 3px;
 }
+
 .green {
 	color: #5cb85c;
 }
+
 .blue {
 	color: #337ab7;
 }
+
 .red {
 	color: #d9534f;
 }
+
 #datatable tr td:last-child {
 	letter-spacing: 15px;
 	min-width: 100px;
 	text-align: center !important;
 }
+
 #datatable>thead>tr>th:last-child[class*="sort"]::after {
 	content: ""
 }
+
 #datatable>thead>tr>th:last-child[class*="sort"]::before {
 	content: ""
 }
@@ -75,9 +83,16 @@
 					${messageSuccess}
 				</div>
 			</c:if>
-			
+			<c:if test="${messageError ne null}">
+				<div class="alert alert-danger alert-dismissable" role="alert">
+					<button type="button" class="close" data-dismiss="alert">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					${messageError}
+				</div>
+			</c:if>
 			<!-- End Show message -->
-			
+
 			<div class="row">
 				<div class="col-xs-12">
 					<div class="card">
@@ -96,17 +111,83 @@
 						</div>
 						<div class="card-body collapse in">
 							<div class="card-block card-dashboard">
-								<div class="table-responsive">
-									<table id="datatable"
-										class="table table-striped table-bordered dataex-res-constructor">
+								<div class="datatable">
+									<table
+										class="table table-striped table-bordered dataex-res-constructor no-footer dataTable">
+										<form:form method="GET">
+											<div class="form-group col-sm-10">
+												<div class="form-group col-sm-4">
+													<label>Dự án</label> <select
+														class="custom-select block round" name="maDuAn"
+														id="maDuAn">
+														<option value="0" label="Tất cả" />
+														<c:forEach items="${DuAn}" var="ld">
+															<option value="${ld.maDuAn}" label="${ld.tenDuAn}" />
+														</c:forEach>
+													</select>
+												</div>
+												<div class="form-group col-sm-4">
+													<label>Phân công</label> <select
+														class="custom-select block round" name="maNhanVien"
+														id="maNhanVien">
+														<option value="0" label="Tất cả" />
+														<c:forEach items="${NhanVien}" var="ld">
+															<option value="${ld.maNhanVien}"
+																label="${ld.hoDem} ${ld.ten}" />
+														</c:forEach>
+													</select>
+												</div>
+												<div class="form-group col-sm-4">
+													<label>Trạng thái</label> <select
+														class="custom-select block round" name="maTrangThai"
+														id="maTrangThai">
+														<option value="0" label="Tất cả" />
+														<c:forEach items="${TrangThai}" var="ld">
+															<option value="${ld.maTrangThai}" label="${ld.trangThai}" />
+														</c:forEach>
+													</select>
+												</div>
+											</div>
+											<script type="text/javascript">
+												maDuAn =
+											<%=request.getParameter("maDuAn")%>
+												;
+												if (maDuAn != 0
+														&& maDuAn != null) {
+													$("#maDuAn").val(maDuAn);
+												}
+												maNhanVien =
+											<%=request.getParameter("maNhanVien")%>
+												;
+												if (maNhanVien != 0
+														&& maNhanVien != null) {
+													$("#maNhanVien").val(
+															maNhanVien);
+												}
+												maTrangThai =
+											<%=request.getParameter("maTrangThai")%>
+												;
+												if (maTrangThai != 0
+														&& maTrangThai != null) {
+													$("#maTrangThai").val(
+															maTrangThai);
+												}
+											</script>
+											<div class="form-group col-sm-2">
+
+												<button class="btn btn-success block round"
+													style="margin-top: 25px">
+													<i class="ft-search"></i> Áp dụng
+												</button>
+											</div>
+										</form:form>
 										<thead>
 											<tr>
-												<th>STT</th>
-												<th>Tên Công Việc</th>
+												<th>Công việc</th>
 												<th>Thuộc tính</th>
-												<th>Bắt Đầu</th>
-												<th>Kết Thúc</th>
-												<th>phân công</th>
+												<th>Ngày bắt đầu</th>
+												<th>Ngày kết thúc</th>
+												<th>Người thực hiện</th>
 												<th>Trạng thái</th>
 												<th>Hoạt động</th>
 											</tr>
@@ -115,7 +196,6 @@
 											<c:forEach var="cv" items="${listNhiemVu}" begin="0"
 												varStatus="counter">
 												<tr>
-													<td>${(page)*2 + counter.count}</td>
 													<td>${cv.tenCongViec}</td>
 													<td>${cv.maCongViec.loaiCongViec}</td>
 													<td>${cv.tgBatDau}</td>
@@ -127,29 +207,55 @@
 															class='fa fa-eye'></i></a> <a
 														href="/ffse-fbms/QuanLyNhiemVuNghiaBT/edit/${cv.ID}"><i
 															class='fa fa-pencil'></i></a> <a
-															href="/ffse-fbms/QuanLyNhiemVuNghiaBT/delete/${cv.ID}"><i
+														href="/ffse-fbms/QuanLyNhiemVuNghiaBT/delete/${cv.ID}"><i
 															class='fa fa-trash'
 															onclick="return confirm('Bạn có muốn xóa sinh viên này?');"></i></a>
 													</td>
 											</c:forEach>
 										</tbody>
 									</table>
+									<c:set scope="request" var="lastPage" value="${lastPage}" />
+									<%
+										String query = "&maDuAn=" + request.getParameter("maDuAn") + "&maNhanVien="
+												+ request.getParameter("maNhanVien") + "&maTrangThai=" + request.getParameter("maTrangThai");
+										if (request.getParameter("maDuAn") == null) {
+											query = "";
+										}
+									%>
 								</div>
 							</div>
 						</div>
-						
+						<nav aria-label="Page navigation example">
+							<ul class="pagination">
+								<li class="page-item"><a class="page-link" href="?page=1<%=query%>">First
+										Page</a></li>
+								<c:if test="${currentPage > 2}">
+									<li class="page-item"><a class="page-link"
+										href="?page=${currentPage-2}<%=query%>">${currentPage-2}</a></li>
+								</c:if>
+								<c:if test="${currentPage > 1}">
+									<li class="page-item"><a class="page-link"
+										href="?page=${currentPage-1}<%=query%>">${currentPage-1}</a></li>
+								</c:if>
+								<li class="page-item active"><a class="page-link"
+									href="?page=${currentPage}<%=query%>">${currentPage}</a></li>
+								<c:if test="${currentPage < lastPage}">
+									<li class="page-item"><a class="page-link"
+										href="?page=${currentPage+1}<%=query%>">${currentPage+1}</a></li>
+								</c:if>
+								<c:if test="${currentPage < lastPage - 1}">
+									<li class="page-item"><a class="page-link"
+										href="?page=${currentPage+2}<%=query%>">${currentPage+2}</a></li>
+								</c:if>
+								<li class="page-item"><a class="page-link"
+									href="?page=${lastPage }<%=query%>">Last Page</a></li>
+							</ul>
+						</nav>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-<script type="text/javascript">
-window.setTimeout(function() {
-	$(".alert").fadeTo(500, 0).slideUp(500, function() {
-		$(this).remove();
-	});
-}, 2500);
-</script>
 
 <jsp:include page="/WEB-INF/view/templates/footer.jsp" />

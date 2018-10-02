@@ -22,7 +22,7 @@ import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 
  	public NhiemVu findByID(int ID);
 	
- 	public List<NhiemVu> findAll(int iDisplayStart, int iDisplayLength, String sql);
+ 	public List<NhiemVu> findAllForPaging(int iDisplayStart, int iDisplayLength, String search);
  	
  	public List<TrangThaiNghiaBT> trangThai();
  	
@@ -32,7 +32,7 @@ import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
  	
  	public List<HoSoNhanVien> nhanVien();
  	
- 	//public List<NhiemVu> findAllForPaging(int startPosition, int maxResult);
+ 	//public List<NhiemVu> findAll(int iDisplayStart, int iDisplayLength, String sql);
 	
-
+ 	
  }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fasttrackse.ffse1703.fbms.entity.qlynhiemvunghiabt.NhiemVu;
@@ -30,30 +31,51 @@ public class QLyNhiemVuControllerNghiaBT {
 		this.nhiemVuService = nhiemVuService;
 	}
 
-	//public int totalPage(int perPage) {
-	//	int totalPage = (int) Math.ceil((double) nhiemVuService.findAll().size() / (double) perPage);
-	//	return totalPage;
-	//}
-	@RequestMapping(value = {"/","/list"})
-	public String index(Model model) {
-		model.addAttribute("listNhiemVu", nhiemVuService.findAll());
-		return "/QuanLyNhiemVuNghiaBT/list";
+	public int totalPage(int perPage) {
+		int totalPage = (int) Math.ceil((double) nhiemVuService.findAll().size() / (double) perPage);
+		return totalPage;
 	}
 	
 	
-	
-//	@RequestMapping(value = {"/","/list"}, method = RequestMethod.GET)
-//	public String viewTaiLieu(Model model,
-//			@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage) {
-//		int perPage = 2;
-//		int totalPage = totalPage(perPage);
-//		int start = (currentPage - 1) * perPage;
-//		model.addAttribute("listNhiemVu", nhiemVuService.findAllForPaging(start, perPage));
-//		model.addAttribute("lastPage", totalPage);
-//		model.addAttribute("currentPage", currentPage);
-//
+//	@RequestMapping(value = {"/","/list"})
+//	public String index(Model model) {
+//		model.addAttribute("listNhiemVu", nhiemVuService.findAll());
 //		return "/QuanLyNhiemVuNghiaBT/list";
 //	}
+	
+	
+	@RequestMapping(value = { "/", "/list" }, method = RequestMethod.GET)
+	public String viewTaiLieu(Model model,
+			@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage,
+			HttpServletRequest request) {
+
+		String maDuanSearch = " and duAn.maDuAn = " + request.getParameter("maDuAn");
+		if (request.getParameter("maDuAn") == null || request.getParameter("maDuAn").equals("0")) {
+			maDuanSearch = "";
+		}
+		String maNhanVienSearch = " and phanCong.maNhanVien = " + request.getParameter("maNhanVien");
+		if (request.getParameter("maNhanVien") == null || request.getParameter("maNhanVien").equals("0")) {
+			maNhanVienSearch = "";
+		}
+		String IDtrangthaiSearch = " and maTrangThai.maTrangThai = " + request.getParameter("maTrangThai");
+		if (request.getParameter("maTrangThai") == null || request.getParameter("maTrangThai").equals("0")) {
+			IDtrangthaiSearch = "";
+		}
+		String search = maDuanSearch + maNhanVienSearch + IDtrangthaiSearch;
+
+		int perPage = 3;
+
+		int totalPage = totalPage(perPage);
+		int start = (currentPage - 1) * perPage;
+		model.addAttribute("listNhiemVu", nhiemVuService.findAllForPaging(start, perPage, search));
+		model.addAttribute("lastPage", totalPage);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("TrangThai", nhiemVuService.trangThai());
+		model.addAttribute("DuAn", nhiemVuService.duAn());
+		model.addAttribute("NhanVien", nhiemVuService.nhanVien());
+		return "/QuanLyNhiemVuNghiaBT/list";
+	}
+
 	
 	@RequestMapping(value= "/view/{ID}")
 	public String viewOne(@PathVariable("ID") int id, HttpServletRequest request, Model model) {

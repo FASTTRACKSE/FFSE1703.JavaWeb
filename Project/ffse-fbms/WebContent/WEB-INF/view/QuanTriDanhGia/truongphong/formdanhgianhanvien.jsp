@@ -32,10 +32,11 @@
 								<div class="card-content collpase show">
 									<div class="card-body" style="margin: 1em">
 										<form:form cssClass="form form-horizontal form-bordered"
-											method="POST">
+											method="POST"
+											action="/ffse-fbms/quantridanhgia/truongphong/danhgianhanvien/update">
 											<form:hidden path="id" />
-											
-											<form:hidden path="nhanVien" />
+											<form:hidden path="kyDanhGia" />
+											<form:hidden path="phongBan" />
 											<div class="form-body">
 												<h4 class="form-section">
 													<i class="ft-user"></i> Bản đánh giá
@@ -43,14 +44,15 @@
 												<div class="form-group row">
 													<label class="col-md-3 label-control">Nhân viên </label>
 													<div class="col-md-9">
-														<h3><form:label path="nhanVien" /></h3>
+														<form:input cssClass="form-control" readonly="true"
+															path="nhanVien" />
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-md-3 label-control"> Kỷ luật công
 														việc </label>
 													<div class="col-md-9">
-														<form:select cssClass="form-control" path="xepLoai">
+														<form:select cssClass="form-control" path="kyLuatCongViec">
 															<form:option value="1">1 Sao</form:option>
 															<form:option value="2">2 Sao</form:option>
 															<form:option value="3">3 Sao</form:option>
@@ -63,7 +65,7 @@
 													<label class="col-md-3 label-control">Tinh thần làm
 														việc</label>
 													<div class="col-md-9">
-														<form:select cssClass="form-control" path="xepLoai">
+														<form:select cssClass="form-control" path="tinhThanLamViec">
 															<form:option value="1">1 Sao</form:option>
 															<form:option value="2">2 Sao</form:option>
 															<form:option value="3">3 Sao</form:option>
@@ -77,7 +79,8 @@
 													<label class="col-md-3 label-control">Khối lượng
 														công việc đạt được</label>
 													<div class="col-md-9">
-														<form:select cssClass="form-control" path="xepLoai">
+														<form:select cssClass="form-control"
+															path="khoiLuongCongViec">
 															<form:option value="1">1 Sao</form:option>
 															<form:option value="2">2 Sao</form:option>
 															<form:option value="3">3 Sao</form:option>
@@ -91,7 +94,7 @@
 													<label class="col-md-3 label-control">Kết quả công
 														việc đạt được</label>
 													<div class="col-md-9">
-														<form:select cssClass="form-control" path="xepLoai">
+														<form:select cssClass="form-control" path="ketQuaCongViec">
 															<form:option value="1">1 Sao</form:option>
 															<form:option value="2">2 Sao</form:option>
 															<form:option value="3">3 Sao</form:option>
@@ -105,7 +108,7 @@
 													<label class="col-md-3 label-control">Kỹ năng tích
 														lũy</label>
 													<div class="col-md-9">
-														<form:select cssClass="form-control" path="xepLoai">
+														<form:select cssClass="form-control" path="kyNangTichLuy">
 															<form:option value="1">1 Sao</form:option>
 															<form:option value="2">2 Sao</form:option>
 															<form:option value="3">3 Sao</form:option>
@@ -122,7 +125,6 @@
 															path="nhanXet" />
 													</div>
 												</div>
-
 												<div class="form-group last">
 													<label class="col-md-3 label-control">Xếp loại</label>
 													<div class="col-md-9">
@@ -135,17 +137,13 @@
 														</form:select>
 													</div>
 												</div>
+												<form:hidden path="isDelete" />
 											</div>
 											<div class="form-actions">
 												<a
-													href="<c:url value="/quantridanhgia/truongphongdanhgia/"/>"
+													href="<c:url value="/quantridanhgia/truongphong/danhgianhanvien"/>"
 													class="btn btn-danger btn-min-width mr-1 mb-1">Trở về</a>
 												<button type="submit"
-													formaction="<c:url value="/quantridanhgia/truongphongdanhgia/drafts"/>"
-													class="btn btn-info btn-min-width mr-1 mb-1">Lưu
-													nháp</button>
-												<button type="submit"
-													formaction="<c:url value="/quantridanhgia/truongphongdanhgia/new"/>"
 													class="btn btn-success btn-min-width mr-1 mb-1">Đánh
 													giá</button>
 											</div>

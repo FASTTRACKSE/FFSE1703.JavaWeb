@@ -149,7 +149,7 @@
 												</div>
 											</div>
 											<script type="text/javascript">
-												maDuan =
+												maDuAn =
 											<%=request.getParameter("maDuAn")%>
 												;
 												if (maDuan != 0
@@ -164,7 +164,7 @@
 													$("#maNhanVien").val(
 															maNhanVien);
 												}
-												IDtrangthai =
+												maTrangThai =
 											<%=request.getParameter("maTrangThai")%>
 												;
 												if (maTrangThai != 0

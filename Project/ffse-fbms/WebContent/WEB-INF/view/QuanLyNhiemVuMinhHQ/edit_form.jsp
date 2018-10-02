@@ -76,12 +76,12 @@
 						<div class="form-group col-sm-6">
 							<label>Thời gian bắt đầu</label>
 							<form:input class="form-control block round" type="date"
-								path="tgBatDau" value="${tgBatDau}"/>
+								path="tgBatDau" value="${CongViec.tgBatDau}"/>
 						</div>
 						<div class="form-group col-sm-6">
 							<label>Thời gian kết thúc</label>
 							<form:input class="form-control block round" type="date"
-								path="tgKetThuc" value="${tgKetThuc}"/>
+								path="tgKetThuc" value="${CongViec.tgKetThuc}"/>
 						</div>
 						<div class="form-group col-sm-6">
 							<label>phân công</label>

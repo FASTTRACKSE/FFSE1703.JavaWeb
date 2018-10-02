@@ -41,6 +41,7 @@ div.stroke a button:hover:after {
 				</ol>
 			</div>
 		</div>
+		<br>
 		<div class="row">
 			<div class="col-xl-6 col-lg-6 col-12">
 				<div class="stroke">

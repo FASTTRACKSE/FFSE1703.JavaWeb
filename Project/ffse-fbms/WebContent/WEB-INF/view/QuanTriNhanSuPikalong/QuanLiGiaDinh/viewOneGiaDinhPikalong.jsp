@@ -7,9 +7,9 @@
 <div class="app-content content container-fluid">
 	<div class="content-wrapper">
 		<h3 class="content-header-title mb-0"><spring:message code="label.thongTinGiaDinh" /></h3>
-		<h4><spring:message code="label.ten" />: ${hosonhanvien.hoTenNv}</h4>
-		<p><spring:message code="label.maChucDanh" />: ${hosonhanvien.maChucDanh } // <spring:message code="label.maPhongBan" />:
-			${hosonhanvien.maPhongBan }</p>
+		<h4><spring:message code="label.hoTen" />: ${hosonhanvien.hoTenNv}</h4>
+		<p><spring:message code="label.maChucDanh" />: ${hosonhanvien.maChucDanh.tenChucDanh } // <spring:message code="label.maPhongBan" />:
+			${hosonhanvien.maPhongBan.tenPhongBan }</p>
 		<div class="row breadcrumbs-top">
 			<div class="breadcrumb-wrapper col-xs-12">
 				<ol class="breadcrumb">

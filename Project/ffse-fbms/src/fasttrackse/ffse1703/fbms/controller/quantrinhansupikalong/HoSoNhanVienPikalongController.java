@@ -35,7 +35,7 @@ import fasttrackse.ffse1703.fbms.service.quantrinhansupikalong.QuocTichPikalongS
 import fasttrackse.ffse1703.fbms.service.quantrinhansupikalong.ThanhPhoPikalongService;
 import fasttrackse.ffse1703.fbms.service.security.ChucDanhService;
 import fasttrackse.ffse1703.fbms.service.security.PhongBanService;
-//import fasttrackse.ffse1703.fbms.excel.quantrinhansupikalong.HoSoNhanVienExcel;
+import fasttrackse.ffse1703.fbms.excel.quantrinhansupikalong.HoSoNhanVienExcel;
 
 @SuppressWarnings("unused")
 @Controller
@@ -222,9 +222,9 @@ public class HoSoNhanVienPikalongController {
 	}
 	
 	// export flie excel
-//	@RequestMapping("exportexcel/{maNv}")
-//	public ModelAndView exportExcelFile(@PathVariable String maNv, Model model) {
-//		
-//		return new ModelAndView("HoSoNhanVienExcelId", "hoSoNhanVien", hoSoNhanVienPikalongService.getEdit(maNv));
-//	}
+	@RequestMapping("exportexcel/{maNv}")
+	public ModelAndView exportExcelFile(@PathVariable String maNv, Model model) {
+		
+		return new ModelAndView("HoSoNhanVienExcelId", "hoSoNhanVien", hoSoNhanVienPikalongService.getEdit(maNv));
+	}
 }

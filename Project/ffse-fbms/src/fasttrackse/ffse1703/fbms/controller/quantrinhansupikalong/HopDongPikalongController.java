@@ -59,40 +59,42 @@ public class HopDongPikalongController {
 	@RequestMapping(value = "save", method = RequestMethod.POST)
 	public String addSaveHd(@ModelAttribute("hopDongPikalong") HopDongPikalong hd, Model model,
 			HttpServletRequest request) {
-			String maNv = hd.getHoSoNhanVienPikalong().getMaNv();
-			HoSoNhanVienPikalong hsnv = this.hoSoNhanVienPikalongService.getEdit(maNv);
+		String maNv = hd.getHoSoNhanVienPikalong().getMaNv();
+		HoSoNhanVienPikalong hsnv = this.hoSoNhanVienPikalongService.getEdit(maNv);
 
-			hd.setMaHopDong(Integer.valueOf(this.hopDongPikalongService.getAutoId()));
-			this.hopDongPikalongService.insert(hd);
-			model.addAttribute("hoSoNhanVien", hsnv);
-			return "redirect:/QuanTriNhanSu/quanlihopdong/viewOneHopDong/{maNv}";
+		hd.setMaHopDong(Integer.valueOf(this.hopDongPikalongService.getAutoId()));
+		this.hopDongPikalongService.insert(hd);
+		model.addAttribute("hoSoNhanVien", hsnv);
+		return "redirect:/QuanTriNhanSu/quanlihopdong/viewOneHopDong/" + maNv;
 	}
 
 	@RequestMapping(value = "viewOneHopDong/formedithd/{maHopDong}", method = RequestMethod.GET)
 	public String editFormHd(@PathVariable int maHopDong, Model model) {
 		String lastMaHd = this.hopDongPikalongService.getLastMaHd();
 		System.out.println(lastMaHd);
-		model.addAttribute("hsnv", hoSoNhanVienPikalongService.getEdit(hopDongPikalongService.getMaHopDong(maHopDong).getHoSoNhanVienPikalong().getMaNv()));
+		model.addAttribute("hsnv", hoSoNhanVienPikalongService
+				.getEdit(hopDongPikalongService.getMaHopDong(maHopDong).getHoSoNhanVienPikalong().getMaNv()));
 		model.addAttribute("hopDongPikalong", hopDongPikalongService.getMaHopDong(maHopDong));
 		model.addAttribute("lastMaHd", lastMaHd);
-		
+
 		return "QuanTriNhanSuPikalong/ThongTinHopDong/FormEditHd";
 	}
-	
+
 	@RequestMapping(value = "edithd", method = RequestMethod.POST)
 	public String editsave(@ModelAttribute("hopDongPikalong") HopDongPikalong hd, Model model,
 			HttpServletRequest request) {
 		String maNv = hd.getHoSoNhanVienPikalong().getMaNv();
 		HoSoNhanVienPikalong hsnv = this.hoSoNhanVienPikalongService.getEdit(maNv);
-		
+
 		this.hopDongPikalongService.update(hd);
 		model.addAttribute("hoSoNhanVien", hsnv);
-		return "redirect:/QuanTriNhanSu/quanlihopdong/viewOneHopDong/{maNv}";
+		return "redirect:/QuanTriNhanSu/quanlihopdong/viewOneHopDong/" + maNv;
 	}
-	
+
 	@RequestMapping("viewOneHopDong/{maNv}")
-	public String viewOneHopDong( @PathVariable String maNv,Model model) {
-		model.addAttribute("listHopDong",this.hopDongPikalongService.viewOne(maNv));
+	public String viewOneHopDong(@PathVariable String maNv, Model model) {
+		model.addAttribute("lastTrangThai", this.hopDongPikalongService.getLastTrangThaiHd(maNv));
+		model.addAttribute("listHopDong", this.hopDongPikalongService.viewOne(maNv));
 		model.addAttribute("maNv", maNv);
 		return "QuanTriNhanSuPikalong/ThongTinHopDong/HopDong";
 	}

@@ -1,5 +1,7 @@
 package fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,7 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 @Entity
@@ -29,11 +34,13 @@ public class HopDongPikalong {
 	@JoinColumn(name="MaLoaiHopDong")
 	private LoaiHopDongPikalong loaiHopDongPikalong;
 	
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date ngayKiKet;
 	
-	private String ngayKiKet;
-	
-	
-	private String ngayKetThuc;
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date ngayKetThuc;
 	
 	
 	private int soNgayNghiTrongNam;
@@ -49,7 +56,7 @@ public class HopDongPikalong {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public HopDongPikalong(int maHopDong, String ngayKiKet, String ngayKetThuc,
+	public HopDongPikalong(int maHopDong, Date ngayKiKet, Date ngayKetThuc,
 			int soNgayNghiTrongNam, String luongThang13, int trangThai) {
 		super();
 		this.maHopDong = maHopDong;
@@ -77,18 +84,22 @@ public class HopDongPikalong {
 		this.maHopDong = maHopDong;
 	}
 	
-	public String getNgayKiKet() {
+	public Date getNgayKiKet() {
 		return ngayKiKet;
 	}
-	public void setNgayKiKet(String ngayKiKet) {
+
+	public void setNgayKiKet(Date ngayKiKet) {
 		this.ngayKiKet = ngayKiKet;
 	}
-	public String getNgayKetThuc() {
+
+	public Date getNgayKetThuc() {
 		return ngayKetThuc;
 	}
-	public void setNgayKetThuc(String ngayKetThuc) {
+
+	public void setNgayKetThuc(Date ngayKetThuc) {
 		this.ngayKetThuc = ngayKetThuc;
 	}
+
 	public int getSoNgayNghiTrongNam() {
 		return soNgayNghiTrongNam;
 	}

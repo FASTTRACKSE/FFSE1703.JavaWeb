@@ -66,6 +66,22 @@ public class HopDongPikalongDaoImpl implements HopDongPikalongDao {
 		
 	}
 	
+	@SuppressWarnings("rawtypes")
+	@Override
+	public String getLastTrangThaiHd(String maNv) {
+		Session session = this.sessionFactory.getCurrentSession();
+		
+		Query query = session.createSQLQuery(
+				"SELECT `TrangThai` FROM `thongtinhopdong` WHERE MaNv = " + maNv + " ORDER BY `MaHopDong` DESC LIMIT 1");
+		String lastTrangThaiHd;
+		if(query.list().size() == 0) {
+			lastTrangThaiHd = "1";
+		} else {
+			lastTrangThaiHd = query.getSingleResult().toString();
+		}
+		return lastTrangThaiHd;
+	}
+	
 	@Override
 	public HopDongPikalong getMaHopDong(int maHopDong) {
 		Session session = this.sessionFactory.getCurrentSession();
@@ -80,12 +96,12 @@ public class HopDongPikalongDaoImpl implements HopDongPikalongDao {
 		HopDongPikalong lastIdHopDong = (HopDongPikalong) query.getSingleResult();
 		return lastIdHopDong;
 	}
+	
 	@Override
 	public List<HopDongPikalong> viewOne(String maNv) {
 		Session session = this.sessionFactory.openSession();
 		@SuppressWarnings("rawtypes")
-		Query query = session.createQuery("from HopDongPikalong where MaNv = :MaNv");
-		query.setParameter("MaNv", maNv);
+		Query query = session.createSQLQuery("SELECT * FROM `thongtinhopdong` WHERE MaNv = " + maNv + " ORDER BY `MaHopDong` DESC LIMIT 1");
 		@SuppressWarnings("unchecked")
 		List<HopDongPikalong> viewOne = query.list();
 		return viewOne;

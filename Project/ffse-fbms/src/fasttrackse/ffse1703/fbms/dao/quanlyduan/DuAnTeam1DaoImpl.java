@@ -1,4 +1,3 @@
-////daoimpl
 package fasttrackse.ffse1703.fbms.dao.quanlyduan;
 
 import java.util.List;

@@ -83,7 +83,7 @@ public class QLyNhiemVuServiceImpl implements QLyNhiemVuService {
 		// duyet list => to json
 		int j= list.size();
 		int i=0;
-		String y="";
+		String y="[";
 		
 		for(QLyNhiemVuEntity x :list) {
 			i++;
@@ -91,12 +91,13 @@ public class QLyNhiemVuServiceImpl implements QLyNhiemVuService {
 			Date tgBatdau =x.getTgBatdau();
 			Date tgKetthuc = x.getTgKetthuc();
 			if(i==j) {
-					y += "[\"" + tenCongviec + "\",\"" + tgBatdau + "\",\"" + tgKetthuc + "\"]";
+					y += "{\"title\": \"" + tenCongviec + "\", \"start\": \"" + tgBatdau + "\", \"end\":\"" + tgKetthuc + "\"}";
 			}else {
-				y+= "[\"" + tenCongviec + "\",\"" + tgBatdau + "\",\"" + tgKetthuc + "\"]"+",";
+				y+= "{\"title\": \"" + tenCongviec + "\",\"start\": \"" + tgBatdau + "\", \"end\": \"" + tgKetthuc + "\"}"+",";
 			}
 		}
-		return y ;
+		//return "[{\"title\":\"Làm crud\",\"start\":\"2018-09-11\",\"end\":\"2018-09-11\"}]" ;
+		return y + "]" ;
 	}
 
 	

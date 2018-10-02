@@ -16,7 +16,7 @@
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="/ffse-fbms/home">Home</a></li>
 							<li class="breadcrumb-item"><a
-								href="/ffse-fbms/QuanLyDuAn/vendor/">Danh sách Vendor</a></li>
+								href="/ffse-fbms/QuanLyDuAn/vendor/list">Danh sách Vendor</a></li>
 							<li class="breadcrumb-item active">Thêm Vendor</li>
 						</ol>
 					</div>

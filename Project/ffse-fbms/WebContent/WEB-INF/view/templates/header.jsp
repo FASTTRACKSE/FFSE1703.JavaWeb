@@ -334,6 +334,40 @@
 								href="<c:url value="/Quanlyvangnghi1703004/danhsachtrangthai"/>"
 								class="menu-item">D<spring:message code="label.danhsachtrangthai" /></a></li>
 						</ul></li>
+						
+						<!--  Quản Lý Vắng Nghỉ H-->
+					<li class="navigation-header"><span> Quản Lý Vắng Nghỉ 1</span><i
+						class=" ft-minus" data-toggle="tooltip" data-placement="right"
+						data-original-title="Components"></i></li>
+					<li class=" nav-item pbho_so"><a href="#"><i
+							class="ft-users"></i><span data-i18n="" class="menu-title">Đơn Xin Nghỉ</span></a>
+						<ul class="menu-content">
+							<li><a
+								href="<c:url value="/QuanLyVangNghi/donxinnghi"/>"
+								class="menu-item">Tạo Đơn Xin Nghỉ</a></li>
+							<li><a
+								href="<c:url value="/QuanLyVangNghi/luunhap"/>"
+								class="menu-item">Danh sách nháp</a></li>
+							<li><a
+								href="<c:url value="/QuanLyVangNghi/choduyet"/>"
+								class="menu-item">Danh sách chờ duyệt</a></li>
+							<li><a
+								href="<c:url value="/QuanLyVangNghi/tuchoi"/>"
+								class="menu-item">Danh sách bị từ chối</a></li>
+						</ul></li>
+						<li class=" nav-item pbho_so"><a href="#"><i
+							class="ft-users"></i><span data-i18n="" class="menu-title">Phê Duyệt</span></a>
+						<ul class="menu-content">
+							<li><a
+								href="<c:url value="/QuanLyVangNghi/duyetvong1"/>"
+								class="menu-item">Duyệt vòng 1</a></li>
+							<li><a
+								href="<c:url value="/QuanLyVangNghi/duyetvong2"/>"
+								class="menu-item">Duyệt Vòng 2</a></li>							
+						</ul></li>
+						
+						
+						<!--  ////////////////////////////////////////////// -->
 					
 					<!-- Quản Lý Nhân Sự TT -->
 					<li class=" navigation-header"><span>Team Quản Lý Nhân

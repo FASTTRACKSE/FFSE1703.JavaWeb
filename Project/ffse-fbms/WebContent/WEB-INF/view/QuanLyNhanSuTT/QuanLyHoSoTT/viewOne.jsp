@@ -25,11 +25,14 @@ html, body, h1, h2, h3, h4, h5, h6 {
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/home" />'>Trang chủ</a></li>
+								href='<c:url value="/home" />'>Home</a></li>
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/quanlynhansutt/ho_so/" />'>Danh sách
 									nhân viên</a></li>
-							<li class="breadcrumb-item active">xem thông tin nhân viên</li>
+							<li class="breadcrumb-item active"><a
+								href='<c:url value="/quanlynhansutt/ho_so/view/${maNhanVien}" />'>xem thông
+									tin nhân viên</a></li>
+							<li class="breadcrumb-item">xem tất cả thông tin nhân viên</li>
 						</ol>
 					</div>
 				</div>

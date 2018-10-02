@@ -65,8 +65,8 @@ public interface QuanLyVangNghiService {
 	
 	public void updateTrangThai(TrangThaiVN trangThai);
 	
-    public void createNgayNghi(NgayNghi ngayNghi);
-	
-	public void updateNgayNghi(NgayNghi ngayNghi);
-}
+	public void createNgayNghi(NgayNghi ngayNghi);
+		
+    public void updateNgayNghi(NgayNghi ngayNghi);
 
+}

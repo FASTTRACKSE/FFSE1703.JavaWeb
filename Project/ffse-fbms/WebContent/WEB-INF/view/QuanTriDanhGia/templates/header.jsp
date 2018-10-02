@@ -408,29 +408,29 @@
 				<li class=" navigation-header"><span>Quản trị đánh giá</span><i
 					data-toggle="tooltip" data-placement="right"
 					data-original-title="Apps" class=" ft-minus"></i></li>
-				<c:if test="${chucVu eq 'NV' }">
+				<c:if test="${chucDanh eq 'NV' }">
 					<li class=" nav-item"><a
-						href="<c:url value = "/quantridanhgia/danhgiabanthan"/>"><i
+						href="<c:url value = "/quantridanhgia/nhanvien/danhgiabanthan"/>"><i
 							class="fa fa-user"></i><span data-i18n="" class="menu-title">Tự
 								đánh giá</span></a></li>
 					<li class=" nav-item"><a
-						href="<c:url value = "/quantridanhgia/danhgianhanvien"/>"><i
+						href="<c:url value = "/quantridanhgia/nhanvien/danhgianhanvien"/>"><i
 							class="fa fa-users"></i><span data-i18n="" class="menu-title">Đánh
 								giá nhân viên khác</span></a></li>
 					<li class=" nav-item"><a
-						href="<c:url value = "/quantridanhgia/danhgiacuatruongphong"/>"><i
+						href="<c:url value = "/quantridanhgia/nhanvien/danhgiacuatruongphong"/>"><i
 							class="fa fa-user-secret"></i><span data-i18n=""
 							class="menu-title">Đánh giá của trưởng phòng</span></a></li>
 				</c:if>
-				<c:if test="${chucVu eq 'TP' }">
+				<c:if test="${chucDanh eq 'TP' }">
 					<li class=" nav-item"><a
-						href="<c:url value = "/quantridanhgia/truongphongdanhgia/home"/>"><i
+						href="<c:url value = "/quantridanhgia/truongphong/duyetdanhgia"/>"><i
 							class="fa fa-users"></i><span data-i18n="" class="menu-title">Danh
 								sách nhân viên</span></a></li>
 				</c:if>
-				<c:if test="${chucVu eq 'PNS' }">
+				<c:if test="${chucDanh eq 'PNS' }">
 					<li class=" nav-item"><a
-						href="<c:url value = "/quantridanhgia/truongphongdanhgia/home"/>"><i
+						href="<c:url value = "/quantridanhgia/truongphong/danhgianhanvien"/>"><i
 							class="fa fa-users"></i><span data-i18n="" class="menu-title">Tạo kỳ đánh giá</span></a></li>
 							<li class=" nav-item"><a
 						href="<c:url value = "/quantridanhgia/truongphongdanhgia/home"/>"><i

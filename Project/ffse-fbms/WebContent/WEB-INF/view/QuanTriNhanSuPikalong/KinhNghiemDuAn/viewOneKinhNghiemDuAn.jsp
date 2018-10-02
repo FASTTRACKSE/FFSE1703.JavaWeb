@@ -2,21 +2,19 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 <div class="app-content content container-fluid">
 	<div class="content-wrapper">
-		<h3 class="content-header-title mb-0">Kinh Nghiệm Dự Án Của Nhân
-			Viên</h3>
+		<h3 class="content-header-title mb-0"><spring:message code="label.kinhNghiemDuAn" /></h3>
 		<div class="row breadcrumbs-top">
 			<div class="breadcrumb-wrapper col-xs-12">
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a
-						href='<c:url value="/quantrinhansu/hosonhanvien/" />'>Danh
-							Sách Nhân Viên</a></li>
+						href='<c:url value="/quantrinhansu/hosonhanvien/" />'><spring:message code="label.danhSachNhanVien" /></a></li>
 					<li class="breadcrumb-item"><a
-						href='<c:url value="/quantrinhansu/hosonhanvien/view/${maNv }" />'>Thông
-							Tin Nhân Viên</a></li>
-					<li class="breadcrumb-item active">Kinh Nghiệm Dự Án Nhân Viên</li>
+						href='<c:url value="/quantrinhansu/hosonhanvien/view/${maNv }" />'><spring:message code="label.thongTinCaNhan" /></a></li>
+					<li class="breadcrumb-item active"><spring:message code="label.kinhNghiemDuAn" /></li>
 				</ol>
 			</div>
 		</div>
@@ -24,8 +22,8 @@
 			<table class="table mb-0">
 				<thead>
 					<tr>
-						<th>Tên Dự Án</th>
-						<th>Vai Trò</th>
+						<th><spring:message code="label.tenDuAn" /></th>
+						<th><spring:message code="label.vaiTroDuAn" /></th>
 					</tr>
 				</thead>
 				<tbody>

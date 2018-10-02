@@ -115,7 +115,7 @@
                         <h4 class="form-section"><i class="fa fa-paperclip"></i>Thông tin quê quán</h4>
                         <div class="form-group">
                           <label for="thanhPhoId">Thành Phố</label>
-                          <form:select path="thanhPho" type="text" id="thanhPhoId" class="form-control"
+                          <form:select path="thanhPho.maTinhThanh" type="text" id="thanhPhoId" class="form-control"
                           				name="thanhPhoSelect" onchange="clickComboboxThanhPho()">
                           		<form:option value="noThanhPho" selected="selected" >Chọn thành phố</form:option>
     								<c:forEach items="${listThanhPho}" var="x">
@@ -125,7 +125,7 @@
                         </div>
                         <div class="form-group">
                           <label for="quanHuyenId">Quận huyện</label>
-                          <form:select path="quanHuyen" id="quanHuyenId"  name="quanHuyen" type="text" class="form-control" disabled="true"
+                          <form:select path="quanHuyen.maQuanHuyen" id="quanHuyenId"  name="quanHuyen" type="text" class="form-control" disabled="true"
                           			onchange="clickComboboxQuan()" >
                           		 <option value="noQuanHuyen" selected="selected" >Chọn quận huyện</option>
                           </form:select>
@@ -134,7 +134,7 @@
                         </div>
                         <div class="form-group">
                           <label for="phuongXaId">Phường xã</label>
-                          <form:select path="phuongXa" type="text" id="phuongXaId" class="form-control"
+                          <form:select path="phuongXa.maPhuong" type="text" id="phuongXaId" class="form-control"
                           name="phuongXaSelect" disabled="true">
                           		<option value="noPhuongXa" selected="selected">Chọn phường xã</option>
                           	
@@ -146,7 +146,7 @@
                       <h4 class="form-section"><i class="fa fa-paperclip"></i>Phòng Ban</h4>
                         <div class="form-group">
                           <label for="companyName">Phòng ban</label>
-                          <form:select path="maPhongBan" type="text" id="companyName" class="form-control"
+                          <form:select path="maPhongBan.maPhongBan" type="text" id="companyName" class="form-control"
                           name="phongBanSelect">
                           		<form:option value="">Chọn Phòng ban</form:option>
                           	  <c:forEach items="${listPhongBan}" var="x">
@@ -156,7 +156,7 @@
                         </div>
                         <div class="form-group">
                           <label for="companyName">Chức danh</label>
-                          <form:select path="maChucDanh" type="text" id="companyName" class="form-control" placeholder="Company Name"
+                          <form:select path="maChucDanh.maChucDanh" type="text" id="companyName" class="form-control" placeholder="Company Name"
                           name="chucDanhSelect">
                           		<form:option value="" >Chọn chức danh</form:option>
                           	  <c:forEach items="${listChucDanh}" var="x">
@@ -232,7 +232,7 @@
                              		}));
                         		
 								}
-                        		$('#quanHuyenId option[value=${formHosopkl.quanHuyen}]').attr('selected', 'selected')
+                        		$('#quanHuyenId option[value=${formHosopkl.quanHuyen.maQuanHuyen}]').attr('selected', 'selected')
                         			clickComboboxQuan(); // gọi function này để load phường
                         		
                          }});
@@ -272,7 +272,7 @@
                              		}));
                         			
 								}
-                        		$('#phuongXaId option[value=${formHosopkl.phuongXa}]').attr('selected', 'selected')
+                        		$('#phuongXaId option[value=${formHosopkl.phuongXa.maPhuong}]').attr('selected', 'selected')
 	
                          }});
                      };

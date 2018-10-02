@@ -33,6 +33,7 @@
 					<form:form method="POST" action="addnew">
 						<div class="form-group col-sm-6">
 							<label>Mã khach hang</label>
+							<p Class="error">${messageMa}</p>
 							<form:input class="form-control" path="idKhachHang" placeholder="Mã khách hàng" />
 							<form:errors path="email" cssStyle="color: red"></form:errors>
 

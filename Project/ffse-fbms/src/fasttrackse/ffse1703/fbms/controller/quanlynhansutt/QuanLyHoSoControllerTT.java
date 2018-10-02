@@ -30,6 +30,7 @@ import fasttrackse.ffse1703.fbms.service.quanlynhansutt.DanTocServiceTT;
 import fasttrackse.ffse1703.fbms.service.quanlynhansutt.QuanHuyenServiceTT;
 import fasttrackse.ffse1703.fbms.service.quanlynhansutt.QuanLyHoSoServiceTT;
 import fasttrackse.ffse1703.fbms.service.quanlynhansutt.QuocTichServiceTT;
+import fasttrackse.ffse1703.fbms.service.quanlynhansutt.ThongTinBangCapServiceTT;
 import fasttrackse.ffse1703.fbms.service.quanlynhansutt.TinhThanhServiceTT;
 import fasttrackse.ffse1703.fbms.service.quanlynhansutt.TinhTrangHonNhanServiceTT;
 import fasttrackse.ffse1703.fbms.service.quanlynhansutt.XaPhuongServiceTT;
@@ -63,6 +64,13 @@ public class QuanLyHoSoControllerTT {
 
 	@Autowired
 	private PhongBanService phongBanService;
+ 
+	@Autowired
+	private ThongTinBangCapServiceTT thongTinBangCapServiceTT;
+	
+	public void setThongTinBangCapServiceTT(ThongTinBangCapServiceTT thongTinBangCapServiceTT) {
+		this.thongTinBangCapServiceTT = thongTinBangCapServiceTT;
+	}
 
 	@Autowired
 	private TinhTrangHonNhanServiceTT tinhTrangHonNhanServiceTT;
@@ -124,6 +132,7 @@ public class QuanLyHoSoControllerTT {
 	@RequestMapping(value = "/viewOne/{maNhanVien}", method = RequestMethod.GET)
 	public String viewOne(@PathVariable("maNhanVien") int maNhanVien, Model model) {
 		model.addAttribute("hoSoNhanVienTT", quanLyHoSoServiceTT.findByMaNhanVien(maNhanVien));
+		model.addAttribute("thongTinBangCap", thongTinBangCapServiceTT.viewOne(maNhanVien));
 		return "QuanLyNhanSuTT/QuanLyHoSoTT/viewOne";
 	}
 	
@@ -160,6 +169,7 @@ public class QuanLyHoSoControllerTT {
 		stream.write(bytes);
 		stream.flush();
 		stream.close();
+		hoSoNhanVienTT.setIsdelete(1);
 		quanLyHoSoServiceTT.addHoSoNhanVien(hoSoNhanVienTT);
 		return "redirect:/quanlynhansutt/ho_so/";
 	}
@@ -200,6 +210,7 @@ public class QuanLyHoSoControllerTT {
 			stream.flush();
 			stream.close();
 		}
+		hoSoNhanVienTT.setIsdelete(1);
 		quanLyHoSoServiceTT.updateHoSoNhanVien(hoSoNhanVienTT);
 		return "redirect:/quanlynhansutt/ho_so/";
 	}
@@ -264,5 +275,14 @@ public class QuanLyHoSoControllerTT {
 //		  model.addAttribute("listThanhPho", tinhThanhServiceTT.getAllTinhThanh());
 		return "QuanLyNhanSuTT/QuanLyHoSoTT/view";
 	}
+	
+	// delete an employee's contract
+		@RequestMapping("/delete/{maNhanVien}")
+		public String remove(@PathVariable("maNhanVien") int maNhanVien, final RedirectAttributes redirectAttributes) {
+			HoSoNhanVienTT hd = quanLyHoSoServiceTT.findByMaNhanVien(maNhanVien);
+			hd.setIsdelete(0);
+			quanLyHoSoServiceTT.updateHoSoNhanVien(hd);
+			return "redirect:/quanlynhansutt/ho_so/";
+		}
 
 }

@@ -47,7 +47,8 @@
 							</div>
 							<div class="card-body collapse in">
 								<div class="card-block">
-									<form:form method="POST" action="update"
+									<form:form method="POST"
+										action="/ffse-fbms/quanlynhansutt/ho_so/update"
 										modelAttribute="formHoso" enctype="multipart/form-data">
 										<div class="form-body">
 											<%-- <div class="form-group col-sm-6">
@@ -95,7 +96,7 @@
 																<option value="none" selected="selected">Chọn
 																	tình trạng hôn nhân</option>
 																<c:forEach items="${listTrangTrangHonNhan}" var="x">
-																	<option value="${x.maTinhTrangHonNhan}">${x.tinhTrangHonNhan}</option>
+																	<form:option value="${x.maTinhTrangHonNhan}">${x.tinhTrangHonNhan}</form:option>
 																</c:forEach>
 															</form:select>
 														</div>
@@ -133,7 +134,7 @@
 																	<option value="none" selected="selected">Chọn
 																		dân tộc</option>
 																	<c:forEach items="${listDanToc}" var="x">
-																		<option value="${x.maDanToc}">${x.tenDanToc}</option>
+																		<form:option value="${x.maDanToc}">${x.tenDanToc}</form:option>
 																	</c:forEach>
 																</form:select>
 															</div>
@@ -148,7 +149,7 @@
 																<option value="none" selected="selected">Chọn
 																	quốc tịch</option>
 																<c:forEach items="${listQuocTich}" var="x">
-																	<option value="${x.maQuocTich}">${x.tenQuocTich}</option>
+																	<form:option value="${x.maQuocTich}">${x.tenQuocTich}</form:option>
 																</c:forEach>
 															</form:select>
 														</div>
@@ -181,7 +182,7 @@
 																<option value="noThanhPho" selected="selected">Chọn
 																	thành phố</option>
 																<c:forEach items="${listThanhPho}" var="x">
-																	<option value="${x.maThanhPho}">${x.tenThanhPho}</option>
+																	<form:option value="${x.maThanhPho}">${x.tenThanhPho}</form:option>
 																</c:forEach>
 															</form:select>
 														</div>
@@ -227,7 +228,7 @@
 																name="phongBanSelect">
 																<option value="none" selected>Chọn Phòng ban</option>
 																<c:forEach items="${listPhongBan}" var="x">
-																	<option value="${x.maPhongBan}">${x.tenPhongBan}</option>
+																	<form:option value="${x.maPhongBan}">${x.tenPhongBan}</form:option>
 																</c:forEach>
 															</form:select>
 														</div>
@@ -239,7 +240,7 @@
 																<option value="none" selected="selected">Chọn
 																	chức danh</option>
 																<c:forEach items="${listChucDanh}" var="x">
-																	<option value="${x.maChucDanh}">${x.tenChucDanh}</option>
+																	<form:option value="${x.maChucDanh}">${x.tenChucDanh}</form:option>
 																</c:forEach>
 															</form:select>
 														</div>

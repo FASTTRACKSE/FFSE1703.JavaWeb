@@ -7,10 +7,9 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
-import fasttrackse.ffse1703.fbms.entity.qlvn.ThongKeDonXinPhep;
 import fasttrackse.ffse1703.fbms.entity.qlvn2.DonXinPhepEntity;
 import fasttrackse.ffse1703.fbms.entity.qlvn2.LyDoEntity;
+import fasttrackse.ffse1703.fbms.entity.qlvn2.SoNgayNghiEntity;
 import fasttrackse.ffse1703.fbms.entity.qlvn2.TrangThaiEntity;
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 
@@ -84,24 +83,51 @@ public class DonXinPhepDaolmpl implements DonXinPhepDao{
 	}
 	public void create(DonXinPhepEntity DonXinPhepEntity) {
 		Session session = this.sessionFactory.getCurrentSession();
+		if (KiemTraNgayNghi(DonXinPhepEntity) == 0) {
+			session.createSQLQuery("INSERT INTO `so_ngay_nghi`(`ma_nhan_vien`,`so_ngay_nghi`,`so_ngay_nghi_con_lai`) VALUES ('" + 
+					DonXinPhepEntity.getNgayNghi().getMaNhanVien()+"', '0', '12')").executeUpdate();			
+		}
 		session.save(DonXinPhepEntity);
 		session.createQuery("update DonXinPhepEntity set trangThai = '1'  where id =" + DonXinPhepEntity.getId()).executeUpdate();
 	}
 
 	public void createcho(DonXinPhepEntity DonXinPhepEntity) {
 		Session session = this.sessionFactory.getCurrentSession();
+		if (KiemTraNgayNghi(DonXinPhepEntity) == 0) {
+			session.createSQLQuery("INSERT INTO `so_ngay_nghi`(`ma_nhan_vien`,`so_ngay_nghi`,`so_ngay_nghi_con_lai`) VALUES ('" + 
+					DonXinPhepEntity.getNgayNghi().getMaNhanVien()+"', '0', '12')").executeUpdate();			
+		}
 		session.save(DonXinPhepEntity);
 		session.createQuery("update DonXinPhepEntity set trangThai = '2'  where id =" + DonXinPhepEntity.getId()).executeUpdate();
 	}
 
 	public void createduyet(DonXinPhepEntity DonXinPhepEntity) {
 		Session session = this.sessionFactory.getCurrentSession();
+		int soNgayNghi = DonXinPhepEntity.getSoNgayNghi();
+		int soNgayDaNghi = DonXinPhepEntity.getNgayNghi().getSoNgayNghi();
+		int soNgayConLai = DonXinPhepEntity.getNgayNghi().getNgayNghiConLai();
+        int maNhanVien = DonXinPhepEntity.getNgayNghi().getMaNhanVien();
+        if (soNgayConLai == 0) {
+			session.createQuery("update SoNgayNghiEntity set soNgayDaNghi = " + (soNgayDaNghi + soNgayNghi)
+					+ "where maNhanVien = " + maNhanVien).executeUpdate();
+		} else if (soNgayNghi > soNgayConLai) {
+			session.createQuery("update SoNgayNghiEntity set soNgayConLai = 0,soNgayDaNghi = "
+					+ (soNgayDaNghi + soNgayNghi) + "where maNhanVien = " + maNhanVien).executeUpdate();
+		} else {
+			session.createQuery("update SoNgayNghiEntity set soNgayConLai = " + (soNgayConLai - soNgayNghi)
+					+ ",soNgayDaNghi = " + (soNgayDaNghi + soNgayNghi) + "where maNhanVien = " + maNhanVien)
+					.executeUpdate();
+		}
 		session.save(DonXinPhepEntity);
 		session.createQuery("update DonXinPhepEntity set trangThai = '3'  where id =" + DonXinPhepEntity.getId()).executeUpdate();
 	}
 
 	public void createtuchoi(DonXinPhepEntity DonXinPhepEntity) {
 		Session session = this.sessionFactory.getCurrentSession();
+		if (KiemTraNgayNghi(DonXinPhepEntity) == 0) {
+			session.createSQLQuery("INSERT INTO `so_ngay_nghi`(`ma_nhan_vien`,`so_ngay_nghi`,`so_ngay_nghi_con_lai`) VALUES ('" + 
+					DonXinPhepEntity.getNgayNghi().getMaNhanVien()+"', '0', '12')").executeUpdate();			
+		}
 		session.save(DonXinPhepEntity);
 		session.createQuery("update DonXinPhepEntity set trangThai = '4'  where id =" + DonXinPhepEntity.getId()).executeUpdate();
 	}
@@ -111,30 +137,52 @@ public class DonXinPhepDaolmpl implements DonXinPhepDao{
 		session.update(DonXinPhepEntity);
 		
 	}
-	@SuppressWarnings("unchecked")
 	
-	public List<DonXinPhepEntity> findAllForPagingnhap(int startPosition, int maxResult) {
+	public List<DonXinPhepEntity> findAllForPaging1(int startPosition, int maxResult) {
 		Session session = this.sessionFactory.getCurrentSession();
 		return session.createQuery("from DonXinPhepEntity where trangThai ='1' ").setFirstResult(startPosition).setMaxResults(maxResult).list();
 	}
-   @SuppressWarnings("unchecked")
 	
-	public List<DonXinPhepEntity> findAllForPagingcho(int startPosition, int maxResult) {
+	public List<DonXinPhepEntity> findAllForPaging2(int startPosition, int maxResult) {
 		Session session = this.sessionFactory.getCurrentSession();
 		return session.createQuery("from DonXinPhepEntity where trangThai ='2' ").setFirstResult(startPosition).setMaxResults(maxResult).list();
 	}
-   @SuppressWarnings("unchecked")
-	
-	public List<DonXinPhepEntity> findAllForPagingduyet(int startPosition, int maxResult) {
+	public List<DonXinPhepEntity> findAllForPaging3(int startPosition, int maxResult) {
 		Session session = this.sessionFactory.getCurrentSession();
 		return session.createQuery("from DonXinPhepEntity where trangThai ='3' ").setFirstResult(startPosition).setMaxResults(maxResult).list();
 	}
-   @SuppressWarnings("unchecked")
-	
-	public List<DonXinPhepEntity> findAllForPagingtuchoi(int startPosition, int maxResult) {
+	public List<DonXinPhepEntity> findAllForPaging4(int startPosition, int maxResult) {
 		Session session = this.sessionFactory.getCurrentSession();
-		return session.createQuery("from DonXinPhepEntity where trangThai ='4' ").setFirstResult(startPosition).setMaxResults(maxResult).list();
+		return session.createQuery("from DonXinPhepEntity where trangThai ='3' ").setFirstResult(startPosition).setMaxResults(maxResult).list();
 	}
 	
+   public int KiemTraNgayNghi(DonXinPhepEntity DonXinPhepEntity) {
+		Session session = sessionFactory.getCurrentSession();
+		String rowCount = session.createSQLQuery("select count(*) from `so_ngay_nghi` where `ma_nhan_vien` = '" + DonXinPhepEntity.getNgayNghi().getMaNhanVien() + "'").getSingleResult().toString();
+		return Integer.parseInt(rowCount);
+ }
+
+public List<SoNgayNghiEntity> bangNgayNghi() {
+	Session session = sessionFactory.getCurrentSession();
+	List<SoNgayNghiEntity> list = session.createQuery("from SoNgayNghiEntity").getResultList();
+	return list;
+}
+public SoNgayNghiEntity findByIdngay(int maNhanVien) {
+	Session session = this.sessionFactory.getCurrentSession();
+	SoNgayNghiEntity list = (SoNgayNghiEntity) session.get(SoNgayNghiEntity.class, maNhanVien);
+	return list;
+}
+
+public void deletengay(int maNhanVien) {
+	Session session = this.sessionFactory.getCurrentSession();
+	session.delete(findById(maNhanVien));	
+}
+
+public List<DonXinPhepEntity> findAllForPagingngaynghi(int startPosition, int maxResult) {
+	Session session = this.sessionFactory.getCurrentSession();
+	return session.createQuery("from SoNgayNghiEntity  ").setFirstResult(startPosition).setMaxResults(maxResult).list();
+}
 
 }
+
+

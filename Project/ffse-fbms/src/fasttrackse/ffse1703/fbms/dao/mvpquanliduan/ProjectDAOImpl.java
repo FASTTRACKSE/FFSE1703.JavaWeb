@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Projects;
+import fasttrackse.ffse1703.fbms.entity.quanlyduan.DuAnTeam1;
 import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.HoSoNhanVienPikalong;
 
 
@@ -22,6 +23,14 @@ public class ProjectDAOImpl implements ProjectDAO {
 		Session session = sessionFactory.getCurrentSession();
 		return session.createQuery("from Projects where isDelete = 1", Projects.class).list();
 	}
+	
+	@Override
+	public List<Projects> listProject(String search,int start,int maxRows) {
+		Session session = sessionFactory.getCurrentSession();
+		return session.createQuery("from Projects where isDelete = 1 "+ search).setFirstResult(start)
+				.setMaxResults(maxRows).list();
+	}
+	
 	@Override
 	public int checkNameProjects(String nameProjects) {
 		Session session = sessionFactory.getCurrentSession();

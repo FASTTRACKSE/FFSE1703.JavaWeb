@@ -69,7 +69,11 @@ public class KhachHangController {
 		if (result.hasErrors()) {
 			return "MvpQuanLiDuAn/khachhang/add_form";
 		}
-		
+		int checkMa=khachHangService.checkIdKhachHang(khachHang.getIdKhachHang());
+		if(checkMa >=1) {
+			model.addAttribute("messageMa", "Mã khách hàng đã được sử dụng");
+			return "MvpQuanLiDuAn/khachhang/add_form";
+		}
 		
 		khachHang.setStatus(1);
 		khachHangService.add(khachHang);

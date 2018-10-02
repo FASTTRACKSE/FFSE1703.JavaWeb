@@ -5,7 +5,7 @@
 
 <div class="app-content content container-fluid">
 	<div class="content-wrapper">
-
+		
 		<!-- Path -->
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-xs-12 mb-2">
@@ -22,8 +22,14 @@
 			</div>
 		</div>
 		<!-- End Path -->
+		
+		<div class="row match-height">
+		<div class="col-md-12">
 
+<div class="card">
 		<div class="content-body">
+				<div class="main-content">
+				<div class="row">
 			<c:if test="${messageError ne null}">
 				<div class="alert alert-danger alert-dismissable" role="alert">
 					<button type="button" class="close" data-dismiss="alert">
@@ -32,9 +38,8 @@
 					${messageError}
 				</div>
 			</c:if>
-		
-			<div class="main-content">
-				<div class="row">
+			
+			
 					<form:form method="POST" modelAttribute="add" action="add">
 						<div class="form-group col-sm-6">
 						  	<label>Dự án</label>
@@ -67,14 +72,14 @@
 							<input class="form-control block round" readonly value="Mới" />
 							<form:hidden path="idLoaiTrangthai.IDtrangthai" value="1" />
 						</div>
-						<div class="form-group col-sm-6">
+						<div class="form-group col-sm-3">
 						  	<label>Thời gian bắt đầu</label>
-						    <form:input path="tgBatdau" type="date" id="issueinput3" class="form-control block round" />
+						    <form:input path="tgBatdau" type="date" id="issueinput3" class="form-control block round" style="width:220px" />
 						  	<form:errors path="tgBatdau" cssClass="error" />
 						</div>
-						<div class="form-group col-sm-6">
+						<div class="form-group col-sm-3">
 						  	<label>Thời gian kết thúc</label>
-						  <form:input path="tgKetthuc" type="date" id="issueinput3" class="form-control block round" />
+						  <form:input  path="tgKetthuc" type="date" id="issueinput3" class="form-control block round" style="width:220px;"/>
 						  	<form:errors path="tgKetthuc" cssClass="error" />
 						</div>
 						<div class="form-group col-sm-6">
@@ -88,12 +93,17 @@
 								</c:forEach>
 							</form:select>	
 						</div>
-						<div class="form-group col-sm-6">
+						<div class="form-group col-sm-12">
+						<div class="form-group col-sm-3">
 						  	<label>Thời gian dự kiến hoàn thành</label>
-						   <form:input class="form-control block round" path="tgDukienhoanthanh" placeholder="Thời gian dự kiến hoàn thành	" />
+						  	<div class="input-group">
+						   <form:input class="form-control block round" path="tgDukienhoanthanh" placeholder="Thời gian dự kiến hoàn thành	" style="width:240px;" ></form:input>
 						  	<form:errors path="tgDukienhoanthanh" cssClass="error" />
+						  	<span class="input-group-addon">Giờ</span>
+						  	</div> 
+						  	</div>
 						</div>
-							<div class="form-group col-sm-6">
+							<div class="form-group col-sm-12">
 						  	<label>Mô tả</label>
 						  	<form:textarea path="moTa" id="issueinput8" rows="5" class="form-control" placeholder="Mô tả" />
 						  	<form:errors path="moTa" cssClass="error" />
@@ -107,6 +117,9 @@
 			</div>
 		</div>
 	</div>
+	</div>
+	</div>
+</div>
 </div>
 <script type="text/javascript">
 window.setTimeout(function() {

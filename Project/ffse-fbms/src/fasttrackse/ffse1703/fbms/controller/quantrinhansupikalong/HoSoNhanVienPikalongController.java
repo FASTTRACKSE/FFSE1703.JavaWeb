@@ -21,10 +21,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.HoSoNhanVienPikalong;
 import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.PhuongPikalong;
 import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.QuanHuyenPikalong;
+import fasttrackse.ffse1703.fbms.service.quantrinhansupikalong.BangCapPikalongService;
+import fasttrackse.ffse1703.fbms.service.quantrinhansupikalong.GiaDinhPikalongService;
 import fasttrackse.ffse1703.fbms.service.quantrinhansupikalong.HoSoNhanVienPikalongService;
 import fasttrackse.ffse1703.fbms.service.quantrinhansupikalong.PhuongPikalongService;
 import fasttrackse.ffse1703.fbms.service.quantrinhansupikalong.QuanHuyenPikalongService;
@@ -32,6 +35,7 @@ import fasttrackse.ffse1703.fbms.service.quantrinhansupikalong.QuocTichPikalongS
 import fasttrackse.ffse1703.fbms.service.quantrinhansupikalong.ThanhPhoPikalongService;
 import fasttrackse.ffse1703.fbms.service.security.ChucDanhService;
 import fasttrackse.ffse1703.fbms.service.security.PhongBanService;
+//import fasttrackse.ffse1703.fbms.excel.quantrinhansupikalong.HoSoNhanVienExcel;
 
 @SuppressWarnings("unused")
 @Controller
@@ -58,6 +62,12 @@ public class HoSoNhanVienPikalongController {
 	
 	@Autowired
 	private PhongBanService phongBanService;
+	
+	@Autowired
+	private GiaDinhPikalongService giaDinhPikalongService;
+	
+	@Autowired
+	private BangCapPikalongService bangCapPikalongService;
 	
 	private static final String UPLOAD_DIRECTORY ="/upload"; 
 	
@@ -113,7 +123,7 @@ public class HoSoNhanVienPikalongController {
 	
 	// ThanhPho Json
 	@RequestMapping(value= "selectquan/{maThanhPho}", method= RequestMethod.GET, produces= "text/plain;charset=UTF-8")
-	@ResponseBody // khi return ko trả về trang jsp mà  trả về code html
+	@ResponseBody // khi return ko tráº£ vá»� trang jsp mÃ Â  tráº£ vá»� code html
 	public String selectQuan(@PathVariable String maThanhPho) {
 		List<QuanHuyenPikalong> listQuanHuyen =  quanHuyenPikalongService.listQuanHuyen(maThanhPho);
 		
@@ -135,7 +145,7 @@ public class HoSoNhanVienPikalongController {
 	
 	// QuanHuyen Json
 	@RequestMapping(value= "selectphuong/{maQuanHuyen}", method= RequestMethod.GET,  produces= "text/plain;charset=UTF-8")
-	@ResponseBody // khi return ko trả về trang jsp mà  trả về code html
+	@ResponseBody // khi return ko tráº£ vá»� trang jsp mÃ Â  tráº£ vá»� code html
 	public String selectPhuong(@PathVariable String maQuanHuyen) {
 		List<PhuongPikalong> listPhuong= phuongPikalongService.listPhuong(maQuanHuyen);
 		
@@ -178,7 +188,7 @@ public class HoSoNhanVienPikalongController {
 			 fileUpload.mkdir();
 		 }
 		String filename = file.getOriginalFilename();
-		if(!filename.isEmpty()) { // khi người dùng ko thay đổi ảnh đại diện
+		if(!filename.isEmpty()) { // khi ngÆ°á»�i dÃ¹ng ko thay Ä‘á»•i áº£nh Ä‘áº¡i diá»‡n
 		System.out.println(path + " " + filename);
 		byte[] bytes = file.getBytes();  
 	    BufferedOutputStream stream =new BufferedOutputStream(new FileOutputStream(  
@@ -202,10 +212,19 @@ public class HoSoNhanVienPikalongController {
 		return "QuanTriNhanSuPikalong/ThongTinHoSo/view";
 	}
 	
-	// page Hồ sơ chi tiết
+	// page Há»“ sÆ¡ chi tiáº¿t
 	@RequestMapping("hosochitiet/{maNv}")
 	public String details(@PathVariable String maNv, Model model) {
 		model.addAttribute("hoSoNhanVien", hoSoNhanVienPikalongService.getEdit(maNv));
+		model.addAttribute("thongTinGiaDinh", giaDinhPikalongService.viewOne(maNv));
+		model.addAttribute("thongTinBangCap", bangCapPikalongService.viewOne(maNv));
 		return "QuanTriNhanSuPikalong/ThongTinHoSo/hosochitiet";
 	}
+	
+	// export flie excel
+//	@RequestMapping("exportexcel/{maNv}")
+//	public ModelAndView exportExcelFile(@PathVariable String maNv, Model model) {
+//		
+//		return new ModelAndView("HoSoNhanVienExcelId", "hoSoNhanVien", hoSoNhanVienPikalongService.getEdit(maNv));
+//	}
 }

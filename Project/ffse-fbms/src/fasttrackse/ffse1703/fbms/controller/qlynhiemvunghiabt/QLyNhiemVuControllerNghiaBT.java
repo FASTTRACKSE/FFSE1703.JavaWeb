@@ -70,7 +70,7 @@ public class QLyNhiemVuControllerNghiaBT {
 		model.addAttribute("NhanVien", nhiemVuService.nhanVien());
 		return "/QuanLyNhiemVuNghiaBT/add_form";
 	}
-
+// thêm mới 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public String createCongViec(Model model, @ModelAttribute("NhiemVu") @Valid NhiemVu cv,BindingResult bindingResult,final RedirectAttributes redirectAttributes) {
 //		cv.setIsDelete(0);
@@ -86,7 +86,7 @@ public class QLyNhiemVuControllerNghiaBT {
 		
 		return "redirect:/QuanLyNhiemVuNghiaBT/list";
 	}
-
+//xóa theo ID
 	@RequestMapping("/delete/{ID}")
 	public String delete(@PathVariable("ID") int id, HttpServletRequest request, Model model) {
 		NhiemVu nv = nhiemVuService.findByID(id);
@@ -94,7 +94,7 @@ public class QLyNhiemVuControllerNghiaBT {
 		nhiemVuService.delete(nv);
 		return "redirect:/QuanLyNhiemVuNghiaBT/list";
 	}
-
+//sửa 
 	@RequestMapping(value = "/edit/{ID}", method = RequestMethod.GET)
 	public String edit_view(@PathVariable("ID") int id, Model model) {
 		model.addAttribute("NhiemVu", nhiemVuService.findByID(id));

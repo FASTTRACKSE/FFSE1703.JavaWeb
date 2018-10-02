@@ -1,5 +1,6 @@
 package fasttrackse.ffse1703.fbms.service.qlynhiemvuhieulp;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,6 +76,27 @@ public class QLyNhiemVuServiceImpl implements QLyNhiemVuService {
 	@Transactional
 	public List<QLyNhiemVuEntity> findAll(Integer offset, Integer maxResult, String search) {
 		return qLyNhiemVuDao.findAll(offset, maxResult, search);
+	}
+
+	@Override
+	public String toJson(List<QLyNhiemVuEntity> list) {
+		// duyet list => to json
+		int j= list.size();
+		int i=0;
+		String y="";
+		
+		for(QLyNhiemVuEntity x :list) {
+			i++;
+			String tenCongviec = x.getTenCongviec();
+			Date tgBatdau =x.getTgBatdau();
+			Date tgKetthuc = x.getTgKetthuc();
+			if(i==j) {
+					y += "[\"" + tenCongviec + "\",\"" + tgBatdau + "\",\"" + tgKetthuc + "\"]";
+			}else {
+				y+= "[\"" + tenCongviec + "\",\"" + tgBatdau + "\",\"" + tgKetthuc + "\"]"+",";
+			}
+		}
+		return y ;
 	}
 
 	

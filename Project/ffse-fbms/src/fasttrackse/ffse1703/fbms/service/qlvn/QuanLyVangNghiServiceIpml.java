@@ -146,8 +146,10 @@ public class QuanLyVangNghiServiceIpml implements QuanLyVangNghiService {
 		quanLyVangNghiDao.createNgayNghi(ngayNghi);
 	}
 
+	@Override
 	public void updateNgayNghi(NgayNghi ngayNghi) {
 		quanLyVangNghiDao.updateNgayNghi(ngayNghi);
+		
 	}
 	
 	

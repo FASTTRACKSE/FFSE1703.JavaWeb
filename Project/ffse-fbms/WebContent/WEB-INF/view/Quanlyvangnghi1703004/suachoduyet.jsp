@@ -41,7 +41,7 @@
 								</fieldset>
 							</div>
 							<div>
-								<label><spring:message code="label.ghichu"/></label>
+								<label><spring:message code="label.ghichunhanvien"/></label>
 								<form:input class="form-control round" path="ghiChu" />
 							    <form:errors style="color:red" path="ghiChu"  /> 
 							</div>

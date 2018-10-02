@@ -26,7 +26,7 @@
 					<th ><spring:message code="label.ngaybatdau"/></th>
 					<th ><spring:message code="label.ngayketthuc"/></th>
 					<th ><spring:message code="label.lydo"/></th>
-					<th ><spring:message code="label.ghichu"/></th>
+					<th ><spring:message code="label.ghichunhanvien"/></th>
 					<th ><spring:message code="label.ghichutruongphong"/></th>
 					<th ><spring:message code="label.trangThai"/></th>
 					<th><spring:message code="label.chucnang"/></th>

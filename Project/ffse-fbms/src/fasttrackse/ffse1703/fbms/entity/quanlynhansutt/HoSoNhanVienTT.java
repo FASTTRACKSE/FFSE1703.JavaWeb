@@ -119,6 +119,17 @@ public class HoSoNhanVienTT implements Serializable {
 	@Column(name = "trang_thai"/* , nullable = false */)
 	private Integer trangThai;
 
+	@Column(name = "isdelete"/* , nullable = false */)
+	private Integer isdelete;
+	
+	public Integer getIsdelete() {
+		return isdelete;
+	}
+
+	public void setIsdelete(Integer isdelete) {
+		this.isdelete = isdelete;
+	}
+
 	// bi-directional many-to-one association to HopDong
 	@OneToMany(mappedBy = "hoSoNhanVienTT")
 	private List<HopDongTT> hopDongs;

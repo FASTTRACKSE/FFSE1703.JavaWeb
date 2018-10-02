@@ -76,7 +76,7 @@ public class QuanLyVangNghiDaoImpl implements QuanLyVangNghiDao {
 	@Override
 	public void insertTinhTrang(int id_nv, TinhTrangNghi tt) {
 		// TODO Auto-generated method stub
-		TinhTrangNghi tinhTrang = null;
+		TinhTrangNghi tinhTrang = new TinhTrangNghi();
 		Session session = null;
 		tinhTrang = getTinhTrang(id_nv);
 		session = this.sessionFactory.getCurrentSession();
@@ -85,6 +85,11 @@ public class QuanLyVangNghiDaoImpl implements QuanLyVangNghiDao {
 		}else {
 			session.update(tt);
 		}
+	}
+	
+	public void updateTinhTrang(TinhTrangNghi tt) {
+		Session session = this.sessionFactory.getCurrentSession();
+		session.update(tt);
 	}
 
 
@@ -112,5 +117,32 @@ public class QuanLyVangNghiDaoImpl implements QuanLyVangNghiDao {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.update(dn);
 	}
+
+	@Override
+	public void deleteDon(DonNghi dn) {
+		Session session = this.sessionFactory.getCurrentSession();
+		session.delete(dn);
+	}
+
+	@Override
+	public void removeDonNhap(int id_don) {
+		Session session = this.sessionFactory.getCurrentSession();
+		DonNghi donNghi = (DonNghi) session.load(DonNghi.class, new Integer(id_don));
+		if(null != donNghi){
+			session.delete(donNghi);
+		}
+	}
+
+	@Override
+	public List<DonNghi> listDonNghiPheDuyet1() {
+		Session session = this.sessionFactory.openSession();
+		@SuppressWarnings("unchecked")
+		List<DonNghi> listDn = session.createQuery("from DonNghi where tinh_trang = "+1+" ").list();
+		session.close();
+		return listDn;
+	}
+
+	
+	
 	
 }

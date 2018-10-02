@@ -20,7 +20,7 @@
 					</div>
 				</div>
 			</div>
-			<c:if test="${command.isActive == 1}">
+			<c:if test="${empty danhGia}">
 				<div class="content-body">
 					<!-- Basic form layout section start -->
 					<section id="basic-form-layouts">
@@ -38,7 +38,7 @@
 					</section>
 				</div>
 			</c:if>
-			<c:if test="${command.isActive == 0}">
+			<c:if test="${not empty danhGia}">
 				<div class="content-body">
 					<!-- Basic form layout section start -->
 					<section id="basic-form-layouts">

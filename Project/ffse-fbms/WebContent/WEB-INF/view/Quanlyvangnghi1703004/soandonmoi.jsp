@@ -136,7 +136,7 @@
 												</script>
 							</div>
 							<div>
-								<label><spring:message code="label.ghichu"/></label>
+								<label><spring:message code="label.ghichunhanvien"/></label>
 								<form:input class="form-control round"  placeholder="ghiChu"	 path="ghiChu" />
 							 <form:errors path="ghiChu" cssStyle="color: red" ></form:errors> 
 							</div>

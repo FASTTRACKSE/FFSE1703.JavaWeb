@@ -77,7 +77,7 @@
 			</c:if>
 			
 			<!-- End Show message -->
-
+			
 			<div class="row">
 				<div class="col-xs-12">
 					<div class="card">

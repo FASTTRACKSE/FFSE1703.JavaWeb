@@ -17,7 +17,7 @@
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/home" />'>Home</a></li>
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/mvpquanliduan/nhiemvu/list-nhiemvu" />'>Danh
+								href='<c:url value="/mvpquanliduan/nhiemvu/list-nhiemvu/${idProjects}" />'>Danh
 									sách nhiệm vụ</a></li>
 							<li class="breadcrumb-item active">Thêm mới nhiệm vụ</li>
 						</ol>

@@ -54,4 +54,9 @@ public class KhachHangServiceImpl implements KhachHangService {
 		return khachHangDao.countKhachHang();
 	}
 
+	@Override
+	public int checkIdKhachHang(String idKhachHang) {
+				return khachHangDao.checkIdKhachHang(idKhachHang);
+	}
+
 }

@@ -25,7 +25,7 @@
 			<div class="card">
 				<div class="card-content">
 					<div class="card-body" style="margin: 1em">
-						<form:form cssClass="form" action="lichdanhgia/create">
+						<form:form cssClass="form" action="/ffse-fbms/quantridanhgia/phongnhansu/lichdanhgia/create">
 							<div class="form-body">
 								<h4 class="form-section">
 									<i class="fa fa-plus"></i>Tạo danh sách đánh giá

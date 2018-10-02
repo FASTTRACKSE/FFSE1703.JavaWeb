@@ -1,12 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 <style>
-th{ background-color: #2A2E30;
-    border-color: #3C4244;
-	color: #F5F7FA;
-}
+
 .tbl_actions a {
 	color: #333;
 	font-size: 13px;
@@ -74,7 +72,6 @@ th{ background-color: #2A2E30;
 			</div>
 		</div>
 		<!-- End Path -->
-
 		<div class="content-body">
 
 			<!-- Show message -->
@@ -161,10 +158,10 @@ th{ background-color: #2A2E30;
 							</form:form>
 									<table id="datatable" class="table ">
 										<thead class="thead-dark">
-											<tr>
-											    <th scope="col">STT</th>
-											    <th scope="col">Tên dự án</th>
-											    <th scope="col">Tên công việc</th>
+											<tr style="background-color: #2A2E30; border-color: black; color: #F5F7FA;">
+												<th scope="col">STT</th>
+												<th scope="col">Tên dự án</th>
+												<th scope="col">Tên công việc</th>
 												<th scope="col">Loại công việc</th>
 												<th scope="col">Trạng thái</th>
 												<th scope="col">Người được phân công</th>
@@ -191,18 +188,16 @@ th{ background-color: #2A2E30;
 										
 									</table>
 									<c:set scope="request" var="total" value="${total}" />
-									<% 	
-										String cPage = request.getParameter("page");
-										String query =  "&maDuan="+request.getParameter("maDuan")+"&maNhanVien="+request.getParameter("maNhanVien")+"&IDtrangthai="+request.getParameter("IDtrangthai");
-										boolean search = !(request.getParameter("maDuan") == null);
-										// query = "maDuan=3&maNhanVien=8&IDtrangthai=0"
-										//if (cPage == null) {
-											query = search ? query : "";
-										//}
+									<%
+										String query = "&maDuan=" + request.getParameter("maDuan") + "&maNhanVien="
+												+ request.getParameter("maNhanVien") + "&IDtrangthai=" + request.getParameter("IDtrangthai");
 										
+										if (request.getParameter("maDuan") == null) {
+											query = "";
+										}
 									%>
 									<nav aria-label="Page navigation example">
-							<ul class="pagination" style="margin-left: 450px">
+								<ul class="pagination" style="margin-left: 450px">
 								<li class="page-item"><a class="page-link" href="?page=1<%=query%>">First
 										Page</a></li>
 								<c:if test="${currentPage > 2}">

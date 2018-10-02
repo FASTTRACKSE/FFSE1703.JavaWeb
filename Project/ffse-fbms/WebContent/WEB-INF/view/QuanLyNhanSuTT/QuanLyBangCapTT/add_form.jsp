@@ -7,11 +7,12 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <div class="app-content content container-fluid">
 	<div class="content-wrapper">
-
 		<!-- Path -->
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">Thêm mới bằng cấp</h3>
+				<h3 class="content-header-title mb-0">
+					<spring:message code="label.thongTinBangCap" />
+				</h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
@@ -21,8 +22,8 @@
 								href="<c:url value = "/quanlynhansutt/ho_so/"/>"><spring:message
 										code="label.quanLyNhanSu" /></a></li>
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/quanlynhansutt/bang_cap/" />'>Danh sách
-									bằng cấp</a></li>
+								href='<c:url value="/quanlynhansutt/bang_cap/" />'><spring:message
+										code="label.thongTinBangCap" /></a></li>
 							<li class="breadcrumb-item active">Thêm mới bằng cấp</li>
 						</ol>
 					</div>
@@ -48,7 +49,7 @@
 														<div class="row">
 															<div class="col-md-6">
 																<div class="form-group">
-																	<label>Mã Nhân Viên</label>
+																	<label><spring:message code="label.maNhanVien" /></label>
 																	<fmt:formatNumber type="number" var="hosonv.maNhanVien"
 																		minIntegerDigits="5" groupingUsed="false"
 																		value="${hoSoNhanVienTT.maNhanVien}" />
@@ -62,20 +63,21 @@
 													</div>
 												</div>
 												<h4 class="form-section">
-													<i class="ft-user"> Thông Tin Bằng Cấp</i>
+													<i class="ft-user"><spring:message
+															code="label.thongTinBangCap" /></i>
 												</h4>
 												<div class="row">
 													<div class="col-md-8">
 														<div class="row">
 															<div class="form-group col-sm-6">
-																<label>Tên Bằng Cấp</label>
+																<label><spring:message code="label.tenBangCap" /></label>
 																<form:input class="form-control" path="tenBangCap"
 																	placeholder="Tên Bằng Cấp" />
 																<form:errors path="tenBangCap"
 																	cssClass="invalid-feedback d-block" />
 															</div>
 															<div class="form-group col-sm-6">
-																<label>Loại Bằng Cấp</label>
+																<label><spring:message code="label.loaiBangCap" /></label>
 																<form:input class="form-control" path="loaiBangCap"
 																	placeholder="Loại Bằng Cấp" />
 																<form:errors path="loaiBangCap"
@@ -84,14 +86,14 @@
 														</div>
 														<div class="row">
 															<div class="form-group col-sm-6">
-																<label>Đơn Vị Cấp</label>
+																<label><spring:message code="label.noiCapBang" /></label>
 																<form:input class="form-control" path="donViCap"
 																	placeholder="Đơn Vị Cấp" />
 																<form:errors path="donViCap"
 																	cssClass="invalid-feedback d-block" />
 															</div>
 															<div class="form-group col-sm-6">
-																<label>Nơi Cấp</label>
+																<label><spring:message code="label.noiCap" /></label>
 																<form:input class="form-control" path="noiCap"
 																	placeholder="Nơi Cấp" />
 																<form:errors path="noiCap"
@@ -99,7 +101,8 @@
 															</div>
 															<div class="col-md-6">
 																<div class="form-group">
-																	<label for="date1">Ngày Cấp</label>
+																	<label for="date1"><spring:message
+																			code="label.ngayCap" /></label>
 																	<fieldset class="form-group position-relative">
 																		<form:input placeholder="Ngày Cấp" type="date"
 																			class="form-control round" id="date1" path="ngayCap" />

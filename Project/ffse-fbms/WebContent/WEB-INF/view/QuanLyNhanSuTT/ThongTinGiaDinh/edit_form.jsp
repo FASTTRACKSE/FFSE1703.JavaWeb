@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 
 <div class="app-content content container-fluid">
@@ -16,8 +17,8 @@
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/home" />'>Home</a></li>
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/quanlynhansutt/bang_cap/" />'>Danh sách
-									bằng cấp</a></li>
+								href='<c:url value="/quanlynhansutt/bang_cap/" />'><spring:message
+										code="label.thongTinBangCap" /></a></li>
 							<li class="breadcrumb-item active">Sửa Thông Tin Gia Đình</li>
 						</ol>
 					</div>
@@ -33,8 +34,9 @@
 						<div class="col-md-12">
 							<div class="card">
 								<div class="card-header">
-									<h4 class="card-title" id="horz-layout-basic">Thông Tin
-										Chính</h4>
+									<h4 class="card-title" id="horz-layout-basic">
+										<spring:message code="label.thongTinGiaDinh" />
+									</h4>
 									<a class="heading-elements-toggle"><i
 										class="fa fa-ellipsis-v font-medium-3"></i></a>
 									<div class="heading-elements">
@@ -52,13 +54,13 @@
 											action="/ffse-fbms/quanlynhansutt/gia_dinh/save">
 											<form:hidden path="id" />
 											<div class="col-xl-4 col-lg-6 col-md-12 mb-1">
-												<label>Mã Nhân Viên</label>
+												<label><spring:message code="label.maNhanVien" /></label>
 												<form:input class="form-control" readonly="true"
 													path="hoSoNhanVienTT.maNhanVien" placeholder="Mã Nhân Viên" />
 											</div>
 											<div class="col-xl-4 col-lg-6 col-md-12 mb-1">
 												<div class="form-group">
-													<label for="roundText">Họ Và Tên</label>
+													<label><spring:message code="label.hoTen" /></label>
 													<form:input path="hoTen" type="text" id="roundText"
 														class="form-control round" />
 													<form:errors path="hoTen"
@@ -67,7 +69,8 @@
 											</div>
 											<div class="col-xl-4 col-lg-6 col-md-12 mb-1">
 												<div class="form-group">
-													<label for="date1">Năm Sinh</label>
+													<label for="date1"><spring:message
+															code="label.ngaySinh" /></label>
 													<fieldset class="form-group position-relative">
 														<form:input placeholder="Năm Sinh" type="date"
 															class="form-control round" id="date1" path="namSinh" />
@@ -79,31 +82,36 @@
 											</div>
 											<div class="col-xl-4 col-lg-6 col-md-12 mb-1">
 												<div class="form-group">
-													<label>Giới Tính</label>
+													<label><spring:message code="label.gioiTinh" /></label>
 													<form:select class="custom-select form-control"
 														path="gioiTinh">
-														<option value="none">Chọn</option>
-														<form:option value="1">Nam</form:option>
-														<form:option value="2">Nữ</form:option>
+														<option value="none"><spring:message
+																code="label.chonGioiTinh" /></option>
+														<form:option value="1">
+															<spring:message code="label.nam" />
+														</form:option>
+														<form:option value="2">
+															<spring:message code="label.nu" />
+														</form:option>
 													</form:select>
 												</div>
 											</div>
 											<div class="col-xl-4 col-lg-6 col-md-12 mb-1">
-												<label>Quê Quán</label>
+												<label><spring:message code="label.queQuan" /></label>
 												<form:input class="form-control" path="queQuan"
 													placeholder="Quê Quán" />
 												<form:errors path="queQuan"
 													cssClass="invalid-feedback d-block" />
 											</div>
 											<div class="col-xl-4 col-lg-6 col-md-12 mb-1">
-												<label>Số Điện Thoại</label>
+												<label><spring:message code="label.dienThoai" /></label>
 												<form:input class="form-control" path="soDienThoai"
 													placeholder="Số Điện Thoại" />
 												<form:errors path="soDienThoai"
 													cssClass="invalid-feedback d-block" />
 											</div>
 											<div class="col-xl-4 col-lg-6 col-md-12 mb-1">
-												<label>Quan Hệ</label>
+												<label><spring:message code="label.quanHe" /></label>
 												<form:input class="form-control" path="quanHe"
 													placeholder="Quan Hệ" />
 												<form:errors path="quanHe"

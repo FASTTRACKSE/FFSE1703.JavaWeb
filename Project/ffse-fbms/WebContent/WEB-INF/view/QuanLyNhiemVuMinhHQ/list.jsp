@@ -65,7 +65,7 @@
 				<div role="group" aria-label="Button group with nested dropdown"
 					class="btn-group float-md-right" id="add-new">
 					<a href="<c:url value = "/QuanLyNhiemVuMinhHQ/create"/>"
-						class="btn btn-primary "><span class="fa fa-plus"></span> Thêm
+						class="btn btn-primary"><span class="fa fa-plus"></span> Thêm
 						mới</a>
 				</div>
 			</div>
@@ -148,11 +148,11 @@
 												</div>
 											</div>
 											<script type="text/javascript">
-												maDuAn =
+												maDuan =
 											<%=request.getParameter("maDuAn")%>
 												;
-												if (maDuAn != 0
-														&& maDuAn != null) {
+												if (maDuan != 0
+														&& maDuan != null) {
 													$("#maDuAn").val(maDuAn);
 												}
 												maNhanVien =
@@ -163,7 +163,7 @@
 													$("#maNhanVien").val(
 															maNhanVien);
 												}
-												maTrangThai =
+												IDtrangthai =
 											<%=request.getParameter("maTrangThai")%>
 												;
 												if (maTrangThai != 0
@@ -191,7 +191,8 @@
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach var="cv" items="${listCongViec}">
+											<c:forEach var="cv" items="${listCongViec}" begin="0"
+												varStatus="counter">
 												<tr>
 													<td>${cv.tenCongViec}</td>
 													<td>${cv.maCongViec.loaiCongViec}</td>
@@ -211,46 +212,43 @@
 											</c:forEach>
 										</tbody>
 									</table>
+<<<<<<< HEAD
 									<c:set scope="request" var="lastPage" value="${lastPage}" />
 									<% 	
-										String cPage = request.getParameter("page");
 										String query =  "&maDuAn="+request.getParameter("maDuAn")+"&maNhanVien="+request.getParameter("maNhanVien")+"&maTrangThai="+request.getParameter("maTrangThai");
-										boolean search = !(request.getParameter("maDuAn") == null);
-// 									<% String query = request.getQueryString();
-// 										if(query == null){
-// 											query="";
-// 										}else{
-// 											query =  "&" + request.getQueryString();
-// 										}
-										query = search ? query : "";
+										if(request.getParameter("maDuAn") == null){
+											query="";
+										}								
 									%> 
+=======
+>>>>>>> 2db75bb6fe7e6b324b49f4bc10e93017c1cd3e69
 								</div>
 							</div>
 						</div>
 						<nav aria-label="Page navigation example">
 							<ul class="pagination">
-								<li class="page-item"><a class="page-link" href="?page=1<%=query%>">First
+								<li class="page-item"><a class="page-link" href="?page=1">First
 										Page</a></li>
 								<c:if test="${currentPage > 2}">
 									<li class="page-item"><a class="page-link"
-										href="?page=${currentPage-2}<%=query%>">${currentPage-2}</a></li>
+										href="?page=${currentPage-2}">${currentPage-2}</a></li>
 								</c:if>
 								<c:if test="${currentPage > 1}">
 									<li class="page-item"><a class="page-link"
-										href="?page=${currentPage-1}<%=query%>">${currentPage-1}</a></li>
+										href="?page=${currentPage-1}">${currentPage-1}</a></li>
 								</c:if>
 								<li class="page-item active"><a class="page-link"
-									href="?page=${currentPage}<%=query%>">${currentPage}</a></li>
+									href="?page=${currentPage}">${currentPage}</a></li>
 								<c:if test="${currentPage < lastPage}">
 									<li class="page-item"><a class="page-link"
-										href="?page=${currentPage+1}<%=query%>">${currentPage+1}</a></li>
+										href="?page=${currentPage+1}">${currentPage+1}</a></li>
 								</c:if>
 								<c:if test="${currentPage < lastPage - 1}">
 									<li class="page-item"><a class="page-link"
-										href="?page=${currentPage+2}<%=query%>">${currentPage+2}</a></li>
+										href="?page=${currentPage+2}">${currentPage+2}</a></li>
 								</c:if>
 								<li class="page-item"><a class="page-link"
-									href="?page=${lastPage}<%=query%>">Last Page</a></li>
+									href="?page=${lastPage }">Last Page</a></li>
 							</ul>
 						</nav>
 					</div>
@@ -259,13 +257,5 @@
 		</div>
 	</div>
 </div>
-
-<script type="text/javascript">
-window.setTimeout(function() {
-	$(".alert").fadeTo(500, 0).slideUp(500, function(){
-		$(this).remove(); 
-	});
-}, 2500);
-</script>
 
 <jsp:include page="/WEB-INF/view/templates/footer.jsp" />

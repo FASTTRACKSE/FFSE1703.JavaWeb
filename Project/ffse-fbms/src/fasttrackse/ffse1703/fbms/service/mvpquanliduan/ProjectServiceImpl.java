@@ -64,4 +64,10 @@ public class ProjectServiceImpl implements ProjectService {
 		return projectDAO.getPm(maPhongBan);
 	}
 
+	@Override
+	public List<Projects> listProject(String search, int start, int maxRows) {
+		
+		return projectDAO.listProject(search, start, maxRows);
+	}
+
 }

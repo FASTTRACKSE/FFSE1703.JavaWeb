@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import fasttrackse.ffse1703.fbms.entity.quantridanhgia.DanhGiaBanThan;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.DanhGiaNhanVien;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.KyDanhGia;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.LichDanhGia;
+import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 import fasttrackse.ffse1703.fbms.service.quantridanhgia.PhongNhanSuService;
 import fasttrackse.ffse1703.fbms.service.security.PhongBanService;
 
@@ -25,13 +27,13 @@ import fasttrackse.ffse1703.fbms.service.security.PhongBanService;
 public class PhongNhanSuController {
 
 	private int maxItems = 3;
-	
+
 	private int currentPageKy = 1;
-	
+
 	private int currentPageLich = 1;
-	
+
 	private int currentPageDanhGia = 1;
-	
+
 	private PhongBanService phongBanService;
 
 	private PhongNhanSuService service;
@@ -42,7 +44,7 @@ public class PhongNhanSuController {
 	}
 
 	@Autowired
-	@Qualifier(value ="phongNhanSuServiceImpl")
+	@Qualifier(value = "phongNhanSuServiceImpl")
 	public void setService(PhongNhanSuService service) {
 		this.service = service;
 	}
@@ -52,12 +54,12 @@ public class PhongNhanSuController {
 		if (session.getAttribute("pageKy") != null) {
 			currentPageKy = (int) session.getAttribute("pageKy");
 		}
-		return "redirect:/quantridanhgia/phongnhansu/kydanhgia/"+currentPageKy;
+		return "redirect:/quantridanhgia/phongnhansu/kydanhgia/" + currentPageKy;
 	}
-	
+
 	@RequestMapping("/kydanhgia/{page}")
 	private String showListKyDanhgia(@PathVariable(required = false) int page, Model model, HttpSession session) {
-		int start = (page - 1)* maxItems;
+		int start = (page - 1) * maxItems;
 		model.addAttribute("command", new KyDanhGia());
 		model.addAttribute("total", Math.ceil((double) service.getListKyDanhGia().size() / (double) maxItems));
 		session.setAttribute("pagaKy", page);
@@ -92,15 +94,15 @@ public class PhongNhanSuController {
 
 	@RequestMapping("/lichdanhgia")
 	private String redirectListLichDanhgia(HttpSession session) {
-		if (session.getAttribute("pageKy") != null) {
-			currentPageKy = (int) session.getAttribute("pageLich");
+		if (session.getAttribute("pageLich") != null) {
+			currentPageLich = (int) session.getAttribute("pageLich");
 		}
-		return "redirect:/quantridanhgia/phongnhansu/lichdanhgia/"+currentPageLich;
+		return "redirect:/quantridanhgia/phongnhansu/lichdanhgia/" + currentPageLich;
 	}
-	
+
 	@RequestMapping("/lichdanhgia/{page}")
 	private String showListLichDanhgia(Model model, @PathVariable(required = false) int page, HttpSession session) {
-		int start = (page - 1)* maxItems;
+		int start = (page - 1) * maxItems;
 		model.addAttribute("command", new DanhGiaNhanVien());
 		session.setAttribute("pageLich", page);
 		model.addAttribute("total", Math.ceil((double) service.getListLichDanhGia().size() / (double) maxItems));
@@ -120,11 +122,14 @@ public class PhongNhanSuController {
 
 	@RequestMapping("/lichdanhgia/start/{id}")
 	private String activeLichDanhgia(RedirectAttributes model, @PathVariable int id) {
-		if (service.checkActiveLichDanhGia() < 1) {
-			LichDanhGia lich = service.getLichDanhGia(id);
+		LichDanhGia lich = service.getLichDanhGia(id);
+		String kyDanhGia = lich.getKyDanhGia();
+		String phongBan = lich.getPhongBan();
+		if (service.checkActiveLichDanhGia(phongBan) < 1) {
 			lich.setIsActive(1);
 			service.activeLichDanhGia(lich);
 			createPhanCongDanhgia(lich.getKyDanhGia(), lich.getPhongBan());
+			createDanhGiaBanThan(kyDanhGia, phongBan);
 		} else {
 			model.addAttribute("message", "<script>alert('Đã có hoạt động đánh giá tồn tại')</script>");
 		}
@@ -134,43 +139,66 @@ public class PhongNhanSuController {
 	@RequestMapping("/lichdanhgia/end/{id}")
 	private String deactiveLichDanhgia(Model model, @PathVariable int id) {
 		LichDanhGia lich = service.getLichDanhGia(id);
-		lich.setIsActive(2);
-		service.activeLichDanhGia(lich);
+		String phongBan = lich.getPhongBan();
+		if (service.countDanhGiaPhongBan(phongBan) == service.countNhanVienPhongBan(phongBan)) {
+			lich.setIsActive(2);
+			service.activeLichDanhGia(lich);
+		}
 		return "redirect:/quantridanhgia/phongnhansu/lichdanhgia";
 	}
 
 	private void createPhanCongDanhgia(String kyDanhGia, String phongBan) {
-		List<Integer> listNhanVien = service.getNhanVienPhongBan(phongBan);
+		List<HoSoNhanVien> listNhanVien = service.getNhanVienPhongBan(phongBan);
 		List<DanhGiaNhanVien> listPhanCong = new ArrayList<>();
 		for (int i = 0; i < listNhanVien.size(); i++) {
-			int nhanvien = listNhanVien.get(i);
+			int nhanvien = listNhanVien.get(i).getMaNhanVien();
 			for (int j = 1; j < 4; j++) {
 				DanhGiaNhanVien pc = new DanhGiaNhanVien();
 				pc.setKyDanhGia(kyDanhGia);
 				pc.setPhongBan(phongBan);
-				pc.setNhanVienDanhGia(nhanvien);;
+				pc.setNhanVienDanhGia(nhanvien);
+				;
 				if (i + j < listNhanVien.size()) {
-					pc.setNhanVien(listNhanVien.get(i + j));
+					pc.setNhanVien(listNhanVien.get(i + j).getMaNhanVien());
 				} else {
-					pc.setNhanVien(listNhanVien.get(i + j - listNhanVien.size()));
+					pc.setNhanVien(listNhanVien.get(i + j - listNhanVien.size()).getMaNhanVien());
 				}
 				listPhanCong.add(pc);
 			}
 		}
-		service.insertPhanCongDanhGia(listPhanCong);
+		service.createPhanCongDanhGia(listPhanCong);
 	}
-	
+
+	private void createDanhGiaBanThan(String kyDanhGia, String phongBan) {
+		List<HoSoNhanVien> listNhanVien = service.getNhanVienPhongBan(phongBan);
+		List<DanhGiaBanThan> listDanhGia = new ArrayList<>();
+		for (HoSoNhanVien x : listNhanVien) {
+			DanhGiaBanThan danhGia = new DanhGiaBanThan();
+			danhGia.setKyDanhGia(kyDanhGia);
+			danhGia.setPhongBan(phongBan);
+			danhGia.setNhanVien(x.getMaNhanVien());
+			danhGia.setKyLuatCongViec_MT(" ");
+			danhGia.setTinhThanLamViec_MT(" ");
+			danhGia.setKhoiLuongCongViec_MT(" ");
+			danhGia.setKetQuaCongViec_MT(" ");
+			danhGia.setKyNangTichLuy_MT(" ");
+			danhGia.setDinhHuong(" ");
+			listDanhGia.add(danhGia);
+		}
+		service.createDanhGiaBanThan(listDanhGia);
+	}
+
 	@RequestMapping("/danhsachdanhgia")
 	private String redirectListDanhgiaBanThan(HttpSession session) {
 		if (session.getAttribute("pageKy") != null) {
 			currentPageDanhGia = (int) session.getAttribute("pageDanhGia");
 		}
-		return "redirect:/quantridanhgia/phongnhansu/danhsachdanhgia/"+currentPageDanhGia;
+		return "redirect:/quantridanhgia/phongnhansu/danhsachdanhgia/" + currentPageDanhGia;
 	}
 
 	@RequestMapping("/danhsachdanhgia/{page}")
-	private String showListDanhgiaBanThan(Model model,@PathVariable(required = false) int page , HttpSession session) {
-		int start = (page - 1)* maxItems;
+	private String showListDanhgiaBanThan(Model model, @PathVariable(required = false) int page, HttpSession session) {
+		int start = (page - 1) * maxItems;
 		model.addAttribute("command", new LichDanhGia());
 		session.setAttribute("pageDanhGia", page);
 		model.addAttribute("total", Math.ceil((double) service.getListDanhGiaBanThan().size() / (double) maxItems));
@@ -179,5 +207,5 @@ public class PhongNhanSuController {
 		model.addAttribute("listDanhgia", service.getListDanhGiaBanThan(start, maxItems));
 		return "QuanTriDanhGia/phongnhansu/danhsachdanhgia";
 	}
-	
+
 }

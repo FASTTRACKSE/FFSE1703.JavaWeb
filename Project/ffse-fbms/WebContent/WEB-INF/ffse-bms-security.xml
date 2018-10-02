@@ -8,7 +8,6 @@
 		http://www.springframework.org/schema/security 
 		http://www.springframework.org/schema/security/spring-security.xsd">
 	<http auto-config="true">
-		<intercept-url pattern="/**" access="permitAll"/>
 		<intercept-url pattern="/login**" access="permitAll"/>
 		<intercept-url pattern="/logout**" access="permitAll"/>
 		<intercept-url pattern="/home**" access="permitAll"/>
@@ -18,7 +17,9 @@
 		<intercept-url pattern="/QuanTriHeThong/phan-quyen/**" access="hasAnyRole('ROLE_SADM')" />
 		
 		<!-- Phân quyền module QLVN - HuongVTL :: START -->
-		<intercept-url pattern="/QuanLyVangNghi/**" access="permitAll"/>
+		
+		<intercept-url pattern="/QuanLyVangNghi/duyetvong1/**"  access="hasRole('ROLE_PNSTPP')"/>
+		<intercept-url pattern="/QuanLyVangNghi/duyetvong2/**"  access="hasRole('ROLE_PGD')"/>
 		<!-- Phân quyền module QLVN - HuongVTL :: END -->
 		
 		<access-denied-handler error-page="/403"/>		

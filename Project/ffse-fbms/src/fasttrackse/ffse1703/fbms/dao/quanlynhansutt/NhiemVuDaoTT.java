@@ -15,5 +15,5 @@ public interface NhiemVuDaoTT {
 
 	public void delete(int id);
 	
-	public List<NhiemVuTT> getByMaNhanVien(int idNv);
+	public List<NhiemVuTT> getByMaNhanVien(int maNhanVien);
 }

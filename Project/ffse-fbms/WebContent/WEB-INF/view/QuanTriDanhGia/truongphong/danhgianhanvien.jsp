@@ -39,12 +39,16 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<th scope="row">1</th>
-										<td>Mark</td>
-										<td>Otto</td>
-										<td>@mdo</td>
-									</tr>
+									<c:forEach items="${listNhanVien }" var="x" varStatus="stt">
+										<tr>
+											<th scope="row">${stt.index }</th>
+											<td>{x.nhanVien}</td>
+											<td>${x.xepLoai }</td>
+											<td>
+												<a href="">Đánh giá</a>
+											</td>
+										</tr>
+									</c:forEach>
 								</tbody>
 							</table>
 						</div>

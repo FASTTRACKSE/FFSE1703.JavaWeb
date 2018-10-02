@@ -6,6 +6,7 @@ import fasttrackse.ffse1703.fbms.entity.quantridanhgia.DanhGiaBanThan;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.DanhGiaNhanVien;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.KyDanhGia;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.LichDanhGia;
+import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 
 public interface PhongNhanSuService {
 
@@ -21,7 +22,7 @@ public interface PhongNhanSuService {
 
 	public void deleteKyDanhGia(KyDanhGia kyDanhGia);
 
-	public List<Integer> getNhanVienPhongBan(String phongBan);
+	public List<HoSoNhanVien> getNhanVienPhongBan(String phongBan);
 
 	public List<LichDanhGia> getListLichDanhGia();
 	
@@ -33,16 +34,21 @@ public interface PhongNhanSuService {
 
 	public LichDanhGia getLichDanhGia(int id);
 	
-	public int checkActiveLichDanhGia();
+	public int checkActiveLichDanhGia(String phongBan);
 
-	public int checkCompleteLichDanhGia();
+	public int countNhanVienPhongBan(String phongBan);
+	
+	public int countDanhGiaPhongBan(String phongBan);
+	
+	public int checkCompleteLichDanhGia(String phongBan);
 	
 	public void activeLichDanhGia(LichDanhGia lichDanhGia);
 
-	public void insertPhanCongDanhGia(List<DanhGiaNhanVien> pc);
+	public void createPhanCongDanhGia(List<DanhGiaNhanVien> pc);
 
 	public List<DanhGiaBanThan> getListDanhGiaBanThan();
 	
 	public List<DanhGiaBanThan> getListDanhGiaBanThan(int start, int maxItems);
 
+	public void createDanhGiaBanThan(List<DanhGiaBanThan> danhGia);
 }

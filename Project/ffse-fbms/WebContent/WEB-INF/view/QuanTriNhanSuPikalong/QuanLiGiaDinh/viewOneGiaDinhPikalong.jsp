@@ -2,39 +2,38 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 <div class="app-content content container-fluid">
 	<div class="content-wrapper">
-		<h3 class="content-header-title mb-0">Gia Đình Của Nhân
-			Viên</h3>
-		<h4>${hosonhanvien.hoTenNv}</h4>
-		<p>Chức Danh: ${hosonhanvien.maChucDanh } // Phòng:
+		<h3 class="content-header-title mb-0"><spring:message code="label.thongTinGiaDinh" /></h3>
+		<h4><spring:message code="label.ten" />: ${hosonhanvien.hoTenNv}</h4>
+		<p><spring:message code="label.maChucDanh" />: ${hosonhanvien.maChucDanh } // <spring:message code="label.maPhongBan" />:
 			${hosonhanvien.maPhongBan }</p>
 		<div class="row breadcrumbs-top">
 			<div class="breadcrumb-wrapper col-xs-12">
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a
-						href='<c:url value="/quantrinhansu/hosonhanvien/" />'>Danh
-							Sách Nhân Viên</a></li>
+						href='<c:url value="/quantrinhansu/hosonhanvien/" />'><spring:message code="label.danhSachNhanVien" /></a></li>
 							<li class="breadcrumb-item"><a
-						href='<c:url value="/quantrinhansu/hosonhanvien/view/${maNv }" />'>Thông Tin Nhân Viên</a></li>
-					<li class="breadcrumb-item active">Gia Đình Nhân Viên</li>
+						href='<c:url value="/quantrinhansu/hosonhanvien/view/${maNv }" />'><spring:message code="label.thongTinCaNhan" /></a></li>
+					<li class="breadcrumb-item active"><spring:message code="label.thongTinGiaDinh" /></li>
 				</ol>
 			</div>
 		</div>
 		<div class="table-responsive">
 			<a href="/ffse-fbms/QuanTriNhanSuPikalong/QuanLiGiaDinh/add/${maNv}"
-				class="btn btn-outline-success round btn-min-width mr-1 mb-1">Thêm</a>
+				class="btn btn-outline-success round btn-min-width mr-1 mb-1"><spring:message code="label.them" /></a>
 			<table class="table mb-0">
 				<thead>
 					<tr>
-						<th>Họ Tên</th>
-						<th>Quan Hệ</th>
-						<th>Quê Quán</th>
-						<th>Nơi Ở Hiện Nay</th>
-						<th>Nghề Nghiệp</th>
-						<th>SĐT</th>
-						<th>Chức Năng</th>
+						<th><spring:message code="label.hoTen" /></th>
+						<th><spring:message code="label.quanHe" /></th>
+						<th><spring:message code="label.queQuan" /></th>
+						<th><spring:message code="label.noiOHienNay" /></th>
+						<th><spring:message code="label.ngheNghiep" /></th>
+						<th><spring:message code="label.sdt" /></th>
+						<th><spring:message code="label.chucNang" /></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -48,10 +47,10 @@
 							<td>${giadinh.sdt}</td>
 							<td><a
 								href='<c:url value = "/QuanTriNhanSuPikalong/QuanLiGiaDinh/edit/${giadinh.id}"></c:url>'
-								class="btn btn-outline-info round">Sửa</a> <a
+								class="btn btn-outline-info round"><spring:message code="label.chinhSua" /></a> <a
 								href='<c:url value = "/QuanTriNhanSuPikalong/QuanLiGiaDinh/remove/${giadinh.id}"></c:url>'
 								class="btn btn-outline-danger round "
-								onclick="return confirm('Bạn có muốn xóa Thông Tin này?');">Xóa</a></td>
+								onclick="return confirm('Bạn có muốn xóa Thông Tin này?');"><spring:message code="label.xoa" /></a></td>
 						</tr>
 					</c:forEach>
 				</tbody>

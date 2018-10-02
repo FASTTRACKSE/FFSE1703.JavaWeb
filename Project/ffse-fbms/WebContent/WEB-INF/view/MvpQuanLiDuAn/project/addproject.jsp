@@ -205,6 +205,7 @@
 
 						<div class="form-group">
 							<label for="projectinput6">Trạng thái</label>
+							<form:hidden path="status.idStatus" value="13"/>
 							<form:select multiple="single" path="status.idStatus"
 								class="form-control " disabled="true">
 								<form:options items="${status}" itemValue="idStatus"

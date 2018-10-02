@@ -115,8 +115,7 @@ public class ProjectController {
 			status = "";
 		}
 		String search = khachHang + roomProject + domain + status;
-		
-		
+				
 		int maxRows = 5;
 		int start = (pageId - 1) * maxRows;
 		List<Projects> list = projectService.listProject(search, start, maxRows);

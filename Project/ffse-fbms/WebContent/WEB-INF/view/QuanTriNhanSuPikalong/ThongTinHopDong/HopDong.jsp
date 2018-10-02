@@ -20,12 +20,25 @@
 				</ol>
 			</div>
 		</div>
-		<a href="/ffse-fbms/QuanTriNhanSu/quanlihopdong/formaddhd/${maNv}"><button
-				class="btn btn-success round btn-min-width mr-1 mb-1">Thêm
-				Mới</button></a>
+		<c:choose>
+			<c:when test="${lastTrangThai == '1' }">
+				<a href="/ffse-fbms/QuanTriNhanSu/quanlihopdong/formaddhd/${maNv}"><button
+						class="btn btn-outline-primary round btn-min-width mr-1 mb-1"><i class = "ft-plus-circle"> </i>Thêm
+						Mới</button></a>
+			</c:when>
+			<c:otherwise>
+				<c:forEach items="${listHopDong}" var="x" varStatus="stt">
+					<a href="formedithd/${x.maHopDong}"><button
+							class="btn btn-outline-primary round btn-min-width mr-1 mb-1"><i class = "ft-edit"> </i>Sửa
+							Đổi</button></a>
+				</c:forEach>
+			</c:otherwise>
+		</c:choose>
+		<div class="col-12">
+		<div class="card">
 		<div class="content-wrapper">
 			<table class="table mb-0">
-				<thead>
+				<thead class="bg-info">
 					<tr>
 
 						<th>Mã Nhân Viên</th>
@@ -47,16 +60,14 @@
 							<td>${x.loaiHopDongPikalong.tenHopDong}</td>
 							<td>${x.ngayKiKet}</td>
 							<td>${x.ngayKetThuc}</td>
-							<td>${x.luongThang13}</td>
-							<td>${x.trangThai}</td>
+							<td>${x.luongThang13 == 1 ? 'Có' : 'Không'}</td>
+							<td>${x.trangThai == 1 ? 'Hết hợp đồng' : 'Còn hợp đồng'}</td>
 							<td>
 								<div class="fonticon-container">
 									<div style="line-height: 0; height: 0; margin-bottom: 0;"
 										class="fonticon-wrap">
 										<a href="view/${x.hoSoNhanVienPikalong.maNv}"><i
-											style="font-size: 1em;" class="ft-eye"></i></a> <a
-											href="formedithd/${x.maHopDong}"><i
-											style="font-size: 1em;" class="ft-edit-2"></i></a>
+											style="font-size: 1em;" class="ft-eye"></i></a>
 									</div>
 								</div>
 							</td>
@@ -67,5 +78,6 @@
 		</div>
 	</div>
 </div>
-
+</div>
+</div>
 <jsp:include page="/WEB-INF/view/templates/footer.jsp" />

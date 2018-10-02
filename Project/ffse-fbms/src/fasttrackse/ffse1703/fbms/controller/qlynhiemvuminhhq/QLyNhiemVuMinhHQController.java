@@ -57,7 +57,9 @@ public class QLyNhiemVuMinhHQController {
 		}
 		String search = maDuanSearch + maNhanVienSearch + IDtrangthaiSearch;
 
+
 		int perPage = 2;
+
 		int totalPage = totalPage(perPage);
 		int start = (currentPage - 1) * perPage;
 		model.addAttribute("listCongViec", congViecService.findAllForPaging(start, perPage, search));

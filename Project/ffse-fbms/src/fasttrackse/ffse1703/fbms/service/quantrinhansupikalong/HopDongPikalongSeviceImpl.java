@@ -53,6 +53,12 @@ public class HopDongPikalongSeviceImpl implements HopDongPikalongSevice {
 		return this.hopDongPikalongDao.getLastMaHd();
 	}
 	
+	@Override
+	@Transactional
+	public String getLastTrangThaiHd(String maNv) {
+		return this.hopDongPikalongDao.getLastTrangThaiHd(maNv);
+	}
+	
 	@Override 
 	@Transactional
 	public HopDongPikalong getMaHopDong(int maHopDong) {

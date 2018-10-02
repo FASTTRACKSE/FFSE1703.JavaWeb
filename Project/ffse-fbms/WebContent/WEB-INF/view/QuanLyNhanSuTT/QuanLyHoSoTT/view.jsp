@@ -51,7 +51,7 @@ i.fa {
 									href="<c:url value = "/quanlynhansutt/gia_dinh/viewOneGiaDinh/${maNhanVien}"/>" class="dropdown-item"><i
 									class="fa fa-users"></i> <spring:message
 										code="label.thongTinGiaDinh" /></a> <a
-									href="<c:url value = "#"/>" class="dropdown-item"><i
+									href="<c:url value = "/quanlynhansutt/kinh_Nghiem/viewOneKinhNghiem/${maNhanVien}"/>" class="dropdown-item"><i
 									class="fa fa-file-code-o"></i> <spring:message
 										code="label.thongTinKinhNghiem" /></a> <a
 									href="<c:url value = "/quanlynhansutt/hop_dong/viewOneHopDong/${maNhanVien}"/>"

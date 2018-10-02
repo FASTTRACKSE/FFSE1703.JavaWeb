@@ -10,6 +10,7 @@ public interface HopDongPikalongSevice {
 	public void update(HopDongPikalong hd);
 	public String getAutoId();
 	public String getLastMaHd();
+	public String getLastTrangThaiHd(String maNv);
 	public HopDongPikalong getMaHopDong(int maHopDong);
 	public HopDongPikalong getHopDongById(String maNv);
 	List<HopDongPikalong> viewOne(String maNv);

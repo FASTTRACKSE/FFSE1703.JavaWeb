@@ -212,7 +212,6 @@
 											</c:forEach>
 										</tbody>
 									</table>
-<<<<<<< HEAD
 									<c:set scope="request" var="lastPage" value="${lastPage}" />
 									<% 	
 										String query =  "&maDuAn="+request.getParameter("maDuAn")+"&maNhanVien="+request.getParameter("maNhanVien")+"&maTrangThai="+request.getParameter("maTrangThai");
@@ -220,9 +219,7 @@
 											query="";
 										}								
 									%> 
-=======
->>>>>>> 2db75bb6fe7e6b324b49f4bc10e93017c1cd3e69
-								</div>
+									</div>
 							</div>
 						</div>
 						<nav aria-label="Page navigation example">

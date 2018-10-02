@@ -11,9 +11,12 @@ public interface NhiemVuService {
 
 	public List<Nhiemvu> getByDuAn(String idProjects);
 
+	public List<Nhiemvu> getByDuAn(String idProjects,String search,int start,int maxRows);
+
 	public void update(Nhiemvu nhiemVu);
 
 	public void delete(int id);
 	
 	public List<Nhiemvu> getByMaNhanVien(String idNv);
+	public int countNhiemvu(String idProjects, String search);
 }

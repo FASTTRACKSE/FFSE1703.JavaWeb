@@ -49,4 +49,16 @@ private NhiemVuDao nhiemVuDao;
 		return nhiemVuDao.getByMaNhanVien(idNv);
 	}
 
+	@Override
+	public List<Nhiemvu> getByDuAn(String idProjects, String search,int start,int maxRows) {
+		
+		return nhiemVuDao.getByDuAn(idProjects, search, start, maxRows);
+	}
+
+	@Override
+	public int countNhiemvu(String idProjects, String search) {
+		// TODO Auto-generated method stub
+		return nhiemVuDao.countNhiemvu(idProjects, search);
+	}
+
 }

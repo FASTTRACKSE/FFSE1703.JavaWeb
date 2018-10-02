@@ -79,8 +79,9 @@
 									<form:select multiple="single" path="khachHang.idKhachHang"  
 										class="form-control">
 										<form:option value="" selected = "true" disabled = "true"> --Chọn khach hang--</form:option>
-										<form:options items="${khachHang}" itemValue="idKhachHang"
-											itemLabel="fullname" />
+										<c:forEach items="${khachHang}" var="kh">
+										<option value="${kh.idKhachHang }">${kh.idKhachHang } - ${kh.fullname }</option>
+									</c:forEach>
 									</form:select>
 								</div>
 							</div>

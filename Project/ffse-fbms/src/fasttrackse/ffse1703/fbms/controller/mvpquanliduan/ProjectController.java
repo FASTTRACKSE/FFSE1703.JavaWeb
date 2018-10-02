@@ -130,6 +130,7 @@ public class ProjectController {
 		model.addAttribute("phongDuAns", request.getParameter("roomproject"));
 		model.addAttribute("domains", request.getParameter("domain"));
 		model.addAttribute("statuss", request.getParameter("status"));
+		model.addAttribute("totalProject", totalProject);
 		session.setAttribute("pageIds", pageId);
 		
 		return "MvpQuanLiDuAn/project/listproject";
@@ -273,10 +274,10 @@ public class ProjectController {
 
 			if (i == listPM.size() - 1) {
 				json += "{\"maNhanVien\":" + "\"" + listPM.get(i).getMaNv() + "\"" + ", \"tenNhanVien\" :" + "\""
-						+ listPM.get(i).getHoTenNv() + "\"" + "}";
+						+ listPM.get(i).getMaNv() +" - " + listPM.get(i).getHoTenNv() + "\"" + "}";
 			} else {
 				json += "{\"maNhanVien\":" + "\"" + listPM.get(i).getMaNv() + "\"" + ", \"tenNhanVien\" :" + "\""
-						+ listPM.get(i).getHoTenNv() + "\"" + "},";
+						+ listPM.get(i).getMaNv()+" - " + listPM.get(i).getHoTenNv() + "\"" + "},";
 			}
 		}
 		json += "]";

@@ -75,6 +75,7 @@
 							</c:forEach>
 						</tbody>
 					</table>
+						<c:if test="${totalPage > 1}">
 					<div class="text-center" style="float: right;margin-right: 50px">
 						<ul class="pagination firstLast1-links">
 							<c:if test="${pageId > 1}">
@@ -91,6 +92,7 @@
 							</c:if>
 						</ul>
 					</div>
+					</c:if>
 				</div>
 			</div>
 		</div>

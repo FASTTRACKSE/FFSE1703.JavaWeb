@@ -47,7 +47,9 @@
 						</div>
 					</c:if>
 					<form method="GET" action="">
-						<div class="col-md-3"></div>
+						<div class="col-md-3">
+						<h6><b>${totalProject} Dự án.</b></h6>
+						</div>
 						<div class="col-md-2">
 							<div class="form-group">
 								Khách hàng <select name="khachhang"
@@ -135,7 +137,7 @@
 						</script>
 
 					</form>
-					<table class="table table-striped"
+					<table class="table table-bordered"
 						style="text-align: center; background: white">
 						<thead style="background: #AEEEEE">
 							<tr>
@@ -156,7 +158,7 @@
 									<td style="text-align: left">${project.khachHang.fullname}</td>
 									<td style="text-align: left">${project.roomProject.tenPhongBan}</td>
 									<td style="text-align: left">${project.domain.nameDomain}</td>
-									<td style="text-align: left;color: ${project.status.color}"><h6>
+									<td style="color: ${project.status.color}"><h6>
 											<b>${project.status.nameStatus}</b>
 										</h6></td>
 

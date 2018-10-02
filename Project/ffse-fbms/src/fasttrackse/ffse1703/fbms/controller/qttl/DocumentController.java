@@ -3,6 +3,10 @@ package fasttrackse.ffse1703.fbms.controller.qttl;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -73,12 +77,12 @@ public class DocumentController {
 		model.addAttribute("listStatus", liststatus);
 		List<Room> listroom = documentService.listRoom();
 		model.addAttribute("listRoom", listroom);
-		model.addAttribute("command", new Document());
+		model.addAttribute("document", new Document());
 		return "QuanTriTaiLieu/TaiLieu/addTaiLieu";
 	}
 	
 	@RequestMapping(value = { "/creat" }, method = RequestMethod.POST)
-	public String creat(@ModelAttribute("document") @Valid Document document, BindingResult result, @RequestParam MultipartFile file, HttpSession session,
+	public String creat(@ModelAttribute("document") @Valid Document document, BindingResult result, @RequestParam("file") MultipartFile file, HttpSession session,
 			RedirectAttributes redirectAttributes) throws Exception {
 		
 		DiskFileItemFactory factory = new DiskFileItemFactory();
@@ -90,6 +94,9 @@ public class DocumentController {
 
 		String uploadPath = context.getRealPath(UPLOAD_DIRECTORY);
 		System.out.println(uploadPath);
+		
+		String fileName = file.getOriginalFilename();
+		document.setFileName(fileName);
 
 		byte[] bytes = file.getBytes();
 		BufferedOutputStream stream = new BufferedOutputStream(
@@ -132,7 +139,8 @@ public class DocumentController {
 
 	}
 	@RequestMapping(value = "/update")
-	public String update(@ModelAttribute("document") @Valid Document document, BindingResult result, RedirectAttributes redirectAttributes) {
+	public String update(@ModelAttribute("document") @Valid Document document, BindingResult result, RedirectAttributes redirectAttributes) 
+			 {
 		if (result.hasErrors()) {
 			return "QuanTriTaiLieu/TaiLieu/editTaiLieu";
 		}
@@ -149,4 +157,4 @@ public class DocumentController {
 
 	}
 	
-}
+	}

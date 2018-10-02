@@ -62,10 +62,10 @@
 			</div>
 			<div class="form-group col-sm-6">
 				<label>File</label>
-				<form:input class="form-control" path="file" placeholder="File" />
-				<form:errors path="file" cssStyle="color: red"></form:errors> 
-
+				<input name="file" id="fileToUpload" type="File"  />
+				<form:errors path="fileName" cssStyle="color: red"></form:errors> 
 			</div>
+			
 			<div class="form-group col-sm-6">
 				<label>Mã trạng thái</label>
 				<form:select cssClass="form-control" path="ma_trang_thai">

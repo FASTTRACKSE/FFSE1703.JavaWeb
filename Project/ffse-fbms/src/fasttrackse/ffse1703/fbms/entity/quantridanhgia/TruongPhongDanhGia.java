@@ -12,6 +12,7 @@ import org.hibernate.annotations.NaturalId;
 @Table(name="truong_phong_danh_gia")
 @Entity
 public class TruongPhongDanhGia {
+	
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,8 +49,8 @@ public class TruongPhongDanhGia {
 	@Column(name = "xep_loai")
 	private int xepLoai;
 
-	@Column(name = "is_active")
-	private int isActive;
+	@Column(name = "is_delete")
+	private int isDelete;
 
 	public TruongPhongDanhGia() {
 		super();
@@ -143,12 +144,12 @@ public class TruongPhongDanhGia {
 		this.xepLoai = xepLoai;
 	}
 
-	public int getIsActive() {
-		return isActive;
+	public int getIsDelete() {
+		return isDelete;
 	}
 
-	public void setIsActive(int isActive) {
-		this.isActive = isActive;
+	public void setIsDelete(int isDelete) {
+		this.isDelete = isDelete;
 	}
 
 }

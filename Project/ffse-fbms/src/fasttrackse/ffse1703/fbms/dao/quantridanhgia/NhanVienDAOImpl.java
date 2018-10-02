@@ -9,7 +9,9 @@ import org.springframework.stereotype.Repository;
 
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.DanhGiaBanThan;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.DanhGiaNhanVien;
+import fasttrackse.ffse1703.fbms.entity.quantridanhgia.LichDanhGia;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.TruongPhongDanhGia;
+import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 
 @Repository
 public class NhanVienDAOImpl implements NhanVienDAO {
@@ -87,13 +89,46 @@ public class NhanVienDAOImpl implements NhanVienDAO {
 	@Override
 	public List<DanhGiaNhanVien> getListNhanVienDanhGia(int maNhanVien) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("from DanhGiaNhanVien where nhanVien = :nhanVien").setParameter("nhanVien", maNhanVien).list();
+		return session.createQuery("from DanhGiaNhanVien where nhanVien = :nhanVien")
+				.setParameter("nhanVien", maNhanVien).list();
 	}
 
 	@Override
 	public DanhGiaNhanVien getNhanVienDanhGia(int id) {
 		Session session = sessionFactory.getCurrentSession();
 		return session.get(DanhGiaNhanVien.class, id);
+	}
+
+	@Override
+	public LichDanhGia getLichDanhGiaActive(String phongBan) {
+		Session session = sessionFactory.getCurrentSession();
+		return session.byNaturalId(LichDanhGia.class).using("phongBan", phongBan).using("isActive", 1).load();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<HoSoNhanVien> getListNhanVienLimit(int id, String phongBan) {
+		Session session = sessionFactory.getCurrentSession();
+		return session.createQuery(
+				"from HoSoNhanVien where phongBan.maPhongBan = :phongBan and chucDanh.maChucDanh = 'NV'")
+				.setParameter("phongBan", phongBan).setFirstResult(id).setMaxResults(5).list();
+	}
+
+	@Override
+	public void createDanhGiaNhanVien(List<DanhGiaNhanVien> danhGia) {
+		Session session = sessionFactory.getCurrentSession();
+		for (DanhGiaNhanVien x : danhGia) {
+			session.persist(x);
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<HoSoNhanVien> getListNhanVienPhongBan(String phongBan) {
+		Session session = sessionFactory.getCurrentSession();
+		return session
+				.createQuery("from HoSoNhanVien where phongBan.maPhongBan = :phongBan and chucDanh.maChucDanh = 'NV'")
+				.setParameter("phongBan", phongBan).list();
 	}
 
 }

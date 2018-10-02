@@ -36,9 +36,9 @@ public class TruongPhongDAOImpl implements TruongPhongDAO {
 	}
 
 	@Override
-	public void insertDanhGiaNhanVien(TruongPhongDanhGia danhGia) {
+	public void updateDanhGiaNhanVien(TruongPhongDanhGia danhGia) {
 		Session session = sessionFactory.getCurrentSession();
-		session.persist(danhGia);
+		session.update(danhGia);
 	}
 
 	@Override
@@ -65,20 +65,20 @@ public class TruongPhongDAOImpl implements TruongPhongDAO {
 	@Override
 	public List<DanhGiaBanThan> getListDanhGiaBanThan(String phongBan) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("from DanhGiaBanThan where phongBan = :phongBan").setParameter("phongBan", phongBan).list();
+		return session.createQuery("from DanhGiaBanThan where phongBan = :phongBan and trangThai = 2").setParameter("phongBan", phongBan).list();
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<HoSoNhanVien> getNhanVienPhongBan(String phongBan) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("from HoSoNhanVien where phongBan.maPhongBan = ? and chucDanh.maChucDanh = 'NV'").setParameter(1, phongBan).list();
+		return session.createQuery("from HoSoNhanVien where phongBan.maPhongBan = :phongBan and chucDanh.maChucDanh = 'NV'").setParameter("phongBan", phongBan).list();
 	}
 
 	@Override
 	public LichDanhGia getActiveLichDanhGia(String phongBan) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.byNaturalId(LichDanhGia.class).using("phongBan", phongBan).load();
+		return session.byNaturalId(LichDanhGia.class).using("phongBan", phongBan).using("isActive", 1).load();
 	}
 
 }

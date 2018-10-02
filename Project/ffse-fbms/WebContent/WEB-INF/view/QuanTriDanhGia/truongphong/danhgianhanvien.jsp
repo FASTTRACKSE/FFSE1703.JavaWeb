@@ -33,20 +33,18 @@
 								<thead class="thead-dark">
 									<tr>
 										<th scope="col">#</th>
-										<th scope="col">First Name</th>
-										<th scope="col">Last Name</th>
-										<th scope="col">Username</th>
+										<th scope="col">Nhân viên</th>
+										<th scope="col">Xếp loại</th>
+										<th scope="col">Hành động</th>
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${listNhanVien }" var="x" varStatus="stt">
+									<c:forEach items="${listDanhGia}" var="x" varStatus="stt">
 										<tr>
-											<th scope="row">${stt.index }</th>
-											<td>{x.nhanVien}</td>
+											<th scope="row">${stt.index+1 }</th>
+											<td>${x.nhanVien}</td>
 											<td>${x.xepLoai }</td>
-											<td>
-												<a href="">Đánh giá</a>
-											</td>
+											<td><a href="<c:url value="/quantridanhgia/truongphong/danhgianhanvien/danhgia/${x.id }"/>">Đánh giá</a></td>
 										</tr>
 									</c:forEach>
 								</tbody>

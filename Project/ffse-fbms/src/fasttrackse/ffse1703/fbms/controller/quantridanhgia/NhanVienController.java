@@ -1,5 +1,6 @@
 package fasttrackse.ffse1703.fbms.controller.quantridanhgia;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -18,8 +19,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.DanhGiaBanThan;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.DanhGiaNhanVien;
+import fasttrackse.ffse1703.fbms.entity.quantridanhgia.LichDanhGia;
 import fasttrackse.ffse1703.fbms.entity.security.ChucDanh;
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
+import fasttrackse.ffse1703.fbms.entity.security.PhongBan;
 import fasttrackse.ffse1703.fbms.entity.security.UserAccount;
 import fasttrackse.ffse1703.fbms.service.quantridanhgia.NhanVienService;
 import fasttrackse.ffse1703.fbms.service.security.UserAccountService;
@@ -54,8 +57,10 @@ public class NhanVienController {
 			UserAccount user = accountService.loadUserByUsername(auth.getName());
 			HoSoNhanVien hoSo = user.getNhanVien();
 			ChucDanh chucDanh = hoSo.getChucDanh();
+			PhongBan phongBan = hoSo.getPhongBan();
 			session.setAttribute("chucDanh", chucDanh.getMaChucDanh());
 			session.setAttribute("nhanVien", hoSo.getMaNhanVien());
+			session.setAttribute("phongBan", phongBan.getMaPhongBan());
 		}
 		return page;
 	}
@@ -68,14 +73,23 @@ public class NhanVienController {
 	}
 
 	@RequestMapping("/danhgiabanthan/add")
-	public String createDanhGiaBanThan(Model model) {
-		model.addAttribute("command", new DanhGiaBanThan());
+	public String createDanhGiaBanThan(Model model, HttpSession session) {
+		int nhanVien = (int) session.getAttribute("nhanVien");
+		String phongBan = session.getAttribute("phongBan").toString();
+		LichDanhGia lich = nhanVienService.getLichDanhGiaActive(phongBan);
+		DanhGiaBanThan danhGia = new DanhGiaBanThan();
+		danhGia.setKyDanhGia(lich.getKyDanhGia());
+		danhGia.setPhongBan(phongBan);
+		danhGia.setNhanVien(nhanVien);
+		model.addAttribute("command", danhGia);
 		return "QuanTriDanhGia/nhanvien/formdanhgiabanthan";
 	}
 
-	@RequestMapping("/danhgiabanthan/edit/{id}")
-	public String editDanhGiaBanThan(Model model, @PathVariable int id) {
-		model.addAttribute("command", nhanVienService.getDanhGiaBanThan(id));
+	@RequestMapping("/danhgiabanthan/edit")
+	public String editDanhGiaBanThan(Model model, HttpSession session) {
+		int nhanVien = (int) session.getAttribute("nhanVien");
+		DanhGiaBanThan danhGia = nhanVienService.getDanhGiaBanThan(nhanVien);
+		model.addAttribute("command", danhGia);
 		return "QuanTriDanhGia/nhanvien/formdanhgiabanthan";
 	}
 
@@ -85,6 +99,7 @@ public class NhanVienController {
 			danhGia.setTrangThai(2);
 			nhanVienService.insertDanhGiaBanThan(danhGia);
 		} else {
+			danhGia.setTrangThai(2);
 			nhanVienService.updateDanhGiaBanThan(danhGia);
 		}
 		return "redirect:/quantridanhgia/nhanvien";
@@ -107,6 +122,35 @@ public class NhanVienController {
 		List<DanhGiaNhanVien> list = nhanVienService.getListDanhGiaNhanVien(nhanVien);
 		model.addAttribute("listDanhGiaNhanVien", list);
 		return "QuanTriDanhGia/nhanvien/danhgianhanvien";
+	}
+	
+	@RequestMapping(value = { "/danhgianhanvien/create" })
+	public String createListDanhGiaNhanVien(Model model, HttpSession session) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		UserAccount user = accountService.loadUserByUsername(auth.getName());
+		HoSoNhanVien hoSo = user.getNhanVien();
+		PhongBan phongBan = hoSo.getPhongBan();
+		LichDanhGia lich = nhanVienService.getLichDanhGiaActive(phongBan.getMaPhongBan());
+		List<HoSoNhanVien> listNhanVien = nhanVienService.getListNhanVienPhongBan(phongBan.getMaPhongBan());
+		List<DanhGiaNhanVien> list = new ArrayList<>();
+		for (int i = 0; i < listNhanVien.size(); i++) {
+			int start = 0;
+			if (listNhanVien.get(i).getMaNhanVien() == hoSo.getMaNhanVien()) {
+				start = i+1;
+				List<HoSoNhanVien> listNhanVienLimit = nhanVienService.getListNhanVienLimit(start, phongBan.getMaPhongBan());
+				for (HoSoNhanVien x : listNhanVienLimit) {
+					DanhGiaNhanVien danhGia = new DanhGiaNhanVien();
+					danhGia.setKyDanhGia(lich.getKyDanhGia());
+					danhGia.setPhongBan(phongBan.getMaPhongBan());
+					danhGia.setNhanVienDanhGia(hoSo.getMaNhanVien());
+					danhGia.setNhanVien(x.getMaNhanVien());
+					list.add(danhGia);
+				}
+				break;
+			}
+		}
+		nhanVienService.createDanhGiaNhanVien(list);
+		return "redirect:/quantridanhgia/nhanvien/danhgianhanvien";
 	}
 
 	@RequestMapping("/danhgianhanvien/add/{nhanvien}/{id}")

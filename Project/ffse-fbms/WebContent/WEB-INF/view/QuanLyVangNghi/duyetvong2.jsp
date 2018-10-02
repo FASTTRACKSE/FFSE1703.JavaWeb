@@ -151,49 +151,25 @@ input:checked+.slider:before {
 					<div id="user" class="col-md-12">
 						<div class="panel panel-primary panel-table animated slideInDown">
 							<div class="panel-heading " style="padding: 5px;">
-								<div class="row">
-									<div class="col col-xs-3 text-left">
-										<a href="choduyet" class="btn btn-default" role="tab"
-											data-toggle="tab"><i class="fa fa-picture-o"
-											aria-hidden="true"></i>Chờ Duyệt</a> <a href="daduyet"
-											class="btn btn-default" role="tab" data-toggle="tab"><i
-											class="fa fa-picture-o"></i>Đã Duyệt</a>
-									</div>
-									<div class="col col-xs-5 text-center">
-										<h3 class="panel-title">
-											><b>Danh Sách Đơn Chờ Duyệt</b>
-										</h3>
-									</div>
-									<div class="col col-xs-2 well text-center"
-										style="padding: 1px;">
-										<button type="button" class="btn  btn-warning ">DANH
-											SÁCH</button>
-									</div>
-									<div class="col col-xs-2 text-right ">
-										<a href="donxinnghi">
-											<button type="button" class="btn  btn-success ">
-												Thêm Mới <i class="fa fa-plus-square"></i>
-											</button>
-										</a>
-
-									</div>
+										<center><h3 class="panel-title"><b>Danh Sách Đơn Phê Duyệt</b></h3></center>
+									</div>									
 								</div>
 							</div>
 							<div class="panel-body">
 								<div class="tab-content">
-									<div role="tabpanel" class="tab-pane active" id="list">
+									<div class="tab-pane active" id="list">
 										<table class=" table-striped table-bordered table-list">
 											<thead>
 												<tr>
-													<th>Mã Nhân Viên</th>
+													<th>STT</th>
 													<th>Họ Và Tên</th>
+													<th>Mã Nhân Viên</th>
 													<th>Lý Do</th>
-													<th>Phòng Ban</th>
 													<th>Thời gian Từ</th>
 													<th>Đến Thời gian</th>
 													<th>Đến Thời gian</th>
 													<th>Duyệt Đợt 1</th>
-													<th>Duyệt Đợt 2</em></th>
+													<th>Duyệt Đợt 2</th>
 												</tr>
 											</thead>
 											<tbody>

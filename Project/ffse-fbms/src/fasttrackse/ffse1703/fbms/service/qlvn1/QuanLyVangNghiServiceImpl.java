@@ -65,7 +65,6 @@ public class QuanLyVangNghiServiceImpl implements QuanLyVangNghiService {
 	@Transactional
 	@Override
 	public List<DonNghi> listDonNghiChoDuyet(int id_nv) {
-		// TODO Auto-generated method stub
 		return this.qlvnDao.listDonNghiChoDuyet(id_nv);
 	}
 
@@ -82,12 +81,7 @@ public class QuanLyVangNghiServiceImpl implements QuanLyVangNghiService {
 		
 	}
 
-	@Transactional
-	@Override
-	public void deleteDon(DonNghi dn) {
-		this.qlvnDao.deleteDon(dn);
-		
-	}
+	
 	@Transactional
 	@Override
 	public void removeDonNhap(int id_don) {
@@ -103,8 +97,12 @@ public class QuanLyVangNghiServiceImpl implements QuanLyVangNghiService {
 	@Transactional
 	@Override
 	public void updateTinhTrang(TinhTrangNghi tt) {
-		// TODO Auto-generated method stub
 		this.qlvnDao.updateTinhTrang(tt);
+	}
+
+	@Override
+	public void deleteDon(int id_don) {
+		this.qlvnDao.deleteDon(id_don);
 	}
 	
 }

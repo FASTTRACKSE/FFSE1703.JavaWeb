@@ -136,7 +136,7 @@
 													<input disabled="disabled" id="iconLeft10" type="text"
 														class="form-control round"
 														value="${donNghi.getPhong_ban()}" />
-													<form:input id="phong_ban" type="text"
+													<form:input id="phong_ban" type="hidden"
 														class="form-control round" path="phong_ban" />
 
 

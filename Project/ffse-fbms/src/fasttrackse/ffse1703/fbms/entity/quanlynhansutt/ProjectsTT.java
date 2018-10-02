@@ -31,7 +31,6 @@ import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Language;
 import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.StatusProject;
 import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Technical;
 import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Vendor;
-import fasttrackse.ffse1703.fbms.entity.security.PhongBan;
 
 @Entity
 @Table(name = "qlda_project")
@@ -77,7 +76,7 @@ public class ProjectsTT implements Serializable {
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "id_project_room", referencedColumnName = "ma_phong_ban", insertable = true, updatable = true)
 	@NotNull(message = "Bạn chưa chọn phòng dự án")
-	private PhongBan roomProject;
+	private PhongBanTT roomProject;
 
 	// bi-directional many-to-one association to Status
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
@@ -185,16 +184,16 @@ public class ProjectsTT implements Serializable {
 		this.khachHang = khachHang;
 	}
 
-	public PhongBan getRoomProject() {
+	public StatusProject getStatus() {
+		return status;
+	}
+
+	public PhongBanTT getRoomProject() {
 		return roomProject;
 	}
 
-	public void setRoomProject(PhongBan roomProject) {
+	public void setRoomProject(PhongBanTT roomProject) {
 		this.roomProject = roomProject;
-	}
-
-	public StatusProject getStatus() {
-		return status;
 	}
 
 	public void setStatus(StatusProject status) {

@@ -34,7 +34,8 @@
 #user .panel-table .panel-body .table-bordered>thead>tr>th {
 	text-align: center;
 }
-td{
+
+td {
 	padding: 5px;
 }
 </style>
@@ -49,25 +50,24 @@ td{
 						<div class="panel panel-primary panel-table animated slideInDown">
 							<div class="panel-heading " style="padding: 5px;">
 								<div class="row">
-									<div class="col col-xs-3 text-left">
-								
-									</div>
+									<div class="col col-xs-3 text-left"></div>
 									<div class="col col-xs-5 text-center">
-										<h3 class="panel-title"><b>Danh Sách Lưu Nháp</b></h3>
+										<h3 class="panel-title">
+											<b>Danh Sách Lưu Nháp</b>
+										</h3>
 									</div>
 									<div class="col col-xs-2 well text-center"
 										style="padding: 1px;">
-										<button type="button" class="btn  btn-warning ">
-											DANH SÁCH
-										</button>
+										<button type="button" class="btn  btn-warning ">DANH
+											SÁCH</button>
 									</div>
 									<div class="col col-xs-2 text-right ">
-									<a href="donxinnghi">
-										<button type="button" class="btn  btn-success ">
-											Thêm Mới <i class="fa fa-plus-square"></i>
-										</button>
-									</a>
-										
+										<a href="donxinnghi">
+											<button type="button" class="btn  btn-success ">
+												Thêm Mới <i class="fa fa-plus-square"></i>
+											</button>
+										</a>
+
 									</div>
 								</div>
 							</div>
@@ -85,10 +85,10 @@ td{
 													<th>Ngày Kết Thúc</th>
 													<th>Ghi Chú</th>
 													<th>Chức năng</th>
-													
+
 												</tr>
 											</thead>
-									<tbody>
+											<tbody>
 												<c:forEach var="dn" varStatus="counter" items="${list}">
 													<tr>
 														<td>${dn.getId_nv()}</td>
@@ -99,24 +99,23 @@ td{
 														<td>${dn.getTg_ket_thuc()}</td>
 														<td>${dn.getGhi_chu()}</td>
 
-														<td><a href="edit/${dn.getId_don()}"><button type="button"
-																	class="btn btn-warning btn-circle">Sửa</button></a> <a
-															href="remove/${dn.getId_don()}"><button type="button"
-																	class="btn btn-danger btn-circle">Xoá</button></a>
-																	<a
-															href="savechoduyetnhap/${dn.getId_don()}"><button type="button"
-																	class="btn btn-danger btn-circle">Gửi Đơn</button></a>
-																	</td>
+														<td><a href="edit/${dn.getId_don()}"><button
+																	type="button" class="btn btn-warning btn-circle">Sửa</button></a>
+															<a href="deleteDon/${dn.getId_don()}"><button
+																	type="button" class="btn btn-danger btn-circle">Xoá</button></a>
+															<a href="savechoduyetnhap/${dn.getId_don()}"><button
+																	type="button" class="btn btn-danger btn-circle">Gửi
+																	Đơn</button></a></td>
 													</tr>
 												</c:forEach>
-											</tbody>		
-											
-											
+											</tbody>
+
+
 										</table>
 									</div>
 									<!-- END id="list" -->
 
-									
+
 
 								</div>
 								<!-- END tab-content -->
@@ -130,7 +129,7 @@ td{
 	</div>
 	<jsp:include page="/WEB-INF/view/templates/footer.jsp" />
 
-	
+
 
 </body>
 </html>

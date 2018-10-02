@@ -17,7 +17,7 @@ public interface QuanLyVangNghiService {
 	public List<DonNghi> listDonNghiChoDuyet(int id_nv);
 	public DonNghi getDonNghiNv(int id_don);
 	public void updateDon(DonNghi dn); 
-	public void deleteDon(DonNghi dn);
+	public void deleteDon(int id_don);
 	public void removeDonNhap(int id_don);
 	public List<DonNghi> listDonNghiPheDuyet1();
 	public void updateTinhTrang(TinhTrangNghi tt);

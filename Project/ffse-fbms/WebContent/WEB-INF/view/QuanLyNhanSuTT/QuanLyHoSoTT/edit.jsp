@@ -52,17 +52,6 @@
 										modelAttribute="formHoso" enctype="multipart/form-data">
 										<div class="form-body">
 											<form:hidden path="maNhanVien"/>
-											<%-- <div class="form-group col-sm-6">
-												<label>Mã Hợp Đồng</label>
-												<form:input class="form-control" readonly="true"
-													path="maNhanVien" placeholder="Mã Hợp Đồng" />
-											</div>
-
-											<div class="form-group col-sm-6">
-												<label>tên nhân viên</label>
-												<form:input class="form-control" path="tenNhanVien"
-													placeholder="tên nhân viên" />
-											</div> --%>
 											<div class="row">
 												<div class="col-md-8">
 													<div class="row">
@@ -257,12 +246,6 @@
 																		Làm Việc</form:option>
 															</form:select>
 														</div>
-														<!-- <div class="form-group col-sm-6">
-															<label>Hình Ảnh:</label> <input id="imgUrl"
-																class="form-control" type="file" name="file" /> <br>
-															<img id="img" src="#" alt="your image" width="100"
-																height="150" />
-														</div> -->
 														<div class="form-group col-sm-6">
 															<label>Hình Ảnh:</label> <input id="imgUrl"
 																class="form-control" type="file" name="file" /> <br>
@@ -280,121 +263,96 @@
 											<input class="btn btn-success" type="submit" value="Save" />
 										</div>
 									</form:form>
-									<script type="text/javascript">
-										window.onload = function() {
-
-											console.log("aaa");
-										}
-										function clickComboboxThanhPho() {
-											var maThanhPho = $("#thanhPhoId")
-													.val();
-
-											if (maThanhPho == 'noThanhPho') { // nếu người dùng chưa chọn thành phố
-
-												$('#quanHuyenId option')
-														.remove();
-												$('#quanHuyenId')
-														.append(
-																$(
-																		'<option>',
-																		{
-																			value : 'noQuanHuyen',
-																			text : 'Chọn Quận Huyện'
-																		}));
-
-												$('#quanHuyenId').prop(
-														'disabled', true); /*disable combobox quận huyện */
-
-											} else { // nếu người dùng đã chọn thành phố
-
-												$('#quanHuyenId').prop(
-														'disabled', false); /*enable combobox quận huyện */
-												$('#quanHuyenId option')
-														.remove(); /* xóa những option quận huyện cũ */
-											}
-
-											$
-													.ajax({
-														url : "/ffse-fbms/quanlynhansutt/ho_so/selectquan/"
-																+ maThanhPho,
-														dataType : "json",
-														success : function(data) {
-															/* alert("Hello! I am an alert box!"); */
-															$('#quanHuyenId')
-																	.append(
-																			$(
-																					'<option>',
-																					{
-																						value : 'noQuanHuyen',
-																						text : 'Chọn Quận Huyện'
-																					}));
-
-															for (var i = 0; i < data.length; i++) {
-																$(
-																		'#quanHuyenId')
-																		.append(
-																				$(
-																						'<option>',
-																						{
-																							value : data[i].maQuanHuyen,
-																							text : data[i].tenQuanHuyen
-																						}));
-															}
-
-														}
-													});
-										};
-									</script>
-
-									<script type="text/javascript">
-									<!-- ajax select QuanHuyen -->
-										function clickComboboxQuan() {
-											var maQuanHuyen = $("#quanHuyenId")
-													.val();
-											if (maQuanHuyen == 'noQuanHuyen') { /* nếu người dùng chưa chọn quận huyện */
-												$('#phuongXaId').prop(
-														'disabled', true); /*disable combobox phường xã */
-
-											} else { /* nếu người dùng đã chọn quận huyện*/
-
-												$('#phuongXaId').prop(
-														'disabled', false); // enable combobox phường xã
-												$('#phuongXaId option')
-														.remove(); // xóa những option phường xã cũ
-											}
-
-											$
-													.ajax({
-														url : "/ffse-fbms/quanlynhansutt/ho_so/selectphuong/"
-																+ maQuanHuyen,
-														dataType : "json",
-														success : function(data) {
-															/* alert("Hello! I am an alert box!"); */
-
-															$('#phuongXaId')
-																	.append(
-																			$(
-																					'<option>',
-																					{
-																						value : 'noPhuongXa',
-																						text : 'Chọn phường xã'
-																					}));
-
-															for (var i = 0; i < data.length; i++) {
-																$('#phuongXaId')
-																		.append(
-																				$(
-																						'<option>',
-																						{
-																							value : data[i].maXa,
-																							text : data[i].tenXa
-																						}));
-															}
-
-														}
-													});
-										};
-									</script>
+									<script>
+                     
+                     	window.onload= function(){
+                     		clickComboboxThanhPho(); // gọi function này để load quận
+                     		
+                     	
+                    		
+                     	}
+                     </script>
+                        
+                     <script type="text/javascript">
+                     <!-- ajax select ThanhPho -->
+                     function clickComboboxThanhPho(){
+                    	 var maThanhPho = $("#thanhPhoId").val();
+                    	 if(maThanhPho == 'noThanhPho'){  // nếu người dùng chưa chọn thành phố
+                    		 $('#quanHuyenId option').remove();
+                    		 $('#quanHuyenId').prop('disabled', true); /*disable combobox quận huyện */
+                    		
+                    		 $('#phuongXaId option[value=noPhuongXa]').attr('selected', 'selected')
+                    		 $('#phuongXaId').prop('disabled', true);
+                    		 
+                    	 } else{                // nếu người dùng đã chọn thành phố
+                    		
+                    		 $('#quanHuyenId').prop('disabled', false); /*enable combobox quận huyện */
+                    		
+                    		 $('#quanHuyenId option').remove(); /* xóa những option quận huyện cũ */
+                    	 }
+                    	 
+                         $.ajax({
+                        	 url: "/ffse-fbms/quanlynhansutt/ho_so/selectquan/" + maThanhPho, 
+                        	 dataType: "json",
+                        	 success: function(data){
+                        		$('#quanHuyenId').append($('<option>', {
+                             		    value: 'noQuanHuyen',
+                             		    text: 'Chọn Quận Huyện'
+                             		}));
+                        		
+                        		for (var i = 0; i < data.length; i++) {
+                        			$('#quanHuyenId').append($('<option>', {
+                             		    value: data[i].maQuanHuyen,
+                             		    text: data[i].tenQuanHuyen
+                             		}));
+                        		
+								}
+                        		$('#quanHuyenId option[value=${formHoso.quanHuyen.maQuanHuyen}]').attr('selected', 'selected')
+                        			clickComboboxQuan(); // gọi function này để load phường
+                        		
+                         }});
+                     };
+                   
+                     </script>
+                     
+                     <script>
+                     // ajax select QuanHuyen
+                     function clickComboboxQuan(){
+                    	 var maQuanHuyen = $("#quanHuyenId").val();
+                    	 if(maQuanHuyen == 'noQuanHuyen'){  /* nếu người dùng chưa chọn thành phố */
+                    		 $('#phuongXaId option').remove();
+                    		 $('#phuongXaId').prop('disabled', true); /*disable combobox quận huyện */
+                    		 
+                    	 } else{                /* nếu người dùng đã chọn thành phố*/
+                    		
+                    		 $('#phuongXaId').prop('disabled', false); // enable combobox quận huyện 
+                    		 $('#phuongXaId option').remove(); // xóa những option quận huyện cũ
+                    	 }
+                    	 
+                         $.ajax({
+                        	 url: "/ffse-fbms/quanlynhansutt/ho_so/selectphuong/"
+									+ maQuanHuyen, 
+                        	 dataType: "json",
+                        	 success: function(data){
+                 
+                        		
+                        		$('#phuongXaId').append($('<option>', {
+                             		    value: 'noPhuongXa',	
+                             		    text: 'Chọn phường xã'
+                             		}));
+                        		
+                        		for (var i = 0; i < data.length; i++) {
+                        			$('#phuongXaId').append($('<option>', {
+                             		    value: data[i].maXa,
+                             		    text: data[i].tenXa
+                             		}));
+                        			
+								}
+                        		$('#phuongXaId option[value=${formHoso.xaPhuong.maXa}]').attr('selected', 'selected')
+	
+                         }});
+                     };
+                     </script>
 									<!-- preview image -->
 									<script type="text/javascript">
 										function readURL(input) {

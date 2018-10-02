@@ -64,10 +64,10 @@ public class QuanLyHoSoControllerTT {
 
 	@Autowired
 	private PhongBanService phongBanService;
- 
+
 	@Autowired
 	private ThongTinBangCapServiceTT thongTinBangCapServiceTT;
-	
+
 	public void setThongTinBangCapServiceTT(ThongTinBangCapServiceTT thongTinBangCapServiceTT) {
 		this.thongTinBangCapServiceTT = thongTinBangCapServiceTT;
 	}
@@ -128,14 +128,15 @@ public class QuanLyHoSoControllerTT {
 		model.addAttribute("listHoSo", quanLyHoSoServiceTT.getAllHoSo());
 		return "QuanLyNhanSuTT/QuanLyHoSoTT/list";
 	}
-	//test thử
+
+	// test thử
 	@RequestMapping(value = "/viewOne/{maNhanVien}", method = RequestMethod.GET)
 	public String viewOne(@PathVariable("maNhanVien") int maNhanVien, Model model) {
 		model.addAttribute("hoSoNhanVienTT", quanLyHoSoServiceTT.findByMaNhanVien(maNhanVien));
 		model.addAttribute("thongTinBangCap", thongTinBangCapServiceTT.viewOne(maNhanVien));
 		return "QuanLyNhanSuTT/QuanLyHoSoTT/viewOne";
 	}
-	
+
 	// thêm nhân viên
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String formAdd(Model model, final RedirectAttributes redirectAttributes) {
@@ -178,13 +179,13 @@ public class QuanLyHoSoControllerTT {
 	@RequestMapping("/edit/{maNhanVien}")
 	public String showFormUpdate(@PathVariable("maNhanVien") int maNhanVien, Model model)
 			throws IllegalStateException, IOException {
-		  model.addAttribute("formHoso", quanLyHoSoServiceTT.findByMaNhanVien(maNhanVien));
-		  model.addAttribute("listTrangTrangHonNhan", tinhTrangHonNhanServiceTT.findAll());
-		  model.addAttribute("listPhongBan", phongBanService.findAll());
-		  model.addAttribute("listQuocTich", quocTichServiceTT.getAllQuocTich());
-		  model.addAttribute("listChucDanh", chucDanhService.findAll());
-		  model.addAttribute("listDanToc", danTocServiceTT.listDanTocTT());
-		  model.addAttribute("listThanhPho", tinhThanhServiceTT.getAllTinhThanh());
+		model.addAttribute("formHoso", quanLyHoSoServiceTT.findByMaNhanVien(maNhanVien));
+		model.addAttribute("listTrangTrangHonNhan", tinhTrangHonNhanServiceTT.findAll());
+		model.addAttribute("listPhongBan", phongBanService.findAll());
+		model.addAttribute("listQuocTich", quocTichServiceTT.getAllQuocTich());
+		model.addAttribute("listChucDanh", chucDanhService.findAll());
+		model.addAttribute("listDanToc", danTocServiceTT.listDanTocTT());
+		model.addAttribute("listThanhPho", tinhThanhServiceTT.getAllTinhThanh());
 		return "QuanLyNhanSuTT/QuanLyHoSoTT/edit";
 	}
 
@@ -201,7 +202,7 @@ public class QuanLyHoSoControllerTT {
 			fileUpload.mkdir();
 		}
 		String filename = file.getOriginalFilename();
-		if (!filename.isEmpty()) { 
+		if (!filename.isEmpty()) {
 			byte[] bytes = file.getBytes();
 			BufferedOutputStream stream = new BufferedOutputStream(
 					new FileOutputStream(new File(path + File.separator + filename)));
@@ -264,25 +265,25 @@ public class QuanLyHoSoControllerTT {
 	// page view một Nhân viên
 	@RequestMapping("view/{maNhanVien}")
 	public String view(@PathVariable int maNhanVien, Model model) throws IllegalStateException, IOException {
-		 model.addAttribute("formHoso", quanLyHoSoServiceTT.findByMaNhanVien(maNhanVien));
-		 model.addAttribute("viewOne", this.quanLyHoSoServiceTT.viewOne(maNhanVien));
-		 model.addAttribute("maNhanVien", maNhanVien);
-		 model.addAttribute("listTrangTrangHonNhan", tinhTrangHonNhanServiceTT.findAll());
-//		  model.addAttribute("listPhongBan", phongBanService.findAll());
-//		  model.addAttribute("listQuocTich", quocTichServiceTT.getAllQuocTich());
-//		  model.addAttribute("listChucDanh", chucDanhService.findAll());
-		  model.addAttribute("listDanToc", danTocServiceTT.listDanTocTT());
-//		  model.addAttribute("listThanhPho", tinhThanhServiceTT.getAllTinhThanh());
+		model.addAttribute("formHoso", quanLyHoSoServiceTT.findByMaNhanVien(maNhanVien));
+		model.addAttribute("viewOne", this.quanLyHoSoServiceTT.viewOne(maNhanVien));
+		model.addAttribute("maNhanVien", maNhanVien);
+		model.addAttribute("listTrangTrangHonNhan", tinhTrangHonNhanServiceTT.findAll());
+		// model.addAttribute("listPhongBan", phongBanService.findAll());
+		// model.addAttribute("listQuocTich", quocTichServiceTT.getAllQuocTich());
+		// model.addAttribute("listChucDanh", chucDanhService.findAll());
+		model.addAttribute("listDanToc", danTocServiceTT.listDanTocTT());
+		// model.addAttribute("listThanhPho", tinhThanhServiceTT.getAllTinhThanh());
 		return "QuanLyNhanSuTT/QuanLyHoSoTT/view";
 	}
-	
+
 	// delete an employee's contract
-		@RequestMapping("/delete/{maNhanVien}")
-		public String remove(@PathVariable("maNhanVien") int maNhanVien, final RedirectAttributes redirectAttributes) {
-			HoSoNhanVienTT hd = quanLyHoSoServiceTT.findByMaNhanVien(maNhanVien);
-			hd.setIsdelete(0);
-			quanLyHoSoServiceTT.updateHoSoNhanVien(hd);
-			return "redirect:/quanlynhansutt/ho_so/";
-		}
+	@RequestMapping("/delete/{maNhanVien}")
+	public String remove(@PathVariable("maNhanVien") int maNhanVien, final RedirectAttributes redirectAttributes) {
+		HoSoNhanVienTT hd = quanLyHoSoServiceTT.findByMaNhanVien(maNhanVien);
+		hd.setIsdelete(0);
+		quanLyHoSoServiceTT.updateHoSoNhanVien(hd);
+		return "redirect:/quanlynhansutt/ho_so/";
+	}
 
 }

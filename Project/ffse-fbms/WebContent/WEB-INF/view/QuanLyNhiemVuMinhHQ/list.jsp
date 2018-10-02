@@ -112,7 +112,8 @@
 						<div class="card-body collapse in">
 							<div class="card-block card-dashboard">
 								<div class="datatable">
-									<table class="table table-striped table-bordered dataex-res-constructor no-footer dataTable">
+									<table
+										class="table table-striped table-bordered dataex-res-constructor no-footer dataTable">
 										<form:form method="GET">
 											<div class="form-group col-sm-10">
 												<div class="form-group col-sm-4">
@@ -174,7 +175,8 @@
 											</script>
 											<div class="form-group col-sm-2">
 
-												<button class="btn btn-success block round" style="margin-top: 25px">
+												<button class="btn btn-success block round"
+													style="margin-top: 25px">
 													<i class="ft-search"></i> Áp dụng
 												</button>
 											</div>
@@ -198,7 +200,7 @@
 													<td>${cv.maCongViec.loaiCongViec}</td>
 													<td>${cv.tgBatDau}</td>
 													<td>${cv.tgKetThuc}</td>
-													<td>${cv.phanCong.hoDem} ${cv.phanCong.ten}</td>
+													<td>${cv.phanCong.hoDem}${cv.phanCong.ten}</td>
 													<td>${cv.maTrangThai.trangThai}</td>
 													<td style="letter-spacing: 5px"><a
 														href="/ffse-fbms/QuanLyNhiemVuMinhHQ/view/${cv.ID}"><i
@@ -213,13 +215,14 @@
 										</tbody>
 									</table>
 									<c:set scope="request" var="lastPage" value="${lastPage}" />
-									<% 	
-										String query =  "&maDuAn="+request.getParameter("maDuAn")+"&maNhanVien="+request.getParameter("maNhanVien")+"&maTrangThai="+request.getParameter("maTrangThai");
-										if(request.getParameter("maDuAn") == null){
-											query="";
-										}								
-									%> 
-									</div>
+									<%
+										String query = "&maDuAn=" + request.getParameter("maDuAn") + "&maNhanVien="
+												+ request.getParameter("maNhanVien") + "&maTrangThai=" + request.getParameter("maTrangThai");
+										if (request.getParameter("maDuAn") == null) {
+											query = "";
+										}
+									%>
+								</div>
 							</div>
 						</div>
 						<nav aria-label="Page navigation example">

@@ -28,28 +28,37 @@
 		<!-- End Path -->
 
 		<div class="content-body">
+			<c:if test="${messageError ne null}">
+				<div class="alert alert-danger alert-dismissable" role="alert">
+					<button type="button" class="close" data-dismiss="alert">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					${messageError}
+				</div>
+			</c:if>
 			<div class="main-content">
 				<div class="row">
 					<form:form method="POST" modelAttribute="CongViec"
 						action="/ffse-fbms/QuanLyNhiemVuMinhHQ/create">
 						<div class="form-group col-sm-6">
 							<label>Dự án</label>
-							<form:errors style="color:red" path="duAn.maDuAn"/>
+							<form:errors style="color:red" path="duAn.maDuAn" />
 							<form:select class="custom-select block round" path="duAn.maDuAn">
 								<c:forEach items="${DuAn}" var="lb">
 									<form:option value="${lb.maDuAn}" label="${lb.tenDuAn}"></form:option>
 								</c:forEach>
 							</form:select>
-							
+
 						</div>
 						<div class="form-group col-sm-6">
 							<label>Tên công việc</label>
 							<form:input class="form-control block round" path="tenCongViec" />
-							<form:errors path="tenCongViec" cssStyle="color: red" ></form:errors>
+							<form:errors path="tenCongViec" cssStyle="color: red"></form:errors>
 						</div>
 						<div class="form-group col-sm-6">
 							<label>Loại công việc</label>
-							<form:select class="custom-select block round" path="maCongViec.maCongViec">
+							<form:select class="custom-select block round"
+								path="maCongViec.maCongViec">
 								<c:forEach items="${LoaiCongViec}" var="cv">
 									<form:option value="${cv.maCongViec}"
 										label="${cv.loaiCongViec}"></form:option>
@@ -58,22 +67,25 @@
 						</div>
 						<div class="form-group col-sm-6">
 							<label>Trạng thái</label>
-							<form:input class="form-control block round" path="maTrangThai.maTrangThai"
-								value="1" readonly="true" />
+							<form:input class="form-control block round"
+								path="maTrangThai.maTrangThai" value="1" readonly="true" />
 						</div>
 						<div class="form-group col-sm-6">
 							<label>Thời gian bắt đầu</label>
-							<form:input class="form-control block round" type="date" path="tgBatDau" />
-							<form:errors  cssStyle="color:red" path="tgBatDau"/>
+							<form:input class="form-control block round" type="date"
+								path="tgBatDau" />
+							<form:errors cssStyle="color:red" path="tgBatDau" />
 						</div>
 						<div class="form-group col-sm-6">
 							<label>Thời gian kết thúc</label>
-							<form:input class="form-control block round" type="date" path="tgKetThuc" />
-							<form:errors  cssStyle = "color:red" path="tgKetThuc"/>
+							<form:input class="form-control block round" type="date"
+								path="tgKetThuc" />
+							<form:errors cssStyle="color:red" path="tgKetThuc" />
 						</div>
 						<div class="form-group col-sm-6">
 							<label>phân công</label>
-							<form:select class="custom-select block round" path="phanCong.maNhanVien">
+							<form:select class="custom-select block round"
+								path="phanCong.maNhanVien">
 								<c:forEach items="${NhanVien}" var="nv">
 									<form:option value="${nv.maNhanVien}"
 										label="${nv.hoDem} ${nv.ten}"></form:option>
@@ -83,16 +95,16 @@
 						<div class="form-group col-sm-6">
 							<label>Thời gian dự kiến</label>
 							<form:input class="form-control block round" path="tgDuKien" />
-							<form:errors  cssStyle = "color:red" path="tgDuKien"/>
+							<form:errors cssStyle="color:red" path="tgDuKien" />
 						</div>
 						<div class="form-group col-sm-6">
 							<label>Mô tả</label>
 							<form:textarea class="form-control block round" path="moTa" />
-							<form:errors  cssStyle = "color:red" path="moTa"/>
+							<form:errors cssStyle="color:red" path="moTa" />
 						</div>
 						<div class="col-sm-12 text-center">
-							<button type="submit" class="btn btn-success round">Lưu thông
-								tin</button>
+							<button type="submit" class="btn btn-success round">Lưu
+								thông tin</button>
 						</div>
 					</form:form>
 				</div>

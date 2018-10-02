@@ -37,11 +37,11 @@ public class CongViecMinhHQ {
 	private String moTa;
 	
 	@Column(name = "tg_bat_dau")
-	@NotEmpty
+	@NotNull
 	private Date tgBatDau;
 	
 	@Column(name = "tg_ket_thuc")
-	@NotEmpty
+	@NotNull
 	private Date tgKetThuc;
 	
 	@ManyToOne

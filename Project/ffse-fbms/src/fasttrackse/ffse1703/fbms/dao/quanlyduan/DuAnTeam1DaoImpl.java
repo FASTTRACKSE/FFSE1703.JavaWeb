@@ -1,3 +1,4 @@
+////daoimpl
 package fasttrackse.ffse1703.fbms.dao.quanlyduan;
 
 import java.util.List;
@@ -70,16 +71,15 @@ public class DuAnTeam1DaoImpl implements DuAnTeam1Dao {
 	@Override
 	public List<DuAnTeam1> findAll(Integer offset, Integer maxResult,String search) {
 		Session session = sessionFactory.getCurrentSession();
-		System.out.println("from DuAnTeam1 where isDelete =0 "+ search);
 		List<DuAnTeam1> list = session.createQuery("from DuAnTeam1 where isDelete =0 "+ search).setFirstResult(offset)
 				.setMaxResults(maxResult).list();
 		return list;
 	}
 
 	@Override
-	public int count() {
+	public int count(String search) {
 		Session session = sessionFactory.getCurrentSession();
-		int rowCount = session.createQuery("from DuAnTeam1 where isDelete =0").list().size();
+		int rowCount = session.createQuery("from DuAnTeam1 where isDelete =0 " + search).list().size();
 		return rowCount;
 	}
 	

@@ -16,14 +16,14 @@ public class DomainTeam1 {
 	@Id
 	@Column(name = "ma_nghiep_vu")
 	@NotEmpty(message = "mã nghiệp vụ không được để rỗng !!!")
-	 String maNghiepVu;
+	private String maNghiepVu;
 	
 	@Column(name = "ten_nghiep_vu")
 	@NotEmpty(message = "tên nghiệp vụ không được để rỗng !!!")
-	 String tenNghiepVu;
+	private String tenNghiepVu;
 	
 	@Column(name = "is_delete")
-	String is_delete;
+	private String is_delete;
 	
 	@ManyToMany(fetch = FetchType.EAGER,mappedBy="domain",targetEntity=DuAnTeam1.class)
 	private Set<DuAnTeam1> duAn;

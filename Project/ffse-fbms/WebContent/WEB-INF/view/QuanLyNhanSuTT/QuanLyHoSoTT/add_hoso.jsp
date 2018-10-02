@@ -57,12 +57,15 @@
 															<label>tên nhân viên</label>
 															<form:input class="form-control" path="tenNhanVien"
 																placeholder="tên nhân viên" />
+															<form:errors path="tenNhanVien"
+																	cssClass="invalid-feedback d-block" />
 														</div>
 														<div class="form-group col-sm-6">
 															<label>năm sinh</label>
 															<form:input class="form-control" path="namSinh"
 																placeholder="năm sinh" />
-
+															<form:errors path="namSinh"
+																	cssClass="invalid-feedback d-block" />
 														</div>
 													</div>
 													<div class="row">
@@ -75,6 +78,8 @@
 																	<form:option value="1">Nam</form:option>
 																	<form:option value="2">Nữ</form:option>
 																</form:select>
+																<form:errors path="gioiTinh"
+																	cssClass="invalid-feedback d-block" />
 															</div>
 														</div>
 														<div class="form-group col-sm-6">
@@ -87,6 +92,8 @@
 																	<option value="${x.maTinhTrangHonNhan}">${x.tinhTrangHonNhan}</option>
 																</c:forEach>
 															</form:select>
+															<form:errors path="tinhTrangHonNhan.maTinhTrangHonNhan"
+																	cssClass="invalid-feedback d-block" />
 														</div>
 													</div>
 
@@ -96,6 +103,8 @@
 																<label for="projectinput4">Số CMND</label>
 																<form:input path="soCmnd" type="text" id="projectinput4"
 																	class="form-control" placeholder="Số CMND" />
+																	<form:errors path="soCmnd"
+																	cssClass="invalid-feedback d-block" />
 															</div>
 														</div>
 														<div class="form-group col-sm-6">
@@ -103,7 +112,8 @@
 															<label for="projectinput4">Nơi cấp</label>
 															<form:input path="noiCap" type="text" id="projectinput4"
 																class="form-control" placeholder="Nơi cấp" />
-
+																<form:errors path="noiCap"
+																	cssClass="invalid-feedback d-block" />
 														</div>
 													</div>
 													<div class="row">
@@ -116,6 +126,8 @@
 																		<i class="fa fa-calendar-o"></i>
 																	</div>
 															</fieldset>
+															<form:errors path="ngayCap"
+																	cssClass="invalid-feedback d-block" />
 														</div>
 														<div class="form-group col-sm-6">
 															<div class="form-group">
@@ -128,6 +140,8 @@
 																		<option value="${x.maDanToc}">${x.tenDanToc}</option>
 																	</c:forEach>
 																</form:select>
+																<form:errors path="danToc.maDanToc"
+																	cssClass="invalid-feedback d-block" />
 															</div>
 														</div>
 													</div>
@@ -145,7 +159,8 @@
 																	<option value="${x.maQuocTich}">${x.tenQuocTich}</option>
 																</c:forEach>
 															</form:select>
-
+																<form:errors path="quocTich.maQuocTich"
+																	cssClass="invalid-feedback d-block" />
 														</div>
 													</div>
 												</div>
@@ -160,11 +175,15 @@
 															<label>số điện thoại</label>
 															<form:input class="form-control" path="soDienThoai"
 																placeholder="số điện thoại" />
+																<form:errors path="soDienThoai"
+																	cssClass="invalid-feedback d-block" />
 														</div>
 														<div class="form-group col-sm-6">
 															<label>Email</label>
 															<form:input class="form-control" path="email"
 																placeholder="Email" />
+																<form:errors path="email"
+																	cssClass="invalid-feedback d-block" />
 														</div>
 													</div>
 													<div class="row">
@@ -178,6 +197,8 @@
 																	<option value="${x.maThanhPho}">${x.tenThanhPho}</option>
 																</c:forEach>
 															</form:select>
+															<form:errors path="thanhPho.maThanhPho"
+																	cssClass="invalid-feedback d-block" />
 														</div>
 														<div class="form-group col-sm-6">
 															<label>quận, huyện</label>
@@ -187,7 +208,8 @@
 																<option value="noQuanHuyen" selected="selected">Chọn
 																	quận huyện</option>
 															</form:select>
-
+																<form:errors path="quanHuyen.maQuanHuyen"
+																	cssClass="invalid-feedback d-block" />
 														</div>
 
 													</div>
@@ -203,11 +225,15 @@
 																	xã, phường</option>
 
 															</form:select>
+															<form:errors path="xaPhuong.maXa"
+																	cssClass="invalid-feedback d-block" />
 														</div>
 														<div class="form-group col-sm-6">
 															<label>địa chỉ</label>
 															<form:input class="form-control" path="diaChi"
 																placeholder="địa chỉ" />
+																<form:errors path="diaChi"
+																	cssClass="invalid-feedback d-block" />
 														</div>
 													</div>
 
@@ -222,7 +248,6 @@
 													<div class="row">
 														<div class="form-group col-sm-6">
 															<label>phòng ban</label>
-
 															<form:select path="phongBan.maPhongBan" type="text" id="companyName"
 																class="form-control" name="phongBanSelect">
 																<option value="none" selected>Chọn Phòng ban</option>
@@ -230,6 +255,8 @@
 																	<option value="${x.maPhongBan}">${x.tenPhongBan}</option>
 																</c:forEach>
 															</form:select>
+															<form:errors path="phongBan.maPhongBan"
+																	cssClass="invalid-feedback d-block" />
 														</div>
 														<div class="form-group col-sm-6">
 															<label>chức danh</label>
@@ -242,6 +269,8 @@
 																	<option value="${x.maChucDanh}">${x.tenChucDanh}</option>
 																</c:forEach>
 															</form:select>
+															<form:errors path="chucDanh.maChucDanh"
+																	cssClass="invalid-feedback d-block" />
 														</div>
 													</div>
 													<div class="row">
@@ -249,17 +278,23 @@
 															<label for="location1">Trạng Thái</label>
 															<form:select class="custom-select form-control"
 																path="trangThai">
+																<option value="none" selected="selected">Chọn
+																Trạng Thái</option>
 																<form:option value="1">Còn
 																		Làm Việc</form:option>
 																<form:option value="2">Hết
 																		Làm Việc</form:option>
 															</form:select>
+															<form:errors path="trangThai"
+																	cssClass="invalid-feedback d-block" />
 														</div>
 														<div class="form-group col-sm-6">
 															<label>Hình Ảnh:</label> <input id="imgUrl"
 																class="form-control" type="file" name="file" /> <br>
 															<img id="img" src="#" alt="your image" width="100"
 																height="150" />
+																<form:errors path="anhDaiDien"
+																	cssClass="invalid-feedback d-block" />
 														</div>
 													</div>
 												</div>

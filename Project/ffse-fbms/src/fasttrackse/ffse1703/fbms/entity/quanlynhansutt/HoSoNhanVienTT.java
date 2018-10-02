@@ -13,6 +13,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "ho_so_nhan_vien_tt")
@@ -21,71 +24,72 @@ public class HoSoNhanVienTT implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ma_nhan_vien") /* , unique = true, nullable = false */
+	@Column(name = "ma_nhan_vien", unique = true, nullable = false )
 	private int maNhanVien;
 
-	@Column(name = "ten_nhan_vien") /* , nullable = false, length = 100) */
-	/* @NotEmpty */
+	@Column(name = "ten_nhan_vien" , nullable = false, length = 100) 
+	@NotEmpty(message="vui lòng nhập")
 	private String tenNhanVien;
 
-	@Column(name = "anh_dai_dien") /* , nullable = false, length = 100) */
+	@Column(name = "anh_dai_dien" , nullable = false, length = 100) 
+	@NotEmpty(message="vui lòng nhập")
 	private String anhDaiDien;
 
 	@Column(name = "nam_sinh")
-	/* @NotNull */
+	@NotEmpty(message="vui lòng nhập")
 	private String namSinh;
 
-	@Column(name = "gioi_tinh") /* , nullable = false) */
-	/* @NotNull */
+	@Column(name = "gioi_tinh", nullable = false) 
+	@NotNull 
 	private Integer gioiTinh;
 
-	@Column(name = "dia_chi") /* , nullable = false, length = 250) */
-	/* @NotEmpty */
+	@Column(name = "dia_chi" , nullable = false, length = 250) 
+	@NotEmpty(message="k đc bỏ trống")
 	private String diaChi;
 
 	// bi-directional many-to-one association to XaPhuong
 	@ManyToOne
-	@JoinColumn(name = "ma_xa_phuong") /* , nullable = false) */
-	/* @NotNull */
+	@JoinColumn(name = "ma_xa_phuong" , nullable = false) 
+	@NotNull
 	private XaPhuongTT xaPhuong;
 
 	// bi-directional many-to-one association to QuanHuyen
 	@ManyToOne
-	@JoinColumn(name = "ma_quan_huyen") /* , nullable = false) */
-	/* @NotNull */
+	@JoinColumn(name = "ma_quan_huyen" , nullable = false) 
+	@NotNull
 	private QuanHuyenTT quanHuyen;
 
 	// bi-directional many-to-one association to TinhThanhPho
 	@ManyToOne
-	@JoinColumn(name = "ma_thanh_pho") /* , nullable = false) */
-	/* @NotNull */
+	@JoinColumn(name = "ma_thanh_pho" , nullable = false) 
+	@NotNull
 	private TinhThanhTT thanhPho;
 
-	@Column(name = "so_dien_thoai") /* , nullable = false, length = 11) */
-	/* @Size(min = 10, max = 11) */
+	@Column(name = "so_dien_thoai" , nullable = false, length = 11) 
+	@NotEmpty(message="vui lòng nhập")
 	private String soDienThoai;
 
-	@Column(name = "email") /* , nullable = false, length = 50) */
-	/*
-	 * @NotEmpty
-	 * 
-	 * @Email
-	 */
+	@Column(name = "email", nullable = false, length = 50) 
+	@NotEmpty(message="cavhbyhbyby")
+	 @Email
 	private String email;
 
 	// bi-directional many-to-one association to TinhTrangHonNhan
 	@ManyToOne
-	@JoinColumn(name = "ma_tinh_trang_hon_nhan") /* , nullable = false) */
+	@JoinColumn(name = "ma_tinh_trang_hon_nhan", nullable = false) 
+	@NotNull
 	private TinhTrangHonNhanTT tinhTrangHonNhan;
 
 	// bi-directional many-to-one association to QuocTich
 	@ManyToOne
-	@JoinColumn(name = "ma_quoc_tich") /* , nullable = false) */
+	@JoinColumn(name = "ma_quoc_tich" , nullable = false) 
+	@NotNull
 	private QuocTichTT quocTich;
 
 	// bi-directional many-to-one association to LoaiHopDong
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "ma_dan_toc")
+	@JoinColumn(name = "ma_dan_toc", nullable = false)
+	@NotNull
 	private DanTocTT danToc;
 
 	// bi-directional many-to-one association to DanToc
@@ -95,31 +99,35 @@ public class HoSoNhanVienTT implements Serializable {
 	 * @JoinColumn(name = "ma_dan_toc", nullable = false) private DanTocTT danToc;
 	 */
 
-	@Column(name = "so_cmnd") /* , nullable = false, length = 9) */
-	/* @Size(min = 9, max = 9) */
+	@Column(name = "so_cmnd", nullable = false, length = 9) 
+	@NotEmpty(message="cavhbyhbyby")
 	private String soCmnd;
 
-	@Column(name = "noi_cap") /* , nullable = false, length = 50) */
-	/* @NotEmpty */
+	@Column(name = "noi_cap" , nullable = false, length = 50) 
+	@NotEmpty(message="cavhbyhbyby")
 	private String noiCap;
 
-	@Column(name = "ngay_cap"/* , nullable = false */)
+	@Column(name = "ngay_cap", nullable = false )
+	@NotEmpty(message="cavhbyhbyby")
 	private String ngayCap;
 
 	// bi-directional many-to-one association to PhongBan
 	@ManyToOne
-	@JoinColumn(name = "ma_phong_ban"/* , nullable = false */)
+	@JoinColumn(name = "ma_phong_ban" , nullable = false )
+	@NotNull
 	private PhongBanTT phongBan;
 
 	// bi-directional many-to-one association to ChucDanh
 	@ManyToOne
-	@JoinColumn(name = "ma_chuc_danh"/* , nullable = false */)
+	@JoinColumn(name = "ma_chuc_danh", nullable = false )
+	@NotNull
 	private ChucDanhTT chucDanh;
 
-	@Column(name = "trang_thai"/* , nullable = false */)
+	@Column(name = "trang_thai", nullable = false )
+	@NotNull
 	private Integer trangThai;
 
-	@Column(name = "isdelete"/* , nullable = false */)
+	@Column(name = "isdelete")
 	private Integer isdelete;
 	
 	public Integer getIsdelete() {

@@ -31,6 +31,7 @@ import fasttrackse.ffse1703.fbms.service.quanlynhansutt.QuanHuyenServiceTT;
 import fasttrackse.ffse1703.fbms.service.quanlynhansutt.QuanLyHoSoServiceTT;
 import fasttrackse.ffse1703.fbms.service.quanlynhansutt.QuocTichServiceTT;
 import fasttrackse.ffse1703.fbms.service.quanlynhansutt.ThongTinBangCapServiceTT;
+import fasttrackse.ffse1703.fbms.service.quanlynhansutt.ThongTinGiaDinhServiceTT;
 import fasttrackse.ffse1703.fbms.service.quanlynhansutt.TinhThanhServiceTT;
 import fasttrackse.ffse1703.fbms.service.quanlynhansutt.TinhTrangHonNhanServiceTT;
 import fasttrackse.ffse1703.fbms.service.quanlynhansutt.XaPhuongServiceTT;
@@ -67,11 +68,18 @@ public class QuanLyHoSoControllerTT {
 
 	@Autowired
 	private ThongTinBangCapServiceTT thongTinBangCapServiceTT;
+	
+	@Autowired
+	private ThongTinGiaDinhServiceTT thongTinGiaDinhServiceTT;
 
 	public void setThongTinBangCapServiceTT(ThongTinBangCapServiceTT thongTinBangCapServiceTT) {
 		this.thongTinBangCapServiceTT = thongTinBangCapServiceTT;
 	}
-
+	
+	public void setThongTinGiaDinhServiceTT(ThongTinGiaDinhServiceTT thongTinGiaDinhServiceTT) {
+		this.thongTinGiaDinhServiceTT = thongTinGiaDinhServiceTT;
+	}
+	
 	@Autowired
 	private TinhTrangHonNhanServiceTT tinhTrangHonNhanServiceTT;
 
@@ -134,6 +142,7 @@ public class QuanLyHoSoControllerTT {
 	public String viewOne(@PathVariable("maNhanVien") int maNhanVien, Model model) {
 		model.addAttribute("hoSoNhanVienTT", quanLyHoSoServiceTT.findByMaNhanVien(maNhanVien));
 		model.addAttribute("thongTinBangCap", thongTinBangCapServiceTT.viewOne(maNhanVien));
+		model.addAttribute("thongTinGiaDinh", thongTinGiaDinhServiceTT.viewOne(maNhanVien));
 		return "QuanLyNhanSuTT/QuanLyHoSoTT/viewOne";
 	}
 
@@ -155,6 +164,10 @@ public class QuanLyHoSoControllerTT {
 	@RequestMapping(value = "insert", method = RequestMethod.POST)
 	public String addsave(@ModelAttribute("formHoso") @Valid HoSoNhanVienTT hoSoNhanVienTT, BindingResult result,
 			@RequestParam("file") MultipartFile file, HttpSession session) throws IOException {
+//		if (result.hasErrors()) {
+//			return "QuanLyNhanSuTT/QuanLyHoSoTT/add_hoso";
+//
+//		}
 		ServletContext context = session.getServletContext();
 		String path = context.getRealPath(UPLOAD_DIRECTORY);
 		File fileUpload = new File(path);
@@ -269,11 +282,11 @@ public class QuanLyHoSoControllerTT {
 		model.addAttribute("viewOne", this.quanLyHoSoServiceTT.viewOne(maNhanVien));
 		model.addAttribute("maNhanVien", maNhanVien);
 		model.addAttribute("listTrangTrangHonNhan", tinhTrangHonNhanServiceTT.findAll());
-		// model.addAttribute("listPhongBan", phongBanService.findAll());
-		// model.addAttribute("listQuocTich", quocTichServiceTT.getAllQuocTich());
-		// model.addAttribute("listChucDanh", chucDanhService.findAll());
+	    model.addAttribute("listPhongBan", phongBanService.findAll());
+		model.addAttribute("listQuocTich", quocTichServiceTT.getAllQuocTich());
+	    model.addAttribute("listChucDanh", chucDanhService.findAll());
 		model.addAttribute("listDanToc", danTocServiceTT.listDanTocTT());
-		// model.addAttribute("listThanhPho", tinhThanhServiceTT.getAllTinhThanh());
+	    model.addAttribute("listThanhPho", tinhThanhServiceTT.getAllTinhThanh());
 		return "QuanLyNhanSuTT/QuanLyHoSoTT/view";
 	}
 

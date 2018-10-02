@@ -20,9 +20,6 @@
 								href='<c:url value="/quanlynhansutt/ho_so/" />'>Danh sách
 									nhân viên</a></li>
 							<li class="breadcrumb-item active">xem thông tin nhân viên</li>
-							<li class="breadcrumb-item"><a
-								href='<c:url value="/quanlynhansutt/ho_so/viewOne/${maNhanVien}" />'>xem
-									tất cả thông tin nhân viên</a></li>
 						</ol>
 					</div>
 				</div>
@@ -102,6 +99,13 @@ i.fa {
 													<div class="form-body">
 														<div class="row">
 															<div class="col-md-8">
+															<div class="row">
+																<div class="form-group col-sm-6">
+																<img
+																		src="<c:url value="/uploads/${formHoso.anhDaiDien}" />"
+																		width="150" height="200">
+																</div>
+																</div>
 																<div class="row">
 																	<div class="form-group col-sm-6">
 																		<label>mã nhân viên</label>
@@ -120,14 +124,12 @@ i.fa {
 																	<div class="form-group col-sm-6">
 																		<div class="form-group">
 																			<label>giới tính</label>
-																			<form:input class="form-control" path="gioiTinh"
-																				placeholder="tên nhân viên" readonly="true" />
-																			<c:if test="${hsnv.gioiTinh == 1}">
-																				<spring:message code="label.nam" />
-																			</c:if>
-																			<c:if test="${hsnv.gioiTinh == 2}">
-																				<spring:message code="label.nu" />
-																			</c:if>
+																			<form:select class="custom-select form-control"
+																				path="gioiTinh" readonly="true">
+																				<option value="none">Chọn</option>
+																				<form:option value="1">Nam</form:option>
+																				<form:option value="2">Nữ</form:option>
+																			</form:select>
 																		</div>
 																	</div>
 																	<div class="form-group col-sm-6">
@@ -180,19 +182,14 @@ i.fa {
 
 																<div class="row">
 																	<div class="form-group col-sm-6">
-
 																		<label for="projectinput4">Quốc tịch</label>
-																		<%-- <form:select path="quocTich" type="text"
+																		<form:select path="quocTich.maQuocTich" type="text"
 																			id="projectinput4" class="form-control"
 																			readonly="true">
-																		</form:select> --%>
-																		<form:select path="quocTich.maQuocTich" type="text"
-																				id="projectinput4" class="form-control"
-																				readonly="true">
-																				<c:forEach items="${listQuocTich}" var="hsnv">
-																					<form:option value="${hsnv.maQuocTich}">${hsnv.tenQuocTich}</form:option>
-																				</c:forEach>
-																			</form:select>
+																			<c:forEach items="${listQuocTich}" var="hsnv">
+																				<form:option value="${hsnv.maQuocTich}">${hsnv.tenQuocTich}</form:option>
+																			</c:forEach>
+																		</form:select>
 																	</div>
 																	<div class="form-group col-sm-6">
 																		<label>năm sinh</label>
@@ -218,23 +215,36 @@ i.fa {
 																<div class="row">
 																	<div class="form-group col-sm-6">
 																		<label>tỉnh, thành phố</label>
-																		<%-- <form:select path="thanhPho.maThanhPho" type="text"
-																id="thanhPhoId" class="form-control"
-																onchange="clickComboboxThanhPho()">
-																<c:forEach items="${listThanhPho}" var="hsnv">
-																	<form:option value="${hsnv.maThanhPho}">${hsnv.tenThanhPho}</form:option>
-																</c:forEach>
-															</form:select> --%>
+																		<form:select path="thanhPho.maThanhPho" type="text"
+																			id="thanhPhoId" class="form-control"
+																			onchange="clickComboboxThanhPho()" readonly="true">
+																			<option value="noThanhPho" selected="selected">Chọn
+																				thành phố</option>
+																			<c:forEach items="${listThanhPho}" var="x">
+																				<form:option value="${x.maThanhPho}">${x.tenThanhPho}</form:option>
+																			</c:forEach>
+																		</form:select>
 																	</div>
 																	<div class="form-group col-sm-6">
 																		<label>quận, huyện</label>
-
+																		<form:select path="quanHuyen.maQuanHuyen"
+																			id="quanHuyenId" type="text" class="form-control"
+																			disabled="true" onchange="clickComboboxQuan()"
+																			name="quanHuyen" readonly="true">
+																			<option value="noQuanHuyen" selected="selected">Chọn
+																				quận huyện</option>
+																		</form:select>
 																	</div>
 																</div>
 																<div class="row">
 																	<div class="form-group col-sm-6">
 																		<label>xã, phường</label>
-
+																		<form:select path="xaPhuong.maXa" type="text"
+																			id="phuongXaId" class="form-control"
+																			name="phuongXaSelect" disabled="true" readonly="true">
+																			<option value="noPhuongXa" selected="selected">Chọn
+																				xã, phường</option>
+																		</form:select>
 																	</div>
 																	<div class="form-group col-sm-6">
 																		<label>địa chỉ</label>
@@ -242,29 +252,42 @@ i.fa {
 																			placeholder="địa chỉ" readonly="true" />
 																	</div>
 																</div>
-
-
-
-
 																<div class="row">
 																	<div class="form-group col-sm-6">
 																		<label>phòng ban</label>
-
+																		<form:select path="phongBan.maPhongBan" type="text"
+																			id="companyName" class="form-control"
+																			name="phongBanSelect" readonly="true">
+																			<option value="none" selected>Chọn Phòng ban</option>
+																			<c:forEach items="${listPhongBan}" var="x">
+																				<form:option value="${x.maPhongBan}">${x.tenPhongBan}</form:option>
+																			</c:forEach>
+																		</form:select>
 																	</div>
 																	<div class="form-group col-sm-6">
 																		<label>chức danh</label>
-
+																		<form:select path="chucDanh.maChucDanh" type="text"
+																			id="companyName" class="form-control"
+																			placeholder="Company Name" name="chucDanhSelect" readonly="true">
+																			<option value="none" selected="selected">Chọn
+																				chức danh</option>
+																			<c:forEach items="${listChucDanh}" var="x">
+																				<form:option value="${x.maChucDanh}">${x.tenChucDanh}</form:option>
+																			</c:forEach>
+																		</form:select>
 
 																	</div>
 																</div>
 																<div class="row">
 																	<div class="form-group col-sm-6">
 																		<label for="location1">Trạng Thái</label>
-
-																	</div>
-																	<div class="form-group col-sm-6">
-																		<label>Hình Ảnh:</label> <img id="img" src="#"
-																			alt="your image" width="100" height="150" />
+																		<form:select class="custom-select form-control"
+																			path="trangThai" readonly="true">
+																			<form:option value="1">Còn
+																		Làm Việc</form:option>
+																			<form:option value="2">Hết
+																		Làm Việc</form:option>
+																		</form:select>
 																	</div>
 																</div>
 

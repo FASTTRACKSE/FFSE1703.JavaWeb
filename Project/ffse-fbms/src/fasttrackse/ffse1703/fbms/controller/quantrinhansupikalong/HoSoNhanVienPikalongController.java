@@ -73,17 +73,43 @@ public class HoSoNhanVienPikalongController {
 	
 	HoSoNhanVienPikalong getNhanVien = new HoSoNhanVienPikalong();
 	
+	public static int pageIndex;
+	public static double totalPage;
+	public static double totalRecord;
+	public static double perPage;
+	
 	@RequestMapping("/")
-	public String index(Model model) {
-		List<HoSoNhanVienPikalong> nhanVienList = hoSoNhanVienPikalongService.listNhanVien();
-		model.addAttribute("nhanVienList", nhanVienList);
+	public String urlDefault() {
+		return "redirect:1";
+	}
+	
+	@RequestMapping("/{pageId}")
+	public String index(@PathVariable int pageId, Model model) {
+		pageIndex = pageId;
+		totalRecord = hoSoNhanVienPikalongService.countAll();
+		perPage = 3.0;
+		totalPage = Math.ceil(totalRecord/perPage);
+		int start = (pageIndex - 1) * (int)perPage;
+		int end = (int)perPage;
+		
+		List<HoSoNhanVienPikalong> nhanVienListPagination = hoSoNhanVienPikalongService.listNhanVienPagination(start, end);
+		model.addAttribute("totalPage", (int)totalPage);
+		model.addAttribute("pageIndex", pageIndex);
+		model.addAttribute("nhanVienListPagination", nhanVienListPagination);
 		return "QuanTriNhanSuPikalong/ThongTinHoSo/index";
 	}
 	
 	@RequestMapping("delete/{maNv}") // delete employee
 	public String delete(@PathVariable String maNv) {
 		hoSoNhanVienPikalongService.delete(maNv);
-		return "redirect:/quantrinhansu/hosonhanvien/";
+		hoSoNhanVienPikalongService.delete(maNv);
+		// sau khi delete đếm lại
+		totalRecord = hoSoNhanVienPikalongService.countAll();
+		totalPage = Math.ceil(totalRecord/perPage);
+		if((int)totalPage < pageIndex) {
+			pageIndex = (int)totalPage;
+		}
+		return "redirect:/quantrinhansu/hosonhanvien/" + pageIndex;
 	}
 	
 	@RequestMapping(value= "addform", method= RequestMethod.GET)
@@ -97,8 +123,16 @@ public class HoSoNhanVienPikalongController {
 	}
 	
 	@RequestMapping(value= "insert", method= RequestMethod.POST)
-	public String addsave(@ModelAttribute("formHosopkl") @Valid HoSoNhanVienPikalong hoSoNhanVien, 
+	public String addsave(Model model,@ModelAttribute("formHosopkl") @Valid HoSoNhanVienPikalong hoSoNhanVien, 
 			BindingResult result, @RequestParam("file") MultipartFile file, HttpSession session) throws IOException {
+		if(result.hasErrors()) {
+			model.addAttribute("listQuocTich", quocTichPikalongService.listQuocTich());
+			model.addAttribute("listThanhPho",  thanhPhoPikalongService.listTinhThanh());
+			model.addAttribute("listPhongBan", phongBanService.findAll());
+			model.addAttribute("listChucDanh", chucDanhService.findAll());
+			return "QuanTriNhanSuPikalong/ThongTinHoSo/thongtinhosoaddform";
+		}
+		
 		ServletContext context = session.getServletContext();
 		String path = context.getRealPath(UPLOAD_DIRECTORY);
 		File fileUpload = new File(path);
@@ -118,7 +152,12 @@ public class HoSoNhanVienPikalongController {
 	    stream.close();
 		
 		hoSoNhanVienPikalongService.insert(hoSoNhanVien);
-		return "redirect:/quantrinhansu/hosonhanvien/";
+		totalRecord = hoSoNhanVienPikalongService.countAll();
+		totalPage = Math.ceil(totalRecord/perPage);
+		if((int)totalPage > pageIndex) {
+			pageIndex = (int)totalPage;
+		}
+		return "redirect:/quantrinhansu/hosonhanvien/" + pageIndex;
 	}
 	
 	// ThanhPho Json
@@ -199,7 +238,7 @@ public class HoSoNhanVienPikalongController {
 	    stream.close();
 		}
 		hoSoNhanVienPikalongService.update(hoSoNhanVienPikalong);
-		return "redirect:/quantrinhansu/hosonhanvien/";
+		return "redirect:/quantrinhansu/hosonhanvien/" + pageIndex;
 	}
 	
 
@@ -212,7 +251,7 @@ public class HoSoNhanVienPikalongController {
 		return "QuanTriNhanSuPikalong/ThongTinHoSo/view";
 	}
 	
-	// page Há»“ sÆ¡ chi tiáº¿t
+	// page Hồ Sơ Chi Tiết
 	@RequestMapping("hosochitiet/{maNv}")
 	public String details(@PathVariable String maNv, Model model) {
 		model.addAttribute("hoSoNhanVien", hoSoNhanVienPikalongService.getEdit(maNv));
@@ -221,10 +260,14 @@ public class HoSoNhanVienPikalongController {
 		return "QuanTriNhanSuPikalong/ThongTinHoSo/hosochitiet";
 	}
 	
+	
 	// export flie excel
-	@RequestMapping("exportexcel/{maNv}")
-	public ModelAndView exportExcelFile(@PathVariable String maNv, Model model) {
-		
-		return new ModelAndView("HoSoNhanVienExcelId", "hoSoNhanVien", hoSoNhanVienPikalongService.getEdit(maNv));
-	}
+		@RequestMapping("exportexcel/{maNv}")
+		public ModelAndView exportExcelFile(@PathVariable String maNv) {
+			ModelAndView model = new ModelAndView("HoSoNhanVienExcelId");
+			model.addObject("hoSoNhanVien", hoSoNhanVienPikalongService.getEdit(maNv));
+			model.addObject("thongTinGiaDinh", giaDinhPikalongService.viewOne(maNv));
+			model.addObject("thongTinBangCap", bangCapPikalongService.viewOne(maNv));
+			return model;
+		}
 }

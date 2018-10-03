@@ -53,17 +53,21 @@ div.stroke a button:hover:after {
 						<th>Giới Tính</th>
 						<th>Ngày Sinh</th>
 						<th>Ảnh Đại Diện</th>
+						<th>Phòng Ban</th>
+						<th>Chức Danh</th>
 						<th>Chức Năng</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${nhanVienList}" var="x" varStatus="stt">
+					<c:forEach items="${nhanVienListPagination}" var="x" varStatus="stt">
 						<tr>
 							<td>${stt.index + 1}</td>
 							<td>${x.maNv}</td>
 							<td>${x.hoTenNv}</td>
 							<td>${x.gioiTinh}</td>
 							<td>${x.ngaySinh}</td>
+							<td>${x.maPhongBan.tenPhongBan}</td>
+							<td>${x.maChucDanh.tenChucDanh}</td>
 							<td><img src="<c:url value="/uploads/${x.avatar}" />"
 						width="60" height="80"></td>
 							<td>
@@ -84,11 +88,18 @@ div.stroke a button:hover:after {
 				</tbody>
 			</table>
 		</div>
-
+			
+			<c:if test="${pageIndex > 1}">
+				<a href="/ffse-fbms/quantrinhansu/hosonhanvien/1">first</a>
+				<a href="/ffse-fbms/quantrinhansu/hosonhanvien/${pageIndex - 1}"><button class="btn btn-default">${pageIndex - 1}</button></a>
+			</c:if>
+				<a href="/ffse-fbms/quantrinhansu/hosonhanvien/${pageIndex}"><button class="btn btn-success">${pageIndex}</button></a>
+			<c:if test="${pageIndex < totalPage}">
+				<a href="/ffse-fbms/quantrinhansu/hosonhanvien/${pageIndex + 1}"><button  class="btn btn-default">${pageIndex + 1}</button></a>
+				<a href="/ffse-fbms/quantrinhansu/hosonhanvien/${totalPage}">last</a>
+			</c:if>
 	</div>
 </div>
-
-
 
 
 

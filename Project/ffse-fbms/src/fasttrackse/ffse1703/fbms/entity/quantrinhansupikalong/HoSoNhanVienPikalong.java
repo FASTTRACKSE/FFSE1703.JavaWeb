@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.CodePointLength;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -24,17 +26,26 @@ import fasttrackse.ffse1703.fbms.entity.security.PhongBan;
 public class HoSoNhanVienPikalong {
 	
 	@Id
+	@NotEmpty(message= "Nhập Mã Nhân Viên")
 	@Column(name="MaNv")
 	private String maNv;
 	
+	@NotEmpty(message= "Nhập Họ Tên Nhân Viên")
+	@Column(name="HoTenNv")
 	private String hoTenNv;
 	
+	@NotEmpty(message= "Chọn Giới Tính")
+	@Column(name="GioiTinh")
 	private String gioiTinh;
+	
 	
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Column(name="NgaySinh")
 	private Date ngaySinh;
 	
+	@NotNull(message= "Chọn Tình Trạng Hôn Nhân")
+	@Column(name="TinhTrangHonNhan")
 	private Integer tinhTrangHonNhan;
 	
 	@ManyToOne
@@ -49,23 +60,39 @@ public class HoSoNhanVienPikalong {
 	@JoinColumn(name="PhuongXa")
 	private PhuongPikalong phuongXa;
 	
+	@NotNull(message= "Nhập Nơi Ở Hiện Nay")
+	@Column(name= "NoiOHienNay")
 	private String noiOHienNay;
 	
+	@NotEmpty(message= "Nhập số CMND")
+	@Column(name= "CMND")
 	private String cMND;
 	
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Column(name= "NgayCap")
 	private Date ngayCap;
 	
+	@NotEmpty(message= "Nhập Nơi Cấp")
+	@Column(name= "NoiCap")
 	private String noiCap;
 	
+	@NotEmpty(message= "Nhập Số Điện Thoại")
+	@Column(name= "SDT")
 	private String sDT;
 	
+	@NotEmpty(message= "Nhập Email")
+	@Column(name= "Email")
 	private String email;
 	
+	@NotEmpty(message= "Nhập Dân Tộc")
+	@Column(name= "DanToc")
 	private String danToc;
 	
+	@NotEmpty(message= "Nhập Quốc Tịch")
+	@Column(name= "QuocTich")
 	private String quocTich;
+	
 	@ManyToOne
 	@JoinColumn(name="MaChucDanh")
 	private ChucDanh maChucDanh;

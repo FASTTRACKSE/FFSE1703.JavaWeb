@@ -45,9 +45,12 @@
 				<hr>
 				<div class="row">
 				<form method="GET" action ="">
-				<div class="col-md-5">
+				<div class="col-md-6">	
+				<h1><b>${project.nameProject }</b></h1>
+				</div>
+				<div class="col-md-2">
 					<div class="form-group">Mã Nhân Viên
-					<select class="form-control" name="maNV" id="maNV">
+					<select class="form-control form-control-sm" name="maNV" id="maNV">
 						<option value="0" selected label="--- Tất cả ---"/>
 							<c:forEach items="${nhanVienList}" var="x">
 			                     <option value="${x.maNv}" >(${x.maNv}) ${x.hoTenNv}</option>
@@ -55,9 +58,9 @@
 					</select>
 					</div>
 				</div>
-				<div class="col-md-5">
+				<div class="col-md-2">
 					<div class="form-group">Vai Trò
-					<select class="form-control" name="vaiTro" id="vaiTro">
+					<select class="form-control form-control-sm" name="vaiTro" id="vaiTro">
 						<option value="0" selected label="--- Tất cả ---"/>
 							 <c:forEach items="${listRoles}" var="x">
 			                     <option value="${x.idRoles}" > ${x.nameRoles}</option>
@@ -92,8 +95,7 @@ window.onload = function () {
 						<thead>
 							<tr>
 
-								<th style="text-align: center">Mã Dự Án</th>
-								<th style="text-align: center">Tên Dự Án</th>
+								
 								<th style="text-align: center">Mã Nhân Viên</th>
 								<th style="text-align: center">Tên Nhân Viên</th>
 
@@ -106,8 +108,7 @@ window.onload = function () {
 								<tr>
 
 
-									<td style="text-align: left">${nhiemVu.projects.idProject}</td>
-									<td style="text-align: left">${nhiemVu.projects.nameProject}</td>
+									
 									<td style="text-align: left">${nhiemVu.hoSoNhanVien.maNv}</td>
 									<td style="text-align: left">${nhiemVu.hoSoNhanVien.hoTenNv}</td>
 									<td style="text-align: left">${nhiemVu.roles.nameRoles}</td>

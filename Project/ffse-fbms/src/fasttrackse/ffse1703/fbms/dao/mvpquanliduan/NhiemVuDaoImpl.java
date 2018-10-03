@@ -30,9 +30,9 @@ public class NhiemVuDaoImpl implements NhiemVuDao {
 	}
 
 	@Override
-	public Nhiemvu getByID(int id) {
+	public Nhiemvu getByID(String  idProjects) {
 		Session session = this.sessionFactory.getCurrentSession();
-		return session.get(Nhiemvu.class, id);
+		return session.get(Nhiemvu.class, idProjects);
 	}
 
 	@Override
@@ -74,6 +74,11 @@ public class NhiemVuDaoImpl implements NhiemVuDao {
 		Session session = sessionFactory.getCurrentSession();
 		List<Nhiemvu> nv=session.createQuery("from Nhiemvu where status = 1 and projects.idProject='"+idProjects+"' " + search, Nhiemvu.class).list();
 		return nv.size();
+	}
+	@Override
+	public Nhiemvu getByid(int id) {
+		Session session = this.sessionFactory.getCurrentSession();
+		return session.get(Nhiemvu.class, id);
 	}
 	
 

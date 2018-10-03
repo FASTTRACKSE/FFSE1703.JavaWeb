@@ -38,6 +38,7 @@ public class NhiemVuController {
 	@Autowired
 	private ProjectService projectService;
 	
+
 	public void setNhiemVuService(NhiemVuService nhiemVuService) {
 		this.nhiemVuService = nhiemVuService;
 	}
@@ -55,7 +56,7 @@ public class NhiemVuController {
 			vaiTroSearch="";
 		}
 		String search= maNVSearch + vaiTroSearch;
-		int maxRows= 3;
+		int maxRows= 5;
 		int start = (pageId - 1) * maxRows;
 		int totalLanguage = nhiemVuService.countNhiemvu(idProjects, search);
 		int totalPage = (int) Math.ceil(totalLanguage / (double) maxRows);
@@ -68,7 +69,7 @@ public class NhiemVuController {
 		session.setAttribute("pageIds", pageId);
 		
 		List<Nhiemvu> list=nhiemVuService.getByDuAn(idProjects, search, start, maxRows);
-		
+		//Nhiemvu listID = nhiemVuService.getByID(id);
 
 		model.addAttribute("idProjects", idProjects);
 		model.addAttribute("listNhiemVu", list);
@@ -76,6 +77,9 @@ public class NhiemVuController {
 		model.addAttribute("nhanVienList", nhanVienList);
 		List<Roles> list1 = rolesService.findAll();
 		model.addAttribute("listRoles", list1);
+		model.addAttribute("project",projectService.findById(idProjects));
+		
+		
 		return "MvpQuanLiDuAn/phancongnhiemvu/list";
 	}
 	@RequestMapping("/show-form-add/{idProjects}")
@@ -110,7 +114,7 @@ public class NhiemVuController {
 		model.addAttribute("nhanVienList", nhanVienList);
 		List<Roles> list = rolesService.findAll();
 		model.addAttribute("listRoles", list);
-		Nhiemvu nhiemVu = nhiemVuService.getByID(id);
+		Nhiemvu nhiemVu = nhiemVuService.getByid(id);
 		model.addAttribute("nhiemVu", nhiemVu);
 		return "MvpQuanLiDuAn/phancongnhiemvu/update_form";
 	}
@@ -129,7 +133,7 @@ public class NhiemVuController {
 
 	@RequestMapping(value = "/delete/{id}")
 	public String delete(@PathVariable int id, final RedirectAttributes redirectAttributes) {
-		Nhiemvu nhiemVu  = nhiemVuService.getByID(id);
+		Nhiemvu nhiemVu  = nhiemVuService.getByid(id);
 		nhiemVu.setStatus(0);
 		nhiemVuService.update(nhiemVu);
 		return "redirect: /ffse-fbms/mvpquanliduan/nhiemvu/list-nhiemvu";

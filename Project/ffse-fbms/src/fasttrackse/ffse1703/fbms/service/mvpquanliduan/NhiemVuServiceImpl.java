@@ -21,9 +21,9 @@ private NhiemVuDao nhiemVuDao;
 	}
 
 	@Override
-	public Nhiemvu getByID(int id) {
+	public Nhiemvu getByID(String idProjects) {
 		
-		return nhiemVuDao.getByID(id);
+		return nhiemVuDao.getByID(idProjects);
 	}
 
 	@Override
@@ -59,6 +59,12 @@ private NhiemVuDao nhiemVuDao;
 	public int countNhiemvu(String idProjects, String search) {
 		// TODO Auto-generated method stub
 		return nhiemVuDao.countNhiemvu(idProjects, search);
+	}
+
+	@Override
+	public Nhiemvu getByid(int id) {
+		// TODO Auto-generated method stub
+		return nhiemVuDao.getByid(id);
 	}
 
 }

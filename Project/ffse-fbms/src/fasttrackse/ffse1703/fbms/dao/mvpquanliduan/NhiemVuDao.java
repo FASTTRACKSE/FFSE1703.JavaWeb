@@ -8,7 +8,8 @@ import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Nhiemvu;
 public interface NhiemVuDao {
 	public void add(Nhiemvu nhiemVu);
 
-	public Nhiemvu getByID(int id);
+	public Nhiemvu getByID(String idProjects);
+	public Nhiemvu getByid(int id);
 
 	public List<Nhiemvu> getByDuAn(String idProjects);
 	

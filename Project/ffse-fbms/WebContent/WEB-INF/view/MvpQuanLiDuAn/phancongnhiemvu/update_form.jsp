@@ -44,7 +44,8 @@
 						</div>
 						<div class="form-group col-sm-12">
 							<label>Mã Nhân Viên</label>
-							<form:select path="hoSoNhanVien.maNv" id="maNhanVien" class="form-control">
+							<form:hidden path="hoSoNhanVien.maNv" value="${nhiemVu.hoSoNhanVien.maNv }"/>
+							<form:select path="hoSoNhanVien.maNv" id="maNhanVien" class="form-control" disabled="true">
 							   <form:option value="0" label="--- Select ---"/>
 							   <c:forEach items="${nhanVienList}" var="x">
                               		<option value="${x.maNv}" >(${x.maNv}) ${x.hoTenNv}</option>

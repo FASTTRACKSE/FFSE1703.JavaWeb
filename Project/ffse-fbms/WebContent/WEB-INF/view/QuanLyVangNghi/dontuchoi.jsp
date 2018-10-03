@@ -151,77 +151,62 @@ input:checked+.slider:before {
 					<div id="user" class="col-md-12">
 						<div class="panel panel-primary panel-table animated slideInDown">
 							<div class="panel-heading " style="padding: 5px;">
-										<center><h3 class="panel-title"><b>Danh Sách Đơn Phê Duyệt</b></h3></center>
-									</div>									
+								<div class="row">
+									<center>
+										<h3 class="panel-title">
+											<b>Danh Sách Đơn Bị Từ Chối</b>
+										</h3>
+									</center>
 								</div>
-							</div>
-							<div class="panel-body">
-								<div class="tab-content">
-									<div class="tab-pane active" id="list">
-										<table class=" table-striped table-bordered table-list">
-											<thead>
-												<tr>
-													<th>Mã Nhân Viên</th>
-													<th>Họ Và Tên</th>
-													<th>Phòng Ban</th>
-													<th>Lý Do</th>
-													<th>Thời gian Từ</th>
-													<th>Đến Thời gian</th>
-													<th>Đến Thời gian</th>
-													<th>Duyệt Đợt 1</th>
-													<th>Duyệt Đợt 2</th>
-												</tr>
-											</thead>
-											<tbody>
-												<c:forEach var="dn" varStatus="counter" items="${list}">
-													<tr>
-														<td>${dn.getId_nv()}</td>
-														<td>${dn.getTen_nv()}</td>
-														<td>${dn.getLy_do()}</td>
-														<td>${dn.getPhong_ban()}</td>
-														<td>${dn.getTg_bat_dau()}</td>
-														<td>${dn.getTg_ket_thuc()}</td>
-														<td>${dn.getGhi_chu()}</td>
-														<td>
-														
-														<c:if test="${dn.getTinh_trang() == 2 }">
-																<label class="switch"> <input
-																type="checkbox" checked disabled="disabled"> <span
-																class="slider round" ></span> <span class="absolute-no">Chờ Duyệt</span>
-														</label></c:if> </td>
-														
-														<td><c:if test="${dn.getTinh_trang() == 3 }">
-															<a href="pheduyetvong1/${dn.getId_don()}"><span
-																class="switch"> <input type="checkbox">
-																	<span class="slider round"></span> <span
-																	class="absolute-no">Chưa Duyệt</span>
-															</span></a>
-														</c:if> <c:if test="${dn.getTinh_trang() == 2 }">
-															<label class="switch"> <input type="checkbox"
-																checked disabled="disabled"> <span
-																class="slider round"></span> <span class="absolute-no">Chờ
-																	Duyệt</span>
-															</label>
-														</c:if></td>
-											
-													</tr>
-												</c:forEach>
-											</tbody>
-										</table>
-									</div>
-									<!-- END id="list" -->
-
-
-
-								</div>
-								<!-- END tab-content -->
 							</div>
 						</div>
-						<!--END panel-table-->
+						<div class="panel-body">
+							<div class="tab-content">
+								<div class="tab-pane active" id="list">
+									<table class=" table-striped table-bordered table-list">
+										<thead>
+											<tr>
+												<th>Mã Nhân Viên</th>
+												<th>Họ Và Tên</th>
+												<th>Lý Do</th>
+												<th>Ghi Chú</th>
+												<th>Phòng Ban</th>
+												<th>Thời gian Từ</th>
+												<th>Đến Thời gian</th>
+												<th>Đến Thời gian</th>
+												<th>Tình Trạng</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach var="dn" varStatus="counter" items="${list}">
+												<tr>
+													<td>${dn.getId_nv()}</td>
+													<td>${dn.getTen_nv()}</td>
+													<td>${dn.getLy_do()}</td>
+													<td>${dn.getGhi_chu()}</td>
+													<td>${dn.getPhong_ban()}</td>
+													<td>${dn.getTg_bat_dau()}</td>
+													<td>${dn.getTg_ket_thuc()}</td>
+													<td>${dn.getGhi_chu()}</td>
+													<td>Bị Từ Chối</td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+								</div>
+								<!-- END id="list" -->
+
+
+
+							</div>
+							<!-- END tab-content -->
+						</div>
 					</div>
+					<!--END panel-table-->
 				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 	<jsp:include page="/WEB-INF/view/templates/footer.jsp" />
 

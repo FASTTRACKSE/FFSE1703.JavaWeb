@@ -4,15 +4,15 @@ import java.util.List;
 import fasttrackse.ffse1703.fbms.entity.qttl.*;
 	
 	public interface CategoryDAO {
-		public List<Category> listCategory();
+		public List<Category> getAll();
 
-		public Category findById(int id);
+		public Category getById(int id);
 
 		public void delete(int id);
 
 		public void update(Category category);
 
-		public void create(Category category);
+		public void addNew(Category category);
 		
 		public List<Category> findAllForPaging(int startPosition,int maxResult);
 

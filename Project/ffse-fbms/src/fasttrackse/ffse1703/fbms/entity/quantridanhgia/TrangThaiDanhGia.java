@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Table(name="trang_thai_danh_gia")
 @Entity
-public class TrangThai {
+public class TrangThaiDanhGia {
 	
 	@Id
 	@Column(name = "id")
@@ -25,7 +25,7 @@ public class TrangThai {
 	@Column(name = "is_delete")
 	private int isDelete;
 
-	public TrangThai() {
+	public TrangThaiDanhGia() {
 		super();
 	}
 

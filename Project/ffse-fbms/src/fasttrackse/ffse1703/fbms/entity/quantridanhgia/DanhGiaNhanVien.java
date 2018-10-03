@@ -1,11 +1,18 @@
 package fasttrackse.ffse1703.fbms.entity.quantridanhgia;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
+import fasttrackse.ffse1703.fbms.entity.security.PhongBan;
 
 @Table(name = "danh_gia_nhan_vien")
 @Entity
@@ -16,17 +23,19 @@ public class DanhGiaNhanVien {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name = "ky_danh_gia")
-	private String kyDanhGia;
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	@JoinColumn(name = "ma_ky_danh_gia", referencedColumnName="ma_ky_danh_gia")
+	private KyDanhGia kyDanhGia;
 
-	@Column(name = "ma_phong_ban")
-	private String phongBan;
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	@JoinColumn(name = "ma_phong_ban",  referencedColumnName="ma_phong_ban")
+	private PhongBan phongBan;
 
 	@Column(name = "nhan_vien_danh_gia")
-	private int nhanVienDanhGia;
+	private HoSoNhanVien nhanVienDanhGia;
 
 	@Column(name = "nhan_vien")
-	private int nhanVien;
+	private HoSoNhanVien nhanVien;
 
 	@Column(name = "ky_luat_cong_viec", nullable = false)
 	private String kyLuatCongViec;
@@ -64,35 +73,35 @@ public class DanhGiaNhanVien {
 		this.id = id;
 	}
 
-	public String getKyDanhGia() {
+	public KyDanhGia getKyDanhGia() {
 		return kyDanhGia;
 	}
 
-	public void setKyDanhGia(String kyDanhGia) {
+	public void setKyDanhGia(KyDanhGia kyDanhGia) {
 		this.kyDanhGia = kyDanhGia;
 	}
 
-	public String getPhongBan() {
+	public PhongBan getPhongBan() {
 		return phongBan;
 	}
 
-	public void setPhongBan(String phongBan) {
+	public void setPhongBan(PhongBan phongBan) {
 		this.phongBan = phongBan;
 	}
 
-	public int getNhanVienDanhGia() {
+	public HoSoNhanVien getNhanVienDanhGia() {
 		return nhanVienDanhGia;
 	}
 
-	public void setNhanVienDanhGia(int nhanVienDanhGia) {
+	public void setNhanVienDanhGia(HoSoNhanVien nhanVienDanhGia) {
 		this.nhanVienDanhGia = nhanVienDanhGia;
 	}
 
-	public int getNhanVien() {
+	public HoSoNhanVien getNhanVien() {
 		return nhanVien;
 	}
 
-	public void setNhanVien(int nhanVien) {
+	public void setNhanVien(HoSoNhanVien nhanVien) {
 		this.nhanVien = nhanVien;
 	}
 
@@ -159,5 +168,7 @@ public class DanhGiaNhanVien {
 	public void setIsDelete(int isDelete) {
 		this.isDelete = isDelete;
 	}
+
+	
 
 }

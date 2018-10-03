@@ -9,7 +9,7 @@
 	<div class="content-wrapper">
 				<div class="content-header row">
 			<div class="content-header-left col-md-6 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">Update Vendor</h3>
+				<h3 class="content-header-title mb-0">Update tài liệu</h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
@@ -33,7 +33,7 @@
 			</div>
 		</div>
 		<form:form method="POST" action="/ffse-fbms/QuanTriTaiLieu/TaiLieu/update"
-			modelAttribute="document">
+			modelAttribute="document" enctype="multipart/form-data" >
 
 
 <%-- 			<div class="form-group col-sm-6">
@@ -100,7 +100,6 @@
 										</c:forEach>
 									</form:select>
 				<form:errors path="ma_phong_ban" cssStyle="color: red"></form:errors> 
-
 			</div>
 			<div class="col-sm-12 text-center">
 				<button type="submit" class="btn btn-success">Sữa thông tin</button>

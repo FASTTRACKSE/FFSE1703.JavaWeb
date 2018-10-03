@@ -158,7 +158,6 @@ public class DonXinNghiCotroller {
 		
 		service.updateDon(donNghi);
 		return "redirect:choduyet";
-	}
-	
+	}	
 }	
 	

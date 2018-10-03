@@ -1,9 +1,5 @@
 package fasttrackse.ffse1703.fbms.entity.quanlynhansutt;
 
-/*public class ThongTinBangCapTT {
-
-}
-*/
 import java.io.Serializable;
 import java.util.Date;
 

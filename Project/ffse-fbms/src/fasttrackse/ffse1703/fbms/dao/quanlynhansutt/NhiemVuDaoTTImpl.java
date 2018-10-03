@@ -64,7 +64,7 @@ public class NhiemVuDaoTTImpl implements NhiemVuDaoTT {
 	public List<NhiemVuTT> getByMaNhanVien(int maNhanVien) {
 		// TODO Auto-generated method stub
 		Session session = this.sessionFactory.getCurrentSession();
-		return session.createQuery("from NhiemVuTT where status = 1 and hoSoNhanVienTT.maNhanVien='" + maNhanVien + "'",
+		return session.createQuery("from NhiemVuTT where hoSoNhanVienTT.maNhanVien='" + maNhanVien + "'",
 				NhiemVuTT.class).list();
 	}
 

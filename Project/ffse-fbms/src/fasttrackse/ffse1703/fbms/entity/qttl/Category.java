@@ -27,18 +27,6 @@ public class Category  {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
-	@Column(name = "image")
-	private String image;
-
-	
-
-	public String getImage() {
-		return image;
-	}
-	public void setImage(String image) {
-		this.image = image;
-	}
 
 	@Column(name = "ten_danh_muc")
 	private String ten_danh_muc;
@@ -62,12 +50,11 @@ public class Category  {
 		this.ma_danh_muc = ma_danh_muc;
 	}
 	
-	public Category(int id, String ma_danh_muc, String ten_danh_muc, String image) {
+	public Category(int id, String ma_danh_muc, String ten_danh_muc) {
 		super();
 		this.id = id;
 		this.ma_danh_muc = ma_danh_muc;
 		this.ten_danh_muc = ten_danh_muc;
-		this.image = image;
 	}
 	
 	public Category() {

@@ -31,26 +31,23 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import fasttrackse.ffse1703.fbms.entity.qttl.*;
 import fasttrackse.ffse1703.fbms.service.qttl.*;
 
-
-
 @Controller
 @RequestMapping("/QuanTriTaiLieu/TaiLieu")
 public class DocumentController {
-	
+
 	private static final String UPLOAD_DIRECTORY = "/upload";
 	private static final int THRESHOLD_SIZE = 1024 * 1024 * 3;
-	
+
 	@Autowired
 	DocumentService documentService;
-	
+
 	@Autowired
 	@Qualifier(value = "documentServiceImpl")
 	public void setDocumentService(DocumentService documentService) {
 		this.documentService = documentService;
 	}
-	
-	
-	@RequestMapping({"/list" , ""})
+
+	@RequestMapping({ "/list", "" })
 	public String index(Model model,
 			@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage) {
 		int totalRecords = documentService.getAll().size();
@@ -69,6 +66,7 @@ public class DocumentController {
 
 		return "QuanTriTaiLieu/TaiLieu/listTaiLieu";
 	}
+
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String addForm(Model model, final RedirectAttributes redirectAttributes) {
 		List<Category> listcategory = documentService.listCategory();
@@ -80,11 +78,12 @@ public class DocumentController {
 		model.addAttribute("document", new Document());
 		return "QuanTriTaiLieu/TaiLieu/addTaiLieu";
 	}
-	
+
 	@RequestMapping(value = { "/creat" }, method = RequestMethod.POST)
-	public String creat(@ModelAttribute("document") @Valid Document document, BindingResult result, @RequestParam("file") MultipartFile file, HttpSession session,
-			RedirectAttributes redirectAttributes) throws Exception {
-		
+	public String creat(@ModelAttribute("document") @Valid Document document, BindingResult result,
+			@RequestParam("file") MultipartFile file, HttpSession session, RedirectAttributes redirectAttributes)
+			throws Exception {
+
 		DiskFileItemFactory factory = new DiskFileItemFactory();
 		factory.setSizeThreshold(THRESHOLD_SIZE);
 		factory.setRepository(new File(System.getProperty("java.io.tmpdir")));
@@ -94,7 +93,7 @@ public class DocumentController {
 
 		String uploadPath = context.getRealPath(UPLOAD_DIRECTORY);
 		System.out.println(uploadPath);
-		
+
 		String fileName = file.getOriginalFilename();
 		document.setFileName(fileName);
 
@@ -120,12 +119,12 @@ public class DocumentController {
 				return "redirect:/QuanTriTaiLieu/TaiLieu/add";
 			}
 		}
-		
+
 		redirectAttributes.addFlashAttribute("message", "<script>alert('Creat successfully.');</script>");
 		documentService.addNew(document);
 		return "redirect:list";
 	}
-	
+
 	@RequestMapping(value = "/edit/{id}")
 	public String edit(Model model, @PathVariable("id") int id) {
 		List<Category> listcategory = documentService.listCategory();
@@ -138,23 +137,47 @@ public class DocumentController {
 		return "QuanTriTaiLieu/TaiLieu/editTaiLieu";
 
 	}
-	@RequestMapping(value = "/update")
-	public String update(@ModelAttribute("document") @Valid Document document, BindingResult result, RedirectAttributes redirectAttributes) 
-			 {
+
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String update(@ModelAttribute("document") @Valid Document document, BindingResult result,
+			RedirectAttributes redirectAttributes, @RequestParam("file") MultipartFile file, HttpSession session)
+			throws IOException {
+		document.setFileName(UPLOAD_DIRECTORY);
+
+		DiskFileItemFactory factory = new DiskFileItemFactory();
+		factory.setSizeThreshold(THRESHOLD_SIZE);
+		factory.setRepository(new File(System.getProperty("java.io.tmpdir")));
+
+		ServletContext context = session.getServletContext();
+
+		String uploadPath = context.getRealPath(UPLOAD_DIRECTORY);
+		System.out.println(uploadPath);
+
+		String fileName = file.getOriginalFilename();
+		document.setFileName(fileName);
+
+		byte[] bytes = file.getBytes();
+		BufferedOutputStream stream = new BufferedOutputStream(
+				new FileOutputStream(new File(uploadPath + File.separator + file.getOriginalFilename())));
+		stream.write(bytes);
+		stream.flush();
+		stream.close();
+
 		if (result.hasErrors()) {
 			return "QuanTriTaiLieu/TaiLieu/editTaiLieu";
 		}
+
 		redirectAttributes.addFlashAttribute("message", "<script>alert('Update successfully.');</script>");
 		documentService.update(document);
 		return "redirect:list";
 
 	}
-	
+
 	@RequestMapping(value = "/delete/{id}")
 	public String delete(Model model, @PathVariable("id") int id) {
 		documentService.delete(id);
 		return "redirect:/QuanTriTaiLieu/TaiLieu";
 
 	}
-	
-	}
+
+}

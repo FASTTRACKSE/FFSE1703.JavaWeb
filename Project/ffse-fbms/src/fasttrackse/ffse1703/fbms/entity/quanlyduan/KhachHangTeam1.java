@@ -17,15 +17,15 @@ public class KhachHangTeam1 {
 	@Id
 	@Column(name = "ma_khach_hang")
 	@NotEmpty(message = "mã khách hàng không được để rỗng !!!")
-	 String makh;
+	private String makh;
 	
 	@Column(name = "ten_khach_hang")
 	@NotEmpty(message = "tên khách hàng không được để rỗng !!!")
-	 String tenkh;
+	private String tenkh;
 	
 	@Column(name = "dia_chi")
 	@NotEmpty(message = "địa chỉ không được để rỗng !!!")
-	 String diachi;
+	private String diachi;
 	
 	public Set<DuAnTeam1> getDuAn() {
 		return duAn;

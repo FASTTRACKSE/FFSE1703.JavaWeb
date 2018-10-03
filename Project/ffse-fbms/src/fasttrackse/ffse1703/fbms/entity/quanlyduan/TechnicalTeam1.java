@@ -1,5 +1,6 @@
 package fasttrackse.ffse1703.fbms.entity.quanlyduan;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -12,7 +13,12 @@ import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "cong_nghe")
-public class TechnicalTeam1 {
+public class TechnicalTeam1 implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@Column(name = "ma_cong_nghe")
 	@NotEmpty

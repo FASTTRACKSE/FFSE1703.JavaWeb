@@ -22,6 +22,6 @@ public interface DuAnTeam1Service {
 
 	public List<DuAnTeam1> findAll(Integer offset, Integer maxResult, String search);
 
-	public int count();
+	public int count(String search);
 
 }

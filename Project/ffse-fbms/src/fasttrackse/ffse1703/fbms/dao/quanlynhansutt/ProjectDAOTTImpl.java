@@ -75,7 +75,7 @@ public class ProjectDAOTTImpl implements ProjectDAOTT {
 	public List<HoSoNhanVienTT> getPm(String maPhongBan) {
 		// TODO Auto-generated method stub
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("from HoSoNhanVienTT where isActive = 0 and ma_phong_ban = '" + maPhongBan + "'",
+		return session.createQuery("from HoSoNhanVienTT where trang_thai = 1 and ma_phong_ban = '" + maPhongBan + "'",
 				HoSoNhanVienTT.class).list();
 	}
 

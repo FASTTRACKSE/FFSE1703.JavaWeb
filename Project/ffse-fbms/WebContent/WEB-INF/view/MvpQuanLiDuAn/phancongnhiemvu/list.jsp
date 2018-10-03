@@ -29,11 +29,12 @@
 				</div>
 			</div>
 		</div>
-		<hr>
 		<!-- End Path -->
+		
 
 		<div class="content-body">
 			<div class="x_panel">
+			
 				<div class="x_title">
 					<a class="btn btn-outline-success round btn-min-width mr-1 mb-1"
 						href="<c:url value="/mvpquanliduan/nhiemvu/show-form-add/${idProjects}" />">
@@ -41,14 +42,60 @@
 						</h5>
 					</a>
 				</div>
+				<hr>
+				<div class="row">
+				<form method="GET" action ="">
+				<div class="col-md-6">	
+				<h1><b>${project.nameProject }</b></h1>
+				</div>
+				<div class="col-md-2">
+					<div class="form-group">Mã Nhân Viên
+					<select class="form-control form-control-sm" name="maNV" id="maNV">
+						<option value="0" selected label="--- Tất cả ---"/>
+							<c:forEach items="${nhanVienList}" var="x">
+			                     <option value="${x.maNv}" >(${x.maNv}) ${x.hoTenNv}</option>
+			                </c:forEach>
+					</select>
+					</div>
+				</div>
+				<div class="col-md-2">
+					<div class="form-group">Vai Trò
+					<select class="form-control form-control-sm" name="vaiTro" id="vaiTro">
+						<option value="0" selected label="--- Tất cả ---"/>
+							 <c:forEach items="${listRoles}" var="x">
+			                     <option value="${x.idRoles}" > ${x.nameRoles}</option>
+			                </c:forEach>
+							</select>
+							</div>
+				</div>
+				<div class="col-md-2" style="margin-top: 25px;" >
+				<label></label>
+							<button type="submit" class="btn mr-1 mb-1 btn-success btn-sm">
+								<i class="fa fa-search"></i> Lọc
+							</button>
+				</div>
+				
+				</form>
+				</div>
+				<script>
+window.onload = function () { 
+	maNV = "<%= request.getParameter("maNV") %>";
+	if (maNV != 0 && maNV != "null") {
+		$("#maNV").val(maNV);
+	}
+	vaiTro= "<%= request.getParameter("vaiTro") %>"
+	if (vaiTro != 0 && vaiTro != "null") {
+		$("#vaiTro").val(vaiTro);
+	}
+}
+</script>
 				<div class="x_content">
 
 					<table class="table table-striped" style="text-align: center">
 						<thead>
 							<tr>
 
-								<th style="text-align: center">Mã Dự Án</th>
-								<th style="text-align: center">Tên Dự Án</th>
+								
 								<th style="text-align: center">Mã Nhân Viên</th>
 								<th style="text-align: center">Tên Nhân Viên</th>
 
@@ -61,8 +108,7 @@
 								<tr>
 
 
-									<td style="text-align: left">${nhiemVu.projects.idProject}</td>
-									<td style="text-align: left">${nhiemVu.projects.nameProject}</td>
+									
 									<td style="text-align: left">${nhiemVu.hoSoNhanVien.maNv}</td>
 									<td style="text-align: left">${nhiemVu.hoSoNhanVien.hoTenNv}</td>
 									<td style="text-align: left">${nhiemVu.roles.nameRoles}</td>
@@ -84,6 +130,24 @@
 							</c:forEach>
 						</tbody>
 					</table>
+					<c:if test="${totalPage > 1}">
+					<div class="text-center" style="float: right;margin-right: 50px">
+						<ul class="pagination firstLast1-links">
+							<c:if test="${pageId > 1}">
+								<li class="page-item"><a href="1" class="page-link">First</a></li>
+								<li class="page-item"><a href="${pageId-1 }"
+									class="page-link">${pageId-1 }</a></li>
+							</c:if>
+							<li class="page-item active"><a href="#" class="page-link">${pageId }</a></li>
+							<c:if test="${pageId < totalPage}">
+								<li class="page-item"><a href="${pageId+1 }"
+									class="page-link">${pageId+1 }</a></li>
+								<li class="page-item"><a href="${totalPage }"
+									class="page-link">Last</a></li>
+							</c:if>
+						</ul>
+					</div>
+					</c:if>
 					<c:if test="${success != null }">
 						${success}
 					</c:if>

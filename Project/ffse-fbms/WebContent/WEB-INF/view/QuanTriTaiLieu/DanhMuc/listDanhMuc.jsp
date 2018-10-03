@@ -1,53 +1,150 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Danh sách category</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
 </head>
 <body>
-<jsp:include page="/WEB-INF/view/templates/header.jsp" />
-	<div class="container" style="max-width:50%">
-		<div style="text-align: center;">
-			<h1>Danh sách danh mục</h1>
-		</div>
-		<div>
-			<h3>
-				<a href="add">Thêm mới</a>
-			</h3>
-		</div>
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th scope="col">Mã danh mục</th>
-					<th scope="col">Tên danh mục</th>
-					<th scope="col">Ảnh</th>
-					<th scope="col">Chức năng</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="sv" items="${category}">
-					<tr>
-						<th scope="row">${sv.ma_danh_muc}</th>
-						<td>${sv.ten_danh_muc }</td>
-						<td><img style="width: 100px; height: 100px;" src='<c:url value = "/resources/upload/${sv.image }" ></c:url>' alt="image"></td>
-					<td><a href="edit/${sv.id }"><button
-							class="btn btn-success">Edit</button></a> <a
-					href="delete/${sv.id }"><button class="btn btn-danger"
-					onclick="return confirm('Bạn có muốn xóa sinh viên này?');">Delete</button></a></td>
-				</c:forEach>
-			</tbody>
-		</table>
+	<jsp:include page="/WEB-INF/view/templates/header.jsp" />
+	<div class="app-content content container-fluid">
+		<div class="content-wrapper">
+			<!-- Path -->
+			<div class="content-header row">
+				<div class="content-header-left col-md-9 col-xs-12 mb-2">
+					<h3 class="content-header-title mb-0">Danh Sách Danh Mục</h3>
+					<div class="row breadcrumbs-top">
+						<div class="breadcrumb-wrapper col-xs-12">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a
+									href='<c:url value="/home" />'>Home</a></li>
+								<li class="breadcrumb-item active">Danh Sách Danh Mục</li>
+							</ol>
+						</div>
+					</div>
+				</div>
+				<div class="content-header-right col-md-3 col-xs-12">
+					<div role="group" aria-label="Button group with nested dropdown"
+						class="btn-group float-md-right" id="add-new">
+						<a class="btn btn-primary"
+							href='<c:url value = "/QuanTriTaiLieu/TaiLieu/add" />'><span
+							data-i18n="" class="ft-plus-square">Thêm Mới</span></a>
+					</div>
+				</div>
+			</div>
+			<!-- End Path -->
+			<div class="content-body">
+				<c:if test="${messageSuccess ne null}">
+					<div class="alert alert-success alert-dismissable" role="alert">
+						<button type="button" class="close" data-dismiss="alert">
+							<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+						</button>
+						${messageSuccess}
+					</div>
+				</c:if>
+				<c:if test="${messageError ne null}">
+					<div class="alert alert-danger alert-dismissable" role="alert">
+						<button type="button" class="close" data-dismiss="alert">
+							<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+						</button>
+						${messageError}
+					</div>
+				</c:if>
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="card">
+							<div class="card-header">
+								<h4 class="card-title">Danh Sách Danh Mục</h4>
+								<a class="heading-elements-toggle"><i
+									class="fa fa-ellipsis-v font-medium-3"></i></a>
+								<div class="heading-elements">
+									<ul class="list-inline mb-0">
+										<li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+										<li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+										<li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+										<li><a data-action="close"><i class="ft-x"></i></a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="card-body collapse in">
+								<div class="card-block card-dashboard">
+									<div class="table-responsive">
+										<table id="datatable"
+											class="table table-striped table-bordered dataex-res-constructor">
+											<thead>
+												<tr>
+													<th>Mã danh mục</th>
+													<th>Tên danh mục</th>
+													<th>Chức năng</th>
+												</tr>
+											</thead>
+											<tbody>
+												<c:if test="${not empty category}">
+													<c:forEach var="sv" items="${category}">
+														<tr>
+															<td>${sv.ma_danh_muc}</td>
+															<td>${sv.ten_danh_muc}</td>
+															<td><a
+																href="/ffse-fbms/QuanTriTaiLieu/TaiLieu/edit/${sv.id}"
+																data-toggle="tooltip" title="edit">
+																	<button type="button"
+																		class="btn btn-icon btn-outline-warning">
+																		<i class="fa fa-pencil"></i>
+																	</button>
+															</a> <a
+																href="/ffse-fbms/QuanTriTaiLieu/TaiLieu/delete/${sv.id}">
+																	<button type="button"
+																		onclick="if (!confirm('Are you sure you want to delete this database?')) return false"
+																		class="btn btn-outline-danger btn-icon checkid"
+																		data-toggle="modal" title="delete"
+																		data-target="#danger">
+																		<i class="fa fa-trash-o"></i>
+																	</button>
+															</a></td>
+														</tr>
+													</c:forEach>
+												</c:if>
+											</tbody>
+										</table>
 
+										<nav aria-label="Page navigation example">
+										<ul class="pagination">
+											<li class="page-item"><a class="page-link"
+												href="?page=1">First Page</a></li>
+											<c:if test="${currentPage > 2}">
+												<li class="page-item"><a class="page-link"
+													href="?page=${currentPage-2}">${currentPage-2}</a></li>
+											</c:if>
+											<c:if test="${currentPage > 1}">
+												<li class="page-item"><a class="page-link"
+													href="?page=${currentPage-1}">${currentPage-1}</a></li>
+											</c:if>
+											<li class="page-item active"><a class="page-link"
+												href="?page=${currentPage}">${currentPage}</a></li>
+											<c:if test="${currentPage < lastPage}">
+												<li class="page-item"><a class="page-link"
+													href="?page=${currentPage+1}">${currentPage+1}</a></li>
+											</c:if>
+											<c:if test="${currentPage < lastPage - 1}">
+												<li class="page-item"><a class="page-link"
+													href="?page=${currentPage+2}">${currentPage+2}</a></li>
+											</c:if>
+											<li class="page-item"><a class="page-link"
+												href="?page=${lastPage }">Last Page</a></li>
+										</ul>
+										</nav>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-	<script>
-		function canhbao() {
-			return confirm("Bạn Có Chắc Muốn Xóa Không?");
-		}
-	</script>
 	<jsp:include page="/WEB-INF/view/templates/footer.jsp" />
 </body>
 </html>

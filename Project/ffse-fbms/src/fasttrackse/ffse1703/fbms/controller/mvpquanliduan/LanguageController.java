@@ -65,7 +65,16 @@ public class LanguageController {
 		if (result.hasErrors()) {
 			return "MvpQuanLiDuAn/programlanguage/add_form";
 		}
-		
+		int checkMa = languageService.checkMa(language.getIdLanguage());
+		if(checkMa >=1) {
+			model.addAttribute("messageMa", "Mã ngôn ngữ đã được sử dụng");
+			return "MvpQuanLiDuAn/programlanguage/add_form";
+		}
+		int checkName=languageService.checkNameLanguage(language.getNameLanguage());
+		if(checkName >=1) {
+			model.addAttribute("messageName", "Tên ngôn ngữ đã được sử dụng");
+			return "MvpQuanLiDuAn/programlanguage/add_form";
+		}
 		
 		language.setStatus(1);
 		languageService.add(language);

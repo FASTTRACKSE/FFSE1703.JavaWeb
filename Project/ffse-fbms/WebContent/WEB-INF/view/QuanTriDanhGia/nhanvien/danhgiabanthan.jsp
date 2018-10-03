@@ -20,10 +20,11 @@
 					</div>
 				</div>
 			</div>
-			<c:if test="${empty tudanhgia}">
+			<c:if test="${empty danhGia}">
 				<div class="content-header-right col-md-3 col-xs-12">
 					<div role="group" aria-label="Button group with nested dropdown"
 						class="btn-group float-md-right" id="add-new">
+
 						<a
 							href="<c:url value = "/quantridanhgia/nhanvien/danhgiabanthan/add"/>"
 							class="btn btn-primary"><span class="fa fa-plus"></span> Tạo</a>
@@ -52,7 +53,7 @@
 								<div class="card">
 									<div class="card-content collpase show">
 										<div class="card-body" style="margin: 1em">
-											<div class="form form-horizontal form-bordered">
+											<form:form cssClass="form form-horizontal form-bordered">
 												<div class="form-body">
 													<h4 class="form-section">
 														<i class="ft-user"></i> Bản tự đánh giá
@@ -61,59 +62,64 @@
 														<label class="col-md-3 label-control">Kỷ luật công
 															việc</label>
 														<div class="col-md-9">
-															<label>${danhGia.kyLuatCongViec_DG }</label> <label>${danhGia.kyLuatCongViec_MT }</label>
+															<p>${danhGia.kyLuatCongViec_DG }</p>
+															<p>${danhGia.kyLuatCongViec_MT }</p>
 														</div>
 													</div>
 													<div class="form-group row">
 														<label class="col-md-3 label-control">Tinh thần
 															làm việc</label>
 														<div class="col-md-9">
-															<label>${danhGia.tinhThanLamViec_DG }</label> <label>${danhGia.tinhThanLamViec_MT }</label>
+															<p>${danhGia.tinhThanLamViec_DG }</p>
+															<p>${danhGia.tinhThanLamViec_MT }</p>
 														</div>
 													</div>
 													<div class="form-group row">
 														<label class="col-md-3 label-control">Khối lượng
 															công việc đạt được</label>
 														<div class="col-md-9">
-															<label>${danhGia.khoiLuongCongViec_DG }</label> <label>${danhGia.khoiLuongCongViec_MT }</label>
+															<p>${danhGia.khoiLuongCongViec_DG }</p>
+															<p>${danhGia.khoiLuongCongViec_MT }</p>
 														</div>
 													</div>
 													<div class="form-group row">
 														<label class="col-md-3 label-control">Kết quả công
 															việc đạt được</label>
 														<div class="col-md-9">
-															<label>${danhGia.ketQuaCongViec_DG }</label> <label>${danhGia.ketQuaCongViec_MT }</label>
+															<p>${danhGia.ketQuaCongViec_DG }</p>
+															<p>${danhGia.ketQuaCongViec_MT }</p>
 														</div>
 													</div>
 													<div class="form-group row">
 														<label class="col-md-3 label-control">Kỹ năng tích
 															lũy</label>
 														<div class="col-md-9">
-															<label>${danhGia.kyNangTichLuy_DG }</label> <label>${danhGia.kyNangTichLuy_MT }</label>
+															<p>${danhGia.kyNangTichLuy_DG }</p>
+															<p>${danhGia.kyNangTichLuy_MT }</p>
 														</div>
 													</div>
 													<div class="form-group row">
 														<label class="col-md-3 label-control">Định hướng</label>
 														<div class="col-md-9">
-															<label>${danhGia.dinhHuong }</label>
+															<p>${danhGia.dinhHuong }</p>
 														</div>
 													</div>
 													<div class="form-group last">
 														<label class="col-md-3 label-control">Đánh giá
 															tổng thể</label>
 														<div class="col-md-9">
-															<label>${danhGia.danhGiaTongThe }</label>
+															<p>${danhGia.danhGiaTongThe }</p>
 														</div>
 													</div>
 												</div>
+											</form:form>
+											<c:if test="${danhGia.trangThai == 1 }">
 												<div class="form-actions">
-													<c:if test="${command.isDelete == 1 }">
-														<a
-															href="<c:url value="/quantridanhgia/tudanhgia/showform"/>"
-															class="btn btn-success">Cập nhật</a>
-													</c:if>
+													<a
+														href="<c:url value="/quantridanhgia/nhanvien/danhgiabanthan/edit"/>"
+														class="btn btn-success">Cập nhật</a>
 												</div>
-											</div>
+											</c:if>
 										</div>
 									</div>
 								</div>

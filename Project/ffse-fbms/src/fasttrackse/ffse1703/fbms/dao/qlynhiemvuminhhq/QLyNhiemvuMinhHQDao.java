@@ -9,7 +9,7 @@ import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 
 
  public interface QLyNhiemvuMinhHQDao {
- 	public List<CongViecMinhHQ> findAll();
+ 	public List<CongViecMinhHQ> findAll(String search);
 
  	public void addNew(CongViecMinhHQ cv);
 
@@ -28,5 +28,7 @@ import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
  	public List<DuAnMinhHQ> duAn();
  	
  	public List<HoSoNhanVien> nhanVien();
+ 	
+ 	public List<CongViecMinhHQ> searchAll(String search);
 	
  }

@@ -24,6 +24,7 @@ public class LichDanhGia {
 	@Column(name = "ma_phong_ban")
 	private String phongBan;
 
+	@NaturalId
 	@Column(name = "is_active")
 	private int isActive;
 

@@ -27,7 +27,8 @@
 					<div class="card">
 						<div class="card-content">
 							<div class="card-body" style="margin: 1em">
-								<h2>Chưa có phân công đánh giá nào</h2>
+								<h2>Chưa có danh sách đánh giá</h2>
+								<a class="btn btn-primary" href="<c:url value = "/quantridanhgia/nhanvien/danhgianhanvien/create"/>">Tạo ngay</a>
 							</div>
 						</div>
 					</div>

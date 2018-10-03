@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import fasttrackse.ffse1703.fbms.dao.qlynhiemvunghiabt.QLyNhiemVuDaoNghiaBT;
 import fasttrackse.ffse1703.fbms.entity.qlynhiemvunghiabt.NhiemVu;
-import fasttrackse.ffse1703.fbms.entity.qlynhiemvuminhhq.CongViecMinhHQ;
 import fasttrackse.ffse1703.fbms.entity.qlynhiemvunghiabt.DuAnNghiaBT;
 import fasttrackse.ffse1703.fbms.entity.qlynhiemvunghiabt.LoaiCongViecNghiaBT;
 import fasttrackse.ffse1703.fbms.entity.qlynhiemvunghiabt.TrangThaiNghiaBT;
@@ -23,8 +22,8 @@ public class QLyNhiemVuServiceImplNghiaBT implements QLyNhiemVuServiceNghiaBT {
 
 	@Override
 	@Transactional
-	public List<NhiemVu> findAll() {
-		return congViecDao.findAll();
+	public List<NhiemVu> findAll(String search) {
+		return congViecDao.findAll(search);
 	}
 
 	@Override
@@ -51,9 +50,15 @@ public class QLyNhiemVuServiceImplNghiaBT implements QLyNhiemVuServiceNghiaBT {
 		return congViecDao.findByID(ID);
 	}
 
+//	@Override
+//	public List<NhiemVu> findAll(int iDisplayStart, int iDisplayLength, String sql) {
+//		return congViecDao.findAll(iDisplayStart, iDisplayLength, sql);
+//	}
+	
 	@Override
-	public List<NhiemVu> findAll(int iDisplayStart, int iDisplayLength, String sql) {
-		return congViecDao.findAll(iDisplayStart, iDisplayLength, sql);
+	@Transactional
+	public List<NhiemVu> findAllForPaging(int iDisplayStart, int iDisplayLength, String search) {
+		return congViecDao.findAllForPaging(iDisplayStart, iDisplayLength, search);
 	}
 
 	@Override

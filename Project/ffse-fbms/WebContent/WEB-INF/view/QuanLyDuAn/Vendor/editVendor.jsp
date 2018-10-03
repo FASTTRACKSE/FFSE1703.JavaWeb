@@ -15,8 +15,8 @@
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="/ffse-fbms/home">Home</a></li>
 							<li class="breadcrumb-item"><a
-								href="/ffse-fbms/QuanLyDuAn/vendor/list">Danh sách Vendor</a></li>
-							<li class="breadcrumb-item active">Update Vendor</li>
+								href="/ffse-fbms/QuanLyDuAn/vendor/list"><spring:message code="label.titleVendor" /></a></li>
+							<li class="breadcrumb-item active"><spring:message code="label.upVendor" /></li>
 						</ol>
 					</div>
 				</div>
@@ -26,7 +26,7 @@
 			<div class="col-sm-4"></div>
 			<div class="col-sm-4">
 				<h1>
-					<strong>Update Vendor</strong>
+					<strong><spring:message code="label.upVendor" /></strong>
 
 				</h1>
 			</div>
@@ -40,37 +40,37 @@
 
 			</div> --%>
 			<div class="form-group col-sm-6">
-				<label>Mã Vendor</label>
+				<label><spring:message code="label.upVendor" /></label>
 				<form:input class="form-control" path="mavd" readonly="true" placeholder="Mã Vendor" />
 				<form:errors path="mavd" cssStyle="color: red"></form:errors> 
 
 			</div>
 			<div class="form-group col-sm-6">
-				<label>Tên Vendor</label>
+				<label><spring:message code="label.tenVendor" /></label>
 				<form:input class="form-control" path="tenvd" placeholder="Tên Vendor" />
 				<form:errors path="tenvd" cssStyle="color: red"></form:errors>
 
 			</div>
 			<div class="form-group col-sm-6">
-				<label>Địa Chỉ</label>
+				<label><spring:message code="label.dcVendor" /></label>
 				<form:input class="form-control" path="diachi" placeholder="Địa Chỉ" />
 				<form:errors path="diachi" cssStyle="color: red"></form:errors> 
 
 			</div>
 			<div class="form-group col-sm-6">
-				<label>Email</label>
+				<label><spring:message code="label.emailVendor" /></label>
 				<form:input class="form-control" path="email" placeholder="Email" />
 			<form:errors path="email" cssStyle="color: red"></form:errors>
 
 			</div>
 			<div class="form-group col-sm-6">
-				<label>SĐT</label>
+				<label><spring:message code="label.sdtVendor" /></label>
 				<form:input class="form-control" path="sdt" placeholder="Số điện thoại" />
 				<form:errors path="sdt" cssStyle="color: red"></form:errors> 
 
 			</div>
 			<div class="col-sm-12 text-center">
-				<button type="submit" class="btn btn-success">Sữa thông tin</button>
+				<button type="submit" class="btn btn-success"><spring:message code="label.updateVendor" /></button>
 			</div>
 		</form:form>
 	</div>

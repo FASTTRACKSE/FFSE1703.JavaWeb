@@ -48,17 +48,18 @@ i.fa {
 									href="<c:url value = "/quanlynhansutt/bang_cap/viewOneBangCap/${maNhanVien}"/>"
 									class="dropdown-item"><i class="fa fa-graduation-cap"></i>
 									<spring:message code="label.thongTinBangCap" /></a> <a
-									href="<c:url value = "/quanlynhansutt/gia_dinh/viewOneGiaDinh/${maNhanVien}"/>" class="dropdown-item"><i
-									class="fa fa-users"></i> <spring:message
+									href="<c:url value = "/quanlynhansutt/gia_dinh/viewOneGiaDinh/${maNhanVien}"/>"
+									class="dropdown-item"><i class="fa fa-users"></i> <spring:message
 										code="label.thongTinGiaDinh" /></a> <a
-									href="<c:url value = "/quanlynhansutt/kinh_Nghiem/viewOneKinhNghiem/${maNhanVien}"/>" class="dropdown-item"><i
-									class="fa fa-file-code-o"></i> <spring:message
+									href="<c:url value = "/quanlynhansutt/kinh_Nghiem/viewOneKinhNghiem/${maNhanVien}"/>"
+									class="dropdown-item"><i class="fa fa-file-code-o"></i> <spring:message
 										code="label.thongTinKinhNghiem" /></a> <a
 									href="<c:url value = "/quanlynhansutt/hop_dong/viewOneHopDong/${maNhanVien}"/>"
 									class="dropdown-item"><i class="fa fa-handshake-o"></i> <spring:message
 										code="label.thongTinHopDong" /></a>
 								<div class="dropdown-divider"></div>
-								<a href="<c:url value = "/quanlynhansutt/ho_so/viewOne/${maNhanVien}"/>"
+								<a
+									href="<c:url value = "/quanlynhansutt/ho_so/viewOne/${maNhanVien}"/>"
 									class="dropdown-item text-xs-center"><spring:message
 										code="label.xemTatCa" /></a>
 							</div>
@@ -98,6 +99,13 @@ i.fa {
 													<div class="form-body">
 														<div class="row">
 															<div class="col-md-8">
+															<div class="row">
+																<div class="form-group col-sm-6">
+																<img
+																		src="<c:url value="/uploads/${formHoso.anhDaiDien}" />"
+																		width="150" height="200">
+																</div>
+																</div>
 																<div class="row">
 																	<div class="form-group col-sm-6">
 																		<label>mã nhân viên</label>
@@ -116,14 +124,12 @@ i.fa {
 																	<div class="form-group col-sm-6">
 																		<div class="form-group">
 																			<label>giới tính</label>
-																			<form:input class="form-control" path="gioiTinh"
-																				placeholder="tên nhân viên" readonly="true" />
-																			<c:if test="${hsnv.gioiTinh == 1}">
-																				<spring:message code="label.nam" />
-																			</c:if>
-																			<c:if test="${hsnv.gioiTinh == 2}">
-																				<spring:message code="label.nu" />
-																			</c:if>
+																			<form:select class="custom-select form-control"
+																				path="gioiTinh" readonly="true">
+																				<option value="none">Chọn</option>
+																				<form:option value="1">Nam</form:option>
+																				<form:option value="2">Nữ</form:option>
+																			</form:select>
 																		</div>
 																	</div>
 																	<div class="form-group col-sm-6">
@@ -163,19 +169,26 @@ i.fa {
 																	<div class="form-group col-sm-6">
 																		<div class="form-group">
 																			<label for="projectinput4">Dân tộc</label>
-
+																			<form:select path="danToc.maDanToc" type="text"
+																				id="projectinput4" class="form-control"
+																				readonly="true">
+																				<c:forEach items="${listDanToc}" var="hsnv">
+																					<form:option value="${hsnv.maDanToc}">${hsnv.tenDanToc}</form:option>
+																				</c:forEach>
+																			</form:select>
 																		</div>
 																	</div>
 																</div>
 
 																<div class="row">
 																	<div class="form-group col-sm-6">
-
 																		<label for="projectinput4">Quốc tịch</label>
-																		<form:select path="quocTich" type="text"
+																		<form:select path="quocTich.maQuocTich" type="text"
 																			id="projectinput4" class="form-control"
 																			readonly="true">
-
+																			<c:forEach items="${listQuocTich}" var="hsnv">
+																				<form:option value="${hsnv.maQuocTich}">${hsnv.tenQuocTich}</form:option>
+																			</c:forEach>
 																		</form:select>
 																	</div>
 																	<div class="form-group col-sm-6">
@@ -202,17 +215,36 @@ i.fa {
 																<div class="row">
 																	<div class="form-group col-sm-6">
 																		<label>tỉnh, thành phố</label>
-
+																		<form:select path="thanhPho.maThanhPho" type="text"
+																			id="thanhPhoId" class="form-control"
+																			onchange="clickComboboxThanhPho()" readonly="true">
+																			<option value="noThanhPho" selected="selected">Chọn
+																				thành phố</option>
+																			<c:forEach items="${listThanhPho}" var="x">
+																				<form:option value="${x.maThanhPho}">${x.tenThanhPho}</form:option>
+																			</c:forEach>
+																		</form:select>
 																	</div>
 																	<div class="form-group col-sm-6">
 																		<label>quận, huyện</label>
-
+																		<form:select path="quanHuyen.maQuanHuyen"
+																			id="quanHuyenId" type="text" class="form-control"
+																			disabled="true" onchange="clickComboboxQuan()"
+																			name="quanHuyen" readonly="true">
+																			<option value="noQuanHuyen" selected="selected">Chọn
+																				quận huyện</option>
+																		</form:select>
 																	</div>
 																</div>
 																<div class="row">
 																	<div class="form-group col-sm-6">
 																		<label>xã, phường</label>
-
+																		<form:select path="xaPhuong.maXa" type="text"
+																			id="phuongXaId" class="form-control"
+																			name="phuongXaSelect" disabled="true" readonly="true">
+																			<option value="noPhuongXa" selected="selected">Chọn
+																				xã, phường</option>
+																		</form:select>
 																	</div>
 																	<div class="form-group col-sm-6">
 																		<label>địa chỉ</label>
@@ -220,40 +252,226 @@ i.fa {
 																			placeholder="địa chỉ" readonly="true" />
 																	</div>
 																</div>
-
-
-
-
 																<div class="row">
 																	<div class="form-group col-sm-6">
 																		<label>phòng ban</label>
-
+																		<form:select path="phongBan.maPhongBan" type="text"
+																			id="companyName" class="form-control"
+																			name="phongBanSelect" readonly="true">
+																			<option value="none" selected>Chọn Phòng ban</option>
+																			<c:forEach items="${listPhongBan}" var="x">
+																				<form:option value="${x.maPhongBan}">${x.tenPhongBan}</form:option>
+																			</c:forEach>
+																		</form:select>
 																	</div>
 																	<div class="form-group col-sm-6">
 																		<label>chức danh</label>
-
+																		<form:select path="chucDanh.maChucDanh" type="text"
+																			id="companyName" class="form-control"
+																			placeholder="Company Name" name="chucDanhSelect" readonly="true">
+																			<option value="none" selected="selected">Chọn
+																				chức danh</option>
+																			<c:forEach items="${listChucDanh}" var="x">
+																				<form:option value="${x.maChucDanh}">${x.tenChucDanh}</form:option>
+																			</c:forEach>
+																		</form:select>
 
 																	</div>
 																</div>
 																<div class="row">
 																	<div class="form-group col-sm-6">
 																		<label for="location1">Trạng Thái</label>
-
-																	</div>
-																	<div class="form-group col-sm-6">
-																		<label>Hình Ảnh:</label> <img id="img" src="#"
-																			alt="your image" width="100" height="150" />
+																		<form:select class="custom-select form-control"
+																			path="trangThai" readonly="true">
+																			<form:option value="1">Còn
+																		Làm Việc</form:option>
+																			<form:option value="2">Hết
+																		Làm Việc</form:option>
+																		</form:select>
 																	</div>
 																</div>
 
 															</div>
 														</div>
+
 													</div>
 													<div class="form-actions center">
 														<input class="btn btn-success" type="submit" value="back" />
 													</div>
 												</form:form>
+												<script>
+													window.onload = function() {
+														clickComboboxThanhPho(); // gọi function này để load quận
 
+													}
+												</script>
+
+												<script type="text/javascript">
+												<!-- ajax select ThanhPho -->
+													function clickComboboxThanhPho() {
+														var maThanhPho = $(
+																"#thanhPhoId")
+																.val();
+														if (maThanhPho == 'noThanhPho') { // nếu người dùng chưa chọn thành phố
+															$(
+																	'#quanHuyenId option')
+																	.remove();
+															$('#quanHuyenId')
+																	.prop(
+																			'disabled',
+																			true); /*disable combobox quận huyện */
+
+															$(
+																	'#phuongXaId option[value=noPhuongXa]')
+																	.attr(
+																			'selected',
+																			'selected')
+															$('#phuongXaId')
+																	.prop(
+																			'disabled',
+																			true);
+
+														} else { // nếu người dùng đã chọn thành phố
+
+															$('#quanHuyenId')
+																	.prop(
+																			'disabled',
+																			false); /*enable combobox quận huyện */
+
+															$(
+																	'#quanHuyenId option')
+																	.remove(); /* xóa những option quận huyện cũ */
+														}
+
+														$
+																.ajax({
+																	url : "/ffse-fbms/quanlynhansutt/ho_so/selectquan/"
+																			+ maThanhPho,
+																	dataType : "json",
+																	success : function(
+																			data) {
+																		$(
+																				'#quanHuyenId')
+																				.append(
+																						$(
+																								'<option>',
+																								{
+																									value : 'noQuanHuyen',
+																									text : 'Chọn Quận Huyện'
+																								}));
+
+																		for (var i = 0; i < data.length; i++) {
+																			$(
+																					'#quanHuyenId')
+																					.append(
+																							$(
+																									'<option>',
+																									{
+																										value : data[i].maQuanHuyen,
+																										text : data[i].tenQuanHuyen
+																									}));
+
+																		}
+																		$(
+																				'#quanHuyenId option[value=${formHoso.quanHuyen.maQuanHuyen}]')
+																				.attr(
+																						'selected',
+																						'selected')
+																		clickComboboxQuan(); // gọi function này để load phường
+
+																	}
+																});
+													};
+												</script>
+
+												<script>
+													// ajax select QuanHuyen
+													function clickComboboxQuan() {
+														var maQuanHuyen = $(
+																"#quanHuyenId")
+																.val();
+														if (maQuanHuyen == 'noQuanHuyen') { /* nếu người dùng chưa chọn thành phố */
+															$(
+																	'#phuongXaId option')
+																	.remove();
+															$('#phuongXaId')
+																	.prop(
+																			'disabled',
+																			true); /*disable combobox quận huyện */
+
+														} else { /* nếu người dùng đã chọn thành phố*/
+
+															$('#phuongXaId')
+																	.prop(
+																			'disabled',
+																			false); // enable combobox quận huyện 
+															$(
+																	'#phuongXaId option')
+																	.remove(); // xóa những option quận huyện cũ
+														}
+
+														$
+																.ajax({
+																	url : "/ffse-fbms/quanlynhansutt/ho_so/selectphuong/"
+																			+ maQuanHuyen,
+																	dataType : "json",
+																	success : function(
+																			data) {
+
+																		$(
+																				'#phuongXaId')
+																				.append(
+																						$(
+																								'<option>',
+																								{
+																									value : 'noPhuongXa',
+																									text : 'Chọn phường xã'
+																								}));
+
+																		for (var i = 0; i < data.length; i++) {
+																			$(
+																					'#phuongXaId')
+																					.append(
+																							$(
+																									'<option>',
+																									{
+																										value : data[i].maXa,
+																										text : data[i].tenXa
+																									}));
+
+																		}
+																		$(
+																				'#phuongXaId option[value=${formHoso.xaPhuong.maXa}]')
+																				.attr(
+																						'selected',
+																						'selected')
+
+																	}
+																});
+													};
+												</script>
+												<!-- preview image -->
+												<script type="text/javascript">
+													function readURL(input) {
+														if (input.files
+																&& input.files[0]) {
+															var reader = new FileReader();
+															reader.onload = function(
+																	e) {
+																$('#img')
+																		.attr(
+																				'src',
+																				e.target.result);
+															}
+															reader
+																	.readAsDataURL(input.files[0]);
+														}
+													}
+													$("#imgUrl").change(
+															function() {
+																readURL(this);
+															});
+												</script>
 											</div>
 										</div>
 									</div>

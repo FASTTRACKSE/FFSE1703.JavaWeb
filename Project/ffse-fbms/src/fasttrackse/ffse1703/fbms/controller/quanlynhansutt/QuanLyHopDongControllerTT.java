@@ -2,6 +2,7 @@ package fasttrackse.ffse1703.fbms.controller.quanlynhansutt;
 
 import java.io.IOException;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.HopDongTT;
+import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.UserAccountTT;
 import fasttrackse.ffse1703.fbms.service.quanlynhansutt.HopDongServiceTT;
 import fasttrackse.ffse1703.fbms.service.quanlynhansutt.LoaiHopDongServiceTT;
+import fasttrackse.ffse1703.fbms.service.quanlynhansutt.UserAccountServiceTT;
+
+
 
 @Controller
 @RequestMapping("/quanlynhansutt/hop_dong/")
@@ -27,6 +32,9 @@ public class QuanLyHopDongControllerTT {
 
 	@Autowired
 	private HopDongServiceTT hopDongServiceTT;
+	
+	@Autowired
+	private UserAccountServiceTT userAccountService;
 
 	public LoaiHopDongServiceTT getLoaiHopDongServiceTT() {
 		return loaiHopDongServiceTT;
@@ -88,15 +96,16 @@ public class QuanLyHopDongControllerTT {
 
 			}
 			// check trùng quan hệ
-						int checkloaiHopDong = hopDongServiceTT.checkloaiHopDong(hd.getLoaiHopDong().getTenHopDong(),hd.getHoSoNhanVienTT().getMaNhanVien());
-						System.out.println("nnnnn"+checkloaiHopDong);
-						System.out.println("nnnnn"+hd.getHoSoNhanVienTT().getMaNhanVien());
-						System.out.println("nnnnn"+hd.getLoaiHopDong().getTenHopDong());
-						if (checkloaiHopDong >= 1) {
-							model.addAttribute("messageQuanHe",
-									"<script>alert('Nhân Viên Đã Có " + hd.getLoaiHopDong().getTenHopDong() + "');</script>");
-							return "QuanLyNhanSuTT/QuanLyHopDongTT/add_form";
-						}
+			int checkloaiHopDong = hopDongServiceTT.checkloaiHopDong(hd.getLoaiHopDong().getTenHopDong(),
+					hd.getHoSoNhanVienTT().getMaNhanVien());
+			System.out.println("nnnnn" + checkloaiHopDong);
+			System.out.println("nnnnn" + hd.getHoSoNhanVienTT().getMaNhanVien());
+			System.out.println("nnnnn" + hd.getLoaiHopDong().getTenHopDong());
+			if (checkloaiHopDong >= 1) {
+				model.addAttribute("messageQuanHe",
+						"<script>alert('Nhân Viên Đã Có " + hd.getLoaiHopDong().getTenHopDong() + "');</script>");
+				return "QuanLyNhanSuTT/QuanLyHopDongTT/add_form";
+			}
 			hd.setIsdelete(1);
 			hopDongServiceTT.addHopDong(hd);
 		} else {
@@ -110,17 +119,13 @@ public class QuanLyHopDongControllerTT {
 		return "redirect:/quanlynhansutt/ho_so/";
 	}
 
-	/*int checkQuanHe = thongTinGiaDinhServiceTT.checkQuanHe(gd.getQuanHe(),
-			gd.getHoSoNhanVienTT().getMaNhanVien());
-	if (checkQuanHe >= 1) {
-		model.addAttribute("messageQuanHe",
-				"<script>alert('Nhân Viên Đã Có " + gd.getQuanHe() + "');</script>");
-		return "QuanLyNhanSuTT/ThongTinGiaDinh/add_form";
-	}*/
-	
 	// Show the contract to an employee
 	@RequestMapping("/viewOneHopDong/{maNhanVien}")
-	public String viewOneHopDong(@PathVariable int maNhanVien, Model model) {
+	public String viewOneHopDong( Model model, HttpServletRequest request) {
+		UserAccountTT userAccount = this.userAccountService.loadUserByUsername(request.getUserPrincipal().getName());
+    	int maNhanVien = userAccount.getNhanVien().getMaNhanVien();
+		model.addAttribute("role_nv", "true");
+		
 		model.addAttribute("viewOne", this.hopDongServiceTT.viewOne(maNhanVien));
 		model.addAttribute("maNhanVien", maNhanVien);
 		return "QuanLyNhanSuTT/QuanLyHopDongTT/viewOneHopDong";

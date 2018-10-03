@@ -1,5 +1,6 @@
 package fasttrackse.ffse1703.fbms.entity.quanlyduan;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -13,11 +14,16 @@ import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "doi_tac")
-public class VendorTeam1 {
+public class VendorTeam1 implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@NotEmpty(message="Mã không được để trống !")
 	@Column(name = "ma_doi_tac")
-	 String mavd;
+	private String mavd;
 	
 	@Column(name = "ten_doi_tac")
 	@NotEmpty(message="Tên không được để trống !")

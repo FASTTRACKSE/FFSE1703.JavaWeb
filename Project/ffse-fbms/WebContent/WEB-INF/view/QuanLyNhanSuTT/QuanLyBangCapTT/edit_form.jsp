@@ -110,8 +110,9 @@
 											</div>
 											<div class="col-xl-6 col-lg-6 col-md-12 mb-1">
 												<div class="form-group">
-													<input class="btn btn-success" type="submit" value="Save" />
-													<a class="btn btn-info" href="#">View</a>
+													<a
+												href="<c:url value = "/quanlynhansutt/bang_cap/viewOneBangCap/${maNhanVien}"/>"
+												class="btn btn-primary">Back</a> <input class="btn btn-success" type="submit" value="Save" />
 												</div>
 											</div>
 										</form:form>

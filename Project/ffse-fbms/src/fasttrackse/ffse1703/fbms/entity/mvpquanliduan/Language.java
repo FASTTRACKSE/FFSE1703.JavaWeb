@@ -13,6 +13,7 @@ import javax.validation.constraints.NotEmpty;
 public class Language {
 	@Id
 	@Column(name = "id_program_language")
+	@NotEmpty(message = "Mã không được để trống")
 	private String idLanguage;
 	@NotEmpty
 	@Column(name = "name_language")	

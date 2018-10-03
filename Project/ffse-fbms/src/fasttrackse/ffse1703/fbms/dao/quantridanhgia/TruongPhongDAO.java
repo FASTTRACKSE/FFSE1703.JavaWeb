@@ -17,7 +17,7 @@ public interface TruongPhongDAO {
 
 	public List<TruongPhongDanhGia> getListNhanVienPhongBan(String phongBan);
 
-	public void insertDanhGiaNhanVien(TruongPhongDanhGia danhGia);
+	public void updateDanhGiaNhanVien(TruongPhongDanhGia danhGia);
 
 	public TruongPhongDanhGia getDanhGiaNhanVien(int id);
 

@@ -62,4 +62,10 @@ private LanguageDao languageDao;
 		return languageDao.countLanguage();
 	}
 
+	@Override
+	public int checkMa(String idLanguage) {
+		// TODO Auto-generated method stub
+		return languageDao.checkMa(idLanguage);
+	}
+
 }

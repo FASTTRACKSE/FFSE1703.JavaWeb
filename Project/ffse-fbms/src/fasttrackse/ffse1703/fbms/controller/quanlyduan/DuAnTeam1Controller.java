@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 import fasttrackse.ffse1703.fbms.entity.quanlyduan.DatabaseTeam1;
 import fasttrackse.ffse1703.fbms.entity.quanlyduan.DomainTeam1;
@@ -114,7 +114,7 @@ public class DuAnTeam1Controller {
 		List<DuAnTeam1> list = duAnTeam1Service.findAll(start, perPage, search);
 
 		model.addAttribute("list", list);
-		model.addAttribute("total", totalPage(perPage));
+		model.addAttribute("total", totalPage(perPage, search));
 		model.addAttribute("page", page);
 		model.addAttribute("duan", duAnTeam1Service.getAll());
 		model.addAttribute("khachHang", khachHangTeam1Service.getAll());
@@ -124,8 +124,8 @@ public class DuAnTeam1Controller {
 		return "QuanLyDuAn/DuAn/list";
 	}
 
-	public int totalPage(int perPage) {
-		int totalPage = (int) Math.ceil((double) duAnTeam1Service.count() / (double) perPage);
+	public int totalPage(int perPage, String search) {
+		int totalPage = (int) Math.ceil((double) duAnTeam1Service.count(search) / (double) perPage);
 		return totalPage;
 	}
 
@@ -148,26 +148,32 @@ public class DuAnTeam1Controller {
 	@RequestMapping(value = { "/creat" }, method = RequestMethod.POST)
 	public String creat(@ModelAttribute("duAn") @Valid DuAnTeam1 duAn, BindingResult result,
 			RedirectAttributes redirectAttributes, Model model) {
-
+		
 		if (result.hasErrors()) {
-			getData(model);
-
 			System.out.println(result);
-			return "QuanLyDuAn/DuAn/add_form";
+			return "redirect:/qlda/DuAn/add_form";
 		}
-		/*
-		 * int checkTen = duAnTeam1Service.getName(duAn.getTenDuAn()); if (checkTen >=
-		 * 1) { redirectAttributes.addFlashAttribute("message",
-		 * "<script>alert('TÃªn dá»± Ã¡n Ä‘Ã£ tá»“n táº¡i.');</script>");
-		 * getData(model); return "redirect:/qlda/DuAn/add_form"; } if
-		 * (duAnTeam1Service.getById(duAn.getMaDuAn()) != null) { DuAnTeam1 db =
-		 * duAnTeam1Service.getById(duAn.getMaDuAn()); if (db.getIsDelete() == 1) {
-		 * duAnTeam1Service.update(duAn); return "redirect:list";
-		 * 
-		 * } else { redirectAttributes.addFlashAttribute("message",
-		 * "<script>alert('MÃ£ dá»± Ã¡n Ä‘Ã£ tá»“n táº¡i.');</script>"); getData(model);
-		 * return "redirect:/qlda/DuAn/add_form"; } }
-		 */
+		int checkTen = duAnTeam1Service.getName(duAn.getTenDuAn());
+		if (checkTen >= 1) {
+			redirectAttributes.addFlashAttribute("message",
+					"<script>alert('TÃªn dá»± Ã¡n Ä‘Ã£ tá»“n táº¡i.');</script>");
+			getData(model);
+			return "redirect:/qlda/DuAn/add_form";
+		}
+		if (duAnTeam1Service.getById(duAn.getMaDuAn()) != null) {
+			DuAnTeam1 db = duAnTeam1Service.getById(duAn.getMaDuAn());
+			if (db.getIsDelete() == 1) {
+				duAnTeam1Service.update(duAn);
+				return "redirect:list";
+
+			} else {
+				redirectAttributes.addFlashAttribute("message",
+						"<script>alert('MÃ£ dá»± Ã¡n Ä‘Ã£ tá»“n táº¡i.');</script>");
+				getData(model);
+				return "redirect:/qlda/DuAn/add_form";
+			}
+		}
+
 		redirectAttributes.addFlashAttribute("message", "<script>alert('Creat successfully.');</script>");
 		duAnTeam1Service.save(duAn);
 		return "redirect:/qlda/DuAn/";
@@ -176,15 +182,6 @@ public class DuAnTeam1Controller {
 	@RequestMapping(value = "/edit/{maDuAn}")
 	public String edit(Model model, @PathVariable("maDuAn") String maDuAn) {
 		DuAnTeam1 dA = duAnTeam1Service.getById(maDuAn);
-		model.addAttribute("database", databaseTeam1Service.getAll());
-		model.addAttribute("trangThai", trangThaiTeam1Service.getAll());
-		model.addAttribute("domain", domainTeam1Service.getAll());
-		model.addAttribute("framework", frameTeam1Service.getAll());
-		model.addAttribute("technical", technicalTeam1Service.getAll());
-		model.addAttribute("vendor", vendorTeam1Service.getAll());
-		model.addAttribute("ngonNgu", ngonNguTeam1Service.getAll());
-		model.addAttribute("phongBan", phongBanService.findAll());
-		model.addAttribute("pms", hoSoNhanVienTeam1Service.findAll(dA.getPhongBan().getMaPhongBan()));
 		model.addAttribute("duAn", dA);
 		return "QuanLyDuAn/DuAn/edit_form";
 
@@ -192,47 +189,38 @@ public class DuAnTeam1Controller {
 
 	@RequestMapping(value = "/update")
 	public String update(@ModelAttribute("duAn") @Valid DuAnTeam1 duAn, BindingResult result,
-			RedirectAttributes redirectAttributes, Model model) {
-
+			RedirectAttributes redirectAttributes) {
 		if (result.hasErrors()) {
-			model.addAttribute("database", databaseTeam1Service.getAll());
-			model.addAttribute("trangThai", trangThaiTeam1Service.getAll());
-			model.addAttribute("domain", domainTeam1Service.getAll());
-			model.addAttribute("tramework", frameTeam1Service.getAll());
-			model.addAttribute("technical", technicalTeam1Service.getAll());
-			model.addAttribute("vendor", vendorTeam1Service.getAll());
-			model.addAttribute("ngonNgu", ngonNguTeam1Service.getAll());
-			model.addAttribute("phongBan", phongBanService.findAll());
-			System.out.println(result);
+			
 			return "QuanLyDuAn/DuAn/edit_form";
 		}
 		redirectAttributes.addFlashAttribute("message", "<script>alert('Update successfully.');</script>");
 		duAnTeam1Service.update(duAn);
-		return "redirect:/qlda/DuAn/";
+		return "redirect:list";
 	}
 
 	@RequestMapping(value = "/view/{maDuAn}")
-	public String viewDuAn(Model model, @PathVariable("maDuAn") String maDuAn) {
+	public String demo(Model model, @PathVariable("maDuAn") String maDuAn) {
 		model.addAttribute("duAn", duAnTeam1Service.getById(maDuAn));
-		return "QuanLyDuAn/DuAn/view";
+		return "QuanLyDuAn/DuAn/demo";
 
 	}
 
 	public void getData(Model model) {
 		model.addAttribute("database", databaseTeam1Service.getAll());
 		model.addAttribute("khachhang", khachHangTeam1Service.getAll());
-		model.addAttribute("trangThai", trangThaiTeam1Service.getAll());
-		model.addAttribute("domain", domainTeam1Service.getAll());
-		model.addAttribute("framework", frameTeam1Service.getAll());
-		model.addAttribute("technical", technicalTeam1Service.getAll());
-		model.addAttribute("vendor", vendorTeam1Service.getAll());
+		model.addAttribute("TrangThai", trangThaiTeam1Service.getAll());
+		model.addAttribute("Domain", domainTeam1Service.getAll());
+		model.addAttribute("Framework", frameTeam1Service.getAll());
+		model.addAttribute("Technical", technicalTeam1Service.getAll());
+		model.addAttribute("Vendor", vendorTeam1Service.getAll());
 		model.addAttribute("ngonNgu", ngonNguTeam1Service.getAll());
 		model.addAttribute("phongBan", phongBanService.findAll());
 
 	}
 
 	@RequestMapping(value = "selectPhongBan/{phongBan}", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
-	@ResponseBody // khi return ko tráº£ vá»� trang jsp mÃ Â  tráº£ vá»� code html
+	@ResponseBody // khi return ko tráº£ vá»? trang jsp mÃ Â  tráº£ vá»? code html
 	public String select(@PathVariable String phongBan, Model model) {
 		List<HoSoNhanVienTeam1> listNhanVien = hoSoNhanVienTeam1Service.findAll(phongBan);
 
@@ -287,40 +275,28 @@ public class DuAnTeam1Controller {
 
 		return "QuanLyDuAn/DuAn/PhanCongNhiemVu/list";
 	}
-
+	
 	@RequestMapping(value = { "/PhanCongNhiemVu/delete/{maDuAn}/{maNhanVien}/{maVaiTro}" })
 	public String phanCongNhiemVuDelete(final RedirectAttributes redirectAttributes, Model model,
 			@PathVariable("maDuAn") String maDuAn, @PathVariable("maNhanVien") int maNhanVien,
 			@PathVariable("maVaiTro") String maVaiTro) {
-
+	
 		nhiemVuService.delete(nhiemVuService.getDetailNhiemVu(maDuAn, maNhanVien, maVaiTro));
-		redirectAttributes.addFlashAttribute("message", "<script>alert('Delete successfully.');</script>");
-		return "redirect:/qlda/DuAn/PhanCongNhiemVu/list/" + maDuAn;
+		redirectAttributes.addFlashAttribute("message", "Delete successfully.");
+		return "redirect:/qlda/DuAn/PhanCongNhiemVu/list" + maDuAn;
 	}
-
+	
 	@RequestMapping(value = { "/PhanCongNhiemVu/edit/{maDuAn}/{maNhanVien}/{maVaiTro}" })
 	public String phanCongNhiemVuUpdate(Model model, @PathVariable("maDuAn") String maDuAn,
 			@PathVariable("maNhanVien") int maNhanVien, @PathVariable("maVaiTro") String maVaiTro) {
-
+		
 		model.addAttribute("duAn", duAnTeam1Service.getById(maDuAn));
 		model.addAttribute("nhanvien", hoSoNhanVienTeam1Service.getById(maNhanVien));
 		model.addAttribute("nhiemvu", nhiemVuService.getDetailNhiemVu(maDuAn, maNhanVien, maVaiTro));
 		model.addAttribute("vaitro", vaiTroTeam1Service.getAll());
 		return "QuanLyDuAn/DuAn/PhanCongNhiemVu/edit_form";
 
-	}
-	@RequestMapping(value = { "/PhanCongNhiemVu/update" }, method = RequestMethod.POST)
-	public String phanCongNhiemVuUpdate(final RedirectAttributes redirectAttributes, Model model,
-			@ModelAttribute("nhiemvu")  NhiemVuTeam1 nhiemvu,@RequestParam("oldVaitro") String oldVaiTro) {
-		String maDuAn = nhiemvu.getMaDuAn();
 
-		NhiemVuTeam1 oldNhiemVu=new NhiemVuTeam1();
-		oldNhiemVu.setMaDuAn(maDuAn);
-		oldNhiemVu.setMaNhanVien(nhiemvu.getMaNhanVien());
-		oldNhiemVu.setMaVaiTro(oldVaiTro);
-		nhiemVuService.update(nhiemvu,oldNhiemVu);
-		redirectAttributes.addFlashAttribute("message", "<script>alert('Update successfully.');</script>");
-		return "redirect:/qlda/DuAn/PhanCongNhiemVu/list/" + maDuAn;
 	}
 	//////////////////////////////////////////////////////////////////
 
@@ -333,37 +309,37 @@ public class DuAnTeam1Controller {
 			}
 		});
 
-		binder.registerCustomEditor(KhachHangTeam1.class, "khachHang", new PropertyEditorSupport() {
+		binder.registerCustomEditor(KhachHangTeam1.class, "KhachHang", new PropertyEditorSupport() {
 			@Override
 			public void setAsText(String text) throws IllegalArgumentException {
 				setValue(khachHangTeam1Service.findById(text));
 			}
 		});
-		binder.registerCustomEditor(TrangThaiTeam1.class, "trangThai", new PropertyEditorSupport() {
+		binder.registerCustomEditor(TrangThaiTeam1.class, "TrangThai", new PropertyEditorSupport() {
 			@Override
 			public void setAsText(String text) throws IllegalArgumentException {
 				setValue(trangThaiTeam1Service.findById(text));
 			}
 		});
-		binder.registerCustomEditor(DomainTeam1.class, "domain", new PropertyEditorSupport() {
+		binder.registerCustomEditor(DomainTeam1.class, "Domain", new PropertyEditorSupport() {
 			@Override
 			public void setAsText(String text) throws IllegalArgumentException {
 				setValue(domainTeam1Service.findById(text));
 			}
 		});
-		binder.registerCustomEditor(FrameworkTeam1.class, "framework", new PropertyEditorSupport() {
+		binder.registerCustomEditor(FrameworkTeam1.class, "Framework", new PropertyEditorSupport() {
 			@Override
 			public void setAsText(String text) throws IllegalArgumentException {
 				setValue(frameTeam1Service.getById(text));
 			}
 		});
-		binder.registerCustomEditor(TechnicalTeam1.class, "technical", new PropertyEditorSupport() {
+		binder.registerCustomEditor(TechnicalTeam1.class, "Technical", new PropertyEditorSupport() {
 			@Override
 			public void setAsText(String text) throws IllegalArgumentException {
 				setValue(technicalTeam1Service.getById(text));
 			}
 		});
-		binder.registerCustomEditor(VendorTeam1.class, "vendor", new PropertyEditorSupport() {
+		binder.registerCustomEditor(VendorTeam1.class, "Vendor", new PropertyEditorSupport() {
 			@Override
 			public void setAsText(String text) throws IllegalArgumentException {
 				setValue(vendorTeam1Service.getById(text));
@@ -395,5 +371,8 @@ public class DuAnTeam1Controller {
 		});
 
 	}
+	
+
+
 
 }

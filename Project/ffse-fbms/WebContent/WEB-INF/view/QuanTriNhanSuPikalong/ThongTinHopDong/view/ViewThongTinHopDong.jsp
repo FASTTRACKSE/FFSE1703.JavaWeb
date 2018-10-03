@@ -45,13 +45,13 @@
 					<div class="col-md-6">
 						<div class="form-group">
 							<label>Phòng ban</label>
-							<div class="form-control well">${hsnv.maPhongBan}</div>
+							<div class="form-control well">${hsnv.maPhongBan.tenPhongBan}</div>
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="form-group">
 							<label>Chức danh</label>
-							<div class="form-control well">${hsnv.maChucDanh}</div>
+							<div class="form-control well">${hsnv.maChucDanh.tenChucDanh}</div>
 						</div>
 					</div>
 				</div>
@@ -61,9 +61,7 @@
 				<div class="row">
 					<div class="col-md-4">
 						<label>Mã hợp đồng</label>
-						<fmt:parseNumber var="intValue" value="${lastMaHd}"
-							integerOnly="true" />
-						<div class="form-control well">${intValue + 1}</div>
+						<div class="form-control well">${hopDong.maHopDong}</div>
 					</div>
 					<div class="col-md-4">
 						<div class="form-group">
@@ -74,7 +72,7 @@
 					<div class="col-md-4">
 						<div class="form-group">
 							<label>Trạng thái</label>
-							<div class="form-control well">${hopDong.trangThai}</div>
+							<div class="form-control well">${hopDong.trangThai == 1 ? 'Hết hợp đồng' : 'Còn hợp đồng'}</div>
 						</div>
 					</div>
 				</div>
@@ -82,7 +80,7 @@
 					<div class="col-md-3">
 						<div class="form-group">
 							<label>Lương tháng 13</label>
-							<div class="form-control well">${hopDong.luongThang13}</div>
+							<div class="form-control well">${hopDong.luongThang13 == 1 ? 'Có' : 'Không'}</div>
 						</div>
 					</div>
 					<div class="col-md-3">

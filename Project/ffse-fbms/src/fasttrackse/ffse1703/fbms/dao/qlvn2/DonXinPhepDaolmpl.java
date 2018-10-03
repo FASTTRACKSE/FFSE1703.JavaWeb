@@ -81,21 +81,34 @@ public class DonXinPhepDaolmpl implements DonXinPhepDao{
 		session.delete(findById(id));
 		
 	}
+
+	   public int KiemTraNgayNghi(DonXinPhepEntity DonXinPhepEntity) {
+			Session session = sessionFactory.getCurrentSession();
+			String rowCount = session.createSQLQuery("select count(*) from `so_ngay_nghi` where `ma_nhan_vien` = '" + DonXinPhepEntity.getNgayNghi().getMaNhanVien() + "'").getSingleResult().toString();
+			return Integer.parseInt(rowCount);
+	 }
+
+	
 	public void create(DonXinPhepEntity DonXinPhepEntity) {
 		Session session = this.sessionFactory.getCurrentSession();
 		if (KiemTraNgayNghi(DonXinPhepEntity) == 0) {
-			session.createSQLQuery("INSERT INTO `so_ngay_nghi`(`ma_nhan_vien`,`so_ngay_nghi`,`so_ngay_nghi_con_lai`) VALUES ('" + 
-					DonXinPhepEntity.getNgayNghi().getMaNhanVien()+"', '0', '12')").executeUpdate();			
-		}
+			session.createSQLQuery(
+					"INSERT INTO `so_ngay_nghi`(`ma_nhan_vien`,`so_ngay_da_nghi`,`so_ngay_con_lai`) VALUES ('"
+							+ DonXinPhepEntity.getNgayNghi().getMaNhanVien() + "', '0', '12')")
+					.executeUpdate();
+		} 
 		session.save(DonXinPhepEntity);
 		session.createQuery("update DonXinPhepEntity set trangThai = '1'  where id =" + DonXinPhepEntity.getId()).executeUpdate();
+		
 	}
 
 	public void createcho(DonXinPhepEntity DonXinPhepEntity) {
 		Session session = this.sessionFactory.getCurrentSession();
 		if (KiemTraNgayNghi(DonXinPhepEntity) == 0) {
-			session.createSQLQuery("INSERT INTO `so_ngay_nghi`(`ma_nhan_vien`,`so_ngay_nghi`,`so_ngay_nghi_con_lai`) VALUES ('" + 
-					DonXinPhepEntity.getNgayNghi().getMaNhanVien()+"', '0', '12')").executeUpdate();			
+			session.createSQLQuery(
+					"INSERT INTO `so_ngay_nghi`(`ma_nhan_vien`,`so_ngay_da_nghi`,`so_ngay_con_lai`) VALUES ('"
+							+ DonXinPhepEntity.getNgayNghi().getMaNhanVien() + "', '0', '12')")
+					.executeUpdate();
 		}
 		session.save(DonXinPhepEntity);
 		session.createQuery("update DonXinPhepEntity set trangThai = '2'  where id =" + DonXinPhepEntity.getId()).executeUpdate();
@@ -103,36 +116,37 @@ public class DonXinPhepDaolmpl implements DonXinPhepDao{
 
 	public void createduyet(DonXinPhepEntity DonXinPhepEntity) {
 		Session session = this.sessionFactory.getCurrentSession();
+		session.save(DonXinPhepEntity);
+		session.createQuery("update DonXinPhepEntity set trangThai = '3'  where id =" + DonXinPhepEntity.getId()).executeUpdate();
 		int soNgayNghi = DonXinPhepEntity.getSoNgayNghi();
-		int soNgayDaNghi = DonXinPhepEntity.getNgayNghi().getSoNgayNghi();
-		int soNgayConLai = DonXinPhepEntity.getNgayNghi().getNgayNghiConLai();
-        int maNhanVien = DonXinPhepEntity.getNgayNghi().getMaNhanVien();
-        if (soNgayConLai == 0) {
+		int soNgayDaNghi = DonXinPhepEntity.getNgayNghi().getSoNgayDaNghi();
+		int soNgayConLai = DonXinPhepEntity.getNgayNghi().getSoNgayConLai();
+		int maNhanVien = DonXinPhepEntity.getNgayNghi().getMaNhanVien();
+		if (soNgayConLai == 0) {
 			session.createQuery("update SoNgayNghiEntity set soNgayDaNghi = " + (soNgayDaNghi + soNgayNghi)
 					+ "where maNhanVien = " + maNhanVien).executeUpdate();
 		} else if (soNgayNghi > soNgayConLai) {
-			session.createQuery("update SoNgayNghiEntity set soNgayConLai = 0,soNgayDaNghi = "
-					+ (soNgayDaNghi + soNgayNghi) + "where maNhanVien = " + maNhanVien).executeUpdate();
+			session.createQuery("update SoNgayNghiEntity set soNgayConLai = 0,soNgayDaNghi = " + (soNgayDaNghi + soNgayNghi)
+					+ "where maNhanVien = " + maNhanVien).executeUpdate();
 		} else {
-			session.createQuery("update SoNgayNghiEntity set soNgayConLai = " + (soNgayConLai - soNgayNghi)
-					+ ",soNgayDaNghi = " + (soNgayDaNghi + soNgayNghi) + "where maNhanVien = " + maNhanVien)
-					.executeUpdate();
+			session.createQuery("update SoNgayNghiEntity set soNgayConLai = " + (soNgayConLai - soNgayNghi) + ",soNgayDaNghi = "
+					+ (soNgayDaNghi + soNgayNghi) + "where maNhanVien = " + maNhanVien).executeUpdate();
 		}
-		session.save(DonXinPhepEntity);
-		session.createQuery("update DonXinPhepEntity set trangThai = '3'  where id =" + DonXinPhepEntity.getId()).executeUpdate();
 	}
 
 	public void createtuchoi(DonXinPhepEntity DonXinPhepEntity) {
 		Session session = this.sessionFactory.getCurrentSession();
 		if (KiemTraNgayNghi(DonXinPhepEntity) == 0) {
-			session.createSQLQuery("INSERT INTO `so_ngay_nghi`(`ma_nhan_vien`,`so_ngay_nghi`,`so_ngay_nghi_con_lai`) VALUES ('" + 
-					DonXinPhepEntity.getNgayNghi().getMaNhanVien()+"', '0', '12')").executeUpdate();			
-		}
+			session.createSQLQuery(
+					"INSERT INTO `so_ngay_nghi`(`ma_nhan_vien`,`so_ngay_nghi`,`so_ngay_con_lai`) VALUES ('"
+							+ DonXinPhepEntity.getNgayNghi().getMaNhanVien() + "', '0', '12')")
+					.executeUpdate();
+		} 
 		session.save(DonXinPhepEntity);
 		session.createQuery("update DonXinPhepEntity set trangThai = '4'  where id =" + DonXinPhepEntity.getId()).executeUpdate();
 	}
 	
-	public void Updatecho(DonXinPhepEntity DonXinPhepEntity) {
+	public void Update(DonXinPhepEntity DonXinPhepEntity) {
 		Session session = this.sessionFactory.getCurrentSession();;
 		session.update(DonXinPhepEntity);
 		
@@ -153,35 +167,33 @@ public class DonXinPhepDaolmpl implements DonXinPhepDao{
 	}
 	public List<DonXinPhepEntity> findAllForPaging4(int startPosition, int maxResult) {
 		Session session = this.sessionFactory.getCurrentSession();
-		return session.createQuery("from DonXinPhepEntity where trangThai ='3' ").setFirstResult(startPosition).setMaxResults(maxResult).list();
+		return session.createQuery("from DonXinPhepEntity where trangThai ='4' ").setFirstResult(startPosition).setMaxResults(maxResult).list();
 	}
 	
-   public int KiemTraNgayNghi(DonXinPhepEntity DonXinPhepEntity) {
-		Session session = sessionFactory.getCurrentSession();
-		String rowCount = session.createSQLQuery("select count(*) from `so_ngay_nghi` where `ma_nhan_vien` = '" + DonXinPhepEntity.getNgayNghi().getMaNhanVien() + "'").getSingleResult().toString();
-		return Integer.parseInt(rowCount);
- }
-
-public List<SoNgayNghiEntity> bangNgayNghi() {
+public List<SoNgayNghiEntity> ngaynghiphep() {
 	Session session = sessionFactory.getCurrentSession();
 	List<SoNgayNghiEntity> list = session.createQuery("from SoNgayNghiEntity").getResultList();
 	return list;
 }
-public SoNgayNghiEntity findByIdngay(int maNhanVien) {
-	Session session = this.sessionFactory.getCurrentSession();
-	SoNgayNghiEntity list = (SoNgayNghiEntity) session.get(SoNgayNghiEntity.class, maNhanVien);
+
+public List<TrangThaiEntity> thongketrangthai() {
+	Session session = sessionFactory.getCurrentSession();
+	List<TrangThaiEntity> list = session.createQuery("from TrangThaiEntity").getResultList();
 	return list;
 }
 
-public void deletengay(int maNhanVien) {
-	Session session = this.sessionFactory.getCurrentSession();
-	session.delete(findById(maNhanVien));	
-}
 
-public List<DonXinPhepEntity> findAllForPagingngaynghi(int startPosition, int maxResult) {
+
+public List<SoNgayNghiEntity> findAllForPagingngaynghi(int startPosition, int maxResult) {
 	Session session = this.sessionFactory.getCurrentSession();
 	return session.createQuery("from SoNgayNghiEntity  ").setFirstResult(startPosition).setMaxResults(maxResult).list();
 }
+
+public List<TrangThaiEntity> findAllForPagingTT(int startPosition, int maxResult) {
+	Session session = this.sessionFactory.getCurrentSession();
+	return session.createQuery("from TrangThaiEntity  ").setFirstResult(startPosition).setMaxResults(maxResult).list();
+}
+
 
 }
 

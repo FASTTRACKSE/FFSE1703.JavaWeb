@@ -30,6 +30,8 @@ public interface QLyNhiemVuDao {
 	public List<HoSoNhanVienHLP> nhanVienHLP();
 
 	public List<QLyNhiemVuEntity> findAll(Integer offset, Integer maxResult , String seach);
+	
+	public List<QLyNhiemVuEntity> searchAll(String search);
 
 	
 }

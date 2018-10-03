@@ -35,7 +35,7 @@
 				<tbody>
 			<c:forEach var="nv" items="${danhsachchoduyet003}">
 					<tr>
-					<td>${nv.id}</td>
+					<td>${nv.id -1 }</td>
 					<td>${nv.ngayNghi.maNhanVien}</td>
 					<td>${nv.ngayBatDau}</td>
 					<td>${nv.ngayKetThuc}</td>
@@ -43,18 +43,17 @@
 					<td>${nv.ghiChu}</td>
 					<td>${nv.ghiChuTruongPhong}</td>
 					<td>${nv.trangThai.trangThai}</td>
-					<td><a  href="suadoncho/${nv.id }"><button class="btn btn-success">
+					<td><a  href="suadoncho/${nv.id  }"><button class="btn btn-success">
 									Sửa</button></a> 
 					</td>
 						</tr>
 				</c:forEach>
 				</tbody>
-		</table>
+		</table> 
 		
 		<nav aria-label="Page navigation example">
 	<ul class="pagination">
-		<li class="page-item"><a class="page-link" href="?page=1">First
-				Page</a></li>
+		<li class="page-item"><a class="page-link" href="?page=1">Trang Đầu</a></li>
 		<c:if test="${currentPage > 2}">
 				<li class="page-item"><a class="page-link"
 					href="?page=${currentPage-2}">${currentPage-2}</a></li>
@@ -73,7 +72,7 @@
 				<li class="page-item"><a class="page-link"
 					href="?page=${currentPage+2}">${currentPage+2}</a></li>
 			</c:if>
-		<li class="page-item"><a class="page-link" href="?page=${lastPage }">Last Page</a></li>
+		<li class="page-item"><a class="page-link" href="?page=${lastPage }">Trang Cuối</a></li>
 	</ul>
 	</nav>
 		</div>

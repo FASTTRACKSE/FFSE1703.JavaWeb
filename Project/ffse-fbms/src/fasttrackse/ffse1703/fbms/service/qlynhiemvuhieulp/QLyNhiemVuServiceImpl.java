@@ -100,5 +100,10 @@ public class QLyNhiemVuServiceImpl implements QLyNhiemVuService {
 		return y + "]" ;
 	}
 
+	@Override
+	public List<QLyNhiemVuEntity> searchAll(String search) {
+		return qLyNhiemVuDao.searchAll(search);
+	}
+
 	
 }

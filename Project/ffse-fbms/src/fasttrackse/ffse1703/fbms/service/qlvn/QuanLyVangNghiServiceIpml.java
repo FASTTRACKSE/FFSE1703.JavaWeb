@@ -106,20 +106,20 @@ public class QuanLyVangNghiServiceIpml implements QuanLyVangNghiService {
 		return this.quanLyVangNghiDao.findAllForPaging(startPosition, maxResult);
 	}
 
-	public List<ThongKeDonXinPhep> findAllForPagingCD(int startPosition, int maxResult) {
-		return this.quanLyVangNghiDao.findAllForPagingCD(startPosition, maxResult);
+	public List<ThongKeDonXinPhep> findAllForPagingCD(int startPosition, int maxResult ,String search) {
+		return this.quanLyVangNghiDao.findAllForPagingCD(startPosition, maxResult, search);
 	}
 
-	public List<ThongKeDonXinPhep> findAllForPagingD(int startPosition, int maxResult) {
-		return this.quanLyVangNghiDao.findAllForPagingD(startPosition, maxResult);
+	public List<ThongKeDonXinPhep> findAllForPagingD(int startPosition, int maxResult, String search) {
+		return this.quanLyVangNghiDao.findAllForPagingD(startPosition, maxResult, search);
 	}
 
 	public List<ThongKeDonXinPhep> findAllForPagingTC(int startPosition, int maxResult) {
 		return this.quanLyVangNghiDao.findAllForPagingTC(startPosition, maxResult);
 	}
 
-	public List<NgayNghi> findAllForPagingNN(int startPosition, int maxResult) {
-		return this.quanLyVangNghiDao.findAllForPagingNN(startPosition, maxResult);
+	public List<NgayNghi> findAllForPagingNN(int startPosition, int maxResult, String search) {
+		return this.quanLyVangNghiDao.findAllForPagingNN(startPosition, maxResult, search);
 	}
 
 	public List<TrangThaiVN> findAllForPagingTrangThai(int startPosition, int maxResult) {

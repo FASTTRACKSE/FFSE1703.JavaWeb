@@ -16,7 +16,12 @@
 		<intercept-url pattern="/QuanTriHeThong/tai-khoan/**" access="hasAnyRole('ROLE_SADM')" />
 		<intercept-url pattern="/QuanTriHeThong/phan-quyen/**" access="hasAnyRole('ROLE_SADM')" />
 		
+		
+		<!-- Phân quyền Quản trị nhân sự pikalong -->
+		<intercept-url pattern="/quantrinhansu/hosonhanvien/**"  access="hasRole('ROLE_PNSTPP') or hasRole('ROLE_PGD')"/>
 		<!-- Phân quyền module QLVN - HuongVTL :: START -->
+		
+		
 		
 		<intercept-url pattern="/QuanLyVangNghi/duyetvong1/**"  access="hasRole('ROLE_PNSTPP')  "/>
 		<intercept-url pattern="/QuanLyVangNghi/duyetvong2/**"  access="hasRole('ROLE_PGD')"/>

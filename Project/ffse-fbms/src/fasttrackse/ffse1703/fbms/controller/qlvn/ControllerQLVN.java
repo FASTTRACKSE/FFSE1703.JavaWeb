@@ -2,6 +2,7 @@ package fasttrackse.ffse1703.fbms.controller.qlvn;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fasttrackse.ffse1703.fbms.entity.qlvn.LyDoXinNghi;
+import fasttrackse.ffse1703.fbms.entity.qlvn.NgayNghi;
 import fasttrackse.ffse1703.fbms.entity.qlvn.ThongKeDonXinPhep;
 import fasttrackse.ffse1703.fbms.entity.qlvn.TrangThaiVN;
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
@@ -35,13 +37,19 @@ public class ControllerQLVN {
 	
 	
 	@RequestMapping(value = {"/danhsachcho" }, method = RequestMethod.GET)
-	public String danhSachChoDuyet(Model model,
+	public String danhSachChoDuyet(Model model,HttpServletRequest request,HttpSession session,
 			@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage) {
+		String maNhanVien = " and  ngayNghi = " + request.getParameter("manhanvien") + "";
+		if (request.getParameter("manhanvien") == null || request.getParameter("manhanvien").equals("0")) {
+			maNhanVien = "";
+		}
+		String search = maNhanVien;
 		int totalRecords = service.danhSachXinNghiChoDuyet().size();
 		int recordsPerPage = 4;
 		int totalPages = (int)Math.ceil((double)totalRecords/recordsPerPage);
 		int startPosition = recordsPerPage * (currentPage - 1);
-		model.addAttribute("danhsachcho", service.findAllForPagingCD(startPosition, recordsPerPage));
+		model.addAttribute("danhsachcho", service.findAllForPagingCD(startPosition, recordsPerPage,search));
+		model.addAttribute("maNhaViens", request.getParameter("manhanvien"));
 		model.addAttribute("lastPage", totalPages);
 		model.addAttribute("currentPage", currentPage);
 		
@@ -49,13 +57,19 @@ public class ControllerQLVN {
 	}
 	
 	@RequestMapping(value = {"/danhsachduyet" }, method = RequestMethod.GET)
-	public String danhSachDuyet(Model model,
+	public String danhSachDuyet(Model model,HttpServletRequest request,HttpSession session,
 			@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage) {
+		String maNhanVien = " and  ngayNghi = " + request.getParameter("manhanvien") + "";
+		if (request.getParameter("manhanvien") == null || request.getParameter("manhanvien").equals("0")) {
+			maNhanVien = "";
+		}
+		String search = maNhanVien;
 		int totalRecords = service.danhSachXinNghiDuyet().size();
 		int recordsPerPage = 4;
 		int totalPages = (int)Math.ceil((double)totalRecords/recordsPerPage);
 		int startPosition = recordsPerPage * (currentPage - 1);
-		model.addAttribute("danhsachduyet", service.findAllForPagingD(startPosition, recordsPerPage));
+		model.addAttribute("danhsachduyet", service.findAllForPagingD(startPosition, recordsPerPage, search));
+		model.addAttribute("maNhaViens", request.getParameter("manhanvien"));
 		model.addAttribute("lastPage", totalPages);
 		model.addAttribute("currentPage", currentPage);
 		return "Quanlyvangnghi1703004/danhsachduyet";
@@ -88,21 +102,63 @@ public class ControllerQLVN {
 	}
 	
 	@RequestMapping(value = {"/danhsachngaynghi" }, method = RequestMethod.GET)
-	public String danhSachNgayNghi(Model model,
+	public String danhSachNgayNghi(Model model,HttpServletRequest request,HttpSession session,
 			@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage) {
+		
+		String maNhanVien = " where  maNhanVien = " + request.getParameter("manhanvien") + "";
+		if (request.getParameter("manhanvien") == null || request.getParameter("manhanvien").equals("0")) {
+			maNhanVien = "";
+		}
+		String search = maNhanVien;
 		int totalRecords = service.danhSachNgayNghi().size();
 		int recordsPerPage = 4;
 		int totalPages = (int)Math.ceil((double)totalRecords/recordsPerPage);
 		int startPosition = recordsPerPage * (currentPage - 1);
-		model.addAttribute("danhsachngaynghi", service.findAllForPagingNN(startPosition, recordsPerPage));
+		model.addAttribute("danhsachngaynghi", service.findAllForPagingNN(startPosition, recordsPerPage, search));
+		model.addAttribute("maNhaViens", request.getParameter("manhanvien"));
 		model.addAttribute("lastPage", totalPages);
 		model.addAttribute("currentPage", currentPage);
 		return "Quanlyvangnghi1703004/danhsachngaynghi";
 	}
 	
-	@RequestMapping(value ="/deleteDate/${maNhanVien}")
+	@RequestMapping(value ="/deleteDate/{maNhanVien}")
 	public String deleteDateOff(@PathVariable int maNhanVien, HttpSession session, Model model) {
 		service.deleteDateOff(maNhanVien);
+		return "redirect:/Quanlyvangnghi1703004/danhsachngaynghi";
+	}
+	
+	@RequestMapping(value = "/updateDate/{maNhanVien}", method = RequestMethod.GET)
+	public String editDate(@PathVariable("maNhanVien") int maNhanVien, Model model) {
+		model.addAttribute("editDate", service.findByIdDateOff(maNhanVien));
+		return "Quanlyvangnghi1703004/editDate";
+	}
+	
+	@RequestMapping(value = "/editDate/save", method = RequestMethod.POST)
+	public String editStatus(  @ModelAttribute("editDate") @Valid NgayNghi nn,Model model,
+			BindingResult result,final RedirectAttributes redirectAttributes) {
+		if(result.hasErrors()) {
+			redirectAttributes.addFlashAttribute("messageError", "Lỗi. Xin thử lại!");
+			return "Quanlyvangnghi1703004/editDate";
+		}
+		service.updateNgayNghi(nn);
+		redirectAttributes.addFlashAttribute("messageSuccess", "Sửa thành công...");
+		return "redirect:/Quanlyvangnghi1703004/danhsachngaynghi";
+	}
+	
+	@RequestMapping(value = "/themmoi", method = RequestMethod.GET)
+	public String listDonNgayNghi(Model model) {
+		model.addAttribute("createDate", new NgayNghi());
+		return "Quanlyvangnghi1703004/createDate";
+}
+	@RequestMapping(value = {"/createDate/submit"}, method = RequestMethod.POST)
+	public String createTrangThai( @ModelAttribute("createDate") @Valid NgayNghi nn,
+			BindingResult result,final RedirectAttributes redirectAttributes) {
+		if(result.hasErrors()) {
+			redirectAttributes.addFlashAttribute("messageError", "Lỗi. Xin thử lại!");
+			return "Quanlyvangnghi1703004/createDate";
+		}
+		service.createNgayNghi(nn);
+		redirectAttributes.addFlashAttribute("messageSuccess", "Thêm mới thành công...");
 		return "redirect:/Quanlyvangnghi1703004/danhsachngaynghi";
 	}
 	
@@ -117,18 +173,22 @@ public class ControllerQLVN {
 	public String listDonNhap( @ModelAttribute("taodonmoi") @Valid ThongKeDonXinPhep nv,
 			BindingResult result,Model model,final RedirectAttributes redirectAttributes) {
 		if (result.hasErrors()) {
+			redirectAttributes.addFlashAttribute("messageError", "Lỗi. Xin thử lại!");
 			return "Quanlyvangnghi1703004/soandonmoi";
 		} 
 		service.create(nv);
+		redirectAttributes.addFlashAttribute("messageSuccess", "Lưu nháp thành công...");
 		return "redirect:/Quanlyvangnghi1703004/danhsachnhap";
 	}
 	
 	@RequestMapping(value = "/taodonmoi/choduyet", method = RequestMethod.POST)
 	public String listDonChoDuyet(@Valid @ModelAttribute("taodonmoi")  ThongKeDonXinPhep nv,BindingResult result,
-			Model model) {
+			Model model,final RedirectAttributes redirectAttributes) {
 		if(result.hasErrors()) {
+			redirectAttributes.addFlashAttribute("messageError", "Lỗi. Xin thử lại!");
 			return "Quanlyvangnghi1703004/soandonmoi";}
 		service.createWait(nv);
+		redirectAttributes.addFlashAttribute("messageSuccess", "Đã thêm vào danh sách chờ...");
 		return "redirect:/Quanlyvangnghi1703004/danhsachcho";
 	}
 	
@@ -141,6 +201,11 @@ public class ControllerQLVN {
 	@ModelAttribute("hoso")
 	public List<HoSoNhanVien> danhSachHoSoNhanVien() {
 		return this.service.loadAllHoSo();
+	}
+	
+	@ModelAttribute("ngaynghi")
+	public List<NgayNghi> danhSachNgayNghi(){
+		return this.service.danhSachNgayNghi();
 	}
 	
 	@RequestMapping(value = {"/delete/{id}","/taodonmoi/choduyet"})
@@ -171,12 +236,14 @@ public class ControllerQLVN {
 	
 	@RequestMapping(value = "/updatenhap/choduyet", method = RequestMethod.POST)
 	public String editChoDuyet(  @ModelAttribute("suadon") @Valid ThongKeDonXinPhep nv,Model model,
-			BindingResult result)
+			BindingResult result,final RedirectAttributes redirectAttributes)
 			throws SQLException {
 		if(result.hasErrors()) {
+			redirectAttributes.addFlashAttribute("messageError", "Lỗi. Xin thử lại!");
 			return "/Quanlyvangnghi1703004/suanhap";
 		}
 		service.updateNhap(nv);
+		redirectAttributes.addFlashAttribute("messageSuccess", "Đã thêm vào danh sách chờ...");
 		return "redirect:/Quanlyvangnghi1703004/danhsachcho";
 	}
 	
@@ -189,21 +256,25 @@ public class ControllerQLVN {
 	
 	@RequestMapping(value = "/updateduyet/duyet", method = RequestMethod.POST)
 	public String listDonDuyet( @ModelAttribute("suachoduyet") @Valid ThongKeDonXinPhep nv,
-			BindingResult result,Model model) {
+			BindingResult result,Model model,final RedirectAttributes redirectAttributes) {
 		if(result.hasErrors()) {
+			redirectAttributes.addFlashAttribute("messageError", "Lỗi. Xin thử lại!");
 			return "/Quanlyvangnghi1703004/suachoduyet";
 		} 
 		service.createBrowse(nv);
+		redirectAttributes.addFlashAttribute("messageSuccess", "Đã duyệt đơn...");
 		return "redirect:/Quanlyvangnghi1703004/danhsachduyet";
 	}
 	
 	@RequestMapping(value = "/updatenhap/tuchoi", method = RequestMethod.POST)
 	public String listDonTuChoi( @ModelAttribute("suachoduyet") @Valid ThongKeDonXinPhep nv,
-			BindingResult result,Model model) {
+			BindingResult result,Model model,final RedirectAttributes redirectAttributes) {
 		if(result.hasErrors()) {
+			redirectAttributes.addFlashAttribute("messageError", "Lỗi. Xin thử lại!");
 			return "/Quanlyvangnghi1703004/suachoduyet";
 		}
 		service.createfeedback(nv);
+		redirectAttributes.addFlashAttribute("messageSuccess", "Đã thêm vào danh sách  bị từ chối...");
 		return "redirect:/Quanlyvangnghi1703004/danhsachbituchoi";
 	}
 	
@@ -227,7 +298,12 @@ public class ControllerQLVN {
 		@RequestMapping(value = {"/createstatus/submit"}, method = RequestMethod.POST)
 		public String createTrangThai( @ModelAttribute("createstatus") @Valid TrangThaiVN tt,
 				BindingResult result,Model model,final RedirectAttributes redirectAttributes) {
+			if(result.hasErrors()) {
+				redirectAttributes.addFlashAttribute("messageError", "Lỗi. Xin thử lại!");
+				return "Quanlyvangnghi1703004/createstatus";
+			}
 			service.createTrangThai(tt);
+			redirectAttributes.addFlashAttribute("messageSuccess", "Đã được thêm mới...");
 			return "redirect:/Quanlyvangnghi1703004/danhsachtrangthai";
 		}
 		
@@ -245,8 +321,50 @@ public class ControllerQLVN {
 		
 		@RequestMapping(value = "/editstatus/save", method = RequestMethod.POST)
 		public String editStatus(  @ModelAttribute("editStatus") @Valid TrangThaiVN tt,Model model,
-				BindingResult result) {
+				BindingResult result,final RedirectAttributes redirectAttributes) {
+			if(result.hasErrors()) {
+				redirectAttributes.addFlashAttribute("messageError", "Lỗi. Xin thử lại!");
+				return "Quanlyvangnghi1703004/editstatus";
+			}
 			service.updateTrangThai(tt);;
+			redirectAttributes.addFlashAttribute("messageSuccess", "Sửa thành công...");
 			return "redirect:/Quanlyvangnghi1703004/danhsachtrangthai";
 		}
+		
+		@RequestMapping("/viewNhap/{id}")
+		public String viewNhap(@PathVariable("id") int id, Model model) {
+			model.addAttribute("list", service.findById(id));
+			return "Quanlyvangnghi1703004/xemTTNVNhap";
+		}
+		
+		@RequestMapping("/viewTuChoi/{id}")
+		public String viewTuChoi(@PathVariable("id") int id, Model model) {
+			model.addAttribute("list", service.findById(id));
+			return "Quanlyvangnghi1703004/xemTTNVTuChoi";
+		}
+		
+		@RequestMapping("/viewChoDuyet/{id}")
+		public String viewChoDuyet(@PathVariable("id") int id, Model model) {
+			model.addAttribute("list", service.findById(id));
+			return "Quanlyvangnghi1703004/xemTTNVChoDuyet";
+		}
+		
+		@RequestMapping("/viewDuyet/{id}")
+		public String viewDuyet(@PathVariable("id") int id, Model model) {
+			model.addAttribute("list", service.findById(id));
+			return "Quanlyvangnghi1703004/xemTTNVDuocDuyet";
+		}
+		
+		@RequestMapping("/viewNgayNghi/{maNhanVien}")
+		public String viewNgayNghi(@PathVariable("maNhanVien") int maNhanVien, Model model) {
+			model.addAttribute("list", service.findByIdDateOff(maNhanVien));
+			return "Quanlyvangnghi1703004/xemTTNNNV";
+		}
+		
+		@RequestMapping("/viewTrangThai/{id}")
+		public String viewTrangThai(@PathVariable("id") int id, Model model) {
+			model.addAttribute("list", service.findByIdTrangThai(id));
+			return "Quanlyvangnghi1703004/xemTTTT";
+		}
+		
 }

@@ -58,9 +58,9 @@ public class NhanVienController {
 			HoSoNhanVien hoSo = user.getNhanVien();
 			ChucDanh chucDanh = hoSo.getChucDanh();
 			PhongBan phongBan = hoSo.getPhongBan();
-			session.setAttribute("chucDanh", chucDanh.getMaChucDanh());
-			session.setAttribute("nhanVien", hoSo.getMaNhanVien());
-			session.setAttribute("phongBan", phongBan.getMaPhongBan());
+			session.setAttribute("chucDanh", chucDanh);
+			session.setAttribute("nhanVien", hoSo);
+			session.setAttribute("phongBan", phongBan);
 		}
 		return page;
 	}
@@ -74,9 +74,9 @@ public class NhanVienController {
 
 	@RequestMapping("/danhgiabanthan/add")
 	public String createDanhGiaBanThan(Model model, HttpSession session) {
-		int nhanVien = (int) session.getAttribute("nhanVien");
-		String phongBan = session.getAttribute("phongBan").toString();
-		LichDanhGia lich = nhanVienService.getLichDanhGiaActive(phongBan);
+		HoSoNhanVien nhanVien = (HoSoNhanVien) session.getAttribute("nhanVien");
+		PhongBan phongBan = (PhongBan) session.getAttribute("phongBan");
+		LichDanhGia lich = nhanVienService.getLichDanhGiaActive(phongBan.getMaPhongBan());
 		DanhGiaBanThan danhGia = new DanhGiaBanThan();
 		danhGia.setKyDanhGia(lich.getKyDanhGia());
 		danhGia.setPhongBan(phongBan);
@@ -96,25 +96,13 @@ public class NhanVienController {
 	@RequestMapping(value = "/danhgiabanthan/submit", method = RequestMethod.POST)
 	public String submitDanhGiaBanThan(Model model, @ModelAttribute("command") DanhGiaBanThan danhGia) {
 		if (danhGia.getId() == 0) {
-			danhGia.setTrangThai(2);
 			nhanVienService.insertDanhGiaBanThan(danhGia);
 		} else {
-			danhGia.setTrangThai(2);
 			nhanVienService.updateDanhGiaBanThan(danhGia);
 		}
 		return "redirect:/quantridanhgia/nhanvien";
 	}
 
-	@RequestMapping(value = "/danhgiabanthan/draft", method = RequestMethod.POST)
-	public String addDraftDanhGiaBanThan(Model model, @ModelAttribute("command") DanhGiaBanThan danhGia) {
-		if (danhGia.getId() == 0) {
-			danhGia.setTrangThai(1);
-			nhanVienService.insertDanhGiaBanThan(danhGia);
-		} else {
-			nhanVienService.updateDanhGiaBanThan(danhGia);
-		}
-		return "redirect:/quantridanhgia/nhanvien";
-	}
 
 	@RequestMapping(value = { "/danhgianhanvien" })
 	public String getListDanhGiaNhanVien(Model model, HttpSession session) {
@@ -141,9 +129,9 @@ public class NhanVienController {
 				for (HoSoNhanVien x : listNhanVienLimit) {
 					DanhGiaNhanVien danhGia = new DanhGiaNhanVien();
 					danhGia.setKyDanhGia(lich.getKyDanhGia());
-					danhGia.setPhongBan(phongBan.getMaPhongBan());
-					danhGia.setNhanVienDanhGia(hoSo.getMaNhanVien());
-					danhGia.setNhanVien(x.getMaNhanVien());
+					danhGia.setPhongBan(phongBan);
+					danhGia.setNhanVienDanhGia(hoSo);
+					danhGia.setNhanVien(x);
 					list.add(danhGia);
 				}
 				break;

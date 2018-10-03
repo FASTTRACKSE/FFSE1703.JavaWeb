@@ -11,12 +11,12 @@
 	style="background-color: #CCCCCC">
 	<div class="content-wrapper">
 		<div class="content-header-left col-md-9 col-xs-12 mb-2">
-			<h3 class="content-header-title mb-0">Danh sách Dự Án</h3>
+			<h3 class="content-header-title mb-0"><spring:message code="label.listDA" /></h3>
 			<div class="row breadcrumbs-top">
 				<div class="breadcrumb-wrapper col-xs-12">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item"><a href="/ffse-fbms/home">Home</a></li>
-						<li class="breadcrumb-item active">DỰ ÁN</li>
+						<li class="breadcrumb-item active"><spring:message code="label.DuAn" /></li>
 					</ol>
 				</div>
 			</div>
@@ -25,7 +25,7 @@
 			<div role="group" aria-label="Button group with nested dropdown"
 				class="btn-group float-md-right" id="add-new">
 				<a href="/ffse-fbms/qlda/DuAn/add_form" class="btn btn-primary"><span
-					class="fa fa-plus"></span> Thêm mới</a>
+					class="fa fa-plus"></span><spring:message code="label.newDuAn" /></a>
 			</div>
 		</div>
 		<div class="content-body">
@@ -39,7 +39,7 @@
 				<div class="col-xs-12">
 					<div class="card">
 						<div class="card-header">
-							<h4 class="card-title">Danh sách dự án</h4>
+							<h4 class="card-title"><spring:message code="label.listDA" /></h4>
 							<a class="heading-elements-toggle"><i
 								class="fa fa-ellipsis-v font-medium-3"></i></a>
 							<div class="heading-elements">
@@ -57,7 +57,7 @@
 									<form:form method="GET" action="">
 										<div class="form-group col-sm-16">
 											<div class="form-group col-sm-3">
-												<label>Tên Dự án</label> <select
+												<label><spring:message code="label.tenDuAn" /></label> <select
 													class="custom-select block round" name="maDuAn" id="maDuAn">
 													<option value="0" label="Tất cả" />
 													<c:forEach items="${duan}" var="ld">
@@ -66,7 +66,7 @@
 												</select>
 											</div>
 											<div class="form-group col-sm-3">
-												<label>Khách Hàng</label> <select
+												<label><spring:message code="label.khachHang" /></label> <select
 													class="custom-select block round" name="makh" id="makh">
 													<option value="0" label="Tất cả" />
 													<c:forEach items="${khachHang}" var="ld">
@@ -75,7 +75,7 @@
 												</select>
 											</div>
 											<div class="form-group col-sm-3">
-												<label>Phòng Ban</label> <select
+												<label><spring:message code="label.phongBan1" /></label> <select
 													class="custom-select block round" name="maPhongBan"
 													id="maPhongBan">
 													<option value="0" label="Tất cả" />
@@ -86,7 +86,7 @@
 											</div>
 										</div>
 										<div class="form-group col-sm-3">
-											<label>Trạng Thái</label> <select
+											<label><spring:message code="label.trangThai" /></label> <select
 												class="custom-select block round" name="maTrangThai"
 												id="maTrangThai">
 												<option value="0" label="Tất cả" />
@@ -127,7 +127,7 @@
 								<div class="form-group col-sm-4">
 
 									<button class="btn btn-success" style="margin-top: 25px">
-										<i class="ft-search"></i> Search
+										<i class="ft-search"></i> <spring:message code="label.timkiem" />
 									</button>
 								</div>
 								</form:form>
@@ -136,10 +136,10 @@
 									<thead style="background: graytext; color: white;">
 										<tr>
 											<th><spring:message code="label.maDuAn" /></th>
-											<th>Tên Dự Án</th>
-											<th>Khách Hàng</th>
-											<th>Phòng Ban</th>
-											<th>Trạng Thái</th>
+											<th><spring:message code="label.tenDuAn" /></th>
+											<th><spring:message code="label.khachHang" /></th>
+											<th><spring:message code="label.phongBan1" /></th>
+											<th><spring:message code="label.trangThai" /></th>
 
 											<th>Action</th>
 										</tr>
@@ -195,7 +195,7 @@
 		<nav aria-label="Page navigation example">
 			<ul class="pagination">
 				<li class="page-item"><a class="page-link"
-					href="/ffse-fbms/qlda/DuAn/list/1" <%=query%>>First Page</a></li>
+					href="/ffse-fbms/qlda/DuAn/list/1" <%=query%>><spring:message code="label.firtVendor" /></a></li>
 				<c:if test="${currentPage > 2}">
 					<li class="page-item"><a class="page-link"
 						href="/ffse-fbms/qlda/DuAn/list/<%=query %>${page-2}">${page-2}</a></li>
@@ -215,7 +215,7 @@
 						href="/ffse-fbms/qlda/DuAn/list/${page+2}">${page+2}</a></li>
 				</c:if>
 				<li class="page-item"><a class="page-link"
-					href="/ffse-fbms/qlda/DuAn/list/${total}">Last Page</a></li>
+					href="/ffse-fbms/qlda/DuAn/list/${total}"><spring:message code="label.lastVendor" /></a></li>
 			</ul>
 		</nav>
 

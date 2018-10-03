@@ -12,7 +12,7 @@ public interface HopDongPikalongSevice {
 	public String getLastMaHd();
 	public String getLastTrangThaiHd(String maNv);
 	public HopDongPikalong getMaHopDong(int maHopDong);
-	public HopDongPikalong getHopDongById(String maNv);
-	List<HopDongPikalong> viewOne(String maNv);
+	public HopDongPikalong getHopDongById(int maHopDong);
+	public List<HopDongPikalong> viewOne(String maNv);
 	
 }

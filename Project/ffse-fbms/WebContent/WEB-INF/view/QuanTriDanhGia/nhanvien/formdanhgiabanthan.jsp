@@ -34,9 +34,9 @@
 										<form:form cssClass="form form-horizontal form-bordered"
 											method="POST">
 											<form:hidden path="id" />
-											<form:hidden path="kyDanhGia" />
-											<form:hidden path="phongBan" />
-											<form:hidden path="nhanVien" />
+											<form:hidden path="kyDanhGia.maKy" />
+											<form:hidden path="phongBan.maPhongBan" />
+											<form:hidden path="nhanVien.maNhanVien" />
 											<div class="form-body">
 												<h4 class="form-section">
 													<i class="ft-user"></i> Bản tự đánh giá
@@ -153,7 +153,7 @@
 													</div>
 												</div>
 
-												<div class="form-group last">
+												<div class="form-group row">
 													<label class="col-md-3 label-control">Đánh giá tổng
 														thể</label>
 													<div class="col-md-9">
@@ -167,15 +167,19 @@
 													</div>
 												</div>
 											</div>
-											<form:hidden path="trangThai" />
+											<div class="form-group last">
+												<label class="col-md-3 label-control">Trạng thái</label>
+												<div class="col-md-9">
+													<form:select path="trangThai.maTrangThai">
+														<form:option value="1">Nháp</form:option>
+														<form:option value="2">Nộp</form:option>
+													</form:select>
+												</div>
+											</div>
 											<div class="form-actions">
 												<a
 													href="<c:url value="/quantridanhgia/nhanvien/danhgiabanthan/"/>"
 													class="btn btn-danger btn-min-width mr-1 mb-1">Trở về</a>
-												<button type="submit"
-													formaction="<c:url value="/quantridanhgia/nhanvien/danhgiabanthan/draft"/>"
-													class="btn btn-info btn-min-width mr-1 mb-1">Lưu
-													nháp</button>
 												<button type="submit"
 													formaction="<c:url value="/quantridanhgia/nhanvien/danhgiabanthan/submit"/>"
 													class="btn btn-success btn-min-width mr-1 mb-1">Tạo</button>

@@ -10,14 +10,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 //import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 //import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "danh_muc")
-public class Category  {
-	
+public class Category  implements java.io.Serializable{
+
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@Column(name = "id")
+	@NotNull
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	

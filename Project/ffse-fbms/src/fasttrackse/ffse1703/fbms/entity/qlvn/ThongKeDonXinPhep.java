@@ -31,6 +31,9 @@ public class ThongKeDonXinPhep {
 	@ManyToOne
 	@JoinColumn(name ="ma_nhan_vien")
 	private NgayNghi ngayNghi;
+	
+	@Column(name="ten_nhan_vien")
+	private String tenNhanVien;
  
 	@NotNull
 	@Column(name = "ngay_bat_dau")
@@ -138,5 +141,14 @@ public class ThongKeDonXinPhep {
 		this.trangThai = trangThai;
 	}
 
+	public String getTenNhanVien() {
+		return tenNhanVien;
+	}
+
+	public void setTenNhanVien(String tenNhanVien) {
+		this.tenNhanVien = tenNhanVien;
+	}
+
+	
 	
 }

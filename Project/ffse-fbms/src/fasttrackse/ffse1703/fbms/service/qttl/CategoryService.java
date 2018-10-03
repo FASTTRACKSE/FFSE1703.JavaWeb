@@ -6,11 +6,11 @@ import fasttrackse.ffse1703.fbms.entity.qttl.*;
 
 public interface  CategoryService {
 	
-	public List<Category> listCategory();
+	public List<Category> getAll();
 	
-	public Category findById(int id);
+	public Category getById(int id);
 	
-	public void add(Category category);
+	public void addNew(Category category);
 	
 	public void update(Category category);
 	

@@ -19,6 +19,8 @@
 								<label>Mã đơn</label>
 
 								<form:input class="form-control round" path="id" readonly="true" />
+								<form:hidden path="ngayNghi.soNgayDaNghi"/>
+								<form:hidden path="ngayNghi.soNgayConLai"/>
 
 							</div>
 

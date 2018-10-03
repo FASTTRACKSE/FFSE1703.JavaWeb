@@ -29,7 +29,7 @@
 					<div role="group" aria-label="Button group with nested dropdown"
 						class="btn-group float-md-right" id="add-new">
 						<a class="btn btn-primary"
-							href='<c:url value = "/QuanTriTaiLieu/TaiLieu/add" />'><span
+							href='<c:url value = "/QuanTriTaiLieu/DanhMuc/add" />'><span
 							data-i18n="" class="ft-plus-square">Thêm Mới</span></a>
 					</div>
 				</div>
@@ -81,20 +81,20 @@
 												</tr>
 											</thead>
 											<tbody>
-												<c:if test="${not empty category}">
-													<c:forEach var="sv" items="${category}">
+												<c:if test="${not empty list}">
+													<c:forEach var="sv" items="${list}">
 														<tr>
 															<td>${sv.ma_danh_muc}</td>
 															<td>${sv.ten_danh_muc}</td>
 															<td><a
-																href="/ffse-fbms/QuanTriTaiLieu/TaiLieu/edit/${sv.id}"
+																href="/ffse-fbms/QuanTriTaiLieu/DanhMuc/edit/${sv.id}"
 																data-toggle="tooltip" title="edit">
 																	<button type="button"
 																		class="btn btn-icon btn-outline-warning">
 																		<i class="fa fa-pencil"></i>
 																	</button>
 															</a> <a
-																href="/ffse-fbms/QuanTriTaiLieu/TaiLieu/delete/${sv.id}">
+																href="/ffse-fbms/QuanTriTaiLieu/DanhMuc/delete/${sv.id}">
 																	<button type="button"
 																		onclick="if (!confirm('Are you sure you want to delete this database?')) return false"
 																		class="btn btn-outline-danger btn-icon checkid"

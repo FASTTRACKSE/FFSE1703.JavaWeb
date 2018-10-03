@@ -118,7 +118,7 @@ public class PhongNhanSuDAOImpl implements PhongNhanSuDAO {
 	@Override
 	public int checkLichDanhGia(LichDanhGia lichDanhGia) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("from LichDanhGia where kyDanhGia = :kyDG and phongBan = :phongBan")
+		return session.createQuery("from LichDanhGia where kyDanhGia.maKy = :kyDG and phongBan.maPhongBan = :phongBan")
 				.setParameter("kyDG", lichDanhGia.getKyDanhGia()).setParameter("phongBan", lichDanhGia.getPhongBan())
 				.list().size();
 	}
@@ -134,7 +134,7 @@ public class PhongNhanSuDAOImpl implements PhongNhanSuDAO {
 	@Override
 	public int checkActiveLichDanhGia(String phongBan) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("from LichDanhGia where phongBan = :phongBan and isActive = 1").setParameter("phongBan", phongBan).list().size();
+		return session.createQuery("from LichDanhGia where phongBan.maPhongBan = :phongBan and isActive = 1").setParameter("phongBan", phongBan).list().size();
 	}
 
 	@Override
@@ -159,7 +159,7 @@ public class PhongNhanSuDAOImpl implements PhongNhanSuDAO {
 	@Override
 	public int countDanhGiaPhongBan(String phongBan) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("from DanhGiaBanThan where trangThai = 3").list().size();
+		return session.createQuery("from DanhGiaBanThan where trangThai.maTrangThai = 3").list().size();
 	}
 
 	@Override

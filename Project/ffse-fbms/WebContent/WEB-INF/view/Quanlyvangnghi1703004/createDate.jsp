@@ -19,6 +19,14 @@
 								<form:select multiple="single" path="maNhanVien" class="custom-select block round">
 									<form:options items="${hoso}" itemValue="maNhanVien" itemLabel="maNhanVien" />
 								</form:select>
+								 <form:errors path="maNhanVien" cssStyle="color: red" ></form:errors> 
+							</div>
+							<div>
+								<label><spring:message code="label.hoTen"/></label>
+								<form:select multiple="single" path="tenNhanVien" class="custom-select block round">
+									<form:options items="${hoso}" itemValue="hoDem" itemLabel="hoDem" />
+								</form:select>
+								 <form:errors path="tenNhanVien" cssStyle="color: red" ></form:errors> 
 							</div>
 
 							<div>

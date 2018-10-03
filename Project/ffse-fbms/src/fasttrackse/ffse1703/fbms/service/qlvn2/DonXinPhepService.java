@@ -16,6 +16,11 @@ public interface DonXinPhepService {
 
 	public List<DonXinPhepEntity> danhsachbituchoi003();
 
+	public List<SoNgayNghiEntity> ngaynghiphep();
+	
+	
+	public List<TrangThaiEntity> thongketrangthai();
+	
 	public void create(DonXinPhepEntity DonXinPhepEntity);
 
 	public void createcho(DonXinPhepEntity DonXinPhepEntity);
@@ -34,18 +39,13 @@ public interface DonXinPhepService {
 
 	public void delete(int id);
 
-	public void updatecho(DonXinPhepEntity DonXinPhepEntity);
+	public void update(DonXinPhepEntity DonXinPhepEntity);
 	
 	public List<DonXinPhepEntity>  findAllForPaging1(int startPosition,int maxResult);
 	public List<DonXinPhepEntity>  findAllForPaging2(int startPosition,int maxResult);
 	public List<DonXinPhepEntity>  findAllForPaging3(int startPosition,int maxResult);
 	public List<DonXinPhepEntity>  findAllForPaging4(int startPosition,int maxResult);
-
-    public List<SoNgayNghiEntity> bangNgayNghi();
-	
-	public SoNgayNghiEntity findByIdngay(int id);
-	
-	public void deletengay(int id); 
-	public List<DonXinPhepEntity>  findAllForPagingngaynghi(int startPosition,int maxResult);
+	public List<SoNgayNghiEntity>  findAllForPagingngaynghi(int startPosition,int maxResult);
+	public List<TrangThaiEntity>  findAllForPagingTT(int startPosition,int maxResult);
 
 }

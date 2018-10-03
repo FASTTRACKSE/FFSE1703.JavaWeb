@@ -12,44 +12,28 @@
 		<div class="content-header row">
 		<div>
 		<div class="col-md-5"></div>
-			<h3 >Danh sách đang chờ duyệt</h3>
+			<h3 >Danh sách Trạng Thái</h3>
 		</div>
-			<div>
-			<div><a href="donxinphep003"><h4>Thêm đơn mới</h4></a></div>
-			<div class="container">
+			
 			    <div class="table-responsive">
 						<table class="table mb-0">
 							<thead>
 				<tr>
-					<th >Mã đơn</th>
-					<th >Mã nhân viên</th>
-					<th >Ngày bắt đầu</th>
-					<th >Ngày kết thúc</th>
-					<th >Lý do</th>
-					<th >Ghi chú</th>
-					<th >Ghi chú của trưởng phòng</th>
-					<th >Trạng thái</th>
-					<th>Chức năng</th>
+					<th >Mã Trang Thái</th>
+					<th >Tên Trang Thái</th>
+					<th >Số Đơn</th>
 				</tr>
 				</thead>
 				<tbody>
-			<c:forEach var="nv" items="${danhsachchoduyet003}">
+			<c:forEach var="tl" items="${thongketrangthai}">
 					<tr>
-					<td>${nv.id -1 }</td>
-					<td>${nv.ngayNghi.maNhanVien}</td>
-					<td>${nv.ngayBatDau}</td>
-					<td>${nv.ngayKetThuc}</td>
-					<td>${nv.lyDo.lyDo}</td>
-					<td>${nv.ghiChu}</td>
-					<td>${nv.ghiChuTruongPhong}</td>
-					<td>${nv.trangThai.trangThai}</td>
-					<td><a  href="suadoncho/${nv.id  }"><button class="btn btn-success">
-									Sửa</button></a> 
-					</td>
+					
+					<td>${tl.id}</td>
+					<td>${tl.trangThai}</td>
 						</tr>
 				</c:forEach>
 				</tbody>
-		</table> 
+		</table>
 		
 		<nav aria-label="Page navigation example">
 	<ul class="pagination">
@@ -82,8 +66,6 @@
 		</div>
 		</div>
 <script>
-		function canhbao() {
-			return confirm("Bạn Có Chắc Muốn Xóa Không?");
-		}
+		
 	</script>
 <jsp:include page="/WEB-INF/view/templates/footer.jsp" />

@@ -44,6 +44,13 @@ public class DonXinPhepServicelmpl implements DonXinPhepService {
 		return this.DonXinPhepDao.danhsachbituchoi003();
 		}
 
+	public List<SoNgayNghiEntity> ngaynghiphep() {
+		return this.DonXinPhepDao.ngaynghiphep();
+	}
+	
+	public List<TrangThaiEntity> thongketrangthai() {
+		return this.DonXinPhepDao.thongketrangthai();
+	}
 	
 	public List<LyDoEntity> danhSachLyDo() {
 		return this.DonXinPhepDao.danhSachLyDo();
@@ -92,8 +99,8 @@ public class DonXinPhepServicelmpl implements DonXinPhepService {
 		
 	}
 
-	public void updatecho(DonXinPhepEntity DonXinPhepEntity) {
-		DonXinPhepDao.Updatecho(DonXinPhepEntity);
+	public void update(DonXinPhepEntity DonXinPhepEntity) {
+		DonXinPhepDao.Update(DonXinPhepEntity);
 		
 	}
 	
@@ -110,28 +117,15 @@ public class DonXinPhepServicelmpl implements DonXinPhepService {
 	public List<DonXinPhepEntity> findAllForPaging4(int startPosition, int maxResult) {
 		return this.DonXinPhepDao.findAllForPaging4(startPosition, maxResult);
 	}
-
-
-	public List<SoNgayNghiEntity> bangNgayNghi() {
-		return this.DonXinPhepDao.bangNgayNghi();
-	}
-
-
-	public SoNgayNghiEntity findByIdngay(int id) {
-		return this.DonXinPhepDao.findByIdngay(id);
-	}
-
-	public void deletengay(int id) {
-		DonXinPhepDao.delete(id);
-		
+	public List<SoNgayNghiEntity> findAllForPagingngaynghi(int startPosition, int maxResult) {
+		return this.DonXinPhepDao.findAllForPagingngaynghi(startPosition, maxResult);
 	}
 
 	@Override
-	public List<DonXinPhepEntity> findAllForPagingngaynghi(int startPosition, int maxResult) {
-		
-		return null;
+	public List<TrangThaiEntity> findAllForPagingTT(int startPosition, int maxResult) {
+		return this.DonXinPhepDao.findAllForPagingTT(startPosition, maxResult);
 	}
-	
+
 	
 
 	

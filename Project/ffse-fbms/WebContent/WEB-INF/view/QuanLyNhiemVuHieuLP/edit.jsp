@@ -39,7 +39,7 @@
 									<button type="button" class="close" data-dismiss="alert">
 										<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 									</button>
-									${messageError}
+									<spring:message code="label.luuthatbainhiemvu"/>
 								</div>
 							</c:if>
 							<div class="main-content">

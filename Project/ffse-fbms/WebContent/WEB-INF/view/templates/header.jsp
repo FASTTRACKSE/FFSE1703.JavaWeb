@@ -341,29 +341,24 @@
 								href="/ffse-fbms/QuanTriNhanSu/quanlihopdong/">Danh Sách Hợp Đồng</a></li>
 						</ul></li>
 					<!-- Quản Lý Nhân Sự Pikalong -->
-					<!-- Quản Lý Nhân Sự TT -->
-					<li class=" navigation-header"><span>Team Quản Lý Nhân
-							Sự TT</span><i class=" ft-minus" data-toggle="tooltip"
+					
+					<!-------------------Quản Lý Nhân Sự TT------------- -->
+					<li class=" navigation-header"><span><spring:message
+								code="label.quanLyNhanSuTT" /></span><i class=" ft-minus" data-toggle="tooltip"
 						data-placement="right" data-original-title="Others"></i></li>
 					<li class=" nav-item"><a href="#"><i class="ft-layers"></i><span
-							class="menu-title" data-i18n="">Quản Lý Hồ Sơ</span></a>
+							class="menu-title" data-i18n=""><spring:message
+								code="label.quanLyHoSo" /></span></a>
 						<ul class="menu-content">
 							<li><a class="menu-item"
-								href="/ffse-fbms/quanlynhansutt/ho_so/">Hồ Sơ Nhân Viên</a></li>
+								href="/ffse-fbms/quanlynhansutt/ho_so/"><spring:message
+								code="label.hoSoNhanVien" /></a></li>
 						</ul></li>
-					<li class=" nav-item"><a href="#"><i class="ft-layers"></i><span
-							class="menu-title" data-i18n="">Quản Lý Hợp Đồng</span></a>
-						<ul class="menu-content">
-							<li><a class="menu-item"
-								href="/ffse-fbms/quanlynhansutt/hop_dong/">Hồ Sơ Hợp Đồng</a></li>
-						</ul></li>
-					<li class=" nav-item"><a href="#"><i
-							class="fa fa-id-card-o"></i><span class="menu-title" data-i18n="">Quản
-								Lý Bằng Cấp</span></a>
-						<ul class="menu-content">
-							<li><a class="menu-item"
-								href="/ffse-fbms/quanlynhansutt/bang_cap/">Hồ Sơ Bằng Cấp</a></li>
-						</ul></li>
+					<li class=" nav-item"><a class="menu-item"
+								href="/ffse-fbms/quanlynhansutt/hop_dong/"><i class="ft-layers"></i><span
+							class="menu-title" data-i18n=""><spring:message
+								code="label.danhSachHopDong" /></span></a>
+					</li>
 					<!-- Quản Lý Nhân Sự TT  -->
 
 					<!-- Quản trị dự án -->

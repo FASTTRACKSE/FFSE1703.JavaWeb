@@ -16,11 +16,11 @@ public class SoNgayNghiEntity {
 	@Column(name = "ma_nhan_vien")
 	private int  maNhanVien;
 	
-	@Column(name = "so_ngay_nghi")
-	private int soNgayNghi;
+	@Column(name = "so_ngay_da_nghi")
+	private int soNgayDaNghi;
 	
-	@Column(name = "so_ngay_nghi_con_lai")
-	private int ngayNghiConLai;
+	@Column(name = "so_ngay_con_lai")
+	private int soNgayConLai;
 
 	public int getMaNhanVien() {
 		return maNhanVien;
@@ -30,21 +30,24 @@ public class SoNgayNghiEntity {
 		this.maNhanVien = maNhanVien;
 	}
 
-	public int getSoNgayNghi() {
-		return soNgayNghi;
+
+	public int getSoNgayDaNghi() {
+		return soNgayDaNghi;
 	}
 
-	public void setSoNgayNghi(int soNgayNghi) {
-		this.soNgayNghi = soNgayNghi;
+	public void setSoNgayDaNghi(int soNgayDaNghi) {
+		this.soNgayDaNghi = soNgayDaNghi;
 	}
 
-	public int getNgayNghiConLai() {
-		return ngayNghiConLai;
+	public int getSoNgayConLai() {
+		return soNgayConLai;
 	}
 
-	public void setNgayNghiConLai(int ngayNghiConLai) {
-		this.ngayNghiConLai = ngayNghiConLai;
+	public void setSoNgayConLai(int soNgayConLai) {
+		this.soNgayConLai = soNgayConLai;
 	}
+
+	
 
 	
 

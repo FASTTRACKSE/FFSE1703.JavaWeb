@@ -90,25 +90,18 @@
 						</div>
 						<div class="form-group col-sm-6">
 							<label>Tên Technical</label>
-						
-
 							<form:select path="technical" cssClass="form-control"
 								mutiple="true">
-
 								<c:forEach items="${technical}" var="tc">
 									<option value="${tc.ma_cong_nghe }">${tc.ten_cong_nghe}</option>
 								</c:forEach>
-
 							</form:select>
 						</div>
 
 						<div class="form-group col-sm-6">
 							<label>Tên Database</label>
-							
-
 							<form:select multiple="true" cssClass="form-control"
 								path="database">
-
 								<c:forEach items="${database}" var="db">
 									<option value="${db.maDatabase}">${db.tenDatabase}</option>
 								</c:forEach>
@@ -116,11 +109,8 @@
 						</div>
 						<div class="form-group col-sm-6">
 							<label>Tên Framework</label>
-							
-
 							<form:select path="framework" cssClass="form-control"
 								mutiple="mutiple">
-
 								<c:forEach items="${framework}" var="fw">
 									<option value="${fw.ma_framework }">${fw.ten_framework}</option>
 								</c:forEach>
@@ -128,28 +118,22 @@
 						</div>
 						<div class="form-group col-sm-6">
 							<label>Ngôn ngữ</label>
-							
-
 							<form:select path="ngonNgu" cssClass="form-control"
 								mutiple="true">
 
 								<c:forEach items="${ngonNgu}" var="vd">
 									<option value="${vd.maNn }">${vd.tenNn }</option>
 								</c:forEach>
-
 							</form:select>
 						</div>
 						<div class="form-group col-sm-6">
 							<label>Tên Vendor</label>
-							
-
 							<form:select path="vendor" cssClass="form-control" mutiple="true"
 								style="height:calc(2.95rem - 2px);">
 
 								<c:forEach items="${vendor}" var="vd">
 									<option value="${vd.mavd }">${vd.tenvd }</option>
 								</c:forEach>
-
 							</form:select>
 						</div>
 
@@ -158,7 +142,7 @@
 							<form:errors path="domain" cssStyle="color: red"></form:errors>
 
 							<form:select path="domain.maNghiepVu" cssClass="form-control">
-								<form:option selected="selected" value="" disabled="true" ></form:option>
+								<form:option selected="selected" value="" disabled="true"></form:option>
 								<c:forEach items="${domain}" var="domain">
 									<option value="${domain.maNghiepVu}">${domain.tenNghiepVu}</option>
 								</c:forEach>
@@ -200,7 +184,7 @@
 							<div class="help-block"></div>
 						</div>
 						<div class="form-group col-sm-12">
-							<form:hidden path="trangThai.maTrangThai" value="TT01"/>
+							<form:hidden path="trangThai.maTrangThai" value="TT01" />
 
 							<label>Trạng thái</label>
 							<form:select path="trangThai" cssClass="form-control"

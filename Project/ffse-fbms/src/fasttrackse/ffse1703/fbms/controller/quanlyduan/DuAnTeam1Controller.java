@@ -182,6 +182,19 @@ public class DuAnTeam1Controller {
 	@RequestMapping(value = "/edit/{maDuAn}")
 	public String edit(Model model, @PathVariable("maDuAn") String maDuAn) {
 		DuAnTeam1 dA = duAnTeam1Service.getById(maDuAn);
+		model.addAttribute("database", databaseTeam1Service.getAll());
+		model.addAttribute("trangThai", trangThaiTeam1Service.getAll());
+		model.addAttribute("domain", domainTeam1Service.getAll());
+		model.addAttribute("framework", frameTeam1Service.getAll());
+		model.addAttribute("technical", technicalTeam1Service.getAll());
+		model.addAttribute("vendor", vendorTeam1Service.getAll());
+		model.addAttribute("ngonNgu", ngonNguTeam1Service.getAll());
+		model.addAttribute("phongBan", phongBanService.findAll());
+		String maPB = dA.getPhongBan().getMaPhongBan();
+
+		model.addAttribute("pms", hoSoNhanVienTeam1Service.findAll(maPB));
+
+		
 		model.addAttribute("duAn", dA);
 		return "QuanLyDuAn/DuAn/edit_form";
 
@@ -202,18 +215,18 @@ public class DuAnTeam1Controller {
 	@RequestMapping(value = "/view/{maDuAn}")
 	public String demo(Model model, @PathVariable("maDuAn") String maDuAn) {
 		model.addAttribute("duAn", duAnTeam1Service.getById(maDuAn));
-		return "QuanLyDuAn/DuAn/demo";
+		return "QuanLyDuAn/DuAn/view";
 
 	}
 
 	public void getData(Model model) {
 		model.addAttribute("database", databaseTeam1Service.getAll());
 		model.addAttribute("khachhang", khachHangTeam1Service.getAll());
-		model.addAttribute("TrangThai", trangThaiTeam1Service.getAll());
-		model.addAttribute("Domain", domainTeam1Service.getAll());
-		model.addAttribute("Framework", frameTeam1Service.getAll());
-		model.addAttribute("Technical", technicalTeam1Service.getAll());
-		model.addAttribute("Vendor", vendorTeam1Service.getAll());
+		model.addAttribute("trangThai", trangThaiTeam1Service.getAll());
+		model.addAttribute("domain", domainTeam1Service.getAll());
+		model.addAttribute("framework", frameTeam1Service.getAll());
+		model.addAttribute("technical", technicalTeam1Service.getAll());
+		model.addAttribute("vendor", vendorTeam1Service.getAll());
 		model.addAttribute("ngonNgu", ngonNguTeam1Service.getAll());
 		model.addAttribute("phongBan", phongBanService.findAll());
 
@@ -309,37 +322,37 @@ public class DuAnTeam1Controller {
 			}
 		});
 
-		binder.registerCustomEditor(KhachHangTeam1.class, "KhachHang", new PropertyEditorSupport() {
+		binder.registerCustomEditor(KhachHangTeam1.class, "khachHang", new PropertyEditorSupport() {
 			@Override
 			public void setAsText(String text) throws IllegalArgumentException {
 				setValue(khachHangTeam1Service.findById(text));
 			}
 		});
-		binder.registerCustomEditor(TrangThaiTeam1.class, "TrangThai", new PropertyEditorSupport() {
+		binder.registerCustomEditor(TrangThaiTeam1.class, "trangThai", new PropertyEditorSupport() {
 			@Override
 			public void setAsText(String text) throws IllegalArgumentException {
 				setValue(trangThaiTeam1Service.findById(text));
 			}
 		});
-		binder.registerCustomEditor(DomainTeam1.class, "Domain", new PropertyEditorSupport() {
+		binder.registerCustomEditor(DomainTeam1.class, "domain", new PropertyEditorSupport() {
 			@Override
 			public void setAsText(String text) throws IllegalArgumentException {
 				setValue(domainTeam1Service.findById(text));
 			}
 		});
-		binder.registerCustomEditor(FrameworkTeam1.class, "Framework", new PropertyEditorSupport() {
+		binder.registerCustomEditor(FrameworkTeam1.class, "framework", new PropertyEditorSupport() {
 			@Override
 			public void setAsText(String text) throws IllegalArgumentException {
 				setValue(frameTeam1Service.getById(text));
 			}
 		});
-		binder.registerCustomEditor(TechnicalTeam1.class, "Technical", new PropertyEditorSupport() {
+		binder.registerCustomEditor(TechnicalTeam1.class, "technical", new PropertyEditorSupport() {
 			@Override
 			public void setAsText(String text) throws IllegalArgumentException {
 				setValue(technicalTeam1Service.getById(text));
 			}
 		});
-		binder.registerCustomEditor(VendorTeam1.class, "Vendor", new PropertyEditorSupport() {
+		binder.registerCustomEditor(VendorTeam1.class, "vendor", new PropertyEditorSupport() {
 			@Override
 			public void setAsText(String text) throws IllegalArgumentException {
 				setValue(vendorTeam1Service.getById(text));

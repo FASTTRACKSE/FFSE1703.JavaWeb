@@ -33,9 +33,9 @@ public class QLyNhiemvuMinhHQDaoImpl implements QLyNhiemvuMinhHQDao{
 	@Override
 	@SuppressWarnings("unchecked")
 	@Transactional
-	public List<CongViecMinhHQ> findAll() {
+	public List<CongViecMinhHQ> findAll(String search) {
 		Session session = this.sessionFactory.openSession();
-		List<CongViecMinhHQ> list = session.createQuery("from CongViecMinhHQ where isDelete ='1'").list();
+		List<CongViecMinhHQ> list = session.createQuery("from CongViecMinhHQ where isDelete ='1'"+ search).list();
 		return list;
 	}
 
@@ -103,6 +103,15 @@ public class QLyNhiemvuMinhHQDaoImpl implements QLyNhiemvuMinhHQDao{
 		Session session = sessionFactory.getCurrentSession();
 		List<HoSoNhanVien> cv = session.createQuery("from HoSoNhanVien").list();
 		return cv;
+	}
+	
+	@Override
+	@SuppressWarnings("unchecked")
+	@Transactional
+	public List<CongViecMinhHQ> searchAll(String search) {
+		Session session = this.sessionFactory.openSession();
+		List<CongViecMinhHQ> list = session.createQuery("from CongViecMinhHQ where isDelete = 1"+ search).list();
+		return list;
 	}
 }
 

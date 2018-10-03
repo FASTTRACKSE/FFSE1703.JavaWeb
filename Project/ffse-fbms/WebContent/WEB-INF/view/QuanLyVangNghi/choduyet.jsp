@@ -161,7 +161,7 @@ input:checked+.slider:before {
 									</div>
 									<div class="col col-xs-5 text-center">
 										<h3 class="panel-title">
-											<b>Danh Sách Đơn Chờ Duyệt</b>
+											><b>Danh Sách Đơn Chờ Duyệt</b>
 										</h3>
 									</div>
 									<div class="col col-xs-2 well text-center"
@@ -185,10 +185,10 @@ input:checked+.slider:before {
 										<table class=" table-striped table-bordered table-list">
 											<thead>
 												<tr>
-													<th>STT</th>
-													<th>Họ Và Tên</th>
 													<th>Mã Nhân Viên</th>
+													<th>Họ Và Tên</th>
 													<th>Lý Do</th>
+													<th>Phòng Ban</th>
 													<th>Thời gian Từ</th>
 													<th>Đến Thời gian</th>
 													<th>Đến Thời gian</th>

@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Language;
 import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Nhiemvu;
 
 
@@ -29,9 +30,9 @@ public class NhiemVuDaoImpl implements NhiemVuDao {
 	}
 
 	@Override
-	public Nhiemvu getByID(int id) {
+	public Nhiemvu getByID(String  idProjects) {
 		Session session = this.sessionFactory.getCurrentSession();
-		return session.get(Nhiemvu.class, id);
+		return session.get(Nhiemvu.class, idProjects);
 	}
 
 	@Override
@@ -59,5 +60,26 @@ public class NhiemVuDaoImpl implements NhiemVuDao {
 		nhiemVu.setStatus(0);
 		session.update(nhiemVu);
 	}
+	@Override
+	public List<Nhiemvu> getByDuAn(String idProjects, String search, int start, int maxRows) {
+		Session session = this.sessionFactory.getCurrentSession();
+		// search = "and hoSoNhanVien.maNv = ... and roles.id = ..."
+		// from Nhiemvu where status =1 and projects.idProject= "DA0004" and hoSoNhanVien.maNv = "00001"
+		
+		return session.createQuery("from Nhiemvu where status =1 and projects.idProject='"+idProjects+"' " + search, Nhiemvu.class).setFirstResult(start)
+				.setMaxResults(maxRows).list();
+	}
+	@Override
+	public int countNhiemvu(String idProjects, String search) {
+		Session session = sessionFactory.getCurrentSession();
+		List<Nhiemvu> nv=session.createQuery("from Nhiemvu where status = 1 and projects.idProject='"+idProjects+"' " + search, Nhiemvu.class).list();
+		return nv.size();
+	}
+	@Override
+	public Nhiemvu getByid(int id) {
+		Session session = this.sessionFactory.getCurrentSession();
+		return session.get(Nhiemvu.class, id);
+	}
+	
 
 }

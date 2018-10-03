@@ -1,44 +1,21 @@
 package fasttrackse.ffse1703.fbms.controller.qttl;
 
-import java.io.File;
 import java.io.IOException;
-//import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-//import java.io.File;
-//import java.io.IOException;
-//import java.text.SimpleDateFormat;
-//import java.util.Date;
-
-//import java.io.File;
-//import java.io.IOException;
-
-//import java.text.SimpleDateFormat;
-//import java.util.Date;
-
 import javax.servlet.http.HttpServletRequest;
-//import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
-//import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-//import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
-//import org.springframework.validation.BindingResult;
-//import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-//import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-//import org.springframework.web.multipart.MultipartFile;
 import fasttrackse.ffse1703.fbms.entity.qttl.*;
 import fasttrackse.ffse1703.fbms.service.qttl.*;
 
@@ -73,27 +50,11 @@ public class CategoryController {
 			return "create";
 		}
 		System.out.println(sv.getId());
-		sv.setImage(uploadFile(file, request));
 		categoryService.add(sv);
 		;
 		return "redirect:/list";
 	}
 	
-	public String uploadFile(MultipartFile file, HttpServletRequest request) throws IllegalStateException, IOException {
-		Date date = new Date();
-		SimpleDateFormat fm = new SimpleDateFormat("hhmmssddMMyyyy");
-		String fileName = "";
-		String path = request.getServletContext().getRealPath("/") + "\\resources\\upload\\";
-		if (!file.isEmpty()) {
-			fileName = fm.format(date) + "_" + file.getOriginalFilename();
-			File dir = new File(path);
-			if (!dir.exists())
-				dir.mkdirs();
-			File fileSave = new File(dir, fileName);
-			file.transferTo(fileSave);
-		}
-		return fileName;
-	}
 	@RequestMapping("/delete/{id}")
 	public String delete(Model model,@PathVariable("id") int id) {
 		categoryService.delete(id);

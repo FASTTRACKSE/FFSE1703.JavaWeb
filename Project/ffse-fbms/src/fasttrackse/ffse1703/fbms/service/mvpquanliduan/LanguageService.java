@@ -13,4 +13,5 @@ public interface LanguageService {
 	public int checkNameLanguage(String nameLanguage);
 	public List<Language> listLanguage(int start, int maxRows);
 	public int countLanguage();
+	public int checkMa(String idLanguage);
 }

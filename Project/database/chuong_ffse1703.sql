@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 18, 2018 at 07:21 AM
+-- Generation Time: Oct 02, 2018 at 09:53 AM
 -- Server version: 5.6.37
 -- PHP Version: 5.6.31
 
@@ -51,16 +51,17 @@ INSERT INTO `chuc_danh` (`ma_chuc_danh`, `ten_chuc_danh`) VALUES
 CREATE TABLE IF NOT EXISTS `danh_muc` (
   `id` int(10) NOT NULL,
   `ma_danh_muc` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `ten_danh_muc` varchar(30) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `ten_danh_muc` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `danh_muc`
 --
 
-INSERT INTO `danh_muc` (`id`, `ma_danh_muc`, `ten_danh_muc`) VALUES
-(1, 'IT', 'Tài liệu IT'),
-(2, 'EL', 'Tài liệu English');
+INSERT INTO `danh_muc` (`id`, `ma_danh_muc`, `ten_danh_muc`, `image`) VALUES
+(1, 'IT', 'Tài liệu IT', ''),
+(2, 'EL', 'Tài liệu English', '');
 
 -- --------------------------------------------------------
 
@@ -301,18 +302,6 @@ INSERT INTO `ho_so_nhan_vien` (`ma_nhan_vien`, `ma_phong_ban`, `ma_chuc_danh`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `image`
---
-
-CREATE TABLE IF NOT EXISTS `image` (
-  `id` int(11) NOT NULL,
-  `ma_image` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `hinh_anh` varchar(100) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `phong_ban`
 --
 
@@ -331,8 +320,7 @@ INSERT INTO `phong_ban` (`ma_phong_ban`, `ten_phong_ban`) VALUES
 ('PGD', 'Phòng Giám đốc'),
 ('PIT', 'Phòng IT'),
 ('PKT', 'Phòng Kế toán'),
-('PNS', 'Phòng Nhân sự'),
-('zzzzz', 'zzzz');
+('PNS', 'Phòng Nhân sự');
 
 -- --------------------------------------------------------
 
@@ -341,19 +329,22 @@ INSERT INTO `phong_ban` (`ma_phong_ban`, `ten_phong_ban`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `quyen_truy_cap` (
-  `ID` int(11) NOT NULL,
-  `ma_truy_cap` varchar(20) NOT NULL,
-  `quyen_truy_cap` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `id` int(11) NOT NULL,
+  `ma_phong_ban` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `ten_phong_ban` varchar(50) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `quyen_truy_cap`
 --
 
-INSERT INTO `quyen_truy_cap` (`ID`, `ma_truy_cap`, `quyen_truy_cap`) VALUES
-(1, '1', 'FFSE1702'),
-(2, '2', 'FFSE1703'),
-(3, '3', 'FFSE1704');
+INSERT INTO `quyen_truy_cap` (`id`, `ma_phong_ban`, `ten_phong_ban`) VALUES
+(1, 'PDA', 'Phòng Dự Án'),
+(2, 'PDT', 'Phòng Đào Tạo'),
+(3, 'PGD', 'Phòng Dám Đốc'),
+(4, 'PIT', 'Phòng IT'),
+(5, 'PKT', 'Phòng Kế Toán'),
+(6, 'PNS', 'Phòng Nhân Sự');
 
 -- --------------------------------------------------------
 
@@ -394,9 +385,32 @@ CREATE TABLE IF NOT EXISTS `tai_lieu` (
   `ma_trang_thai` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `mo_ta` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `ghi_chu` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `ma_phong_ban` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `ma_image` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `ma_phong_ban` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `tai_lieu`
+--
+
+INSERT INTO `tai_lieu` (`id`, `ten_tai_lieu`, `ma_danh_muc`, `file`, `ma_trang_thai`, `mo_ta`, `ghi_chu`, `ma_phong_ban`) VALUES
+(1, 'Chương', 'IT', 'a', 'a', 'Đã phê duyệt', 'a', 'a'),
+(2, 'Chương', 'b', 'a', 'a', 'a', 'a', 'a'),
+(3, 'Chương', 'b', 'a', 'a', 'a', 'a', 'a'),
+(4, 'Chương', 'IT', 'a', 'da_phe_duyet', 'Đã phê duyệt', 'Phòng dự án', 'PDA'),
+(5, 'Chương', 'aa', 'a', 'a', 'Đã phê duyệt', 'Phòng dự án', 'PDA'),
+(6, 'Kí mặt chó', 'IT', 'a', 'da_phe_duyet', 'Đã phê duyệt', 'Phòng dự án', 'PDA'),
+(7, 'Lê Văn Chương', 'IT', 'a', 'da_phe_duyet', 'Đã phê duyệt', 'Phòng dự án', 'PDA'),
+(8, 'Ký óc nhựa', 'IT', 'a', 'da_phe_duyet', 'Đã phê duyệt', 'Phòng dự án', 'PDA'),
+(9, 'Lê Văn Chương', 'EL', 'a', 'cho_phe_duyet', 'a', 'a', 'PDA'),
+(10, 'Tài Liệu Ôn Tập', 'EL', 'a8.jpg', 'nhap', 'nháp', 'Phòng đào tạo', 'PDT'),
+(11, 'Tài Liệu Ôn Tập', 'IT', 'diemEnglish.png', 'da_phe_duyet', 'Đã phê duyệt', 'Phòng đào tạo', 'PDT'),
+(17, 'Tài Liệu Ôn Tập', 'IT', 'Doc1.docx', 'da_phe_duyet', 'Đã phê duyệt', 'Phòng đào tạo', 'PDT'),
+(18, 'Chương', 'IT', 'The Health Community.pptx', 'da_phe_duyet', 'Đã phê duyệt', 'Phòng đào tạo', 'PDT'),
+(19, 'Tài Liệu Ôn Tập', 'EL', 'The Health Community.pptx', 'da_phe_duyet', 'Đã phê duyệt', 'Phòng đào tạo', 'PDT'),
+(20, 'Tài Liệu Ôn Tập', 'EL', 'The Health Community.pptx', 'nhap', 'nháp', 'Phòng đào tạo', 'PDT'),
+(21, 'Chương', 'EL', 'The Health Community.pptx', 'cho_phe_duyet', 'Đã phê duyệt', 'Phòng đào tạo', 'PNS'),
+(22, 'Tài Liệu FFSE1703dd', 'EL', 'bài tập SOL.txt', 'da_phe_duyet', 'chờ phê duyệt', 'Phòng đào tạo', 'PIT'),
+(25, 'Bài Tập English', 'EL', 'Doc1.docx', 'da_phe_duyet', 'Đã phê duyệt', 'Phòng đào tạo', 'PDT');
 
 -- --------------------------------------------------------
 
@@ -408,7 +422,7 @@ CREATE TABLE IF NOT EXISTS `trang_thai` (
   `id` int(11) NOT NULL,
   `ma_trang_thai` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `ten_trang_thai` varchar(20) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `trang_thai`
@@ -505,10 +519,34 @@ ALTER TABLE `chuc_danh`
   ADD PRIMARY KEY (`ma_chuc_danh`);
 
 --
+-- Indexes for table `danh_muc`
+--
+ALTER TABLE `danh_muc`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `ho_so_nhan_vien`
 --
 ALTER TABLE `ho_so_nhan_vien`
   ADD PRIMARY KEY (`ma_nhan_vien`);
+
+--
+-- Indexes for table `quyen_truy_cap`
+--
+ALTER TABLE `quyen_truy_cap`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tai_lieu`
+--
+ALTER TABLE `tai_lieu`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `trang_thai`
+--
+ALTER TABLE `trang_thai`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
@@ -524,10 +562,25 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `danh_muc`
+--
+ALTER TABLE `danh_muc`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT for table `ho_so_nhan_vien`
 --
 ALTER TABLE `ho_so_nhan_vien`
   MODIFY `ma_nhan_vien` int(5) unsigned zerofill NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=202;
+--
+-- AUTO_INCREMENT for table `tai_lieu`
+--
+ALTER TABLE `tai_lieu`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;
+--
+-- AUTO_INCREMENT for table `trang_thai`
+--
+ALTER TABLE `trang_thai`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `users`
 --

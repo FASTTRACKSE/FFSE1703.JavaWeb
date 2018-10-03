@@ -5,12 +5,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class PageNotFoundController {
-	@RequestMapping("/403")
-	public String pageAccessDenied() {
-		return "QuanTriHeThong/error-403";
-	}
-	@RequestMapping("/404")
+	@RequestMapping("/error")
 	public String pageNotFound() {
-		return "QuanTriHeThong/error-404";
+		return "Page Not Found";
 	}
 }

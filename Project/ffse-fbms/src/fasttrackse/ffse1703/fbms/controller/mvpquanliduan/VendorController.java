@@ -31,10 +31,10 @@ public class VendorController {
 	@RequestMapping("/list-vendor")
 	public String listVendor(HttpSession session) {
 		int pageId = 0;
-		if (session.getAttribute("pageIds") == null) {
+		if (session.getAttribute("pageIdVd") == null) {
 			pageId = 1;
 		} else {
-			pageId = (int) session.getAttribute("pageIds");
+			pageId = (int) session.getAttribute("pageIdVd");
 		}
 		return "redirect: list-vendor/"+pageId;
 	}
@@ -50,7 +50,7 @@ public class VendorController {
 		model.addAttribute("listVendor", this.vendorService.listVendor(start, maxRows));
 		model.addAttribute("pageId", pageId);
 		model.addAttribute("totalPage", totalPage);
-		session.setAttribute("pageIds", pageId);
+		session.setAttribute("pageIdVd", pageId);
 		return "MvpQuanLiDuAn/vendor/listvendor";
 	}
 	@RequestMapping(value= "/show-form-add")

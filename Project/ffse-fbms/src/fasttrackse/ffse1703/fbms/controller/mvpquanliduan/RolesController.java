@@ -33,10 +33,10 @@ public class RolesController {
 	@RequestMapping("/list-roles")
 	public String listRoles(HttpSession session) {
 		int pageId = 0;
-		if (session.getAttribute("pageIds") == null) {
+		if (session.getAttribute("pageIdRl") == null) {
 			pageId = 1;
 		} else {
-			pageId = (int) session.getAttribute("pageIds");
+			pageId = (int) session.getAttribute("pageIdRl");
 		}
 		return "redirect: list-roles/"+pageId;
 	}
@@ -52,7 +52,7 @@ public class RolesController {
 		model.addAttribute("listRoles", this.rolesService.listRoles(start, maxRows));
 		model.addAttribute("pageId", pageId);
 		model.addAttribute("totalPage", totalPage);
-		session.setAttribute("pageIds", pageId);
+		session.setAttribute("pageIdRl", pageId);
 		return "MvpQuanLiDuAn/roles/listroles";
 	}
 	@RequestMapping("/show-form-add")

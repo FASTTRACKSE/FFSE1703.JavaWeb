@@ -16,7 +16,7 @@
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="/ffse-fbms/home">Home</a></li>
 							<li class="breadcrumb-item"><a
-								href="/ffse-fbms/QuanLyDuAn/VaiTro/">Danh sách Vai Trò</a></li>
+								href="/ffse-fbms/QuanLyDuAn/VaiTro/list">Danh sách Vai Trò</a></li>
 							<li class="breadcrumb-item active">Thêm Vai Trò</li>
 						</ol>
 					</div>

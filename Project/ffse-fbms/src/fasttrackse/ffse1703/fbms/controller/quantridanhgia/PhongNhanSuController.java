@@ -1,8 +1,5 @@
 package fasttrackse.ffse1703.fbms.controller.quantridanhgia;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +11,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import fasttrackse.ffse1703.fbms.entity.quantridanhgia.DanhGiaBanThan;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.DanhGiaNhanVien;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.KyDanhGia;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.LichDanhGia;
-import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 import fasttrackse.ffse1703.fbms.service.quantridanhgia.PhongNhanSuService;
 import fasttrackse.ffse1703.fbms.service.security.PhongBanService;
 
@@ -123,15 +118,12 @@ public class PhongNhanSuController {
 	@RequestMapping("/lichdanhgia/start/{id}")
 	private String activeLichDanhgia(RedirectAttributes model, @PathVariable int id) {
 		LichDanhGia lich = service.getLichDanhGia(id);
-		String kyDanhGia = lich.getKyDanhGia();
 		String phongBan = lich.getPhongBan();
 		if (service.checkActiveLichDanhGia(phongBan) < 1) {
 			lich.setIsActive(1);
 			service.activeLichDanhGia(lich);
-			createPhanCongDanhgia(lich.getKyDanhGia(), lich.getPhongBan());
-			createDanhGiaBanThan(kyDanhGia, phongBan);
 		} else {
-			model.addAttribute("message", "<script>alert('Đã có hoạt động đánh giá tồn tại')</script>");
+			model.addFlashAttribute("message", "<script>alert('Đã có hoạt động đánh giá tồn tại')</script>");
 		}
 		return "redirect:/quantridanhgia/phongnhansu/lichdanhgia";
 	}
@@ -145,47 +137,6 @@ public class PhongNhanSuController {
 			service.activeLichDanhGia(lich);
 		}
 		return "redirect:/quantridanhgia/phongnhansu/lichdanhgia";
-	}
-
-	private void createPhanCongDanhgia(String kyDanhGia, String phongBan) {
-		List<HoSoNhanVien> listNhanVien = service.getNhanVienPhongBan(phongBan);
-		List<DanhGiaNhanVien> listPhanCong = new ArrayList<>();
-		for (int i = 0; i < listNhanVien.size(); i++) {
-			int nhanvien = listNhanVien.get(i).getMaNhanVien();
-			for (int j = 1; j < 4; j++) {
-				DanhGiaNhanVien pc = new DanhGiaNhanVien();
-				pc.setKyDanhGia(kyDanhGia);
-				pc.setPhongBan(phongBan);
-				pc.setNhanVienDanhGia(nhanvien);
-				;
-				if (i + j < listNhanVien.size()) {
-					pc.setNhanVien(listNhanVien.get(i + j).getMaNhanVien());
-				} else {
-					pc.setNhanVien(listNhanVien.get(i + j - listNhanVien.size()).getMaNhanVien());
-				}
-				listPhanCong.add(pc);
-			}
-		}
-		service.createPhanCongDanhGia(listPhanCong);
-	}
-
-	private void createDanhGiaBanThan(String kyDanhGia, String phongBan) {
-		List<HoSoNhanVien> listNhanVien = service.getNhanVienPhongBan(phongBan);
-		List<DanhGiaBanThan> listDanhGia = new ArrayList<>();
-		for (HoSoNhanVien x : listNhanVien) {
-			DanhGiaBanThan danhGia = new DanhGiaBanThan();
-			danhGia.setKyDanhGia(kyDanhGia);
-			danhGia.setPhongBan(phongBan);
-			danhGia.setNhanVien(x.getMaNhanVien());
-			danhGia.setKyLuatCongViec_MT(" ");
-			danhGia.setTinhThanLamViec_MT(" ");
-			danhGia.setKhoiLuongCongViec_MT(" ");
-			danhGia.setKetQuaCongViec_MT(" ");
-			danhGia.setKyNangTichLuy_MT(" ");
-			danhGia.setDinhHuong(" ");
-			listDanhGia.add(danhGia);
-		}
-		service.createDanhGiaBanThan(listDanhGia);
 	}
 
 	@RequestMapping("/danhsachdanhgia")

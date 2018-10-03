@@ -8,8 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import fasttrackse.ffse1703.fbms.entity.quanlyduan.ProgramingLanguageTeam1;
-import fasttrackse.ffse1703.fbms.entity.quanlyduan.VaiTroThanhVienTeam1;
-import fasttrackse.ffse1703.fbms.entity.quanlyduan.VendorTeam1;
+
 
 
 @Repository
@@ -18,9 +17,6 @@ public class ProgramingLanguageTeam1DaoImpl implements ProgramingLanguageTeam1Da
 	@Autowired
 	private SessionFactory sessionFactory;
 
-
-	
-	
 	@Override
 	public List<ProgramingLanguageTeam1> getAll() {
 		Session session = this.sessionFactory.getCurrentSession();

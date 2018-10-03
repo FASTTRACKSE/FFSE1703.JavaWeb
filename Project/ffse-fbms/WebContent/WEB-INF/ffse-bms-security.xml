@@ -16,11 +16,34 @@
 		<intercept-url pattern="/QuanTriHeThong/tai-khoan/**" access="hasAnyRole('ROLE_SADM')" />
 		<intercept-url pattern="/QuanTriHeThong/phan-quyen/**" access="hasAnyRole('ROLE_SADM')" />
 		
+		
+		<!-- Phân quyền Quản trị nhân sự pikalong -->
+		<intercept-url pattern="/quantrinhansu/hosonhanvien/**"  access="hasRole('ROLE_PNSTPP') or hasRole('ROLE_PGD')"/>
 		<!-- Phân quyền module QLVN - HuongVTL :: START -->
 		
-		<intercept-url pattern="/QuanLyVangNghi/duyetvong1/**"  access="hasRole('ROLE_PNSTPP')"/>
+		
+		
+		<intercept-url pattern="/QuanLyVangNghi/duyetvong1/**"  access="hasRole('ROLE_PNSTPP')  "/>
 		<intercept-url pattern="/QuanLyVangNghi/duyetvong2/**"  access="hasRole('ROLE_PGD')"/>
+
 		<!-- Phân quyền module QLVN - HuongVTL :: END -->
+		
+		<!-- Phân quyền module QLDA - MVP :: START -->
+		
+		<!-- <intercept-url pattern="/mvpquanliduan/domain/**"  access="hasRole('ROLE_PIT')"/>
+		<intercept-url pattern="/mvpquanliduan/database/**"  access="hasRole('ROLE_PIT')"/>
+		<intercept-url pattern="/mvpquanliduan/language/**"  access="hasRole('ROLE_PIT')"/>
+		<intercept-url pattern="/mvpquanliduan/status/**"  access="hasRole('ROLE_PIT')"/>
+		<intercept-url pattern="/mvpquanliduan/roles/**"  access="hasRole('ROLE_PIT')"/>
+		<intercept-url pattern="/mvpquanliduan/tachnical/**"  access="hasRole('ROLE_PIT')"/>
+		<intercept-url pattern="/mvpquanliduan/vendor/**"  access="hasRole('ROLE_PIT')"/>
+		<intercept-url pattern="/mvpquanliduan/framework/**"  access="hasRole('ROLE_PIT')"/>
+		<intercept-url pattern="/mvpquanliduan/khachhang/**"  access="hasRole('ROLE_PIT')"/>
+		<intercept-url pattern="/mvpquanliduan/project/show-form-add/**"  access="hasRole('ROLE_PIT')"/>
+		<intercept-url pattern="/mvpquanliduan/project/list-project/**"  access="hasRole('ROLE_PIT')"/> -->
+		
+		<!-- Phân quyền module QLDA - MVP :: END -->
+		
 		
 		<access-denied-handler error-page="/403"/>		
 		<logout logout-url="/j_spring_security_logout"

@@ -85,12 +85,12 @@ th, td {
 										<thead>
 											<tr>
 												<th>Mã Nhân Viên</th>
+												<th>ảnh đại diện</th>
 												<th>Phòng Ban</th>
 												<th>Chức Danh</th>
 												<th>Tên Nhân Viên</th>
 												<th>Năm Sinh</th>
 												<th>Giới Tính</th>
-												<th>Địa Chỉ</th>
 												<th>Số Điện Thoại</th>
 												<th>Chức Năng</th>
 											</tr>
@@ -98,7 +98,10 @@ th, td {
 										<tbody>
 											<c:forEach items="${listHoSo}" var="hsnv">
 												<tr>
+												
 													<td>${hsnv.maNhanVien}</td>
+													<td><img src="<c:url value="/uploads/${hsnv.anhDaiDien}" />"
+						width="60" height="80"></td>
 													<td>${hsnv.phongBan.tenPhongBan}</td>
 													<td>${hsnv.chucDanh.tenChucDanh}</td>
 													<td>${hsnv.tenNhanVien}</td>
@@ -109,7 +112,7 @@ th, td {
 														</c:if> <c:if test="${hsnv.gioiTinh == 2}">
 															<spring:message code="label.nu" />
 														</c:if></td>
-													<td>${hsnv.diaChi}</td>
+													
 													<td>${hsnv.soDienThoai}</td>
 													<td
 														style="letter-spacing: 5px; min-width: 75px; text-align: center !important;">

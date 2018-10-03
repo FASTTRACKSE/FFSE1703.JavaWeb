@@ -1,16 +1,19 @@
 package fasttrackse.ffse1703.fbms.controller.mvpquanliduan;
 
 import java.beans.PropertyEditorSupport;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
+import java.util.Collection;
+
+
 import java.util.List;
-import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,9 +23,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -36,8 +37,8 @@ import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.StatusProject;
 import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Technical;
 import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Vendor;
 import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.HoSoNhanVienPikalong;
-import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 import fasttrackse.ffse1703.fbms.entity.security.PhongBan;
+import fasttrackse.ffse1703.fbms.entity.security.UserAccount;
 import fasttrackse.ffse1703.fbms.service.mvpquanliduan.DatabaseServices;
 import fasttrackse.ffse1703.fbms.service.mvpquanliduan.DomainService;
 import fasttrackse.ffse1703.fbms.service.mvpquanliduan.FrameworkService;
@@ -87,10 +88,10 @@ public class ProjectController {
 	@RequestMapping("/list-project")
 	public String listDomain(HttpSession session) {
 		int pageId = 0;
-		if (session.getAttribute("pageIds") == null) {
+		if (session.getAttribute("pageIdPr") == null) {
 			pageId = 1;
 		} else {
-			pageId = (int) session.getAttribute("pageIds");
+			pageId = (int) session.getAttribute("pageIdPr");
 		}
 		return "redirect: list-project/" + pageId;
 	}
@@ -115,8 +116,7 @@ public class ProjectController {
 			status = "";
 		}
 		String search = khachHang + roomProject + domain + status;
-		
-		
+				
 		int maxRows = 5;
 		int start = (pageId - 1) * maxRows;
 		List<Projects> list = projectService.listProject(search, start, maxRows);
@@ -131,7 +131,7 @@ public class ProjectController {
 		model.addAttribute("domains", request.getParameter("domain"));
 		model.addAttribute("statuss", request.getParameter("status"));
 		model.addAttribute("totalProject", totalProject);
-		session.setAttribute("pageIds", pageId);
+		session.setAttribute("pageIdPr", pageId);
 		
 		return "MvpQuanLiDuAn/project/listproject";
 	}
@@ -207,6 +207,37 @@ public class ProjectController {
 		projectService.addNew(project);
 		redirectAttributes.addFlashAttribute("success", "<script>alert('Thêm thành công');</script>");
 		return "redirect: list-project";
+	}
+	//check có phải TPP
+	public boolean isTPP() {
+		Collection<? extends GrantedAuthority> granted = SecurityContextHolder.getContext().getAuthentication()
+				.getAuthorities();
+		String role;
+
+		for (int i = 0; i < granted.size(); i++) {
+			role = granted.toArray()[i] + "";
+			
+			if (role.indexOf("TPP")>0) {
+				return true;
+			}
+			;
+		}
+		return false;
+	}
+	//check có phải PM
+	public boolean isPM() {
+		String userName = SecurityContextHolder.getContext().getAuthentication()
+				.getName();
+		List<Projects> listPr= projectService.findAll();
+		
+		UserAccount acc= projectService.getAccount(userName);
+		String nvAcc=  String.valueOf(acc.getNhanVien().getMaNhanVien());
+		for(Projects x:listPr) {
+			if(nvAcc.equals(x.getPm().getMaNv())) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	@InitBinder

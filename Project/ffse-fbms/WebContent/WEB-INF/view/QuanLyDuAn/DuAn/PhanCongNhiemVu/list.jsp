@@ -7,7 +7,7 @@
 <%@ page session="false"%>
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 
-<div class="app-content content container-fluid" >
+<div class="app-content content container-fluid">
 	<div class="content-wrapper">
 		<div class="content-header-left col-md-9 col-xs-12 mb-2">
 			<h3 class="content-header-title mb-0">Danh sách Vai Trò</h3>
@@ -15,10 +15,20 @@
 				<div class="breadcrumb-wrapper col-xs-12">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item"><a href="/ffse-fbms/home">Home</a></li>
+						<li class="breadcrumb-item"><a href="/ffse-fbms/home">Home</a></li>
+
 						<li class="breadcrumb-item active">VAI TRÒ</li>
 					</ol>
 				</div>
 			</div>
+		</div>
+	</div>
+	<div class="content-header-right col-md-3 col-xs-12">
+		<div role="group" aria-label="Button group with nested dropdown"
+			class="btn-group float-md-right" id="add-new">
+			<a href="/ffse-fbms/qlda/DuAn/PhanCongNhienVu/create/${duan.maDuAn}"
+				class="btn btn-primary"><span class="fa fa-plus"></span> Thêm
+				mới</a>
 		</div>
 	</div>
 	<div class="content-body">
@@ -59,11 +69,11 @@
 										</tr>
 									</thead>
 									<tbody>
-										<c:set var="maDuAn" value="${duan.maDuAn }" />
+										<c:set var="maDuAn" value="${duan.maDuAn}" />
 										<c:set var="tenDuAn" value="${duan.tenDuAn }" />
 										<c:forEach var="nv" items="${nhiemvu }" varStatus="count">
 											<tr>
-												<th scope="row">${count.count }</th>
+												<th scope="row">${count.count}</th>
 												<td>${tenDuAn }</td>
 												<td><c:forEach var="nhanVien" items="${duan.nhiemVu }">
 														<c:if test="${nhanVien.maNhanVien==nv.maNhanVien }">${nhanVien.hoDem } ${nhanVien.ten }</c:if>
@@ -77,6 +87,22 @@
 														</c:if>
 
 													</c:forEach></td>
+												<td><a
+													href="/ffse-fbms/qlda/DuAn/PhanCongNhiemVu/edit/${nv.maDuAn}/${nv.maNhanVien}/${nv.maVaiTro}"
+													data-toggle="tooltip" title="edit">
+														<button type="button"
+															class="btn btn-icon btn-outline-warning">
+															<i class="fa fa-pencil"></i>
+														</button>
+												</a> <a
+													href="/ffse-fbms/qlda/DuAn/PhanCongNhiemVu/delete/${nv.maDuAn}/${nv.maNhanVien}/${nv.maVaiTro}">
+														<button type="button"
+															onclick="if (!confirm('Are you sure you want to delete it?')) return false"
+															class="btn btn-outline-danger btn-icon checkid"
+															data-toggle="modal" title="delete" data-target="#danger">
+															<i class="fa fa-trash-o"></i>
+														</button>
+												</a></td>
 											</tr>
 										</c:forEach>
 									</tbody>

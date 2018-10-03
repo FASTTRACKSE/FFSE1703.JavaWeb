@@ -10,6 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.sun.istack.internal.NotNull;
+
 @Entity
 @Table(name = "don_nghi")
 public class DonNghi implements Serializable{
@@ -17,7 +21,7 @@ public class DonNghi implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
 	@Column(name = "id_don")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,9 +39,13 @@ public class DonNghi implements Serializable{
 	@Column(name = "ly_do")
 	private String ly_do;
 
+	@NotNull
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Column(name = "tg_bat_dau")
 	private Date tg_bat_dau;
 
+	@NotNull
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Column(name = "tg_ket_thuc")
 	private Date tg_ket_thuc;
 

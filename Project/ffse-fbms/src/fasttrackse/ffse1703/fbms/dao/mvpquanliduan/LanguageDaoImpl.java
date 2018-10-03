@@ -71,5 +71,12 @@ public class LanguageDaoImpl implements LanguageDao {
 		
 		return  lg.size();
 	}
+	@Override
+	public int checkMa(String idLanguage) {
+		Session session = sessionFactory.getCurrentSession();
+		List<Language> lg = session.createQuery("from Language where idLanguage = '"+idLanguage+"'", Language.class).list();
+		
+		return  lg.size();
+	}
 
 }

@@ -3,6 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+
 <%@ page session="false"%>
 
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
@@ -12,7 +14,7 @@
 			<div class="col-sm-4"></div>
 			<div class="col-sm-4">
 				<h1>
-					<strong>Danh Sách Vendor</strong>
+					<strong><spring:message code="label.titleVendor" /></strong>
 				</h1>
 			</div>
 		</div>
@@ -20,12 +22,12 @@
 			<table class="table">
 				<thead>
 					<tr>
-						<th>Mã Vendor</th>
-						<th>Tên Vendor</th>
-						<th>Địa Chỉ</th>
-						<th>Email</th>
-						<th>SĐT</th>
-						<th>Action</th>
+						<th><spring:message code="label.maVendor" /></th>
+						<th><spring:message code="label.tenVendor" /></th>
+						<th><spring:message code="label.dcVendor" /></th>
+						<th><spring:message code="label.emailVendor" /></th>
+						<th><spring:message code="label.sdtVendor" /></th>
+						<th><spring:message code="label.AcVendor" /></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -56,8 +58,7 @@
 
 			<nav aria-label="Page navigation example">
 				<ul class="pagination">
-					<li class="page-item"><a class="page-link" href="?page=1">First
-							Page</a></li>
+					<li class="page-item"><a class="page-link" href="?page=1"><spring:message code="label.firtVendor" /></a></li>
 					<c:if test="${currentPage > 2}">
 						<li class="page-item"><a class="page-link"
 							href="?page=${currentPage-2}">${currentPage-2}</a></li>
@@ -77,7 +78,7 @@
 							href="?page=${currentPage+2}">${currentPage+2}</a></li>
 					</c:if>
 					<li class="page-item"><a class="page-link"
-						href="?page=${lastPage }">Last Page</a></li>
+						href="?page=${lastPage }"><spring:message code="label.lastVendor" /></a></li>
 				</ul>
 			</nav>
 
@@ -85,8 +86,7 @@
 		</div>
 		<div class="col-sm-4">
 			<h5>
-				<a href="/ffse-fbms/QuanLyDuAn/vendor/add"><strong>Thêm
-						Vendor</strong></a>
+				<a href="/ffse-fbms/QuanLyDuAn/vendor/add"><strong><spring:message code="label.addVendor" /></strong></a>
 			</h5>
 			<c:if test="${message !=null }">
 						 ${message }

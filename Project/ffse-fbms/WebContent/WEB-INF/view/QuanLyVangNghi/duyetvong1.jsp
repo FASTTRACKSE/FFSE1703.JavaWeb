@@ -152,35 +152,25 @@ input:checked+.slider:before {
 						<div class="panel panel-primary panel-table animated slideInDown">
 							<div class="panel-heading " style="padding: 5px;">
 								<div class="row">
-									<div class="col col-xs-3 text-left">
-										<a href="choduyet" class="btn btn-default" role="tab"
-											data-toggle="tab"><i class="fa fa-picture-o"
-											aria-hidden="true"></i>Chờ Duyệt</a> <a href="daduyet"
-											class="btn btn-default" role="tab" data-toggle="tab"><i
-											class="fa fa-picture-o"></i>Đã Duyệt</a>
-									</div>
-									<div class="col col-xs-5 text-center">
-										<h3 class="panel-title">
-											<b>Danh Sách Đơn Phê Duyệt</b>
-										</h3>
+										<center><h3 class="panel-title"><b>Danh Sách Đơn Phê Duyệt</b></h3></center>
 									</div>									
 								</div>
 							</div>
 							<div class="panel-body">
 								<div class="tab-content">
-									<div role="tabpanel" class="tab-pane active" id="list">
+									<div  class="tab-pane active" id="list">
 										<table class=" table-striped table-bordered table-list">
 											<thead>
 												<tr>
-													<th>STT</th>
-													<th>Họ Và Tên</th>
 													<th>Mã Nhân Viên</th>
+													<th>Họ Và Tên</th>
 													<th>Lý Do</th>
+													<th>Phòng Ban</th>
 													<th>Thời gian Từ</th>
 													<th>Đến Thời gian</th>
 													<th>Đến Thời gian</th>
 													<th>Duyệt Đợt 1</th>
-													<th>Duyệt Đợt 2</em></th>
+													<th>Duyệt Đợt 2</th>
 												</tr>
 											</thead>
 											<tbody>

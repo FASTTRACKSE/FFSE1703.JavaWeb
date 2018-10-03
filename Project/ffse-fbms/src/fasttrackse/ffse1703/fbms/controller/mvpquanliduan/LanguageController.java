@@ -29,10 +29,10 @@ public class LanguageController {
 	@RequestMapping("/list-language")
 	public String listLanguage(HttpSession session) {
 		int pageId = 0;
-		if (session.getAttribute("pageIds") == null) {
+		if (session.getAttribute("pageIdLg") == null) {
 			pageId = 1;
 		} else {
-			pageId = (int) session.getAttribute("pageIds");
+			pageId = (int) session.getAttribute("pageIdLg");
 		}
 		return "redirect: list-language/"+pageId;
 	}
@@ -49,7 +49,7 @@ public class LanguageController {
 		model.addAttribute("listLanguage", this.languageService.listLanguage(start, maxRows));
 		model.addAttribute("pageId", pageId);
 		model.addAttribute("totalPage", totalPage);
-		session.setAttribute("pageIds", pageId);
+		session.setAttribute("pageIdLg", pageId);
 		return "MvpQuanLiDuAn/programlanguage/list";
 	}
 
@@ -65,7 +65,16 @@ public class LanguageController {
 		if (result.hasErrors()) {
 			return "MvpQuanLiDuAn/programlanguage/add_form";
 		}
-		
+		int checkMa = languageService.checkMa(language.getIdLanguage());
+		if(checkMa >=1) {
+			model.addAttribute("messageMa", "Mã ngôn ngữ đã được sử dụng");
+			return "MvpQuanLiDuAn/programlanguage/add_form";
+		}
+		int checkName=languageService.checkNameLanguage(language.getNameLanguage());
+		if(checkName >=1) {
+			model.addAttribute("messageName", "Tên ngôn ngữ đã được sử dụng");
+			return "MvpQuanLiDuAn/programlanguage/add_form";
+		}
 		
 		language.setStatus(1);
 		languageService.add(language);

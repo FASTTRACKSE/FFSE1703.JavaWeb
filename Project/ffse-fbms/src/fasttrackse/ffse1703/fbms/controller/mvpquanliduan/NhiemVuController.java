@@ -2,6 +2,8 @@ package fasttrackse.ffse1703.fbms.controller.mvpquanliduan;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.KhachHang;
+
 import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Nhiemvu;
 import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Projects;
 import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Roles;
@@ -36,14 +38,48 @@ public class NhiemVuController {
 	@Autowired
 	private ProjectService projectService;
 	
+
 	public void setNhiemVuService(NhiemVuService nhiemVuService) {
 		this.nhiemVuService = nhiemVuService;
 	}
-	@RequestMapping(value = "/list-nhiemvu/{idProjects}")
-	public String listNhiemVu(Model model,@PathVariable String idProjects) {
-		List<Nhiemvu> list=nhiemVuService.getByDuAn(idProjects);
+	@RequestMapping(value = "/list-nhiemvu/{idProjects}/{pageId}")
+	public String listNhiemVu(Model model,@PathVariable String idProjects,@PathVariable  int pageId,HttpServletRequest request,HttpSession session) {
+		
+		
+		//  and hoSoNhanVien.maNv = "00001"
+		String maNVSearch =	" and hoSoNhanVien.maNv = " + request.getParameter("maNV");
+		if(request.getParameter("maNV")==null || request.getParameter("maNV").equals("0")) {
+			maNVSearch="";
+		}
+		String vaiTroSearch = "and roles.idRoles=" +request.getParameter("vaiTro");
+		if(request.getParameter("vaiTro")==null || request.getParameter("vaiTro").equals("0") ) {
+			vaiTroSearch="";
+		}
+		String search= maNVSearch + vaiTroSearch;
+		int maxRows= 5;
+		int start = (pageId - 1) * maxRows;
+		int totalLanguage = nhiemVuService.countNhiemvu(idProjects, search);
+		int totalPage = (int) Math.ceil(totalLanguage / (double) maxRows);
+		if (pageId == 0) {
+			pageId = 1;
+		}
+		
+		model.addAttribute("pageId", pageId);
+		model.addAttribute("totalPage", totalPage);
+		session.setAttribute("pageIds", pageId);
+		
+		List<Nhiemvu> list=nhiemVuService.getByDuAn(idProjects, search, start, maxRows);
+		//Nhiemvu listID = nhiemVuService.getByID(id);
+
 		model.addAttribute("idProjects", idProjects);
 		model.addAttribute("listNhiemVu", list);
+		List<HoSoNhanVienPikalong> nhanVienList = hoSoNhanVienPikalongService.listNhanVien();
+		model.addAttribute("nhanVienList", nhanVienList);
+		List<Roles> list1 = rolesService.findAll();
+		model.addAttribute("listRoles", list1);
+		model.addAttribute("project",projectService.findById(idProjects));
+		
+		
 		return "MvpQuanLiDuAn/phancongnhiemvu/list";
 	}
 	@RequestMapping("/show-form-add/{idProjects}")
@@ -68,13 +104,17 @@ public class NhiemVuController {
 		nhiemVu.setStatus(1);
 		nhiemVuService.add(nhiemVu);
 		;
-		redirectAttributes.addFlashAttribute("success", "<script>alert('Th�m th�nh c�ng');</script>");
-		return "redirect: list-nhiemvu";
+		redirectAttributes.addFlashAttribute("success", "<script>alert('Thêm thành công');</script>");
+		return "redirect: list-nhiemvu/" + nhiemVu.getProjects().getIdProject() +"/1";
 	}
 
 	@RequestMapping(value = "/show-form-edit/{id}")
 	public String showFormEdit(Model model, @PathVariable int id) {
-		Nhiemvu nhiemVu = nhiemVuService.getByID(id);
+		List<HoSoNhanVienPikalong> nhanVienList = hoSoNhanVienPikalongService.listNhanVien();
+		model.addAttribute("nhanVienList", nhanVienList);
+		List<Roles> list = rolesService.findAll();
+		model.addAttribute("listRoles", list);
+		Nhiemvu nhiemVu = nhiemVuService.getByid(id);
 		model.addAttribute("nhiemVu", nhiemVu);
 		return "MvpQuanLiDuAn/phancongnhiemvu/update_form";
 	}
@@ -85,14 +125,15 @@ public class NhiemVuController {
 		if (result.hasErrors()) {
 			return "MvpQuanLiDuAn/phancongnhiemvu/update_form";
 		}
+		
 		nhiemVu.setStatus(1);
 		nhiemVuService.update(nhiemVu);
-		return "redirect: /ffse-fbms/mvpquanliduan/nhiemvu/list-nhiemvu";
+		return "redirect: /ffse-fbms/mvpquanliduan/nhiemvu/list-nhiemvu/" + nhiemVu.getProjects().getIdProject()+"/1";
 	}
 
 	@RequestMapping(value = "/delete/{id}")
 	public String delete(@PathVariable int id, final RedirectAttributes redirectAttributes) {
-		Nhiemvu nhiemVu  = nhiemVuService.getByID(id);
+		Nhiemvu nhiemVu  = nhiemVuService.getByid(id);
 		nhiemVu.setStatus(0);
 		nhiemVuService.update(nhiemVu);
 		return "redirect: /ffse-fbms/mvpquanliduan/nhiemvu/list-nhiemvu";

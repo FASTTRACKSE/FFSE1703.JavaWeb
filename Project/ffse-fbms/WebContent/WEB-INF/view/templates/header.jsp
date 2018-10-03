@@ -20,7 +20,7 @@
 <meta name="keywords"
 	content="human resource, document, project, working log, leave management">
 <meta name="author" content="FFSE1703">
-<title>FastTrackSE - The Business Management System</title>
+<title>FastTrackSE - The Business Management System</title>						
 <link rel="apple-touch-icon"
 	href="<c:url value="https://www.fasttrack.edu.vn/wp-content/uploads/2018/09/fasttrackselogo.png"/>">
 <link rel="shortcut icon" type="image/x-icon"
@@ -288,18 +288,7 @@
 						</ul></li>
 
 					<!--  ////////////////////////////////////////////// -->
-<!-- Quản Lý Nhân Sự Pikalong -->
-					<li class=" navigation-header"><span>PKL-Quản Trị Nhân
-							Sự</span><i class=" ft-minus" data-toggle="tooltip"
-						data-placement="right" data-original-title="Others"></i></li>
-					<li class=" nav-item"><a href="#"><i class="ft-layers"></i><span
-							class="menu-title" data-i18n="">Quản Lý Hồ Sơ</span></a>
-						<ul class="menu-content">
-							<li><a class="menu-item"
-								href="/ffse-fbms/quantrinhansu/hosonhanvien/">Danh Sách Nhân
-									Viên</a></li>
-						</ul></li>
-					<!-- Quản Lý Nhân Sự Pikalong -->
+
 					<!--  Quản lí Vắng nghỉ -->
 					<li class="navigation-header"><span><spring:message code="label.quanlyvangnghi" /></span><i
 						class=" ft-minus" data-toggle="tooltip" data-placement="right"
@@ -334,7 +323,24 @@
 								href="<c:url value="/Quanlyvangnghi1703004/danhsachtrangthai"/>"
 								class="menu-item"><spring:message code="label.danhsachtrangthai" /></a></li>
 						</ul></li>
-					
+					<!-- Quản Lý Nhân Sự Pikalong -->
+					<li class=" navigation-header"><span>PKL-Quản Trị Nhân
+							Sự</span><i class=" ft-minus" data-toggle="tooltip"
+						data-placement="right" data-original-title="Others"></i></li>
+					<li class=" nav-item"><a href="#"><i class="ft-layers"></i><span
+							class="menu-title" data-i18n="">Quản Lý Hồ Sơ</span></a>
+						<ul class="menu-content">
+							<li><a class="menu-item"
+								href="/ffse-fbms/quantrinhansu/hosonhanvien/">Danh Sách Nhân
+									Viên</a></li>
+						</ul></li>
+						<li class=" nav-item"><a href="#"><i class="ft-layers"></i><span
+							class="menu-title" data-i18n="">Quản Lý Hợp Đồng</span></a>
+						<ul class="menu-content">
+							<li><a class="menu-item"
+								href="/ffse-fbms/QuanTriNhanSu/quanlihopdong/">Danh Sách Hợp Đồng</a></li>
+						</ul></li>
+					<!-- Quản Lý Nhân Sự Pikalong -->
 					<!-- Quản Lý Nhân Sự TT -->
 					<li class=" navigation-header"><span>Team Quản Lý Nhân
 							Sự TT</span><i class=" ft-minus" data-toggle="tooltip"

@@ -32,6 +32,7 @@ public class NhiemVuTT {
 	@ManyToOne
 	@JoinColumn(name = "id_role")
 	private Roles roles;
+	
 	private int status;
 
 	public int getId() {

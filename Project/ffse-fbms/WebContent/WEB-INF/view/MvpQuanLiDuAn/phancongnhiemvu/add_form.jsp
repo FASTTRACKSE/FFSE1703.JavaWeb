@@ -17,7 +17,7 @@
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/home" />'>Home</a></li>
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/mvpquanliduan/nhiemvu/list-nhiemvu/${idProjects}" />'>Danh
+								href='<c:url value="/mvpquanliduan/nhiemvu/list-nhiemvu/${idProjects}/1" />'>Danh
 									sách nhiệm vụ</a></li>
 							<li class="breadcrumb-item active">Thêm mới nhiệm vụ</li>
 						</ol>
@@ -30,7 +30,7 @@
 		<div class="content-body">
 			<div class="main-content">
 				<div class="row">
-					<form:form method="POST" action="addnew">
+					<form:form method="POST" action="/ffse-fbms/mvpquanliduan/nhiemvu/addnew">
 						<div class="form-group col-sm-12">
 							<label>Mã Dự Án</label>
 							<form:input class="form-control" path="projects.idProject" value="${duAn.idProject}"/>

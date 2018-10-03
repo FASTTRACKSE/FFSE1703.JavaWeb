@@ -23,39 +23,46 @@
 		</div>
 		<div class="row">
 			<div class="card">
-				<div class="card-header">
-					<h4 class="card-title">Danh sách đánh giá</h4>
-				</div>
-				<div class="card-content">
+				<c:if test="${empty listNhanVien }">
 					<div class="card-body" style="margin: 1em">
-						<div class="table-responsive">
-							<table class="table">
-								<thead class="thead-dark">
-									<tr>
-										<th scope="col">#</th>
-										<th scope="col">First Name</th>
-										<th scope="col">Last Name</th>
-										<th scope="col">Username</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach items="${listNhanVien }" var="x" varStatus="stt">
-										<tr>
-											<th scope="row">${stt.index +1}</th>
-											<td>${x.nhanVien}</td>
-											<td>${x.danhGiaTongThe }</td>
-											<td>
-												<a class="btn btn-primary" href="<c:url value="/quantridanhgia/truongphong/duyetdanhgia/view/${x.id }" />">Đánh giá</a>
-											</td>
-										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
-						</div>
+						<h3>Chưa có đánh giá nào từ nhân viên</h3>
 					</div>
-				</div>
+				</c:if>
+				<c:if test="${not empty listNhanVien }">
+					<div class="card-header">
+						<h4 class="card-title">Danh sách đánh giá</h4>
+					</div>
+					<div class="card-content">
+						<div class="card-body" style="margin: 1em">
+							<div class="table-responsive">
+								<table class="table">
+									<thead class="thead-dark">
+										<tr>
+											<th scope="col">#</th>
+											<th scope="col">Nhân viên</th>
+											<th scope="col">Đánh giá tổng thể</th>
+											<th scope="col">Hành động</th>
+										</tr>
+									</thead>
+									<tbody>
+										<c:forEach items="${listNhanVien }" var="x" varStatus="stt">
+											<tr>
+												<th scope="row">${stt.index +1}</th>
+												<td>${x.nhanVien}</td>
+												<td>${x.danhGiaTongThe }</td>
+												<td><a class="btn btn-primary"
+													href="<c:url value="/quantridanhgia/truongphong/duyetdanhgia/view/${x.id }" />">Đánh
+														giá</a></td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+						</div>
+				</c:if>
 			</div>
 		</div>
 	</div>
+</div>
 </div>
 <jsp:include page="/WEB-INF/view/templates/footer.jsp"></jsp:include>

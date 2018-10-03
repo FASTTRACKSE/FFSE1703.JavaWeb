@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fasttrackse.ffse1703.fbms.dao.quanlyduan.DuAnTeam1Dao;
 import fasttrackse.ffse1703.fbms.entity.quanlyduan.DuAnTeam1;
-import fasttrackse.ffse1703.fbms.entity.quanlyduan.KhachHangTeam1;
 
 
 @Service
@@ -65,8 +64,8 @@ public class DuAnTeam1ServiceImpl implements DuAnTeam1Service {
 
 	@Override
 	@Transactional
-	public int count() {
-		return duAnTeam1Dao.count();
+	public int count(String search) {
+		return duAnTeam1Dao.count(search);
 	}
 	
 	@Override

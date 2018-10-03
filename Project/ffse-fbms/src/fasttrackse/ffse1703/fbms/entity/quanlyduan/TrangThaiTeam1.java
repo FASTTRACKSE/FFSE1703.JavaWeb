@@ -17,14 +17,14 @@ public class TrangThaiTeam1 {
 	@Id
 	@Column(name = "ma_tinh_trang")
 	@NotEmpty(message = "mã trạng thái không được để rỗng !!!")
-	 String maTrangThai;
+	private String maTrangThai;
 	
 	@Column(name = "ten_tinh_trang")
 	@NotEmpty(message = "tên trạng thái không được để rỗng !!!")
-	 String tenTrangThai;
+	private String tenTrangThai;
 	
 	@Column(name = "is_delete")
-	String is_delete;
+	private String is_delete;
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "trangThai",cascade=CascadeType.MERGE)
 	private Set<DuAnTeam1> duAn = new HashSet<DuAnTeam1>(0);

@@ -21,9 +21,9 @@ private NhiemVuDao nhiemVuDao;
 	}
 
 	@Override
-	public Nhiemvu getByID(int id) {
+	public Nhiemvu getByID(String idProjects) {
 		
-		return nhiemVuDao.getByID(id);
+		return nhiemVuDao.getByID(idProjects);
 	}
 
 	@Override
@@ -47,6 +47,24 @@ private NhiemVuDao nhiemVuDao;
 	public List<Nhiemvu> getByMaNhanVien(String idNv) {
 		
 		return nhiemVuDao.getByMaNhanVien(idNv);
+	}
+
+	@Override
+	public List<Nhiemvu> getByDuAn(String idProjects, String search,int start,int maxRows) {
+		
+		return nhiemVuDao.getByDuAn(idProjects, search, start, maxRows);
+	}
+
+	@Override
+	public int countNhiemvu(String idProjects, String search) {
+		// TODO Auto-generated method stub
+		return nhiemVuDao.countNhiemvu(idProjects, search);
+	}
+
+	@Override
+	public Nhiemvu getByid(int id) {
+		// TODO Auto-generated method stub
+		return nhiemVuDao.getByid(id);
 	}
 
 }

@@ -93,7 +93,7 @@
 															<td>${sv.id}</td>
 															<td>${sv.ten_tai_lieu}</td>
 															<td>${sv.ma_danh_muc}</td>
-															<td>${sv.file}</td>
+															<td>${sv.fileName}</td>
 															<td>${sv.ma_trang_thai}</td>
 															<td>${sv.mo_ta}</td>
 															<td>${sv.ghi_chu }</td>

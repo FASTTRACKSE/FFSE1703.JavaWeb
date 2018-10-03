@@ -119,9 +119,12 @@ public class QuanLyVangNghiDaoImpl implements QuanLyVangNghiDao {
 	}
 
 	@Override
-	public void deleteDon(DonNghi dn) {
+	public void deleteDon(int id_don) {
 		Session session = this.sessionFactory.getCurrentSession();
-		session.delete(dn);
+		DonNghi donNghi = (DonNghi) session.load(DonNghi.class, new Integer(id_don));
+		if(null != donNghi){
+			session.delete(donNghi);
+		}
 	}
 
 	@Override

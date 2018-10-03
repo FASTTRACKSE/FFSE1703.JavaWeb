@@ -1,5 +1,7 @@
 package fasttrackse.ffse1703.fbms.controller.qlynhiemvuminhhq;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -26,15 +28,9 @@ public class QLyNhiemVuMinhHQController {
 	public void setCongViecService(CongViecService congViecService) {
 		this.congViecService = congViecService;
 	}
-
-	// @RequestMapping(value= {"/","/list"})
-	// public String index(Model model) {
-	// model.addAttribute("listCongViec", congViecService.findAll());
-	// return "/QuanLyNhiemVuMinhHQ/list";
-	// }
-
-	public int totalPage(int perPage) {
-		int totalPage = (int) Math.ceil((double) congViecService.findAll().size() / (double) perPage);
+	
+	public int totalPage(int perPage, String search) {
+		int totalPage = (int) Math.ceil((double) congViecService.findAll(search).size() / (double) perPage);
 		return totalPage;
 	}
 
@@ -59,7 +55,7 @@ public class QLyNhiemVuMinhHQController {
 
 		int perPage = 2;
 
-		int totalPage = totalPage(perPage);
+		int totalPage = totalPage(perPage,search);
 		int start = (currentPage - 1) * perPage;
 		model.addAttribute("listCongViec", congViecService.findAllForPaging(start, perPage, search));
 		model.addAttribute("lastPage", totalPage);
@@ -134,4 +130,29 @@ public class QLyNhiemVuMinhHQController {
 		return "redirect:/QuanLyNhiemVuMinhHQ/list";
 	}
 
+	@RequestMapping(value = {"/Calendar" }, method = RequestMethod.GET)
+	public String viewCalendar(Model model,
+			HttpServletRequest request) {
+
+		String maDuanSearch = " and duAn.maDuAn = " + request.getParameter("maDuAn");
+		if (request.getParameter("maDuAn") == null || request.getParameter("maDuAn").equals("0")) {
+			maDuanSearch = "";
+		}
+		String maNhanVienSearch = " and phanCong.maNhanVien = " + request.getParameter("maNhanVien");
+		if (request.getParameter("maNhanVien") == null || request.getParameter("maNhanVien").equals("0")) {
+			maNhanVienSearch = "";
+		}
+		String IDtrangthaiSearch = " and maTrangThai.maTrangThai = " + request.getParameter("maTrangThai");
+		if (request.getParameter("maTrangThai") == null || request.getParameter("maTrangThai").equals("0")) {
+			IDtrangthaiSearch = "";
+		}
+		String search = maDuanSearch + maNhanVienSearch + IDtrangthaiSearch;
+		List<CongViecMinhHQ> list = congViecService.searchAll(search);
+		String Json = congViecService.toJson(list);
+		model.addAttribute("js", Json);
+		model.addAttribute("TrangThai", congViecService.trangThai());
+		model.addAttribute("DuAn", congViecService.duAn());
+		model.addAttribute("NhanVien", congViecService.nhanVien());
+		return "/QuanLyNhiemVuMinhHQ/calender";
+	}
 }

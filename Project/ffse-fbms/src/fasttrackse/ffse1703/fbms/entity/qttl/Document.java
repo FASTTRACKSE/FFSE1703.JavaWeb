@@ -2,6 +2,8 @@ package fasttrackse.ffse1703.fbms.entity.qttl;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 //import javax.persistence.GeneratedValue;
 //import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,6 +18,7 @@ import javax.validation.constraints.NotNull;
 public class Document {
 	@Id
 	@NotNull
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int id;
 
@@ -28,8 +31,7 @@ public class Document {
 	private String ma_danh_muc;
 	
 	@Column(name = "file")
-	@NotEmpty
-	private String file;
+	private String fileName;
 	
 	@Column(name = "ma_trang_thai")
 	@NotEmpty
@@ -71,12 +73,12 @@ public class Document {
 		this.ma_danh_muc = ma_danh_muc;
 	}
 
-	public String getFile() {
-		return file;
+	public String getFileName() {
+		return fileName;
 	}
 
-	public void setFile(String file) {
-		this.file = file;
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
 
 	public String getMa_trang_thai() {
@@ -114,17 +116,17 @@ public class Document {
 		super();
 	}
 	
-	public Document (int id, String ten_tai_lieu, String ma_danh_muc, String file, String ma_trang_thai, String mo_ta, String ghi_chu, String ma_phong_ban) {
+	/*public Document (int id, String ten_tai_lieu, String ma_danh_muc, String fileName, String ma_trang_thai, String mo_ta, String ghi_chu, String ma_phong_ban) {
 		super();
 		this.id = id;
 		this.ten_tai_lieu = ten_tai_lieu;
 		this.ma_danh_muc = ma_danh_muc;
-		this.file = file;
+		this.fileName = fileName;
 		this.ma_trang_thai = ma_trang_thai;
 		this.mo_ta = mo_ta;
 		this.ghi_chu = ghi_chu;
 		this.ma_phong_ban = ma_phong_ban;
-	}
+	}*/
 	
 
 

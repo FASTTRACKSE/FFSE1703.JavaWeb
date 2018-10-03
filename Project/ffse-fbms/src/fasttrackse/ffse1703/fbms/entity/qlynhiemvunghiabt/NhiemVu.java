@@ -27,7 +27,7 @@ public class NhiemVu {
 	@NotEmpty
 	private String tenCongViec;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "ID_CV", nullable=false)
 	@NotNull
 	private LoaiCongViecNghiaBT maCongViec;
@@ -44,7 +44,7 @@ public class NhiemVu {
 	@NotEmpty
 	private String tgKetThuc;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne
 	@JoinColumn(name = "ma_nhan_vien", nullable=false)
 	private HoSoNhanVien phanCong;
 	
@@ -52,12 +52,12 @@ public class NhiemVu {
 	@NotEmpty
 	private String tgDuKien;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne
 	@JoinColumn(name = "ID_TT", nullable=false)
 	@NotNull
 	private TrangThaiNghiaBT maTrangThai;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "ma_du_an", nullable=false)
 	private DuAnNghiaBT duAn;
 	

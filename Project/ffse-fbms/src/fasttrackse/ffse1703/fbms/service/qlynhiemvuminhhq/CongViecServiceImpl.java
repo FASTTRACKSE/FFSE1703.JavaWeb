@@ -1,5 +1,6 @@
 package fasttrackse.ffse1703.fbms.service.qlynhiemvuminhhq;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -26,8 +27,8 @@ public class CongViecServiceImpl implements CongViecService{
 	
 	@Override
 	@Transactional
-	public List<CongViecMinhHQ> findAll() {
-		return congViecDao.findAll();
+	public List<CongViecMinhHQ> findAll(String search) {
+		return congViecDao.findAll(search);
 	}
 
 	@Override
@@ -82,6 +83,32 @@ public class CongViecServiceImpl implements CongViecService{
 	@Transactional
 	public List<HoSoNhanVien> nhanVien() {
 		return congViecDao.nhanVien();
+	}
+
+	@Override
+	public List<CongViecMinhHQ> searchAll(String search) {
+		return congViecDao.searchAll(search);
+	}
+
+	@Override
+	public String toJson(List<CongViecMinhHQ> list) {
+		int j= list.size();
+		int i=0;
+		String y="[";
+		
+		for(CongViecMinhHQ x :list) {
+			i++;
+			String tenCongviec = x.getTenCongViec();
+			Date tgBatdau =x.getTgBatDau();
+			Date tgKetthuc = x.getTgKetThuc();
+			if(i==j) {
+					y += "{\"title\": \"" + tenCongviec + "\", \"start\": \"" + tgBatdau + "\", \"end\":\"" + tgKetthuc + "\"}";
+			}else {
+				y+= "{\"title\": \"" + tenCongviec + "\",\"start\": \"" + tgBatdau + "\", \"end\": \"" + tgKetthuc + "\"}"+",";
+			}
+		}
+		//return "[{\"title\":\"Làm crud\",\"start\":\"2018-09-11\",\"end\":\"2018-09-11\"}]" ;
+		return y + "]" ;
 	}
 }
 

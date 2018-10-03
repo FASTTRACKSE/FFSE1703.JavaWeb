@@ -41,7 +41,7 @@
 			title=""><i class="ft-edit"> Chỉnh sửa Dự án</i></a> <a
 			style="float: right; margin: 0px 10px 10px 0px"
 			class="btn btn-outline-info square btn-min-width mr-1 mb-1"
-			href="<c:url value="/mvpquanliduan/nhiemvu/list-nhiemvu/${project.idProject}" />"
+			href="<c:url value="/mvpquanliduan/nhiemvu/list-nhiemvu/${project.idProject}/1" />"
 			title=""><i class="icon-user"> Thành viên dự án</i></a> <br>
 		<!-- End Path -->
 		<div class="content-body">

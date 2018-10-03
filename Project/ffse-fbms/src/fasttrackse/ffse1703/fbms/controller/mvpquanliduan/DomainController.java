@@ -32,10 +32,10 @@ public class DomainController {
 	@RequestMapping("/list-domain")
 	public String listDomain(HttpSession session) {
 		int pageId = 0;
-		if (session.getAttribute("pageIds") == null) {
+		if (session.getAttribute("pageIdDm") == null) {
 			pageId = 1;
 		} else {
-			pageId = (int) session.getAttribute("pageIds");
+			pageId = (int) session.getAttribute("pageIdDm");
 		}
 		return "redirect: list-domain/"+pageId;
 	}
@@ -53,7 +53,7 @@ public class DomainController {
 		model.addAttribute("listDomain", list );
 		model.addAttribute("pageId", pageId);
 		model.addAttribute("totalPage", totalPage);
-		session.setAttribute("pageIds", pageId);
+		session.setAttribute("pageIdDm", pageId);
 		return "MvpQuanLiDuAn/domain/listdomain";
 	}
 

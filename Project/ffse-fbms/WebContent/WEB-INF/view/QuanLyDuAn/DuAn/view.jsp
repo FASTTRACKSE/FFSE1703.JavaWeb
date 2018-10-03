@@ -24,7 +24,7 @@
 		</div>
 	</div>
 
-	<div class="content-body"style="color: black">
+	<div class="content-body" style="color: black">
 		<div class="row">
 			<div class="col-sm-4"></div>
 			<div class="col-sm-4">
@@ -41,8 +41,10 @@
 				<div class="card">
 
 					<div class="card-header">
-						
-						<h4 class="card-title"><i class="ft-search"></i><i><b>Thông tin dự án</b></i></h4>
+
+						<h3 class="card-title">
+							<i class="ft-search"></i><b>Thông tin dự án</b>
+						</h3>
 						<a class="heading-elements-toggle"><i
 							class="fa fa-ellipsis-v font-medium-3"></i></a>
 						<div class="heading-elements">
@@ -62,42 +64,37 @@
 								<tbody>
 									<tr>
 										<th scope="row">Tên Dự Án</th>
-										<td>-${duAn.tenDuAn}</td>
+										<td>${duAn.tenDuAn}</td>
 
 									</tr>
 									<tr>
 										<th scope="row">Tên Khách Hàng</th>
-										<td>-${duAn.khachHang.tenkh}</td>
+										<td>${duAn.khachHang.tenkh}</td>
+									</tr>
+									<tr>
+									<tr>
+										<th scope="row">Số điện thoại</th>
+										<td>${duAn.khachHang.sdt}</td>
 									</tr>
 									<tr>
 										<th scope="row">Mô Tả Dự Án</th>
-										<td>-${duAn.moTaDuAn}</td>
+										<td>${duAn.moTaDuAn}</td>
 
 									</tr>
 									<tr>
 										<th scope="row">Phòng Dự Án</th>
-										<td>-IT</td>
+										<td>${duAn.phongBan.tenPhongBan}</td>
 									</tr>
 									<tr>
 										<th scope="row">PM</th>
-										<td>-.......</td>
+										<td>${duAn.pM.hoDem}${duAn.pM.ten}</td>
 									</tr>
-									<tr>
-										<th scope="row">Start Date</th>
-										<td>-${duAn.startDate}</td>
-									</tr>
-									<tr>
-										<th scope="row">End Date</th>
-										<td>-${duAn.endDate}</td>
-									</tr>
+
 									<tr>
 										<th scope="row">Domain</th>
 										<td>-${duAn.domain.tenNghiepVu}</td>
 									</tr>
-									<tr>
-										<th scope="row">Trạng Thái</th>
-										<td>-${duAn.trangThai.tenTrangThai}</td>
-									</tr>
+									
 									<tr>
 										<th scope="row">Database</th>
 
@@ -125,12 +122,23 @@
 									-${dt.tenNn}<br>
 											</c:forEach></td>
 									<tr>
-
-
-
-
-
+									<tr>
+										<th scope="row">Start Date</th>
+										<td>${duAn.startDate}</td>
 									</tr>
+									<tr>
+										<th scope="row">End Date</th>
+										<td>${duAn.endDate}</td>
+									</tr>
+
+<tr>
+										<th scope="row">Trạng Thái</th>
+										<td>${duAn.trangThai.tenTrangThai}</td>
+									</tr>
+
+
+
+
 								</tbody>
 							</table>
 							<div class="content-header-right col-md-3 col-xs-12">
@@ -152,3 +160,6 @@
 	</div>
 </div>
 <jsp:include page="/WEB-INF/view/templates/footer.jsp" />
+
+
+

@@ -36,8 +36,8 @@ public class TruongPhongServiceImpl implements TruongPhongService {
 
 	@Override
 	@Transactional
-	public void insertDanhGiaNhanVien(TruongPhongDanhGia danhGia) {
-		dao.insertDanhGiaNhanVien(danhGia);
+	public void updateDanhGiaNhanVien(TruongPhongDanhGia danhGia) {
+		dao.updateDanhGiaNhanVien(danhGia);
 	}
 
 	@Override
@@ -71,9 +71,9 @@ public class TruongPhongServiceImpl implements TruongPhongService {
 	}
 
 	@Override
+	@Transactional
 	public LichDanhGia getActiveLichDanhGia(String phongBan) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.getActiveLichDanhGia(phongBan);
 	}
 
 }

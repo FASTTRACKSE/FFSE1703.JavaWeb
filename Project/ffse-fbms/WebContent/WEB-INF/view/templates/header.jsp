@@ -402,13 +402,14 @@
 					data-placement="right" data-original-title="Others"></i></li>
 				<li class=" nav-item"><a href="#"><i class="ft-layers"></i><span
 						class="menu-title" data-i18n="">DANH MỤC</span></a>
-					<ul class="menu-content">
-						<li><a class="menu-item" href="#">Khách hàng</a></li>
-						<li><a class="menu-item" href="#">Domain</a></li>
-						<li><a class="menu-item" href="#">Framework</a></li>
-						<li><a class="menu-item" href="#">Technica</a></li>
-						<li><a class="menu-item" href="#">Programming Language</a></li>
-						<li><a class="menu-item" href="#">Database</a></li>
+						<li><a class="menu-item" href="<c:url value="/qlda/khachhang/list"/>">Khách hàng</a></li>
+						<li><a class="menu-item" href="<c:url value="/qlda/domain/list"/>">Domain</a></li>
+						<li><a class="menu-item"  href="<c:url value="/qlda/Framework/"/>">Framework</a></li>
+						<li><a class="menu-item"  href="<c:url value="/qlda/Technical/"/>">Technical</a></li>
+						<li><a class="menu-item"  href="<c:url value="/QuanLyDuAn/Language/list"/>">Programming Language</a></li>
+						<li><a class="menu-item"  href="<c:url value="/QuanLyDuAn/vendor/list"/>">Vendor</a></li>
+						<li><a class="menu-item"  href="<c:url value="/QuanLyDuAn/VaiTro/list"/>">Vai Trò Thành Viên</a></li>			
+						<li><a class="menu-item"  href="<c:url value="/qlda/Database/"/>">Database</a></li>
 
 					</ul></li>
 
@@ -416,7 +417,7 @@
 				<li class=" nav-item"><a href="#"><i class="ft-align-left"></i><span
 						class="menu-title" data-i18n="">THÔNG TIN DỰ ÁN</span></a>
 					<ul class="menu-content">
-						<li><a class="menu-item" href="#">Dự Án</a></li>
+						<li><a class="menu-item"  href="<c:url value="/qlda/DuAn/"/>">Dự Án</a></li>
 					</ul></li>
 			</ul>
 

@@ -33,14 +33,14 @@ public class HopDongPikalongController {
 		List<HopDongPikalong> listHopDong = hopDongPikalongService.listHopDong();
 		System.out.println(listHopDong);
 		model.addAttribute("listHopDong", listHopDong);
-		return "QuanTriNhanSuPikalong/ThongTinHopDong/HopDong";
+		return "QuanTriNhanSuPikalong/ThongTinHopDong/ListHopDong";
 	}
 
-	@RequestMapping(value = "viewOneHopDong/view/{maNv}", method = RequestMethod.GET)
-	public String viewThongTinHopDong(@PathVariable("maNv") String maNv, Model model) {
-		HoSoNhanVienPikalong hsnv = this.hoSoNhanVienPikalongService.getEdit(maNv);
+	@RequestMapping(value = "viewOneHopDong/view/{maHopDong}", method = RequestMethod.GET)
+	public String viewThongTinHopDong(@PathVariable("maHopDong") int maHopDong, Model model) {
+		HoSoNhanVienPikalong hsnv = this.hoSoNhanVienPikalongService.getEdit(hopDongPikalongService.getMaHopDong(maHopDong).getHoSoNhanVienPikalong().getMaNv());
 		model.addAttribute("hsnv", hsnv);
-		HopDongPikalong hdById = this.hopDongPikalongService.getHopDongById(maNv);
+		HopDongPikalong hdById = this.hopDongPikalongService.getHopDongById(maHopDong);
 		model.addAttribute("hopDong", hdById);
 		return "QuanTriNhanSuPikalong/ThongTinHopDong/view/ViewThongTinHopDong";
 	}
@@ -57,8 +57,11 @@ public class HopDongPikalongController {
 	}
 
 	@RequestMapping(value = "save", method = RequestMethod.POST)
-	public String addSaveHd(@ModelAttribute("hopDongPikalong") HopDongPikalong hd, Model model,
+	public String addSaveHd(@Valid @ModelAttribute("hopDongPikalong") HopDongPikalong hd, BindingResult result, Model model,
 			HttpServletRequest request) {
+		if(result.hasErrors()) {
+			return "QuanTriNhanSuPikalong/quanlihopdong/FormAddHd";
+		}
 		String maNv = hd.getHoSoNhanVienPikalong().getMaNv();
 		HoSoNhanVienPikalong hsnv = this.hoSoNhanVienPikalongService.getEdit(maNv);
 
@@ -71,7 +74,6 @@ public class HopDongPikalongController {
 	@RequestMapping(value = "viewOneHopDong/formedithd/{maHopDong}", method = RequestMethod.GET)
 	public String editFormHd(@PathVariable int maHopDong, Model model) {
 		String lastMaHd = this.hopDongPikalongService.getLastMaHd();
-		System.out.println(lastMaHd);
 		model.addAttribute("hsnv", hoSoNhanVienPikalongService
 				.getEdit(hopDongPikalongService.getMaHopDong(maHopDong).getHoSoNhanVienPikalong().getMaNv()));
 		model.addAttribute("hopDongPikalong", hopDongPikalongService.getMaHopDong(maHopDong));
@@ -93,8 +95,9 @@ public class HopDongPikalongController {
 
 	@RequestMapping("viewOneHopDong/{maNv}")
 	public String viewOneHopDong(@PathVariable String maNv, Model model) {
+		List<HopDongPikalong> hdong = this.hopDongPikalongService.viewOne(maNv);
 		model.addAttribute("lastTrangThai", this.hopDongPikalongService.getLastTrangThaiHd(maNv));
-		model.addAttribute("listHopDong", this.hopDongPikalongService.viewOne(maNv));
+		model.addAttribute("listHopDong", hdong);
 		model.addAttribute("maNv", maNv);
 		return "QuanTriNhanSuPikalong/ThongTinHopDong/HopDong";
 	}

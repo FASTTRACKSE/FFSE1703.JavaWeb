@@ -1,4 +1,4 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -7,33 +7,7 @@
 	<div class="content-wrapper">
 		<h3 class="content-header-title mb-0">Danh sách Hợp Đồng Của Nhân
 			Viên</h3>
-		<div class="row breadcrumbs-top">
-			<div class="breadcrumb-wrapper col-xs-12">
-				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a
-						href='<c:url value="/quantrinhansu/hosonhanvien/" />'>Danh
-							Sách Nhân Viên</a></li>
-					<li class="breadcrumb-item"><a
-						href='<c:url value="/quantrinhansu/hosonhanvien/view/${maNv }" />'>Thông
-							Tin Nhân Viên</a></li>
-					<li class="breadcrumb-item active">Hợp Đồng Nhân Viên</li>
-				</ol>
-			</div>
-		</div>
-		<c:choose>
-			<c:when test="${lastTrangThai == '1' }">
-				<a href="/ffse-fbms/QuanTriNhanSu/quanlihopdong/formaddhd/${maNv}"><button
-						class="btn btn-outline-primary round btn-min-width mr-1 mb-1"><i class = "ft-plus-circle"> </i>Thêm
-						Mới</button></a>
-			</c:when>
-			<c:otherwise>
-				<c:forEach items="${listHopDong}" var="x" varStatus="stt">
-					<a href="formedithd/${x.maHopDong}"><button
-							class="btn btn-outline-primary round btn-min-width mr-1 mb-1"><i class = "ft-edit"> </i>Sửa
-							Đổi</button></a>
-				</c:forEach>
-			</c:otherwise>
-		</c:choose>
+		
 		<div class="col-12">
 		<div class="card">
 		<div class="content-wrapper">

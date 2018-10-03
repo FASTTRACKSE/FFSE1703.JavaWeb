@@ -67,8 +67,8 @@ public class HopDongPikalongSeviceImpl implements HopDongPikalongSevice {
 	
 	@Override
 	@Transactional
-	public HopDongPikalong getHopDongById(String maNv) {
-		return this.hopDongPikalongDao.getHopDongById(maNv);
+	public HopDongPikalong getHopDongById(int maHopDong) {
+		return this.hopDongPikalongDao.getHopDongById(maHopDong);
 	}
 
 	@Override

@@ -45,13 +45,13 @@
 					<div class="col-md-6">
 						<div class="form-group">
 							<label>Phòng ban</label>
-							<div class="form-control well">${hsnv.maPhongBan}</div>
+							<div class="form-control well">${hsnv.maPhongBan.tenPhongBan}</div>
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="form-group">
 							<label>Chức danh</label>
-							<div class="form-control well">${hsnv.maChucDanh}</div>
+							<div class="form-control well">${hsnv.maChucDanh.tenChucDanh}</div>
 						</div>
 					</div>
 				</div>
@@ -72,8 +72,8 @@
 								<option value="none" selected="true" disabled="true">
 									<--Chọn--></option>
 								<form:option value="1">Hợp đồng thử việc</form:option>
-								<option value="2">Hợp đồng ngắn hạn</option>
-								<option value="3">Hợp đồng chính thức</option>
+								<form:option value="2">Hợp đồng ngắn hạn</form:option>
+								<form:option value="3">Hợp đồng chính thức</form:option>
 
 							</form:select>
 						</div>

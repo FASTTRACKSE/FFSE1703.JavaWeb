@@ -13,6 +13,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import javax.validation.constraints.NotNull;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 
@@ -32,22 +34,28 @@ public class HopDongPikalong {
 	
 	@ManyToOne
 	@JoinColumn(name="MaLoaiHopDong")
+	@NotNull
 	private LoaiHopDongPikalong loaiHopDongPikalong;
 	
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Column(name = "NgayKiKet")
 	private Date ngayKiKet;
 	
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Column(name = "NgayKetThuc")
 	private Date ngayKetThuc;
 	
-	
+	@Column(name = "SoNgayNghiTrongNam")
+	@NotNull
 	private int soNgayNghiTrongNam;
 	
-	
+	@Column(name = "LuongThang13")
 	private String luongThang13;
-
+	
+	@Column(name = "TrangThai")
+	@NotNull
 	private int trangThai;
 	
 	

@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 <style>
 
@@ -38,7 +39,7 @@ div.stroke a button:hover:after {
 <div class="app-content content container-fluid">
 	<div class="content-wrapper">
 
-		<h3 class="content-header-title mb-0">Danh Sách Nhân Viên</h3> <!-- title -->
+		<h3 class="content-header-title mb-0"><spring:message code="label.danhSachNhanVien" /></h3> <!-- title -->
 		<br>
 		<div class= "stroke"><a href="addform"><button class="btn btn-light" style="background-color: #F5F7FA">
 										<i class="ft-user-plus"></i>
@@ -47,13 +48,13 @@ div.stroke a button:hover:after {
 			<table class="table mb-0">
 				<thead>
 					<tr>
-						<th>STT</th>
-						<th>Mã Nhân Viên</th>
-						<th>Họ Tên</th>
-						<th>Giới Tính</th>
-						<th>Ngày Sinh</th>
-						<th>Ảnh Đại Diện</th>
-						<th>Chức Năng</th>
+					<th><spring:message code="label.id" /></th>
+						<th><spring:message code="label.maNhanVien" /></th>
+						<th><spring:message code="label.hoTen" /></th>
+						<th><spring:message code="label.gioiTinh" /></th>
+						<th><spring:message code="label.ngaySinh" /></th>
+						<th><spring:message code="label.anhDaiDien" /></th>
+						<th><spring:message code="label.chucNang" /></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -87,9 +88,4 @@ div.stroke a button:hover:after {
 
 	</div>
 </div>
-
-
-
-
-
 <jsp:include page="/WEB-INF/view/templates/footer.jsp" />

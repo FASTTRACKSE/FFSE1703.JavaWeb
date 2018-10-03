@@ -34,10 +34,10 @@ public class DatabaseControllers {
 	@RequestMapping("/list-database")
 	public String listDatabase(HttpSession session) {
 		int pageId = 0;
-		if (session.getAttribute("pageIds") == null) {
+		if (session.getAttribute("pageIdDt") == null) {
 			pageId = 1;
 		} else {
-			pageId = (int) session.getAttribute("pageIds");
+			pageId = (int) session.getAttribute("pageIdDt");
 		}
 		return "redirect: list-database/"+pageId;
 	}
@@ -53,7 +53,7 @@ public class DatabaseControllers {
 		model.addAttribute("listDatabase", this.databaseService.listDatabase(start, maxRows));
 		model.addAttribute("pageId", pageId);
 		model.addAttribute("totalPage", totalPage);
-		session.setAttribute("pageIds", pageId);
+		session.setAttribute("pageIdDt", pageId);
 		return "MvpQuanLiDuAn/database/listdatabase";
 	}
 

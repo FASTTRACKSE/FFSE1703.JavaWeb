@@ -36,10 +36,10 @@ public class TechnicalController {
 	@RequestMapping("/list-technical")
 	public String listTechnical(HttpSession session) {
 		int pageId = 0;
-		if (session.getAttribute("pageIds") == null) {
+		if (session.getAttribute("pageIdTn") == null) {
 			pageId = 1;
 		} else {
-			pageId = (int) session.getAttribute("pageIds");
+			pageId = (int) session.getAttribute("pageIdTn");
 		}
 		return "redirect: list-technical/"+pageId;
 	}
@@ -55,7 +55,7 @@ public class TechnicalController {
 		model.addAttribute("listTechnical", this.technicalService.listTechnical(start, maxRows));
 		model.addAttribute("pageId", pageId);
 		model.addAttribute("totalPage", totalPage);
-		session.setAttribute("pageIds", pageId);
+		session.setAttribute("pageIdTn", pageId);
 		return "MvpQuanLiDuAn/technical/listtechnical";
 	}
 

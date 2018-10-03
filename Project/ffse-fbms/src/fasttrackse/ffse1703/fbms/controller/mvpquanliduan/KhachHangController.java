@@ -33,10 +33,10 @@ public class KhachHangController {
 	@RequestMapping("/list-khachhang")
 	public String listKhachHang(HttpSession session) {
 		int pageId = 0;
-		if (session.getAttribute("pageIds") == null) {
+		if (session.getAttribute("pageIdKh") == null) {
 			pageId = 1;
 		} else {
-			pageId = (int) session.getAttribute("pageIds");
+			pageId = (int) session.getAttribute("pageIdKh");
 		}
 		return "redirect: list-khachhang/"+pageId;
 	}
@@ -53,7 +53,7 @@ public class KhachHangController {
 		model.addAttribute("listKhachHang", this.khachHangService.listKhachHang(start, maxRows));
 		model.addAttribute("pageId", pageId);
 		model.addAttribute("totalPage", totalPage);
-		session.setAttribute("pageIds", pageId);
+		session.setAttribute("pageIdKh", pageId);
 		return "MvpQuanLiDuAn/khachhang/list";
 	}
 

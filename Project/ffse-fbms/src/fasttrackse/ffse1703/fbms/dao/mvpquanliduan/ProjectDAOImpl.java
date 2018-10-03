@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Projects;
 import fasttrackse.ffse1703.fbms.entity.quanlyduan.DuAnTeam1;
 import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.HoSoNhanVienPikalong;
+import fasttrackse.ffse1703.fbms.entity.security.UserAccount;
 
 
 @Repository
@@ -75,5 +76,10 @@ public class ProjectDAOImpl implements ProjectDAO {
 		Session session = sessionFactory.getCurrentSession();
 		return session.createQuery("from HoSoNhanVienPikalong where isActive = 0 and maPhongBan = '"+maPhongBan+"'", HoSoNhanVienPikalong.class).list();
 	}
-
+	@Override
+	public UserAccount getAccount(String userName) {
+		Session session = sessionFactory.getCurrentSession();
+		UserAccount acc = session.get(UserAccount.class, userName);
+		return acc;
+	}
 }

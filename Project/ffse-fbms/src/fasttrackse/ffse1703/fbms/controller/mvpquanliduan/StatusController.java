@@ -34,10 +34,10 @@ public class StatusController {
 	@RequestMapping("/list-status")
 	public String listStatus(HttpSession session) {
 		int pageId = 0;
-		if (session.getAttribute("pageIds") == null) {
+		if (session.getAttribute("pageIdSt") == null) {
 			pageId = 1;
 		} else {
-			pageId = (int) session.getAttribute("pageIds");
+			pageId = (int) session.getAttribute("pageIdSt");
 		}
 		return "redirect: list-status/"+pageId;
 	}
@@ -52,7 +52,7 @@ public class StatusController {
 		}
 		model.addAttribute("listStatus", this.statusService.listStatusProject(start, maxRows));
 		model.addAttribute("totalPage", totalPage);
-		session.setAttribute("pageIds", pageId);
+		session.setAttribute("pageIdSt", pageId);
 		return "MvpQuanLiDuAn/statuss/liststatus";
 	}
 	@RequestMapping("/show-form-add")

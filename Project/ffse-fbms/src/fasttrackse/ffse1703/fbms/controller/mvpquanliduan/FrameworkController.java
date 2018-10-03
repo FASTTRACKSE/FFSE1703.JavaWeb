@@ -33,10 +33,10 @@ public class FrameworkController {
 	@RequestMapping("/list-framework")
 	public String listFramework(HttpSession session) {
 		int pageId = 0;
-		if (session.getAttribute("pageIds") == null) {
+		if (session.getAttribute("pageIdFr") == null) {
 			pageId = 1;
 		} else {
-			pageId = (int) session.getAttribute("pageIds");
+			pageId = (int) session.getAttribute("pageIdFr");
 		}
 		return "redirect: list-framework/"+pageId;
 	}
@@ -53,7 +53,7 @@ public class FrameworkController {
 		model.addAttribute("listFramework", this.frameworkService.listFramework(start, maxRows));
 		model.addAttribute("pageId", pageId);
 		model.addAttribute("totalPage", totalPage);
-		session.setAttribute("pageIds", pageId);
+		session.setAttribute("pageIdFr", pageId);
 		return "MvpQuanLiDuAn/framework/list";
 	}
 

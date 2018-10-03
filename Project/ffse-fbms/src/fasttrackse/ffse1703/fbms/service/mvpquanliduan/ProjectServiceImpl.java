@@ -11,6 +11,7 @@ import fasttrackse.ffse1703.fbms.dao.mvpquanliduan.ProjectDAO;
 import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Projects;
 import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.HoSoNhanVienPikalong;
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
+import fasttrackse.ffse1703.fbms.entity.security.UserAccount;
 @Service
 @Transactional
 public class ProjectServiceImpl implements ProjectService {
@@ -68,6 +69,12 @@ public class ProjectServiceImpl implements ProjectService {
 	public List<Projects> listProject(String search, int start, int maxRows) {
 		
 		return projectDAO.listProject(search, start, maxRows);
+	}
+
+	@Override
+	public UserAccount getAccount(String userName) {
+		
+		return projectDAO.getAccount(userName);
 	}
 
 }

@@ -29,10 +29,10 @@ public class LanguageController {
 	@RequestMapping("/list-language")
 	public String listLanguage(HttpSession session) {
 		int pageId = 0;
-		if (session.getAttribute("pageIds") == null) {
+		if (session.getAttribute("pageIdLg") == null) {
 			pageId = 1;
 		} else {
-			pageId = (int) session.getAttribute("pageIds");
+			pageId = (int) session.getAttribute("pageIdLg");
 		}
 		return "redirect: list-language/"+pageId;
 	}
@@ -49,7 +49,7 @@ public class LanguageController {
 		model.addAttribute("listLanguage", this.languageService.listLanguage(start, maxRows));
 		model.addAttribute("pageId", pageId);
 		model.addAttribute("totalPage", totalPage);
-		session.setAttribute("pageIds", pageId);
+		session.setAttribute("pageIdLg", pageId);
 		return "MvpQuanLiDuAn/programlanguage/list";
 	}
 

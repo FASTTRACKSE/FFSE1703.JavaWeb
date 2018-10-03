@@ -4,7 +4,8 @@ import java.util.List;
 
 import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Projects;
 import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.HoSoNhanVienPikalong;
-import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
+import fasttrackse.ffse1703.fbms.entity.security.UserAccount;
+
 
 public interface ProjectDAO {
 	public List<Projects> findAll();
@@ -16,5 +17,5 @@ public interface ProjectDAO {
 	public int checkMaProjects(String idProjects);
 	public List<HoSoNhanVienPikalong> getPm(String maPhongBan);
 	public List<Projects> listProject(String search,int start,int maxRows);
-	
+	public UserAccount getAccount(String userName);
 }

@@ -2,60 +2,48 @@ package fasttrackse.ffse1703.fbms.service.qttl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import fasttrackse.ffse1703.fbms.dao.qttl.*;
 import fasttrackse.ffse1703.fbms.entity.qttl.*;
+import fasttrackse.ffse1703.fbms.dao.qttl.*;
 
 @Service
-public class CategoryServiceImpl implements CategoryService {
+public class CategoryServiceImpl implements CategoryService{
 	@Autowired
-	CategoryDAO categoryDAO;
-
-	public void setCategoryDAO(CategoryDAO categoryDAO) {
-		this.categoryDAO = categoryDAO;
-
-	}
-
+	private CategoryDAO categoryDao;
 	@Override
 	@Transactional
-	public List<Category> listCategory() {
-		return this.categoryDAO.listCategory();
+	public List<Category> getAll() {
+		 return this.categoryDao.getAll();
 	}
-
 	@Override
 	@Transactional
-	public Category findById(int id) {
-		// TODO Auto-generated method stub
-		return this.categoryDAO.findById(id) ;
+	public void addNew(Category category) {
+		this.categoryDao.addNew(category);
 	}
-
-	@Override
-	@Transactional
-	public void add(Category category) {
-		this.categoryDAO.create(category);
-	}
-
 	@Override
 	@Transactional
 	public void update(Category category) {
-		this.categoryDAO.update(category);
-
+		this.categoryDao.update(category);
 	}
-
 	@Override
 	@Transactional
 	public void delete(int id) {
-		this.categoryDAO.delete(id);
-
+		this.categoryDao.delete(id);
 	}
-
+	@Override
+	@Transactional
+	public Category getById(int id) {
+		return this.categoryDao.getById(id);
+	}
+	
 	@Override
 	@Transactional
 	public List<Category> findAllForPaging(int startPosition, int maxResult) {
-		return this.categoryDAO.findAllForPaging(startPosition, maxResult);
+		return this.categoryDao.findAllForPaging(startPosition, maxResult);
 	}
-
+	
 }

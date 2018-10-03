@@ -7,59 +7,52 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-
 import fasttrackse.ffse1703.fbms.entity.qttl.*;
 
 @Repository
 public class CategoryDAOImpl implements CategoryDAO {
 
 	@Autowired
-	SessionFactory sessionFactory;
-
-	public SessionFactory getSessionFactory() {
-		return sessionFactory;
-	}
-
+	private SessionFactory sessionFactory;
+	
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-
-	@Override
-	public void create(Category category) {
-		Session session = this.sessionFactory.getCurrentSession();
-		System.out.println(category.getMa_danh_muc());
-		session.persist(category);
-
-	}
 	
 	@Override
-	@SuppressWarnings("unchecked")
-	public List<Category> listCategory() {
-		Session session = this.sessionFactory.openSession();
-		List<Category> list =  session.createQuery("from Category").list();
-		session.close();
-		return list;
+	public List<Category> getAll() {
+		Session session = this.sessionFactory.getCurrentSession();
+		return session.createQuery("from Category", Category.class).list();
+
+	}
+
+
+	@Override
+	public void addNew (Category category) {
+		Session session=this.sessionFactory.getCurrentSession();
+		session.save(category);
 	}
 
 	@Override
-	public Category findById(int id) {
-		Session session = this.sessionFactory.getCurrentSession();
-		Category u = (Category) session.get(Category.class, id);
-		return u;
+	public void update(Category category) {
+		Session session=this.sessionFactory.getCurrentSession();
+		session.update(category);
 	}
 
 	@Override
 	public void delete(int id) {
 		Session session = this.sessionFactory.getCurrentSession();
-		session.delete(findById(id));
+		Category db=session.get(Category.class,id);	
+		session.delete(db);	
 	}
+
 
 	@Override
-	public void update(Category category) {
-		Session session = this.sessionFactory.getCurrentSession();
-		session.update(category);
+	public Category getById(int id) {
+		Session session=this.sessionFactory.getCurrentSession();
+		return session.get(Category.class,id);	
 	}
-
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Category> findAllForPaging(int startPosition, int maxResult) {

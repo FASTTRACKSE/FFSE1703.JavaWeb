@@ -1,4 +1,4 @@
-package fasttrackse.ffse1703.fbms.entity.quanlyduan;
+/*package fasttrackse.ffse1703.fbms.entity.quanlyduan;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,3 +30,4 @@ public class UsersRolesTeam1 {
 	}
 
 }
+*/

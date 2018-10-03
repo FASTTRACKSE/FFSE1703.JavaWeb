@@ -68,7 +68,7 @@ public class DuAnTeam1DaoImpl implements DuAnTeam1Dao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<DuAnTeam1> findAll(Integer offset, Integer maxResult,String search) {
+	public List<DuAnTeam1> findAll(Integer offset, Integer maxResult,String search ) {
 		Session session = sessionFactory.getCurrentSession();
 		List<DuAnTeam1> list = session.createQuery("from DuAnTeam1 where isDelete =0 "+ search).setFirstResult(offset)
 				.setMaxResults(maxResult).list();

@@ -208,11 +208,10 @@
 											</div>
 										</div>
 										<div class="form-actions center">
-											<input class="btn btn-success" type="submit" value="Save" />
 											<p style="color: red">${messageQuanHe}</p>
-											<%-- <a href="<c:url value = "/quanlynhansutt/add"/>"
-												class="btn btn-primary">Back</a>
- --%>
+											<a
+												href="<c:url value = "/quanlynhansutt/hop_dong/viewOneHopDong/${maNhanVien}"/>"
+												class="btn btn-primary">Back</a> <input class="btn btn-success" type="submit" value="Save" />
 										</div>
 									</form:form>
 								</div>

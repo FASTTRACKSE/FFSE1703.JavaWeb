@@ -134,13 +134,10 @@
 												</div>
 											</div>
 											<div class="form-actions center">
-												<input class="btn btn-success" type="submit" value="Save" />
+											<a
+												href="<c:url value = "/quanlynhansutt/gia_dinh/viewOneGiaDinh/${maNhanVien}"/>"
+												class="btn btn-primary">Back</a> <input class="btn btn-success" type="submit" value="Save" />
 												<p style="color: red">${messageQuanHe}</p>
-												<%-- <a href="<c:url value = "/quanlynhansutt/add"/>"
-												class="btn btn-primary">Back</a>
-												
- --%>
-
 											</div>
 										</form:form>
 									</div>

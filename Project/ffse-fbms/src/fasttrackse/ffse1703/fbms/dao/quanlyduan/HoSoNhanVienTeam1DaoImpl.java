@@ -31,4 +31,10 @@ public class HoSoNhanVienTeam1DaoImpl implements HoSoNhanVienTeam1Dao {
 		return session.createQuery("from HoSoNhanVienTeam1 where Trang_Thai =1 ", HoSoNhanVienTeam1.class).list();
 	}
 
+	@Override
+	public HoSoNhanVienTeam1 getById(int maNhanVien) {
+		Session session= sessionFactory.getCurrentSession();
+		return session.get(HoSoNhanVienTeam1.class,maNhanVien);
+	}
+
 }

@@ -10,7 +10,9 @@
 		<!-- Path -->
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">Sửa Thông Tin Gia Đình</h3>
+				<h3 class="content-header-title mb-0">
+					<spring:message code="label.suaThongTinGiaDinh" />
+				</h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
@@ -19,7 +21,8 @@
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/quanlynhansutt/bang_cap/" />'><spring:message
 										code="label.thongTinBangCap" /></a></li>
-							<li class="breadcrumb-item active">Sửa Thông Tin Gia Đình</li>
+							<li class="breadcrumb-item active"><spring:message
+									code="label.suaThongTinGiaDinh"/></li>
 						</ol>
 					</div>
 				</div>
@@ -121,8 +124,9 @@
 												<div class="form-group">
 													<a
 														href="<c:url value = "/quanlynhansutt/gia_dinh/viewOneGiaDinh/${maNhanVien}"/>"
-														class="btn btn-primary">Back</a> <input
-														class="btn btn-success" type="submit" value="Save" />
+														class="btn btn-primary"><spring:message
+															code="label.quaylai" /></a> <input class="btn btn-success"
+														type="submit" value="Save" />
 												</div>
 											</div>
 										</form:form>

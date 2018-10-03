@@ -24,7 +24,8 @@
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/quanlynhansutt/bang_cap/" />'><spring:message
 										code="label.thongTinBangCap" /></a></li>
-							<li class="breadcrumb-item active">Thêm mới bằng cấp</li>
+							<li class="breadcrumb-item active"><spring:message
+									code="label.themmoibangcap" /></li>
 						</ol>
 					</div>
 				</div>
@@ -118,9 +119,10 @@
 											</div>
 											<div class="form-actions center">
 												<a
-												href="<c:url value = "/quanlynhansutt/bang_cap/viewOneBangCap/${maNhanVien}"/>"
-												class="btn btn-primary">Back</a> <input class="btn btn-success" type="submit" value="Save" />
-												
+													href="<c:url value = "/quanlynhansutt/bang_cap/viewOneBangCap/${maNhanVien}"/>"
+													class="btn btn-primary"><spring:message
+														code="label.quaylai" /></a> <input class="btn btn-success"
+													type="submit" value="Save" />
 											</div>
 										</form:form>
 									</div>

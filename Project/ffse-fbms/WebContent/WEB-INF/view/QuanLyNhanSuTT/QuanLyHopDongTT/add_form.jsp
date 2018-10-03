@@ -145,7 +145,7 @@
 													<div class="row">
 														<div class="form-group col-sm-6">
 															<div class="form-group">
-																<label for="date1">Ngày Ký</label>
+																<label for="date1"><spring:message code="label.ngayKy" /></label>
 																<fieldset class="form-group position-relative">
 																	<form:input placeholder="Ngày Ký" type="date"
 																		class="form-control round" path="ngayKy" />
@@ -159,7 +159,7 @@
 														</div>
 														<div class="form-group col-sm-6">
 															<div class="form-group">
-																<label for="date1">Hợp Đồng Từ Ngày</label>
+																<label for="date1"><spring:message code="label.hopDongTuNgay" /></label>
 																<fieldset class="form-group position-relative">
 																	<form:input placeholder="Hợp Đồng Từ Ngày" type="date"
 																		class="form-control round" path="hopDongTuNgay" />
@@ -174,7 +174,7 @@
 														</div>
 														<div class="form-group col-sm-6">
 															<div class="form-group">
-																<label for="date1">Hợp Đồng Đến Ngày</label>
+																<label for="date1"><spring:message code="label.hopDongDenNgay" /></label>
 																<fieldset class="form-group position-relative">
 																	<form:input placeholder="Hợp Đồng Đến Ngày" type="date"
 																		class="form-control round" path="hopDongDenNgay" />
@@ -211,7 +211,7 @@
 											<p style="color: red">${messageQuanHe}</p>
 											<a
 												href="<c:url value = "/quanlynhansutt/hop_dong/viewOneHopDong/${maNhanVien}"/>"
-												class="btn btn-primary">Back</a> <input class="btn btn-success" type="submit" value="Save" />
+												class="btn btn-primary"><spring:message code="label.quaylai" /></a> <input class="btn btn-success" type="submit" value="Save" />
 										</div>
 									</form:form>
 								</div>

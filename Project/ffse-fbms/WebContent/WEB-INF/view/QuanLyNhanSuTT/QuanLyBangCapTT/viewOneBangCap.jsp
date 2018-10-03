@@ -28,7 +28,8 @@ th, td {
 		<!-- Path -->
 		<div class="content-header row">
 			<div class="content-header-left col-md-9 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">Bằng Cấp Nhân Viên</h3>
+				<h3 class="content-header-title mb-0"><spring:message
+										code="label.bangcapnhanvien" /></h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
@@ -40,7 +41,8 @@ th, td {
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/quanlynhansutt/bang_cap/" />'><spring:message
 									code="label.thongTinBangCap" /></a></li>
-							<li class="breadcrumb-item active">Bằng Cấp Nhân Viên</li>
+							<li class="breadcrumb-item active"><spring:message
+										code="label.bangcapnhanvien" /></li>
 						</ol>
 					</div>
 				</div>
@@ -84,7 +86,7 @@ th, td {
 												<th><spring:message code="label.noiCapBang" /></th>
 												<th><spring:message code="label.noiCap" /></th>
 												<th><spring:message code="label.ngayCap" /></th>
-												<th>Chức Năng</th>
+												<th><spring:message code="label.chucNang" /></th>
 											</tr>
 										</thead>
 										<tbody>

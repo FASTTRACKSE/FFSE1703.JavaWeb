@@ -86,11 +86,11 @@ th, td {
 												<th><spring:message code="label.tenHopDong" /></th>
 												<th><spring:message code="label.luongThang13" /></th>
 												<th><spring:message code="label.soNgayPhep" /></th>
-												<th>Ngày Ký</th>
-												<th>Hợp Đồng Từ Ngày</th>
-												<th>Hợp Đồng Đến Ngày</th>
+												<th><spring:message code="label.ngayKy" /></th>
+												<th><spring:message code="label.hopDongTuNgay" /></th>
+												<th><spring:message code="label.hopDongDenNgay" /></th> 
 												<th><spring:message code="label.trangThai" /></th>
-												<th>Chức Năng</th>
+												<th><spring:message code="label.chucNang" /></th>
 											</tr>
 										</thead>
 										<tbody>
@@ -101,9 +101,11 @@ th, td {
 													<td>${hshd.loaiHopDong.tenHopDong}</td>
 													<td><c:if test="${hshd.luongThang13 == 1}">
 															<spring:message code="label.co" />
-														</c:if> <c:if test="${hshd.luongThang13 == 2}">
+														</c:if> 
+														<c:if test="${hshd.luongThang13 == 2}">
 															<spring:message code="label.khong" />
-														</c:if></td>
+														</c:if>
+													</td>
 													<td>${hshd.soNgayPhep}</td>
 													<td>${hshd.ngayKy}</td>
 													<td>${hshd.hopDongTuNgay}</td>

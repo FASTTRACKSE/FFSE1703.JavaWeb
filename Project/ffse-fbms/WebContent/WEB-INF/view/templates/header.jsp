@@ -471,16 +471,14 @@
 			<!-- Quản lý nhiệm vụ của HieuLP -->
 			<ul id="main-menu-navigation" data-menu="menu-navigation"
 				class="navigation navigation-main">
-				<li class=" navigation-header"><span>HieuLP-Quản lý
-						nhiệm vụ </span><i data-toggle="tooltip" data-placement="right"
-					data-original-title="" class=" ft-layers"></i></li>
+				<li class=" navigation-header"><span><spring:message code="label.hieulpquanlinhiemvu"/></span><i data-toggle="tooltip" data-placement="right"
+					data-original-title="" ></i></li>
 				<li class=" nav-item"><a
 					href="<c:url value = "/HieuLP/"/>"><i
-						class="ft-bookmark"></i><span data-i18n="" class="menu-title">Quản
-							Lý Nhiệm Vụ</span></a></li>
+						class="ft-layers"></i><span data-i18n="" class="menu-title"><spring:message code="label.danhsachnhiemvu"/></span></a></li>
 				<li class=" nav-item"><a
 					href="<c:url value = "/HieuLP/calender"/>"><i
-						class="ft-plus-square"></i><span data-i18n="" class="menu-title">Calendar
+						class="ft-plus-square"></i><span data-i18n="" class="menu-title"><spring:message code="label.lichnhiemvu"/>
 							</span></a></li>
 				<li><hr /></li>
 			</ul>

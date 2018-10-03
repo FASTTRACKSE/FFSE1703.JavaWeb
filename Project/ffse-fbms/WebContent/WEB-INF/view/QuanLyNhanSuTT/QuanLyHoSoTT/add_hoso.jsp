@@ -293,8 +293,6 @@
 																class="form-control" type="file" name="file" /> <br>
 															<img id="img" src="#" alt="your image" width="100"
 																height="150" />
-																<form:errors path="anhDaiDien"
-																	cssClass="invalid-feedback d-block" />
 														</div>
 													</div>
 												</div>

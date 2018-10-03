@@ -162,12 +162,18 @@ public class QuanLyHoSoControllerTT {
 
 	// xử lý lưu khi thêm nhân viên
 	@RequestMapping(value = "insert", method = RequestMethod.POST)
-	public String addsave(@ModelAttribute("formHoso") @Valid HoSoNhanVienTT hoSoNhanVienTT, BindingResult result,
+	public String addsave(@ModelAttribute("formHoso") @Valid HoSoNhanVienTT hoSoNhanVienTT, BindingResult result, Model model,
 			@RequestParam("file") MultipartFile file, HttpSession session) throws IOException {
-//		if (result.hasErrors()) {
-//			return "QuanLyNhanSuTT/QuanLyHoSoTT/add_hoso";
-//
-//		}
+		if (result.hasErrors()) {
+			model.addAttribute("listPhongBan", phongBanService.findAll());
+			model.addAttribute("listQuocTich", quocTichServiceTT.getAllQuocTich());
+			model.addAttribute("listChucDanh", chucDanhService.findAll());
+			model.addAttribute("listDanToc", danTocServiceTT.listDanTocTT());
+			model.addAttribute("listThanhPho", tinhThanhServiceTT.getAllTinhThanh());
+			model.addAttribute("listTrangTrangHonNhan", tinhTrangHonNhanServiceTT.findAll());
+			return "QuanLyNhanSuTT/QuanLyHoSoTT/add_hoso";
+
+		}
 		ServletContext context = session.getServletContext();
 		String path = context.getRealPath(UPLOAD_DIRECTORY);
 		File fileUpload = new File(path);

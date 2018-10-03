@@ -1,4 +1,5 @@
-	<%@ page language="java" contentType="text/html; charset=UTF-8"
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
@@ -8,17 +9,17 @@
 
 <div class="app-content content container-fluid">
 	<div class="content-wrapper">
-	<div class="content-header-left col-md-9 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">Danh sách Database</h3>
-				<div class="row breadcrumbs-top">
-					<div class="breadcrumb-wrapper col-xs-12">
-						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="/ffse-fbms/home">Home</a></li>
-							<li class="breadcrumb-item active">DANH SÁCH DATABASE</li>
-						</ol>
-					</div>
+		<div class="content-header-left col-md-9 col-xs-12 mb-2">
+			<h3 class="content-header-title mb-0">Danh sách Database</h3>
+			<div class="row breadcrumbs-top">
+				<div class="breadcrumb-wrapper col-xs-12">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="/ffse-fbms/home">Home</a></li>
+						<li class="breadcrumb-item active">DANH SÁCH DATABASE</li>
+					</ol>
 				</div>
 			</div>
+		</div>
 		<div class="row">
 			<div class="col-sm-4"></div>
 			<div class="col-sm-4">
@@ -59,32 +60,7 @@
 					</c:forEach>
 				</tbody>
 			</table>
-			<nav aria-label="Page navigation example">
-									<ul class="pagination">
-										<li class="page-item"><a class="page-link" href="?page=1">First
-												Page</a></li>
-										<c:if test="${currentPage > 2}">
-											<li class="page-item"><a class="page-link"
-												href="?page=${currentPage-2}">${currentPage-2}</a></li>
-										</c:if>
-										<c:if test="${currentPage > 1}">
-											<li class="page-item"><a class="page-link"
-												href="?page=${currentPage-1}">${currentPage-1}</a></li>
-										</c:if>
-										<li class="page-item active"><a class="page-link"
-											href="?page=${currentPage}">${currentPage}</a></li>
-										<c:if test="${currentPage < lastPage}">
-											<li class="page-item"><a class="page-link"
-												href="?page=${currentPage+1}">${currentPage+1}</a></li>
-										</c:if>
-										<c:if test="${currentPage < lastPage - 1}">
-											<li class="page-item"><a class="page-link"
-												href="?page=${currentPage+2}">${currentPage+2}</a></li>
-										</c:if>
-										<li class="page-item"><a class="page-link"
-											href="?page=${lastPage }">Last Page</a></li>
-									</ul>
-								</nav>
+
 
 			<div class="row"></div>
 		</div>
@@ -96,10 +72,8 @@
 			<c:if test="${message !=null }">
 						 ${message }
 			</c:if>
-		
+
 		</div>
 	</div>
 </div>
-<!-- ////////////////////////////////////////////////////////////////////////////-->
-
 <jsp:include page="/WEB-INF/view/templates/footer.jsp" />

@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+
 <%@ page session="false"%>
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 
@@ -134,11 +135,12 @@
 									style="border-collapse: collapse; border-collapse: separate;">
 									<thead style="background: graytext; color: white;">
 										<tr>
-											<th>Mã Dự Án</th>
+											<th><spring:message code="label.maDuAn" /></th>
 											<th>Tên Dự Án</th>
-											<th>Tên Khách Hàng</th>
-											<th>Tên Phòng Ban</th>
-											<th>Tên Trạng Thái</th>
+											<th>Khách Hàng</th>
+											<th>Phòng Ban</th>
+											<th>Trạng Thái</th>
+
 											<th>Action</th>
 										</tr>
 									</thead>
@@ -150,6 +152,7 @@
 												<td>${entities.khachHang.tenkh}</td>
 												<td>${entities.phongBan.tenPhongBan}</td>
 												<td>${entities.trangThai.tenTrangThai}</td>
+
 												<td><a
 													href="/ffse-fbms/qlda/DuAn/edit/${entities.maDuAn}"
 													data-toggle="tooltip" title="edit">
@@ -176,41 +179,40 @@
 									</tbody>
 
 								</table>
-								<c:set scope="request" var="total" value="${total}" />
-								<% 	
-										String cPage = request.getParameter("page");
-										String query =  "?maDuAn="+request.getParameter("maDuAn")+"&makh="+request.getParameter("makh")+"&maPhongBan="+request.getParameter("maPhongBan")+"&maTrangThai="+request.getParameter("maTrangThai");
-										boolean search = !(request.getParameter("maDuAn") == null);
-										query = search ? query : "";
-										%> 
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-
+		<%
+			String query = "&maDuAn=" + request.getParameter("maDuAn") + "&makh=" + request.getParameter("makh")
+					+ "&maPhongBan=" + request.getParameter("maPhongBan") + "&maTrangThai="
+					+ request.getParameter("maTrangThai");
+			boolean search = !(request.getParameter("maDuAn") == null);
+			query = search ? query : "";
+		%>
 		<nav aria-label="Page navigation example">
 			<ul class="pagination">
 				<li class="page-item"><a class="page-link"
-					href="/ffse-fbms/qlda/DuAn/list/1<%=query %>">First Page</a></li>
+					href="/ffse-fbms/qlda/DuAn/list/1" <%=query%>>First Page</a></li>
 				<c:if test="${currentPage > 2}">
 					<li class="page-item"><a class="page-link"
-						href="/ffse-fbms/qlda/DuAn/list/${page-2}<%=query %>">${page-2}</a></li>
+						href="/ffse-fbms/qlda/DuAn/list/<%=query %>${page-2}">${page-2}</a></li>
 				</c:if>
 				<c:if test="${page > 1}">
 					<li class="page-item"><a class="page-link"
-						href="/ffse-fbms/qlda/DuAn/list/${page-1}<%=query %>">${page-1}</a></li>
+						href="/ffse-fbms/qlda/DuAn/list/<%=query %>${page-1}">${page-1}</a></li>
 				</c:if>
 				<li class="page-item active"><a class="page-link"
-					href="/ffse-fbms/qlda/DuAn/list/${page}<%=query %>">${page}</a></li>
+					href="/ffse-fbms/qlda/DuAn/list/<%=query %>${page}">${page}</a></li>
 				<c:if test="${page < total}">
 					<li class="page-item"><a class="page-link"
-						href="/ffse-fbms/qlda/DuAn/list/${page+1}<%=query %>">${page+1}</a></li>
+						href="/ffse-fbms/qlda/DuAn/list/${page+1}">${page+1}</a></li>
 				</c:if>
 				<c:if test="${page < total - 1}">
 					<li class="page-item"><a class="page-link"
-						href="/ffse-fbms/qlda/DuAn/list/${page+2}<%=query %>">${page+2}</a></li>
+						href="/ffse-fbms/qlda/DuAn/list/${page+2}">${page+2}</a></li>
 				</c:if>
 				<li class="page-item"><a class="page-link"
 					href="/ffse-fbms/qlda/DuAn/list/${total}">Last Page</a></li>

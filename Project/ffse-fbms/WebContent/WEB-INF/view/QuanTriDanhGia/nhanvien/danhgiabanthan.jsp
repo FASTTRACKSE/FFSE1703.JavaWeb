@@ -113,7 +113,7 @@
 													</div>
 												</div>
 											</form:form>
-											<c:if test="${danhGia.trangThai == 1 }">
+											<c:if test="${danhGia.trangThai.maTrangThai == 1 || danhGia.trangThai.maTrangThai == 4}">
 												<div class="form-actions">
 													<a
 														href="<c:url value="/quantridanhgia/nhanvien/danhgiabanthan/edit"/>"

@@ -52,15 +52,15 @@
 														<i class="ft-user"></i> Bản đánh giá
 													</h4>
 													<form:hidden path="id" />
-													<form:hidden path="kyDanhGia"/>
+													<form:hidden path="kyDanhGia" />
 													<form:hidden path="phongBan" />
-													<form:hidden path="nhanVienDanhGia"/>
-													<form:hidden path="nhanVien"/>
+													<form:hidden path="nhanVienDanhGia.maNhanVien" />
+													<form:hidden path="nhanVien.maNhanVien" />
 													<div class="form-group row">
 														<label class="col-md-3 label-control">Tên nhân
 															viên</label>
 														<div class="col-md-9">
-															<h3>${danhGia.nhanVien }</h3>
+															<h3>${danhGia.nhanVien.tenNhanVien }</h3>
 														</div>
 													</div>
 													<div class="form-group row">
@@ -183,9 +183,6 @@
 													<a
 														href="<c:url value="/quantridanhgia/nhanvien/danhgianhanvien"/>"
 														class="btn btn-danger btn-min-width mr-1 mb-1">Trở về</a>
-													<button type="submit"
-														formaction="<c:url value="/quantridanhgia/nhanvien/danhgianhanvien/draft"/>"
-														class="btn btn-info btn-min-width mr-1 mb-1">Lưu nháp</button>
 													<button type="submit"
 														formaction="<c:url value="/quantridanhgia/nhanvien/danhgianhanvien/submit"/>"
 														class="btn btn-info btn-min-width mr-1 mb-1">Đánh

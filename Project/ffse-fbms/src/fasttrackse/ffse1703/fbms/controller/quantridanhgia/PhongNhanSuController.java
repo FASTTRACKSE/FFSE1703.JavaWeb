@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.DanhGiaNhanVien;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.KyDanhGia;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.LichDanhGia;
+import fasttrackse.ffse1703.fbms.entity.security.PhongBan;
 import fasttrackse.ffse1703.fbms.service.quantridanhgia.PhongNhanSuService;
 import fasttrackse.ffse1703.fbms.service.security.PhongBanService;
 
@@ -23,11 +24,7 @@ public class PhongNhanSuController {
 
 	private int maxItems = 3;
 
-	private int currentPageKy = 1;
-
-	private int currentPageLich = 1;
-
-	private int currentPageDanhGia = 1;
+	private int currentPage = 1;
 
 	private PhongBanService phongBanService;
 
@@ -47,9 +44,9 @@ public class PhongNhanSuController {
 	@RequestMapping("/kydanhgia")
 	private String redirectListKyDanhgia(HttpSession session) {
 		if (session.getAttribute("pageKy") != null) {
-			currentPageKy = (int) session.getAttribute("pageKy");
+			currentPage = (int) session.getAttribute("pageKy");
 		}
-		return "redirect:/quantridanhgia/phongnhansu/kydanhgia/" + currentPageKy;
+		return "redirect:/quantridanhgia/phongnhansu/kydanhgia/" + currentPage;
 	}
 
 	@RequestMapping("/kydanhgia/{page}")
@@ -90,9 +87,9 @@ public class PhongNhanSuController {
 	@RequestMapping("/lichdanhgia")
 	private String redirectListLichDanhgia(HttpSession session) {
 		if (session.getAttribute("pageLich") != null) {
-			currentPageLich = (int) session.getAttribute("pageLich");
+			currentPage = (int) session.getAttribute("pageLich");
 		}
-		return "redirect:/quantridanhgia/phongnhansu/lichdanhgia/" + currentPageLich;
+		return "redirect:/quantridanhgia/phongnhansu/lichdanhgia/" + currentPage;
 	}
 
 	@RequestMapping("/lichdanhgia/{page}")
@@ -118,8 +115,8 @@ public class PhongNhanSuController {
 	@RequestMapping("/lichdanhgia/start/{id}")
 	private String activeLichDanhgia(RedirectAttributes model, @PathVariable int id) {
 		LichDanhGia lich = service.getLichDanhGia(id);
-		String phongBan = lich.getPhongBan();
-		if (service.checkActiveLichDanhGia(phongBan) < 1) {
+		PhongBan phongBan = lich.getPhongBan();
+		if (service.checkActiveLichDanhGia(phongBan.getMaPhongBan()) < 1) {
 			lich.setIsActive(1);
 			service.activeLichDanhGia(lich);
 		} else {
@@ -131,8 +128,9 @@ public class PhongNhanSuController {
 	@RequestMapping("/lichdanhgia/end/{id}")
 	private String deactiveLichDanhgia(Model model, @PathVariable int id) {
 		LichDanhGia lich = service.getLichDanhGia(id);
-		String phongBan = lich.getPhongBan();
-		if (service.countDanhGiaPhongBan(phongBan) == service.countNhanVienPhongBan(phongBan)) {
+		PhongBan phongBan = lich.getPhongBan();
+		if (service.countDanhGiaPhongBan(phongBan.getMaPhongBan()) == service
+				.countNhanVienPhongBan(phongBan.getMaPhongBan())) {
 			lich.setIsActive(2);
 			service.activeLichDanhGia(lich);
 		}
@@ -142,9 +140,9 @@ public class PhongNhanSuController {
 	@RequestMapping("/danhsachdanhgia")
 	private String redirectListDanhgiaBanThan(HttpSession session) {
 		if (session.getAttribute("pageKy") != null) {
-			currentPageDanhGia = (int) session.getAttribute("pageDanhGia");
+			currentPage = (int) session.getAttribute("pageDanhGia");
 		}
-		return "redirect:/quantridanhgia/phongnhansu/danhsachdanhgia/" + currentPageDanhGia;
+		return "redirect:/quantridanhgia/phongnhansu/danhsachdanhgia/" + currentPage;
 	}
 
 	@RequestMapping("/danhsachdanhgia/{page}")

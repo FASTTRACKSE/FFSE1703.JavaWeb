@@ -25,7 +25,8 @@
 			<div class="card">
 				<div class="card-content">
 					<div class="card-body" style="margin: 1em">
-						<form:form cssClass="form" action="/ffse-fbms/quantridanhgia/phongnhansu/lichdanhgia/create">
+						<form:form cssClass="form"
+							action="/ffse-fbms/quantridanhgia/phongnhansu/lichdanhgia/create">
 							<div class="form-body">
 								<h4 class="form-section">
 									<i class="fa fa-plus"></i>Tạo danh sách đánh giá
@@ -34,7 +35,7 @@
 									<div class="col-md-4">
 										<div class="form-group">
 											<label for="projectinput1">Kỳ đánh giá</label>
-											<form:select path="kyDanhGia" cssClass="form-control">
+											<form:select path="kyDanhGia.maKy" cssClass="form-control">
 												<form:option value="">Chọn kỳ đánh giá</form:option>
 												<c:forEach items="${listKyDanhGia }" var="x">
 													<form:option value="${x.maKy }" label="${x.tenKy}"></form:option>
@@ -45,7 +46,8 @@
 									<div class="col-md-4">
 										<div class="form-group">
 											<label for="projectinput2">Phòng ban</label>
-											<form:select path="phongBan" cssClass="form-control">
+											<form:select path="phongBan.maPhongBan"
+												cssClass="form-control">
 												<form:option value="">Chọn phòng ban</form:option>
 												<c:forEach items="${listPhongBan }" var="x">
 													<form:option value="${x.maPhongBan }"
@@ -89,8 +91,8 @@
 										<c:forEach items="${listLichDanhGia}" var="x" varStatus="stt">
 											<tr>
 												<th scope="row">${stt.index+1}</th>
-												<td>${x.kyDanhGia }</td>
-												<td>${x.phongBan }</td>
+												<td>${x.kyDanhGia.tenKy }</td>
+												<td>${x.phongBan.tenPhongBan }</td>
 												<td><c:if test="${x.isActive == 0 }">Chưa bắt đầu</c:if>
 													<c:if test="${x.isActive == 1 }">Đã bắt đầu</c:if> <c:if
 														test="${x.isActive == 2 }">Đã kết thúc</c:if></td>
@@ -115,13 +117,13 @@
 										<li class="page-item prev"><a
 											href="<c:url value="/quantridanhgia/phongnhansu/lichdanhgia/${pageLich-1 }" />"
 											class="page-link">Prev</a></li>
-											<li class="page-item prev"><a
+										<li class="page-item prev"><a
 											href="<c:url value="/quantridanhgia/phongnhansu/lichdanhgia/${pageLich-1 }" />"
 											class="page-link">${pageLich-1 }</a></li>
 									</c:if>
 									<li class="page-item active"><a href="#" class="page-link">${pageLich}</a></li>
 									<c:if test="${pageLich < total }">
-									<li class="page-item next"><a
+										<li class="page-item next"><a
 											href="<c:url value="/quantridanhgia/phongnhansu/lichdanhgia/${pageLich+1 }" />"
 											class="page-link">${pageLich+1 }</a></li>
 										<li class="page-item next"><a

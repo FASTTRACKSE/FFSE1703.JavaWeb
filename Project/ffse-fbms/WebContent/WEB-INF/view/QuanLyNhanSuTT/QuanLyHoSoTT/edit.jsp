@@ -235,6 +235,7 @@
 															<label for="location1"><spring:message code="label.trangThai" /></label>
 															<form:select class="custom-select form-control"
 																path="trangThai">
+																<option value="none" selected="selected"><spring:message code="label.chonTrangThai" /></option>
 																<form:option value="1"><spring:message code="label.dangLamViec" /></form:option>
 																<form:option value="2"><spring:message code="label.daNghiViec" /></form:option>
 															</form:select>

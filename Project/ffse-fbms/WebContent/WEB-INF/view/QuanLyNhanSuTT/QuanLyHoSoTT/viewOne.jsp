@@ -3,6 +3,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -26,10 +27,11 @@ html, body, h1, h2, h3, h4, h5, h6 {
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/home" />'>Home</a></li>
+								href='<c:url value="/home" />'><spring:message
+										code="label.trangChu" /></a></li>
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/quanlynhansutt/ho_so/" />'>Danh sách
-									nhân viên</a></li>
+								href='<c:url value="/quanlynhansutt/ho_so/" />'><spring:message
+										code="label.danhSachNhanVien" /></a></li>
 							<li class="breadcrumb-item active"><a
 								href='<c:url value="/quanlynhansutt/ho_so/view/${maNhanVien}" />'>xem
 									thông tin nhân viên</a></li>
@@ -146,29 +148,29 @@ html, body, h1, h2, h3, h4, h5, h6 {
 									<tr>
 										<td><h6>
 												<i
-													class="fa fa-eyedropper fa-fw w3-margin-right w3-text-teal"></i>Tên
-												Bằng Cấp:
+													class="fa fa-eyedropper fa-fw w3-margin-right w3-text-teal"></i><spring:message
+										code="label.tenBangCap" />
 											</h6></td>
 										<td style="text-align: right">${x.tenBangCap}</td>
 									</tr>
 									<tr>
 										<td><h6>
-												<i class="ft-activity fa-fw w3-margin-right w3-text-teal"></i>Loại
-												Bằng Cấp:
+												<i class="ft-activity fa-fw w3-margin-right w3-text-teal"></i><spring:message
+										code="label.loaiBangCap" />
 											</h6></td>
 										<td style="text-align: right">${x.loaiBangCap}</td>
 									</tr>
 									<tr>
 										<td><h6>
-												<i class="fa fa-home fa-fw w3-margin-right w3-text-teal"></i>Nơi
-												Cấp:
+												<i class="fa fa-home fa-fw w3-margin-right w3-text-teal"></i><spring:message
+										code="label.noiCap" />
 											</h6></td>
 										<td style="text-align: right">${x.noiCap}</td>
 									</tr>
 									<tr>
 										<td><h6>
-												<i class="fa fa-calendar fa-fw w3-margin-right w3-text-teal"></i>Ngày
-												Cấp:
+												<i class="fa fa-calendar fa-fw w3-margin-right w3-text-teal"></i><spring:message
+										code="label.ngayCap" />
 											</h6></td>
 										<td style="text-align: right">${x.ngayCap}</td>
 									</tr>
@@ -193,7 +195,8 @@ html, body, h1, h2, h3, h4, h5, h6 {
 										<td><h6>
 												<i
 													class="fa fa-eyedropper fa-fw w3-margin-right w3-text-teal"></i>
-												Họ Và Tên:
+												<spring:message
+										code="label.hoTen" />
 											</h6></td>
 										<td style="text-align: right">${x.hoTen}</td>
 									</tr>
@@ -207,26 +210,31 @@ html, body, h1, h2, h3, h4, h5, h6 {
 									<tr>
 										<td><h6>
 												<i class="fa fa-calendar fa-fw w3-margin-right w3-text-teal"></i>
-												Năm Sinh:
+												<spring:message
+										code="label.ngaySinh" />
 											</h6></td>
 										<td style="text-align: right">${x.namSinh}</td>
 									</tr>
 									<tr>
 										<td><h6>
 												<i class="icon-users fa-fw w3-margin-right w3-text-teal"></i>
-												Giới Tính:
+												<spring:message
+										code="label.gioiTinh" />
 											</h6></td>
 										<c:if test="${x.gioiTinh == 1}">
-											<td style="text-align: right">NAM</td>
+											<td style="text-align: right"><spring:message
+										code="label.nam" /></td>
 										</c:if>
 										<c:if test="${x.gioiTinh == 2}">
-											<td style="text-align: right">NỮ</td>
+											<td style="text-align: right"><spring:message
+										code="label.nu" /></td>
 										</c:if>
 									</tr>
 									<tr>
 										<td><h6>
 												<i class="icon-screen-smartphone fa-fw w3-margin-right w3-text-teal"></i>
-												Số Điện Thoại:
+												<spring:message
+										code="label.sdt" />
 											</h6></td>
 										<td style="text-align: right">${x.soDienThoai}</td>
 									</tr>

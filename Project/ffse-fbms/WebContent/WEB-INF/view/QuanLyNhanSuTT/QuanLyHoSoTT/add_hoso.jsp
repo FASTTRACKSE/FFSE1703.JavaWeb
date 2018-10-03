@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 
 <div class="app-content content container-fluid">
@@ -15,10 +16,9 @@
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/home" />'>Trang chủ</a></li>
+								href='<c:url value="/home" />'><spring:message code="label.trangChu" /></a></li>
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/quanlynhansutt/ho_so/" />'>Danh sách
-									nhân viên</a></li>
+								href='<c:url value="/quanlynhansutt/ho_so/" />'><spring:message code="label.danhSachNhanVien" /></a></li>
 							<li class="breadcrumb-item active">Thêm nhân viên</li>
 						</ol>
 					</div>
@@ -54,14 +54,14 @@
 												<div class="col-md-8">
 													<div class="row">
 														<div class="form-group col-sm-6">
-															<label>tên nhân viên</label>
+															<label><spring:message code="label.ten" /></label>
 															<form:input class="form-control" path="tenNhanVien"
 																placeholder="tên nhân viên" />
 															<form:errors path="tenNhanVien"
 																	cssClass="invalid-feedback d-block" />
 														</div>
 														<div class="form-group col-sm-6">
-															<label>năm sinh</label>
+															<label><spring:message code="label.ngaySinh" /></label>
 															<form:input class="form-control" path="namSinh"
 																placeholder="năm sinh" />
 															<form:errors path="namSinh"
@@ -71,23 +71,22 @@
 													<div class="row">
 													  <div class="form-group col-sm-6">
 															<div class="form-group">
-																<label>giới tính</label>
+																<label><spring:message code="label.gioiTinh" /></label>
 																<form:select class="custom-select form-control"
 																	path="gioiTinh">
-																	<option value="none">Chọn</option>
-																	<form:option value="1">Nam</form:option>
-																	<form:option value="2">Nữ</form:option>
+																	<option value="none"><spring:message code="label.chonGioiTinh" /></option>
+																	<form:option value="1"><spring:message code="label.nam" /></form:option>
+																	<form:option value="2"><spring:message code="label.nu" /></form:option>
 																</form:select>
 																<form:errors path="gioiTinh"
 																	cssClass="invalid-feedback d-block" />
 															</div>
 														</div>
 														<div class="form-group col-sm-6">
-															<label for="projectinput2">Tình trạng hôn nhân</label>
+															<label for="projectinput2"><spring:message code="label.tinhTrangHonNhan" /></label>
 															<form:select path="tinhTrangHonNhan.maTinhTrangHonNhan" type="text"
 																id="projectinput2" class="form-control">
-																<option value="none" selected="selected">Chọn
-																	tình trạng hôn nhân</option>
+																<option value="none" selected="selected"><spring:message code="label.chonTinhTrang" /></option>
 																<c:forEach items="${listTrangTrangHonNhan}" var="x">
 																	<option value="${x.maTinhTrangHonNhan}">${x.tinhTrangHonNhan}</option>
 																</c:forEach>
@@ -100,7 +99,7 @@
 													<div class="row">
 														<div class="form-group col-sm-6">
 															<div class="form-group">
-																<label for="projectinput4">Số CMND</label>
+																<label for="projectinput4"><spring:message code="label.soCMND" /></label>
 																<form:input path="soCmnd" type="text" id="projectinput4"
 																	class="form-control" placeholder="Số CMND" />
 																	<form:errors path="soCmnd"
@@ -109,7 +108,7 @@
 														</div>
 														<div class="form-group col-sm-6">
 
-															<label for="projectinput4">Nơi cấp</label>
+															<label for="projectinput4"><spring:message code="label.noiCap" /></label>
 															<form:input path="noiCap" type="text" id="projectinput4"
 																class="form-control" placeholder="Nơi cấp" />
 																<form:errors path="noiCap"
@@ -118,7 +117,7 @@
 													</div>
 													<div class="row">
 														<div class="form-group col-sm-6">
-															<label for="projectinput4">Ngày cấp</label>
+															<label for="projectinput4"><spring:message code="label.ngayCap" /></label>
 															<fieldset class="form-group position-relative">
 																<form:input placeholder="Ngày cấp" type="date"
 																		class="form-control round" path="ngayCap" />
@@ -131,7 +130,7 @@
 														</div>
 														<div class="form-group col-sm-6">
 															<div class="form-group">
-																<label for="projectinput4">Dân tộc</label>
+																<label for="projectinput4"><spring:message code="label.danToc" /></label>
 																<form:select path="danToc.maDanToc" type="text"
 																	id="projectinput4" class="form-control">
 																	<option value="none" selected="selected">Chọn
@@ -172,7 +171,7 @@
 												<div class="col-md-8">
 													<div class="row">
 														<div class="form-group col-sm-6">
-															<label>số điện thoại</label>
+															<label><spring:message code="label.sdt" /></label>
 															<form:input class="form-control" path="soDienThoai"
 																placeholder="số điện thoại" />
 																<form:errors path="soDienThoai"
@@ -188,11 +187,10 @@
 													</div>
 													<div class="row">
 														<div class="form-group col-sm-6">
-															<label>tỉnh, thành phố</label>
+															<label><spring:message code="label.thanhPho" /></label>
 															<form:select path="thanhPho.maThanhPho" type="text" id="thanhPhoId"
 																class="form-control" onchange="clickComboboxThanhPho()">
-																<option value="noThanhPho" selected="selected">Chọn
-																	thành phố</option>
+																<option value="noThanhPho" selected="selected"><spring:message code="label.chonThanhPho" /></option>
 																<c:forEach items="${listThanhPho}" var="x">
 																	<option value="${x.maThanhPho}">${x.tenThanhPho}</option>
 																</c:forEach>
@@ -201,12 +199,11 @@
 																	cssClass="invalid-feedback d-block" />
 														</div>
 														<div class="form-group col-sm-6">
-															<label>quận, huyện</label>
+															<label><spring:message code="label.quanHuyen" /></label>
 															<form:select path="quanHuyen.maQuanHuyen" id="quanHuyenId"
 																type="text" class="form-control" disabled="true"
 																onchange="clickComboboxQuan()" name="quanHuyen">
-																<option value="noQuanHuyen" selected="selected">Chọn
-																	quận huyện</option>
+																<option value="noQuanHuyen" selected="selected"><spring:message code="label.chonQuanHuyen" /></option>
 															</form:select>
 																<form:errors path="quanHuyen.maQuanHuyen"
 																	cssClass="invalid-feedback d-block" />
@@ -216,13 +213,12 @@
 													<div class="row">
 
 														<div class="form-group col-sm-6">
-															<label>xã, phường</label>
+															<label><spring:message code="label.phuongXa" /></label>
 
 															<form:select path="xaPhuong.maXa" type="text" id="phuongXaId"
 																class="form-control" name="phuongXaSelect"
 																disabled="true">
-																<option value="noPhuongXa" selected="selected">Chọn
-																	xã, phường</option>
+																<option value="noPhuongXa" selected="selected"><spring:message code="label.chonPhuongXa" /></option>
 
 															</form:select>
 															<form:errors path="xaPhuong.maXa"
@@ -247,10 +243,10 @@
 												<div class="col-md-8">
 													<div class="row">
 														<div class="form-group col-sm-6">
-															<label>phòng ban</label>
+															<label><spring:message code="label.phongBan" /></label>
 															<form:select path="phongBan.maPhongBan" type="text" id="companyName"
 																class="form-control" name="phongBanSelect">
-																<option value="none" selected>Chọn Phòng ban</option>
+																<option value="none" selected><spring:message code="label.chonPhongBan" /></option>
 																<c:forEach items="${listPhongBan}" var="x">
 																	<option value="${x.maPhongBan}">${x.tenPhongBan}</option>
 																</c:forEach>
@@ -259,12 +255,11 @@
 																	cssClass="invalid-feedback d-block" />
 														</div>
 														<div class="form-group col-sm-6">
-															<label>chức danh</label>
+															<label><spring:message code="label.chucDanh" /></label>
 															<form:select path="chucDanh.maChucDanh" type="text"
 																id="companyName" class="form-control"
 																placeholder="Company Name" name="chucDanhSelect">
-																<option value="none" selected="selected">Chọn
-																	chức danh</option>
+																<option value="none" selected="selected"><spring:message code="label.chonChucDanh" /></option>
 																<c:forEach items="${listChucDanh}" var="x">
 																	<option value="${x.maChucDanh}">${x.tenChucDanh}</option>
 																</c:forEach>
@@ -275,21 +270,18 @@
 													</div>
 													<div class="row">
 														<div class="form-group col-sm-6">
-															<label for="location1">Trạng Thái</label>
+															<label for="location1"><spring:message code="label.trangThai" /></label>
 															<form:select class="custom-select form-control"
 																path="trangThai">
-																<option value="none" selected="selected">Chọn
-																Trạng Thái</option>
-																<form:option value="1">Còn
-																		Làm Việc</form:option>
-																<form:option value="2">Hết
-																		Làm Việc</form:option>
+																<option value="none" selected="selected"><spring:message code="label.chonTrangThai" /></option>
+																<form:option value="1"><spring:message code="label.dangLamViec" /></form:option>
+																<form:option value="2"><spring:message code="label.daNghiViec" /></form:option>
 															</form:select>
 															<form:errors path="trangThai"
 																	cssClass="invalid-feedback d-block" />
 														</div>
 														<div class="form-group col-sm-6">
-															<label>Hình Ảnh:</label> <input id="imgUrl"
+															<label>Avatar:</label> <input id="imgUrl"
 																class="form-control" type="file" name="file" /> <br>
 															<img id="img" src="#" alt="your image" width="100"
 																height="150" />

@@ -450,23 +450,5 @@
 						class="ft-octagon"></i><span data-i18n="" class="menu-title">Icon</span></a></li>
 				<li><hr /></li>
 			</ul>
-
-			<ul id="main-menu-navigation" data-menu="menu-navigation"
-				class="navigation navigation-main">
-				<!-- Quản trị tài liệu của Chương -->
-				<li class=" navigation-header"><span>Quản Trị Tài Liệu </span><i
-					data-toggle="tooltip" data-placement="right"
-					data-original-title="Chương" class=" ft-minus"></i></li>
-				<li class=" nav-item"><a
-					href="<c:url value = "/QuanTriTaiLieu/DanhMuc/"/>"><i
-						class="ft-bookmark"></i><span data-i18n="" class="menu-title">Quản
-							Lý Danh Mục</span></a></li>
-				<li class=" nav-item"><a
-					href="<c:url value = "/QuanTriTaiLieu/TaiLieu/"/>"><i
-						class="ft-file-text"></i><span data-i18n="" class="menu-title">Quản
-							Lý Tài Liệu</span></a></li>
-				<li><hr /></li>
-			</ul>
-
 		</div>
 	</div>

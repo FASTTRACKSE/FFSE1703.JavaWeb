@@ -35,11 +35,13 @@
 				<b>${project.nameProject }</b>
 			</h2>
 		</div>
-		<a style="float: right; margin: 0px 20px 20px 0px"
-			class="btn btn-outline-warning btn-min-width mr-1 mb-1"
-			href="<c:url value="/mvpquanliduan/project/show-form-edit/${project.idProject}" />"
-			title=""><i class="ft-edit"> Chỉnh sửa Dự án</i></a> <a
-			style="float: right; margin: 0px 10px 10px 0px"
+
+		 <input ${disable }
+			class="btn btn-outline-warning btn-min-width mr-1 mb-1 ft-edit"
+			style="float: right; margin: 0px 20px 20px 0px" type="button"
+			value=" Chỉnh sửa Dự án"
+			onclick="location.href='<c:url value="/mvpquanliduan/project/show-form-edit/${project.idProject}"/>'">
+		<a style="float: right; margin: 0px 10px 10px 0px"
 			class="btn btn-outline-info square btn-min-width mr-1 mb-1"
 			href="<c:url value="/mvpquanliduan/nhiemvu/list-nhiemvu/${project.idProject}/1" />"
 			title=""><i class="icon-user"> Thành viên dự án</i></a> <br>
@@ -104,7 +106,9 @@
 							</tr>
 							<tr>
 								<th>Tình trạng</th>
-								<td style="color: ${project.status.color}"><h4><b>${project.status.nameStatus}</b></h4></td>
+								<td style="color: ${project.status.color}"><h4>
+										<b>${project.status.nameStatus}</b>
+									</h4></td>
 							</tr>
 							<tr>
 								<th colspan="2" style="text-align: center; background: #7AC5CD"><h3>Công

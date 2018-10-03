@@ -32,4 +32,6 @@ public interface QLyNhiemVuService {
 	public List<QLyNhiemVuEntity> findAll(Integer offset, Integer maxResult, String seach);
 
 	public String toJson(List<QLyNhiemVuEntity> list);
+	
+	public List<QLyNhiemVuEntity> searchAll(String search);
 }

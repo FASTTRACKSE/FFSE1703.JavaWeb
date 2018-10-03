@@ -79,7 +79,7 @@
 					<button type="button" class="close" data-dismiss="alert">
 						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 					</button>
-					${messageSuccess}
+					<spring:message code="label.luuthanhcongnhiemvu"/>
 				</div>
 			</c:if>
 		
@@ -152,12 +152,12 @@
 								</script>
 							<div class="form-group col-sm-2">
 							  
-						<button class="btn btn-success" style="margin-top: 27px; width : 130px ;height: 40px"><i class="ft-search"></i> <b> <spring:message code="label.timkiemnhiemvu"/></b></button>
+						<button class="btn btn-primary" style="margin-top: 27px; width : 130px ;height: 40px"><i class="ft-search"></i> <b> <spring:message code="label.timkiemnhiemvu"/></b></button>
 							</div>
 							</form:form>
 									<table id="datatable" class="table ">
 										<thead class="thead-dark">
-											<tr style="background-color: #2A2E30; border-color: black; color: #F5F7FA;">
+											<tr style="background-color: #00B5B8 ; border-color: black; color: #F5F7FA;">
 												<th scope="col">STT</th>
 												<th scope="col"><spring:message code="label.duannhiemvu"/></th>
 												<th scope="col"><spring:message code="label.tencongviec"/></th>

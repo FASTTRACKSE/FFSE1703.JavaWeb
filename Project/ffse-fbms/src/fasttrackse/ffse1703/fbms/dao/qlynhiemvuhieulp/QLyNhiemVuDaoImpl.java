@@ -18,6 +18,7 @@ import fasttrackse.ffse1703.fbms.entity.qlynhiemvuhieulp.LoaitrangthaiEntity;
 import fasttrackse.ffse1703.fbms.entity.qlynhiemvuhieulp.QLyNhiemVuEntity;
 
 @Repository
+@Transactional
 public class QLyNhiemVuDaoImpl implements QLyNhiemVuDao {
 
 	@Autowired
@@ -32,7 +33,6 @@ public class QLyNhiemVuDaoImpl implements QLyNhiemVuDao {
 	}
 
 	@Override
-	@Transactional
 	@SuppressWarnings("unchecked")
 	public List<QLyNhiemVuEntity> getAll() {
 		Session session = sessionFactory.getCurrentSession();
@@ -116,6 +116,14 @@ public class QLyNhiemVuDaoImpl implements QLyNhiemVuDao {
 		// search = " and duAn.maDuan = ??? and nhanVien.maNhanVien = ??? and idLoaiTrangthai.IDtrangthai = ???"
 		//System.err.println(search);
 		List<QLyNhiemVuEntity> nhiemvuhlp = session.createQuery("from QLyNhiemVuEntity where isDelete = 1 " + search).setFirstResult(offset).setMaxResults(maxResult).list();
+		return nhiemvuhlp;
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<QLyNhiemVuEntity> searchAll(String search) {
+		Session session = sessionFactory.getCurrentSession();
+		List<QLyNhiemVuEntity> nhiemvuhlp = session.createQuery("from QLyNhiemVuEntity where isDelete = 1 " + search).list();
 		return nhiemvuhlp;
 	}
 

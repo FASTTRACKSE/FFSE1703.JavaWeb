@@ -467,5 +467,23 @@
 							Nhiệm vụ</span></a></li>
 				<li><hr /></li>
 			</ul>
+			
+			<!-- Quản lý nhiệm vụ của HieuLP -->
+			<ul id="main-menu-navigation" data-menu="menu-navigation"
+				class="navigation navigation-main">
+				<li class=" navigation-header"><span>HieuLP-Quản lý
+						nhiệm vụ </span><i data-toggle="tooltip" data-placement="right"
+					data-original-title="" class=" ft-layers"></i></li>
+				<li class=" nav-item"><a
+					href="<c:url value = "/HieuLP/"/>"><i
+						class="ft-bookmark"></i><span data-i18n="" class="menu-title">Quản
+							Lý Nhiệm Vụ</span></a></li>
+				<li class=" nav-item"><a
+					href="<c:url value = "/HieuLP/calender"/>"><i
+						class="ft-plus-square"></i><span data-i18n="" class="menu-title">Calendar
+							</span></a></li>
+				<li><hr /></li>
+			</ul>
+			
 		</div>
 	</div>

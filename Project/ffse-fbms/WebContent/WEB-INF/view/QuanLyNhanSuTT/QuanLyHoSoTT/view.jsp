@@ -10,15 +10,18 @@
 		<!-- Path -->
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">Thông Tin Nhân Viên</h3>
+				<h3 class="content-header-title mb-0">
+					<spring:message code="label.thongTinHoSo" />
+				</h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/home" />'>Home</a></li>
+								href='<c:url value="/home" />'><spring:message
+										code="label.trangChu" /></a></li>
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/quanlynhansutt/ho_so/" />'>Danh sách
-									nhân viên</a></li>
+								href='<c:url value="/quanlynhansutt/ho_so/" />'><spring:message
+										code="label.danhSachNhanVien" /></a></li>
 							<li class="breadcrumb-item active">xem thông tin nhân viên</li>
 						</ol>
 					</div>
@@ -99,21 +102,21 @@ i.fa {
 													<div class="form-body">
 														<div class="row">
 															<div class="col-md-8">
-															<div class="row">
-																<div class="form-group col-sm-6">
-																<img
-																		src="<c:url value="/uploads/${formHoso.anhDaiDien}" />"
-																		width="150" height="200">
-																</div>
+																<div class="row">
+																	<div class="form-group col-sm-6">
+																		<img
+																			src="<c:url value="/uploads/${formHoso.anhDaiDien}" />"
+																			width="150" height="200">
+																	</div>
 																</div>
 																<div class="row">
 																	<div class="form-group col-sm-6">
-																		<label>mã nhân viên</label>
+																		<label><spring:message code="label.maNhanVien" /></label>
 																		<form:input class="form-control" path="maNhanVien"
 																			placeholder="mã nhân viên" readonly="true" />
 																	</div>
 																	<div class="form-group col-sm-6">
-																		<label>tên nhân viên</label>
+																		<label><spring:message code="label.ten" /></label>
 																		<form:input class="form-control" path="tenNhanVien"
 																			placeholder="tên nhân viên" readonly="true" />
 																	</div>
@@ -123,17 +126,23 @@ i.fa {
 																<div class="row">
 																	<div class="form-group col-sm-6">
 																		<div class="form-group">
-																			<label>giới tính</label>
+																			<label><spring:message code="label.gioiTinh" /></label>
 																			<form:select class="custom-select form-control"
 																				path="gioiTinh" readonly="true">
-																				<option value="none">Chọn</option>
-																				<form:option value="1">Nam</form:option>
-																				<form:option value="2">Nữ</form:option>
+																				<option value="none"><spring:message
+																						code="label.chonGioiTinh" /></option>
+																				<form:option value="1">
+																					<spring:message code="label.nam" />
+																				</form:option>
+																				<form:option value="2">
+																					<spring:message code="label.nu" />
+																				</form:option>
 																			</form:select>
 																		</div>
 																	</div>
 																	<div class="form-group col-sm-6">
-																		<label for="projectinput2">Tình trạng hôn nhân</label>
+																		<label for="projectinput2"><spring:message
+																				code="label.tinhTrangHonNhan" /></label>
 																		<form:input class="form-control"
 																			path="tinhTrangHonNhan.tinhTrangHonNhan"
 																			readonly="true" />
@@ -143,14 +152,16 @@ i.fa {
 																<div class="row">
 																	<div class="form-group col-sm-6">
 																		<div class="form-group">
-																			<label for="projectinput4">Số CMND</label>
+																			<label for="projectinput4"><spring:message
+																					code="label.soCMND" /></label>
 																			<form:input path="soCmnd" type="text"
 																				id="projectinput4" class="form-control"
 																				placeholder="Số CMND" readonly="true" />
 																		</div>
 																	</div>
 																	<div class="form-group col-sm-6">
-																		<label for="projectinput4">Nơi cấp</label>
+																		<label for="projectinput4"><spring:message
+																				code="label.noiCap" /></label>
 																		<form:input path="noiCap" type="text"
 																			id="projectinput4" class="form-control"
 																			placeholder="Nơi cấp" readonly="true" />
@@ -159,7 +170,8 @@ i.fa {
 
 																<div class="row">
 																	<div class="form-group col-sm-6">
-																		<label for="projectinput4">Ngày cấp</label>
+																		<label for="projectinput4"><spring:message
+																				code="label.ngayCap" /></label>
 																		<fieldset class="form-group position-relative">
 																			<form:input placeholder="Ngày cấp" type="date"
 																				class="form-control" path="ngayCap" readonly="true" />
@@ -168,7 +180,8 @@ i.fa {
 																	</div>
 																	<div class="form-group col-sm-6">
 																		<div class="form-group">
-																			<label for="projectinput4">Dân tộc</label>
+																			<label for="projectinput4"><spring:message
+																					code="label.danToc" /></label>
 																			<form:select path="danToc.maDanToc" type="text"
 																				id="projectinput4" class="form-control"
 																				readonly="true">
@@ -192,7 +205,7 @@ i.fa {
 																		</form:select>
 																	</div>
 																	<div class="form-group col-sm-6">
-																		<label>năm sinh</label>
+																		<label><spring:message code="label.ngaySinh" /></label>
 																		<form:input class="form-control" path="namSinh"
 																			placeholder="năm sinh" readonly="true" />
 
@@ -202,7 +215,7 @@ i.fa {
 
 																<div class="row">
 																	<div class="form-group col-sm-6">
-																		<label>số điện thoại</label>
+																		<label><spring:message code="label.sdt" /></label>
 																		<form:input class="form-control" path="soDienThoai"
 																			placeholder="số điện thoại" readonly="true" />
 																	</div>
@@ -214,12 +227,12 @@ i.fa {
 																</div>
 																<div class="row">
 																	<div class="form-group col-sm-6">
-																		<label>tỉnh, thành phố</label>
+																		<label><spring:message code="label.thanhPho" /></label>
 																		<form:select path="thanhPho.maThanhPho" type="text"
 																			id="thanhPhoId" class="form-control"
 																			onchange="clickComboboxThanhPho()" readonly="true">
-																			<option value="noThanhPho" selected="selected">Chọn
-																				thành phố</option>
+																			<option value="noThanhPho" selected="selected"><spring:message
+																					code="label.chonThanhPho" /></option>
 																			<c:forEach items="${listThanhPho}" var="x">
 																				<form:option value="${x.maThanhPho}">${x.tenThanhPho}</form:option>
 																			</c:forEach>
@@ -231,8 +244,8 @@ i.fa {
 																			id="quanHuyenId" type="text" class="form-control"
 																			disabled="true" onchange="clickComboboxQuan()"
 																			name="quanHuyen" readonly="true">
-																			<option value="noQuanHuyen" selected="selected">Chọn
-																				quận huyện</option>
+																			<option value="noQuanHuyen" selected="selected"><spring:message
+																					code="label.chonQuanHuyen" /></option>
 																		</form:select>
 																	</div>
 																</div>
@@ -268,7 +281,8 @@ i.fa {
 																		<label>chức danh</label>
 																		<form:select path="chucDanh.maChucDanh" type="text"
 																			id="companyName" class="form-control"
-																			placeholder="Company Name" name="chucDanhSelect" readonly="true">
+																			placeholder="Company Name" name="chucDanhSelect"
+																			readonly="true">
 																			<option value="none" selected="selected">Chọn
 																				chức danh</option>
 																			<c:forEach items="${listChucDanh}" var="x">

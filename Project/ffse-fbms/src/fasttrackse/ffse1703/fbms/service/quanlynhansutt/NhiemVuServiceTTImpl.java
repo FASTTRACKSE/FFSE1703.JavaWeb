@@ -13,48 +13,48 @@ import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.NhiemVuTT;
 @Service
 public class NhiemVuServiceTTImpl implements NhiemVuServiceTT {
 	@Autowired
-	private NhiemVuDaoTT nhiemVuDao;
+	private NhiemVuDaoTT nhiemVuDaoTT;
 
 	@Override
 	@Transactional
-	public void add(NhiemVuTT nhiemVu) {
+	public void add(NhiemVuTT nhiemVuTT) {
 		// TODO Auto-generated method stub
-		nhiemVuDao.add(nhiemVu);
+		nhiemVuDaoTT.add(nhiemVuTT);
 	}
 
 	@Override
 	@Transactional
 	public NhiemVuTT getByID(int id) {
 		// TODO Auto-generated method stub
-		return nhiemVuDao.getByID(id);
+		return nhiemVuDaoTT.getByID(id);
 	}
 
 	@Override
 	@Transactional
 	public List<NhiemVuTT> getByDuAn(String idProjects) {
 		// TODO Auto-generated method stub
-		return nhiemVuDao.getByDuAn(idProjects);
+		return nhiemVuDaoTT.getByDuAn(idProjects);
 	}
 
 	@Override
 	@Transactional
-	public void update(NhiemVuTT nhiemVu) {
+	public void update(NhiemVuTT nhiemVuTT) {
 		// TODO Auto-generated method stub
-		nhiemVuDao.update(nhiemVu);
+		nhiemVuDaoTT.update(nhiemVuTT);
 	}
 
 	@Override
 	@Transactional
 	public void delete(int id) {
 		// TODO Auto-generated method stub
-		nhiemVuDao.delete(id);
+		nhiemVuDaoTT.delete(id);
 	}
 
 	@Override
 	@Transactional
 	public List<NhiemVuTT> getByMaNhanVien(int maNhanVien) {
 		// TODO Auto-generated method stub
-		return nhiemVuDao.getByMaNhanVien(maNhanVien);
+		return nhiemVuDaoTT.getByMaNhanVien(maNhanVien);
 	}
 
 }

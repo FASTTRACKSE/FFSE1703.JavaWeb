@@ -450,5 +450,22 @@
 						class="ft-octagon"></i><span data-i18n="" class="menu-title">Icon</span></a></li>
 				<li><hr /></li>
 			</ul>
+
+			<!-- Quản lý nhiệm vụ của MinhHQ -->
+			<ul id="main-menu-navigation" data-menu="menu-navigation"
+				class="navigation navigation-main">
+				<li class=" navigation-header"><span>MinhHQ-Quản lý
+						nhiệm vụ </span><i data-toggle="tooltip" data-placement="right"
+					data-original-title="" class=" ft-minus"></i></li>
+				<li class=" nav-item"><a
+					href="<c:url value = "/QuanLyNhiemVuMinhHQ/"/>"><i
+						class="ft-bookmark"></i><span data-i18n="" class="menu-title">Quản
+							Lý Nhiệm Vụ</span></a></li>
+				<li class=" nav-item"><a
+					href="<c:url value = "/QuanLyNhiemVuMinhHQ/Calendar"/>"><i
+						class="ft-file-text"></i><span data-i18n="" class="menu-title">Calendar
+							Nhiệm vụ</span></a></li>
+				<li><hr /></li>
+			</ul>
 		</div>
 	</div>

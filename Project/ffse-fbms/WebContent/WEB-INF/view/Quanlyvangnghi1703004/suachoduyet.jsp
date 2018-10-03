@@ -17,16 +17,25 @@
 						<div class="form-group col-sm-6">
 							 <form:hidden path="ngayNghi.soNgayDaNghi"/>
 							<form:hidden path="ngayNghi.soNgayConLai"/> 
-							<div>
-								<label><spring:message code="label.madon"/></label>
-								<form:input class="form-control round" path="id" readonly="true" />
-							</div>
+							
+						
+								<form:hidden class="form-control round" path="id" readonly="true" />
+							
 							<div>
 								<label><spring:message code="label.maNhanVien"/></label>
 								<form:select path="ngayNghi.maNhanVien"
 									class="custom-select block round" id="customSelect">
 									<c:forEach items="${hoso}" var="ld">
 										<form:option value="${ld.maNhanVien}" label="${ld.maNhanVien}" />
+									</c:forEach>
+								</form:select>
+							</div>
+							<div>
+								<label><spring:message code="label.hoTen"/></label>
+								<form:select path="tenNhanVien"
+									class="custom-select block round" id="customSelect">
+									<c:forEach items="${hoso}" var="ld">
+										<form:option value="${ld.hoDem}" label="${ld.hoDem}" />
 									</c:forEach>
 								</form:select>
 							</div>

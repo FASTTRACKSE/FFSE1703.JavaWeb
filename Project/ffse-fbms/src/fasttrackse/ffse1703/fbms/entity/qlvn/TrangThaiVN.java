@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "trang_thai")
@@ -15,9 +17,11 @@ public class TrangThaiVN {
 	@Column(name = "id")
    private int id;
 	
+	@NotNull
 	@Column(name = "ma_trang_thai")
 	private int maTrangThai;
 	
+	@NotEmpty
 	@Column(name = "trang_thai")
 	private String trangThai;
 

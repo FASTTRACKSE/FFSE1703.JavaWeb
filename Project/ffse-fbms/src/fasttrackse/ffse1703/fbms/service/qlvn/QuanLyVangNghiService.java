@@ -17,13 +17,13 @@ public interface QuanLyVangNghiService {
 	
 	public List<ThongKeDonXinPhep> findAllForPaging(int startPosition, int maxResult);
 	
-    public List<ThongKeDonXinPhep> findAllForPagingCD(int startPosition, int maxResult);
+    public List<ThongKeDonXinPhep> findAllForPagingCD(int startPosition, int maxResult,String search);
 	
-	public List<ThongKeDonXinPhep> findAllForPagingD(int startPosition, int maxResult);
+	public List<ThongKeDonXinPhep> findAllForPagingD(int startPosition, int maxResult, String search);
 	
 	public List<ThongKeDonXinPhep> findAllForPagingTC(int startPosition, int maxResult);
 	
-	public List<NgayNghi> findAllForPagingNN(int startPosition, int maxResult);
+	public List<NgayNghi> findAllForPagingNN(int startPosition, int maxResult, String search);
 	
 	public long totalRecords();
 	

@@ -34,7 +34,7 @@ public class QuanLyVangNghiDaoIpml implements QuanLyVangNghiDao {
 
 	public List<ThongKeDonXinPhep> danhSachXinNghiDuyet() {
 		Session session = sessionFactory.getCurrentSession();
-		List<ThongKeDonXinPhep> list = session.createQuery("from ThongKeDonXinPhep where trangThai = '3'").getResultList();
+		List<ThongKeDonXinPhep> list = session.createQuery("from ThongKeDonXinPhep where trangThai = '3'" ).getResultList();
 		return list;
 	}
 
@@ -92,8 +92,8 @@ public class QuanLyVangNghiDaoIpml implements QuanLyVangNghiDao {
 		Session session = this.sessionFactory.getCurrentSession();
 		if (KiemTraNgayNghi(thongKeDonXinPhep) == 0) {
 			session.createSQLQuery(
-					"INSERT INTO `ngay_nghi`(`ma_nhan_vien`,`so_ngay_da_nghi`,`so_ngay_con_lai`) VALUES ('"
-							+ thongKeDonXinPhep.getNgayNghi().getMaNhanVien() + "', '0', '12')")
+					"INSERT INTO `ngay_nghi`(`ma_nhan_vien`,`so_ngay_da_nghi`,`so_ngay_con_lai`,`ten_nhan_vien`) VALUES ('"
+							+ thongKeDonXinPhep.getNgayNghi().getMaNhanVien() + "', '0', '12', '"+ thongKeDonXinPhep.getTenNhanVien() +"')")
 					.executeUpdate();
 		} 
 		session.save(thongKeDonXinPhep);
@@ -105,8 +105,8 @@ public class QuanLyVangNghiDaoIpml implements QuanLyVangNghiDao {
 		Session session = this.sessionFactory.getCurrentSession();
 		if (KiemTraNgayNghi(thongKeDonXinPhep) == 0) {
 			session.createSQLQuery(
-					"INSERT INTO `ngay_nghi`(`ma_nhan_vien`,`so_ngay_da_nghi`,`so_ngay_con_lai`) VALUES ('"
-							+ thongKeDonXinPhep.getNgayNghi().getMaNhanVien() + "', '0', '12')")
+					"INSERT INTO `ngay_nghi`(`ma_nhan_vien`,`so_ngay_da_nghi`,`so_ngay_con_lai`,`ten_nhan_vien`) VALUES ('"
+							+ thongKeDonXinPhep.getNgayNghi().getMaNhanVien() + "', '0', '12', '"+ thongKeDonXinPhep.getTenNhanVien() +"')")
 					.executeUpdate();
 		}
 		session.save(thongKeDonXinPhep);
@@ -142,7 +142,7 @@ public class QuanLyVangNghiDaoIpml implements QuanLyVangNghiDao {
 		if (KiemTraNgayNghi(thongKeDonXinPhep) == 0) {
 			session.createSQLQuery(
 					"INSERT INTO `ngay_nghi`(`ma_nhan_vien`,`so_ngay_da_nghi`,`so_ngay_con_lai`) VALUES ('"
-							+ thongKeDonXinPhep.getNgayNghi().getMaNhanVien() + "', '0', '12')")
+							+ thongKeDonXinPhep.getNgayNghi().getMaNhanVien() + "', '0', '12', '"+ thongKeDonXinPhep.getTenNhanVien() +"')")
 					.executeUpdate();
 		}
 		session.save(thongKeDonXinPhep);
@@ -183,21 +183,21 @@ public class QuanLyVangNghiDaoIpml implements QuanLyVangNghiDao {
 
 	public void deleteDateOff(int maNhanVien) {
 		Session session = this.sessionFactory.getCurrentSession();
-		session.delete(findById(maNhanVien));
+		session.delete(findByIdDateOff(maNhanVien));
 	}
 
-	public List<ThongKeDonXinPhep> findAllForPagingCD(int startPosition, int maxResult) {
+	public List<ThongKeDonXinPhep> findAllForPagingCD(int startPosition, int maxResult, String search) {
 		Session session = this.sessionFactory.getCurrentSession();
-		Query q = session.createQuery("from ThongKeDonXinPhep where trangThai = '2'");
+		Query q = session.createQuery("from ThongKeDonXinPhep where trangThai = '2'" + search);
 		q.setFirstResult(startPosition);
 		q.setMaxResults(maxResult);
 
 		return q.list();
 	}
 
-	public List<ThongKeDonXinPhep> findAllForPagingD(int startPosition, int maxResult) {
+	public List<ThongKeDonXinPhep> findAllForPagingD(int startPosition, int maxResult, String search) {
 		Session session = this.sessionFactory.getCurrentSession();
-		Query q = session.createQuery("from ThongKeDonXinPhep where trangThai = '3'");
+		Query q = session.createQuery("from ThongKeDonXinPhep where trangThai = '3'" + search);
 		q.setFirstResult(startPosition);
 		q.setMaxResults(maxResult);
 
@@ -213,9 +213,9 @@ public class QuanLyVangNghiDaoIpml implements QuanLyVangNghiDao {
 		return q.list();
 	}
 
-	public List<NgayNghi> findAllForPagingNN(int startPosition, int maxResult) {
+	public List<NgayNghi> findAllForPagingNN(int startPosition, int maxResult,String search) {
 		Session session = this.sessionFactory.getCurrentSession();
-		Query q = session.createQuery("from NgayNghi ");
+		Query q = session.createQuery("from NgayNghi " + search);
 		q.setFirstResult(startPosition);
 		q.setMaxResults(maxResult);
 

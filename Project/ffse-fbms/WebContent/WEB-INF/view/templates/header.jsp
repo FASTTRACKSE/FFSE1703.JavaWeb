@@ -332,7 +332,7 @@
 						<ul class="menu-content">
 							<li><a
 								href="<c:url value="/Quanlyvangnghi1703004/danhsachtrangthai"/>"
-								class="menu-item">D<spring:message code="label.danhsachtrangthai" /></a></li>
+								class="menu-item"><spring:message code="label.danhsachtrangthai" /></a></li>
 						</ul></li>
 					
 					<!-- Quản Lý Nhân Sự TT -->

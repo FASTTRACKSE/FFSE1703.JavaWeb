@@ -17,17 +17,19 @@
 							<div>
 								<label><spring:message code="label.madon"/></label>
 								<form:input class="form-control round" path="id" readonly="true" value="" />
-
+								
 							</div>
 
 							<div>
 								<label><spring:message code="label.matrangthai"/></label>
 								<form:input class="form-control round" path="maTrangThai" />
+								<form:errors path="maTrangThai" cssStyle="color: red" ></form:errors> 
 							</div>
 								
 							<div>
 								<label><spring:message code="label.tentrangthai"/></label>
 								<form:input class="form-control round" path="trangThai"  />
+								<form:errors path="trangThai" cssStyle="color: red" ></form:errors> 
 							</div>
 						<br>
 						<div >

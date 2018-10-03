@@ -17,7 +17,16 @@
 							<div>
 								<label><spring:message code="label.maNhanVien"/></label>
 								<form:input class="form-control round" path="maNhanVien" readonly="true" value="" />
+								<form:errors path="maNhanVien" cssStyle="color: red" ></form:errors> 
 
+							</div>
+
+							<div>
+								<label><spring:message code="label.hoTen"/></label>
+								<form:select multiple="single" path="tenNhanVien" class="custom-select block round">
+									<form:options items="${hoso}" itemValue="hoDem" itemLabel="hoDem" />
+								</form:select>
+								<form:errors path="tenNhanVien" cssStyle="color: red" ></form:errors> 
 							</div>
 
 							<div>

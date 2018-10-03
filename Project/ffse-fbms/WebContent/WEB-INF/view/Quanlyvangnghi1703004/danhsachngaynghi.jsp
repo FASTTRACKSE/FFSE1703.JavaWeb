@@ -15,31 +15,83 @@
 		<div class="col-md-5">
 			<h3 class="content-header-title mb-0"><spring:message code="label.danhsachngaynghi"/></h3>
 		</div>
-		</div>
-			<div>
-			<div><a  class="btn btn-outline-success round btn-min-width mr-1 mb-1" href="themmoi"><h4><spring:message code="label.themMoi"/></h4></a></div>
+		</div>	
+			<div >
+			<c:if test="${messageSuccess ne null}">
+				<div class="alert alert-success alert-dismissable" role="alert">
+					<button type="button" class="close" data-dismiss="alert">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					${messageSuccess}
+				</div>
+			</c:if>	
+			<c:if test="${messageError ne null}">
+				<div class="alert alert-danger alert-dismissable" role="alert">
+					<button type="button" class="close" data-dismiss="alert">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					${messageError}
+				</div>
+			</c:if>
+			</div>
 			<div class="container">
+			<div class="col-md-2"><a  class="btn btn-outline-success round btn-min-width mr-1 mb-1" href="themmoi"><h4><spring:message code="label.themMoi"/></h4></a></div>
+			<div class="col-md-6"></div>
+			<div class="col-md-4">
+			<form method="GET" action="">
+				<div class="col-md-6">
+							<div class="form-group">
+								<spring:message code="label.maNhanVien"/> <select name="manhanvien"
+									class="form-control form-control-sm" id="manhanvien">
+									<option value="0" selected="selected">--<spring:message code="label.tatCa" />--</option>
+									<c:forEach items="${ngaynghi}" var="nn">
+										<option value="${nn.maNhanVien}"
+										<c:if test="${maNhaViens == nn.maNhanVien }"> selected="selected"</c:if>
+										>${nn.maNhanVien} </option>
+									</c:forEach>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-6" style="margin-top: 20px">
+							<label></label>
+							<button type="submit" class="btn mr-1 mb-1 btn-success btn-sm">
+								<i class="fa fa-search"></i><spring:message code="label.tim"/>
+							</button></div> 
+						<script type="text/javascript">
+							NhanVien =
+						<%=request.getParameter("manhanvien")%>
+							;
+							if (manhanvien != 0 && manhanvien != null) {
+								$("#manhanvien").val(manhanvien);
+							}
+							</script>
+								</form>
+								</div>
+								</div>
 			    <div class="table-responsive">
-						<table class="table mb-0">
-							<thead>
+						<table class="table table-bordered"
+						style="text-align: center; background: white">
+							<thead style="text-align: center; background: #D3D3D3">
 				<tr>
-					<th >STT</th>
+		
 					<th><spring:message code="label.maNhanVien"/></th>
+					<th><spring:message code="label.hoTen"/></th>
 					<th><spring:message code="label.songaydanghi"/></th>
 					<th><spring:message code="label.songayconlai"/></th>
 					<th><spring:message code="label.chucnang"/></th>
 				</tr>
 				</thead>
 				<tbody>
-			<c:forEach var="nn" items="${danhsachngaynghi}" varStatus="count"   >
+			<c:forEach var="nn" items="${danhsachngaynghi}"  >
                     <tr> 
-                     <th scope="row">${count.count  }</th>
+               
 					<td>${nn.maNhanVien}</td>
+					<td>${nn.tenNhanVien}</td>
 					<td>${nn.soNgayDaNghi}</td>
 					<td>${nn.soNgayConLai}</td>
-					<td><a href="deleteDate/${nn.maNhanVien}" class="btn btn-outline-danger round  mr-1 mb-1"
-									onclick="return confirm('Bạn có muốn xóa sinh viên này?');"><spring:message code="label.xoa"/></a>
-						<a href="updateDate/${nn.maNhanVien}" class="btn btn-outline-danger round  mr-1 mb-1"><spring:message code="label.chinhSua"/></a>
+					<td><h2><a href="deleteDate/${nn.maNhanVien}"> <i class='fa fa-trash'onclick="return confirm('Bạn có muốn xóa sinh viên này?');"></i></a></h2>
+						 <h2><a href="<c:url value="/viewNgayNghi/${nn.maNhanVien}" />"><i class="icon-eye"></i></a> </h2>
+						 <h2><a href="updateDate/${nn.maNhanVien}"> <i class='fa fa-pencil'></i> </a></h2>
 					</td>
 						</tr>
 				</c:forEach>
@@ -93,10 +145,8 @@
 										</ul>
 									</div>
 								</div>
-		</div>
-		</div>
-		</div>
-		</div>
+								</div>
+								</div>
 		</div>
 		</div>
 

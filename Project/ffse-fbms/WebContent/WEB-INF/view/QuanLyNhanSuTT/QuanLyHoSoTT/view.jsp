@@ -185,7 +185,7 @@ i.fa {
 																			<form:select path="danToc.maDanToc" type="text"
 																				id="projectinput4" class="form-control"
 																				readonly="true">
-																				<c:forEach items="${listDanToc}" var="hsnv">
+																				<c:forEach  items="${listDanToc}" var="hsnv">
 																					<form:option value="${hsnv.maDanToc}">${hsnv.tenDanToc}</form:option>
 																				</c:forEach>
 																			</form:select>
@@ -255,8 +255,8 @@ i.fa {
 																		<form:select path="xaPhuong.maXa" type="text"
 																			id="phuongXaId" class="form-control"
 																			name="phuongXaSelect" disabled="true" readonly="true">
-																			<option value="noPhuongXa" selected="selected">Chọn
-																				xã, phường</option>
+																			<option value="noPhuongXa" selected="selected"><spring:message
+																					code="label.chonPhuongXa" /></option>
 																		</form:select>
 																	</div>
 																	<div class="form-group col-sm-6">
@@ -271,7 +271,8 @@ i.fa {
 																		<form:select path="phongBan.maPhongBan" type="text"
 																			id="companyName" class="form-control"
 																			name="phongBanSelect" readonly="true">
-																			<option value="none" selected>Chọn Phòng ban</option>
+																			<option value="none" selected><spring:message
+																					code="label.chonPhongBan" /></option>
 																			<c:forEach items="${listPhongBan}" var="x">
 																				<form:option value="${x.maPhongBan}">${x.tenPhongBan}</form:option>
 																			</c:forEach>
@@ -283,8 +284,8 @@ i.fa {
 																			id="companyName" class="form-control"
 																			placeholder="Company Name" name="chucDanhSelect"
 																			readonly="true">
-																			<option value="none" selected="selected">Chọn
-																				chức danh</option>
+																			<option value="none" selected="selected"><spring:message
+																					code="label.chucDanh" /></option>
 																			<c:forEach items="${listChucDanh}" var="x">
 																				<form:option value="${x.maChucDanh}">${x.tenChucDanh}</form:option>
 																			</c:forEach>
@@ -294,7 +295,8 @@ i.fa {
 																</div>
 																<div class="row">
 																	<div class="form-group col-sm-6">
-																		<label for="location1">Trạng Thái</label>
+																		<label for="location1"><spring:message
+																					code="label.trangThai" /></label>
 																		<form:select class="custom-select form-control"
 																			path="trangThai" readonly="true">
 																			<form:option value="1">Còn

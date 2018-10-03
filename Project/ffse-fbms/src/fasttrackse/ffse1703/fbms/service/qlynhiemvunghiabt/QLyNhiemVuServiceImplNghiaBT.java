@@ -22,8 +22,8 @@ public class QLyNhiemVuServiceImplNghiaBT implements QLyNhiemVuServiceNghiaBT {
 
 	@Override
 	@Transactional
-	public List<NhiemVu> findAll() {
-		return congViecDao.findAll();
+	public List<NhiemVu> findAll(String search) {
+		return congViecDao.findAll(search);
 	}
 
 	@Override

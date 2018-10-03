@@ -22,9 +22,10 @@ public class QLyNhiemVuDaoImplNghiaBT implements QLyNhiemVuDaoNghiaBT{
 	private SessionFactory sessionFactory;
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<NhiemVu> findAll() {
+	public List<NhiemVu> findAll(String search) {
 		Session session = this.sessionFactory.openSession();
-		List<NhiemVu> list = session.createQuery("from NhiemVu where isDelete ='0'").list();
+		List<NhiemVu> list = session.createQuery("from NhiemVu where isDelete ='0'" + search).list();
+		session.close();
 		return list;
 	}
 //thêm
@@ -74,7 +75,7 @@ public class QLyNhiemVuDaoImplNghiaBT implements QLyNhiemVuDaoNghiaBT{
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<TrangThaiNghiaBT> trangThai() {
-		Session session = sessionFactory.openSession();
+		Session session = sessionFactory.getCurrentSession();
 		List<TrangThaiNghiaBT> tt = session.createQuery("from TrangThaiNghiaBT").list();
 		return tt;
 	}
@@ -82,7 +83,7 @@ public class QLyNhiemVuDaoImplNghiaBT implements QLyNhiemVuDaoNghiaBT{
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<LoaiCongViecNghiaBT> loaiCongViec() {
-		Session session = sessionFactory.openSession();
+		Session session = sessionFactory.getCurrentSession();
 		List<LoaiCongViecNghiaBT> cv = session.createQuery("from LoaiCongViecNghiaBT").list();
 		return cv;
 	}
@@ -90,7 +91,7 @@ public class QLyNhiemVuDaoImplNghiaBT implements QLyNhiemVuDaoNghiaBT{
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<DuAnNghiaBT> duAn() {
-		Session session = sessionFactory.openSession();
+		Session session = sessionFactory.getCurrentSession();
 		List<DuAnNghiaBT> da = session.createQuery("from DuAnNghiaBT").list();
 		return da;
 	}
@@ -98,7 +99,7 @@ public class QLyNhiemVuDaoImplNghiaBT implements QLyNhiemVuDaoNghiaBT{
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<HoSoNhanVien> nhanVien() {
-		Session session = sessionFactory.openSession();
+		Session session = sessionFactory.getCurrentSession();
 		List<HoSoNhanVien> cv = session.createQuery("from HoSoNhanVien").list();
 		return cv;
 	}

@@ -31,8 +31,8 @@ public class QLyNhiemVuControllerNghiaBT {
 		this.nhiemVuService = nhiemVuService;
 	}
 
-	public int totalPage(int perPage) {
-		int totalPage = (int) Math.ceil((double) nhiemVuService.findAll().size() / (double) perPage);
+	public int totalPage(int perPage, String search) {
+		int totalPage = (int) Math.ceil((double) nhiemVuService.findAll(search).size() / (double) perPage);
 		return totalPage;
 	}
 	
@@ -65,7 +65,7 @@ public class QLyNhiemVuControllerNghiaBT {
 
 		int perPage = 3;
 
-		int totalPage = totalPage(perPage);
+		int totalPage = totalPage(perPage,search);
 		int start = (currentPage - 1) * perPage;
 		model.addAttribute("listNhiemVu", nhiemVuService.findAllForPaging(start, perPage, search));
 		model.addAttribute("lastPage", totalPage);

@@ -12,7 +12,7 @@ import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 
 
  public interface QLyNhiemVuServiceNghiaBT {
- 	public List<NhiemVu> findAll();
+ 	public List<NhiemVu> findAll(String search);
 
  	public void addNew(NhiemVu cv);
 

@@ -289,15 +289,17 @@
 
 					<!--  ////////////////////////////////////////////// -->
 					<!-- Quản Lý Nhân Sự Pikalong -->
-					<li class=" navigation-header"><span>PKL-Quản Trị Nhân
-							Sự</span><i class=" ft-minus" data-toggle="tooltip"
-						data-placement="right" data-original-title="Others"></i></li>
+					<li class=" navigation-header"><span>PKL-<spring:message
+								code="label.quanLyNhanSu" /></span><i class=" ft-minus"
+						data-toggle="tooltip" data-placement="right"
+						data-original-title="Others"></i></li>
 					<li class=" nav-item"><a href="#"><i class="ft-layers"></i><span
-							class="menu-title" data-i18n="">Quản Lý Hồ Sơ</span></a>
+							class="menu-title" data-i18n=""><spring:message
+									code="label.quanLyHoSo" /></span></a>
 						<ul class="menu-content">
 							<li><a class="menu-item"
-								href="/ffse-fbms/quantrinhansu/hosonhanvien/">Danh Sách Nhân
-									Viên</a></li>
+								href="/ffse-fbms/quantrinhansu/hosonhanvien/"><spring:message
+										code="label.danhSachNhanVien" /></a></li>
 						</ul></li>
 					<!-- Quản Lý Nhân Sự Pikalong -->
 					<!--  Quản lí Vắng nghỉ -->
@@ -407,15 +409,26 @@
 				<li class=" nav-item"><a href="#"><i class="ft-layers"></i><span
 						class="menu-title" data-i18n="">DANH MỤC</span></a>
 					<ul class="menu-content">
-						<li><a class="menu-item" href="<c:url value="/qlda/khachhang/list"/>">Khách hàng</a></li>
-						<li><a class="menu-item" href="<c:url value="/qlda/domain/list"/>">Domain</a></li>
-						<li><a class="menu-item" href="<c:url value="/qlda/trangthai/list"/>">Trạng Thái</a></li>
-						<li><a class="menu-item" href="<c:url value="/qlda/Framework/"/>">Framework</a></li>
-						<li><a class="menu-item" href="<c:url value="/qlda/Technical/"/>">Technical</a></li>
-						<li><a class="menu-item"href="<c:url value="/QuanLyDuAn/Language/list"/>">Programming Language</a></li>
-						<li><a class="menu-item"href="<c:url value="/QuanLyDuAn/vendor/list"/>">Vendor</a></li>
-						<li><a class="menu-item"href="<c:url value="/QuanLyDuAn/VaiTro/list"/>">Vai Trò Thành Viên</a></li>
-						<li><a class="menu-item"  href="<c:url value="/qlda/Database/"/>">Database</a></li>
+						<li><a class="menu-item"
+							href="<c:url value="/qlda/khachhang/list"/>">Khách hàng</a></li>
+						<li><a class="menu-item"
+							href="<c:url value="/qlda/domain/list"/>">Domain</a></li>
+						<li><a class="menu-item"
+							href="<c:url value="/qlda/trangthai/list"/>">Trạng Thái</a></li>
+						<li><a class="menu-item"
+							href="<c:url value="/qlda/Framework/"/>">Framework</a></li>
+						<li><a class="menu-item"
+							href="<c:url value="/qlda/Technical/"/>">Technical</a></li>
+						<li><a class="menu-item"
+							href="<c:url value="/QuanLyDuAn/Language/list"/>">Programming
+								Language</a></li>
+						<li><a class="menu-item"
+							href="<c:url value="/QuanLyDuAn/vendor/list"/>">Vendor</a></li>
+						<li><a class="menu-item"
+							href="<c:url value="/QuanLyDuAn/VaiTro/list"/>">Vai Trò Thành
+								Viên</a></li>
+						<li><a class="menu-item"
+							href="<c:url value="/qlda/Database/"/>">Database</a></li>
 
 					</ul></li>
 
@@ -423,7 +436,8 @@
 				<li class=" nav-item"><a href="#"><i class="ft-align-left"></i><span
 						class="menu-title" data-i18n="">THÔNG TIN DỰ ÁN</span></a>
 					<ul class="menu-content">
-						<li><a class="menu-item"  href="<c:url value="/qlda/DuAn/"/>">Dự Án</a></li>
+						<li><a class="menu-item" href="<c:url value="/qlda/DuAn/"/>">Dự
+								Án</a></li>
 					</ul></li>
 			</ul>
 

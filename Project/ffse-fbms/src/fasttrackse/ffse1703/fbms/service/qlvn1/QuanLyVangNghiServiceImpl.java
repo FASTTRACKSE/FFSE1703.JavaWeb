@@ -119,6 +119,11 @@ public class QuanLyVangNghiServiceImpl implements QuanLyVangNghiService {
 	public List<DonNghi> listDanhSachPheDuyet(int id_nv) {
 		return this.qlvnDao.listDanhSachPheDuyet(id_nv);
 	}
+	@Transactional
+	@Override
+	public List<DonNghi> listDonNghiTuChoi2(int id_nv) {
+		return this.qlvnDao.listDonNghiBiTuChoi2(id_nv);
+	}
 
 	
 }

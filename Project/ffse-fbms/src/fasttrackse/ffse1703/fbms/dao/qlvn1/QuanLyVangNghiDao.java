@@ -21,5 +21,6 @@ public interface QuanLyVangNghiDao {
 	public List<DonNghi> listDonNghiPheDuyet2();
 	public List<DonNghi> listDanhSachPheDuyet(int id_nv);
 	public List<DonNghi> listDonNghiBiTuChoi(int id_nv);
+	public List<DonNghi> listDonNghiBiTuChoi2(int id_nv);
 	public void updateTinhTrang(TinhTrangNghi tt);
 }

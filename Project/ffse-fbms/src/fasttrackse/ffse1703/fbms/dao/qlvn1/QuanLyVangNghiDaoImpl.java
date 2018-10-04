@@ -173,6 +173,15 @@ public class QuanLyVangNghiDaoImpl implements QuanLyVangNghiDao {
 		return listDn;
 	}
 
+	@Override
+	public List<DonNghi> listDonNghiBiTuChoi2(int id_nv) {
+		Session session = this.sessionFactory.openSession();
+		@SuppressWarnings("unchecked")
+		List<DonNghi> listDn = session.createQuery("from DonNghi where id_nv ='"+id_nv+"' and  tinh_trang = "+4+" ").list();
+		session.close();
+		return listDn;
+	}
+
 	
 	
 	

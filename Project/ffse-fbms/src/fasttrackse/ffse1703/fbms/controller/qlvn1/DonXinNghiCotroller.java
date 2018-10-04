@@ -3,13 +3,11 @@ package fasttrackse.ffse1703.fbms.controller.qlvn1;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,22 +45,6 @@ public class DonXinNghiCotroller {
 		return "QuanLyVangNghi/donxinnghi";
 	}
 
-	@RequestMapping(value = "/duyetvong1", method = RequestMethod.GET)
-	public String viewDuyetVong1(Model model) {
-		List<DonNghi> dn = new ArrayList<DonNghi>();
-		dn = service.listDonNghiPheDuyet1();
-		model.addAttribute("list", dn);
-		return "QuanLyVangNghi/duyetvong1";
-	}
-
-	@RequestMapping(value = "/duyetvong2", method = RequestMethod.GET)
-	public String viewDuyetVong2(Model model, Authentication auth) {
-		List<DonNghi> dn = new ArrayList<DonNghi>();
-		dn = service.listDonNghiPheDuyet2();
-		model.addAttribute("list", dn);
-		return "QuanLyVangNghi/duyetvong2";
-	}
-
 	@RequestMapping(value = "/savechoduyet", method = RequestMethod.POST)
 	public String saveSaveChoDuyet(Model model, @ModelAttribute("donNghi") DonNghi dn, @RequestParam int ngay_da_nghi,
 			@RequestParam int ngay_con_lai) {
@@ -89,7 +71,7 @@ public class DonXinNghiCotroller {
 		return "redirect:/QuanLyVangNghi/choduyet";
 	}
 
-	@RequestMapping(value = "/luunhap", method = RequestMethod.POST)
+	@RequestMapping(value = "/luunhap", method = RequestMethod.GET)
 	public String viewLuuNhap(Model model, Authentication auth) {
 		UserAccount user = service.getThongTinUser(auth.getName());
 		HoSoNhanVien nhanVien = user.getNhanVien();
@@ -108,7 +90,7 @@ public class DonXinNghiCotroller {
 		return "redirect:/QuanLyVangNghi/luunhap";
 	}
 
-	@RequestMapping(value = "/choduyet", method = RequestMethod.POST)
+	@RequestMapping(value = "/choduyet", method = RequestMethod.GET)
 	public String viewChoDuyet(Model model, Authentication auth) {
 		UserAccount user = service.getThongTinUser(auth.getName());
 		HoSoNhanVien nhanVien = user.getNhanVien();
@@ -129,13 +111,37 @@ public class DonXinNghiCotroller {
 		model.addAttribute("arrLyDo", arrLyDo);
 		return "QuanLyVangNghi/sua";
 	}
-
+	
+	@RequestMapping(value = "/duyetvong1", method = RequestMethod.GET)
+	public String viewDuyetVong1(Model model) {
+		List<DonNghi> dn = new ArrayList<DonNghi>();
+		dn = service.listDonNghiPheDuyet1();
+		model.addAttribute("list", dn);
+		return "QuanLyVangNghi/duyetvong1";
+	}
+	
 	@RequestMapping(value = "/pheduyetvong1/{id_don}", method = RequestMethod.GET)
 	public String pheDuyetVong1(@PathVariable("id_don") int id_don, Model model, DonNghi donNghi) {
 		donNghi = service.getDonNghiNv(id_don);
 		donNghi.setTinh_trang(2);
 		service.updateDon(donNghi);
 		return "redirect:/QuanLyVangNghi/duyetvong1";
+	}
+	
+	@RequestMapping(value = "/duyetvong2", method = RequestMethod.GET)
+	public String viewDuyetVong2(Model model, Authentication auth) {
+		List<DonNghi> dn = new ArrayList<DonNghi>();
+		dn = service.listDonNghiPheDuyet2();
+		model.addAttribute("list", dn);
+		return "QuanLyVangNghi/duyetvong2";
+	}
+	
+	@RequestMapping(value = "/pheduyetvong2/{id_don}", method = RequestMethod.GET)
+	public String pheDuyetVong2(@PathVariable("id_don") int id_don, Model model, DonNghi donNghi) {
+		donNghi = service.getDonNghiNv(id_don);
+		donNghi.setTinh_trang(3);
+		service.updateDon(donNghi);
+		return "redirect:/QuanLyVangNghi/duyetvong2";
 	}
 
 	@RequestMapping(value = "/saveedit", method = RequestMethod.POST)
@@ -145,7 +151,7 @@ public class DonXinNghiCotroller {
 		return "redirect:/QuanLyVangNghi/luunhap";
 	}
 
-	@RequestMapping(value = "/savechoduyetnhap/{id_don}", method = RequestMethod.GET)
+	@RequestMapping(value = "/savechoduyetnhap/{id_don}", method = RequestMethod.POST)
 	public String saveChoDuyetNhap(@PathVariable("id_don") int id_don, Model model, DonNghi donNghi) {
 		donNghi = service.getDonNghiNv(id_don);
 		TinhTrangNghi tinhTrang = service.getTinhTrang(donNghi.getId_nv());
@@ -206,5 +212,23 @@ public class DonXinNghiCotroller {
 		dn = service.listDanhSachPheDuyet(nhanVien.getMaNhanVien());
 		model.addAttribute("list", dn);
 		return "QuanLyVangNghi/daduyet";
+	}
+	
+	@RequestMapping(value = "/dontuchoi2/{id_don}", method = RequestMethod.GET)
+	public String dontuchoi2(@PathVariable("id_don") int id_don, Model model, DonNghi donNghi) {
+		donNghi = service.getDonNghiNv(id_don);
+		donNghi.setTinh_trang(4);
+		service.updateDon(donNghi);
+		return "redirect:/QuanLyVangNghi/duyetvong2";
+	}
+	
+	@RequestMapping(value = "/tuchoi2", method = RequestMethod.GET)
+	public String viewTuChoi2(Model model, Authentication auth) {
+		UserAccount user = service.getThongTinUser(auth.getName());
+		HoSoNhanVien nhanVien = user.getNhanVien();
+		List<DonNghi> dn = new ArrayList<DonNghi>();
+		dn = service.listDonNghiTuChoi2(nhanVien.getMaNhanVien());
+		model.addAttribute("list", dn);
+		return "QuanLyVangNghi/dontuchoi";
 	}
 }

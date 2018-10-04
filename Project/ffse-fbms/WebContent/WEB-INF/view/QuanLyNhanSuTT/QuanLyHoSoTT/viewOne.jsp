@@ -35,8 +35,15 @@ html, body, h1, h2, h3, h4, h5, h6 {
 							<li class="breadcrumb-item active"><a
 								href='<c:url value="/quanlynhansutt/ho_so/view/${maNhanVien}" />'>xem
 									thông tin nhân viên</a></li>
-
 						</ol>
+						<a href="/ffse-fbms/quanlynhansutt/ho_so/excelfile/${maNhanVien}"><button class="btn btn-success">
+										<i class="fa fa-download"></i> Tải xuống
+										</button></a>
+										
+					<%-- 					<a
+						href="/ffse-fbms/quanlynhansutt/ho_so/excelfile/${hoSoNhanVienTT.maNhanVien}"
+						class="btn btn-primary"><span class="fa fa-plus"></span><spring:message
+							code="label.themMoi" /></a> --%>
 					</div>
 				</div>
 			</div>

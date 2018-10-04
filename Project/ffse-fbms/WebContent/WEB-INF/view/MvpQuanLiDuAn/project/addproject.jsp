@@ -74,8 +74,8 @@
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
-									<label for="projectinput5">Khách hàng*</label>
-										<form:errors path="khachHang.idKhachHang" cssClass="error" />
+									<label for="projectinput5">Khách hàng*</label><br>
+										<form:errors path="khachHang" cssClass="error" />
 									<form:select multiple="single" path="khachHang.idKhachHang"  
 										class="form-control">
 										<form:option value="" selected = "selected" disabled = "true"> --Chọn khach hang--</form:option>
@@ -87,11 +87,11 @@
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<label for="projectinput5">Phòng dự án*</label>
-									<form:errors path="roomProject.maPhongBan" cssClass="error" />
+									<label for="projectinput5">Phòng dự án*</label><br>
+									<form:errors path="roomProject" cssClass="error" />
 									<form:select id="idPhongBan" multiple="single" path="roomProject.maPhongBan"
 										class="form-control" onchange="myFunction()">
-										<option value="" selected ="selected"> --Chọn phòng ban--</option>
+										<form:option value="" selected = "selected" disabled = "true"> --Chọn Phong ban--</form:option>
 										<form:options items="${phongDuAn}" itemValue="maPhongBan"
 											itemLabel="tenPhongBan" />
 									</form:select>
@@ -101,11 +101,11 @@
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
-									<label for="projectinput5">Nghiệp vụ*</label>
-									<form:errors path="domain.idDomain" cssClass="error" />
+									<label for="projectinput5">Nghiệp vụ*</label><br>
+									<form:errors path="domain" cssClass="error" />
 									<form:select multiple="single" path="domain.idDomain"
 										class="form-control">
-										<option value="" selected ="selected"> --Chọn  nghiệp vụ--</option>
+										<form:option value="" selected = "selected" disabled = "true"> --Chọn Domain--</form:option>
 										<form:options items="${domain}" itemValue="idDomain"
 											itemLabel="nameDomain" />
 									</form:select>
@@ -113,11 +113,11 @@
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<label for="projectinput5"> PM</label>	
-									<form:errors path="pm.maNv" cssClass="error" />								
+									<label for="projectinput5"> PM</label>	<br>
+									<form:errors path="pm" cssClass="error" />								
 									 <form:select path="pm.maNv" id="idPm" name="pm"
 										type="text" class="form-control" >
-										<option value="" selected="selected">--Chọn PM--</option>
+										<form:option value="" selected = "selected" disabled = "true"> --Chọn PM--</form:option>
 									</form:select> 
 							</div>
 						</div>

@@ -15,13 +15,13 @@
 				<form:form method="POST"  modelAttribute="suadon">
 					<div class="row">
 						<div class="form-group col-sm-6">
-							<div>
-								<label><spring:message code="label.madon"/></label>
+							
+							
                               <form:hidden path="ngayNghi.soNgayDaNghi"/>
 						    	<form:hidden path="ngayNghi.soNgayConLai"/> 
-								<form:input class="form-control round" path="id" readonly="true" />
+								<form:hidden class="form-control round" path="id" readonly="true" />
 
-							</div>
+					
 
 							<div>
 								<label><spring:message code="label.maNhanVien"/></label>
@@ -32,6 +32,17 @@
 									</c:forEach>
 								</form:select>
 							</div>
+							
+							<div>
+								<label><spring:message code="label.maNhanVien"/></label>
+								<form:select path="tenNhanVien"
+									class="custom-select block round" id="customSelect">
+									<c:forEach items="${hoso}" var="ld">
+										<form:option value="${ld.hoDem}" label="${ld.hoDem}" />
+									</c:forEach>
+								</form:select>
+							</div>
+							
 							<div>
 								<label><spring:message code="label.ngaybatdau"/></label>
 								<fieldset class="form-group position-relative">

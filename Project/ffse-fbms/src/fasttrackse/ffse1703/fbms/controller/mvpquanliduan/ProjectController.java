@@ -1,6 +1,7 @@
 package fasttrackse.ffse1703.fbms.controller.mvpquanliduan;
 
 import java.beans.PropertyEditorSupport;
+import java.security.Principal;
 import java.util.Collection;
 
 
@@ -16,6 +17,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -37,6 +39,7 @@ import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.StatusProject;
 import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Technical;
 import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Vendor;
 import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.HoSoNhanVienPikalong;
+import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 import fasttrackse.ffse1703.fbms.entity.security.PhongBan;
 import fasttrackse.ffse1703.fbms.entity.security.UserAccount;
 import fasttrackse.ffse1703.fbms.service.mvpquanliduan.DatabaseServices;
@@ -97,8 +100,16 @@ public class ProjectController {
 	}
 
 	@RequestMapping(value = "/list-project/{pageId}")
-	public String listproject(@PathVariable int pageId, Model model, HttpServletRequest request,HttpSession session) {
+	public String listproject(@PathVariable int pageId, Model model, HttpServletRequest request,HttpSession session,final Principal pr,ModelMap mm) {
 		//set chuoi tim kiem
+		//isPM();
+		Collection<? extends GrantedAuthority> granted1 = SecurityContextHolder.getContext().getAuthentication()
+				.getAuthorities();
+//		UserAccount acc= projectService.getAccount(userName);
+//		HoSoNhanVien maNvAcc=  acc.getNhanVien();
+		System.out.println("my account la"+ granted1);
+		
+		
 		String khachHang = " and khachHang.idKhachHang = '" + request.getParameter("khachhang") + "'";
 		if (request.getParameter("khachhang") == null || request.getParameter("khachhang").equals("0")) {
 			khachHang = "";
@@ -115,7 +126,31 @@ public class ProjectController {
 		if (request.getParameter("status") == null || request.getParameter("status").equals("0")) {
 			status = "";
 		}
-		String search = khachHang + roomProject + domain + status;
+		String isTpp = "";
+		String isPm = "";
+		
+		
+		if(!isTPP().isEmpty()) {
+			List<PhongBan> listPhongBan= phongBanService.findAll();
+			String granted = isTPP();
+			System.out.println("granted la:" +granted);
+			String pb= "";
+			if(granted.indexOf("PIT") > 0) {
+				isTpp="";
+			}else {
+			for(PhongBan x: listPhongBan) {
+				
+				if (granted.indexOf(x.getMaPhongBan()) > 0) {
+					pb = x.getMaPhongBan();
+					isTpp = " and roomProject.maPhongBan = '" + pb+ "'";
+				}
+			}
+			}
+		}else if (!isNv().isEmpty()) {
+			mm.addAttribute("disable", "disabled");
+		}
+		String search = khachHang + roomProject + domain + status + isTpp + isPm;
+		System.out.println("search la" +search);
 				
 		int maxRows = 5;
 		int start = (pageId - 1) * maxRows;
@@ -147,7 +182,9 @@ public class ProjectController {
 
 	@RequestMapping(value = "detail-project/{id}")
 	public String detailProject(Model model, @PathVariable String id) {
-
+		if (!isNv().isEmpty()) {
+			model.addAttribute("disable", "disabled");
+		}
 		Projects pr = projectService.findById(id);
 		model.addAttribute("project", pr);
 		return "MvpQuanLiDuAn/project/detailproject";
@@ -209,35 +246,51 @@ public class ProjectController {
 		return "redirect: list-project";
 	}
 	//check có phải TPP
-	public boolean isTPP() {
+	public String isTPP() {
 		Collection<? extends GrantedAuthority> granted = SecurityContextHolder.getContext().getAuthentication()
 				.getAuthorities();
-		String role;
+		String role=null;
 
 		for (int i = 0; i < granted.size(); i++) {
 			role = granted.toArray()[i] + "";
-			
-			if (role.indexOf("TPP")>0) {
-				return true;
-			}
-			;
+			if (role.indexOf("TPP")>0 || role.indexOf("PGD")>0 ||role.indexOf("PNS")>0 ) {
+				return role;
+			};
 		}
-		return false;
+		return "";
 	}
 	//check có phải PM
-	public boolean isPM() {
+	public String isPM() {
 		String userName = SecurityContextHolder.getContext().getAuthentication()
 				.getName();
 		List<Projects> listPr= projectService.findAll();
-		
 		UserAccount acc= projectService.getAccount(userName);
-		String nvAcc=  String.valueOf(acc.getNhanVien().getMaNhanVien());
+		String maNvAcc=  String.valueOf(acc.getNhanVien().getMaNhanVien());
+		System.out.println("my account la"+ maNvAcc);
 		for(Projects x:listPr) {
-			if(nvAcc.equals(x.getPm().getMaNv())) {
-				return true;
+			if(maNvAcc.equals(x.getPm().getMaNv())) {
+				return maNvAcc;
 			}
 		}
-		return false;
+		return "";
+	}
+	public String isNv() {
+		Collection<? extends GrantedAuthority> granted = SecurityContextHolder.getContext().getAuthentication()
+				.getAuthorities();
+		String userName = SecurityContextHolder.getContext().getAuthentication()
+				.getName();
+//		List<Projects> listPr= projectService.findAll();
+//		UserAccount acc= projectService.getAccount(userName);
+//		String maNvAcc=  String.valueOf(acc.getNhanVien().getMaNhanVien());
+//		System.out.println("my account la"+ maNvAcc);
+		 String role = "";
+		for (int i = 0; i < granted.size(); i++) {
+			role = granted.toArray()[i] + "";
+			if (role.indexOf("NV")>0 ) {
+				return role;
+			};
+		}	
+		return "";
 	}
 
 	@InitBinder

@@ -17,7 +17,6 @@
 		</div>
 		</div>
 			<div>
-			<div><a  class="btn btn-outline-success round btn-min-width mr-1 mb-1" href="themmoi"><h4><spring:message code="label.themMoi"/></h4></a></div>
 			<div class="container">
 			    <div class="table-responsive">
 						<table class="table mb-0">
@@ -27,7 +26,7 @@
 					<th>Mã Nhân Viên</th>
 					<th>số ngày  dã nghi</th>
 					<th>số ngày còn lại</th>
-					<th>chức năng</th>
+		
 				</tr>
 				</thead>
 				<tbody>
@@ -35,20 +34,16 @@
                     <tr> 
                      <th scope="row">${count.count  }</th>
 					<td>${nn.maNhanVien}</td>
-					<td>${nn.soNgayNghi}</td>
-					<td>${nn.ngayNghiConLai}</td>
-					<td><a href="deleteDate/${nn.maNhanVien}" class="btn btn-outline-danger round  mr-1 mb-1"
-									onclick="return confirm('Bạn có muốn xóa sinh viên này?');">xóa</a>
-						<a href="updateDate/${nn.maNhanVien}" class="btn btn-outline-danger round  mr-1 mb-1">sửa</a>
-					</td>
+					<td>${nn.soNgayDaNghi}</td>
+					<td>${nn.soNgayConLai}</td>
+					
 						</tr>
 				</c:forEach>
 				</tbody>
 		</table>
 		<nav aria-label="Page navigation example">
 	<ul class="pagination">
-		<li class="page-item"><a class="page-link" href="?page=1">First
-				Page</a></li>
+		<li class="page-item"><a class="page-link" href="?page=1">Trang Đầu</a></li>
 		<c:if test="${currentPage > 2}">
 				<li class="page-item"><a class="page-link"
 					href="?page=${currentPage-2}">${currentPage-2}</a></li>
@@ -67,7 +62,7 @@
 				<li class="page-item"><a class="page-link"
 					href="?page=${currentPage+2}">${currentPage+2}</a></li>
 			</c:if>
-		<li class="page-item"><a class="page-link" href="?page=${lastPage }">Last Page</a></li>
+		<li class="page-item"><a class="page-link" href="?page=${lastPage }">Trang Cuối</a></li>
 	</ul>
 	</nav>
 		</div>

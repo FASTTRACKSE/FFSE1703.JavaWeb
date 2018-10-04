@@ -25,14 +25,15 @@ public class TruongPhongDAOImpl implements TruongPhongDAO {
 	@Override
 	public DanhGiaBanThan getNhanVienTuDanhGia(int id) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.get(DanhGiaBanThan.class, id );
+		return session.get(DanhGiaBanThan.class, id);
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<TruongPhongDanhGia> getListNhanVienPhongBan(String phongBan) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("from TruongPhongDanhGia where phongBan = :phongBan").setParameter("phongBan", phongBan).list();
+		return session.createQuery("from TruongPhongDanhGia where phongBan.maPhongBan = :phongBan")
+				.setParameter("phongBan", phongBan).list();
 	}
 
 	@Override
@@ -65,20 +66,39 @@ public class TruongPhongDAOImpl implements TruongPhongDAO {
 	@Override
 	public List<DanhGiaBanThan> getListDanhGiaBanThan(String phongBan) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("from DanhGiaBanThan where phongBan = :phongBan and trangThai = 2").setParameter("phongBan", phongBan).list();
+		return session.createQuery("from DanhGiaBanThan where phongBan.maPhongBan = :phongBan and trangThai.maTrangThai = 2")
+				.setParameter("phongBan", phongBan).list();
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<HoSoNhanVien> getNhanVienPhongBan(String phongBan) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("from HoSoNhanVien where phongBan.maPhongBan = :phongBan and chucDanh.maChucDanh = 'NV'").setParameter("phongBan", phongBan).list();
+		return session
+				.createQuery("from HoSoNhanVien where phongBan.maPhongBan = :phongBan and chucDanh.maChucDanh = 'NV'")
+				.setParameter("phongBan", phongBan).list();
 	}
 
 	@Override
 	public LichDanhGia getActiveLichDanhGia(String phongBan) {
 		Session session = sessionFactory.getCurrentSession();
 		return session.byNaturalId(LichDanhGia.class).using("phongBan", phongBan).using("isActive", 1).load();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<DanhGiaBanThan> getListDanhGiaBanThan(int start, int maxItems, String phongBan) {
+		Session session = sessionFactory.getCurrentSession();
+		return session.createQuery("from TruongPhongDanhGia where phongBan.maPhongBan = :phongBan").setFirstResult(start)
+				.setMaxResults(maxItems).setParameter("phongBan", phongBan).list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<TruongPhongDanhGia> getListNhanVienPhongBan(int start, int maxItems, String phongBan) {
+		Session session = sessionFactory.getCurrentSession();
+		return session.createQuery("from TruongPhongDanhGia where phongBan.maPhongBan = :phongBan").setFirstResult(start)
+				.setMaxResults(maxItems).setParameter("phongBan", phongBan).list();
 	}
 
 }

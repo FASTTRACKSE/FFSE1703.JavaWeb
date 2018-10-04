@@ -14,15 +14,14 @@
 		<!-- Path -->
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">Danh sách Framework</h3>
+				<h3 class="content-header-title mb-0"><spring:message code="label.listF" /></h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/home" />'>Home</a></li>
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/mvpquanliduan/framework/list-framework" />'>Danh
-									sách Framework</a></li>
+								href='<c:url value="/mvpquanliduan/framework/list-framework" />'><spring:message code="label.listF" /></a></li>
 
 						</ol>
 					</div>
@@ -37,7 +36,7 @@
 				<div class="x_title">
 					<a class="btn btn-outline-success round btn-min-width mr-1 mb-1"
 						href="<c:url value="/mvpquanliduan/framework/show-form-add" />">
-						<h5class="ft-plus-circle">Thêm Framework
+						<h5class="ft-plus-circle"><spring:message code="label.addF" />
 						</h5>
 					</a>
 				</div>
@@ -47,9 +46,9 @@
 						<thead style="background: #AEEEEE"	>
 							<tr>
 								
-								<th style="text-align: center">Mã Framework</th>
-								<th style=" text-align: center">Tên Framework</th>
-								<th style="text-align: center">Chức năng</th>
+								<th style="text-align: center"><spring:message code="label.idF" /></th>
+								<th style=" text-align: center"><spring:message code="label.nameF" /></th>
+								<th style="text-align: center"><spring:message code="label.vaitro" /></th>
 							</tr>
 						</thead>
 						<tbody>

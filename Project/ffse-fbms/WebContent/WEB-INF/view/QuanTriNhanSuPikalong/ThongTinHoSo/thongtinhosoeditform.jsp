@@ -125,7 +125,7 @@
                         </div>
                         <div class="form-group">
                           <label for="quanHuyenId">Quận huyện</label>
-                          <form:select path="quanHuyen.maQuanHuyen" id="quanHuyenId"  name="quanHuyen" type="text" class="form-control" disabled="true"
+                          <form:select path="quanHuyen.maQuanHuyen" id="quanHuyenId"  name="quanHuyen" type="text" class="form-control"
                           			onchange="clickComboboxQuan()" >
                           		 <option value="noQuanHuyen" selected="selected" >Chọn quận huyện</option>
                           </form:select>
@@ -135,7 +135,7 @@
                         <div class="form-group">
                           <label for="phuongXaId">Phường xã</label>
                           <form:select path="phuongXa.maPhuong" type="text" id="phuongXaId" class="form-control"
-                          name="phuongXaSelect" disabled="true">
+                          name="phuongXaSelect">
                           		<option value="noPhuongXa" selected="selected">Chọn phường xã</option>
                           	
                           </form:select>
@@ -202,19 +202,8 @@
                      <!-- ajax select ThanhPho -->
                      function clickComboboxThanhPho(){
                     	 var maThanhPho = $("#thanhPhoId").val();
-                    	 if(maThanhPho == 'noThanhPho'){  // nếu người dùng chưa chọn thành phố
-                    		 $('#quanHuyenId option').remove();
-                    		 $('#quanHuyenId').prop('disabled', true); /*disable combobox quận huyện */
-                    		
-                    		 $('#phuongXaId option[value=noPhuongXa]').attr('selected', 'selected')
-                    		 $('#phuongXaId').prop('disabled', true);
-                    		 
-                    	 } else{                // nếu người dùng đã chọn thành phố
-                    		
-                    		 $('#quanHuyenId').prop('disabled', false); /*enable combobox quận huyện */
-                    		
-                    		 $('#quanHuyenId option').remove(); /* xóa những option quận huyện cũ */
-                    	 }
+                    	 $('#quanHuyenId option').remove(); // delete old data in quan huyen
+                		 $('#phuongXaId option').remove();// delete old data in phuong xa
                     	 
                          $.ajax({
                         	 url: "/ffse-fbms/quantrinhansu/hosonhanvien/selectquan/" + maThanhPho, 
@@ -233,6 +222,11 @@
                         		
 								}
                         		$('#quanHuyenId option[value=${formHosopkl.quanHuyen.maQuanHuyen}]').attr('selected', 'selected')
+                        		
+                        		$('#phuongXaId').append($('<option>', { // insert default data in phuong xa
+                         		    value: 'noPhuongXa',
+                         		    text: 'Chọn phường xã'
+                         		}));
                         			clickComboboxQuan(); // gọi function này để load phường
                         		
                          }});
@@ -244,15 +238,7 @@
                      // ajax select QuanHuyen
                      function clickComboboxQuan(){
                     	 var maQuanHuyen = $("#quanHuyenId").val();
-                    	 if(maQuanHuyen == 'noQuanHuyen'){  /* nếu người dùng chưa chọn thành phố */
-                    		 $('#phuongXaId option').remove();
-                    		 $('#phuongXaId').prop('disabled', true); /*disable combobox quận huyện */
-                    		 
-                    	 } else{                /* nếu người dùng đã chọn thành phố*/
-                    		
-                    		 $('#phuongXaId').prop('disabled', false); // enable combobox quận huyện 
-                    		 $('#phuongXaId option').remove(); // xóa những option quận huyện cũ
-                    	 }
+                    	 $('#phuongXaId option').remove(); // delete old data in phuong xa
                     	 
                          $.ajax({
                         	 url: "/ffse-fbms/quantrinhansu/hosonhanvien/selectphuong/" + maQuanHuyen, 

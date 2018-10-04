@@ -14,15 +14,38 @@
 		<div class="col-md-5"></div>
 			<h3 class="content-header-title mb-0"><spring:message code="label.danhsachnhap"/></h3>
 		</div>
+		<div class="continer">
+	
+		<!-- Show message -->
+			<c:if test="${messageSuccess ne null}">
+				<div class="alert alert-success  btn-min-width mr-1 mb-1" role="alert">
+					<button type="button" class="close" data-dismiss="alert">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					${messageSuccess}
+				</div>
+			</c:if>
+			<c:if test="${messageError ne null}">
+				<div class="alert alert-danger alert-dismissable" role="alert">
+					<button type="button" class="close" data-dismiss="alert">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					${messageError}
+				</div>
+			</c:if>
+			</div>
+			<!-- End Show message -->
 			<div>
 			<div><a  class="btn btn-outline-success round btn-min-width mr-1 mb-1" href="soandonmoi"><h4><spring:message code="label.soandonmoi"/></h4></a></div>
 			<div class="container">
 			    <div class="table-responsive">
-						<table class="table">
-							<thead class="thead-dark">
+						<table class="table table-bordered"
+						style="text-align: center; background: white">
+							<thead style="background: #D3D3D3">
 				<tr>
 					<th ><spring:message code="label.madon"/></th>
 					<th ><spring:message code="label.maNhanVien"/></th>
+					<th ><spring:message code="label.hoTen"/></th>
 					<th ><spring:message code="label.ngaybatdau"/></th>
 					<th ><spring:message code="label.ngayketthuc"/></th>
 					<th ><spring:message code="label.lydo"/></th>
@@ -37,17 +60,16 @@
                         <tr>
 					<td>${nv.id}</td>
 					<td>${nv.ngayNghi.maNhanVien}</td>
+					<td>${nv.tenNhanVien}</td>
 					<td>${nv.ngayBatDau}</td>
 					<td>${nv.ngayKetThuc}</td>
 					<td>${nv.lyDo.lyDo}</td>
 					<td>${nv.ghiChu}</td>
 					<td>${nv.ghiChuTruongPhong}</td>
 					<td>${nv.trangThai.trangThai}</td>
-					<td><a class="btn btn-outline-success round  mr-1 mb-1" 
-					 href="suanhap/${nv.id }">
-					<spring:message code="label.chinhSua"/></a>  <a class="btn btn-outline-danger round  mr-1 mb-1"
-									onclick="return confirm('Bạn có muốn xóa sinh viên này?');"
-									  href="delete/${nv.id }"><spring:message code="label.xoa"/></a>
+					<td><h2><a  href="delete/${nv.id }"> <i class='fa fa-trash'onclick="return confirm('Bạn có muốn xóa sinh viên này?');"></i></a></h2>
+						<h2><a   href="viewNhap/${nv.id }"><i class="icon-eye"></i></a></h2>
+						<h2><a  href="suanhap/${nv.id }"> <i class='fa fa-pencil'></i> </a></h2>
 					</td>
 						</tr>
 				</c:forEach>

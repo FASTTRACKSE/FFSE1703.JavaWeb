@@ -14,15 +14,68 @@
 		<div class="col-md-5"></div>
 			<h3 class="content-header-title mb-0"><spring:message code="label.danhsachchoduyet"/></h3>
 		</div>
-			<div>
-
-			<div class="container">
+	
+		<!-- Show message -->
+			<c:if test="${messageSuccess ne null}">
+				<div class="alert alert-success alert-dismissable" role="alert">
+					<button type="button" class="close" data-dismiss="alert">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					${messageSuccess}
+				</div>
+			</c:if>
+			<c:if test="${messageError ne null}">
+				<div class="alert alert-danger alert-dismissable" role="alert">
+					<button type="button" class="close" data-dismiss="alert">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					${messageError}
+				</div>
+			</c:if>
+			</div>
+			<!-- End Show message -->
+		
+        <div class="container">
+			<div class="col-md-8"></div>
+			<div class="col-md-4">
+			<form method="GET" action="">
+						<div class="col-md-6">
+							<div class="form-group">
+								<spring:message code="label.maNhanVien"/><select name="manhanvien"
+									class="form-control form-control-sm" id="manhanvien">
+									<option value="0" selected="selected">--<spring:message code="label.tatCa" />--</option>
+									<c:forEach items="${ngaynghi}" var="nn">
+										<option value="${nn.maNhanVien}"
+										<c:if test="${maNhaViens == nn.maNhanVien }"> selected="selected"</c:if>
+										>${nn.maNhanVien}</option>
+									</c:forEach>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-6" style="margin-top: 20px">
+							<label></label>
+							<button type="submit" class="btn mr-1 mb-1 btn-success btn-sm">
+								<i class="fa fa-search"></i><spring:message code="label.tim"/>
+							</button></div> 
+						<script type="text/javascript">
+							NhanVien =
+						<%=request.getParameter("manhanvien")%>
+							;
+							if (manhanvien != 0 && manhanvien != null) {
+								$("#manhanvien").val(manhanvien);
+							}
+							</script>
+								</form>
+								</div>
+								</div>
 			    <div class="table-responsive">
-						<table class="table mb-0">
-							<thead>
+						<table class="table table-bordered"
+						style="text-align: center; background: white">
+							<thead style="background: #D3D3D3">
 				<tr>
 					<th ><spring:message code="label.madon"/></th>
 					<th ><spring:message code="label.maNhanVien"/></th>
+					<th ><spring:message code="label.hoTen"/></th>
 					<th ><spring:message code="label.ngaybatdau"/></th>
 					<th ><spring:message code="label.ngayketthuc"/></th>
 					<th ><spring:message code="label.lydo"/></th>
@@ -35,16 +88,17 @@
 				<tbody>
 			<c:forEach var="nv" items="${danhsachcho}">
 					<tr>
-					<td>${nv.id}</td>
+					<td>${nv.id -1}</td>
 					<td>${nv.ngayNghi.maNhanVien}</td>
+					<td>${nv.tenNhanVien}</td>
 					<td>${nv.ngayBatDau}</td>
 					<td>${nv.ngayKetThuc}</td>
 					<td>${nv.lyDo.lyDo}</td>
 					<td>${nv.ghiChu}</td>
 					<td>${nv.ghiChuTruongPhong}</td>
 					<td>${nv.trangThai.trangThai}</td>
-					<td><a href="suachoduyet/${nv.id}" class="btn btn-outline-success round  mr-1 mb-1" >
-									<spring:message code="label.chinhSua"/></a>
+					<td><h2><a  href="viewChoDuyet/${nv.id }"><i class="icon-eye"></i></a></h2> 
+						<h2><a  href="suachoduyet/${nv.id}"> <i class='fa fa-pencil'></i> </a></h2>
 					</td>
 						</tr>
 				</c:forEach>
@@ -101,8 +155,6 @@
 		</div>
 		</div>
 		</div>
-		</div>
-		</div>
-		</div>
+	
 
 <jsp:include page="/WEB-INF/view/templates/footer.jsp" />

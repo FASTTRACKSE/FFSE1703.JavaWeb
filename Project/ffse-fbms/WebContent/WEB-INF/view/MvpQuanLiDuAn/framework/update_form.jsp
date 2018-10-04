@@ -16,16 +16,15 @@
 		<!-- Path -->
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">Sửa tên Framework</h3>
+				<h3 class="content-header-title mb-0"><spring:message code="label.editF" /></h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/home" />'>Home</a></li>
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/mvpquanliduan/framework/list-framework" />'>Danh
-									sách Framework</a></li>
-							<li class="breadcrumb-item active">Sửa tên  Framework</li>
+								href='<c:url value="/mvpquanliduan/framework/list-framework" />'><spring:message code="label.listF" /></a></li>
+							<li class="breadcrumb-item active"><spring:message code="label.editF" /></li>
 						</ol>
 					</div>
 				</div>
@@ -40,14 +39,14 @@
 				<div class="row">
 					<form:form method="POST" action="/ffse-fbms/mvpquanliduan/framework/update" modelAttribute="framework">
 						<div class="form-group col-sm-6">
-							<label>Mã Framework</label><br>
+							<label><spring:message code="label.idF" /></label><br>
 							<p Class="error" ></p>
 							<form:input path="idFrame" class="form-control round"
 								placeholder="Mã Framework" readonly="true"/>
 							
 						</div>
 						<div class="form-group col-sm-6">
-							<label>Tên Framework</label><br>
+							<label><spring:message code="label.nameF" /></label><br>
 							<p Class="error" >${messageName}</p>
 							<form:errors path="nameFramework" cssClass="error" />
 							<form:input path="nameFramework" class="form-control round"
@@ -56,7 +55,7 @@
 						</div>
 						
 						<div class="col-sm-12 text-center">
-							<button type="submit" class="btn btn-outline-success round btn-min-width mr-1 mb-1">Lưu </button>
+							<button type="submit" class="btn btn-outline-success round btn-min-width mr-1 mb-1"><spring:message code="label.submit" /> </button>
 						</div>
 					</form:form>
 				</div>

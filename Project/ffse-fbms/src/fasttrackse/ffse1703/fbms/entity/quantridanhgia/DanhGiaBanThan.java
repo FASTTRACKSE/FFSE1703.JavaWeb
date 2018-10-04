@@ -1,14 +1,21 @@
 package fasttrackse.ffse1703.fbms.entity.quantridanhgia;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.annotations.NaturalId;
+
+import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
+import fasttrackse.ffse1703.fbms.entity.security.PhongBan;
 
 @Entity
 @Table(name = "danh_gia_ban_than")
@@ -19,17 +26,20 @@ public class DanhGiaBanThan {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name = "ma_ky_danh_gia")
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	@JoinColumn(name = "ma_ky_danh_gia", referencedColumnName = "ma_ky_danh_gia")
 	@NotEmpty
-	private String kyDanhGia;
+	private KyDanhGia kyDanhGia;
 
-	@Column(name = "ma_phong_ban")
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	@JoinColumn(name = "ma_phong_ban", referencedColumnName = "ma_phong_ban")
 	@NotEmpty
-	private String phongBan;
+	private PhongBan phongBan;
 
 	@NaturalId
-	@Column(name = "nhan_vien")
-	private int nhanVien;
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	@JoinColumn(name = "nhan_vien", referencedColumnName = "ma_nhan_vien")
+	private HoSoNhanVien nhanVien;
 
 	@Column(name = "ky_luat_cong_viec_danh_gia")
 	private int kyLuatCongViec_DG;
@@ -73,8 +83,9 @@ public class DanhGiaBanThan {
 	@Column(name = "danh_gia_tong_the")
 	private int danhGiaTongThe;
 
-	@Column(name = "ma_trang_thai")
-	private int trangThai;
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	@JoinColumn(name = "ma_trang_thai", referencedColumnName = "ma_trang_thai")
+	private TrangThaiDanhGia trangThai;
 
 	@Column(name = "is_delete")
 	private int isDelete;
@@ -91,28 +102,28 @@ public class DanhGiaBanThan {
 		this.id = id;
 	}
 
-	public String getKyDanhGia() {
+	public KyDanhGia getKyDanhGia() {
 		return kyDanhGia;
 	}
 
-	public void setKyDanhGia(String kyDanhGia) {
+	public void setKyDanhGia(KyDanhGia kyDanhGia) {
 		this.kyDanhGia = kyDanhGia;
 	}
 
-	public String getPhongBan() {
+	public PhongBan getPhongBan() {
 		return phongBan;
 	}
 
-	public void setPhongBan(String phongBan) {
+	public void setPhongBan(PhongBan phongBan) {
 		this.phongBan = phongBan;
 	}
 
-	public void setNhanVien(int nhanVien) {
-		this.nhanVien = nhanVien;
+	public HoSoNhanVien getNhanVien() {
+		return nhanVien;
 	}
 
-	public int getNhanVien() {
-		return nhanVien;
+	public void setNhanVien(HoSoNhanVien nhanVien) {
+		this.nhanVien = nhanVien;
 	}
 
 	public int getKyLuatCongViec_DG() {
@@ -211,11 +222,11 @@ public class DanhGiaBanThan {
 		this.danhGiaTongThe = danhGiaTongThe;
 	}
 
-	public int getTrangThai() {
+	public TrangThaiDanhGia getTrangThai() {
 		return trangThai;
 	}
 
-	public void setTrangThai(int trangThai) {
+	public void setTrangThai(TrangThaiDanhGia trangThai) {
 		this.trangThai = trangThai;
 	}
 

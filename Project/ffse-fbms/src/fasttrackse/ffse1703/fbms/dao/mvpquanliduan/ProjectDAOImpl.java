@@ -79,7 +79,7 @@ public class ProjectDAOImpl implements ProjectDAO {
 	@Override
 	public UserAccount getAccount(String userName) {
 		Session session = sessionFactory.getCurrentSession();
-		UserAccount acc = session.get(UserAccount.class, userName);
-		return acc;
+		return session.createQuery("from UserAccount where username='"+userName+"'", UserAccount.class).getSingleResult();
+	
 	}
 }

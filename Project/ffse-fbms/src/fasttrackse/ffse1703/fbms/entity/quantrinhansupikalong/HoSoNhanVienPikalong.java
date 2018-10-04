@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.CodePointLength;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -24,17 +26,26 @@ import fasttrackse.ffse1703.fbms.entity.security.PhongBan;
 public class HoSoNhanVienPikalong {
 	
 	@Id
+	@NotEmpty(message= "Vui Lòng Nhập Mã Nhân Viên")
 	@Column(name="MaNv")
 	private String maNv;
 	
+	@NotEmpty(message= "Vui Lòng Nhập Họ Tên Nhân Viên")
+	@Column(name="HoTenNv")
 	private String hoTenNv;
 	
+	@NotEmpty(message= "Vui Lòng Chọn Giới Tính")
+	@Column(name="GioiTinh")
 	private String gioiTinh;
 	
+	@NotNull(message= "Vui Lòng Chọn Ngày Sinh")
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Column(name="NgaySinh")
 	private Date ngaySinh;
 	
+	@NotNull(message= "Vui Lòng Chọn Tình Trạng Hôn Nhân")
+	@Column(name="TinhTrangHonNhan")
 	private Integer tinhTrangHonNhan;
 	
 	@ManyToOne
@@ -49,31 +60,51 @@ public class HoSoNhanVienPikalong {
 	@JoinColumn(name="PhuongXa")
 	private PhuongPikalong phuongXa;
 	
+	@NotEmpty(message= "Vui Lòng Nhập Nơi Ở Hiện Nay")
+	@Column(name= "NoiOHienNay")
 	private String noiOHienNay;
 	
+	@NotEmpty(message= "Vui Lòng Nhập Số CMND")
+	@Column(name= "CMND")
 	private String cMND;
 	
+	@NotNull(message= "Vui Lòng Chọn Ngày Cấp CMND")
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Column(name= "NgayCap")
 	private Date ngayCap;
 	
+	@NotEmpty(message= "Vui Lòng Nhập Nơi Cấp")
+	@Column(name= "NoiCap")
 	private String noiCap;
 	
+	@NotEmpty(message= "Vui Lòng Nhập Số Điện Thoại")
+	@Column(name= "SDT")
 	private String sDT;
 	
+	@NotEmpty(message= "Vui Lòng Nhập Email")
+	@Column(name= "Email")
 	private String email;
 	
+	@NotEmpty(message= "Vui Lòng Nhập Dân Tộc")
+	@Column(name= "DanToc")
 	private String danToc;
 	
+	@NotEmpty(message= "Vui Lòng Nhập Quốc Tịch")
+	@Column(name= "QuocTich")
 	private String quocTich;
+	
+	@NotNull
 	@ManyToOne
 	@JoinColumn(name="MaChucDanh")
 	private ChucDanh maChucDanh;
 	
+	@NotNull(message="Vui Lòng Chọn Phòng Ban")
 	@ManyToOne
 	@JoinColumn(name="MaPhongBan")
 	private PhongBan maPhongBan;
 	
+	@Column(name="Avatar")
 	private String avatar;
 	
 	private int isActive;

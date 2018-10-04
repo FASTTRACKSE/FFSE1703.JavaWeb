@@ -80,14 +80,14 @@ th, td {
 										class="table table-striped table-bordered zero-configuration">
 										<thead>
 											<tr>
-												<th>ID</th>
+												<th><spring:message code="label.id" /></th>
 												<th><spring:message code="label.maNhanVien" /></th>
 												<th><spring:message code="label.tenBangCap" /></th>
 												<th><spring:message code="label.loaiBangCap" /></th>
 												<th><spring:message code="label.noiCapBang" /></th>
 												<th><spring:message code="label.noiCap" /></th>
 												<th><spring:message code="label.ngayCap" /></th>
-												<th>Chức Năng</th>
+												<th><spring:message code="label.chucNang" /></th>
 											</tr>
 										</thead>
 										<tbody>

@@ -11,12 +11,13 @@
                     <form:form class="form" method="POST" action="insert" modelAttribute="formHosopkl" enctype="multipart/form-data">
                       <div class="form-body">
                         <h4 class="form-section"><i class="ft-user"></i>Thông tin cơ bản</h4>
-                        <div class="row">
+                        <div class="row"> <!-- div row 1 -->
                           <div class="col-md-6">
                             <div class="form-group">
                               <label for="projectinput1">Mã nhân viên</label>
                               <form:input path="maNv" type="number" id="projectinput1" class="form-control" placeholder="Mã nhân viên"
                               name="maNhanVienInput" />
+                              <form:errors path="maNv" cssStyle="color: red" /> <!-- validate error mess -->
                             </div>
                           </div>
                           <div class="col-md-6">
@@ -24,13 +25,18 @@
                               <label for="projectinput2">Họ tên</label>
                               <form:input path="hoTenNv" type="text" id="projectinput2" class="form-control" placeholder="Họ tên"
                               name="hoTenInput" />
+                               <form:errors path="hoTenNv" cssStyle="color: red" /> <!-- validate error mess -->
                             </div>
                           </div>
+                          </div> <!-- /div row 1 -->
+                          
+                          <div class="row"><!-- /div row 2 -->
                           <div class="col-md-6">
                             <div class="form-group">
                               <label for="projectinput2">Email</label>
                               <form:input path="email" type="text" id="projectinput2" class="form-control" placeholder="Email"
                               name="emailInput" />
+                               <form:errors path="email" cssStyle="color: red" /> <!-- validate error mess -->
                             </div>
                           </div>
                           <div class="col-md-6">
@@ -38,79 +44,101 @@
                               <label for="projectinput2">Tình trạng hôn nhân</label>
                               <form:select path="tinhTrangHonNhan" type="text" id="projectinput2" class="form-control"
                               name="tinhTrangHonNhanRadio">
-                              		<option value="none" selected="selected" >Chọn tình trạng hôn nhân</option>
+                              		<option value="" selected="selected" >Chọn tình trạng hôn nhân</option>
                               		<option value="0" >Chưa kết hôn</option>
                               		<option value="1" >Đã kết hôn</option>
                               </form:select>
+                              <form:errors path="tinhTrangHonNhan" cssStyle="color: red" /> <!-- validate error mess -->
                             </div>
                           </div>
-                        </div>
-                        <div class="row">
+                        </div> <!-- /div row 2 -->
+                        
+                        <div class="row"> <!-- div row 3 -->
                           <div class="col-md-6">
                             <div class="form-group">
                               <label for="projectinput3">Giới tính</label>
                               <form:select path="gioiTinh" type="text" id="projectinput3" class="form-control" placeholder="Giới tính" name="gioiTinhRadio">
-                              		<option value="none" selected="selected" >Chọn giới tính</option>
+                              		<option value="" selected="selected" >Chọn giới tính</option>
                               		<option value="Nam" >Nam</option>
                               		<option value="Nữ" >Nữ</option>
                               </form:select>
+                              <form:errors path="gioiTinh" cssStyle="color: red" /> <!-- validate error mess -->
                             </div>
                           </div>
                           <div class="col-md-6">
                             <div class="form-group">
                               <label for="projectinput4">Ngày sinh</label>
                               <form:input path="ngaySinh" type="date" id="projectinput4" class="form-control" placeholder="Ngày sinh" name="ngaySinhInput" />
+                               <form:errors path="ngaySinh" cssStyle="color: red" /> <!-- validate error mess-->
                             </div>
                           </div>
+                          </div> <!-- /div row 3 -->
+                          
+                          <div class="row"> <!-- div row 4 -->
                           <div class="col-md-6">
                             <div class="form-group">
                               <label for="projectinput4">Số điện thoại</label>
                               <form:input path="sDT" type="number" id="projectinput4" class="form-control" placeholder="Số điện thoại" name="soDienThoaiInput" />
+                              <form:errors path="sDT" cssStyle="color: red" /> <!-- validate error mess -->
                             </div>
                           </div>
                           <div class="col-md-6">
                             <div class="form-group">
                               <label for="projectinput4">Số CMND</label>
                               <form:input path="cMND" type="number" id="projectinput4" class="form-control" placeholder="Số CMND" name="soCMNDInput" />
+                              <form:errors path="cMND" cssStyle="color: red" /> <!-- validate error mess -->
                             </div>
                           </div>
+                          </div><!-- /div row 4 -->
+                          
+                          <div class="row"> <!-- div row 5 -->
                           <div class="col-md-6">
                             <div class="form-group">
                               <label for="projectinput4">Nơi cấp</label>
                               <form:input path="noiCap" type="text" id="projectinput4" class="form-control" placeholder="Nơi cấp" name="noiCapInput" />
+                              <form:errors path="noiCap" cssStyle="color: red" /> <!-- validate error mess -->
                             </div>
                           </div>
                           <div class="col-md-6">
                             <div class="form-group">
                               <label for="projectinput4">Ngày cấp</label>
                               <form:input path="ngayCap" type="date" id="projectinput4" class="form-control" placeholder="Ngày cấp" name="ngayCapInput" />
+                              <form:errors path="ngayCap" cssStyle="color: red" /> <!-- validate error mess -->
                             </div>
                           </div>
+                          </div> <!-- /div row 5 -->
+                          
+                          <div class="row"> <!-- div row 6 -->
                           <div class="col-md-6">
                             <div class="form-group">
                               <label for="projectinput4">Quốc tịch</label>
                               <form:select path="quocTich" type="text" id="projectinput4" class="form-control" name="quocTichSelect">
-                              		<option value="none" selected="selected" >Chọn quốc tịch</option>
+                              		<option value="" selected="selected" >Chọn quốc tịch</option>
                               	 <c:forEach items="${listQuocTich}" var="x">
                               		<option value="${x.tenNuoc}" >${x.tenNuoc}</option>
                               	 </c:forEach>
                               </form:select>
+                              <form:errors path="quocTich" cssStyle="color: red" /> <!-- validate error mess -->
                             </div>
                           </div>
                           <div class="col-md-6">
                             <div class="form-group">
                               <label for="projectinput4">Dân tộc</label>
                               <form:input path="danToc" type="text" id="projectinput4" class="form-control" placeholder="Dân tộc" name="danTocInput" />
+                              <form:errors path="danToc" cssStyle="color: red" /> <!-- validate error mess -->
                             </div>
                           </div>
+                          </div><!-- /div row 6 -->
                           
+                          <div class="row"><!-- div row 7 -->
                           <div class="col-md-12">
                             <div class="form-group">
                               <label for="projectinput4">Nơi ở hiện nay</label>
                               <form:textarea path="noiOHienNay" type="text" id="projectinput4" class="form-control" placeholder="Nơi ở hiện nay" name="noiOHienNayInput" />
+                              <form:errors path="noiOHienNay" cssStyle="color: red" /> <!-- validate error mess -->
                             </div>
                           </div>
-                        </div>
+                        </div> <!-- /div row 7 -->
                         <h4 class="form-section"><i class="fa fa-paperclip"></i>Thông tin quê quán</h4>
                         <div class="form-group">
                           <label for="thanhPhoId">Thành Phố</label>
@@ -124,17 +152,16 @@
                         </div>
                         <div class="form-group">
                           <label for="quanHuyenId">Quận huyện</label>
-                          <form:select path="quanHuyen.maQuanHuyen" id="quanHuyenId"  name="quanHuyen" type="text" class="form-control" disabled="true"
+                          <form:select path="quanHuyen.maQuanHuyen" id="quanHuyenId"  name="quanHuyen" type="text" class="form-control"
                           			onchange="clickComboboxQuan()" >
                           		 <option value="noQuanHuyen" selected="selected" >Chọn quận huyện</option>
                           </form:select>
                      
-                          
                         </div>
                         <div class="form-group">
                           <label for="phuongXaId">Phường xã</label>
                           <form:select path="phuongXa.maPhuong" type="text" id="phuongXaId" class="form-control"
-                          name="phuongXaSelect" disabled="true">
+                          name="phuongXaSelect">
                           		<option value="noPhuongXa" selected="selected">Chọn phường xã</option>
                           	
                           </form:select>
@@ -147,17 +174,19 @@
                           <label for="companyName">Phòng ban</label>
                           <form:select path="maPhongBan.maPhongBan" type="text" id="companyName" class="form-control"
                           name="phongBanSelect">
-                          		<option value="none" selected >Chọn Phòng ban</option>
+                          		<option value="" selected >Chọn Phòng ban</option>
                           	  <c:forEach items="${listPhongBan}" var="x">
                               	<option value="${x.maPhongBan}" >${x.tenPhongBan}</option>
                               </c:forEach>
                           </form:select>
+                          <form:errors path="maPhongBan.maPhongBan" cssStyle="color: red" /> <!-- validate error mess -->
                         </div>
+                        
                         <div class="form-group">
-                          <label for="companyName">Chức danh</label>
-                          <form:select path="maChucDanh.maChucDanh" type="text" id="companyName" class="form-control" placeholder="Company Name"
+                          <label for="companyName">Chức Danh</label>
+                          <form:select path="maChucDanh.maChucDanh" type="text" id="companyName" class="form-control"
                           name="chucDanhSelect">
-                          		<option value="none" selected="selected" >Chọn chức danh</option>
+                          		<option value="" selected >Chọn chức danh</option>
                           	  <c:forEach items="${listChucDanh}" var="x">
                               	<option value="${x.maChucDanh}" >${x.tenChucDanh}</option>
                               </c:forEach>
@@ -174,56 +203,45 @@
                         <button type="submit" class="btn btn-primary">
                           <i class="fa fa-check-square-o"></i> Lưu
                         </button>
+                        
+                      <a href="/ffse-fbms/quantrinhansu/hosonhanvien/"><button type="button" class="btn btn-warning mr-1">
+                          <i class="ft-x"></i> Hủy
+                        </button></a>
                       </div>
                     </form:form>
+                     
                     <div ><p id="result"></p></div>
-                    <button type="button" class="btn btn-warning mr-1" onclick="bam()">
-                          <i class="ft-x"></i> Hủy
-                        </button>
-                        
+                    
                         
                         <!-- ajax select ThanhPho -->
                      <script type="text/javascript">
-                     window.onload = function () { 
-                    	 
-                    	 console.log("aaa");
-                     }
                      function clickComboboxThanhPho(){
-                    	 var maThanhPho = $("#thanhPhoId").val();
-                    	 if(maThanhPho == 'noThanhPho'){  // nếu người dùng chưa chọn thành phố
-                    		
-                    		 $('#quanHuyenId option').remove();
-                    		 
-                    		 $('#quanHuyenId').prop('disabled', true); /*disable combobox quận huyện */
-                    		 
-                    		 $('#phuongXaId option[value=noPhuongXa]').attr('selected', 'selected')
-                    		 $('#phuongXaId').prop('disabled', true);
-                    		 
-                    	 } else{                // nếu người dùng đã chọn thành phố
-                    		
-                    		 $('#quanHuyenId').prop('disabled', false); /*enable combobox quận huyện */
-                    		 $('#quanHuyenId option').remove(); /* xóa những option quận huyện cũ */
-                    		 
-                    		 $('#phuongXaId option[value=noPhuongXa]').attr('selected', 'selected') // nếu người ta select lại thành phố thì combobox phường phải chọn lại từ đầu
-                    		 $('#phuongXaId').prop('disabled', true);
-                    	 }
+                    	 var maThanhPho = $("#thanhPhoId").val(); /* when click thanh pho */
                     	 
+                    		 $('#quanHuyenId option').remove(); // delete old data in quan huyen
+                    		 $('#phuongXaId option').remove();// delete old data in phuong xa
+                    		
                          $.ajax({
                         	 url: "/ffse-fbms/quantrinhansu/hosonhanvien/selectquan/" + maThanhPho, 
                         	 dataType: "json",
                         	 success: function(data){
-                        		/* alert("Hello! I am an alert box!"); */
-                        		$('#quanHuyenId').append($('<option>', {
+                        		$('#quanHuyenId').append($('<option>', { // insert default data in quan huyen
                              		    value: 'noQuanHuyen',
                              		    text: 'Chọn Quận Huyện'
                              		}));
                         		
-                        		for (var i = 0; i < data.length; i++) {
+                        		for (var i = 0; i < data.length; i++) { // insert new data in quan huyen
                         			$('#quanHuyenId').append($('<option>', {
                              		    value: data[i].maQuanHuyen,
                              		    text: data[i].tenQuanHuyen
                              		}));
 								}
+                        		
+                        		$('#phuongXaId').append($('<option>', { // insert default data in phuong xa
+                         		    value: 'noPhuongXa',
+                         		    text: 'Chọn phường xã'
+                         		}));
+                        		
                         	
                          }});
                      };
@@ -234,30 +252,22 @@
                      
                      
                      <!-- ajax select QuanHuyen -->
-                     function clickComboboxQuan(){
+                     function clickComboboxQuan(){ /* when click quan huyen */
                     	 var maQuanHuyen = $("#quanHuyenId").val();
-                    	 if(maQuanHuyen == 'noQuanHuyen'){  /* nếu người dùng chưa chọn thành phố */
-                    		 $('#phuongXaId option').remove();
-                    		 $('#phuongXaId').prop('disabled', true); /*disable combobox quận huyện */
+                    	
+                    		 $('#phuongXaId option').remove(); // delete old data in phuong xa
                     		 
-                    	 } else{                /* nếu người dùng đã chọn thành phố*/
-                    		
-                    		 $('#phuongXaId').prop('disabled', false); // enable combobox quận huyện 
-                    		 $('#phuongXaId option').remove(); // xóa những option quận huyện cũ
-                    	 }
-                    	 
                          $.ajax({
                         	 url: "/ffse-fbms/quantrinhansu/hosonhanvien/selectphuong/" + maQuanHuyen, 
                         	 dataType: "json",
                         	 success: function(data){
-                        		/* alert("Hello! I am an alert box!"); */
                         		
-                        		$('#phuongXaId').append($('<option>', {
+                        		$('#phuongXaId').append($('<option>', {// insert default data in phuong xa
                              		    value: 'noPhuongXa',	
                              		    text: 'Chọn phường xã'
                              		}));
                         		
-                        		for (var i = 0; i < data.length; i++) {
+                        		for (var i = 0; i < data.length; i++) {// insert new data in phuong xa
                         			$('#phuongXaId').append($('<option>', {
                              		    value: data[i].maPhuong,
                              		    text: data[i].tenPhuong

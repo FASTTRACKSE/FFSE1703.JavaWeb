@@ -16,6 +16,10 @@ public interface DonXinPhepDao {
 
 	public List<DonXinPhepEntity> danhsachbituchoi003();
 
+	public List<SoNgayNghiEntity> ngaynghiphep();
+	
+	public List<TrangThaiEntity> thongketrangthai();
+	
 	public List<LyDoEntity> danhSachLyDo();
 
 	public List<TrangThaiEntity> danhSachTrangThai();
@@ -34,18 +38,16 @@ public interface DonXinPhepDao {
 
 	public void delete(int id);
 
-	public void Updatecho(DonXinPhepEntity DonXinPhepEntity);
+	public void Update(DonXinPhepEntity DonXinPhepEntity);
 	
 	public List<DonXinPhepEntity>  findAllForPaging1(int startPosition,int maxResult);
 	public List<DonXinPhepEntity>  findAllForPaging2(int startPosition,int maxResult);
 	public List<DonXinPhepEntity>  findAllForPaging3(int startPosition,int maxResult);
 	public List<DonXinPhepEntity>  findAllForPaging4(int startPosition,int maxResult);
+	public List<SoNgayNghiEntity>  findAllForPagingngaynghi(int startPosition,int maxResult);
+	public List<TrangThaiEntity>  findAllForPagingTT(int startPosition,int maxResult);
+
 	
-public List<SoNgayNghiEntity> bangNgayNghi();
-	
-	public SoNgayNghiEntity findByIdngay(int id);
-	
-	public void deletengay(int id); 
 	
 
 }

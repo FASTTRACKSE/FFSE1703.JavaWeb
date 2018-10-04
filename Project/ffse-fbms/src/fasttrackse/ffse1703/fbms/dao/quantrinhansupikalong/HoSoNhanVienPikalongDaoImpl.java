@@ -33,6 +33,18 @@ public class HoSoNhanVienPikalongDaoImpl implements HoSoNhanVienPikalongDao {
 		List<HoSoNhanVienPikalong> nhanVienList = query.list();
 		return nhanVienList;
 	}
+	
+	@Override
+	public List<HoSoNhanVienPikalong> listNhanVienPagination(int start, int end) {
+		Session session = sessionFactory.getCurrentSession();
+		@SuppressWarnings("rawtypes")
+		Query query = session.createQuery("from HoSoNhanVienPikalong where isActive = :active").setFirstResult(start).setMaxResults(end);
+		query.setParameter("active", 0);
+		
+		@SuppressWarnings("unchecked")
+		List<HoSoNhanVienPikalong> nhanVienListPagination = query.list();
+		return nhanVienListPagination;
+	}
 
 
 	@Override
@@ -90,4 +102,17 @@ public class HoSoNhanVienPikalongDaoImpl implements HoSoNhanVienPikalongDao {
 		System.out.println(hsnv);
 		return hsnv;
 	}
+
+
+	@Override
+	public Long countAll() {
+		Session session = sessionFactory.getCurrentSession();
+		@SuppressWarnings("rawtypes")
+		Query query = session.createQuery("select count(*) from HoSoNhanVienPikalong where isActive = :active");
+		query.setParameter("active", 0);
+		Long total = (Long)query.uniqueResult();
+		
+		return total;
+	}
+
 }

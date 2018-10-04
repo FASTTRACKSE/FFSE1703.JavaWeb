@@ -66,7 +66,7 @@
 								<div class="fonticon-container">
 									<div style="line-height: 0; height: 0; margin-bottom: 0;"
 										class="fonticon-wrap">
-										<a href="view/${x.hoSoNhanVienPikalong.maNv}"><i
+										<a href="view/${x.maHopDong}"><i
 											style="font-size: 1em;" class="ft-eye"></i></a>
 									</div>
 								</div>

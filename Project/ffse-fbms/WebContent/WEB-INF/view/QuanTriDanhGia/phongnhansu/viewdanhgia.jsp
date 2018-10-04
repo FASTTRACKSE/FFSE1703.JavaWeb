@@ -17,8 +17,8 @@
 									đánh giá</a></li>
 							<li class="breadcrumb-item"><a
 								href="<c:url value = "/quantridanhgia/danhgianhanvien/"/>">Đánh
-									giá nhân viên</a></li>
-							<li class="breadcrumb-item active">Form đánh giá</li>
+									giá của nhân viên</a></li>
+							<li class="breadcrumb-item active">View đánh giá</li>
 						</ol>
 					</div>
 				</div>
@@ -41,7 +41,7 @@
 													<label class="col-md-3 label-control">Nhân viên</label>
 													<div class="col-md-9">
 														<h3>
-															<form:label path="nhanVien"></form:label>
+															<label>${command.nhanVien.maNhanVien}</label>
 														</h3>
 													</div>
 												</div>

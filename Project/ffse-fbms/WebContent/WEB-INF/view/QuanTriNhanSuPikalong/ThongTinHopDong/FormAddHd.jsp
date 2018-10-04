@@ -24,7 +24,7 @@
 			</div>
 		</div>
 		<form:form class="form" method="POST" modelAttribute="hopDongPikalong"
-			action="/ffse-fbms/QuanTriNhanSu/quanlihopdong............/save">
+			action="/ffse-fbms/QuanTriNhanSu/quanlihopdong/save">
 			<div class="form-body">
 				<div class="form-section"></div>
 				<div class="row">
@@ -45,13 +45,13 @@
 					<div class="col-md-6">
 						<div class="form-group">
 							<label>Phòng ban</label>
-							<div class="form-control well">${hsnv.maPhongBan}</div>
+							<div class="form-control well">${hsnv.maPhongBan.tenPhongBan}</div>
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="form-group">
 							<label>Chức danh</label>
-							<div class="form-control well">${hsnv.maChucDanh}</div>
+							<div class="form-control well">${hsnv.maChucDanh.tenChucDanh}</div>
 						</div>
 					</div>
 				</div>
@@ -59,7 +59,7 @@
 					<i class="ft-user"></i> Thông Tin Hợp Đồng
 				</h4>
 				<div class="row">
-					<div class="col-md-4">
+					<div class="col-md-12">
 						<label>Mã hợp đồng</label>
 
 						<fmt:parseNumber var="intValue" value="${lastMaHd}"
@@ -68,61 +68,57 @@
 
 					</div>
 					<form:hidden path="hoSoNhanVienPikalong.maNv" value="${hsnv.maNv}" />
-					<div class="col-md-4">
+					<div class="col-md-6">
 						<div class="form-group">
 							<label>Tên hợp đồng</label>
 							<form:select path="loaiHopDongPikalong.maLoaiHopDong" id="tenHd"
 								name="tenHdSelect" class="form-control">
-								<option value="none" selected="true" disabled="true">
-									<--Chọn--></option>
+								<form:option value="0" selected="true">
+									<--Chọn--></form:option>
 								<form:option value="1">Hợp đồng thử việc</form:option>
-								<option value="2">Hợp đồng ngắn hạn</option>
-								<option value="3">Hợp đồng chính thức</option>
+								<form:option value="2">Hợp đồng ngắn hạn</form:option>
+								<form:option value="3">Hợp đồng chính thức</form:option>
+							</form:select>
+							<form:errors path="loaiHopDongPikalong.maLoaiHopDong" cssStyle="color: red" />     <!-- Validate error  -->
+						</div>
+					</div>				
+							<form:hidden path="trangThai" value="2"/>
 
-							</form:select>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="form-group">
-							<label>Trạng thái</label>
-							<form:select path="trangThai" class="form-control">
-								<form:option value="0" selected="true" disabled="true"> <--Chọn--> </form:option>
-								<form:option value="1">Hết hợp đồng</form:option>
-								<form:option value="2">Còn hợp đồng</form:option>
-							</form:select>
-						</div>
-					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-3">
+					<div class="col-md-6">
 						<div class="form-group">
 							<label>Lương tháng 13</label>
 							<form:select path="luongThang13" class="form-control">
-								<form:option value="" selected="true" disabled="true"> <--Chọn--> </form:option>
-								<form:option value="1">Có</form:option>
-								<form:option value="2">Không</form:option>
+								<form:option value="0" selected="true"> <--Chọn--> </form:option>
+								<option value="1">Có</option>
+								<option value="2">Không</option>
 							</form:select>
+							<form:errors path="luongThang13" cssStyle="color: red" />
 						</div>
 					</div>
-					<div class="col-md-3">
+					<div class="col-md-6">
 						<div class="form-group">
 							<label>Số ngày nghỉ trong năm</label>
 							<form:input path="soNgayNghiTrongNam" type="text"
 								id="soNgayNghiTrongNam" class="form-control" />
+							<form:errors path="soNgayNghiTrongNam" cssStyle="color: red" />
 						</div>
 					</div>
-					<div class="col-md-3">
+					<div class="col-md-6">
 						<div class="form-group">
 							<label>Ngày ký hợp đồng</label>
-							<form:input path="ngayKiKet" type="date" id="ngayKyKet"
+							<form:input path="ngayKiKet" type="date" id="ngayKiKet"
 								class="form-control" />
+							<form:errors path="ngayKiKet" cssStyle="color: red" />
 						</div>
 					</div>
-					<div class="col-md-3">
+					<div class="col-md-6">
 						<div class="form-group">
 							<label>Ngày kết thúc hợp đồng</label>
 							<form:input path="ngayKetThuc" type="date" id="ngayKetThuc"
 								class="form-control" />
+							<form:errors path="ngayKetThuc" cssStyle="color: red" />
 						</div>
 					</div>
 				</div>

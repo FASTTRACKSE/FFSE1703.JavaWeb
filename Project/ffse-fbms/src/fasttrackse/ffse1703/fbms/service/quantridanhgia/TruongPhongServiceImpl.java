@@ -76,4 +76,16 @@ public class TruongPhongServiceImpl implements TruongPhongService {
 		return dao.getActiveLichDanhGia(phongBan);
 	}
 
+	@Override
+	@Transactional
+	public List<DanhGiaBanThan> getListDanhGiaBanThan(int start, int maxItems, String phongBan) {
+		return dao.getListDanhGiaBanThan(start, maxItems, phongBan);
+	}
+
+	@Override
+	@Transactional
+	public List<TruongPhongDanhGia> getListNhanVienPhongBan(int start, int maxItems, String phongBan) {
+		return dao.getListNhanVienPhongBan(start, maxItems, phongBan);
+	}
+
 }

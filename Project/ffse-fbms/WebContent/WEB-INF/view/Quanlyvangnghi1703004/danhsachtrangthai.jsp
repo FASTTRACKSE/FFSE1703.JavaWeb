@@ -14,13 +14,26 @@
 		<div class="col-md-5"></div>
 			<h3 class="content-header-title mb-0"><spring:message code="label.danhsachtrangthai"/></h3>
 		</div>
+		<div class="continer">
+	
+		<!-- Show message -->
+			<c:if test="${messageSuccess ne null}">
+				<div class="alert alert-success  btn-min-width mr-1 mb-1" role="alert">
+					<button type="button" class="close" data-dismiss="alert">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					${messageSuccess}
+				</div>
+			</c:if>
+			</div>
 			
 			<div>
 			<div><a  class="btn btn-outline-success round btn-min-width mr-1 mb-1" href="createstatus"><h4><spring:message code="label.themMoi"/></h4></a></div>
 			<div class="container">
 			    <div class="table-responsive">
-						<table class="table mb-0">
-							<thead>
+						<table class="table table-bordered"
+						style="text-align: center; background: white">
+							<thead style="background: #D3D3D3">
 				<tr>
 					<th ><spring:message code="label.madon"/></th>
 					<th><spring:message code="label.matrangthai"/></th>
@@ -34,10 +47,9 @@
                      <th scope="row">${nn.id}</th>
 					<td>${nn.maTrangThai}</td>
 					<td>${nn.trangThai}</td>
-					<td><a href="suatrangthai/${nn.id}"><button class="btn btn-outline-success round  mr-1 mb-1"
-								><spring:message code="label.chinhSua"/></button></a>
-					<a href="deleteStatus/${nn.id}"><button class="btn btn-outline-danger round  mr-1 mb-1"
-									onclick="return confirm('Bạn có muốn xóa sinh viên này?');"><spring:message code="label.xoa"/></button></a>
+						<td><h2><a  href="deleteStatus/${nn.id}"> <i class='fa fa-trash'onclick="return confirm('Bạn có muốn xóa sinh viên này?');"></i></a></h2>
+						<h2><a   href="viewTrangThai/${nn.id}"><i class="icon-eye"></i></a> </h2>
+						<h2><a href="suatrangthai/${nn.id}"> <i class='fa fa-pencil'></i> </a></h2>
 					</td>
 						</tr>
 				</c:forEach>

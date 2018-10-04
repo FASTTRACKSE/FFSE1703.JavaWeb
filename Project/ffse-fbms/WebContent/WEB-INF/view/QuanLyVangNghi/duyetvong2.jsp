@@ -161,9 +161,9 @@ input:checked+.slider:before {
 										<table class=" table-striped table-bordered table-list">
 											<thead>
 												<tr>
-													<th>STT</th>
-													<th>Họ Và Tên</th>
 													<th>Mã Nhân Viên</th>
+													<th>Họ Và Tên</th>
+													<th>Phòng Ban</th>
 													<th>Lý Do</th>
 													<th>Thời gian Từ</th>
 													<th>Đến Thời gian</th>
@@ -183,25 +183,27 @@ input:checked+.slider:before {
 														<td>${dn.getTg_ket_thuc()}</td>
 														<td>${dn.getGhi_chu()}</td>
 														<td>
-														<c:if test="${dn.getTinh_trang() == 1 }">
-																<label class="switch"> <input> <span
-																	class="slider round"></span> <span class="absolute-no">Chưa
-																		Duyệt</span>
-																</label>
-														</c:if> 
-															<c:if test="${dn.getTinh_trang() == 2 }">
+														
+														<c:if test="${dn.getTinh_trang() == 2 }">
 																<label class="switch"> <input
 																type="checkbox" checked disabled="disabled"> <span
 																class="slider round" ></span> <span class="absolute-no">Chờ Duyệt</span>
-														</label>
-															</c:if>
-															</td>
-														<td>
-															<label class="switch"> <input> <span
-																	class="slider round"></span> <span class="absolute-no">Chưa
-																		Duyệt</span>
-																</label>
-														</td>
+														</label></c:if> </td>
+														
+														<td><c:if test="${dn.getTinh_trang() == 3 }">
+															<a href="pheduyetvong1/${dn.getId_don()}"><span
+																class="switch"> <input type="checkbox">
+																	<span class="slider round"></span> <span
+																	class="absolute-no">Chưa Duyệt</span>
+															</span></a>
+														</c:if> <c:if test="${dn.getTinh_trang() == 2 }">
+															<label class="switch"> <input type="checkbox"
+																checked disabled="disabled"> <span
+																class="slider round"></span> <span class="absolute-no">Chờ
+																	Duyệt</span>
+															</label>
+														</c:if></td>
+											
 													</tr>
 												</c:forEach>
 											</tbody>

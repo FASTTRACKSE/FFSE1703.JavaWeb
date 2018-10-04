@@ -92,7 +92,7 @@
 													</div>
 												</div>
 												<div class="form-actions">
-													<c:if test="${command.isDelete == 1 }">
+													<c:if test="${command.isDelete == 0 }">
 														<a
 															href="<c:url value="/quantridanhgia/tudanhgia/showform"/>"
 															class="btn btn-success">Cập nhật</a>

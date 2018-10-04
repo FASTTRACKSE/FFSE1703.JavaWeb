@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import fasttrackse.ffse1703.fbms.dao.quantrinhansupikalong.HoSoNhanVienPikalongDao;
 import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.HoSoNhanVienPikalong;
-import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
+
 
 
 @Service
@@ -28,8 +28,14 @@ public class HoSoNhanVienPikalongServiceImpl implements HoSoNhanVienPikalongServ
 		
 		return hoSoNhanVienPikalongDao.listNhanVien();
 	}
-
-
+	
+	@Override
+	@Transactional
+	public List<HoSoNhanVienPikalong> listNhanVienPagination(int start, int end) {
+		// TODO Auto-generated method stub
+		return hoSoNhanVienPikalongDao.listNhanVienPagination(start, end);
+	}
+	
 	@Override
 	@Transactional
 	public void delete(String maNv) {
@@ -69,4 +75,13 @@ public class HoSoNhanVienPikalongServiceImpl implements HoSoNhanVienPikalongServ
 		hoSoNhanVienPikalongDao.update(hoSoNhanVienPikalong);
 		
 	}
+
+
+	@Override
+	@Transactional
+	public Long countAll() {
+		// TODO Auto-generated method stub
+		return hoSoNhanVienPikalongDao.countAll();
+	}
+
 }

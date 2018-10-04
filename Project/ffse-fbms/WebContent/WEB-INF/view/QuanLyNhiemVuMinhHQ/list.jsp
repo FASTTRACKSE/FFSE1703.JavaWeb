@@ -195,7 +195,9 @@
 														href="/ffse-fbms/QuanLyNhiemVuMinhHQ/view/${cv.ID}"><i
 															class='fa fa-eye'></i></a> <a
 														href="/ffse-fbms/QuanLyNhiemVuMinhHQ/edit/${cv.ID}"><i
-															class='fa fa-pencil'></i></a> <a
+															class='fa fa-pencil'></i></a> 
+															
+															<a
 														href="/ffse-fbms/QuanLyNhiemVuMinhHQ/delete/${cv.ID}"><i
 															class='fa fa-trash'
 															onclick="return confirm('Bạn có muốn xóa sinh viên này?');"></i></a>

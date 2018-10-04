@@ -91,7 +91,7 @@ public class QLyNhiemVuMinhHQController {
 			redirectAttributes.addFlashAttribute("messageSuccess", "Thêm mới thành công...");
 		} catch (Exception e) {
 
-			redirectAttributes.addFlashAttribute("messageError", "Lỗi. Xin thử lại!");
+			redirectAttributes.addFlashAttribute("messageError", "Lỗi. xin thử lại!");
 			return "redirect:/QuanLyNhiemVuMinhHQ/create";
 		}
 		return "redirect:/QuanLyNhiemVuMinhHQ/list";
@@ -123,7 +123,7 @@ public class QLyNhiemVuMinhHQController {
 			redirectAttributes.addFlashAttribute("messageSuccess", "Thêm mới thành công...");
 		} catch (Exception e) {
 
-			redirectAttributes.addFlashAttribute("messageError", "Lỗi. Xin thử lại!");
+			redirectAttributes.addFlashAttribute("messageError", "Lỗi. xin thử lại!");
 			return "redirect:/QuanLyNhiemVuMinhHQ/edit/" + CongViec.getID();
 		}
 

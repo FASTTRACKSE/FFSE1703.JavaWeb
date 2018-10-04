@@ -23,28 +23,29 @@ import fasttrackse.ffse1703.fbms.service.quantrinhansupikalong.HoSoNhanVienPikal
 public class GiaDinhPikalongController {
 	@Autowired
 	private GiaDinhPikalongService giaDinhPikalongService;
-	
+
 	@Autowired
 	private HoSoNhanVienPikalongService hoSoNhanVienPikalongService;
-	
+
 	public void setGiaDinhPikalongService(GiaDinhPikalongService giaDinhPikalongService) {
 		this.giaDinhPikalongService = giaDinhPikalongService;
 	}
 
 	@RequestMapping("/saveOneGiaDinh")
-	public String saveOneGiaDinh(@ModelAttribute("command") @Valid GiaDinhPikalong p, BindingResult result,Model model) {
+	public String saveOneGiaDinh(@ModelAttribute("command") @Valid GiaDinhPikalong p, BindingResult result,
+			Model model) {
 		// System.out.println("ma nv " + p.getMaNV());
 		if (result.hasErrors()) {
 			return "QuanTriNhanSuPikalong/QuanLiGiaDinh/formAddGiaDinhPikalong";
 		}
-		//check trùng quan hệ
-				int checkQuanHe= giaDinhPikalongService.checkQuanHe(p.getQuanHe(), p.getMaNV());
-				System.out.println("ggsggggg"+checkQuanHe);
-				System.out.println("ggsggggg"+p.getQuanHe());
-				if(checkQuanHe >=1) {
-					model.addAttribute("messageQuanHe","<script>alert('Nhân Viên Đã Có "+p.getQuanHe()+"');</script>");
-					return "QuanTriNhanSuPikalong/QuanLiGiaDinh/formAddGiaDinhPikalong";
-				}
+		// check trùng quan hệ
+		int checkQuanHe = giaDinhPikalongService.checkQuanHe(p.getQuanHe(), p.getMaNV());
+		System.out.println("ggsggggg" + checkQuanHe);
+		System.out.println("ggsggggg" + p.getQuanHe());
+		if (checkQuanHe >= 1) {
+			model.addAttribute("messageQuanHe", "<script>alert('Nhân Viên Đã Có " + p.getQuanHe() + "');</script>");
+			return "QuanTriNhanSuPikalong/QuanLiGiaDinh/formAddGiaDinhPikalong";
+		}
 		giaDinhPikalongService.addGiaDinhPikalong(p);
 		return "redirect:/QuanTriNhanSuPikalong/QuanLiGiaDinh/viewOneGiaDinh/" + p.getMaNV();
 	}
@@ -68,15 +69,21 @@ public class GiaDinhPikalongController {
 
 	@RequestMapping("/viewOneGiaDinh/{maNV}")
 	public String viewOneGiaDinh(@PathVariable String maNV, Model model) {
-		model.addAttribute("hosonhanvien", this.hoSoNhanVienPikalongService.getEdit(maNV));
-		model.addAttribute("viewOne", this.giaDinhPikalongService.viewOne(maNV));
-		model.addAttribute("maNv", maNV);
-		return "QuanTriNhanSuPikalong/QuanLiGiaDinh/viewOneGiaDinhPikalong";
+		boolean isActive = hoSoNhanVienPikalongService.checkIsActive(maNV);
+		if (isActive == true) {
+			model.addAttribute("hosonhanvien", this.hoSoNhanVienPikalongService.getEdit(maNV));
+			model.addAttribute("viewOne", this.giaDinhPikalongService.viewOne(maNV));
+			model.addAttribute("maNv", maNV);
+			return "QuanTriNhanSuPikalong/QuanLiGiaDinh/viewOneGiaDinhPikalong";
+		} else {
+			return "QuanTriHeThong/error-404";
+		}
+		
 	}
 
 	@RequestMapping(value = "/add/{maNV}", method = RequestMethod.GET)
 	public String showFormAdd(Model model, HttpSession session, @PathVariable String maNV) {
-		
+
 		GiaDinhPikalong hsnv = new GiaDinhPikalong();
 		hsnv.setMaNV(maNV);
 		model.addAttribute("command", hsnv);

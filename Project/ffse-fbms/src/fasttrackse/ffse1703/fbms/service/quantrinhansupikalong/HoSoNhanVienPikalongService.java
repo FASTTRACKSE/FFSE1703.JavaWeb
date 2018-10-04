@@ -18,5 +18,7 @@ public interface HoSoNhanVienPikalongService {
 	public HoSoNhanVienPikalong getEdit(String maNv);
 	public void update(HoSoNhanVienPikalong hoSoNhanVienPikalong);
 	public Long countAll();
+	public boolean checkExistMaNv(String maNv);
+	public boolean checkIsActive(String maNv);
 
 }

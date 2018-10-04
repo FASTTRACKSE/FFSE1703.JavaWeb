@@ -17,7 +17,7 @@
                             <div class="form-group">
                               <label for="maNhanVienId">Mã nhân viên</label>
                               <form:input path="maNv" type="number" id="maNhanVienId" class="form-control" placeholder="Mã nhân viên"
-                              name="maNhanVienInput"/>
+                              name="maNhanVienInput" readonly="true" />
                             </div>
                           </div>
                           <div class="col-md-6">
@@ -174,18 +174,24 @@
 						alt="your image" width="100" height="150" />
 						 
                         </div>
+                         <div class="form-group">
+                         <form:hidden path="avatar"/>
+                         </div>
+                        
              
                         <div class="form-actions">
                         
                         <button type="submit" class="btn btn-primary">
                           <i class="fa fa-check-square-o"></i> Lưu
                         </button>
+                        
+                        <a href="/ffse-fbms/quantrinhansu/hosonhanvien/${pageIndex}"><button type="button" class="btn btn-warning mr-1">
+                          <i class="ft-x"></i> Hủy
+                        </button></a>
                       </div>
                     </form:form>
                     <div ><p id="result"></p></div>
-                    <button type="button" class="btn btn-warning mr-1" onclick="bam()">
-                          <i class="ft-x"></i> Hủy
-                        </button>
+               
                         
                      
                      <script>

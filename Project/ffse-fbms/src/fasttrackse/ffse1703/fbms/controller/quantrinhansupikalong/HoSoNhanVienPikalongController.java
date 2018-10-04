@@ -71,7 +71,6 @@ public class HoSoNhanVienPikalongController {
 	
 	private static final String UPLOAD_DIRECTORY ="/upload"; 
 	
-	 HoSoNhanVienPikalong getNhanVien = new HoSoNhanVienPikalong();
 	
 	public static int pageIndex;
 	public static double totalPage;
@@ -102,7 +101,7 @@ public class HoSoNhanVienPikalongController {
 	@RequestMapping("delete/{maNv}") // delete employee
 	public String delete(@PathVariable String maNv) {
 		hoSoNhanVienPikalongService.delete(maNv);
-		hoSoNhanVienPikalongService.delete(maNv);
+		
 		// sau khi delete đếm lại
 		totalRecord = hoSoNhanVienPikalongService.countAll();
 		totalPage = Math.ceil(totalRecord/perPage);
@@ -119,6 +118,7 @@ public class HoSoNhanVienPikalongController {
 		model.addAttribute("listThanhPho",  thanhPhoPikalongService.listTinhThanh());
 		model.addAttribute("listPhongBan", phongBanService.findAll());
 		model.addAttribute("listChucDanh", chucDanhService.findAll());
+		model.addAttribute("pageIndex", pageIndex);
 		return "QuanTriNhanSuPikalong/ThongTinHoSo/thongtinhosoaddform";
 	}
 	
@@ -126,7 +126,6 @@ public class HoSoNhanVienPikalongController {
 	public String addsave(Model model,@ModelAttribute("formHosopkl") @Valid HoSoNhanVienPikalong hoSoNhanVien, 
 			BindingResult result, @RequestParam("file") MultipartFile file, HttpSession session) throws IOException {
 		if(result.hasErrors()) {
-			model.addAttribute("formHosopkl", new HoSoNhanVienPikalong());
 			model.addAttribute("listQuocTich", quocTichPikalongService.listQuocTich());
 			model.addAttribute("listThanhPho",  thanhPhoPikalongService.listTinhThanh());
 			model.addAttribute("listPhongBan", phongBanService.findAll());
@@ -134,33 +133,45 @@ public class HoSoNhanVienPikalongController {
 			return "QuanTriNhanSuPikalong/ThongTinHoSo/thongtinhosoaddform";
 		}
 		
-		ServletContext context = session.getServletContext();
-		String path = context.getRealPath(UPLOAD_DIRECTORY);
-		File fileUpload = new File(path);
-		 if (!fileUpload.exists()) {
-			 fileUpload.mkdir();
-		 }
+		boolean exist = hoSoNhanVienPikalongService.checkExistMaNv(hoSoNhanVien.getMaNv());
+		if(exist == true) {
+			ServletContext context = session.getServletContext();
+			String path = context.getRealPath(UPLOAD_DIRECTORY);
+			File fileUpload = new File(path);
+			 if (!fileUpload.exists()) {
+				 fileUpload.mkdir();
+			 }
 
 
-		String filename = file.getOriginalFilename();
-		System.out.println(path + " " + filename);
-		byte[] bytes = file.getBytes();  
-	    BufferedOutputStream stream =new BufferedOutputStream(new FileOutputStream(  
-	         new File(path + File.separator + filename))); 
-	    hoSoNhanVien.setAvatar(filename);
-	    stream.write(bytes);  
-	    stream.flush();  
-	    stream.close();
-		
-		
-		hoSoNhanVienPikalongService.insert(hoSoNhanVien);
-		totalRecord = hoSoNhanVienPikalongService.countAll();
-		totalPage = Math.ceil(totalRecord/perPage);
-		if((int)totalPage > pageIndex) {
-			pageIndex = (int)totalPage;
+			String filename = file.getOriginalFilename();
+			System.out.println(path + " " + filename);
+			byte[] bytes = file.getBytes();  
+		    BufferedOutputStream stream =new BufferedOutputStream(new FileOutputStream(  
+		         new File(path + File.separator + filename))); 
+		    hoSoNhanVien.setAvatar(filename);
+		    stream.write(bytes);  
+		    stream.flush();  
+		    stream.close();
+			
+			
+			hoSoNhanVienPikalongService.insert(hoSoNhanVien);
+			totalRecord = hoSoNhanVienPikalongService.countAll();
+			totalPage = Math.ceil(totalRecord/perPage);
+			if((int)totalPage > pageIndex) {
+				pageIndex = (int)totalPage;
+			}
+			
+			return "redirect:/quantrinhansu/hosonhanvien/" + pageIndex;
+		} else {
+			model.addAttribute("listQuocTich", quocTichPikalongService.listQuocTich());
+			model.addAttribute("listThanhPho",  thanhPhoPikalongService.listTinhThanh());
+			model.addAttribute("listPhongBan", phongBanService.findAll());
+			model.addAttribute("listChucDanh", chucDanhService.findAll());
+			model.addAttribute("messMaNvExist", "Mã nhân viên đã tồn tại");
+			return "QuanTriNhanSuPikalong/ThongTinHoSo/thongtinhosoaddform";
 		}
 		
-		return "redirect:/quantrinhansu/hosonhanvien/" + pageIndex;
+		
 	}
 	
 	// ThanhPho Json
@@ -209,21 +220,18 @@ public class HoSoNhanVienPikalongController {
 	
 	@RequestMapping(value= "editform/{maNv}", method= RequestMethod.GET)
 	public String editform(Model model, @PathVariable String maNv) {
-		getNhanVien = hoSoNhanVienPikalongService.getEdit(maNv);
-		//System.out.println("Avatar: " + getNhanVien.getHoTenNv());
-		model.addAttribute("formHosopkl", getNhanVien);
+		model.addAttribute("formHosopkl", hoSoNhanVienPikalongService.getEdit(maNv));
 		model.addAttribute("listQuocTich", quocTichPikalongService.listQuocTich());
 		model.addAttribute("listThanhPho",  thanhPhoPikalongService.listTinhThanh());
 		model.addAttribute("listPhongBan", phongBanService.findAll());
 		model.addAttribute("listChucDanh", chucDanhService.findAll());
+		model.addAttribute("pageIndex", pageIndex);
 		return"QuanTriNhanSuPikalong/ThongTinHoSo/thongtinhosoeditform";
 	}
 	
 	@RequestMapping(value= "update", method= RequestMethod.POST)
-	public String editSave(@ModelAttribute("formHosopkl") HoSoNhanVienPikalong hoSoNhanVienPikalong, 
+	public String editSave(@ModelAttribute("formHosopkl") @Valid HoSoNhanVienPikalong hoSoNhanVienPikalong, 
 			BindingResult result, @RequestParam("file") MultipartFile file, HttpSession session) throws IOException {
-		//hoSoNhanVienPikalong.setAvatar(getNhanVien.getAvatar());
-		System.out.println();
 		ServletContext context = session.getServletContext();
 		String path = context.getRealPath(UPLOAD_DIRECTORY);
 		File fileUpload = new File(path);
@@ -231,7 +239,7 @@ public class HoSoNhanVienPikalongController {
 			 fileUpload.mkdir();
 		 }
 		String filename = file.getOriginalFilename();
-		if(!filename.isEmpty()) { // khi ngÆ°á»�i dÃ¹ng ko thay Ä‘á»•i áº£nh Ä‘áº¡i diá»‡n
+		if(!filename.isEmpty()) { // khi người dùng thay đổi ảnh đại diện
 		System.out.println(path + " " + filename);
 		byte[] bytes = file.getBytes();  
 	    BufferedOutputStream stream =new BufferedOutputStream(new FileOutputStream(  
@@ -258,17 +266,23 @@ public class HoSoNhanVienPikalongController {
 	// page Hồ Sơ Chi Tiết
 	@RequestMapping("hosochitiet/{maNv}")
 	public String details(@PathVariable String maNv, Model model) {
-		model.addAttribute("hoSoNhanVien", hoSoNhanVienPikalongService.getEdit(maNv));
-		model.addAttribute("thongTinGiaDinh", giaDinhPikalongService.viewOne(maNv));
-		model.addAttribute("thongTinBangCap", bangCapPikalongService.viewOne(maNv));
-		return "QuanTriNhanSuPikalong/ThongTinHoSo/hosochitiet";
+		boolean isActive = hoSoNhanVienPikalongService.checkIsActive(maNv); // check nhân viên đã bị xóa chưa
+		if(isActive == true) { // nếu chưa xóa
+			model.addAttribute("hoSoNhanVien", hoSoNhanVienPikalongService.getEdit(maNv));
+			model.addAttribute("thongTinGiaDinh", giaDinhPikalongService.viewOne(maNv));
+			model.addAttribute("thongTinBangCap", bangCapPikalongService.viewOne(maNv));
+			return "QuanTriNhanSuPikalong/ThongTinHoSo/hosochitiet";
+		} else { // nếu đã xóa
+			return "QuanTriHeThong/error-404";
+		}
+		
 	}
 	
 	
 	// export flie excel
 		@RequestMapping("exportexcel/{maNv}")
 		public ModelAndView exportExcelFile(@PathVariable String maNv) {
-			ModelAndView model = new ModelAndView("HoSoNhanVienExcelId");
+			ModelAndView model = new ModelAndView("hoSoNhanVienExcelId");
 			model.addObject("hoSoNhanVien", hoSoNhanVienPikalongService.getEdit(maNv));
 			model.addObject("thongTinGiaDinh", giaDinhPikalongService.viewOne(maNv));
 			model.addObject("thongTinBangCap", bangCapPikalongService.viewOne(maNv));

@@ -84,4 +84,19 @@ public class HoSoNhanVienPikalongServiceImpl implements HoSoNhanVienPikalongServ
 		return hoSoNhanVienPikalongDao.countAll();
 	}
 
+
+	@Override
+	@Transactional
+	public boolean checkExistMaNv(String maNv) {
+		return hoSoNhanVienPikalongDao.checkExistMaNv(maNv);
+	}
+
+
+	@Override
+	@Transactional
+	public boolean checkIsActive(String maNv) {
+		
+		return hoSoNhanVienPikalongDao.checkIsActive(maNv);
+	}
+
 }

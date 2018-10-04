@@ -115,4 +115,38 @@ public class HoSoNhanVienPikalongDaoImpl implements HoSoNhanVienPikalongDao {
 		return total;
 	}
 
+
+	@Override
+	public boolean checkExistMaNv(String maNv) {
+		Session session = sessionFactory.getCurrentSession();
+		@SuppressWarnings("rawtypes")
+		Query query = session.createQuery("select count(*) from HoSoNhanVienPikalong where maNv = :maNv");
+		query.setParameter("maNv", maNv);
+		
+		Long exist = (Long) query.uniqueResult();
+		if(exist > 0) {
+			return false;
+		}
+		
+		return true;
+	}
+
+
+	@Override
+	public boolean checkIsActive(String maNv) {
+		Session session = sessionFactory.getCurrentSession();
+		@SuppressWarnings("rawtypes")
+		Query query = session.createQuery("select count(*) from HoSoNhanVienPikalong where maNv = :maNv and isActive = :isActive");
+		query.setParameter("maNv", maNv);
+		query.setParameter("isActive", 0);
+		
+		Long isActive = (Long) query.uniqueResult();
+		
+		if(isActive > 0) {
+			return true;
+		}
+		
+		return false;
+	}
+
 }

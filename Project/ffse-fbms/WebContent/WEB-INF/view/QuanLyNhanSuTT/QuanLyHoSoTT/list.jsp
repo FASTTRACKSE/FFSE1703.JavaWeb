@@ -3,6 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
@@ -36,9 +38,12 @@ th, td {
 										code="label.trangChu" /></a></li>
 							<li class="breadcrumb-item active"><spring:message
 									code="label.danhSachNhanVien" /></li>
-							<li class="breadcrumb-item"><a
-								href="<c:url value = "/quanlynhansutt/ho_so/add"/>"><spring:message
-										code="label.themNhanVien" /></a></li>
+							<sec:authorize
+								access="hasRole('ROLE_PNSNV') or hasRole('ROLE_PNSTPP')">
+								<li class="breadcrumb-item"><a
+									href="<c:url value = "/quanlynhansutt/ho_so/add"/>"><spring:message
+											code="label.themNhanVien" /></a></li>
+							</sec:authorize>
 						</ol>
 					</div>
 				</div>
@@ -142,14 +147,21 @@ i.fa {
 													<td>${hsnv.soDienThoai}</td>
 													<td
 														style="letter-spacing: 5px; min-width: 75px; text-align: center !important;">
-														<a
-														href="<c:url value = "/quanlynhansutt/ho_so/view/${hsnv.maNhanVien}"/>"><i
-															class="fa fa-eye"></i></a> <a
-														href="<c:url value = "/quanlynhansutt/ho_so/edit/${hsnv.maNhanVien}"/>"><i
-															class="fa fa-pencil"></i></a> <a
-														href='<c:url value = "/quanlynhansutt/ho_so/delete/${hsnv.maNhanVien}"></c:url>'
-														class="fa fa-trash"
-														onclick="return confirm('Bạn có muốn xóa sinh viên này?');"></a>
+														<sec:authorize
+															access="hasRole('ROLE_PGD') or hasRole('ROLE_PNSNV') or hasRole('ROLE_PNSTPP')">
+															<a
+																href="<c:url value = "/quanlynhansutt/ho_so/view/${hsnv.maNhanVien}"/>"><i
+																class="fa fa-eye"></i></a>
+														</sec:authorize> <sec:authorize
+															access="hasRole('ROLE_PNSNV') or hasRole('ROLE_PNSTPP')">
+															<a
+																href="<c:url value = "/quanlynhansutt/ho_so/edit/${hsnv.maNhanVien}"/>"><i
+																class="fa fa-pencil"></i></a>
+															<a
+																href='<c:url value = "/quanlynhansutt/ho_so/delete/${hsnv.maNhanVien}"></c:url>'
+																class="fa fa-trash"
+																onclick="return confirm('Bạn có muốn xóa sinh viên này?');"></a>
+														</sec:authorize>
 													</td>
 												</tr>
 											</c:forEach>

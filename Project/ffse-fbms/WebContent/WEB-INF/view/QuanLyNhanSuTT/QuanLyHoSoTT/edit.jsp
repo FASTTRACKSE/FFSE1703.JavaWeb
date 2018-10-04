@@ -245,8 +245,7 @@
 																class="form-control" type="file" name="file" /> <br>
 															<img
 																src="<c:url value="/uploads/${formHoso.anhDaiDien}" />"
-																width="100" height="150"> <img id="img" src="#"
-																alt="your image" width="100" height="150" />
+																width="100" height="150"> 
 
 														</div>
 													</div>

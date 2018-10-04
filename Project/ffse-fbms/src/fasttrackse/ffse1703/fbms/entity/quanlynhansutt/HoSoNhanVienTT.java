@@ -86,7 +86,7 @@ public class HoSoNhanVienTT implements Serializable {
 	private QuocTichTT quocTich;
 
 	// bi-directional many-to-one association to LoaiHopDong
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne/*(fetch = FetchType.LAZY)*/
 	@JoinColumn(name = "ma_dan_toc", nullable = false)
 	@NotNull
 	private DanTocTT danToc;

@@ -11,6 +11,7 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -26,17 +27,18 @@ public class FileExcelQuanLyNhanSuTT extends AbstractXlsView {
 	@Override
 	protected void buildExcelDocument(Map<String, Object> model, Workbook workBook, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		HoSoNhanVienTT hoSo = (HoSoNhanVienTT) model.get("hoSoNhanVien");
+		HoSoNhanVienTT hoSo = (HoSoNhanVienTT) model.get("hoSoNhanVienTT");
 
-		/* sheet thông tin chi ti?t begin */
+		/* sheet thông tin chi tiết begin */
 		Sheet sheetHosoChiTiet = workBook.createSheet("Hồ Sơ CHi Tiết");
 
 		// merge cells header
 		sheetHosoChiTiet.addMergedRegion(new CellRangeAddress(1, 1, 0, 15));
 
-		// create font
+		// Tạo định dạng: font Times New Roman, in đậm, font-size 14, chữ màu trắng
 		Font font = workBook.createFont();
-		font.setFontHeightInPoints((short) 24);
+		font.setFontHeightInPoints((short) 24);// font size
+		font.setColor(IndexedColors.BLUE.getIndex());// text color
 		font.setBold(true);
 
 		Font fontTh = workBook.createFont();
@@ -47,9 +49,13 @@ public class FileExcelQuanLyNhanSuTT extends AbstractXlsView {
 		fontTd.setFontHeightInPoints((short) 10);
 
 		// Set font into style
+		// Tạo cell style áp dụng font ở trên
+		// Sử dụng màu nền xanh (Blue), định dạng border dưới 
 		CellStyle style = workBook.createCellStyle();
 		style.setFont(font);
+		style.setFillForegroundColor(IndexedColors.BLUE.getIndex());
 		style.setAlignment(HorizontalAlignment.CENTER);
+		
 
 		CellStyle styleTh = workBook.createCellStyle();
 		styleTh.setFont(fontTh);
@@ -68,6 +74,7 @@ public class FileExcelQuanLyNhanSuTT extends AbstractXlsView {
 		styleTd.setBorderRight(BorderStyle.THIN);
 		styleTd.setBorderLeft(BorderStyle.THIN);
 
+		// Áp dụng định dạng CellStyle cho một Cell
 		Row headerHoSoChiTiet = sheetHosoChiTiet.createRow(1);
 		Cell cellHeaderHoSoChiTiet = headerHoSoChiTiet.createCell(0);
 		cellHeaderHoSoChiTiet.setCellValue("Hồ Sơ Chi Tiết");
@@ -123,7 +130,7 @@ public class FileExcelQuanLyNhanSuTT extends AbstractXlsView {
 
 		/* sheet thong tin gia dinh begin */
 		
-		List<ThongTinGiaDinhTT> giaDinh = (List<ThongTinGiaDinhTT>) model.get("thongTinGiaDinh");
+		List<ThongTinGiaDinhTT> giaDinh = (List<ThongTinGiaDinhTT>) model.get("thongTinGiaDinhTT");
 
 		// merge cells
 		Sheet sheetThongTinGiaDinh = workBook.createSheet("Thông Tin Gia Ðình");
@@ -169,57 +176,6 @@ public class FileExcelQuanLyNhanSuTT extends AbstractXlsView {
 			cellTh.setCellStyle(styleTh);
 
 		}
-
-		/* sheet thong tin gia dinh end */
-
-		// /* sheet thong tin bang cap begin */
-		// @SuppressWarnings("unchecked")
-		// List<BangCapPikalong> bangCap = (List<BangCapPikalong>)
-		// model.get("thongTinBangCap");
-		//
-		// Sheet sheetThongTinBangCap = workBook.createSheet("Thông Tin Bằng Cấp");
-		//
-		// sheetThongTinBangCap.addMergedRegion(new CellRangeAddress(1,1,0,3));
-		//
-		//
-		// Row headerThongTinBangCap = sheetThongTinBangCap.createRow(1);
-		// Cell cellHeaderThongTinBangCap = headerThongTinBangCap.createCell(0);
-		// cellHeaderThongTinBangCap.setCellValue("Thông Tin Bằng Cấp");
-		// cellHeaderThongTinBangCap.setCellStyle(style);
-		//
-		// Row rowThongTinBangCapTh = sheetThongTinBangCap.createRow(3);
-		// rowThongTinBangCapTh.createCell(0).setCellValue("Chuyên Ngành");
-		// rowThongTinBangCapTh.createCell(1).setCellValue("Xếp Loại");
-		// rowThongTinBangCapTh.createCell(2).setCellValue("Nơi Cấp");
-		// rowThongTinBangCapTh.createCell(3).setCellValue("Ngày Cấp");
-		//
-		// Row rowThongTinBangCapTd = sheetThongTinBangCap.createRow(4);
-		//
-		// int rowb = 4;
-		// for(int i = 0; i < bangCap.size(); i++) {
-		// rowThongTinBangCapTd = sheetThongTinBangCap.createRow(rowb);
-		//
-		// rowThongTinBangCapTd.createCell(0).setCellValue(bangCap.get(i).getChuyenNganh());
-		// rowThongTinBangCapTd.createCell(1).setCellValue(bangCap.get(i).getXepLoai());
-		// rowThongTinBangCapTd.createCell(2).setCellValue(bangCap.get(i).getNoiCap());
-		// rowThongTinBangCapTd.createCell(3).setCellValue(bangCap.get(i).getNgayCap().toString());
-		// for(int j = 0; j < rowThongTinBangCapTd.getLastCellNum(); j++ ) {
-		// Cell cellTd = rowThongTinBangCapTd.getCell(j);
-		// cellTd.setCellStyle(styleTd);
-		// }
-		// rowb++;
-		//
-		// }
-		// for(int colNumber = 0; colNumber < rowThongTinBangCapTd.getLastCellNum();
-		// colNumber++) {
-		// sheetThongTinBangCap.autoSizeColumn(colNumber);
-		//
-		// Cell cellTh = rowThongTinBangCapTh.getCell(colNumber);
-		// cellTh.setCellStyle(styleTh);
-		//
-		// }
-		//
-		// /* sheet thong tin bang cap end */
 	}
 
 }

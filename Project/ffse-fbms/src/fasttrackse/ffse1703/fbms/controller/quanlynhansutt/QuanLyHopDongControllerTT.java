@@ -121,10 +121,10 @@ public class QuanLyHopDongControllerTT {
 
 	// Show the contract to an employee
 	@RequestMapping("/viewOneHopDong/{maNhanVien}")
-	public String viewOneHopDong( Model model, HttpServletRequest request) {
-		UserAccountTT userAccount = this.userAccountService.loadUserByUsername(request.getUserPrincipal().getName());
-    	int maNhanVien = userAccount.getNhanVien().getMaNhanVien();
-		model.addAttribute("role_nv", "true");
+	public String viewOneHopDong( @PathVariable int maNhanVien, Model model) {
+//		UserAccountTT userAccount = this.userAccountService.loadUserByUsername(request.getUserPrincipal().getName());
+//    	userAccount.getNhanVien().getMaNhanVien();
+//		model.addAttribute("role_nv", "true");
 		
 		model.addAttribute("viewOne", this.hopDongServiceTT.viewOne(maNhanVien));
 		model.addAttribute("maNhanVien", maNhanVien);

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,13 +15,13 @@
 			<!-- Path -->
 			<div class="content-header row">
 				<div class="content-header-left col-md-9 col-xs-12 mb-2">
-					<h3 class="content-header-title mb-0">Danh Sách Danh Mục</h3>
+					<h3 class="content-header-title mb-0"><spring:message code="label.listDanhMuc" /></h3>
 					<div class="row breadcrumbs-top">
 						<div class="breadcrumb-wrapper col-xs-12">
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item"><a
-									href='<c:url value="/home" />'>Home</a></li>
-								<li class="breadcrumb-item active">Danh Sách Danh Mục</li>
+									href='<c:url value="/home" />'><spring:message code="label.Home" /></a></li>
+								<li class="breadcrumb-item active"><spring:message code="label.listDanhMuc" /></li>
 							</ol>
 						</div>
 					</div>
@@ -30,7 +31,7 @@
 						class="btn-group float-md-right" id="add-new">
 						<a class="btn btn-primary"
 							href='<c:url value = "/QuanTriTaiLieu/DanhMuc/add" />'><span
-							data-i18n="" class="ft-plus-square">Thêm Mới</span></a>
+							data-i18n="" class="ft-plus-square"><spring:message code="label.addNew" /></span></a>
 					</div>
 				</div>
 			</div>
@@ -56,7 +57,7 @@
 					<div class="col-xs-12">
 						<div class="card">
 							<div class="card-header">
-								<h4 class="card-title">Danh Sách Danh Mục</h4>
+								<h4 class="card-title"><spring:message code="label.listDanhMuc" /></h4>
 								<a class="heading-elements-toggle"><i
 									class="fa fa-ellipsis-v font-medium-3"></i></a>
 								<div class="heading-elements">
@@ -75,9 +76,9 @@
 											class="table table-striped table-bordered dataex-res-constructor">
 											<thead>
 												<tr>
-													<th>Mã danh mục</th>
-													<th>Tên danh mục</th>
-													<th>Chức năng</th>
+													<th><spring:message code="label.maDanhMuc" /></th>
+													<th><spring:message code="label.tenDanhMuc" /></th>
+													<th><spring:message code="label.chucNang" /></th>
 												</tr>
 											</thead>
 											<tbody>
@@ -112,7 +113,7 @@
 										<nav aria-label="Page navigation example">
 										<ul class="pagination">
 											<li class="page-item"><a class="page-link"
-												href="?page=1">First Page</a></li>
+												href="?page=1"><spring:message code="label.firtVendor" /></a></li>
 											<c:if test="${currentPage > 2}">
 												<li class="page-item"><a class="page-link"
 													href="?page=${currentPage-2}">${currentPage-2}</a></li>
@@ -132,7 +133,7 @@
 													href="?page=${currentPage+2}">${currentPage+2}</a></li>
 											</c:if>
 											<li class="page-item"><a class="page-link"
-												href="?page=${lastPage }">Last Page</a></li>
+												href="?page=${lastPage }"><spring:message code="label.lastVendor" /></a></li>
 										</ul>
 										</nav>
 

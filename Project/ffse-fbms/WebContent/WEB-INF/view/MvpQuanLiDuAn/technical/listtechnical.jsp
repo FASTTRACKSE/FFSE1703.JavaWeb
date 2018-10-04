@@ -14,15 +14,14 @@
 		<!-- Path -->
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">Danh sách Kĩ thuật</h3>
+				<h3 class="content-header-title mb-0"><spring:message code="label.listKT" /></h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/home" />'>Home</a></li>
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/mvpquanliduan/technical/list-technical" />'>Danh
-									sách Kĩ thuật</a></li>
+								href='<c:url value="/mvpquanliduan/technical/list-technical" />'><spring:message code="label.listKT" /></a></li>
 
 						</ol>
 					</div>
@@ -37,7 +36,7 @@
 				<div class="x_title">
 					<a class="btn btn-outline-success round btn-min-width mr-1 mb-1"
 						href="<c:url value="/mvpquanliduan/technical/show-form-add" />">
-						<h5class="ft-plus-circle">Thêm Kĩ thuật
+						<h5class="ft-plus-circle"><spring:message code="label.addKT" />
 						</h5>
 					</a>
 				</div>
@@ -46,10 +45,10 @@
 					<table class="table table-striped" style="text-align: center;background: white">
 						<thead style="background: #AEEEEE">
 							<tr>
-								<th style="text-align: center">Stt</th>
-								<th style="text-align: center">Mã Kĩ thuật</th>
-								<th style="width: 60%; text-align: center">Kĩ thuật</th>
-								<th style="text-align: center">Chức năng</th>
+								<th style="text-align: center">STT</th>
+								<th style="text-align: center"><spring:message code="label.idKT" /></th>
+								<th style="width: 60%; text-align: center"><spring:message code="label.nameKT" /></th>
+								<th style="text-align: center"><spring:message code="label.vaitro" /></th>
 							</tr>
 						</thead>
 						<tbody>

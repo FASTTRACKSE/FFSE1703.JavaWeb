@@ -252,8 +252,8 @@
 								Mục Dự Án</span></a>
 						<ul class="menu-content" style="">
 							<li class=""><a class="menu-item"
-								href="<c:url value="/mvpquanliduan/khachhang/list-khachhang" />">Khách
-									hàng</a></li>
+								href="<c:url value="/mvpquanliduan/khachhang/list-khachhang" />"> <spring:message
+										code="label.KhachHang" /></a></li>
 							<li class=""><a class="menu-item"
 								href="<c:url value="/mvpquanliduan/domain/list-domain" />">Domain</a></li>
 							<li class=""><a class="menu-item"
@@ -288,6 +288,43 @@
 						</ul></li>
 
 					<!--  ////////////////////////////////////////////// -->
+					
+					<!--  Quản Lý Vắng Nghỉ H-->
+					<li class="navigation-header"><span>Quản Lý Vắng Nghỉ 1</span><i
+						class=" ft-minus" data-toggle="tooltip" data-placement="right"
+						data-original-title="Components"></i></li>
+					<li class=" nav-item pbho_so"><a href="#"><i
+							class="ft-users"></i><span data-i18n="" class="menu-title">Đơn Xin Nghỉ</span></a>
+						<ul class="menu-content">
+							<li><a
+								href="<c:url value="/QuanLyVangNghi/donxinnghi"/>"
+								class="menu-item">Tạo Đơn Xin Nghỉ</a></li>
+							<li><a
+								href="<c:url value="/QuanLyVangNghi/luunhap"/>"
+								class="menu-item">Danh sách nháp</a></li>
+							<li><a
+								href="<c:url value="/QuanLyVangNghi/choduyet"/>"
+								class="menu-item">Danh sách chờ duyệt</a></li>
+							<li><a
+								href="<c:url value="/QuanLyVangNghi/daduyet"/>"
+								class="menu-item">Danh sách đã duyệt</a></li>
+							<li><a
+								href="<c:url value="/QuanLyVangNghi/tuchoi"/>"
+								class="menu-item">Danh sách bị từ chối</a></li>
+						</ul></li>
+						<li class=" nav-item pbho_so"><a href="#"><i
+							class="ft-users"></i><span data-i18n="" class="menu-title">Phê Duyệt</span></a>
+						<ul class="menu-content">
+							<li><a
+								href="<c:url value="/QuanLyVangNghi/duyetvong1"/>"
+								class="menu-item">Duyệt vòng 1</a></li>
+							<li><a
+								href="<c:url value="/QuanLyVangNghi/duyetvong2"/>"
+								class="menu-item">Duyệt Vòng 2</a></li>							
+						</ul></li>
+						
+						
+						<!--  ////////////////////////////////////////////// -->
 
 					<!--  Quản lí Vắng nghỉ -->
 					<li class="navigation-header"><span><spring:message code="label.quanlyvangnghi" /></span><i
@@ -416,6 +453,7 @@
 						class="menu-title" data-i18n="">THÔNG TIN DỰ ÁN</span></a>
 					<ul class="menu-content">
 						<li><a class="menu-item" href="#">Dự Án</a></li>
+							<li><a class="menu-item"  href="<c:url value="/qlda/DuAn/"/>">Dự Án</a></li>
 					</ul></li>
 			</ul>
 

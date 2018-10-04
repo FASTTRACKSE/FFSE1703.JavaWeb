@@ -18,6 +18,7 @@
                               <form:input path="maNv" type="number" id="projectinput1" class="form-control" placeholder="Mã nhân viên"
                               name="maNhanVienInput" />
                               <form:errors path="maNv" cssStyle="color: red" /> <!-- validate error mess -->
+                              <p style="color: red">${messMaNvExist}</p> <!-- exist mess -->
                             </div>
                           </div>
                           <div class="col-md-6">
@@ -44,9 +45,9 @@
                               <label for="projectinput2">Tình trạng hôn nhân</label>
                               <form:select path="tinhTrangHonNhan" type="text" id="projectinput2" class="form-control"
                               name="tinhTrangHonNhanRadio">
-                              		<option value="" selected="selected" >Chọn tình trạng hôn nhân</option>
-                              		<option value="0" >Chưa kết hôn</option>
-                              		<option value="1" >Đã kết hôn</option>
+                              		<form:option value="" selected="selected" >Chọn tình trạng hôn nhân</form:option>
+                              		<form:option value="0" >Chưa kết hôn</form:option>
+                              		<form:option value="1" >Đã kết hôn</form:option>
                               </form:select>
                               <form:errors path="tinhTrangHonNhan" cssStyle="color: red" /> <!-- validate error mess -->
                             </div>
@@ -58,9 +59,9 @@
                             <div class="form-group">
                               <label for="projectinput3">Giới tính</label>
                               <form:select path="gioiTinh" type="text" id="projectinput3" class="form-control" placeholder="Giới tính" name="gioiTinhRadio">
-                              		<option value="" selected="selected" >Chọn giới tính</option>
-                              		<option value="Nam" >Nam</option>
-                              		<option value="Nữ" >Nữ</option>
+                              		<form:option value="" selected="selected" >Chọn giới tính</form:option>
+                              		<form:option value="Nam" >Nam</form:option>
+                              		<form:option value="Nữ" >Nữ</form:option>
                               </form:select>
                               <form:errors path="gioiTinh" cssStyle="color: red" /> <!-- validate error mess -->
                             </div>
@@ -113,9 +114,9 @@
                             <div class="form-group">
                               <label for="projectinput4">Quốc tịch</label>
                               <form:select path="quocTich" type="text" id="projectinput4" class="form-control" name="quocTichSelect">
-                              		<option value="" selected="selected" >Chọn quốc tịch</option>
+                              		<form:option value="" selected="selected" >Chọn quốc tịch</form:option>
                               	 <c:forEach items="${listQuocTich}" var="x">
-                              		<option value="${x.tenNuoc}" >${x.tenNuoc}</option>
+                              		<form:option value="${x.tenNuoc}" >${x.tenNuoc}</form:option>
                               	 </c:forEach>
                               </form:select>
                               <form:errors path="quocTich" cssStyle="color: red" /> <!-- validate error mess -->
@@ -144,7 +145,7 @@
                           <label for="thanhPhoId">Thành Phố</label>
                           <form:select path="thanhPho.maTinhThanh" type="text" id="thanhPhoId" class="form-control"
                           				name="thanhPhoSelect" onchange="clickComboboxThanhPho()">
-                          		<option value="noThanhPho" selected="selected" >Chọn thành phố</option>
+                          		<form:option value="" selected="selected" >Chọn thành phố</form:option>
     								<c:forEach items="${listThanhPho}" var="x">
                               			<option value="${x.maTinhThanh}" >${x.tenTinhThanh}</option>
                               		</c:forEach>						
@@ -174,12 +175,12 @@
                           <label for="companyName">Phòng ban</label>
                           <form:select path="maPhongBan.maPhongBan" type="text" id="companyName" class="form-control"
                           name="phongBanSelect">
-                          		<option value="" selected >Chọn Phòng ban</option>
+                          		<option value="" selected="selected" >Chọn Phòng ban</option>
                           	  <c:forEach items="${listPhongBan}" var="x">
                               	<option value="${x.maPhongBan}" >${x.tenPhongBan}</option>
                               </c:forEach>
                           </form:select>
-                          <form:errors path="maPhongBan.maPhongBan" cssStyle="color: red" /> <!-- validate error mess -->
+                          <form:errors path="maPhongBan" cssStyle="color: red" /> <!-- validate error mess -->
                         </div>
                         
                         <div class="form-group">
@@ -204,7 +205,7 @@
                           <i class="fa fa-check-square-o"></i> Lưu
                         </button>
                         
-                      <a href="/ffse-fbms/quantrinhansu/hosonhanvien/"><button type="button" class="btn btn-warning mr-1">
+                      <a href="/ffse-fbms/quantrinhansu/hosonhanvien/${pageIndex}"><button type="button" class="btn btn-warning mr-1">
                           <i class="ft-x"></i> Hủy
                         </button></a>
                       </div>

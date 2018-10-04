@@ -20,9 +20,14 @@ public class KinhNghiemDuAnPikalongController {
 	
 	@RequestMapping("/viewOneKinhNghiemDuAn/{maNV}")
 	public String viewOneKinhNghiemDuAn( @PathVariable String maNV,Model model) {
+		boolean isActive = hoSoNhanVienPikalongService.checkIsActive(maNV);
+		if (isActive == true) {
 		model.addAttribute("hosonhanvien", this.hoSoNhanVienPikalongService.getEdit(maNV));
 		model.addAttribute("viewOne",this.nhiemVuService.getByMaNhanVien(maNV));
 		model.addAttribute("maNv", maNV);
 		return "QuanTriNhanSuPikalong/KinhNghiemDuAn/viewOneKinhNghiemDuAn";
+		} else {
+			return "QuanTriHeThong/error-404";
+		}
 	}
 }

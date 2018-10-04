@@ -94,7 +94,7 @@ public class HoSoNhanVienPikalong {
 	@Column(name= "QuocTich")
 	private String quocTich;
 	
-	@NotNull
+	@NotNull(message="Vui Lòng Chọn Chức Danh")
 	@ManyToOne
 	@JoinColumn(name="MaChucDanh")
 	private ChucDanh maChucDanh;
@@ -107,6 +107,7 @@ public class HoSoNhanVienPikalong {
 	@Column(name="Avatar")
 	private String avatar;
 	
+	@Column(name="IsActive")
 	private int isActive;
 
 	public String getMaNv() {

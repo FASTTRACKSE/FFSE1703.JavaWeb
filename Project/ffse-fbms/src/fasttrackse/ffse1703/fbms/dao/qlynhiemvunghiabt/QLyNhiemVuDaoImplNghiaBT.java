@@ -2,10 +2,13 @@ package fasttrackse.ffse1703.fbms.dao.qlynhiemvunghiabt;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
 
 import fasttrackse.ffse1703.fbms.entity.qlynhiemvunghiabt.DuAnNghiaBT;
 import fasttrackse.ffse1703.fbms.entity.qlynhiemvunghiabt.LoaiCongViecNghiaBT;
@@ -114,6 +117,15 @@ public class QLyNhiemVuDaoImplNghiaBT implements QLyNhiemVuDaoNghiaBT{
 		
 	//	return q.list();		
 	//}
+	
+	@Override
+	@SuppressWarnings("unchecked")
+	@Transactional
+	public List<NhiemVu> searchAll(String search) {
+		Session session = this.sessionFactory.openSession();
+		List<NhiemVu> list = session.createQuery("from NhiemVu where isDelete = 0"+ search).list();
+		return list;
+	}
 
 }
 

@@ -62,14 +62,14 @@
 							<label>Tên Khách Hàng</label>
 							<form:hidden path="khachHang.makh" />
 							<form:input path="khachHang.tenkh" class="form-control"
-								readonly="true"  />
+								readonly="true" />
 						</div>
 						<div class="form-group col-sm-6">
 							<label>Tên dự án</label>
 							<form:errors path="tenDuAn" cssStyle="color: red"></form:errors>
 
 							<form:input class="form-control" path="tenDuAn"
-								placeholder="Tên dự án" style="height:36px"/>
+								placeholder="Tên dự án" style="height:36px" />
 						</div>
 
 						<div class="form-group col-sm-6">
@@ -203,8 +203,8 @@
 								mutiple="true" id="pMId">
 								<c:forEach items="${pms}" var="pms">
 									<option value="${pms.maNhanVien}"
-										<c:if test="${pms.maNhanVien == duAn.pM.maNhanVien }" >selected="selected"</c:if>
-										>${pms.hoDem} ${pms.ten}</option>
+										<c:if test="${pms.maNhanVien == duAn.pM.maNhanVien }" >selected="selected"</c:if>>${pms.hoDem}
+										${pms.ten}</option>
 								</c:forEach>
 							</form:select>
 						</div>
@@ -224,20 +224,17 @@
 								style="height:calc(2.95rem - 2px);" />
 							<div class="help-block"></div>
 						</div>
-						<c:set var="tt" value="${duAn.trangThai.maTrangThai}"></c:set>
+
+						<c:set var="trangThai1" value="${duAn.trangThai.maTrangThai}"></c:set>
 
 						<div class="form-group col-sm-12">
-							<form:hidden path="trangThai.maTrangThai" />
 							<label>Trạng thái</label>
 							<form:select path="trangThai" cssClass="form-control"
-								mutiple="true">
-								<form:errors path="trangThai" cssStyle="color: red"></form:errors>
+								mutiple="single">
 
 								<c:forEach items="${trangThai}" var="tt">
-									<option value="${tt.maTrangThai }"
-										<c:if test="${tt.maTrangThai ==tt}" >selected="selected"</c:if>>${tt.tenTrangThai}</option>
+									<option value="${tt.maTrangThai }"<c:if test="${tt.maTrangThai ==trangThai1}" >selected="selected"</c:if>>${tt.tenTrangThai}</option>
 								</c:forEach>
-
 							</form:select>
 						</div>
 						<div class="col-sm-12 text-center">

@@ -323,6 +323,38 @@
 								href="<c:url value="/Quanlyvangnghi1703004/danhsachtrangthai"/>"
 								class="menu-item"><spring:message code="label.danhsachtrangthai" /></a></li>
 						</ul></li>
+						
+						
+	<!--  Quản lí Vắng nghĩ DanhLT -->
+					<li class="navigation-header"><span>Quản lí Vắng nghĩ DanhLT</span><i
+						class=" ft-minus" data-toggle="tooltip" data-placement="right"
+						data-original-title="Components"></i></li>
+					<li class=" nav-item pbho_so"><a href="#"><i
+							class="ft-users"></i><span data-i18n="" class="menu-title">Thống kê tình hình</span></a>
+						<ul class="menu-content">
+							<li><a href="<c:url value="/QuanlyvangnghiDanhLT/danhsachnhap003"/>"
+								class="menu-item">Danh sách nháp</a></li>
+							<li><a href="<c:url value="/QuanlyvangnghiDanhLT/danhsachchoduyet003"/>"
+								class="menu-item">Danh sách chờ duyệt</a></li>
+							<li><a href="<c:url value="/QuanlyvangnghiDanhLT/danhsachdaduyet003"/>"
+								class="menu-item">Danh sách đã duyệt</a></li>
+							<li><a href="<c:url value="/QuanlyvangnghiDanhLT/danhsachbituchoi003"/>"
+								class="menu-item">Danh sách bị từ chối</a></li>
+						</ul></li>
+						
+						<li class=" nav-item pbho_so"><a href="#"><i
+							class="ft-users"></i><span data-i18n="" class="menu-title">Th?ng kê ngày nghĩ</span></a>
+						<ul class="menu-content">
+							<li><a href="<c:url value="/QuanlyvangnghiDanhLT/ngaynghiphep"/>"
+								class="menu-item">Danh Sách Ngày Nghỉ</a></li>
+						</ul></li>
+						<li class=" nav-item pbho_so"><a href="#"><i
+							class="ft-users"></i><span data-i18n="" class="menu-title">Thống kê trạng Thái</span></a>
+						<ul class="menu-content">
+							<li><a href="<c:url value="/QuanlyvangnghiDanhLT/thongketrangthai"/>"
+								class="menu-item">Danh Sách trạng thái</a></li>
+						</ul></li>
+						
 					<!-- Quản Lý Nhân Sự Pikalong -->
 					<li class=" navigation-header"><span>PKL-Quản Trị Nhân
 							Sự</span><i class=" ft-minus" data-toggle="tooltip"

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -154,21 +155,29 @@ public class DonXinPhepDaolmpl implements DonXinPhepDao{
 	
 	public List<DonXinPhepEntity> findAllForPaging1(int startPosition, int maxResult) {
 		Session session = this.sessionFactory.getCurrentSession();
-		return session.createQuery("from DonXinPhepEntity where trangThai ='1' ").setFirstResult(startPosition).setMaxResults(maxResult).list();
-	}
+		Query n = session.createQuery("from DonXinPhepEntity where trangThai = '1'");
+		n.setFirstResult(startPosition);
+		n.setMaxResults(maxResult);
+		return n.list();}
 	
 	public List<DonXinPhepEntity> findAllForPaging2(int startPosition, int maxResult) {
 		Session session = this.sessionFactory.getCurrentSession();
-		return session.createQuery("from DonXinPhepEntity where trangThai ='2' ").setFirstResult(startPosition).setMaxResults(maxResult).list();
-	}
+		Query cd = session.createQuery("from DonXinPhepEntity where trangThai = '2'");
+		cd.setFirstResult(startPosition);
+		cd.setMaxResults(maxResult);
+		return cd.list();}
 	public List<DonXinPhepEntity> findAllForPaging3(int startPosition, int maxResult) {
 		Session session = this.sessionFactory.getCurrentSession();
-		return session.createQuery("from DonXinPhepEntity where trangThai ='3' ").setFirstResult(startPosition).setMaxResults(maxResult).list();
-	}
+		Query dd = session.createQuery("from DonXinPhepEntity where trangThai = '3'");
+		dd.setFirstResult(startPosition);
+		dd.setMaxResults(maxResult);
+		return dd.list();}
 	public List<DonXinPhepEntity> findAllForPaging4(int startPosition, int maxResult) {
 		Session session = this.sessionFactory.getCurrentSession();
-		return session.createQuery("from DonXinPhepEntity where trangThai ='4' ").setFirstResult(startPosition).setMaxResults(maxResult).list();
-	}
+		Query tc = session.createQuery("from DonXinPhepEntity where trangThai = '3'");
+		tc.setFirstResult(startPosition);
+		tc.setMaxResults(maxResult);
+		return tc.list();}
 	
 public List<SoNgayNghiEntity> ngaynghiphep() {
 	Session session = sessionFactory.getCurrentSession();
@@ -193,8 +202,6 @@ public List<TrangThaiEntity> findAllForPagingTT(int startPosition, int maxResult
 	Session session = this.sessionFactory.getCurrentSession();
 	return session.createQuery("from TrangThaiEntity  ").setFirstResult(startPosition).setMaxResults(maxResult).list();
 }
-
-
 }
 
 

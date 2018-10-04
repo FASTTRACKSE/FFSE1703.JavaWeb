@@ -34,8 +34,8 @@
 				</c:forEach>
 			</c:otherwise>
 		</c:choose>
+		<div class="table-responsive">
 		<div class="col-12">
-		<div class="card">
 		<div class="content-wrapper">
 			<table class="table mb-0">
 				<thead class="bg-info">
@@ -76,7 +76,7 @@
 				</tbody>
 			</table>
 		</div>
-	</div>
+</div>
 </div>
 </div>
 </div>

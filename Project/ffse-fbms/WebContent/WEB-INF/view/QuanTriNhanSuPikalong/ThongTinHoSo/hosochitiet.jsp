@@ -196,6 +196,9 @@
             		 <a href="/ffse-fbms/quantrinhansu/hosonhanvien/exportexcel/${hoSoNhanVien.maNv}"><button class="btn btn-success">
 										<i class="fa fa-download"></i> Tải xuống
 										</button></a> <!-- export file excel button -->
+					<a href="/ffse-fbms/quantrinhansu/hosonhanvien/view/${hoSoNhanVien.maNv}"><button type="button" class="btn btn-warning mr-1">
+                          <i class="ft-x"></i> Trở về
+                        </button></a>
         </div><!--//main-body-->
        	
     </div>

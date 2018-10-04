@@ -135,6 +135,7 @@
                             <div class="form-group">
                               <label for="projectinput4">Nơi ở hiện nay</label>
                               <form:textarea path="noiOHienNay" type="text" id="projectinput4" class="form-control" placeholder="Nơi ở hiện nay" name="noiOHienNayInput" />
+                              <form:errors path="noiOHienNay" cssStyle="color: red" /> <!-- validate error mess -->
                             </div>
                           </div>
                         </div> <!-- /div row 7 -->
@@ -151,7 +152,7 @@
                         </div>
                         <div class="form-group">
                           <label for="quanHuyenId">Quận huyện</label>
-                          <form:select path="quanHuyen.maQuanHuyen" id="quanHuyenId"  name="quanHuyen" type="text" class="form-control" disabled="true"
+                          <form:select path="quanHuyen.maQuanHuyen" id="quanHuyenId"  name="quanHuyen" type="text" class="form-control"
                           			onchange="clickComboboxQuan()" >
                           		 <option value="noQuanHuyen" selected="selected" >Chọn quận huyện</option>
                           </form:select>
@@ -160,7 +161,7 @@
                         <div class="form-group">
                           <label for="phuongXaId">Phường xã</label>
                           <form:select path="phuongXa.maPhuong" type="text" id="phuongXaId" class="form-control"
-                          name="phuongXaSelect" disabled="true">
+                          name="phuongXaSelect">
                           		<option value="noPhuongXa" selected="selected">Chọn phường xã</option>
                           	
                           </form:select>
@@ -178,12 +179,14 @@
                               	<option value="${x.maPhongBan}" >${x.tenPhongBan}</option>
                               </c:forEach>
                           </form:select>
+                          <form:errors path="maPhongBan.maPhongBan" cssStyle="color: red" /> <!-- validate error mess -->
                         </div>
+                        
                         <div class="form-group">
-                          <label for="companyName">Chức danh</label>
-                          <form:select path="maChucDanh.maChucDanh" type="text" id="companyName" class="form-control" placeholder="Company Name"
+                          <label for="companyName">Chức Danh</label>
+                          <form:select path="maChucDanh.maChucDanh" type="text" id="companyName" class="form-control"
                           name="chucDanhSelect">
-                          		<option value="" selected="selected" >Chọn chức danh</option>
+                          		<option value="" selected >Chọn chức danh</option>
                           	  <c:forEach items="${listChucDanh}" var="x">
                               	<option value="${x.maChucDanh}" >${x.tenChucDanh}</option>
                               </c:forEach>
@@ -200,56 +203,45 @@
                         <button type="submit" class="btn btn-primary">
                           <i class="fa fa-check-square-o"></i> Lưu
                         </button>
+                        
+                      <a href="/ffse-fbms/quantrinhansu/hosonhanvien/"><button type="button" class="btn btn-warning mr-1">
+                          <i class="ft-x"></i> Hủy
+                        </button></a>
                       </div>
                     </form:form>
+                     
                     <div ><p id="result"></p></div>
-                    <button type="button" class="btn btn-warning mr-1" onclick="bam()">
-                          <i class="ft-x"></i> Hủy
-                        </button>
-                        
+                    
                         
                         <!-- ajax select ThanhPho -->
                      <script type="text/javascript">
-                     window.onload = function () { 
-                    	 
-                    	 console.log("aaa");
-                     }
                      function clickComboboxThanhPho(){
-                    	 var maThanhPho = $("#thanhPhoId").val();
-                    	 if(maThanhPho == 'noThanhPho'){  // nếu người dùng chưa chọn thành phố
-                    		
-                    		 $('#quanHuyenId option').remove();
-                    		 
-                    		 $('#quanHuyenId').prop('disabled', true); /*disable combobox quận huyện */
-                    		 
-                    		 $('#phuongXaId option[value=noPhuongXa]').attr('selected', 'selected')
-                    		 $('#phuongXaId').prop('disabled', true);
-                    		 
-                    	 } else{                // nếu người dùng đã chọn thành phố
-                    		
-                    		 $('#quanHuyenId').prop('disabled', false); /*enable combobox quận huyện */
-                    		 $('#quanHuyenId option').remove(); /* xóa những option quận huyện cũ */
-                    		 
-                    		 $('#phuongXaId option[value=noPhuongXa]').attr('selected', 'selected') // nếu người ta select lại thành phố thì combobox phường phải chọn lại từ đầu
-                    		 $('#phuongXaId').prop('disabled', true);
-                    	 }
+                    	 var maThanhPho = $("#thanhPhoId").val(); /* when click thanh pho */
                     	 
+                    		 $('#quanHuyenId option').remove(); // delete old data in quan huyen
+                    		 $('#phuongXaId option').remove();// delete old data in phuong xa
+                    		
                          $.ajax({
                         	 url: "/ffse-fbms/quantrinhansu/hosonhanvien/selectquan/" + maThanhPho, 
                         	 dataType: "json",
                         	 success: function(data){
-                        		/* alert("Hello! I am an alert box!"); */
-                        		$('#quanHuyenId').append($('<option>', {
+                        		$('#quanHuyenId').append($('<option>', { // insert default data in quan huyen
                              		    value: 'noQuanHuyen',
                              		    text: 'Chọn Quận Huyện'
                              		}));
                         		
-                        		for (var i = 0; i < data.length; i++) {
+                        		for (var i = 0; i < data.length; i++) { // insert new data in quan huyen
                         			$('#quanHuyenId').append($('<option>', {
                              		    value: data[i].maQuanHuyen,
                              		    text: data[i].tenQuanHuyen
                              		}));
 								}
+                        		
+                        		$('#phuongXaId').append($('<option>', { // insert default data in phuong xa
+                         		    value: 'noPhuongXa',
+                         		    text: 'Chọn phường xã'
+                         		}));
+                        		
                         	
                          }});
                      };
@@ -260,30 +252,22 @@
                      
                      
                      <!-- ajax select QuanHuyen -->
-                     function clickComboboxQuan(){
+                     function clickComboboxQuan(){ /* when click quan huyen */
                     	 var maQuanHuyen = $("#quanHuyenId").val();
-                    	 if(maQuanHuyen == 'noQuanHuyen'){  /* nếu người dùng chưa chọn thành phố */
-                    		 $('#phuongXaId option').remove();
-                    		 $('#phuongXaId').prop('disabled', true); /*disable combobox quận huyện */
+                    	
+                    		 $('#phuongXaId option').remove(); // delete old data in phuong xa
                     		 
-                    	 } else{                /* nếu người dùng đã chọn thành phố*/
-                    		
-                    		 $('#phuongXaId').prop('disabled', false); // enable combobox quận huyện 
-                    		 $('#phuongXaId option').remove(); // xóa những option quận huyện cũ
-                    	 }
-                    	 
                          $.ajax({
                         	 url: "/ffse-fbms/quantrinhansu/hosonhanvien/selectphuong/" + maQuanHuyen, 
                         	 dataType: "json",
                         	 success: function(data){
-                        		/* alert("Hello! I am an alert box!"); */
                         		
-                        		$('#phuongXaId').append($('<option>', {
+                        		$('#phuongXaId').append($('<option>', {// insert default data in phuong xa
                              		    value: 'noPhuongXa',	
                              		    text: 'Chọn phường xã'
                              		}));
                         		
-                        		for (var i = 0; i < data.length; i++) {
+                        		for (var i = 0; i < data.length; i++) {// insert new data in phuong xa
                         			$('#phuongXaId').append($('<option>', {
                              		    value: data[i].maPhuong,
                              		    text: data[i].tenPhuong

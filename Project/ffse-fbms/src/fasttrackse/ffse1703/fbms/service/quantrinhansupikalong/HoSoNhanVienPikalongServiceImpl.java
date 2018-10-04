@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import fasttrackse.ffse1703.fbms.dao.quantrinhansupikalong.HoSoNhanVienPikalongDao;
 import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.HoSoNhanVienPikalong;
-import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
+
 
 
 @Service

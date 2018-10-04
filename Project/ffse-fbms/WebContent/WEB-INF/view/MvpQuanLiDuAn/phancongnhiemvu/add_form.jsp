@@ -56,6 +56,7 @@
 						
 						<div class="form-group col-sm-12">
 							<label>Vai trò</label>
+							<p Class="error">${messageRole}</p>
 							<form:select path="roles.idRoles" class="form-control">
 							   <form:option value="0" label="--- Select ---"/>
 							   <form:options items="${listRoles}" itemValue="idRoles" itemLabel="nameRoles" />

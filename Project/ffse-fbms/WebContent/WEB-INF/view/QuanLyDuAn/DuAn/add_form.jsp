@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 
 <div class="app-content content container-fluid"
@@ -9,14 +10,13 @@
 	<div class="content-wrapper">
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">Thêm Dự Án</h3>
+				<h3 class="content-header-title mb-0"><spring:message code="label.newDuAn" /></h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="/ffse-fbms/home">Home</a></li>
-							<li class="breadcrumb-item"><a href="/ffse-fbms/qlda/DuAn/">Danh
-									sách Dự Án</a></li>
-							<li class="breadcrumb-item active">Thêm dự án</li>
+							<li class="breadcrumb-item"><a href="/ffse-fbms/qlda/DuAn/"><spring:message code="label.listDA" /></a></li>
+							<li class="breadcrumb-item active"><spring:message code="label.newDuAn" /></li>
 						</ol>
 					</div>
 				</div>
@@ -27,7 +27,7 @@
 			<div class="col-sm-4"></div>
 			<div class="col-sm-4">
 				<h1>
-					<strong>THÊM DỰ ÁN</strong>
+					<strong><spring:message code="label.newDuAn" /></strong>
 
 				</h1>
 
@@ -53,7 +53,7 @@
 						<div class="form-group col-sm-6">
 
 							<input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}" /> <label>Mã dự án</label>
+								value="${_csrf.token}" /> <label><spring:message code="label.maDuAn" /></label>
 							<form:errors path="maDuAn" cssStyle="color: red"></form:errors>
 
 							<form:input class="form-control" path="maDuAn"
@@ -61,7 +61,7 @@
 						</div>
 
 						<div class="form-group col-sm-6">
-							<label>Tên dự án</label>
+							<label><spring:message code="label.tenDuAn" /></label>
 							<form:errors path="tenDuAn" cssStyle="color: red"></form:errors>
 
 							<form:input class="form-control" path="tenDuAn"
@@ -69,7 +69,7 @@
 						</div>
 
 						<div class="form-group col-sm-6">
-							<label>Mô tả dự án</label>
+							<label><spring:message code="label.moTaDuAn" /></label>
 							<form:errors path="moTaDuAn" cssStyle="color: red"></form:errors>
 
 							<form:textarea path="moTaDuAn" cssClass="form-control"
@@ -77,7 +77,7 @@
 						</div>
 						<c:set var="khang" value="${duAn.khachHang.makh }"></c:set>
 						<div class="form-group col-sm-6">
-							<label>Tên Khách Hàng</label>
+							<label><spring:message code="label.tenKhachHang" /></label>
 							<form:errors path="khachHang" cssStyle="color: red"></form:errors>
 
 							<form:select path="khachHang.makh" cssClass="form-control"
@@ -89,7 +89,7 @@
 							</form:select>
 						</div>
 						<div class="form-group col-sm-6">
-							<label>Tên Technical</label>
+							<label><spring:message code="label.tenTechnical" /></label>
 							<form:select path="technical" cssClass="form-control"
 								mutiple="true">
 								<c:forEach items="${technical}" var="tc">
@@ -99,7 +99,7 @@
 						</div>
 
 						<div class="form-group col-sm-6">
-							<label>Tên Database</label>
+							<label><spring:message code="label.tenDatabase" /></label>
 							<form:select multiple="true" cssClass="form-control"
 								path="database">
 								<c:forEach items="${database}" var="db">
@@ -108,7 +108,7 @@
 							</form:select>
 						</div>
 						<div class="form-group col-sm-6">
-							<label>Tên Framework</label>
+							<label><spring:message code="label.tenFramework" /></label>
 							<form:select path="framework" cssClass="form-control"
 								mutiple="mutiple">
 								<c:forEach items="${framework}" var="fw">
@@ -117,7 +117,7 @@
 							</form:select>
 						</div>
 						<div class="form-group col-sm-6">
-							<label>Ngôn ngữ</label>
+							<label><spring:message code="label.ngonNgu" /></label>
 							<form:select path="ngonNgu" cssClass="form-control"
 								mutiple="true">
 
@@ -127,7 +127,7 @@
 							</form:select>
 						</div>
 						<div class="form-group col-sm-6">
-							<label>Tên Vendor</label>
+							<label><spring:message code="label.tenVendor" /></label>
 							<form:select path="vendor" cssClass="form-control" mutiple="true"
 								style="height:calc(2.95rem - 2px);">
 
@@ -138,7 +138,7 @@
 						</div>
 
 						<div class="form-group col-sm-6">
-							<label>Nghiệp vụ</label>
+							<label><spring:message code="label.NghiepVu" /></label>
 							<form:errors path="domain" cssStyle="color: red"></form:errors>
 
 							<form:select path="domain.maNghiepVu" cssClass="form-control">
@@ -149,7 +149,7 @@
 							</form:select>
 						</div>
 						<div class="form-group col-sm-6">
-							<label>Phòng Ban</label>
+							<label><spring:message code="label.phongDuAn" /></label>
 							<form:errors path="phongBan" cssStyle="color: red"></form:errors>
 							<form:select path="phongBan.maPhongBan" cssClass="form-control"
 								mutiple="true" onchange="clickComboboxPhongBan()"
@@ -168,7 +168,7 @@
 							</form:select>
 						</div>
 						<div class="form-group col-sm-6">
-							<label>Start Date</label>
+							<label><spring:message code="label.ngayBatDau" /></label>
 							<form:errors path="startDate" cssStyle="color: red"></form:errors>
 
 							<form:input path="startDate" cssClass="form-control"
@@ -176,7 +176,7 @@
 							<div class="help-block"></div>
 						</div>
 						<div class="form-group col-sm-6">
-							<label>End Date</label>
+							<label><spring:message code="label.ngayKetThuc" /></label>
 							<form:errors path="endDate" cssStyle="color: red"></form:errors>
 
 							<form:input path="endDate" cssClass="form-control" type="date"
@@ -186,7 +186,7 @@
 						<div class="form-group col-sm-12">
 							<form:hidden path="trangThai.maTrangThai" value="TT01" />
 
-							<label>Trạng thái</label>
+							<label><spring:message code="label.trangThai" /></label>
 							<form:select path="trangThai" cssClass="form-control"
 								mutiple="true" disabled="true">
 								<c:forEach items="${trangThai}" var="tt">
@@ -196,8 +196,7 @@
 							</form:select>
 						</div>
 						<div class="col-sm-12 text-center">
-							<button type="submit" class="btn btn-success">Lưu thông
-								tin</button>
+							<button type="submit" class="btn btn-success"><spring:message code="label.luu" /></button>
 						</div>
 					</form:form>
 					<div class="col-sm-4">

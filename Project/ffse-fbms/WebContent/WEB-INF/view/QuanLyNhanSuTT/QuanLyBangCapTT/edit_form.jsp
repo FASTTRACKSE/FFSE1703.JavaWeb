@@ -10,7 +10,7 @@
 		<!-- Path -->
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">Sửa Bằng Cấp</h3>
+				<h3 class="content-header-title mb-0"><spring:message code="label.suabangcap" /></h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
@@ -18,7 +18,7 @@
 								href='<c:url value="/home" />'>Home</a></li>
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/quanlynhansutt/bang_cap/" />'><spring:message code="label.thongTinBangCap" /></a></li>
-							<li class="breadcrumb-item active">Sửa Bằng Cấp</li>
+							<li class="breadcrumb-item active"><spring:message code="label.suabangcap" /></li>
 						</ol>
 					</div>
 				</div>
@@ -112,7 +112,7 @@
 												<div class="form-group">
 													<a
 												href="<c:url value = "/quanlynhansutt/bang_cap/viewOneBangCap/${maNhanVien}"/>"
-												class="btn btn-primary">Back</a> <input class="btn btn-success" type="submit" value="Save" />
+												class="btn btn-primary"><spring:message code="label.quaylai" /></a> <input class="btn btn-success" type="submit" value="Save" />
 												</div>
 											</div>
 										</form:form>

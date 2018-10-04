@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import fasttrackse.ffse1703.fbms.dao.quantrinhansupikalong.HoSoNhanVienPikalongDao;
 import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.HoSoNhanVienPikalong;
-import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
+
 
 
 @Service
@@ -82,6 +82,21 @@ public class HoSoNhanVienPikalongServiceImpl implements HoSoNhanVienPikalongServ
 	public Long countAll() {
 		// TODO Auto-generated method stub
 		return hoSoNhanVienPikalongDao.countAll();
+	}
+
+
+	@Override
+	@Transactional
+	public boolean checkExistMaNv(String maNv) {
+		return hoSoNhanVienPikalongDao.checkExistMaNv(maNv);
+	}
+
+
+	@Override
+	@Transactional
+	public boolean checkIsActive(String maNv) {
+		
+		return hoSoNhanVienPikalongDao.checkIsActive(maNv);
 	}
 
 }

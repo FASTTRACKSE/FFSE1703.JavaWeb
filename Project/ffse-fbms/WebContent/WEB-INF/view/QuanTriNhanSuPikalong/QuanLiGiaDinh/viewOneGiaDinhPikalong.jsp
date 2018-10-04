@@ -23,7 +23,7 @@
 		</div>
 		<div class="table-responsive">
 			<a href="/ffse-fbms/QuanTriNhanSuPikalong/QuanLiGiaDinh/add/${maNv}"
-				class="btn btn-outline-success round btn-min-width mr-1 mb-1"><spring:message code="label.them" /></a>
+				class="btn btn-outline-success round btn-min-width mr-1 mb-1"><spring:message code="label.themGiaDinh" /></a>
 			<table class="table mb-0">
 				<thead>
 					<tr>

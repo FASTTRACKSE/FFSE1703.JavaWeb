@@ -33,6 +33,10 @@ import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
  	public List<DuAnNghiaBT> duAn();
  	
  	public List<HoSoNhanVien> nhanVien();
+ 	
+ 	public List<NhiemVu> searchAll(String search);
+ 	
+ 	public String toJson(List<NhiemVu> list);
 
  }
 

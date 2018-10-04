@@ -10,7 +10,8 @@
 		<!-- Path -->
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">Sửa hợp đồng</h3>
+				<h3 class="content-header-title mb-0"><spring:message
+										code="label.suaHopDong" /></h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
@@ -22,7 +23,8 @@
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/quanlynhansutt/hop_dong/" />'><spring:message
 										code="label.danhSachHopDong" /></a></li>
-							<li class="breadcrumb-item active">Sửa hợp đồng</li>
+							<li class="breadcrumb-item active"><spring:message
+										code="label.suaHopDong" /></li>
 						</ol>
 					</div>
 				</div>
@@ -121,7 +123,7 @@
 														<div class="row">
 															<div class="col-md-6">
 																<div class="form-group">
-																	<label>Ngày Ký</label>
+																	<label><spring:message code="label.ngayKy" /></label>
 																	<fieldset class="form-group position-relative">
 																		<form:input type="date" class="form-control round"
 																			id="from" path="ngayKy" />
@@ -133,7 +135,7 @@
 															</div>
 															<div class="col-md-6">
 																<div class="form-group">
-																	<label>Hợp Đồng Từ Ngày</label>
+																	<label><spring:message code="label.hopDongTuNgay" /></label>
 																	<fieldset class="form-group position-relative">
 																		<form:input type="date" class="form-control round"
 																			id="from" path="hopDongTuNgay" />
@@ -145,7 +147,7 @@
 															</div>
 															<div class="col-md-6">
 																<div class="form-group">
-																	<label>Hợp Đồng Đến Ngày</label>
+																	<label><spring:message code="label.hopDongDenNgay" /></label>
 																	<fieldset class="form-group position-relative">
 																		<form:input type="date" class="form-control round"
 																			id="from" path="hopDongDenNgay" />
@@ -177,7 +179,7 @@
 											<div class="form-actions center">
 												<a
 													href="<c:url value = "/quanlynhansutt/hop_dong/viewOneHopDong/${maNhanVien}"/>"
-													class="btn btn-primary">Back</a> <input
+													class="btn btn-primary"><spring:message code="label.quaylai" /></a> <input
 													class="btn btn-success" type="submit" value="Save" />
 											</div>
 										</form:form>

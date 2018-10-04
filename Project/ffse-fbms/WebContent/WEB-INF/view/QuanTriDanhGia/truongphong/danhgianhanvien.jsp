@@ -42,13 +42,38 @@
 									<c:forEach items="${listDanhGia}" var="x" varStatus="stt">
 										<tr>
 											<th scope="row">${stt.index+1 }</th>
-											<td>${x.nhanVien}</td>
+											<td>${x.nhanVien.tenNhanVien}</td>
 											<td>${x.xepLoai }</td>
 											<td><a href="<c:url value="/quantridanhgia/truongphong/danhgianhanvien/danhgia/${x.id }"/>">Đánh giá</a></td>
 										</tr>
 									</c:forEach>
 								</tbody>
 							</table>
+							<ul class="pagination firstLast1-links">
+									<c:if test="${pageTPDG > 1 }">
+										<li class="page-item first"><a
+											href="<c:url value="/quantridanhgia/phongnhansu/danhsachdanhgia/1" />"
+											class="page-link">First</a></li>
+										<li class="page-item prev"><a
+											href="<c:url value="/quantridanhgia/phongnhansu/danhsachdanhgia/${pageTPDG-1 }" />"
+											class="page-link">Prev</a></li>
+										<li class="page-item prev"><a
+											href="<c:url value="/quantridanhgia/phongnhansu/danhsachdanhgia/${pageTPDG-1 }" />"
+											class="page-link">${pageTPDG-1 }</a></li>
+									</c:if>
+									<li class="page-item active"><a href="#" class="page-link">${pageTPDG}</a></li>
+									<c:if test="${pageTPDG < total }">
+										<li class="page-item next"><a
+											href="<c:url value="/quantridanhgia/phongnhansu/danhsachdanhgia/${pageTPDG+1 }" />"
+											class="page-link">${pageTPDG + 1 }</a></li>
+										<li class="page-item next"><a
+											href="<c:url value="/quantridanhgia/phongnhansu/danhsachdanhgia/${pageTPDG+1 }" />"
+											class="page-link">Next</a></li>
+										<li class="page-item last"><a
+											href="<c:url value="/quantridanhgia/phongnhansu/danhsachdanhgia/${total}" />"
+											class="page-link">Last</a></li>
+									</c:if>
+								</ul>
 						</div>
 					</div>
 				</div>

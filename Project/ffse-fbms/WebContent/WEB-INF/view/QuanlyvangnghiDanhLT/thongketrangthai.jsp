@@ -12,15 +12,15 @@
 		<div class="content-header row">
 		<div>
 		<div class="col-md-5"></div>
-			<h3 >Danh sách Trạng Thái</h3>
+			<h3 ><spring:message code="label.danhsachtrangthai"/></h3>
 		</div>
 			
 			    <div class="table-responsive">
 						<table class="table mb-0">
 							<thead>
 				<tr>
-					<th >Mã Trang Thái</th>
-					<th >Tên Trang Thái</th>
+					<th ><spring:message code="label.matrangthai"/></th>
+					<th ><spring:message code="label.tentrangthai"/></th>
 					<th >Số Đơn</th>
 				</tr>
 				</thead>
@@ -30,42 +30,60 @@
 					
 					<td>${tl.id}</td>
 					<td>${tl.trangThai}</td>
-						</tr>
+					<td><%=request.getAttribute("trangthai2") %></td>
+					</tr>
 				</c:forEach>
 				</tbody>
 		</table>
-		
-		<nav aria-label="Page navigation example">
-	<ul class="pagination">
-		<li class="page-item"><a class="page-link" href="?page=1">Trang Đầu</a></li>
-		<c:if test="${currentPage > 2}">
-				<li class="page-item"><a class="page-link"
-					href="?page=${currentPage-2}">${currentPage-2}</a></li>
-			</c:if>
-			<c:if test="${currentPage > 1}">
-				<li class="page-item"><a class="page-link"
-					href="?page=${currentPage-1}">${currentPage-1}</a></li>
-			</c:if>
-			<li class="page-item active"><a class="page-link"
-				href="?page=${currentPage}">${currentPage}</a></li>
-			<c:if test="${currentPage < lastPage}">
-				<li class="page-item"><a class="page-link"
-					href="?page=${currentPage+1}">${currentPage+1}</a></li>
-			</c:if>
-			<c:if test="${currentPage < lastPage - 1}">
-				<li class="page-item"><a class="page-link"
-					href="?page=${currentPage+2}">${currentPage+2}</a></li>
-			</c:if>
-		<li class="page-item"><a class="page-link" href="?page=${lastPage }">Trang Cuối</a></li>
-	</ul>
-	</nav>
+		<div class="dataTables_paginate paging_full_numbers"
+										id="DataTables_Table_5_paginate">
+										<ul class="pagination">
+											<c:if test="${currentPage != 1}">
+												<li class="paginate_button page-item first"
+													id="DataTables_Table_5_first"
+													${currentPage == 1 ? 'd-none' : ''}><a
+													href="<%=request.getContextPath()%>/QuanlyvangnghiDanhLT/thongketrangthai?page=1"
+													aria-controls="DataTables_Table_5" class="page-link"><spring:message code="label.trangdau"/></a></li>
+
+												<li class="paginate_button page-item previous"
+													id="DataTables_Table_5_previous"><a
+													href="<%=request.getContextPath()%>/QuanlyvangnghiDanhLT/thongketrangthai?page=${currentPage-1}"
+													aria-controls="DataTables_Table_5" tabindex="0"
+													class="page-link"><spring:message code="label.trangtruoc"/></a></li>
+											</c:if>
+
+											<c:if test="${currentPage != 1}">
+												<li class="paginate_button page-item"><a
+													href="<%=request.getContextPath()%>/QuanlyvangnghiDanhLT/thongketrangthai?page=${currentPage-1}"
+													aria-controls="DataTables_Table_5" class="page-link">${currentPage-1}</a></li>
+											</c:if>
+
+											<li class="paginate_button page-item "><a
+												href="<%=request.getContextPath()%>/QuanlyvangnghiDanhLT/thongketrangthai?page=${currentPage}"
+												aria-controls="DataTables_Table_5" class="page-link">${currentPage}</a></li>
+
+											<c:if test="${currentPage != lastPage}">
+												<li
+													class="paginate_button page-item ${currentPage == lastPage ? 'd-none' : ''}"><a
+													href="<%=request.getContextPath()%>/QuanlyvangnghiDanhLT/thongketrangthai?page=${currentPage+1}"
+													aria-controls="DataTables_Table_5" class="page-link">${currentPage+1}</a></li>
+												<li class="paginate_button page-item next"
+													id="DataTables_Table_5_next"><a
+													href="<%=request.getContextPath()%>/QuanlyvangnghiDanhLT/thongketrangthai?page=${currentPage+1}"
+													aria-controls="DataTables_Table_5" data-dt-idx="8"
+													tabindex="0" class="page-link"><spring:message code="label.trangtiep"/></a></li>
+											</c:if>
+
+											<li class="paginate_button page-item last"
+												id="DataTables_Table_5_last"><a
+												href="<%=request.getContextPath()%>/QuanlyvangnghiDanhLT/thongketrangthai?page=${lastPage}"
+												aria-controls="DataTables_Table_5" data-dt-idx="9"
+												tabindex="0" class="page-link"><spring:message code="label.trangcuoi"/></a></li>
+										</ul>
+									</div>
+								</div>
 		</div>
 		</div>
 		</div>
-		</div>
-		</div>
-		</div>
-<script>
-		
-	</script>
+	
 <jsp:include page="/WEB-INF/view/templates/footer.jsp" />

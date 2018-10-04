@@ -1,24 +1,28 @@
 package fasttrackse.ffse1703.fbms.controller.qttl;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.io.InputStream;
 import java.util.List;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -123,6 +127,26 @@ public class DocumentController {
 		redirectAttributes.addFlashAttribute("message", "<script>alert('Creat successfully.');</script>");
 		documentService.addNew(document);
 		return "redirect:list";
+	}
+	
+	@RequestMapping(value = "/download/{id}", method = RequestMethod.GET)
+	public void download(@PathVariable("id") Integer id,HttpServletRequest request,HttpServletResponse response) throws IOException {
+		try {
+			
+	Document document = documentService.getById(id);
+	File file = new File(request.getServletContext().getRealPath(UPLOAD_DIRECTORY+File.separator+document.getFileName()));
+	byte[] data = FileUtils.readFileToByteArray(file);
+	
+	// Thiết lập thông tin trả về
+	response.setContentType("application/octet-stream");
+	response.setHeader("Content-disposition", "attachment; filename=" + file.getName());
+	response.setContentLength(data.length);
+	
+	InputStream inputStream = new BufferedInputStream(new ByteArrayInputStream(data));
+	FileCopyUtils.copy(inputStream, response.getOutputStream());
+	} catch (Exception ex) {
+	ex.printStackTrace();
+		}
 	}
 
 	@RequestMapping(value = "/edit/{id}")

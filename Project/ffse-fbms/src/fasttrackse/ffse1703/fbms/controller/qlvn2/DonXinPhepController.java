@@ -143,6 +143,7 @@ public class DonXinPhepController {
 	public String listDonDuyet( @ModelAttribute("suadoncho") @Valid DonXinPhepEntity nv,
 			BindingResult result,Model model) {
 		if(result.hasErrors()) {
+			
 			return "/QuanlyvangnghiDanhLT/suadoncho";
 		} 
 		DonXinPhepService.createduyet(nv);
@@ -165,14 +166,8 @@ public class DonXinPhepController {
 			@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage) {
 		int totalRecords = DonXinPhepService.danhsachnhap003().size();
 		int recordsPerPage = 3;
-		int totalPages = 0;
-		if ((totalRecords / recordsPerPage) % 2 == 0) {
-			totalPages = totalRecords / recordsPerPage;
-		} else {
-			totalPages = totalRecords / recordsPerPage + 1;
-		}
+		int totalPages = (int)Math.ceil((double)totalRecords/recordsPerPage);
 		int startPosition = recordsPerPage * (currentPage - 1);
-
 		model.addAttribute("danhsachnhap003", DonXinPhepService.findAllForPaging1(startPosition, recordsPerPage));
 		model.addAttribute("lastPage", totalPages);
 		model.addAttribute("currentPage", currentPage);
@@ -184,14 +179,8 @@ public class DonXinPhepController {
 			@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage) {
 		int totalRecords = DonXinPhepService.danhsachchoduyet003().size();
 		int recordsPerPage = 3;
-		int totalPages = 0;
-		if ((totalRecords / recordsPerPage) % 2 == 0) {
-			totalPages = totalRecords / recordsPerPage;
-		} else {
-			totalPages = totalRecords / recordsPerPage + 1;
-		}
+		int totalPages = (int)Math.ceil((double)totalRecords/recordsPerPage);
 		int startPosition = recordsPerPage * (currentPage - 1);
-
 		model.addAttribute("danhsachchoduyet003", DonXinPhepService.findAllForPaging2(startPosition, recordsPerPage));
 		model.addAttribute("lastPage", totalPages);
 		model.addAttribute("currentPage", currentPage);
@@ -204,14 +193,8 @@ public class DonXinPhepController {
 			@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage) {
 		int totalRecords = DonXinPhepService.danhsachdaduyet003().size();
 		int recordsPerPage = 3;
-		int totalPages = 0;
-		if ((totalRecords / recordsPerPage) % 2 == 0) {
-			totalPages = totalRecords / recordsPerPage;
-		} else {
-			totalPages = totalRecords / recordsPerPage + 1;
-		}
+		int totalPages = (int)Math.ceil((double)totalRecords/recordsPerPage);
 		int startPosition = recordsPerPage * (currentPage - 1);
-
 		model.addAttribute("danhsachdaduyet003", DonXinPhepService.findAllForPaging3(startPosition, recordsPerPage));
 		model.addAttribute("lastPage", totalPages);
 		model.addAttribute("currentPage", currentPage);
@@ -223,51 +206,22 @@ public class DonXinPhepController {
 			@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage) {
 		int totalRecords = DonXinPhepService.danhsachbituchoi003().size();
 		int recordsPerPage = 3;
-		int totalPages = 0;
-		if ((totalRecords / recordsPerPage) % 2 == 0) {
-			totalPages = totalRecords / recordsPerPage;
-		} else {
-			totalPages = totalRecords / recordsPerPage + 1;
-		}
+		int totalPages = (int)Math.ceil((double)totalRecords/recordsPerPage);
 		int startPosition = recordsPerPage * (currentPage - 1);
-
 		model.addAttribute("danhsachbituchoi003", DonXinPhepService.findAllForPaging4(startPosition, recordsPerPage));
 		model.addAttribute("lastPage", totalPages);
 		model.addAttribute("currentPage", currentPage);
 
 		return "QuanlyvangnghiDanhLT/danhsachbituchoi003";	}
 	//
-	
-//	@RequestMapping(value = {"/ngaynghiphep" }, method = RequestMethod.GET)
-//	public String danhSachNgayNghi(Model model,
-//			@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage) {
-//		int totalRecords = DonXinPhepService.ngaynghiphep().size();
-//		int recordsPerPage = 4;
-//		int totalPages = (int)Math.ceil((double)totalRecords/recordsPerPage);
-//		int startPosition = recordsPerPage * (currentPage - 1);
-//		model.addAttribute("ngaynghiphep", DonXinPhepService.findAllForPagingngaynghi(startPosition, recordsPerPage));
-//		model.addAttribute("lastPage", totalPages);
-//		model.addAttribute("currentPage", currentPage);
-//		return "QuanlyvangnghiDanhLt/ngaynghiphep";
-//	}
-//	@RequestMapping(value = {"/danhsachbituchoi003"}, method = RequestMethod.GET)
-//	public String danhsachbituchoi003(Model model ) {
-//		model.addAttribute("danhsachbituchoi003", DonXinPhepService.danhsachbituchoi003());
-//		return "QuanlyvangnghiDanhLT/danhsachbituchoi003";
-//    }
+
 	@RequestMapping(value = {"/ngaynghiphep"}, method = RequestMethod.GET)
 	public String ngaynghi(Model model, 
 			@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage) {
 		int totalRecords = DonXinPhepService.ngaynghiphep().size();
 		int recordsPerPage = 3;
-		int totalPages = 0;
-		if ((totalRecords / recordsPerPage) % 2 == 0) {
-			totalPages = totalRecords / recordsPerPage;
-		} else {
-			totalPages = totalRecords / recordsPerPage + 1;
-		}
+		int totalPages = (int)Math.ceil((double)totalRecords/recordsPerPage);
 		int startPosition = recordsPerPage * (currentPage - 1);
-
 		model.addAttribute("ngaynghiphep", DonXinPhepService.findAllForPagingngaynghi(startPosition, recordsPerPage));
 		model.addAttribute("lastPage", totalPages);
 		model.addAttribute("currentPage", currentPage);
@@ -279,14 +233,8 @@ public class DonXinPhepController {
 			@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage) {
 		int totalRecords = DonXinPhepService.thongketrangthai().size();
 		int recordsPerPage = 3;
-		int totalPages = 0;
-		if ((totalRecords / recordsPerPage) % 2 == 0) {
-			totalPages = totalRecords / recordsPerPage;
-		} else {
-			totalPages = totalRecords / recordsPerPage + 1;
-		}
+		int totalPages = (int)Math.ceil((double)totalRecords/recordsPerPage);
 		int startPosition = recordsPerPage * (currentPage - 1);
-
 		model.addAttribute("thongketrangthai", DonXinPhepService.findAllForPagingTT(startPosition, recordsPerPage));
 		model.addAttribute("lastPage", totalPages);
 		model.addAttribute("currentPage", currentPage);

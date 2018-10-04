@@ -58,14 +58,14 @@
 											varStatus="stt">
 											<tr>
 												<th scope="row">${stt.index + 1 }</th>
-												<td>${x.nhanVien }</td>
+												<td>${x.nhanVien.tenNhanVien }</td>
 												<td>${x.xepLoai }</td>
 												<td><c:if test="${x.xepLoai !=0 }">
 														<a class="btn btn-info"
 															href="<c:url value = "/quantridanhgia/nhanvien/danhgianhanvien/view/${x.id }" />">Xem</a>
 													</c:if> <c:if test="${x.xepLoai == 0 }">
 														<a class="btn btn-info"
-															href="<c:url value = "/quantridanhgia/nhanvien/danhgianhanvien/add/${x.nhanVien }/${x.id }" />">Tạo</a>
+															href="<c:url value = "/quantridanhgia/nhanvien/danhgianhanvien/add/${x.nhanVien.maNhanVien }/${x.id }" />">Tạo</a>
 													</c:if></td>
 											</tr>
 										</c:forEach>

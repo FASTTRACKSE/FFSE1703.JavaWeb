@@ -99,10 +99,31 @@ public class QuanLyVangNghiServiceImpl implements QuanLyVangNghiService {
 	public void updateTinhTrang(TinhTrangNghi tt) {
 		this.qlvnDao.updateTinhTrang(tt);
 	}
-
+	@Transactional
 	@Override
 	public void deleteDon(int id_don) {
 		this.qlvnDao.deleteDon(id_don);
 	}
+	@Transactional
+	@Override
+	public List<DonNghi> listDonNghiPheDuyet2() {
+		return this.qlvnDao.listDonNghiPheDuyet2();
+	}
+	@Transactional
+	@Override
+	public List<DonNghi> listDonNghiTuChoi(int id_nv) {
+		return this.qlvnDao.listDonNghiBiTuChoi(id_nv);
+	}
+	@Transactional
+	@Override
+	public List<DonNghi> listDanhSachPheDuyet(int id_nv) {
+		return this.qlvnDao.listDanhSachPheDuyet(id_nv);
+	}
+	@Transactional
+	@Override
+	public List<DonNghi> listDonNghiTuChoi2(int id_nv) {
+		return this.qlvnDao.listDonNghiBiTuChoi2(id_nv);
+	}
+
 	
 }

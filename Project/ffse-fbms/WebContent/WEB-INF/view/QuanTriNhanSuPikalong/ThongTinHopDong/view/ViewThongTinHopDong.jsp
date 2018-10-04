@@ -14,10 +14,10 @@
 						href='<c:url value="/quantrinhansu/hosonhanvien/" />'>Danh
 							Sách Nhân Viên</a></li>
 					<li class="breadcrumb-item"><a
-						href='<c:url value="/quantrinhansu/hosonhanvien/view/${maNv }" />'>Thông
+						href='<c:url value="/quantrinhansu/hosonhanvien/view/${hsnv.maNv}" />'>Thông
 							Tin Nhân Viên</a></li>
 					<li class="breadcrumb-item"><a
-						href='<c:url value="/QuanTriNhanSu/quanlihopdong/viewOneHopDong/${maNv}" />'>Hợp
+						href='<c:url value="/QuanTriNhanSu/quanlihopdong/viewOneHopDong/${hsnv.maNv}" />'>Hợp
 							Đồng Nhân Viên</a></li>
 					<li class="breadcrumb-item active">View Hợp Đồng</li>
 				</ol>
@@ -103,7 +103,15 @@
 					</div>
 				</div>
 			</div>
-
+			<div class="form-actions center">
+			<a
+					href="/ffse-fbms/QuanTriNhanSu/quanlihopdong/viewOneHopDong/${hsnv.maNv}">
+					<button type="button"
+						class="btn btn-warning btn-min-width mr-1 mb-1">
+						<i class="ft-x"></i> Trở vê
+					</button>
+				</a>
+</div>
 		</form:form>
 	</div>
 </div>

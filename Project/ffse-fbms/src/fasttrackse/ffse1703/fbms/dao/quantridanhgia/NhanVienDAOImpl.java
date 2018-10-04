@@ -51,7 +51,7 @@ public class NhanVienDAOImpl implements NhanVienDAO {
 	@Override
 	public List<DanhGiaNhanVien> getListPhanCongDanhGia(int maNhanVien) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("from DanhGiaNhanVien where nhanVienDanhGia = :nhanVien")
+		return session.createQuery("from DanhGiaNhanVien where nhanVienDanhGia.maNhanVien = :nhanVien")
 				.setParameter("nhanVien", maNhanVien).list();
 	}
 
@@ -89,7 +89,7 @@ public class NhanVienDAOImpl implements NhanVienDAO {
 	@Override
 	public List<DanhGiaNhanVien> getListNhanVienDanhGia(int maNhanVien) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("from DanhGiaNhanVien where nhanVien = :nhanVien")
+		return session.createQuery("from DanhGiaNhanVien where nhanVien.maNhanVien = :nhanVien")
 				.setParameter("nhanVien", maNhanVien).list();
 	}
 

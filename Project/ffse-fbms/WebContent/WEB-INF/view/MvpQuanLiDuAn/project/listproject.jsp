@@ -165,10 +165,11 @@
 									<td><a class="btn btn-outline-info  "
 										href="<c:url value="/mvpquanliduan/project/detail-project/${project.idProject}" />"
 										title=""><i class="icon-eye"></i> </a>
+										
 										<button
 											data-href="<c:url value="/mvpquanliduan/project/delete/${project.idProject}" />"
 											class="btn btn-outline-danger" data-toggle="modal"
-											data-target="#xoa_pr">
+											data-target="#xoa_pr" ${disable }>
 											<i class="icon-close"></i>
 										</button>
 								</tr>
@@ -184,6 +185,7 @@
 								<li class="page-item"><a href="${pageId-1 }"
 									class="page-link">${pageId-1 }</a></li>
 							</c:if>
+							
 							<li class="page-item active"><a href="#" class="page-link">${pageId } </a></li>
 							<c:if test="${pageId < totalPage}">
 								<li class="page-item"><a href="${pageId+1 }"
@@ -227,6 +229,7 @@
 		// var test = $(e.relatedTarget).data('href'); console.log(test);
 		$(this).find('.del_pr').attr('href', $(e.relatedTarget).data('href'));
 	});
+
 </script>
 
 <!-- ////////////////////////////////////////////////////////////////////////////-->

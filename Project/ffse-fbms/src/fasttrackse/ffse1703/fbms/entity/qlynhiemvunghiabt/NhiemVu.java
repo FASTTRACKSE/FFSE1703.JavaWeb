@@ -2,9 +2,10 @@ package fasttrackse.ffse1703.fbms.entity.qlynhiemvunghiabt;
 
 
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -37,12 +38,12 @@ public class NhiemVu {
 	private String moTa;
 	
 	@Column(name = "tg_bat_dau")
-	@NotEmpty
-	private String tgBatDau;
+	@NotNull
+	private Date tgBatDau;
 	
 	@Column(name = "tg_ket_thuc")
-	@NotEmpty
-	private String tgKetThuc;
+	@NotNull
+	private Date tgKetThuc;
 	
 	@ManyToOne
 	@JoinColumn(name = "ma_nhan_vien", nullable=false)
@@ -100,19 +101,19 @@ public class NhiemVu {
 		this.moTa = moTa;
 	}
 
-	public String getTgBatDau() {
+	public Date getTgBatDau() {
 		return tgBatDau;
 	}
 
-	public void setTgBatDau(String tgBatDau) {
+	public void setTgBatDau(Date tgBatDau) {
 		this.tgBatDau = tgBatDau;
 	}
 
-	public String getTgKetThuc() {
+	public Date getTgKetThuc() {
 		return tgKetThuc;
 	}
 
-	public void setTgKetThuc(String tgKetThuc) {
+	public void setTgKetThuc(Date tgKetThuc) {
 		this.tgKetThuc = tgKetThuc;
 	}
 

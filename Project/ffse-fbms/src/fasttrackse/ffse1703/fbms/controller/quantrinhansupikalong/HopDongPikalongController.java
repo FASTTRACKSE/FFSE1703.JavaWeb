@@ -1,5 +1,6 @@
 package fasttrackse.ffse1703.fbms.controller.quantrinhansupikalong;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -38,7 +39,8 @@ public class HopDongPikalongController {
 
 	@RequestMapping(value = "viewOneHopDong/view/{maHopDong}", method = RequestMethod.GET)
 	public String viewThongTinHopDong(@PathVariable("maHopDong") int maHopDong, Model model) {
-		HoSoNhanVienPikalong hsnv = this.hoSoNhanVienPikalongService.getEdit(hopDongPikalongService.getMaHopDong(maHopDong).getHoSoNhanVienPikalong().getMaNv());
+		HoSoNhanVienPikalong hsnv = this.hoSoNhanVienPikalongService
+				.getEdit(hopDongPikalongService.getMaHopDong(maHopDong).getHoSoNhanVienPikalong().getMaNv());
 		model.addAttribute("hsnv", hsnv);
 		HopDongPikalong hdById = this.hopDongPikalongService.getHopDongById(maHopDong);
 		model.addAttribute("hopDong", hdById);
@@ -57,9 +59,9 @@ public class HopDongPikalongController {
 	}
 
 	@RequestMapping(value = "save", method = RequestMethod.POST)
-	public String addSaveHd(@Valid @ModelAttribute("hopDongPikalong") HopDongPikalong hd, BindingResult result, Model model,
-			HttpServletRequest request) {
-		if(result.hasErrors()) {
+	public String addSaveHd(@ModelAttribute("hopDongPikalong") @Valid HopDongPikalong hd, BindingResult result,
+			Model model, HttpServletRequest request) {
+		if (result.hasErrors()) {
 			return "QuanTriNhanSuPikalong/quanlihopdong/FormAddHd";
 		}
 		String maNv = hd.getHoSoNhanVienPikalong().getMaNv();
@@ -83,8 +85,12 @@ public class HopDongPikalongController {
 	}
 
 	@RequestMapping(value = "edithd", method = RequestMethod.POST)
-	public String editsave(@ModelAttribute("hopDongPikalong") HopDongPikalong hd, Model model,
-			HttpServletRequest request) {
+	public String editsave(@ModelAttribute("hopDongPikalong") @Valid HopDongPikalong hd, BindingResult result,
+			Model model, HttpServletRequest request) {
+		if (result.hasErrors()) {
+			model.addAttribute("hsnv", hoSoNhanVienPikalongService.getEdit(hd.getHoSoNhanVienPikalong().getMaNv()));
+			return "QuanTriNhanSuPikalong/ThongTinHopDong/FormEditHd";
+		}
 		String maNv = hd.getHoSoNhanVienPikalong().getMaNv();
 		HoSoNhanVienPikalong hsnv = this.hoSoNhanVienPikalongService.getEdit(maNv);
 
@@ -95,11 +101,16 @@ public class HopDongPikalongController {
 
 	@RequestMapping("viewOneHopDong/{maNv}")
 	public String viewOneHopDong(@PathVariable String maNv, Model model) {
-		List<HopDongPikalong> hdong = this.hopDongPikalongService.viewOne(maNv);
-		model.addAttribute("lastTrangThai", this.hopDongPikalongService.getLastTrangThaiHd(maNv));
-		model.addAttribute("listHopDong", hdong);
-		model.addAttribute("maNv", maNv);
-		return "QuanTriNhanSuPikalong/ThongTinHopDong/HopDong";
+		boolean isActive = hoSoNhanVienPikalongService.checkIsActive(maNv);
+		if (isActive == true) {
+			List<HopDongPikalong> hdong = this.hopDongPikalongService.viewOne(maNv);
+			model.addAttribute("lastTrangThai", this.hopDongPikalongService.getLastTrangThaiHd(maNv));
+			model.addAttribute("listHopDong", hdong);
+			model.addAttribute("maNv", maNv);
+			return "QuanTriNhanSuPikalong/ThongTinHopDong/HopDong";
+		} else {
+			return "QuanTriHeThong/error-404";
+		}
 	}
 
 }

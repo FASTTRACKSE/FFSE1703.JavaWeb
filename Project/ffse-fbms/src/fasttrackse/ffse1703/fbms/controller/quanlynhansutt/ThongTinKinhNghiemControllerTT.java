@@ -28,10 +28,11 @@ public class ThongTinKinhNghiemControllerTT {
 	}
 	
 	// Show an employee's family information
-		@RequestMapping("/viewOneKinhNghiem/{maNhanVien}")
-		public String viewOneGiaDinh(@PathVariable int maNhanVien, Model model) {
-			model.addAttribute("viewOne", nhiemVuServiceTT.getByMaNhanVien(maNhanVien));
-			model.addAttribute("maNhanVien", maNhanVien);
-			return "QuanLyNhanSuTT/ThongTinKinhNghiem/viewOneKinhNghiem";
-		}
+	@RequestMapping("/viewOneKinhNghiem/{maNhanVien}")
+	public String viewOneKinhNghiem(@PathVariable int maNhanVien, Model model) {
+	
+		model.addAttribute("viewOne", nhiemVuServiceTT.getByMaNhanVien(maNhanVien));
+		model.addAttribute("maNhanVien", maNhanVien);
+		return "QuanLyNhanSuTT/ThongTinKinhNghiem/viewOneKinhNghiem";
+	}
 }

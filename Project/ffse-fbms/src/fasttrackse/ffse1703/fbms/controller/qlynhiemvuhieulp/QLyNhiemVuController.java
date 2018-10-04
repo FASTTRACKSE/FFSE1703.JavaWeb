@@ -1,10 +1,8 @@
 package fasttrackse.ffse1703.fbms.controller.qlynhiemvuhieulp;
 
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,12 +35,9 @@ public class QLyNhiemVuController {
 		return totalPage;
 	}
 
-	@RequestMapping(value = { "/",
-			"/danhsach" }, method = RequestMethod.GET, produces = "application/x-www-form-urlencoded;charset=UTF-8")
+	@RequestMapping(value = { "/", "/danhsach" }, method = RequestMethod.GET, produces = "application/x-www-form-urlencoded;charset=UTF-8")
 	public String listCustomer(Model model, @RequestParam(name = "page", required = false, defaultValue = "1") int page,
 			HttpServletRequest request) {
-		// search = " and duAn.maDuan = ??? and nhanVien.maNhanVien = ??? and
-		// idLoaiTrangthai.IDtrangthai = ???"
 		String maDuanSearch = " and duAn.maDuan = " + request.getParameter("maDuan");
 		if (request.getParameter("maDuan") == null || request.getParameter("maDuan").equals("0")) {
 			maDuanSearch = "";
@@ -151,5 +146,5 @@ public class QLyNhiemVuController {
 		return "QuanLyNhiemVuHieuLP/calender";
 
 	}
-
+//fa fa-calendar
 }

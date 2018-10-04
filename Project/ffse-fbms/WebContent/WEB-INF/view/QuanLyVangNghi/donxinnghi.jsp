@@ -6,7 +6,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ page session="false"%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -204,16 +204,8 @@
 											<div class="row">
 												<div class="form-group col-md-4 mb-2 has-icon-left">
 													<p>Ngày bắt đầu*</p>
-
-													<fieldset class="form-group position-relative">
-														<input name="tg_bat_dau" type="date"
-															class="form-control round" id="from"
-															onchange="myFunction()" />
-
-														<div class="form-control-position">
-															<i class="fa fa-calendar-o"></i>
-														</div>
-													</fieldset>
+													<input name="tg_bat_dau" type="date"
+															class="form-control round" id="from" />
 													
 												</div>
 												<div class="form-group col-md-4 mb-2 has-icon-left">
@@ -265,13 +257,13 @@
 											<input  name="ghi_chu" type="text"
 																class="form-control round" 	>
 											<div class="form-actions">
-												<button type="submit" class="btn btn-primary" formaction="savenhap">
+												<button type="submit" class="btn btn-primary">
 													<i class="fa ft-save"></i> Lưu nháp
 												</button>
 												<button type="submit" class="btn btn-success" formaction="savechoduyet">
 													 <i class="fa fa-check-square-o"></i> Gửi đơn chờ phê duyệt
 												</button>
-												<a href="QuanLyVangNghi/danhsach">
+												<a href="">
 													<button type="button" class="btn btn-warning mr-1">
 														<i class="fa fa-arrow-circle-left"></i> Quay lại
 													</button>

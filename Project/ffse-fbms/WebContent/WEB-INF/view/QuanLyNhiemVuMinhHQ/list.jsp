@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -195,10 +195,13 @@
 														href="/ffse-fbms/QuanLyNhiemVuMinhHQ/view/${cv.ID}"><i
 															class='fa fa-eye'></i></a> <a
 														href="/ffse-fbms/QuanLyNhiemVuMinhHQ/edit/${cv.ID}"><i
-															class='fa fa-pencil'></i></a> <a
+															class='fa fa-pencil'></i></a> 
+														<sec:authorize access="hasRole('ROLE_PGD') or hasRole('ROLE_PNSTPP') or hasRole('ROLE_PDATPP') or hasRole('ROLE_PDTTPP') or hasRole('ROLE_PITTPP') or hasRole('ROLE_PKTTPP')">	
+															<a
 														href="/ffse-fbms/QuanLyNhiemVuMinhHQ/delete/${cv.ID}"><i
 															class='fa fa-trash'
 															onclick="return confirm('Bạn có muốn xóa sinh viên này?');"></i></a>
+														</sec:authorize>
 													</td>
 											</c:forEach>
 										</tbody>

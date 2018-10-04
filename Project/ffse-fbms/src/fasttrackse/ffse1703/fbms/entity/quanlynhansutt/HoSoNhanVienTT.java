@@ -28,15 +28,14 @@ public class HoSoNhanVienTT implements Serializable {
 	private int maNhanVien;
 
 	@Column(name = "ten_nhan_vien" , nullable = false, length = 100) 
-	@NotEmpty(message="vui lòng nhập")
+	@NotEmpty(message="must not be empty")
 	private String tenNhanVien;
 
 	@Column(name = "anh_dai_dien" , nullable = false, length = 100) 
-	@NotEmpty(message="vui lòng nhập")
 	private String anhDaiDien;
 
 	@Column(name = "nam_sinh")
-	@NotEmpty(message="vui lòng nhập")
+	@NotEmpty(message="must not be empty")
 	private String namSinh;
 
 	@Column(name = "gioi_tinh", nullable = false) 
@@ -44,7 +43,7 @@ public class HoSoNhanVienTT implements Serializable {
 	private Integer gioiTinh;
 
 	@Column(name = "dia_chi" , nullable = false, length = 250) 
-	@NotEmpty(message="k đc bỏ trống")
+	@NotEmpty(message="must not be empty")
 	private String diaChi;
 
 	// bi-directional many-to-one association to XaPhuong
@@ -66,11 +65,11 @@ public class HoSoNhanVienTT implements Serializable {
 	private TinhThanhTT thanhPho;
 
 	@Column(name = "so_dien_thoai" , nullable = false, length = 11) 
-	@NotEmpty(message="vui lòng nhập")
+	@NotEmpty(message="must not be empty")
 	private String soDienThoai;
 
 	@Column(name = "email", nullable = false, length = 50) 
-	@NotEmpty(message="cavhbyhbyby")
+	@NotEmpty(message="must not be empty")
 	 @Email
 	private String email;
 
@@ -100,15 +99,15 @@ public class HoSoNhanVienTT implements Serializable {
 	 */
 
 	@Column(name = "so_cmnd", nullable = false, length = 9) 
-	@NotEmpty(message="cavhbyhbyby")
+	@NotEmpty(message="must not be empty")
 	private String soCmnd;
 
 	@Column(name = "noi_cap" , nullable = false, length = 50) 
-	@NotEmpty(message="cavhbyhbyby")
+	@NotEmpty(message="must not be empty")
 	private String noiCap;
 
 	@Column(name = "ngay_cap", nullable = false )
-	@NotEmpty(message="cavhbyhbyby")
+	@NotEmpty(message="must not be empty")
 	private String ngayCap;
 
 	// bi-directional many-to-one association to PhongBan

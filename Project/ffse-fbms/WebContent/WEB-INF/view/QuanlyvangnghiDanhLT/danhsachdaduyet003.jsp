@@ -12,23 +12,24 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 		<div class="content-header row">
 		<div>
 		<div class="col-md-5"></div>
-			<h3 >Danh sách đã duyệt</h3>
+			<h3 ><spring:message code="label.danhsachduyet"/></h3>
 		</div>
 			<div>
-			<div><a href=donxinphep003><h4>Thêm đơn mới</h4></a></div>
+			<div><a href=donxinphep003><h4><spring:message code="label.soandonmoi"/></a></div>
 			<div class="container">
 			    <div class="table-responsive">
 						<table class="table mb-0">
 							<thead>
 				<tr>
-					<th >Mã đơn</th>
-					<th >Mã nhân viên</th>
-					<th >Ngày bắt đầu</th>
-					<th >Ngày kết thúc</th>
-					<th >Lý do</th>
-					<th >Ghi chú</th>
-					<th >Ghi chú của trưởng phòng</th>
-					<th >Trạng thái</th>
+					<th ><spring:message code="label.madon"/></th>
+					<th ><spring:message code="label.maNhanVien"/></th>
+					<th ><spring:message code="label.ngaybatdau"/></th>
+					<th ><spring:message code="label.ngayketthuc"/></th>
+					<th ><spring:message code="label.lydo"/></th>
+					<th ><spring:message code="label.ghichunhanvien"/></th>
+					<th ><spring:message code="label.ghichutruongphong"/></th>
+					<th ><spring:message code="label.trangThai"/></th>
+					<th><spring:message code="label.chucnang"/></th>
 					
 				</tr>
 				</thead>
@@ -47,39 +48,58 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 				</c:forEach>
 				</tbody>
 		</table>
-		<nav aria-label="Page navigation example">
-	<ul class="pagination">
-		<li class="page-item"><a class="page-link" href="?page=1">Trang Đầu</a></li>
-		<c:if test="${currentPage > 2}">
-				<li class="page-item"><a class="page-link"
-					href="?page=${currentPage-2}">${currentPage-2}</a></li>
-			</c:if>
-			<c:if test="${currentPage > 1}">
-				<li class="page-item"><a class="page-link"
-					href="?page=${currentPage-1}">${currentPage-1}</a></li>
-			</c:if>
-			<li class="page-item active"><a class="page-link"
-				href="?page=${currentPage}">${currentPage}</a></li>
-			<c:if test="${currentPage < lastPage}">
-				<li class="page-item"><a class="page-link"
-					href="?page=${currentPage+1}">${currentPage+1}</a></li>
-			</c:if>
-			<c:if test="${currentPage < lastPage - 1}">
-				<li class="page-item"><a class="page-link"
-					href="?page=${currentPage+2}">${currentPage+2}</a></li>
-			</c:if>
-		<li class="page-item"><a class="page-link" href="?page=${lastPage }">Last Page</a></li>
-	</ul>
-	</nav>
+		<div class="dataTables_paginate paging_full_numbers"
+										id="DataTables_Table_5_paginate">
+										<ul class="pagination">
+											<c:if test="${currentPage != 1}">
+												<li class="paginate_button page-item first"
+													id="DataTables_Table_5_first"
+													${currentPage == 1 ? 'd-none' : ''}><a
+													href="<%=request.getContextPath()%>/QuanlyvangnghiDanhLT/danhsachdaduyet003?page=1"
+													aria-controls="DataTables_Table_5" class="page-link"><spring:message code="label.trangdau"/></a></li>
+
+												<li class="paginate_button page-item previous"
+													id="DataTables_Table_5_previous"><a
+													href="<%=request.getContextPath()%>/QuanlyvangnghiDanhLT/danhsachdaduyet003?page=${currentPage-1}"
+													aria-controls="DataTables_Table_5" tabindex="0"
+													class="page-link"><spring:message code="label.trangtruoc"/></a></li>
+											</c:if>
+
+											<c:if test="${currentPage != 1}">
+												<li class="paginate_button page-item"><a
+													href="<%=request.getContextPath()%>/QuanlyvangnghiDanhLT/danhsachdaduyet003?page=${currentPage-1}"
+													aria-controls="DataTables_Table_5" class="page-link">${currentPage-1}</a></li>
+											</c:if>
+
+											<li class="paginate_button page-item "><a
+												href="<%=request.getContextPath()%>/QuanlyvangnghiDanhLT/danhsachdaduyet003?page=${currentPage}"
+												aria-controls="DataTables_Table_5" class="page-link">${currentPage}</a></li>
+
+											<c:if test="${currentPage != lastPage}">
+												<li
+													class="paginate_button page-item ${currentPage == lastPage ? 'd-none' : ''}"><a
+													href="<%=request.getContextPath()%>/QuanlyvangnghiDanhLT/danhsachdaduyet003?page=${currentPage+1}"
+													aria-controls="DataTables_Table_5" class="page-link">${currentPage+1}</a></li>
+												<li class="paginate_button page-item next"
+													id="DataTables_Table_5_next"><a
+													href="<%=request.getContextPath()%>/QuanlyvangnghiDanhLT/danhsachdaduyet003?page=${currentPage+1}"
+													aria-controls="DataTables_Table_5" data-dt-idx="8"
+													tabindex="0" class="page-link"><spring:message code="label.trangtiep"/></a></li>
+											</c:if>
+
+											<li class="paginate_button page-item last"
+												id="DataTables_Table_5_last"><a
+												href="<%=request.getContextPath()%>/QuanlyvangnghiDanhLT/danhsachdaduyet003?page=${lastPage}"
+												aria-controls="DataTables_Table_5" data-dt-idx="9"
+												tabindex="0" class="page-link"><spring:message code="label.trangcuoi"/></a></li>
+										</ul>
+									</div>
+								</div>
 		</div>
 		</div>
 		</div>
 		</div>
 		</div>
-		</div>
-<script>
-		function canhbao() {
-			return confirm("Bạn Có Chắc Muốn Xóa Không?");
-		}
-	</script>
+		
+
 <jsp:include page="/WEB-INF/view/templates/footer.jsp" />

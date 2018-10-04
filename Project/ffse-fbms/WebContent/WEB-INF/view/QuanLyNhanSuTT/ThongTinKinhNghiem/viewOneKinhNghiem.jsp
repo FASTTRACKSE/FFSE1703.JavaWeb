@@ -28,7 +28,7 @@ th, td {
 		<!-- Path -->
 		<div class="content-header row">
 			<div class="content-header-left col-md-9 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">Gia Đình Nhân Viên</h3>
+				<h3 class="content-header-title mb-0">Kinh Nghiệm Làm Việc</h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
@@ -38,9 +38,9 @@ th, td {
 								href="<c:url value = "/quanlynhansutt/ho_so/"/>"><spring:message
 										code="label.quanLyNhanSu" /></a></li>
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/quanlynhansutt/hop_dong/" />'>Danh sách
-									hợp đồng</a></li>
-							<li class="breadcrumb-item active">Gia Đình Nhân Viên</li>
+								href='<c:url value="/quanlynhansutt/hop_dong/" />'><spring:message
+										code="label.quanLyHopDong" /></a></li>
+							<li class="breadcrumb-item active">Kinh Nghiệm Làm Việc</li>
 						</ol>
 					</div>
 				</div>
@@ -48,10 +48,6 @@ th, td {
 			<div class="content-header-right col-md-3 col-xs-12">
 				<div role="group" aria-label="Button group with nested dropdown"
 					class="btn-group float-md-right" id="add-new">
-					<a
-						href="<c:url value = "/quanlynhansutt/gia_dinh/add_giadinh/${maNhanVien}"/>"
-						class="btn btn-primary"><span class="fa fa-plus"></span> Thêm
-						mới</a>
 				</div>
 			</div>
 		</div>

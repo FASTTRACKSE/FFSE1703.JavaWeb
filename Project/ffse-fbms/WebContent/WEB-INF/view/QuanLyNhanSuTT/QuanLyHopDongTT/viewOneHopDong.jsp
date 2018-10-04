@@ -85,11 +85,11 @@ th, td {
 												<th><spring:message code="label.tenHopDong" /></th>
 												<th><spring:message code="label.luongThang13" /></th>
 												<th><spring:message code="label.soNgayPhep" /></th>
-												<th>Ngày Ký</th>
-												<th>Hợp Đồng Từ Ngày</th>
-												<th>Hợp Đồng Đến Ngày</th>
+												<th><spring:message code="label.ngayKy" /></th>
+												<th><spring:message code="label.hopDongTuNgay" /></th>
+												<th><spring:message code="label.hopDongDenNgay" /></th> 
 												<th><spring:message code="label.trangThai" /></th>
-												<th>Chức Năng</th>
+												<th><spring:message code="label.chucNang" /></th>
 
 											</tr>
 										</thead>

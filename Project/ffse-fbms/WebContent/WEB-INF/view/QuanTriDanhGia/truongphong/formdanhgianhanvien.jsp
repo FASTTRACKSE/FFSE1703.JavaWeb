@@ -37,6 +37,7 @@
 											<form:hidden path="id" />
 											<form:hidden path="kyDanhGia" />
 											<form:hidden path="phongBan" />
+											<form:hidden path="nhanVien.maNhanVien" />
 											<div class="form-body">
 												<h4 class="form-section">
 													<i class="ft-user"></i> Bản đánh giá
@@ -44,8 +45,8 @@
 												<div class="form-group row">
 													<label class="col-md-3 label-control">Nhân viên </label>
 													<div class="col-md-9">
-														<form:input cssClass="form-control" readonly="true"
-															path="nhanVien" />
+														<form:label cssClass="form-control" readonly="true"
+															path="nhanVien.tenNhanVien" />
 													</div>
 												</div>
 												<div class="form-group row">

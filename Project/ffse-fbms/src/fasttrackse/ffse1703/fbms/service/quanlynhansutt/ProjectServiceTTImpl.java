@@ -15,54 +15,54 @@ import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.ProjectsTT;
 @Transactional
 public class ProjectServiceTTImpl implements ProjectServiceTT {
 	@Autowired
-	private ProjectDAOTT projectDAO;
+	private ProjectDAOTT projectDAOTT;
 
 	@Override
 	public List<ProjectsTT> findAll() {
 		// TODO Auto-generated method stub
-		return projectDAO.findAll();
+		return projectDAOTT.findAll();
 	}
 
 	@Override
 	public ProjectsTT findById(String id) {
 		// TODO Auto-generated method stub
-		return projectDAO.findById(id);
+		return projectDAOTT.findById(id);
 	}
 
 	@Override
 	public void addNew(ProjectsTT projects) {
 		// TODO Auto-generated method stub
-		projectDAO.addNew(projects);
+		projectDAOTT.addNew(projects);
 	}
 
 	@Override
 	public void update(ProjectsTT projects) {
 		// TODO Auto-generated method stub
-		projectDAO.update(projects);
+		projectDAOTT.update(projects);
 	}
 
 	@Override
 	public void delete(ProjectsTT projects) {
 		// TODO Auto-generated method stub
-		projectDAO.delete(projects);
+		projectDAOTT.delete(projects);
 	}
 
 	@Override
 	public int checkNameProjects(String nameProjects) {
 		// TODO Auto-generated method stub
-		return projectDAO.checkNameProjects(nameProjects);
+		return projectDAOTT.checkNameProjects(nameProjects);
 	}
 
 	@Override
 	public int checkMaProjects(String idProjects) {
 		// TODO Auto-generated method stub
-		return projectDAO.checkMaProjects(idProjects);
+		return projectDAOTT.checkMaProjects(idProjects);
 	}
 
 	@Override
 	public List<HoSoNhanVienTT> getPm(String maPhongBan) {
 		// TODO Auto-generated method stub
-		return projectDAO.getPm(maPhongBan);
+		return projectDAOTT.getPm(maPhongBan);
 	}
 
 }

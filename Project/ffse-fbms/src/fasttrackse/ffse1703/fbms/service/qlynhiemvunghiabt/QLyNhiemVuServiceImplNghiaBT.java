@@ -1,5 +1,6 @@
 package fasttrackse.ffse1703.fbms.service.qlynhiemvunghiabt;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -90,7 +91,31 @@ public class QLyNhiemVuServiceImplNghiaBT implements QLyNhiemVuServiceNghiaBT {
 	//	return congViecDao.findAllForPaging(startPosition,maxResult);
 	//}
 
-	
+	@Override
+	public List<NhiemVu> searchAll(String search) {
+		return congViecDao.searchAll(search);
+	}
+
+	@Override
+	public String toJson(List<NhiemVu> list) {
+		int j= list.size();
+		int i=0;
+		String y="[";
+		
+		for(NhiemVu x :list) {
+			i++;
+			String tenCongviec = x.getTenCongViec();
+			Date tgBatdau =x.getTgBatDau();
+			Date tgKetthuc = x.getTgKetThuc();
+			if(i==j) {
+					y += "{\"title\": \"" + tenCongviec + "\", \"start\": \"" + tgBatdau + "\", \"end\":\"" + tgKetthuc + "\"}";
+			}else {
+				y+= "{\"title\": \"" + tenCongviec + "\",\"start\": \"" + tgBatdau + "\", \"end\": \"" + tgKetthuc + "\"}"+",";
+			}
+		}
+		//return "[{\"title\":\"Làm crud\",\"start\":\"2018-09-11\",\"end\":\"2018-09-11\"}]" ;
+		return y + "]" ;
+	}
 	
 	
 	

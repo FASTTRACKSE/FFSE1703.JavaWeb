@@ -23,4 +23,5 @@ public interface NhiemVuDao {
 	 
 	public int countNhiemvu(String idProjects, String search);
 	
+	public int checkRole(String maNv,int idRole,String idProject );
 }

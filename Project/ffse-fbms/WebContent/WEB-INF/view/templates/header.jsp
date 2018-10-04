@@ -272,8 +272,8 @@
 								Mục Dự Án</span></a>
 						<ul class="menu-content" style="">
 							<li class=""><a class="menu-item"
-								href="<c:url value="/mvpquanliduan/khachhang/list-khachhang" />">Khách
-									hàng</a></li>
+								href="<c:url value="/mvpquanliduan/khachhang/list-khachhang" />"> <spring:message
+										code="label.KhachHang" /></a></li>
 							<li class=""><a class="menu-item"
 								href="<c:url value="/mvpquanliduan/domain/list-domain" />">Domain</a></li>
 							<li class=""><a class="menu-item"
@@ -308,6 +308,43 @@
 						</ul></li>
 
 					<!--  ////////////////////////////////////////////// -->
+					
+					<!--  Quản Lý Vắng Nghỉ H-->
+					<li class="navigation-header"><span>Quản Lý Vắng Nghỉ 1</span><i
+						class=" ft-minus" data-toggle="tooltip" data-placement="right"
+						data-original-title="Components"></i></li>
+					<li class=" nav-item pbho_so"><a href="#"><i
+							class="ft-users"></i><span data-i18n="" class="menu-title">Đơn Xin Nghỉ</span></a>
+						<ul class="menu-content">
+							<li><a
+								href="<c:url value="/QuanLyVangNghi/donxinnghi"/>"
+								class="menu-item">Tạo Đơn Xin Nghỉ</a></li>
+							<li><a
+								href="<c:url value="/QuanLyVangNghi/luunhap"/>"
+								class="menu-item">Danh sách nháp</a></li>
+							<li><a
+								href="<c:url value="/QuanLyVangNghi/choduyet"/>"
+								class="menu-item">Danh sách chờ duyệt</a></li>
+							<li><a
+								href="<c:url value="/QuanLyVangNghi/daduyet"/>"
+								class="menu-item">Danh sách đã duyệt</a></li>
+							<li><a
+								href="<c:url value="/QuanLyVangNghi/tuchoi"/>"
+								class="menu-item">Danh sách bị từ chối</a></li>
+						</ul></li>
+						<li class=" nav-item pbho_so"><a href="#"><i
+							class="ft-users"></i><span data-i18n="" class="menu-title">Phê Duyệt</span></a>
+						<ul class="menu-content">
+							<li><a
+								href="<c:url value="/QuanLyVangNghi/duyetvong1"/>"
+								class="menu-item">Duyệt vòng 1</a></li>
+							<li><a
+								href="<c:url value="/QuanLyVangNghi/duyetvong2"/>"
+								class="menu-item">Duyệt Vòng 2</a></li>							
+						</ul></li>
+						
+						
+						<!--  ////////////////////////////////////////////// -->
 
 					<!--  Quản lí Vắng nghỉ -->
 					<li class="navigation-header"><span><spring:message code="label.quanlyvangnghi" /></span><i
@@ -346,6 +383,38 @@
 								href="<c:url value="/Quanlyvangnghi1703004/danhsachtrangthai"/>"
 								class="menu-item"><spring:message code="label.danhsachtrangthai" /></a></li>
 						</ul></li>
+						
+						
+	<!--  Quản lí Vắng nghĩ DanhLT -->
+					<li class="navigation-header"><span>Quản lí Vắng nghĩ DanhLT</span><i
+						class=" ft-minus" data-toggle="tooltip" data-placement="right"
+						data-original-title="Components"></i></li>
+					<li class=" nav-item pbho_so"><a href="#"><i
+							class="ft-users"></i><span data-i18n="" class="menu-title">Thống kê tình hình</span></a>
+						<ul class="menu-content">
+							<li><a href="<c:url value="/QuanlyvangnghiDanhLT/danhsachnhap003"/>"
+								class="menu-item">Danh sách nháp</a></li>
+							<li><a href="<c:url value="/QuanlyvangnghiDanhLT/danhsachchoduyet003"/>"
+								class="menu-item">Danh sách chờ duyệt</a></li>
+							<li><a href="<c:url value="/QuanlyvangnghiDanhLT/danhsachdaduyet003"/>"
+								class="menu-item">Danh sách đã duyệt</a></li>
+							<li><a href="<c:url value="/QuanlyvangnghiDanhLT/danhsachbituchoi003"/>"
+								class="menu-item">Danh sách bị từ chối</a></li>
+						</ul></li>
+						
+						<li class=" nav-item pbho_so"><a href="#"><i
+							class="ft-users"></i><span data-i18n="" class="menu-title">Th?ng kê ngày nghĩ</span></a>
+						<ul class="menu-content">
+							<li><a href="<c:url value="/QuanlyvangnghiDanhLT/ngaynghiphep"/>"
+								class="menu-item">Danh Sách Ngày Nghỉ</a></li>
+						</ul></li>
+						<li class=" nav-item pbho_so"><a href="#"><i
+							class="ft-users"></i><span data-i18n="" class="menu-title">Thống kê trạng Thái</span></a>
+						<ul class="menu-content">
+							<li><a href="<c:url value="/QuanlyvangnghiDanhLT/thongketrangthai"/>"
+								class="menu-item">Danh Sách trạng thái</a></li>
+						</ul></li>
+						
 					<!-- Quản Lý Nhân Sự Pikalong -->
 					<li class=" navigation-header"><span>PKL-Quản Trị Nhân
 							Sự</span><i class=" ft-minus" data-toggle="tooltip"
@@ -364,29 +433,24 @@
 								href="/ffse-fbms/QuanTriNhanSu/quanlihopdong/">Danh Sách Hợp Đồng</a></li>
 						</ul></li>
 					<!-- Quản Lý Nhân Sự Pikalong -->
-					<!-- Quản Lý Nhân Sự TT -->
-					<li class=" navigation-header"><span>Team Quản Lý Nhân
-							Sự TT</span><i class=" ft-minus" data-toggle="tooltip"
+					
+					<!-------------------Quản Lý Nhân Sự TT------------- -->
+					<li class=" navigation-header"><span><spring:message
+								code="label.quanLyNhanSuTT" /></span><i class=" ft-minus" data-toggle="tooltip"
 						data-placement="right" data-original-title="Others"></i></li>
 					<li class=" nav-item"><a href="#"><i class="ft-layers"></i><span
-							class="menu-title" data-i18n="">Quản Lý Hồ Sơ</span></a>
+							class="menu-title" data-i18n=""><spring:message
+								code="label.quanLyHoSo" /></span></a>
 						<ul class="menu-content">
 							<li><a class="menu-item"
-								href="/ffse-fbms/quanlynhansutt/ho_so/">Hồ Sơ Nhân Viên</a></li>
+								href="/ffse-fbms/quanlynhansutt/ho_so/"><spring:message
+								code="label.hoSoNhanVien" /></a></li>
 						</ul></li>
-					<li class=" nav-item"><a href="#"><i class="ft-layers"></i><span
-							class="menu-title" data-i18n="">Quản Lý Hợp Đồng</span></a>
-						<ul class="menu-content">
-							<li><a class="menu-item"
-								href="/ffse-fbms/quanlynhansutt/hop_dong/">Hồ Sơ Hợp Đồng</a></li>
-						</ul></li>
-					<li class=" nav-item"><a href="#"><i
-							class="fa fa-id-card-o"></i><span class="menu-title" data-i18n="">Quản
-								Lý Bằng Cấp</span></a>
-						<ul class="menu-content">
-							<li><a class="menu-item"
-								href="/ffse-fbms/quanlynhansutt/bang_cap/">Hồ Sơ Bằng Cấp</a></li>
-						</ul></li>
+					<li class=" nav-item"><a class="menu-item"
+								href="/ffse-fbms/quanlynhansutt/hop_dong/"><i class="ft-layers"></i><span
+							class="menu-title" data-i18n=""><spring:message
+								code="label.danhSachHopDong" /></span></a>
+					</li>
 					<!-- Quản Lý Nhân Sự TT  -->
 
 					<!-- Quản trị dự án -->
@@ -398,12 +462,16 @@
 				<li class=" nav-item"><a href="#"><i class="ft-layers"></i><span
 						class="menu-title" data-i18n="">DANH MỤC</span></a>
 					<ul class="menu-content">
-						<li><a class="menu-item" href="#">Khách hàng</a></li>
-						<li><a class="menu-item" href="#">Domain</a></li>
-						<li><a class="menu-item" href="#">Framework</a></li>
-						<li><a class="menu-item" href="#">Technica</a></li>
-						<li><a class="menu-item" href="#">Programming Language</a></li>
-						<li><a class="menu-item" href="#">Database</a></li>
+						<li><a class="menu-item" href="<c:url value="/qlda/khachhang/list"/>">Khách hàng</a></li>
+						<li><a class="menu-item" href="<c:url value="/qlda/domain/list"/>">Domain</a></li>
+						<li><a class="menu-item" href="<c:url value="/qlda/trangthai/list"/>">Trạng Thái</a></li>
+						<li><a class="menu-item" href="<c:url value="/qlda/Framework/"/>">Framework</a></li>
+						<li><a class="menu-item" href="<c:url value="/qlda/Technical/"/>">Technical</a></li>
+						<li><a class="menu-item"href="<c:url value="/QuanLyDuAn/Language/list"/>">Programming Language</a></li>
+						<li><a class="menu-item"href="<c:url value="/QuanLyDuAn/vendor/list"/>">Vendor</a></li>
+						<li><a class="menu-item"href="<c:url value="/QuanLyDuAn/VaiTro/list"/>">Vai Trò Thành Viên</a></li>
+						<li><a class="menu-item"  href="<c:url value="/qlda/Database/"/>">Database</a></li>
+
 
 					</ul></li>
 
@@ -411,7 +479,7 @@
 				<li class=" nav-item"><a href="#"><i class="ft-align-left"></i><span
 						class="menu-title" data-i18n="">THÔNG TIN DỰ ÁN</span></a>
 					<ul class="menu-content">
-						<li><a class="menu-item" href="#">Dự Án</a></li>
+							<li><a class="menu-item"  href="<c:url value="/qlda/DuAn/"/>">Dự Án</a></li>
 					</ul></li>
 			</ul>
 
@@ -438,5 +506,20 @@
 						class="ft-octagon"></i><span data-i18n="" class="menu-title">Icon</span></a></li>
 				<li><hr /></li>
 			</ul>
+			<!-- Quản lý nhiệm vụ của HieuLP -->
+			<ul id="main-menu-navigation" data-menu="menu-navigation"
+				class="navigation navigation-main">
+				<li class=" navigation-header"><span><spring:message code="label.hieulpquanlinhiemvu"/></span><i data-toggle="tooltip" data-placement="right"
+					data-original-title="" ></i></li>
+				<li class=" nav-item"><a
+					href="<c:url value = "/HieuLP/"/>"><i
+						class="ft-layers"></i><span data-i18n="" class="menu-title"><spring:message code="label.danhsachnhiemvu"/></span></a></li>
+				<li class=" nav-item"><a
+					href="<c:url value = "/HieuLP/calender"/>"><i
+						class="ft-plus-square"></i><span data-i18n="" class="menu-title"><spring:message code="label.lichnhiemvu"/>
+							</span></a></li>
+				<li><hr /></li>
+			</ul>
+			
 		</div>
 	</div>

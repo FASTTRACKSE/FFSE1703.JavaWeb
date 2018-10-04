@@ -26,25 +26,25 @@ import fasttrackse.ffse1703.fbms.entity.security.PhongBan;
 public class HoSoNhanVienPikalong {
 	
 	@Id
-	@NotEmpty(message= "Nhập Mã Nhân Viên")
+	@NotEmpty(message= "Vui Lòng Nhập Mã Nhân Viên")
 	@Column(name="MaNv")
 	private String maNv;
 	
-	@NotEmpty(message= "Nhập Họ Tên Nhân Viên")
+	@NotEmpty(message= "Vui Lòng Nhập Họ Tên Nhân Viên")
 	@Column(name="HoTenNv")
 	private String hoTenNv;
 	
-	@NotEmpty(message= "Chọn Giới Tính")
+	@NotEmpty(message= "Vui Lòng Chọn Giới Tính")
 	@Column(name="GioiTinh")
 	private String gioiTinh;
 	
-	
+	@NotNull(message= "Vui Lòng Chọn Ngày Sinh")
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name="NgaySinh")
 	private Date ngaySinh;
 	
-	@NotNull(message= "Chọn Tình Trạng Hôn Nhân")
+	@NotNull(message= "Vui Lòng Chọn Tình Trạng Hôn Nhân")
 	@Column(name="TinhTrangHonNhan")
 	private Integer tinhTrangHonNhan;
 	
@@ -60,49 +60,54 @@ public class HoSoNhanVienPikalong {
 	@JoinColumn(name="PhuongXa")
 	private PhuongPikalong phuongXa;
 	
-	@NotNull(message= "Nhập Nơi Ở Hiện Nay")
+	@NotEmpty(message= "Vui Lòng Nhập Nơi Ở Hiện Nay")
 	@Column(name= "NoiOHienNay")
 	private String noiOHienNay;
 	
-	@NotEmpty(message= "Nhập số CMND")
+	@NotEmpty(message= "Vui Lòng Nhập Số CMND")
 	@Column(name= "CMND")
 	private String cMND;
 	
+	@NotNull(message= "Vui Lòng Chọn Ngày Cấp CMND")
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name= "NgayCap")
 	private Date ngayCap;
 	
-	@NotEmpty(message= "Nhập Nơi Cấp")
+	@NotEmpty(message= "Vui Lòng Nhập Nơi Cấp")
 	@Column(name= "NoiCap")
 	private String noiCap;
 	
-	@NotEmpty(message= "Nhập Số Điện Thoại")
+	@NotEmpty(message= "Vui Lòng Nhập Số Điện Thoại")
 	@Column(name= "SDT")
 	private String sDT;
 	
-	@NotEmpty(message= "Nhập Email")
+	@NotEmpty(message= "Vui Lòng Nhập Email")
 	@Column(name= "Email")
 	private String email;
 	
-	@NotEmpty(message= "Nhập Dân Tộc")
+	@NotEmpty(message= "Vui Lòng Nhập Dân Tộc")
 	@Column(name= "DanToc")
 	private String danToc;
 	
-	@NotEmpty(message= "Nhập Quốc Tịch")
+	@NotEmpty(message= "Vui Lòng Nhập Quốc Tịch")
 	@Column(name= "QuocTich")
 	private String quocTich;
 	
+	@NotNull(message="Vui Lòng Chọn Chức Danh")
 	@ManyToOne
 	@JoinColumn(name="MaChucDanh")
 	private ChucDanh maChucDanh;
 	
+	@NotNull(message="Vui Lòng Chọn Phòng Ban")
 	@ManyToOne
 	@JoinColumn(name="MaPhongBan")
 	private PhongBan maPhongBan;
 	
+	@Column(name="Avatar")
 	private String avatar;
 	
+	@Column(name="IsActive")
 	private int isActive;
 
 	public String getMaNv() {

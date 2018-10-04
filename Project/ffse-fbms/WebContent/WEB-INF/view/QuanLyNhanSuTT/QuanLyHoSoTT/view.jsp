@@ -116,7 +116,7 @@ i.fa {
 																			placeholder="mã nhân viên" readonly="true" />
 																	</div>
 																	<div class="form-group col-sm-6">
-																		<label><spring:message code="label.ten" /></label>
+																		<label>Tên Nhân viên</label>
 																		<form:input class="form-control" path="tenNhanVien"
 																			placeholder="tên nhân viên" readonly="true" />
 																	</div>
@@ -239,7 +239,7 @@ i.fa {
 																		</form:select>
 																	</div>
 																	<div class="form-group col-sm-6">
-																		<label>quận, huyện</label>
+																		<label><spring:message code="label.quanHuyen" /></label>
 																		<form:select path="quanHuyen.maQuanHuyen"
 																			id="quanHuyenId" type="text" class="form-control"
 																			disabled="true" onchange="clickComboboxQuan()"
@@ -251,7 +251,7 @@ i.fa {
 																</div>
 																<div class="row">
 																	<div class="form-group col-sm-6">
-																		<label>xã, phường</label>
+																		<label><spring:message code="label.phuongXa" /></label>
 																		<form:select path="xaPhuong.maXa" type="text"
 																			id="phuongXaId" class="form-control"
 																			name="phuongXaSelect" disabled="true" readonly="true">

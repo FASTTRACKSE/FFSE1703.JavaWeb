@@ -99,7 +99,7 @@
 										<c:forEach items="${listDanhgia}" var="x" varStatus="stt">
 											<tr>
 												<th scope="row">${stt.index+1}</th>
-												<td>${x.nhanVien.maNhanVien }</td>
+												<td>${x.nhanVien.hoDem } ${x.nhanVien.ten }</td>
 												<td>${x.danhGiaTongThe }</td>
 												<td>${x.trangThai.tenTrangThai }</td>
 											</tr>

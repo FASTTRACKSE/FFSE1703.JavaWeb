@@ -33,11 +33,11 @@
 					<form:form method="POST" action="/ffse-fbms/mvpquanliduan/nhiemvu/addnew">
 						<div class="form-group col-sm-12">
 							<label>Mã Dự Án</label>
-							<form:input class="form-control" path="projects.idProject" value="${duAn.idProject}"/>
+							<form:input class="form-control" path="projects.idProject" value="${duAn.idProject}" readonly="true"/>
 						</div>
 						<div class="form-group col-sm-12">
 							<label>Tên Dự Án</label>
-							<form:input class="form-control" path="projects.nameProject" value="${duAn.nameProject}" />
+							<form:input class="form-control" path="projects.nameProject" value="${duAn.nameProject}"  readonly="true"/>
 							
 
 						</div>
@@ -56,6 +56,7 @@
 						
 						<div class="form-group col-sm-12">
 							<label>Vai trò</label>
+							<p Class="error">${messageRole}</p>
 							<form:select path="roles.idRoles" class="form-control">
 							   <form:option value="0" label="--- Select ---"/>
 							   <form:options items="${listRoles}" itemValue="idRoles" itemLabel="nameRoles" />

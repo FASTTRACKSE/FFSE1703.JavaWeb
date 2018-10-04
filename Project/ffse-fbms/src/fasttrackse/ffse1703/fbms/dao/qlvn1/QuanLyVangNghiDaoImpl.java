@@ -24,7 +24,8 @@ public class QuanLyVangNghiDaoImpl implements QuanLyVangNghiDao {
 	@Override
 	public void addDon(DonNghi dn) {
 		Session session = this.sessionFactory.getCurrentSession();
-		session.persist(dn);
+		System.out.println(dn);
+		session.save(dn);
 	}
 
 
@@ -141,6 +142,42 @@ public class QuanLyVangNghiDaoImpl implements QuanLyVangNghiDao {
 		Session session = this.sessionFactory.openSession();
 		@SuppressWarnings("unchecked")
 		List<DonNghi> listDn = session.createQuery("from DonNghi where tinh_trang = "+1+" ").list();
+		session.close();
+		return listDn;
+	}
+
+	@Override
+	public List<DonNghi> listDonNghiPheDuyet2() {
+		Session session = this.sessionFactory.openSession();
+		@SuppressWarnings("unchecked")
+		List<DonNghi> listDn = session.createQuery("from DonNghi where tinh_trang = "+2+" ").list();
+		session.close();
+		return listDn;
+	}
+
+	@Override
+	public List<DonNghi> listDonNghiBiTuChoi(int id_nv) {
+		Session session = this.sessionFactory.openSession();
+		@SuppressWarnings("unchecked")
+		List<DonNghi> listDn = session.createQuery("from DonNghi where id_nv ='"+id_nv+"' and  tinh_trang = "+4+" ").list();
+		session.close();
+		return listDn;
+	}
+
+	@Override
+	public List<DonNghi> listDanhSachPheDuyet(int id_nv) {
+		Session session = this.sessionFactory.openSession();
+		@SuppressWarnings("unchecked")
+		List<DonNghi> listDn = session.createQuery("from DonNghi where id_nv ='"+id_nv+"' and  tinh_trang = "+3+" ").list();
+		session.close();
+		return listDn;
+	}
+
+	@Override
+	public List<DonNghi> listDonNghiBiTuChoi2(int id_nv) {
+		Session session = this.sessionFactory.openSession();
+		@SuppressWarnings("unchecked")
+		List<DonNghi> listDn = session.createQuery("from DonNghi where id_nv ='"+id_nv+"' and  tinh_trang = "+4+" ").list();
 		session.close();
 		return listDn;
 	}

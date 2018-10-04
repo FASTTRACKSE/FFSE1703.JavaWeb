@@ -1,5 +1,7 @@
 package fasttrackse.ffse1703.fbms.entity.quantridanhgia;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,14 +11,21 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 import fasttrackse.ffse1703.fbms.entity.security.PhongBan;
 
+@SuppressWarnings("serial")
 @Table(name = "danh_gia_nhan_vien")
 @Entity
-public class DanhGiaNhanVien {
+public class DanhGiaNhanVien implements Serializable {
 
 	@Id
 	@Column(name = "id")
@@ -24,38 +33,49 @@ public class DanhGiaNhanVien {
 	private int id;
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-	@JoinColumn(name = "ma_ky_danh_gia", referencedColumnName="ma_ky_danh_gia")
+	@JoinColumn(name = "ma_ky_danh_gia", referencedColumnName = "ma_ky_danh_gia", insertable = true, updatable = true)
+	@Fetch(FetchMode.JOIN)
 	private KyDanhGia kyDanhGia;
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-	@JoinColumn(name = "ma_phong_ban",  referencedColumnName="ma_phong_ban")
+	@JoinColumn(name = "ma_phong_ban", referencedColumnName = "ma_phong_ban", insertable = true, updatable = true)
+	@Fetch(FetchMode.JOIN)
 	private PhongBan phongBan;
-
+	
 	@Column(name = "nhan_vien_danh_gia")
-	private HoSoNhanVien nhanVienDanhGia;
+	private int nhanVienDanhGia;
 
-	@Column(name = "nhan_vien")
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	@JoinColumn(name = "nhan_vien", referencedColumnName = "ma_nhan_vien", insertable = true, updatable = true)
+	@Fetch(FetchMode.JOIN)
 	private HoSoNhanVien nhanVien;
 
 	@Column(name = "ky_luat_cong_viec", nullable = false)
+	@NotEmpty
 	private String kyLuatCongViec;
 
 	@Column(name = "tinh_than_lam_viec", nullable = false)
+	@NotEmpty
 	private String tinhThanLamViec;
 
 	@Column(name = "khoi_luong_cong_viec", nullable = false)
+	@NotEmpty
 	private String khoiLuongCongViec;
 
 	@Column(name = "ket_qua_cong_viec", nullable = false)
+	@NotEmpty
 	private String ketQuaCongViec;
 
 	@Column(name = "ky_nang_tich_luy", nullable = false)
+	@NotEmpty
 	private String kyNangTichLuy;
 
 	@Column(name = "dinh_huong", nullable = false)
+	@NotEmpty
 	private String dinhHuong;
 
 	@Column(name = "xep_loai")
+	@NotNull
 	private int xepLoai;
 
 	@Column(name = "is_delete")
@@ -89,11 +109,11 @@ public class DanhGiaNhanVien {
 		this.phongBan = phongBan;
 	}
 
-	public HoSoNhanVien getNhanVienDanhGia() {
+	public int getNhanVienDanhGia() {
 		return nhanVienDanhGia;
 	}
 
-	public void setNhanVienDanhGia(HoSoNhanVien nhanVienDanhGia) {
+	public void setNhanVienDanhGia(int nhanVienDanhGia) {
 		this.nhanVienDanhGia = nhanVienDanhGia;
 	}
 
@@ -168,7 +188,5 @@ public class DanhGiaNhanVien {
 	public void setIsDelete(int isDelete) {
 		this.isDelete = isDelete;
 	}
-
-	
 
 }

@@ -3,7 +3,7 @@ package fasttrackse.ffse1703.fbms.service.quantrinhansupikalong;
 import java.util.List;
 
 import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.HoSoNhanVienPikalong;
-import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
+
 
 
 public interface HoSoNhanVienPikalongService {
@@ -18,5 +18,7 @@ public interface HoSoNhanVienPikalongService {
 	public HoSoNhanVienPikalong getEdit(String maNv);
 	public void update(HoSoNhanVienPikalong hoSoNhanVienPikalong);
 	public Long countAll();
+	public boolean checkExistMaNv(String maNv);
+	public boolean checkIsActive(String maNv);
 
 }

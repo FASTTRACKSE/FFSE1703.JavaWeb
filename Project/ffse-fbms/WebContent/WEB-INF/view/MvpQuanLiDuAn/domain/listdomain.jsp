@@ -14,15 +14,14 @@
 		<!-- Path -->
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">Danh sách nghiệp vụ</h3>
+				<h3 class="content-header-title mb-0"><spring:message code="label.listDM" /></h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/home" />'>Home</a></li>
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/mvpquanliduan/domain/list-domain" />'>Danh
-									sách Nghiệp vụ</a></li>
+								href='<c:url value="/mvpquanliduan/domain/list-domain" />'><spring:message code="label.listDM" /></a></li>
 
 						</ol>
 					</div>
@@ -37,7 +36,7 @@
 				<div class="x_title">
 					<a class="btn btn-outline-success round btn-min-width mr-1 mb-1"
 						href="<c:url value="/mvpquanliduan/domain/show-form-add" />">
-						<h5class="ft-plus-circle">Thêm nghiệp vụ
+						<h5class="ft-plus-circle"><spring:message code="label.addDM" />
 						</h5>
 					</a>
 				</div>
@@ -46,10 +45,10 @@
 					<table class="table table-striped" style="text-align: center;background: white">
 						<thead style="background: #AEEEEE">
 							<tr>
-								<th style="text-align: center">Stt</th>
-								<th style="text-align: center">Mã Nghiệp vụ</th>
-								<th style="width: 60%; text-align: center">Nghiệp vụ</th>
-								<th style="text-align: center">Chức năng</th>
+								<th style="text-align: center">STT</th>
+								<th style="text-align: center">ID</th>
+								<th style="width: 60%; text-align: center"><spring:message code="label.nameDM" /></th>
+								<th style="text-align: center"><spring:message code="label.vaitro" /></th>
 							</tr>
 						</thead>
 						<tbody>

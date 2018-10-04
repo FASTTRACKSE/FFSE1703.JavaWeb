@@ -71,15 +71,14 @@
 					<div class="col-md-6">
 						<div class="form-group">
 							<label>Tên hợp đồng</label>
-							<form:select path="loaiHopDongPikalong.maLoaiHopDong" id="tenHd"
-								name="tenHdSelect" class="form-control">
+							<form:select path="loaiHopDongPikalong.maLoaiHopDong" class="form-control">
 								<form:option value="0" selected="true">
 									<--Chọn--></form:option>
 								<form:option value="1">Hợp đồng thử việc</form:option>
 								<form:option value="2">Hợp đồng ngắn hạn</form:option>
 								<form:option value="3">Hợp đồng chính thức</form:option>
 							</form:select>
-							<form:errors path="loaiHopDongPikalong.maLoaiHopDong" cssStyle="color: red" />     <!-- Validate error  -->
+							<form:errors path="loaiHopDongPikalong" cssStyle="color: red" />     <!-- Validate error  -->
 						</div>
 					</div>				
 							<form:hidden path="trangThai" value="2"/>

@@ -74,7 +74,7 @@
 								<form:option value="1">Hợp đồng thử việc</form:option>
 								<form:option value="2">Hợp đồng ngắn hạn</form:option>
 								<form:option value="3">Hợp đồng chính thức</form:option>
-
+								<form:errors path="loaiHopDongPikalong.maLoaiHopDong" cssStyle="color: red" />
 							</form:select>
 						</div>
 					</div>
@@ -85,6 +85,7 @@
 								<form:option value="0" selected="true" disabled="true"> <--Chọn--> </form:option>
 								<form:option value="1">Hết hợp đồng</form:option>
 								<form:option value="2">Còn hợp đồng</form:option>
+								<form:errors path="trangThai" cssStyle="color: red" />
 							</form:select>
 						</div>
 					</div>
@@ -94,9 +95,10 @@
 						<div class="form-group">
 							<label>Lương tháng 13</label>
 							<form:select path="luongThang13" class="form-control">
-								<form:option value="" selected="true" disabled="true"> <--Chọn--> </form:option>
+								<form:option value="0" selected="true" disabled="true"> <--Chọn--> </form:option>
 								<form:option value="1">Có</form:option>
 								<form:option value="2">Không</form:option>
+								<form:errors path="luongThang13" cssStyle="color: red" />
 							</form:select>
 						</div>
 					</div>
@@ -106,6 +108,7 @@
 							<form:input path="soNgayNghiTrongNam" type="text"
 								id="soNgayNghiTrongNam" class="form-control" />
 						</div>
+						<form:errors path="soNgayNghiTrongNam" cssStyle="color: red" />
 					</div>
 					<div class="col-md-6">
 						<div class="form-group">
@@ -113,6 +116,7 @@
 							<form:input path="ngayKiKet" type="date" id="ngayKyKet"
 								class="form-control" />
 						</div>
+						<form:errors path="ngayKiKet" cssStyle="color: red" />
 					</div>
 					<div class="col-md-6">
 						<div class="form-group">
@@ -120,6 +124,7 @@
 							<form:input path="ngayKetThuc" type="date" id="ngayKetThuc"
 								class="form-control" />
 						</div>
+						<form:errors path="ngayKetThuc" cssStyle="color: red" />
 					</div>
 				</div>
 			</div>

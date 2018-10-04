@@ -21,19 +21,6 @@ import fasttrackse.ffse1703.fbms.service.quantrinhansupikalong.HoSoNhanVienPikal
 @Controller
 @RequestMapping(value = "/QuanTriNhanSuPikalong/QuanLiBangCap")
 public class BangCapPikalongController {
-	// Trang index
-	public int currentPage = 1;
-	// Số sinh viên trên 1 trang
-	public int soBanGhi = 4;
-
-	@RequestMapping("/listBangCapPikalong")
-	public String redirect(HttpSession session) {
-		if (session.getAttribute("page") != null) {
-			currentPage = (int) session.getAttribute("page");
-		}
-		return "redirect:/QuanTriNhanSuPikalong/QuanLiBangCap/listBangCapPikalong/" + currentPage;
-	}
-	
 	@Autowired
 	private BangCapPikalongService bangCapPikalongService;
 
@@ -44,16 +31,6 @@ public class BangCapPikalongController {
 		this.bangCapPikalongService = bangCapPikalongService;
 	}
 	//
-	@RequestMapping(value = "/listBangCapPikalong/{pageid}", method = RequestMethod.GET)
-	public String listBangCapPikalong(Model model, HttpSession session, @PathVariable int pageid) {
-		int tongTrang = (int) Math.ceil((long) bangCapPikalongService.total() / (double) soBanGhi);
-
-		int start = (int) ((pageid - 1) * soBanGhi);
-		model.addAttribute("total", tongTrang);
-		session.setAttribute("page", pageid);
-		model.addAttribute("listBangCap", this.bangCapPikalongService.listBangCapPikalong(start, soBanGhi));
-		return "QuanTriNhanSuPikalong/QuanLiBangCap/listBangCapPikalong";
-	}
 
 	@RequestMapping(value = "/add/{maNV}", method = RequestMethod.GET)
 	public String showFormAdd(Model model, HttpSession session, @PathVariable String maNV) {
@@ -76,10 +53,16 @@ public class BangCapPikalongController {
 	
 	@RequestMapping("/viewOneBangCap/{maNV}")
 	public String viewOneBangCap( @PathVariable String maNV,Model model) {
-		model.addAttribute("hosonhanvien", this.hoSoNhanVienPikalongService.getEdit(maNV));
-		model.addAttribute("viewOne",this.bangCapPikalongService.viewOne(maNV));
-		model.addAttribute("maNv", maNV);
-		return "QuanTriNhanSuPikalong/QuanLiBangCap/viewOneBangCapPikalong";
+		boolean isActive= hoSoNhanVienPikalongService.checkIsActive(maNV);
+		if(isActive==true) {
+			model.addAttribute("hosonhanvien", this.hoSoNhanVienPikalongService.getEdit(maNV));
+			model.addAttribute("viewOne",this.bangCapPikalongService.viewOne(maNV));
+			model.addAttribute("maNv", maNV);
+			return "QuanTriNhanSuPikalong/QuanLiBangCap/viewOneBangCapPikalong";	
+		}else {
+			return "QuanTriHeThong/error-404";
+		}
+		
 	}
 	//
 	@RequestMapping("/saveOneBangCap")

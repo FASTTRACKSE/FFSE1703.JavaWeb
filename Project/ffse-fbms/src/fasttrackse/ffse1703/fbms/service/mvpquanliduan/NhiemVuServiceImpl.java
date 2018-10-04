@@ -67,4 +67,10 @@ private NhiemVuDao nhiemVuDao;
 		return nhiemVuDao.getByid(id);
 	}
 
+	@Override
+	public int checkRole(String maNv, int idRole, String idProject) {
+		// TODO Auto-generated method stub
+		return nhiemVuDao.checkRole(maNv, idRole, idProject);
+	}
+
 }

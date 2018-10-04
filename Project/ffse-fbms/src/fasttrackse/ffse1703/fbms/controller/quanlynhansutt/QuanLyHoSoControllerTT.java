@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.HoSoNhanVienTT;
@@ -37,7 +38,9 @@ import fasttrackse.ffse1703.fbms.service.quanlynhansutt.TinhTrangHonNhanServiceT
 import fasttrackse.ffse1703.fbms.service.quanlynhansutt.XaPhuongServiceTT;
 import fasttrackse.ffse1703.fbms.service.security.ChucDanhService;
 import fasttrackse.ffse1703.fbms.service.security.PhongBanService;
+import fasttrackse.ffse1703.fbms.controller.quanlynhansutt.FileExcelQuanLyNhanSuTT;
 
+@SuppressWarnings("unused")
 @Controller
 @RequestMapping("/quanlynhansutt/ho_so/")
 public class QuanLyHoSoControllerTT {
@@ -68,18 +71,18 @@ public class QuanLyHoSoControllerTT {
 
 	@Autowired
 	private ThongTinBangCapServiceTT thongTinBangCapServiceTT;
-	
+
 	@Autowired
 	private ThongTinGiaDinhServiceTT thongTinGiaDinhServiceTT;
 
 	public void setThongTinBangCapServiceTT(ThongTinBangCapServiceTT thongTinBangCapServiceTT) {
 		this.thongTinBangCapServiceTT = thongTinBangCapServiceTT;
 	}
-	
+
 	public void setThongTinGiaDinhServiceTT(ThongTinGiaDinhServiceTT thongTinGiaDinhServiceTT) {
 		this.thongTinGiaDinhServiceTT = thongTinGiaDinhServiceTT;
 	}
-	
+
 	@Autowired
 	private TinhTrangHonNhanServiceTT tinhTrangHonNhanServiceTT;
 
@@ -132,18 +135,42 @@ public class QuanLyHoSoControllerTT {
 	HoSoNhanVienTT getNhanVien = new HoSoNhanVienTT();
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String viewHoSo(Model model) {
+	public String indext(Model model) {
 		model.addAttribute("listHoSo", quanLyHoSoServiceTT.getAllHoSo());
 		return "QuanLyNhanSuTT/QuanLyHoSoTT/list";
 	}
 
-	// test thử
+	// test thử chi tiết cv cho nhan viên
 	@RequestMapping(value = "/viewOne/{maNhanVien}", method = RequestMethod.GET)
 	public String viewOne(@PathVariable("maNhanVien") int maNhanVien, Model model) {
 		model.addAttribute("hoSoNhanVienTT", quanLyHoSoServiceTT.findByMaNhanVien(maNhanVien));
 		model.addAttribute("thongTinBangCap", thongTinBangCapServiceTT.viewOne(maNhanVien));
 		model.addAttribute("thongTinGiaDinh", thongTinGiaDinhServiceTT.viewOne(maNhanVien));
 		return "QuanLyNhanSuTT/QuanLyHoSoTT/viewOne";
+	}
+
+	// test xuất file excel
+	@RequestMapping("excelfile/{maNhanVien}")
+	public ModelAndView exportExcelFile(@PathVariable("maNhanVien") int maNhanVien) {
+		ModelAndView model = new ModelAndView("FileExcelHoSoNhanVien");
+		model.addObject("hoSoNhanVienTT", quanLyHoSoServiceTT.findByMaNhanVien(maNhanVien));
+		model.addObject("thongTinGiaDinhTT", thongTinGiaDinhServiceTT.viewOne(maNhanVien));
+		return model;
+	}
+
+	// page view thông tin một Nhân viên
+	@RequestMapping("view/{maNhanVien}")
+	public String view(@PathVariable int maNhanVien, Model model) throws IllegalStateException, IOException {
+		model.addAttribute("formHoso", quanLyHoSoServiceTT.findByMaNhanVien(maNhanVien));
+		model.addAttribute("viewOne", this.quanLyHoSoServiceTT.viewOne(maNhanVien));
+		model.addAttribute("maNhanVien", maNhanVien);
+		model.addAttribute("listTrangTrangHonNhan", tinhTrangHonNhanServiceTT.findAll());
+		model.addAttribute("listPhongBan", phongBanService.findAll());
+		model.addAttribute("listQuocTich", quocTichServiceTT.getAllQuocTich());
+		model.addAttribute("listChucDanh", chucDanhService.findAll());
+		model.addAttribute("listDanToc", danTocServiceTT.listDanTocTT());
+		model.addAttribute("listThanhPho", tinhThanhServiceTT.getAllTinhThanh());
+		return "QuanLyNhanSuTT/QuanLyHoSoTT/view";
 	}
 
 	// thêm nhân viên
@@ -162,8 +189,8 @@ public class QuanLyHoSoControllerTT {
 
 	// xử lý lưu khi thêm nhân viên
 	@RequestMapping(value = "insert", method = RequestMethod.POST)
-	public String addsave(@ModelAttribute("formHoso") @Valid HoSoNhanVienTT hoSoNhanVienTT, BindingResult result, Model model,
-			@RequestParam("file") MultipartFile file, HttpSession session) throws IOException {
+	public String addsave(@ModelAttribute("formHoso") @Valid HoSoNhanVienTT hoSoNhanVienTT, BindingResult result,
+			Model model, @RequestParam("file") MultipartFile file, HttpSession session) throws IOException {
 		if (result.hasErrors()) {
 			model.addAttribute("listPhongBan", phongBanService.findAll());
 			model.addAttribute("listQuocTich", quocTichServiceTT.getAllQuocTich());
@@ -279,21 +306,6 @@ public class QuanLyHoSoControllerTT {
 		json += "]";
 
 		return json;
-	}
-
-	// page view một Nhân viên
-	@RequestMapping("view/{maNhanVien}")
-	public String view(@PathVariable int maNhanVien, Model model) throws IllegalStateException, IOException {
-		model.addAttribute("formHoso", quanLyHoSoServiceTT.findByMaNhanVien(maNhanVien));
-		model.addAttribute("viewOne", this.quanLyHoSoServiceTT.viewOne(maNhanVien));
-		model.addAttribute("maNhanVien", maNhanVien);
-		model.addAttribute("listTrangTrangHonNhan", tinhTrangHonNhanServiceTT.findAll());
-	    model.addAttribute("listPhongBan", phongBanService.findAll());
-		model.addAttribute("listQuocTich", quocTichServiceTT.getAllQuocTich());
-	    model.addAttribute("listChucDanh", chucDanhService.findAll());
-		model.addAttribute("listDanToc", danTocServiceTT.listDanTocTT());
-	    model.addAttribute("listThanhPho", tinhThanhServiceTT.getAllTinhThanh());
-		return "QuanLyNhanSuTT/QuanLyHoSoTT/view";
 	}
 
 	// delete an employee's contract

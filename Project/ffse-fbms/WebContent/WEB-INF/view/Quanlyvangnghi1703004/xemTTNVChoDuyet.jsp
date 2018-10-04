@@ -12,7 +12,7 @@
 		<div class="content-header row">
 		<div>
 		<div class="col-md-5">
-		<h1><a href='<c:url value="/Quanlyvangnghi1703004/danhsachchoduyet" />'><i class="icon-arrow-left"></i></a></h1>
+		<h1><a href='<c:url value="/Quanlyvangnghi1703004/danhsachcho" />'><i class="icon-arrow-left"></i></a></h1>
 		</div>
 			<h3 class="content-header-title mb-0"><spring:message code="label.thongTinCaNhan"/></h3>	
 		</div>

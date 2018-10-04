@@ -94,13 +94,20 @@ public class NhiemVuController {
 		return "MvpQuanLiDuAn/phancongnhiemvu/add_form";
 	}
 	@RequestMapping(value = "/addnew", method = RequestMethod.POST)
-	public String addNew(@Valid @ModelAttribute("nhiemVu") Nhiemvu nhiemVu, BindingResult result,
+	public String addNew(@Valid @ModelAttribute("command") Nhiemvu nhiemVu, BindingResult result,
 			final RedirectAttributes redirectAttributes, Model model) {
 		if (result.hasErrors()) {
 			return "MvpQuanLiDuAn/phancongnhiemvu/add_form";
 		}
-		
-		
+		int checkRole=nhiemVuService.checkRole(nhiemVu.getHoSoNhanVien().getMaNv(),nhiemVu.getRoles().getIdRoles(), nhiemVu.getProjects().getIdProject());
+		if(checkRole >=1) {
+			model.addAttribute("messageRole", "Vai trò đã tồn tại");
+			List<HoSoNhanVienPikalong> nhanVienList = hoSoNhanVienPikalongService.listNhanVien();
+			model.addAttribute("nhanVienList", nhanVienList);
+			List<Roles> list1 = rolesService.findAll();
+			model.addAttribute("listRoles", list1);
+			return "MvpQuanLiDuAn/phancongnhiemvu/add_form";
+		}
 		nhiemVu.setStatus(1);
 		nhiemVuService.add(nhiemVu);
 		;
@@ -126,6 +133,7 @@ public class NhiemVuController {
 			return "MvpQuanLiDuAn/phancongnhiemvu/update_form";
 		}
 		
+		
 		nhiemVu.setStatus(1);
 		nhiemVuService.update(nhiemVu);
 		return "redirect: /ffse-fbms/mvpquanliduan/nhiemvu/list-nhiemvu/" + nhiemVu.getProjects().getIdProject()+"/1";
@@ -136,6 +144,6 @@ public class NhiemVuController {
 		Nhiemvu nhiemVu  = nhiemVuService.getByid(id);
 		nhiemVu.setStatus(0);
 		nhiemVuService.update(nhiemVu);
-		return "redirect: /ffse-fbms/mvpquanliduan/nhiemvu/list-nhiemvu";
+		return "redirect: /ffse-fbms/mvpquanliduan/nhiemvu/list-nhiemvu/"+ nhiemVu.getProjects().getIdProject() +"/1";
 	}
 }

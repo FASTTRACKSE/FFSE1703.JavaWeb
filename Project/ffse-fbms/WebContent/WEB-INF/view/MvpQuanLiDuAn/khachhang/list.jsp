@@ -14,15 +14,14 @@
 		<!-- Path -->
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">Danh sách Khách Hàng</h3>
+				<h3 class="content-header-title mb-0"><spring:message code="label.listKH" /></h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/home" />'>Home</a></li>
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/mvpquanliduan/khachhang/list-khachhang" />'>Danh
-									sách Khách Hàng</a></li>
+								href='<c:url value="/mvpquanliduan/khachhang/list-khachhang" />'><spring:message code="label.listKH" /></li>
 
 						</ol>
 					</div>
@@ -37,7 +36,7 @@
 				<div class="x_title">
 					<a class="btn btn-outline-success round btn-min-width mr-1 mb-1"
 						href="<c:url value="/mvpquanliduan/khachhang/show-form-add" />">
-						<h5class="ft-plus-circle">Thêm Khách Hàng
+						<h5class="ft-plus-circle"><spring:message code="label.addKH" />
 						</h5>
 					</a>
 				</div>
@@ -46,13 +45,13 @@
 					<table class="table table-striped" style="text-align: center;background: white">
 						<thead style="background: #AEEEEE">
 							<tr>
-								<th style="text-align: center">ID</th>
-								<th style="text-align: center">Tên khách hàng</th>
+								<th style="text-align: center" >ID</th>
+								<th style="text-align: center"> <spring:message code="label.nameKH" /></th>
 								<th style="text-align: center">Email</th>
-								<th style="text-align: center">Số điện thoại</th>
-								<th style="text-align: center">Giới tính</th>
-								<th style="text-align: center">Địa chỉ</th>
-								<th style="text-align: center;">Chức năng</th>
+								<th style="text-align: center"><spring:message code="label.sdtKH" /></th>
+								<th style="text-align: center"><spring:message code="label.sexKH" /></th>
+								<th style="text-align: center"><spring:message code="label.diachiKH" /></th>
+								<th style="text-align: center;"><spring:message code="label.vaitro" /></th>
 
 							</tr>
 						</thead>

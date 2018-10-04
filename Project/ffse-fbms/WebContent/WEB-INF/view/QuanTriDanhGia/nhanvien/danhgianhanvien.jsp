@@ -58,7 +58,7 @@
 											varStatus="stt">
 											<tr>
 												<th scope="row">${stt.index + 1 }</th>
-												<td>${x.nhanVien.tenNhanVien }</td>
+												<td>${x.nhanVien.hoDem} ${x.nhanVien.ten}</td>
 												<td>${x.xepLoai }</td>
 												<td><c:if test="${x.xepLoai !=0 }">
 														<a class="btn btn-info"

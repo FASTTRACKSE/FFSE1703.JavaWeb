@@ -7,10 +7,12 @@
 	<div class="content-wrapper">
 		<h3 class="content-header-title mb-0">Danh sách Hợp Đồng Của Nhân
 			Viên</h3>
+		<section class="basic-elements">
 		
 		<div class="col-12">
-		<div class="card">
-		<div class="content-wrapper">
+		<div class="card-content collapse in">
+		<div class="card-block card-dashboard">
+		<div class="card-body">
 			<table class="table mb-0">
 				<thead class="bg-info">
 					<tr>
@@ -49,9 +51,13 @@
 					</c:forEach>
 				</tbody>
 			</table>
+			
 		</div>
-	</div>
+		</div>
+		</div>
+	
 </div>
+</section>
 </div>
 </div>
 <jsp:include page="/WEB-INF/view/templates/footer.jsp" />

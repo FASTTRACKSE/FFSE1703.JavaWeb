@@ -90,7 +90,7 @@
 					<td>${nn.soNgayDaNghi}</td>
 					<td>${nn.soNgayConLai}</td>
 					<td><h2><a href="deleteDate/${nn.maNhanVien}"> <i class='fa fa-trash'onclick="return confirm('Bạn có muốn xóa sinh viên này?');"></i></a></h2>
-						 <h2><a href="<c:url value="/viewNgayNghi/${nn.maNhanVien}" />"><i class="icon-eye"></i></a> </h2>
+						 <h2><a href="viewNgayNghi/${nn.maNhanVien}" ><i class="icon-eye"></i></a> </h2>
 						 <h2><a href="updateDate/${nn.maNhanVien}"> <i class='fa fa-pencil'></i> </a></h2>
 					</td>
 						</tr>

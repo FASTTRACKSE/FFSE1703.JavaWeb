@@ -178,7 +178,7 @@ public class ControllerQLVN {
 		} 
 		service.create(nv);
 		redirectAttributes.addFlashAttribute("messageSuccess", "Lưu nháp thành công...");
-		return "redirect:/Quanlyvangnghi1703004/danhsachnhap";
+		return "redirect:/home";
 	}
 	
 	@RequestMapping(value = "/taodonmoi/choduyet", method = RequestMethod.POST)
@@ -189,7 +189,7 @@ public class ControllerQLVN {
 			return "Quanlyvangnghi1703004/soandonmoi";}
 		service.createWait(nv);
 		redirectAttributes.addFlashAttribute("messageSuccess", "Đã thêm vào danh sách chờ...");
-		return "redirect:/Quanlyvangnghi1703004/danhsachcho";
+		return "redirect:/home";
 	}
 	
 	

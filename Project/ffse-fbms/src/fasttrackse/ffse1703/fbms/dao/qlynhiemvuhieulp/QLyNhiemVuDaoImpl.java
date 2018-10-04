@@ -100,7 +100,7 @@ public class QLyNhiemVuDaoImpl implements QLyNhiemVuDao {
 
 	@Override
 	public List<HoSoNhanVienHLP> nhanVienHLP() {
-		Session session3 = sessionFactory.openSession();
+		Session session3 = sessionFactory.getCurrentSession();
 		CriteriaBuilder cv3 = session3.getCriteriaBuilder();
 		CriteriaQuery<HoSoNhanVienHLP> cq3 = cv3.createQuery(HoSoNhanVienHLP.class);
 		Root<HoSoNhanVienHLP> root3 = cq3.from(HoSoNhanVienHLP.class);

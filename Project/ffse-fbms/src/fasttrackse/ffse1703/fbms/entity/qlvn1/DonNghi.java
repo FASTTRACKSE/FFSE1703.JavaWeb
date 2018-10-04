@@ -1,7 +1,7 @@
 package fasttrackse.ffse1703.fbms.entity.qlvn1;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,10 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
-
-import com.sun.istack.internal.NotNull;
 
 @Entity
 @Table(name = "don_nghi")
@@ -39,16 +38,16 @@ public class DonNghi implements Serializable{
 	@Column(name = "ly_do")
 	private String ly_do;
 
-	@NotNull
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	
 	@Column(name = "tg_bat_dau")
 	private Date tg_bat_dau;
 
-	@NotNull
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	//@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "tg_ket_thuc")
 	private Date tg_ket_thuc;
 
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "tinh_trang")
 	private int tinh_trang;
 	
@@ -126,4 +125,12 @@ public class DonNghi implements Serializable{
 	public void setPhong_ban(String phong_ban) {
 		this.phong_ban = phong_ban;
 	}
+
+	@Override
+	public String toString() {
+		return "DonNghi [id_don=" + id_don + ", id_nv=" + id_nv + ", ten_nv=" + ten_nv + ", phong_ban=" + phong_ban
+				+ ", ly_do=" + ly_do + ", tg_bat_dau=" + tg_bat_dau + ", tg_ket_thuc=" + tg_ket_thuc + ", tinh_trang="
+				+ tinh_trang + ", ghi_chu=" + ghi_chu + "]";
+	}
+	
 }

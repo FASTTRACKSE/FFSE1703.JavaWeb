@@ -14,15 +14,14 @@
 		<!-- Path -->
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">Danh sách Nhà cung cấp</h3>
+				<h3 class="content-header-title mb-0"><spring:message code="label.listV" /></h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/home" />'>Home</a></li>
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/mvpquanliduan/vendor/list-vendor" />'>Danh
-									sách Nhà cung cấp</a></li>
+								href='<c:url value="/mvpquanliduan/vendor/list-vendor" />'><spring:message code="label.listV" /></a></li>
 
 						</ol>
 					</div>
@@ -37,7 +36,7 @@
 				<div class="x_title">
 					<a class="btn btn-outline-success round btn-min-width mr-1 mb-1"
 						href="<c:url value="/mvpquanliduan/vendor/show-form-add" />">
-						<h5class="ft-plus-circle">Thêm Nhà cung cấp
+						<h5class="ft-plus-circle"><spring:message code="label.addV" />
 						</h5>
 					</a>
 				</div>
@@ -47,12 +46,12 @@
 						<thead style="background: #AEEEEE">
 							<tr style="text-align: center">
 								<th>Stt</th>
-								<th>Mã Nhà cung cấp</th>
-								<th>Nhà cung cấp</th>
-								<th>Điên thoại</th>
+								<th><spring:message code="label.idV" /></th>
+								<th><spring:message code="label.nameV" /></th>
+								<th><spring:message code="label.sdtKH" /></th>
 								<th>Email</th>
-								<th>Địa chỉ</th>
-								<th style="text-align: center">Chức năng</th>
+								<th><spring:message code="label.diachiKH" /></th>
+								<th style="text-align: center"><spring:message code="label.vaitro" /></th>
 							</tr>
 						</thead>
 						<tbody>

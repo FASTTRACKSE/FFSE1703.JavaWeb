@@ -1,25 +1,25 @@
 package fasttrackse.ffse1703.fbms.entity.quantridanhgia;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
+@SuppressWarnings("serial")
 @Table(name = "ky_danh_gia")
 @Entity
-public class KyDanhGia {
+public class KyDanhGia implements Serializable {
 
 	@Id
-	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-
-	@Column(name = "ma_ky_danh_gia")
+	@Column(name = "ma_ky_danh_gia", unique = true)
+	@NotEmpty
 	private String maKy;
 
 	@Column(name = "ten_ky_danh_gia")
+	@NotEmpty
 	private String tenKy;
 
 	@Column(name = "is_delete")
@@ -27,14 +27,6 @@ public class KyDanhGia {
 
 	public KyDanhGia() {
 		super();
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getMaKy() {

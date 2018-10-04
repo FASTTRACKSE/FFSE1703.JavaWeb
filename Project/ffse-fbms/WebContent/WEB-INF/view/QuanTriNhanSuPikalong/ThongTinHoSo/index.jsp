@@ -52,15 +52,17 @@ div.stroke a button:hover:after {
 		</div>
 		<br>
 		<!-- add button -->
-		<div class="table-responsive">
+		<div class="table">
 			<table class="table mb-0">
 				<thead>
 					<tr>
-						<th><spring:message code="label.id" /></th>
+						<th>STT</th>
 						<th><spring:message code="label.maNhanVien" /></th>
 						<th><spring:message code="label.hoTen" /></th>
 						<th><spring:message code="label.gioiTinh" /></th>
 						<th><spring:message code="label.ngaySinh" /></th>
+						<th>Phòng Ban</th>
+						<th>Chức Danh</th>
 						<th><spring:message code="label.anhDaiDien" /></th>
 						<th><spring:message code="label.chucNang" /></th>
 					</tr>

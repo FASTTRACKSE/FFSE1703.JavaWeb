@@ -14,15 +14,14 @@
 		<!-- Path -->
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">Danh sách Ngôn Ngữ</h3>
+				<h3 class="content-header-title mb-0"><spring:message code="label.listL"/></h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/home" />'>Home</a></li>
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/mvpquanliduan/language/list-language" />'>Danh
-									sách Ngôn Ngữ</a></li>
+								href='<c:url value="/mvpquanliduan/language/list-language" />'><spring:message code="label.listL"/></a></li>
 
 						</ol>
 					</div>
@@ -37,7 +36,7 @@
 				<div class="x_title">
 					<a class="btn btn-outline-success round btn-min-width mr-1 mb-1"
 						href="<c:url value="/mvpquanliduan/language/show-form-add" />">
-						<h5class="ft-plus-circle">Thêm Ngôn Ngữ
+						<h5class="ft-plus-circle"><spring:message code="label.addL"/>
 						</h5>
 					</a>
 				</div>
@@ -47,9 +46,9 @@
 						<thead style="background: #AEEEEE">
 							<tr>
 								
-								<th style="text-align: center">Mã Ngôn Ngữ</th>
-								<th style="text-align: center">Tên Ngôn Ngữ</th>
-								<th style="text-align: center">Chức năng</th>
+								<th style="text-align: center"><spring:message code="label.idL"/></th>
+								<th style="text-align: center"><spring:message code="label.nameL"/></th>
+								<th style="text-align: center"><spring:message code="label.vaitro"/></th>
 							</tr>
 						</thead>
 						<tbody>

@@ -160,9 +160,7 @@ input:checked+.slider:before {
 											class="fa fa-picture-o"></i>Đã Duyệt</a>
 									</div>
 									<div class="col col-xs-5 text-center">
-										<h3 class="panel-title">
-											><b>Danh Sách Đơn Chờ Duyệt</b>
-										</h3>
+										<center><h3 class="panel-title"><b>Danh Sách Đơn Chờ Duyệt</b></h3></center>	
 									</div>
 									<div class="col col-xs-2 well text-center"
 										style="padding: 1px;">
@@ -181,7 +179,7 @@ input:checked+.slider:before {
 							</div>
 							<div class="panel-body">
 								<div class="tab-content">
-									<div role="tabpanel" class="tab-pane active" id="list">
+									<div  class="tab-pane active" id="list">
 										<table class=" table-striped table-bordered table-list">
 											<thead>
 												<tr>
@@ -193,7 +191,7 @@ input:checked+.slider:before {
 													<th>Đến Thời gian</th>
 													<th>Đến Thời gian</th>
 													<th>Duyệt Đợt 1</th>
-													<th>Duyệt Đợt 2</em></th>
+													<th>Duyệt Đợt 2</th>
 												</tr>
 											</thead>
 											<tbody>

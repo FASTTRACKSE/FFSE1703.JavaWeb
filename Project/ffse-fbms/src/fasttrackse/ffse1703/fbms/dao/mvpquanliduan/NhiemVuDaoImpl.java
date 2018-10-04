@@ -80,6 +80,13 @@ public class NhiemVuDaoImpl implements NhiemVuDao {
 		Session session = this.sessionFactory.getCurrentSession();
 		return session.get(Nhiemvu.class, id);
 	}
-	
+	@Override
+	public int checkRole(String maNv,int idRole,String idProject) {
+		Session session = sessionFactory.getCurrentSession();
+		List<Nhiemvu> nv = session.createQuery("from Nhiemvu where projects.idProject = '"+idProject+"' and roles.idRoles = '"+idRole+"' and hoSoNhanVien.maNv= '"+maNv+"' ", Nhiemvu.class).list();
+		
+		return  nv.size();
+	}
+
 
 }

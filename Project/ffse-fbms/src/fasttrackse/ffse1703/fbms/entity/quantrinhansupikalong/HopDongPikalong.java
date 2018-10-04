@@ -37,19 +37,23 @@ public class HopDongPikalong {
 	@NotNull
 	private LoaiHopDongPikalong loaiHopDongPikalong;
 	
+	@NotNull(message = "Vui lòng chọn Ngày-Tháng-Năm!!!")
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "NgayKiKet")
 	private Date ngayKiKet;
 	
+	@NotNull(message = "Vui lòng chọn Ngày-Tháng-Năm!!!")
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "NgayKetThuc")
 	private Date ngayKetThuc;
 	
+	@NotNull(message = "Vui lòng chọn ngày nghỉ!!!")
 	@Column(name = "SoNgayNghiTrongNam")
 	@NotNull
 	private int soNgayNghiTrongNam;
+	
 	
 	@Column(name = "LuongThang13")
 	private String luongThang13;

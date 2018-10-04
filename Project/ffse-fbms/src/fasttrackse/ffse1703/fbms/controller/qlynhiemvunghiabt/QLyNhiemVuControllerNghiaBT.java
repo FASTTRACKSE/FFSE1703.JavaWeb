@@ -1,6 +1,8 @@
 package fasttrackse.ffse1703.fbms.controller.qlynhiemvunghiabt;
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 import fasttrackse.ffse1703.fbms.entity.qlynhiemvunghiabt.NhiemVu;
 import fasttrackse.ffse1703.fbms.service.qlynhiemvunghiabt.QLyNhiemVuServiceNghiaBT;
@@ -143,4 +146,30 @@ public class QLyNhiemVuControllerNghiaBT {
 		return "redirect:/QuanLyNhiemVuNghiaBT/list";
 	}
 
+	@RequestMapping(value = {"/Calendar" }, method = RequestMethod.GET)
+	public String viewCalendar(Model model,
+			HttpServletRequest request) {
+
+		String maDuanSearch = " and duAn.maDuAn = " + request.getParameter("maDuAn");
+		if (request.getParameter("maDuAn") == null || request.getParameter("maDuAn").equals("0")) {
+			maDuanSearch = "";
+		}
+		String maNhanVienSearch = " and phanCong.maNhanVien = " + request.getParameter("maNhanVien");
+		if (request.getParameter("maNhanVien") == null || request.getParameter("maNhanVien").equals("0")) {
+			maNhanVienSearch = "";
+		}
+		String IDtrangthaiSearch = " and maTrangThai.maTrangThai = " + request.getParameter("maTrangThai");
+		if (request.getParameter("maTrangThai") == null || request.getParameter("maTrangThai").equals("0")) {
+			IDtrangthaiSearch = "";
+		}
+		String search = maDuanSearch + maNhanVienSearch + IDtrangthaiSearch;
+		List<NhiemVu> list = nhiemVuService.searchAll(search);
+		String Json = nhiemVuService.toJson(list);
+		model.addAttribute("js", Json);
+		model.addAttribute("TrangThai", nhiemVuService.trangThai());
+		model.addAttribute("DuAn", nhiemVuService.duAn());
+		model.addAttribute("NhanVien", nhiemVuService.nhanVien());
+		return "/QuanLyNhiemVuNghiaBT/calender";
+	}
+	
 }

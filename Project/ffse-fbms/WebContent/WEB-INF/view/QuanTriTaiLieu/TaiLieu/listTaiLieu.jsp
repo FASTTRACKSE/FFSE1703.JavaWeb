@@ -134,7 +134,7 @@
 										<nav aria-label="Page navigation example">
 										<ul class="pagination">
 											<li class="page-item"><a class="page-link"
-												href="?page=1"><spring:message code="label.firtVendor" /><</a></li>
+												href="?page=1"><spring:message code="label.firtVendor" /></a></li>
 											<c:if test="${currentPage > 2}">
 												<li class="page-item"><a class="page-link"
 													href="?page=${currentPage-2}">${currentPage-2}</a></li>

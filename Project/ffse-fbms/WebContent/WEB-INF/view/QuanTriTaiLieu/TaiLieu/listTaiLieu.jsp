@@ -105,7 +105,16 @@
 																		class="btn btn-icon btn-outline-warning">
 																		<i class="fa fa-pencil"></i>
 																	</button>
-															</a> <a
+															</a>
+															<a
+																href="/ffse-fbms/QuanTriTaiLieu/TaiLieu/download/${sv.id}"
+																data-toggle="tooltip" title="download">
+																	<button type="button"
+																		class="btn btn-icon btn-outline-warning">
+																		<i class="ft-download"></i>
+																	</button>
+															</a>
+															 <a
 																href="/ffse-fbms/QuanTriTaiLieu/TaiLieu/delete/${sv.id}">
 																	<button type="button"
 																		onclick="if (!confirm('Are you sure you want to delete this database?')) return false"

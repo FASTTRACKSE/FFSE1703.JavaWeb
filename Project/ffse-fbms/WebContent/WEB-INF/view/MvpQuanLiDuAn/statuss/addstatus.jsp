@@ -16,16 +16,15 @@
 		<!-- Path -->
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">Thêm mới Trạng thái</h3>
+				<h3 class="content-header-title mb-0"><spring:message code="label.addS"/></h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/home" />'>Home</a></li>
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/mvpquanliduan/status/list-status" />'>Danh
-									sách Trạng thái</a></li>
-							<li class="breadcrumb-item active">Thêm mới Trạng thái</li>
+								href='<c:url value="/mvpquanliduan/status/list-status" />'><spring:message code="label.listS"/></a></li>
+							<li class="breadcrumb-item active"><spring:message code="label.addS"/></li>
 						</ol>
 					</div>
 				</div>
@@ -41,7 +40,7 @@
 					<form:form method="POST" action="addnew">
 
 						<div class="form-group col-sm-6">
-							<label>Tên Trạng thái</label><br>
+							<label><spring:message code="label.nameS"/></label><br>
 							<p Class="error">${messageName}</p>
 							<form:errors path="nameStatus" cssClass="error" />
 							<form:input path="nameStatus" class="form-control round"
@@ -49,7 +48,7 @@
 
 						</div>
 						<div class="form-group col-sm-6">
-							<label>Màu Trạng thái</label><br>
+							<label><spring:message code="label.colorS"/></label><br>
 							<p Class="error"></p>
 							<form:input path="color" type="color" id="color" value="#e66465"/>
 
@@ -58,7 +57,7 @@
 						<div class="col-sm-12 text-center">
 							<button type="submit"
 								class="btn btn-outline-success round btn-min-width mr-1 mb-1">
-								<i class="fa fa-check-square-o"></i> Lưu
+								<i class="fa fa-check-square-o"></i> <spring:message code="label.submit"/>
 							</button>
 						</div>
 					</form:form>

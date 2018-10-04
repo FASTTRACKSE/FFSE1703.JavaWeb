@@ -80,7 +80,8 @@ public class DuAnTeam1Controller {
 	private int perPage = 3;
 
 	@RequestMapping("/")
-	public String viewlist(HttpSession session, @ModelAttribute("message") String flashAttr, RedirectAttributes redirectAttributes) {
+	public String viewlist(HttpSession session, @ModelAttribute("message") String flashAttr,
+			RedirectAttributes redirectAttributes) {
 		int currentPage;
 		if (session.getAttribute("page") == null) {
 			currentPage = 1;
@@ -131,9 +132,11 @@ public class DuAnTeam1Controller {
 	}
 
 	@RequestMapping(value = { "/delete/{maDuAn}" })
-	public String delete(Model model, @PathVariable("maDuAn") String maDuAn, RedirectAttributes redirectAttributes ,HttpSession session) {
+	public String delete(Model model, @PathVariable("maDuAn") String maDuAn, RedirectAttributes redirectAttributes,
+			HttpSession session, HttpServletRequest request) {
 		duAnTeam1Service.delete(maDuAn);
 		redirectAttributes.addFlashAttribute("message", "<script>alert('Xóa thành công');</script>");
+
 		return "redirect:/qlda/DuAn/";
 	}
 
@@ -151,7 +154,8 @@ public class DuAnTeam1Controller {
 
 		if (result.hasErrors()) {
 			System.out.println(result);
-			return "redirect:/qlda/DuAn/add_form";
+			getData(model);
+			return "QuanLyDuAn/DuAn/add_form";
 		}
 		int checkTen = duAnTeam1Service.getName(duAn.getTenDuAn());
 		if (checkTen >= 1) {
@@ -171,6 +175,7 @@ public class DuAnTeam1Controller {
 				return "redirect:/qlda/DuAn/add_form";
 			}
 		}
+
 		redirectAttributes.addFlashAttribute("message", "<script>alert('Thêm thành công.');</script>");
 		duAnTeam1Service.save(duAn);
 		return "redirect:/qlda/DuAn/";

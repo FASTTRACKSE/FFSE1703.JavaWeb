@@ -11,12 +11,15 @@
 	style="background-color: #CCCCCC">
 	<div class="content-wrapper">
 		<div class="content-header-left col-md-9 col-xs-12 mb-2">
-			<h3 class="content-header-title mb-0"><spring:message code="label.listDA" /></h3>
+			<h3 class="content-header-title mb-0">
+				<spring:message code="label.listDA" />
+			</h3>
 			<div class="row breadcrumbs-top">
 				<div class="breadcrumb-wrapper col-xs-12">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item"><a href="/ffse-fbms/home">Home</a></li>
-						<li class="breadcrumb-item active"><spring:message code="label.DuAn" /></li>
+						<li class="breadcrumb-item active"><spring:message
+								code="label.DuAn" /></li>
 					</ol>
 				</div>
 			</div>
@@ -25,7 +28,8 @@
 			<div role="group" aria-label="Button group with nested dropdown"
 				class="btn-group float-md-right" id="add-new">
 				<a href="/ffse-fbms/qlda/DuAn/add_form" class="btn btn-primary"><span
-					class="fa fa-plus"></span><spring:message code="label.newDuAn" /></a>
+					class="fa fa-plus"></span>
+				<spring:message code="label.newDuAn" /></a>
 			</div>
 		</div>
 		<div class="content-body">
@@ -39,7 +43,9 @@
 				<div class="col-xs-12">
 					<div class="card">
 						<div class="card-header">
-							<h4 class="card-title"><spring:message code="label.listDA" /></h4>
+							<h4 class="card-title">
+								<spring:message code="label.listDA" />
+							</h4>
 							<a class="heading-elements-toggle"><i
 								class="fa fa-ellipsis-v font-medium-3"></i></a>
 							<div class="heading-elements">
@@ -96,7 +102,10 @@
 												</c:forEach>
 											</select>
 										</div>
+									</form:form>
+
 								</div>
+
 								<script type="text/javascript">
 									maDuAn =
 								<%=request.getParameter("maDuAn")%>
@@ -127,10 +136,10 @@
 								<div class="form-group col-sm-4">
 
 									<button class="btn btn-success" style="margin-top: 25px">
-										<i class="ft-search"></i> <spring:message code="label.timkiem" />
+										<i class="ft-search"></i>
+										<spring:message code="label.timkiem" />
 									</button>
 								</div>
-								</form:form>
 								<table class="table"
 									style="border-collapse: collapse; border-collapse: separate;">
 									<thead style="background: graytext; color: white;">
@@ -195,7 +204,8 @@
 		<nav aria-label="Page navigation example">
 			<ul class="pagination">
 				<li class="page-item"><a class="page-link"
-					href="/ffse-fbms/qlda/DuAn/list/1" <%=query%>><spring:message code="label.firtVendor" /></a></li>
+					href="/ffse-fbms/qlda/DuAn/list/1" <%=query%>><spring:message
+							code="label.firtVendor" /></a></li>
 				<c:if test="${currentPage > 2}">
 					<li class="page-item"><a class="page-link"
 						href="/ffse-fbms/qlda/DuAn/list/<%=query %>${page-2}">${page-2}</a></li>
@@ -215,7 +225,8 @@
 						href="/ffse-fbms/qlda/DuAn/list/${page+2}">${page+2}</a></li>
 				</c:if>
 				<li class="page-item"><a class="page-link"
-					href="/ffse-fbms/qlda/DuAn/list/${total}"><spring:message code="label.lastVendor" /></a></li>
+					href="/ffse-fbms/qlda/DuAn/list/${total}"><spring:message
+							code="label.lastVendor" /></a></li>
 			</ul>
 		</nav>
 
@@ -228,7 +239,6 @@
 			</c:if>
 
 	</div>
-</div>
 </div>
 
 <jsp:include page="/WEB-INF/view/templates/footer.jsp" />

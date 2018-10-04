@@ -15,7 +15,8 @@
 				<div class="breadcrumb-wrapper col-xs-12">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item"><a href="/ffse-fbms/home">Home</a></li>
-						<li class="breadcrumb-item"><a href="/ffse-fbms/home">Home</a></li>
+						<li class="breadcrumb-item"><a href="/ffse-fbms/qlda/DuAn/">Danh Sách dự án</a></li>
+
 
 						<li class="breadcrumb-item active">VAI TRÒ</li>
 					</ol>
@@ -118,8 +119,9 @@
 	<div class="col-sm-4">
 
 		<c:if test="${message !=null }">
+		
 						 ${message }
-			</c:if>
+		</c:if>
 
 	</div>
 </div>

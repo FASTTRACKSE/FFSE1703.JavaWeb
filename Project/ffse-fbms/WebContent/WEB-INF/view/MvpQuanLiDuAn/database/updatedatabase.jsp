@@ -16,16 +16,15 @@
 		<!-- Path -->
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">Chỉnh sửa database</h3>
+				<h3 class="content-header-title mb-0"><spring:message code="label.editD"/></h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/home" />'>Home</a></li>
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/mvpquanliduan/database/list-database" />'>Danh
-									sách database</a></li>
-							<li class="breadcrumb-item active">Chỉnh sửa database</li>
+								href='<c:url value="/mvpquanliduan/database/list-database" />'><spring:message code="label.listD"/></a></li>
+							<li class="breadcrumb-item active"><spring:message code="label.editD"/></li>
 						</ol>
 					</div>
 				</div>
@@ -43,13 +42,13 @@
 						<div class="form-group col-sm-6">
 							<form:hidden path="idDatabase" />
 							<form:hidden path="status" />
-							<label>Tên database</label><br>
+							<label><spring:message code="label.nameD"/></label><br>
 							<form:errors path="nameDatabase" cssClass="error" />
 							<form:input path="nameDatabase" class="form-control round"
 								placeholder="Tên database" />
 						</div>
 						<div class="col-sm-12 text-center">
-							<button type="submit" class="btn btn-outline-success round btn-min-width mr-1 mb-1"><i class="fa fa-check-square-o"></i> Lưu </button>
+							<button type="submit" class="btn btn-outline-success round btn-min-width mr-1 mb-1"><i class="fa fa-check-square-o"></i>V <spring:message code="label.submit"/>button>
 						</div>
 					</form:form>
 				</div>

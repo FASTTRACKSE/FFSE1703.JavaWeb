@@ -47,8 +47,8 @@
 									<tbody>
 										<c:forEach items="${listNhanVien }" var="x" varStatus="stt">
 											<tr>
-												<th scope="row">${stt.index +1}</th>
-												<td>${x.nhanVien.tenNhanVien}</td>
+												<th scope="row">${stt.index + start +1}</th>
+												<td>${x.nhanVien.hoDem } ${x.nhanVien.ten }</td>
 												<td>${x.danhGiaTongThe }</td>
 												<td><a class="btn btn-primary"
 													href="<c:url value="/quantridanhgia/truongphong/duyetdanhgia/view/${x.id }" />">Đánh
@@ -84,6 +84,7 @@
 								</ul>
 							</div>
 						</div>
+					</div>
 				</c:if>
 			</div>
 		</div>

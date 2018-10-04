@@ -1,11 +1,13 @@
 package fasttrackse.ffse1703.fbms.controller.quantridanhgia;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +24,8 @@ import fasttrackse.ffse1703.fbms.service.security.PhongBanService;
 @RequestMapping("/quantridanhgia/phongnhansu")
 public class PhongNhanSuController {
 
+	private int start = 1;
+	
 	private int maxItems = 3;
 
 	private int currentPage = 1;
@@ -51,29 +55,35 @@ public class PhongNhanSuController {
 
 	@RequestMapping("/kydanhgia/{page}")
 	private String showListKyDanhgia(@PathVariable(required = false) int page, Model model, HttpSession session) {
-		int start = (page - 1) * maxItems;
+		start = (page - 1) * maxItems;
 		model.addAttribute("command", new KyDanhGia());
 		model.addAttribute("total", Math.ceil((double) service.getListKyDanhGia().size() / (double) maxItems));
-		session.setAttribute("pagaKy", page);
+		session.setAttribute("pageKy", page);
 		model.addAttribute("listKyDanhGia", service.getListKyDanhGia(start, maxItems));
 		return "QuanTriDanhGia/phongnhansu/kydanhgia";
 	}
 
 	@RequestMapping("/kydanhgia/edit/{maKy}")
-	private String showEdit(Model model, @PathVariable int maKy) {
-		model.addAttribute("command", service.getKyDanhGia(maKy));
+	private String showEdit(Model model, @PathVariable String maKy) {
+		model.addAttribute("kyDanhGia", service.getKyDanhGia(maKy));
 		model.addAttribute("listKyDanhGia", service.getListKyDanhGia());
 		model.addAttribute("listPhongBan", phongBanService.findAll());
 		return "QuanTriDanhGia/phongnhansu/kydanhgia";
 	}
 
 	@RequestMapping("/kydanhgia/save")
-	private String insertKyDanhgia(Model model, @ModelAttribute("command") KyDanhGia kyDanhGia) {
-		if (kyDanhGia.getId() == 0) {
+	private String insertKyDanhgia(Model model, @Valid @ModelAttribute("kyDanhGia") KyDanhGia kyDanhGia, HttpSession session, BindingResult result) {
+		if (result.hasErrors()) {
+			start = (int) session.getAttribute("pageKy");
+			model.addAttribute("listKyDanhGia", service.getListKyDanhGia(start, maxItems));
+			model.addAttribute("total", Math.ceil((double) service.getListKyDanhGia().size() / (double) maxItems));
+			return "QuanTriDanhGia/phongnhansu/kydanhgia";
+		}
+		
+		if (service.checkKyDanhGia(kyDanhGia.getMaKy()) < 1) {
 			this.service.insertKyDanhGia(kyDanhGia);
 		} else {
 			this.service.updateKyDanhGia(kyDanhGia);
-			;
 		}
 		return "redirect:/quantridanhgia/phongnhansu/kydanhgia";
 	}
@@ -94,7 +104,7 @@ public class PhongNhanSuController {
 
 	@RequestMapping("/lichdanhgia/{page}")
 	private String showListLichDanhgia(Model model, @PathVariable(required = false) int page, HttpSession session) {
-		int start = (page - 1) * maxItems;
+		start = (page - 1) * maxItems;
 		model.addAttribute("command", new DanhGiaNhanVien());
 		session.setAttribute("pageLich", page);
 		model.addAttribute("total", Math.ceil((double) service.getListLichDanhGia().size() / (double) maxItems));
@@ -105,7 +115,15 @@ public class PhongNhanSuController {
 	}
 
 	@RequestMapping("/lichdanhgia/create")
-	private String createLichDanhgia(@ModelAttribute("command") LichDanhGia lichDanhGia, RedirectAttributes model) {
+	private String createLichDanhgia(@ModelAttribute("command") @Valid LichDanhGia lichDanhGia, BindingResult result, Model model, HttpSession session) {
+		if (result.hasErrors()) {
+			start = (int) session.getAttribute("pageLich");
+			model.addAttribute("total", Math.ceil((double) service.getListLichDanhGia().size() / (double) maxItems));
+			model.addAttribute("listKyDanhGia", service.getListKyDanhGia());
+			model.addAttribute("listPhongBan", phongBanService.findAll());
+			model.addAttribute("listLichDanhGia", service.getListLichDanhGia(start, maxItems));
+			return "QuanTriDanhGia/phongnhansu/lichdanhgia";
+		}
 		if (service.checkLichDanhGia(lichDanhGia) < 1) {
 			service.insertLichDanhGia(lichDanhGia);
 		}
@@ -147,7 +165,7 @@ public class PhongNhanSuController {
 
 	@RequestMapping("/danhsachdanhgia/{page}")
 	private String showListDanhgiaBanThan(Model model, @PathVariable(required = false) int page, HttpSession session) {
-		int start = (page - 1) * maxItems;
+		start = (page - 1) * maxItems;
 		model.addAttribute("command", new LichDanhGia());
 		session.setAttribute("pageDanhGia", page);
 		model.addAttribute("total", Math.ceil((double) service.getListDanhGiaBanThan().size() / (double) maxItems));

@@ -48,16 +48,21 @@
 														<div class="col-md-2">
 															<form:select cssClass="form-control"
 																path="kyLuatCongViec_DG">
+																<form:option value="0">Chọn xếp loại</form:option>
 																<form:option value="1">1 Sao</form:option>
 																<form:option value="2">2 Sao</form:option>
 																<form:option value="3">3 Sao</form:option>
 																<form:option value="4">4 Sao</form:option>
 																<form:option value="5">5 Sao</form:option>
 															</form:select>
+															<form:errors cssStyle="color:red;"
+																path="kyLuatCongViec_DG"></form:errors>
 														</div>
 														<div class="col-md-10">
 															<form:textarea rows="5" cssClass="form-control"
 																path="kyLuatCongViec_MT" />
+															<form:errors cssStyle="color:red;"
+																path="kyLuatCongViec_MT"></form:errors>
 														</div>
 													</div>
 												</div>
@@ -68,16 +73,22 @@
 														<div class="col-md-2">
 															<form:select cssClass="form-control"
 																path="tinhThanLamViec_DG">
+																<form:option value="0">Chọn xếp loại</form:option>
 																<form:option value="1">1 Sao</form:option>
 																<form:option value="2">2 Sao</form:option>
 																<form:option value="3">3 Sao</form:option>
 																<form:option value="4">4 Sao</form:option>
 																<form:option value="5">5 Sao</form:option>
 															</form:select>
+															<form:errors cssStyle="color:red;"
+																path="tinhThanLamViec_DG"></form:errors>
 														</div>
+
 														<div class="col-md-10">
 															<form:textarea rows="5" cssClass="form-control"
 																path="tinhThanLamViec_MT" />
+															<form:errors cssStyle="color:red;"
+																path="tinhThanLamViec_MT"></form:errors>
 														</div>
 													</div>
 												</div>
@@ -89,16 +100,21 @@
 														<div class="col-md-2">
 															<form:select cssClass="form-control"
 																path="khoiLuongCongViec_DG">
+																<form:option value="0">Chọn xếp loại</form:option>
 																<form:option value="1">1 Sao</form:option>
 																<form:option value="2">2 Sao</form:option>
 																<form:option value="3">3 Sao</form:option>
 																<form:option value="4">4 Sao</form:option>
 																<form:option value="5">5 Sao</form:option>
 															</form:select>
+															<form:errors cssStyle="color:red;"
+																path="khoiLuongCongViec_DG"></form:errors>
 														</div>
 														<div class="col-md-10">
 															<form:textarea rows="5" cssClass="form-control"
 																path="khoiLuongCongViec_MT" />
+															<form:errors cssStyle="color:red;"
+																path="khoiLuongCongViec_MT"></form:errors>
 														</div>
 													</div>
 												</div>
@@ -110,16 +126,21 @@
 														<div class="col-md-2">
 															<form:select cssClass="form-control"
 																path="ketQuaCongViec_DG">
+																<form:option value="0">Chọn xếp loại</form:option>
 																<form:option value="1">1 Sao</form:option>
 																<form:option value="2">2 Sao</form:option>
 																<form:option value="3">3 Sao</form:option>
 																<form:option value="4">4 Sao</form:option>
 																<form:option value="5">5 Sao</form:option>
 															</form:select>
+															<form:errors cssStyle="color:red;"
+																path="ketQuaCongViec_DG"></form:errors>
 														</div>
 														<div class="col-md-10">
 															<form:textarea rows="5" cssClass="form-control"
 																path="ketQuaCongViec_MT" />
+															<form:errors cssStyle="color:red;"
+																path="ketQuaCongViec_MT"></form:errors>
 														</div>
 													</div>
 												</div>
@@ -131,16 +152,21 @@
 														<div class="col-md-2">
 															<form:select cssClass="form-control"
 																path="kyNangTichLuy_DG">
+																<form:option value="0">Chọn xếp loại</form:option>
 																<form:option value="1">1 Sao</form:option>
 																<form:option value="2">2 Sao</form:option>
 																<form:option value="3">3 Sao</form:option>
 																<form:option value="4">4 Sao</form:option>
 																<form:option value="5">5 Sao</form:option>
 															</form:select>
+															<form:errors cssStyle="color:red;"
+																path="kyNangTichLuy_DG"></form:errors>
 														</div>
 														<div class="col-md-10">
 															<form:textarea rows="5" cssClass="form-control"
 																path="kyNangTichLuy_MT" />
+															<form:errors cssStyle="color:red;"
+																path="kyNangTichLuy_MT"></form:errors>
 														</div>
 													</div>
 												</div>
@@ -150,6 +176,7 @@
 													<div class="col-md-9">
 														<form:textarea cssClass="form-control" rows="5"
 															path="dinhHuong" />
+														<form:errors cssStyle="color:red;" path="dinhHuong"></form:errors>
 													</div>
 												</div>
 
@@ -158,22 +185,25 @@
 														thể</label>
 													<div class="col-md-9">
 														<form:select cssClass="form-control" path="danhGiaTongThe">
+															<form:option value="0">Chọn xếp loại</form:option>
 															<form:option value="1">1 Sao</form:option>
 															<form:option value="2">2 Sao</form:option>
 															<form:option value="3">3 Sao</form:option>
 															<form:option value="4">4 Sao</form:option>
 															<form:option value="5">5 Sao</form:option>
 														</form:select>
+														<form:errors cssStyle="color:red;" path="danhGiaTongThe"></form:errors>
 													</div>
 												</div>
-											</div>
-											<div class="form-group last">
-												<label class="col-md-3 label-control">Trạng thái</label>
-												<div class="col-md-9">
-													<form:select path="trangThai.maTrangThai">
-														<form:option value="1">Nháp</form:option>
-														<form:option value="2">Nộp</form:option>
-													</form:select>
+												<div class="form-group last">
+													<label class="col-md-3 label-control">Trạng thái</label>
+													<div class="col-md-9">
+														<form:select cssClass="form-control"
+															path="trangThai.maTrangThai">
+															<form:option value="1">Nháp</form:option>
+															<form:option value="2">Nộp</form:option>
+														</form:select>
+													</div>
 												</div>
 											</div>
 											<div class="form-actions">
@@ -184,6 +214,7 @@
 													formaction="<c:url value="/quantridanhgia/nhanvien/danhgiabanthan/submit"/>"
 													class="btn btn-success btn-min-width mr-1 mb-1">Tạo</button>
 											</div>
+											<form:hidden path="isDelete" />
 										</form:form>
 									</div>
 								</div>

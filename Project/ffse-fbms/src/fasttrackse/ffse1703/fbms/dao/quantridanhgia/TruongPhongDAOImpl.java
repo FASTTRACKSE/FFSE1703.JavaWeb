@@ -9,8 +9,10 @@ import org.springframework.stereotype.Repository;
 
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.DanhGiaBanThan;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.LichDanhGia;
+import fasttrackse.ffse1703.fbms.entity.quantridanhgia.TrangThaiDanhGia;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.TruongPhongDanhGia;
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
+import fasttrackse.ffse1703.fbms.entity.security.PhongBan;
 
 @Repository
 public class TruongPhongDAOImpl implements TruongPhongDAO {
@@ -30,9 +32,9 @@ public class TruongPhongDAOImpl implements TruongPhongDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<TruongPhongDanhGia> getListNhanVienPhongBan(String phongBan) {
+	public List<TruongPhongDanhGia> getListNhanVienPhongBan(PhongBan phongBan) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("from TruongPhongDanhGia where phongBan.maPhongBan = :phongBan")
+		return session.createQuery("from TruongPhongDanhGia where phongBan = :phongBan")
 				.setParameter("phongBan", phongBan).list();
 	}
 
@@ -64,41 +66,49 @@ public class TruongPhongDAOImpl implements TruongPhongDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<DanhGiaBanThan> getListDanhGiaBanThan(String phongBan) {
+	public List<DanhGiaBanThan> getListDanhGiaBanThan(PhongBan phongBan) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("from DanhGiaBanThan where phongBan.maPhongBan = :phongBan and trangThai.maTrangThai = 2")
+		return session.createQuery("from DanhGiaBanThan where phongBan = :phongBan and trangThai.maTrangThai = 2")
 				.setParameter("phongBan", phongBan).list();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<HoSoNhanVien> getNhanVienPhongBan(String phongBan) {
+	public List<HoSoNhanVien> getNhanVienPhongBan(PhongBan phongBan) {
 		Session session = sessionFactory.getCurrentSession();
-		return session
-				.createQuery("from HoSoNhanVien where phongBan.maPhongBan = :phongBan and chucDanh.maChucDanh = 'NV'")
+		return session.createQuery("from HoSoNhanVien where phongBan = :phongBan and chucDanh.maChucDanh = 'NV'")
 				.setParameter("phongBan", phongBan).list();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public LichDanhGia getActiveLichDanhGia(String phongBan) {
+	public List<LichDanhGia> getActiveLichDanhGia(PhongBan phongBan) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.byNaturalId(LichDanhGia.class).using("phongBan", phongBan).using("isActive", 1).load();
+		return session.createQuery("from LichDanhGia where phongBan = :phongBan and isActive = 1")
+				.setParameter("phongBan", phongBan).list();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<DanhGiaBanThan> getListDanhGiaBanThan(int start, int maxItems, String phongBan) {
+	public List<DanhGiaBanThan> getListDanhGiaBanThan(int start, int maxItems, PhongBan phongBan) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("from TruongPhongDanhGia where phongBan.maPhongBan = :phongBan").setFirstResult(start)
+		return session.createQuery("from DanhGiaBanThan where phongBan = :phongBan").setFirstResult(start)
 				.setMaxResults(maxItems).setParameter("phongBan", phongBan).list();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<TruongPhongDanhGia> getListNhanVienPhongBan(int start, int maxItems, String phongBan) {
+	public List<TruongPhongDanhGia> getListNhanVienPhongBan(int start, int maxItems, PhongBan phongBan) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("from TruongPhongDanhGia where phongBan.maPhongBan = :phongBan").setFirstResult(start)
+		return session.createQuery("from TruongPhongDanhGia where phongBan = :phongBan").setFirstResult(start)
 				.setMaxResults(maxItems).setParameter("phongBan", phongBan).list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<TrangThaiDanhGia> getTrangThaiDanhGia() {
+		Session session = sessionFactory.getCurrentSession();
+		return session.createQuery("from TrangThaiDanhGia").list();
 	}
 
 }

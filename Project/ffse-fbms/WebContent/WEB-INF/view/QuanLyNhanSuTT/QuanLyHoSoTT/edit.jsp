@@ -56,7 +56,7 @@
 												<div class="col-md-8">
 													<div class="row">
 														<div class="form-group col-sm-6">
-															<label><spring:message code="label.ten" /></label>
+															<label>tên nhân viên</label>
 															<form:input class="form-control" path="tenNhanVien"
 																placeholder="tên nhân viên" />
 														</div>

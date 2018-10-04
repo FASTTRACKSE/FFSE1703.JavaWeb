@@ -140,6 +140,26 @@
 
 	<nav
 		class="header-navbar navbar navbar-with-menu navbar-fixed-top navbar-semi-light bg-gradient-x-grey-blue">
+		<div class="continer">
+	
+		<!-- Show message -->
+			<c:if test="${messageSuccess ne null}">
+				<div class="alert alert-success  btn-min-width mr-1 mb-1" role="alert">
+					<button type="button" class="close" data-dismiss="alert">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					${messageSuccess}
+				</div>
+			</c:if>
+			<c:if test="${messageError ne null}">
+				<div class="alert alert-danger alert-dismissable" role="alert">
+					<button type="button" class="close" data-dismiss="alert">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					${messageError}
+				</div>
+			</c:if>
+			</div>
 		<div class="navbar-wrapper">
 			<div class="navbar-header">
 				<ul class="nav navbar-nav">
@@ -293,6 +313,9 @@
 					<li class="navigation-header"><span><spring:message code="label.quanlyvangnghi" /></span><i
 						class=" ft-minus" data-toggle="tooltip" data-placement="right"
 						data-original-title="Components"></i></li>
+							<li ><a
+								href="<c:url value="/Quanlyvangnghi1703004/soandonmoi"/>"
+								class="menu-item"><i class='fa fa-pencil'></i><spring:message code="label.soandonmoi" /></a></li>
 					<li class=" nav-item pbho_so"><a href="#"><i
 							class="ft-users"></i><span data-i18n="" class="menu-title"><spring:message code="label.thongketinhhinh" /></span></a>
 						<ul class="menu-content">

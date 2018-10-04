@@ -14,18 +14,18 @@ import fasttrackse.ffse1703.fbms.service.quantrinhansupikalong.HoSoNhanVienPikal
 public class KinhNghiemDuAnPikalongController {
 	@Autowired
 	private NhiemVuService nhiemVuService;
-	
+
 	@Autowired
 	private HoSoNhanVienPikalongService hoSoNhanVienPikalongService;
-	
+
 	@RequestMapping("/viewOneKinhNghiemDuAn/{maNV}")
-	public String viewOneKinhNghiemDuAn( @PathVariable String maNV,Model model) {
+	public String viewOneKinhNghiemDuAn(@PathVariable String maNV, Model model) {
 		boolean isActive = hoSoNhanVienPikalongService.checkIsActive(maNV);
 		if (isActive == true) {
-		model.addAttribute("hosonhanvien", this.hoSoNhanVienPikalongService.getEdit(maNV));
-		model.addAttribute("viewOne",this.nhiemVuService.getByMaNhanVien(maNV));
-		model.addAttribute("maNv", maNV);
-		return "QuanTriNhanSuPikalong/KinhNghiemDuAn/viewOneKinhNghiemDuAn";
+			model.addAttribute("hosonhanvien", this.hoSoNhanVienPikalongService.getEdit(maNV));
+			model.addAttribute("viewOne", this.nhiemVuService.getByMaNhanVien(maNV));
+			model.addAttribute("maNv", maNV);
+			return "QuanTriNhanSuPikalong/KinhNghiemDuAn/viewOneKinhNghiemDuAn";
 		} else {
 			return "QuanTriHeThong/error-404";
 		}

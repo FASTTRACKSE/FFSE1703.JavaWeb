@@ -2,6 +2,7 @@ package fasttrackse.ffse1703.fbms.dao.qlynhiemvunghiabt;
 
 import java.util.List;
 
+
 import fasttrackse.ffse1703.fbms.entity.qlynhiemvunghiabt.DuAnNghiaBT;
 import fasttrackse.ffse1703.fbms.entity.qlynhiemvunghiabt.LoaiCongViecNghiaBT;
 import fasttrackse.ffse1703.fbms.entity.qlynhiemvunghiabt.NhiemVu;
@@ -33,6 +34,6 @@ import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
  	public List<HoSoNhanVien> nhanVien();
  	
  	//public List<NhiemVu> findAll(int iDisplayStart, int iDisplayLength, String sql);
-	
+ 	public List<NhiemVu> searchAll(String search);
  	
  }

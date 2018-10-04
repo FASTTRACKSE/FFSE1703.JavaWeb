@@ -421,6 +421,7 @@
 						class="menu-title" data-i18n="">THÔNG TIN DỰ ÁN</span></a>
 					<ul class="menu-content">
 						<li><a class="menu-item" href="#">Dự Án</a></li>
+							<li><a class="menu-item"  href="<c:url value="/qlda/DuAn/"/>">Dự Án</a></li>
 					</ul></li>
 			</ul>
 

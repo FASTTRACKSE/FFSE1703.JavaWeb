@@ -538,7 +538,7 @@
 						class="ft-layers"></i><span data-i18n="" class="menu-title"><spring:message code="label.danhsachnhiemvu"/></span></a></li>
 				<li class=" nav-item"><a
 					href="<c:url value = "/HieuLP/calender"/>"><i
-						class="ft-plus-square"></i><span data-i18n="" class="menu-title"><spring:message code="label.lichnhiemvu"/>
+						class="fa fa-calendar"></i><span data-i18n="" class="menu-title"><spring:message code="label.lichnhiemvu"/>
 							</span></a></li>
 				<li><hr /></li>
 			</ul>

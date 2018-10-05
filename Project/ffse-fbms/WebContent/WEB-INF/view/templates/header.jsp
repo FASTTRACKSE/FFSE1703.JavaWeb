@@ -517,6 +517,5 @@
 							</span></a></li>
 				<li><hr /></li>
 			</ul>
-			
 		</div>
 	</div>

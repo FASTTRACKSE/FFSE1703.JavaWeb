@@ -586,31 +586,27 @@
 									code="label.duAn" /></a></li>
 					</ul></li>
 			</ul>
-
 			<ul id="main-menu-navigation" data-menu="menu-navigation"
 				class="navigation navigation-main">
 				<!-- Quản trị tài liệu của Đức -->
-				<li class=" navigation-header"><span>Trần Đức - Quản Lý
-						Tài Liệu</span><i data-toggle="tooltip" data-placement="right"
+				<li class=" navigation-header"><span><spring:message code="label.quanlytailieu" /></span>
+					<i data-toggle="tooltip" data-placement="right"
 					data-original-title="Đức Đẹp Trai" class=" ft-minus"></i></li>
-				<li class=" nav-item"><a
-					href="<c:url value = "/TranDuc-QuanLyTaiLieu/TaiLieu/"/>"><i
-						class="ft-file-text"></i><span data-i18n="" class="menu-title">Quản
-							Lý Tài Liệu</span></a></li>
+				<li class=" nav-item"><a href="<c:url value = "/TranDuc-QuanLyTaiLieu/TaiLieu/"/>"><i
+					class="ft-file-text"></i><span data-i18n="" class="menu-title"><spring:message code="label.quanlytailieu" />
+					</span></a></li>
 				<li class=" nav-item"><a
 					href="<c:url value = "/TranDuc-QuanLyTaiLieu/DanhMuc/"/>"><i
-						class="ft-bookmark"></i><span data-i18n="" class="menu-title">Quản
-							Lý Danh Mục</span></a></li>
+						class="ft-bookmark"></i><span data-i18n="" class="menu-title"><spring:message code="label.quanlydanhmuc" /></span></a></li>
 				<li class=" nav-item"><a
 					href="<c:url value = "/TranDuc-QuanLyTaiLieu/TrangThai/"/>"><i
-						class="ft-users"></i><span data-i18n="" class="menu-title">Trạng
-							Thái</span></a></li>
+						class="ft-users"></i><span data-i18n="" class="menu-title"><spring:message code="label.status" /></span></a></li>
 				<li class=" nav-item"><a
 					href="<c:url value = "/TranDuc-QuanLyTaiLieu/Icon/"/>"><i
-						class="ft-folder"></i><span data-i18n="" class="menu-title">Loại
-							File</span></a></li>
+						class="ft-folder"></i><span data-i18n="" class="menu-title"><spring:message code="label.filetype" /></span></a></li>
 				<li></li>
 			</ul>
+
 			<!-- Quản lý nhiệm vụ của HieuLP -->
 			<ul id="main-menu-navigation" data-menu="menu-navigation"
 				class="navigation navigation-main">

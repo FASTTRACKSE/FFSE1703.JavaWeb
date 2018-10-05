@@ -143,20 +143,20 @@
 		<div class="continer">
 	
 		<!-- Show message -->
-			<c:if test="${messageSuccess ne null}">
+			<c:if test="${messageSC ne null}">
 				<div class="alert alert-success  btn-min-width mr-1 mb-1" role="alert">
 					<button type="button" class="close" data-dismiss="alert">
 						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 					</button>
-					${messageSuccess}
+					${messageSC}
 				</div>
 			</c:if>
-			<c:if test="${messageError ne null}">
+			<c:if test="${messageER ne null}">
 				<div class="alert alert-danger alert-dismissable" role="alert">
 					<button type="button" class="close" data-dismiss="alert">
 						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 					</button>
-					${messageError}
+					${messageER}
 				</div>
 			</c:if>
 			</div>

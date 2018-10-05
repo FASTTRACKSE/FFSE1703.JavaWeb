@@ -53,60 +53,36 @@ public class TaiLieuController {
 		return totalPage;
 	}
 
-	private int totalPageDel0(int perPage,List<TaiLieu> tl) {
+	private int totalPageDel0(int perPage, List<TaiLieu> tl) {
 		int totalPage = (int) Math.ceil((double) tl.size() / (double) perPage);
 		return totalPage;
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String viewTaiLieu(Model model,
+	public String viewTaiLieu(Model model, final RedirectAttributes redirectAttributes,
 			@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage) {
 		int perPage = 5;
 		int start = (currentPage - 1) * perPage;
 		List<PhongBan> listpb = serviceTL.listPhongBan();
-		Authentication role=SecurityContextHolder.getContext().getAuthentication();
-		String rolePB=role.getAuthorities().toString();
-		System.out.println(rolePB.substring(1,rolePB.length()-1));
-//		model.addAttribute("role",);
-		if(role.getName().contains("phongduan")==true){
-			List<TaiLieu> tl = serviceTL.listbyPhongBan(start, perPage, "PDA");
-			int totalPage = totalPageDel0(perPage,tl);
-			model.addAttribute("listPhongBan", listpb);
-			model.addAttribute("lastPage", totalPage);
-			model.addAttribute("currentPage", currentPage);
-			model.addAttribute("listTaiLieu",tl);
+		String rolepb = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
+		int validRole = 0;
+		String mapb="";
+		for(PhongBan x:listpb) {
+			if(rolepb.substring(rolepb.lastIndexOf("_") + 1,rolepb.length()-1).contains(x.getMaPhongBan())) {
+				mapb=x.getMaPhongBan();
+				validRole=1;
+				break;
+			}
 		}
-		if(role.getName().contains("phongdaotao")==true){
-			List<TaiLieu> tl = serviceTL.listbyPhongBan(start, perPage, "PDT");
-			int totalPage = totalPageDel0(perPage,tl);
+		if (validRole==1) {
+			List<TaiLieu> tl = serviceTL.listbyPhongBan(start, perPage, mapb);
+			int totalPage = totalPageDel0(perPage, tl);
 			model.addAttribute("listPhongBan", listpb);
 			model.addAttribute("lastPage", totalPage);
 			model.addAttribute("currentPage", currentPage);
-			model.addAttribute("listTaiLieu",tl);
-		} 
-		if(role.getName().contains("phongnhansu")==true){
-			List<TaiLieu> tl = serviceTL.listbyPhongBan(start, perPage, "PNS");
-			int totalPage = totalPageDel0(perPage,tl);
-			model.addAttribute("listPhongBan", listpb);
-			model.addAttribute("lastPage", totalPage);
-			model.addAttribute("currentPage", currentPage);
-			model.addAttribute("listTaiLieu",tl);
-		} 
-		if(role.getName().contains("phongit")==true){
-			List<TaiLieu> tl = serviceTL.listbyPhongBan(start, perPage, "PIT");
-			int totalPage = totalPageDel0(perPage,tl);
-			model.addAttribute("listPhongBan", listpb);
-			model.addAttribute("lastPage", totalPage);
-			model.addAttribute("currentPage", currentPage);
-			model.addAttribute("listTaiLieu",tl);
-		}
-		if(role.getName().contains("giamdoc")==true) {
-			List<TaiLieu> tl = serviceTL.listAllDel0();
-			int totalPage = totalPageDel0(perPage,tl);
-			model.addAttribute("listPhongBan", listpb);
-			model.addAttribute("lastPage", totalPage);
-			model.addAttribute("currentPage", currentPage);
-			model.addAttribute("listTaiLieu",tl);
+			model.addAttribute("listTaiLieu", tl);
+		} else {
+			redirectAttributes.addFlashAttribute("messageError", "Lỗi. Xin Thử Lại !");
 		}
 		return "TranDuc-QuanLyTaiLieu/TaiLieu/TaiLieuList";
 	}
@@ -170,14 +146,13 @@ public class TaiLieuController {
 				}
 			}
 			if (validDocument) {
-				IconTaiLieu  x = new IconTaiLieu();
+				IconTaiLieu x = new IconTaiLieu();
 				x.setMaIcon(format);
 				tl.setIconTaiLieu(x);
 				tl.setTrangThai(serviceTT.getTTbyID("Wait"));
 				serviceTL.addTL(tl);
 				redirectAttributes.addFlashAttribute("messageSuccess", "Thêm Mới Thành Công !");
-			}
-			else {
+			} else {
 				redirectAttributes.addFlashAttribute("messageWarning", "Không định dạng được file !");
 			}
 		} catch (Exception e) {
@@ -210,19 +185,22 @@ public class TaiLieuController {
 			tl.setIsDelete(0);
 			String format = nameFile.substring(nameFile.lastIndexOf(".") + 1, nameFile.length());
 			List<IconTaiLieu> listIC = serviceIC.listAllIconTaiLieu();
+			boolean validDocument = false;
 			for (IconTaiLieu x : listIC) {
-				try {
-					if (format.equalsIgnoreCase(x.getMaIcon())) {
-						x.setMaIcon(format);
-						tl.setIconTaiLieu(x);
-						tl.setTrangThai(serviceTT.getTTbyID("Wait"));
-						serviceTL.addTL(tl);
-						redirectAttributes.addFlashAttribute("messageSuccess", "Thêm Mới Thành Công !");
-					}
-				} catch (Exception e) {
-					redirectAttributes.addFlashAttribute("messageWarning", "Không định dạng được file !");
-					e.printStackTrace();
+				if (format.equalsIgnoreCase(x.getMaIcon())) {
+					validDocument = true;
+					break;
 				}
+			}
+			if (validDocument) {
+				IconTaiLieu x = new IconTaiLieu();
+				x.setMaIcon(format);
+				tl.setIconTaiLieu(x);
+				tl.setTrangThai(serviceTT.getTTbyID("Wait"));
+				serviceTL.addTL(tl);
+				redirectAttributes.addFlashAttribute("messageSuccess", "Thêm Mới Thành Công !");
+			} else {
+				redirectAttributes.addFlashAttribute("messageWarning", "Không định dạng được file !");
 			}
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("messageError", "Lỗi. Xin Thử Lại !");
@@ -265,18 +243,22 @@ public class TaiLieuController {
 			tl.setLink(File.separator + "upload" + File.separator + nameFile);
 			String format = nameFile.substring(nameFile.lastIndexOf(".") + 1, nameFile.length());
 			List<IconTaiLieu> listIC = serviceIC.listAllIconTaiLieu();
+			boolean validDocument = false;
 			for (IconTaiLieu x : listIC) {
-				try {
-					if (format.equalsIgnoreCase(x.getMaIcon())) {
-						x.setMaIcon(format);
-						tl.setIconTaiLieu(x);
-						serviceTL.updateTL(tl);
-						redirectAttributes.addFlashAttribute("messageSuccess", "Thêm Mới Thành Công !");
-					}
-				} catch (Exception e) {
-					redirectAttributes.addFlashAttribute("messageWarning", "Không định dạng được file !");
-					e.printStackTrace();
+				if (format.equalsIgnoreCase(x.getMaIcon())) {
+					validDocument = true;
+					break;
 				}
+			}
+			if (validDocument) {
+				IconTaiLieu x = new IconTaiLieu();
+				x.setMaIcon(format);
+				tl.setIconTaiLieu(x);
+				tl.setTrangThai(serviceTT.getTTbyID("Wait"));
+				serviceTL.addTL(tl);
+				redirectAttributes.addFlashAttribute("messageSuccess", "Thêm Mới Thành Công !");
+			} else {
+				redirectAttributes.addFlashAttribute("messageWarning", "Không định dạng được file !");
 			}
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("messageError", "Có lỗi, Xin Thử Lại!");
@@ -347,4 +329,3 @@ public class TaiLieuController {
 	}
 
 }
-

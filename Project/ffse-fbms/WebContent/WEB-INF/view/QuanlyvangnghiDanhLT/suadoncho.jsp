@@ -23,18 +23,16 @@
 							</div>
 							<div>
 								<label><spring:message code="label.maNhanVien"/></label>
-								<form:select path="ngayNghi.maNhanVien" 
-									class="custom-select block round" id="customSelect">
+								<form:select  path="ngayNghi.maNhanVien"  class="custom-select block round" id="customSelect"   >
 									<c:forEach items="${hoso}" var="ld">
-										<form:option value="${ld.maNhanVien}" label="${ld.maNhanVien}" />
+										<form:option value="${ld.maNhanVien}" label="${ld.maNhanVien}" readonly="true" />
 									</c:forEach>
 								</form:select>
 							</div>
 							<div>
 								<label><spring:message code="label.ngaybatdau"/></label>
 								<fieldset class="form-group position-relative">
-									<form:input type="date" class="form-control round" id="from"
-										path="ngayBatDau" />
+									<form:input type="date" class="form-control round" id="from" readonly="true" path="ngayBatDau"  />
 									<div class="form-control-position">
 										<i class="fa fa-calendar-o"></i>
 									</div>
@@ -42,7 +40,7 @@
 							</div>
 							<div>
 								<label><spring:message code="label.ghichunhanvien"/></label>
-								<form:input class="form-control round" path="ghiChu" />
+								<form:input class="form-control round" readonly="true" path="ghiChu"  />
 							    <form:errors style="color:red" path="ghiChu"  /> 
 							</div>
 						</div>
@@ -51,7 +49,7 @@
 
 							<div>
 								<label>Ly do</label>
-								<form:select path="lyDo.id" class="custom-select block round"
+								<form:select readonly="true"  path="lyDo.id" class="custom-select block round"
 									id="customSelect">
 									<c:forEach items="${lyDo}" var="ld">
 										<form:option value="${ld.id}" label="${ld.lyDo}" />
@@ -61,13 +59,12 @@
 							<div>
 
 								<label><spring:message code="label.songaynghi"/></label>
-								<form:input class="form-control round" path="soNgayNghi" />
+								<form:input class="form-control round" readonly="true" path="soNgayNghi" />
 							</div>
 							<div>
 								<label><spring:message code="label.ngayketthuc"/></label>
 								<fieldset class="form-group position-relative">
-									<form:input type="date" class="form-control round" id="from"
-										path="ngayKetThuc" />
+									<form:input type="date" class="form-control round" id="from" readonly="true" path="ngayKetThuc" />
 									<div class="form-control-position">
 										<i class="fa fa-calendar-o"></i>
 									</div>

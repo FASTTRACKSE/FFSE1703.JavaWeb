@@ -14,6 +14,7 @@
 
 				<form:form method="POST" modelAttribute="donxinphep003">
 					<div class="row">
+
 						<div class="form-group col-sm-6">
 							<div>
 								<label><spring:message code="label.madon"/></label>
@@ -139,7 +140,7 @@
 							<div>
 								<label><spring:message code="label.ghichunhanvien"/></label>
 								<form:input class="form-control round"  placeholder="ghiChu" path="ghiChu" />
-							
+							 <form:errors path="ghiChu" cssStyle="color: red" ></form:errors> 
 							</div>
 						</div>
 
@@ -166,6 +167,7 @@
 									<div class="form-control-position">
 										<i class="fa fa-calendar-o"></i>
 									</div>
+									<form:errors path="ngayKetThuc" cssStyle="color: red" ></form:errors> 
 								</fieldset>
 								<script>
 													var today = new Date();
@@ -236,7 +238,7 @@
 							</div>
 						</div>
 						
-						
+						<div>
 						<div class="col-md-2">
 							<button type="submit" class="btn btn-success"
 							formaction="<%=request.getContextPath()%>/QuanlyvangnghiDanhLT/donxinphep003/nhap"><spring:message code="label.luunhap"/></button>
@@ -251,10 +253,9 @@
 			</div>
 
 			</form:form>
+			
 		</div>
 	</div>
-</div>
-
-
-
-<jsp:include page="/WEB-INF/view/templates/footer.jsp" />
+	</div>
+	</div>
+	<jsp:include page="/WEB-INF/view/templates/footer.jsp" />

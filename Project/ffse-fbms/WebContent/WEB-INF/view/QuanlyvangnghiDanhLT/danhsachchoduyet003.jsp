@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+ <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@ page session="false"%>
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 
@@ -42,8 +43,13 @@
 					<td>${nv.ghiChu}</td>
 					<td>${nv.ghiChuTruongPhong}</td>
 					<td>${nv.trangThai.trangThai}</td>
-					<td><a  href="suadoncho/${nv.id  }"><button class="btn btn-success">
-									<th ><spring:message code="label.sua"/></button></a> 
+					
+					
+					<td>
+					<sec:authorize access=" hasRole('ROLE_PGD') or hasRole('ROLE_PNSTPP') or hasRole('ROLE_PDATPP') or hasRole('ROLE_PDTTPP') or hasRole('ROLE_PITTPP') or hasRole('ROLE_PKTTPP')">
+					<a  href="suadoncho/${nv.id  }"><button class="btn btn-success">
+								<spring:message code="label.sua"/></button></a> 
+									</sec:authorize>
 					</td>
 						</tr>
 				</c:forEach>

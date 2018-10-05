@@ -386,33 +386,33 @@
 						
 						
 	<!--  Quản lí Vắng nghĩ DanhLT -->
-					<li class="navigation-header"><span>Quản lí Vắng nghĩ DanhLT</span><i
+					<li class="navigation-header"><span><spring:message code="label.quanlyvangnghi" /> DanhLT</span><i
 						class=" ft-minus" data-toggle="tooltip" data-placement="right"
 						data-original-title="Components"></i></li>
 					<li class=" nav-item pbho_so"><a href="#"><i
-							class="ft-users"></i><span data-i18n="" class="menu-title">Thống kê tình hình</span></a>
+							class="ft-users"></i><span data-i18n="" class="menu-title"><spring:message code="label.thongketinhhinh" /></span></a>
 						<ul class="menu-content">
 							<li><a href="<c:url value="/QuanlyvangnghiDanhLT/danhsachnhap003"/>"
-								class="menu-item">Danh sách nháp</a></li>
+								class="menu-item"><spring:message code="label.danhsachnhap" /></a></li>
 							<li><a href="<c:url value="/QuanlyvangnghiDanhLT/danhsachchoduyet003"/>"
-								class="menu-item">Danh sách chờ duyệt</a></li>
+								class="menu-item"><spring:message code="label.danhsachchoduyet" /></a></li>
 							<li><a href="<c:url value="/QuanlyvangnghiDanhLT/danhsachdaduyet003"/>"
-								class="menu-item">Danh sách đã duyệt</a></li>
+								class="menu-item"><spring:message code="label.danhsachduyet" /></a></li>
 							<li><a href="<c:url value="/QuanlyvangnghiDanhLT/danhsachbituchoi003"/>"
-								class="menu-item">Danh sách bị từ chối</a></li>
+								class="menu-item"><spring:message code="label.danhsachtuchoi" /></a></li>
 						</ul></li>
 						
 						<li class=" nav-item pbho_so"><a href="#"><i
-							class="ft-users"></i><span data-i18n="" class="menu-title">Th?ng kê ngày nghĩ</span></a>
+							class="ft-users"></i><span data-i18n="" class="menu-title"><spring:message code="label.thongkengaynghi" /></span></a>
 						<ul class="menu-content">
 							<li><a href="<c:url value="/QuanlyvangnghiDanhLT/ngaynghiphep"/>"
-								class="menu-item">Danh Sách Ngày Nghỉ</a></li>
+								class="menu-item"><spring:message code="label.danhsachngaynghi" /></a></li>
 						</ul></li>
 						<li class=" nav-item pbho_so"><a href="#"><i
-							class="ft-users"></i><span data-i18n="" class="menu-title">Thống kê trạng Thái</span></a>
+							class="ft-users"></i><span data-i18n="" class="menu-title"><spring:message code="label.thongketrangthai" /></span></a>
 						<ul class="menu-content">
 							<li><a href="<c:url value="/QuanlyvangnghiDanhLT/thongketrangthai"/>"
-								class="menu-item">Danh Sách trạng thái</a></li>
+								class="menu-item"><spring:message code="label.danhsachtrangthai" /></a></li>
 						</ul></li>
 						
 					<!-- Quản Lý Nhân Sự Pikalong -->

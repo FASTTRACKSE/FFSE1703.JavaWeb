@@ -98,11 +98,15 @@ public class DonXinPhepController {
 	//đơn mới
 	@RequestMapping(value = {"/donxinphep003/nhap"}, method = RequestMethod.POST)
 	public String listDonNhap( @ModelAttribute("donxinphep003") @Valid DonXinPhepEntity nv,
-			BindingResult result,Model model,final RedirectAttributes redirectAttributes) {
-		if (result.hasErrors()) {
+			BindingResult result,Model model,final RedirectAttributes redirectAttributes) {	
+		try {
+			DonXinPhepService.create(nv);
+			redirectAttributes.addFlashAttribute("messageSuccess", "ThÃ nh cÃ´ng..");
+		
+		} catch (Exception e) {
+			redirectAttributes.addFlashAttribute("messageError", "Lá»—i. Xin thá»­ láº¡i!");
 			return "QuanlyvangnghiDanhLT/donxinphep003";
-		} 
-		DonXinPhepService.create(nv);
+		}
 		return "redirect:/QuanlyvangnghiDanhLT/danhsachnhap003";
 	}
 	@RequestMapping(value = {"/donxinphep003/choduyet"}, method = RequestMethod.POST)

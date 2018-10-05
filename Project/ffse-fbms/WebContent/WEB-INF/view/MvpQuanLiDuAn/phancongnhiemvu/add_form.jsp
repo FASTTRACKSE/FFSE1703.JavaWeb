@@ -4,6 +4,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 
+<style>
+.error {
+	color: red;
+	font-weight: bold;
+}
+</style>
 <div class="app-content content container-fluid">
 	<div class="content-wrapper">
 
@@ -34,20 +40,22 @@
 						<div class="form-group col-sm-12">
 							<label>Mã Dự Án</label>
 							<form:input class="form-control" path="projects.idProject" value="${duAn.idProject}" readonly="true"/>
+							
 						</div>
 						<div class="form-group col-sm-12">
 							<label>Tên Dự Án</label>
 							<form:input class="form-control" path="projects.nameProject" value="${duAn.nameProject}"  readonly="true"/>
-							
+							<form:errors path="projects.nameProject" cssStyle="color: red"></form:errors>
 
 						</div>
 						<div class="form-group col-sm-12">
 							<label>Mã Nhân Viên</label>
 							<form:select path="hoSoNhanVien.maNv" class="form-control">
-							   <form:option value="0" label="--- Select ---"/>
+							 <form:option value="" selected = "selected" disabled = "true"> --Chọn--</form:option>
 							   <c:forEach items="${nhanVienList}" var="x">
                               		<option value="${x.maNv}" >(${x.maNv}) ${x.hoTenNv}</option>
                               	 </c:forEach>
+                              	 <form:errors path="hoSoNhanVien" cssStyle="color: red"></form:errors>
 							</form:select>
 							
 
@@ -58,8 +66,9 @@
 							<label>Vai trò</label>
 							<p Class="error">${messageRole}</p>
 							<form:select path="roles.idRoles" class="form-control">
-							   <form:option value="0" label="--- Select ---"/>
+							   <form:option value="0" selected = "selected" disabled = "true"> --Chọn--</form:option>
 							   <form:options items="${listRoles}" itemValue="idRoles" itemLabel="nameRoles" />
+							   <form:errors path="roles" cssStyle="color: red"></form:errors>
 							</form:select> 
 
 						</div>

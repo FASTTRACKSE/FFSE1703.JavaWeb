@@ -1,6 +1,7 @@
 package fasttrackse.ffse1703.fbms.controller.quanlyduan;
 
 import java.beans.PropertyEditorSupport;
+import java.util.Collection;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,6 +9,8 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -80,8 +83,7 @@ public class DuAnTeam1Controller {
 	private int perPage = 3;
 
 	@RequestMapping("/")
-	public String viewlist(HttpSession session, @ModelAttribute("message") String flashAttr,
-			RedirectAttributes redirectAttributes) {
+	public String viewlist(HttpSession session, @ModelAttribute("message") String flashAttr, RedirectAttributes redirectAttributes) {
 		int currentPage;
 		if (session.getAttribute("page") == null) {
 			currentPage = 1;
@@ -132,11 +134,10 @@ public class DuAnTeam1Controller {
 	}
 
 	@RequestMapping(value = { "/delete/{maDuAn}" })
-	public String delete(Model model, @PathVariable("maDuAn") String maDuAn, RedirectAttributes redirectAttributes,
-			HttpSession session, HttpServletRequest request) {
+	public String delete(Model model, @PathVariable("maDuAn") String maDuAn, RedirectAttributes redirectAttributes) {
 		duAnTeam1Service.delete(maDuAn);
-		redirectAttributes.addFlashAttribute("message", "<script>alert('Xóa thành công');</script>");
-
+		redirectAttributes.addFlashAttribute("message",
+				"<script>alert('Xóa thành công');</script>");
 		return "redirect:/qlda/DuAn/";
 	}
 
@@ -145,21 +146,23 @@ public class DuAnTeam1Controller {
 
 		model.addAttribute("duAn", new DuAnTeam1());
 		getData(model);
+
+
 		return "QuanLyDuAn/DuAn/add_form";
 	}
 
 	@RequestMapping(value = { "/creat" }, method = RequestMethod.POST)
 	public String creat(@ModelAttribute("duAn") @Valid DuAnTeam1 duAn, BindingResult result,
-			final RedirectAttributes redirectAttributes, Model model) {
+			RedirectAttributes redirectAttributes, Model model) {
 
 		if (result.hasErrors()) {
 			System.out.println(result);
-			getData(model);
-			return "QuanLyDuAn/DuAn/add_form";
+			return "redirect:/qlda/DuAn/add_form";
 		}
 		int checkTen = duAnTeam1Service.getName(duAn.getTenDuAn());
 		if (checkTen >= 1) {
-			redirectAttributes.addFlashAttribute("message", "<script>alert('Tên dự án đã tồn tại.');</script>");
+			redirectAttributes.addFlashAttribute("message",
+					"<script>alert('Tên dự án đã tồn tại.');</script>");
 			getData(model);
 			return "redirect:/qlda/DuAn/add_form";
 		}
@@ -170,7 +173,8 @@ public class DuAnTeam1Controller {
 				return "redirect:list";
 
 			} else {
-				redirectAttributes.addFlashAttribute("message", "<script>alert('Mã dự án đã tồn tại');</script>");
+				redirectAttributes.addFlashAttribute("message",
+						"<script>alert('Mã dự án đã tồn tại.');</script>");
 				getData(model);
 				return "redirect:/qlda/DuAn/add_form";
 			}
@@ -183,7 +187,6 @@ public class DuAnTeam1Controller {
 
 	@RequestMapping(value = "/edit/{maDuAn}")
 	public String edit(Model model, @PathVariable("maDuAn") String maDuAn) {
-
 		DuAnTeam1 dA = duAnTeam1Service.getById(maDuAn);
 		model.addAttribute("database", databaseTeam1Service.getAll());
 		model.addAttribute("trangThai", trangThaiTeam1Service.getAll());
@@ -211,7 +214,7 @@ public class DuAnTeam1Controller {
 		}
 		redirectAttributes.addFlashAttribute("message", "<script>alert('Sửa thành công.');</script>");
 		duAnTeam1Service.update(duAn);
-		return "redirect:list/1";
+		return "redirect:list";
 	}
 
 	@RequestMapping(value = "/view/{maDuAn}")
@@ -235,7 +238,7 @@ public class DuAnTeam1Controller {
 	}
 
 	@RequestMapping(value = "selectPhongBan/{phongBan}", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
-	@ResponseBody // tra ve trang html
+	@ResponseBody //trả về trang html
 	public String select(@PathVariable String phongBan, Model model) {
 		List<HoSoNhanVienTeam1> listNhanVien = hoSoNhanVienTeam1Service.findAll(phongBan);
 
@@ -258,7 +261,7 @@ public class DuAnTeam1Controller {
 	}
 
 	/*
-	 * Phan cong nhiem vu
+	 * Phân công nhiệm vụ
 	 */
 	@RequestMapping(value = { "/PhanCongNhienVu/create/{maDuAn}" })
 	public String phanCongNhiemVu(@PathVariable("maDuAn") String maDuAn, Model model) {
@@ -266,7 +269,6 @@ public class DuAnTeam1Controller {
 		model.addAttribute("nhiemvu", new NhiemVuTeam1());
 		model.addAttribute("vaitro", vaiTroTeam1Service.getAll());
 		model.addAttribute("nhanvien", hoSoNhanVienTeam1Service.getAll());
-
 		return "QuanLyDuAn/DuAn/PhanCongNhiemVu/add_form";
 
 	}
@@ -278,6 +280,7 @@ public class DuAnTeam1Controller {
 			System.out.println(result);
 			return "redirect:/PhanCongNhiemVu/add_form";
 		}
+
 		redirectAttributes.addFlashAttribute("message", "<script>alert('Thêm thành công.');</script>");
 		nhiemVuService.save(nhiemvu);
 		String maDuAn = nhiemvu.getMaDuAn();
@@ -298,9 +301,8 @@ public class DuAnTeam1Controller {
 			@PathVariable("maVaiTro") String maVaiTro) {
 
 		nhiemVuService.delete(nhiemVuService.getDetailNhiemVu(maDuAn, maNhanVien, maVaiTro));
-		redirectAttributes.addFlashAttribute("message", "<script>alert('Xóa thành công');</script>");
-
-		return "redirect:/qlda/DuAn/PhanCongNhiemVu/list/" + maDuAn;
+		redirectAttributes.addFlashAttribute("message", "<script>alert('Xóa thành công.');</script>");
+		return "redirect:/qlda/DuAn/PhanCongNhiemVu/list" + maDuAn;
 	}
 
 	@RequestMapping(value = { "/PhanCongNhiemVu/edit/{maDuAn}/{maNhanVien}/{maVaiTro}" })
@@ -311,28 +313,27 @@ public class DuAnTeam1Controller {
 		model.addAttribute("nhanvien", hoSoNhanVienTeam1Service.getById(maNhanVien));
 		model.addAttribute("nhiemvu", nhiemVuService.getDetailNhiemVu(maDuAn, maNhanVien, maVaiTro));
 		model.addAttribute("vaitro", vaiTroTeam1Service.getAll());
-
 		return "QuanLyDuAn/DuAn/PhanCongNhiemVu/edit_form";
 
 	}
 
 	@RequestMapping(value = { "/PhanCongNhiemVu/update" }, method = RequestMethod.POST)
 	public String phanCongNhiemVuUpdate(final RedirectAttributes redirectAttributes, Model model,
-			@ModelAttribute("nhiemvu") NhiemVuTeam1 nhiemvu, @RequestParam("oldVaitro") String oldVaiTro) {
+			@ModelAttribute("nhiemvu") NhiemVuTeam1 nhiemvu, BindingResult result,
+			@RequestParam("oldVaitro") String oldVaiTro) {
 		String maDuAn = nhiemvu.getMaDuAn();
-		NhiemVuTeam1 oldNhiemVu = new NhiemVuTeam1();
 
+		NhiemVuTeam1 oldNhiemVu = new NhiemVuTeam1();
 		oldNhiemVu.setMaDuAn(maDuAn);
 		oldNhiemVu.setMaNhanVien(nhiemvu.getMaNhanVien());
 		oldNhiemVu.setMaVaiTro(oldVaiTro);
-
 		nhiemVuService.update(nhiemvu, oldNhiemVu);
-		redirectAttributes.addFlashAttribute("message", "<script>alert('Sửa thành công');</script>");
+		redirectAttributes.addFlashAttribute("message", "<script>alert('Sửa thành công.');</script>");
 		return "redirect:list/" + maDuAn;
 	}
 
 	/*
-	 * Phan cong nhiem vu
+	 * Phân công nhiệm vụ
 	 */
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {

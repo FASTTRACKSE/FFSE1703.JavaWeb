@@ -14,10 +14,10 @@
 						href='<c:url value="/quantrinhansu/hosonhanvien/" />'>Danh
 							Sách Nhân Viên</a></li>
 					<li class="breadcrumb-item"><a
-						href='<c:url value="/quantrinhansu/hosonhanvien/view/${maNv }" />'>Thông
+						href='<c:url value="/quantrinhansu/hosonhanvien/view/${hsnv.maNv }" />'>Thông
 							Tin Nhân Viên</a></li>
 					<li class="breadcrumb-item"><a
-						href='<c:url value="/QuanTriNhanSu/quanlihopdong/viewOneHopDong/${maNv}" />'>Hợp
+						href='<c:url value="/QuanTriNhanSu/quanlihopdong/viewOneHopDong/${hsnv.maNv}" />'>Hợp
 							Đồng Nhân Viên</a></li>
 					<li class="breadcrumb-item active">Thêm mới Hợp Đồng</li>
 				</ol>
@@ -37,7 +37,7 @@
 					<div class="col-md-6">
 						<div class="form-group">
 							<label>Trạng Thái</label>
-							<div class="form-control disabled">${hsnv.isActive}</div>
+							<div class="form-control disabled">${hsnv.isActive == 0 ? 'Còn làm việc' : 'Đã nghỉ việc'}</div>
 						</div>
 					</div>
 				</div>
@@ -89,7 +89,7 @@
 						<div class="form-group">
 							<label>Lương tháng 13</label>
 							<form:select path="luongThang13" class="form-control">
-								<form:option value="0" selected="true"> <--Chọn--> </form:option>
+								<form:option value="" selected="true"> <--Chọn--> </form:option>
 								<option value="1">Có</option>
 								<option value="2">Không</option>
 							</form:select>
@@ -104,6 +104,8 @@
 							<form:errors path="soNgayNghiTrongNam" cssStyle="color: red" />
 						</div>
 					</div>
+					</div>
+					<div class="row">
 					<div class="col-md-6">
 						<div class="form-group">
 							<label>Ngày ký hợp đồng</label>

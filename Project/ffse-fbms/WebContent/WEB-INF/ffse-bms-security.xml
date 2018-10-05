@@ -45,6 +45,14 @@
 		<!-- Phân quyền module QLDA - MVP :: END -->
 		
 		
+		
+		<!-- Phân quyền module QTNS - PIKALONG :: START -->
+		
+		<intercept-url pattern="/quantrinhansu/hosonhanvien/**" access="hasAnyRole('ROLE_PNSTPP','ROLE_PGD')" />
+		
+		<!-- Phân quyền module QTNS - PIKALONG :: END -->
+		
+		
 		<access-denied-handler error-page="/403"/>		
 		<logout logout-url="/j_spring_security_logout"
 			logout-success-url="/login" delete-cookies="JSESSIONID" />

@@ -12,8 +12,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.CodePointLength;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -48,14 +50,17 @@ public class HoSoNhanVienPikalong {
 	@Column(name="TinhTrangHonNhan")
 	private Integer tinhTrangHonNhan;
 	
+	@NotNull(message= "Vui Lòng Chọn Thành Phố")
 	@ManyToOne
 	@JoinColumn(name="ThanhPho")
 	private ThanhPhoPikalong thanhPho;
 	
+	@NotNull(message= "Vui Lòng Chọn Quận Huyện")
 	@ManyToOne
 	@JoinColumn(name="QuanHuyen")
 	private QuanHuyenPikalong quanHuyen;
 	
+	@NotNull(message= "Vui Lòng Chọn Phường Xã")
 	@ManyToOne
 	@JoinColumn(name="PhuongXa")
 	private PhuongPikalong phuongXa;
@@ -65,6 +70,7 @@ public class HoSoNhanVienPikalong {
 	private String noiOHienNay;
 	
 	@NotEmpty(message= "Vui Lòng Nhập Số CMND")
+	@Pattern(regexp="(^$|[0-9]{11})", message="Số CMND Không Hợp Lệ(tối đa 11 kí tự)")
 	@Column(name= "CMND")
 	private String cMND;
 	
@@ -79,10 +85,12 @@ public class HoSoNhanVienPikalong {
 	private String noiCap;
 	
 	@NotEmpty(message= "Vui Lòng Nhập Số Điện Thoại")
+	@Pattern(regexp="(^$|[0-9]{10})", message="Số Điện Thoại Không Hợp Lệ(tối đa 10 kí tự)")
 	@Column(name= "SDT")
 	private String sDT;
 	
 	@NotEmpty(message= "Vui Lòng Nhập Email")
+	@Email(message="Email Không Hợp Lệ")
 	@Column(name= "Email")
 	private String email;
 	

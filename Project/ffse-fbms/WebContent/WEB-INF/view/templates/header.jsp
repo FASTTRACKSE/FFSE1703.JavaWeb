@@ -425,7 +425,32 @@
 							<li><a class="menu-item"
 								href="/ffse-fbms/quantrinhansu/hosonhanvien/">Danh Sách Nhân
 									Viên</a></li>
-						</ul></li>
+						</ul>
+						<ul class="menu-content">
+							<li><a class="menu-item"
+								href="/ffse-fbms/quantrinhansu/nhanvienphongban/PNS">Phòng Nhân Sự</a></li>
+						</ul>
+						<ul class="menu-content">
+							<li><a class="menu-item"
+								href="/ffse-fbms/quantrinhansu/nhanvienphongban/PDA">Phòng Dự Án</a></li>
+						</ul>
+						<ul class="menu-content">
+							<li><a class="menu-item"
+								href="/ffse-fbms/quantrinhansu/nhanvienphongban/PDT">Phòng Đào Tạo</a></li>
+						</ul>
+						<ul class="menu-content">
+							<li><a class="menu-item"
+								href="/ffse-fbms/quantrinhansu/nhanvienphongban/PGD">Phòng Giám Đốc</a></li>
+						</ul>
+						<ul class="menu-content">
+							<li><a class="menu-item"
+								href="/ffse-fbms/quantrinhansu/nhanvienphongban/PIT">Phòng IT</a></li>
+						</ul>
+						<ul class="menu-content">
+							<li><a class="menu-item"
+								href="/ffse-fbms/quantrinhansu/nhanvienphongban/PKT">Phòng Kế Toán</a></li>
+						</ul>
+						</li>
 						<li class=" nav-item"><a href="#"><i class="ft-layers"></i><span
 							class="menu-title" data-i18n="">Quản Lý Hợp Đồng</span></a>
 						<ul class="menu-content">

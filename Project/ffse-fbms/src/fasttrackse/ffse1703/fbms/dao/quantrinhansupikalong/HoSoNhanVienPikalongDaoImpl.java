@@ -149,18 +149,4 @@ public class HoSoNhanVienPikalongDaoImpl implements HoSoNhanVienPikalongDao {
 		return false;
 	}
 
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<HoSoNhanVienPikalong> listNhanVienByPhongBan(String phongBan) {
-		Session session = sessionFactory.getCurrentSession();
-		@SuppressWarnings("rawtypes")
-		Query query = session.createQuery("from HoSoNhanVienPikalong where isActive = :active and maPhongBan.maPhongBan = :maPhongBan");
-		query.setParameter("active", 0);
-		query.setParameter("maPhongBan", phongBan);
-		@SuppressWarnings("unused")
-		List<HoSoNhanVienPikalong> nhanVienListByPhongBan = query.list();
-		return nhanVienListByPhongBan;
-	}
-
 }

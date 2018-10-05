@@ -17,11 +17,10 @@
 		<intercept-url pattern="/QuanTriHeThong/phan-quyen/**" access="hasAnyRole('ROLE_SADM')" />
 		
 		<intercept-url pattern="/Quanlyvangnghi1703004/soandonmoi**" access="permitAll" />
-		<intercept-url pattern="/Quanlyvangnghi1703004/danhsachduyet" access="hasRole('ROLE_PNSNV') or hasRole('ROLE_PGD') or hasRole('ROLE_PNSTPP')" />
-		<intercept-url pattern="/Quanlyvangnghi1703004/danhsachnhap" access="hasAnyRole('ROLE_PGD','ROLE_PNSTPP') " />
-		<intercept-url pattern="/Quanlyvangnghi1703004/**" access="hasAnyRole('ROLE_PNSTPP','ROLE_PGD')" />
-		<intercept-url pattern="/Quanlyvangnghi1703004/**" access=" hasRole('ROLE_PGD')" />
-		
+		<intercept-url pattern="/Quanlyvangnghi1703004/taodonmoi/nhap**" access="permitAll" />
+		<intercept-url pattern="/Quanlyvangnghi1703004/taodonmoi/choduyet**" access="permitAll" />
+		<intercept-url pattern="/Quanlyvangnghi1703004/danhsachduyet" access=" hasRole('ROLE_PNSNV') or hasRole('ROLE_PNSTPP') or hasRole('ROLE_PGD')" />
+		<intercept-url pattern="/Quanlyvangnghi1703004/**" access="hasRole('ROLE_PNSTPP') or hasRole('ROLE_PGD')" />
 		
 		<!-- Phân quyền Quản trị nhân sự pikalong -->
 		<intercept-url pattern="/quantrinhansu/hosonhanvien/**"  access="hasRole('ROLE_PNSTPP') or hasRole('ROLE_PGD')"/>

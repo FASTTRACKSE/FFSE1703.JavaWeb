@@ -44,7 +44,7 @@
 								class="ft-plus-square"></span> </a>
 						</div>
 					</sec:authorize>
-					<sec:authorize access="hasRole('ROLE_PDTTPP')">
+					<sec:authorize access="hasRole('ROLE_PDTTPP') or hasRole('ROLE_PGD')">
 						<div role="group" aria-label="Button group with nested dropdown"
 							class="btn-group float-md-right" id="add-new">
 							<a class="btn btn-primary"
@@ -152,7 +152,7 @@
 																		href="<c:url value="/TranDuc-QuanLyTaiLieu/TaiLieu/view/${item.idTL}" />"
 																		title="Xem"> <i class="fa fa-eye"
 																		aria-hidden="true"></i></a>
-																	<sec:authorize access="hasRole('ROLE_PDTTPP')">
+																	<sec:authorize access="hasRole('ROLE_PDTTPP') or hasRole('ROLE_PGD')">
 																		<a
 																			href="<c:url value="/TranDuc-QuanLyTaiLieu/TaiLieu/editForm/${item.idTL}" />"
 																			title="Sửa"> <i

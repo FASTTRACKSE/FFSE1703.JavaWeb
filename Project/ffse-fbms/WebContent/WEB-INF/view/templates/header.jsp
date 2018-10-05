@@ -586,27 +586,6 @@
 									code="label.duAn" /></a></li>
 					</ul></li>
 			</ul>
-			<ul id="main-menu-navigation" data-menu="menu-navigation"
-				class="navigation navigation-main">
-				<!-- Quản trị tài liệu của Đức -->
-				<li class=" navigation-header"><span><spring:message code="label.quanlytailieu" /></span>
-					<i data-toggle="tooltip" data-placement="right"
-					data-original-title="Đức Đẹp Trai" class=" ft-minus"></i></li>
-				<li class=" nav-item"><a href="<c:url value = "/TranDuc-QuanLyTaiLieu/TaiLieu/"/>"><i
-					class="ft-file-text"></i><span data-i18n="" class="menu-title"><spring:message code="label.quanlytailieu" />
-					</span></a></li>
-				<li class=" nav-item"><a
-					href="<c:url value = "/TranDuc-QuanLyTaiLieu/DanhMuc/"/>"><i
-						class="ft-bookmark"></i><span data-i18n="" class="menu-title"><spring:message code="label.quanlydanhmuc" /></span></a></li>
-				<li class=" nav-item"><a
-					href="<c:url value = "/TranDuc-QuanLyTaiLieu/TrangThai/"/>"><i
-						class="ft-users"></i><span data-i18n="" class="menu-title"><spring:message code="label.status" /></span></a></li>
-				<li class=" nav-item"><a
-					href="<c:url value = "/TranDuc-QuanLyTaiLieu/Icon/"/>"><i
-						class="ft-folder"></i><span data-i18n="" class="menu-title"><spring:message code="label.filetype" /></span></a></li>
-				<li></li>
-			</ul>
-
 			<!-- Quản lý nhiệm vụ của HieuLP -->
 			<ul id="main-menu-navigation" data-menu="menu-navigation"
 				class="navigation navigation-main">
@@ -633,7 +612,6 @@
 					href="<c:url value = "/QuanLyNhiemVuNghiaBT/Calendar"/>"><i
 						class="fa fa-calendar-o"></i><span data-i18n="" class="menu-title"><spring:message code="label.lichnhiemvu"/>
 							</span></a></li>
-=======
 				<li class=" nav-item"><a
 					href="<c:url value = "/HieuLP/calender"/>"><i
 						class="fa fa-calendar"></i><span data-i18n="" class="menu-title"><spring:message
@@ -671,7 +649,6 @@
 						class="fa fa-calendar-minus-o"></i><span data-i18n=""
 						class="menu-title"><spring:message
 								code="label.minhhqitemcalendar" /></span></a></li>
->>>>>>> 2d0ee5beaf5f32b3422ea39d9d719e6aa18b1b67
 				<li><hr /></li>
 				<!-- Quản trị đánh giá :: START-->
 				<li class=" navigation-header"><span>Quản trị đánh giá</span><i
@@ -735,6 +712,26 @@
 								code="label.minhhqitemcalendar" /></span></a></li>
 				<li><hr /></li>
 
+			</ul>
+			<ul id="main-menu-navigation" data-menu="menu-navigation"
+				class="navigation navigation-main">
+				<!-- Quản trị tài liệu của Đức -->
+				<li class=" navigation-header"><span><spring:message code="label.quanlytailieu" /></span>
+					<i data-toggle="tooltip" data-placement="right"
+					data-original-title="Đức Đẹp Trai" class=" ft-minus"></i></li>
+				<li class=" nav-item"><a href="<c:url value = "/TranDuc-QuanLyTaiLieu/TaiLieu/"/>"><i
+					class="ft-file-text"></i><span data-i18n="" class="menu-title"><spring:message code="label.quanlytailieu" />
+					</span></a></li>
+				<li class=" nav-item"><a
+					href="<c:url value = "/TranDuc-QuanLyTaiLieu/DanhMuc/"/>"><i
+						class="ft-bookmark"></i><span data-i18n="" class="menu-title"><spring:message code="label.quanlydanhmuc" /></span></a></li>
+				<li class=" nav-item"><a
+					href="<c:url value = "/TranDuc-QuanLyTaiLieu/TrangThai/"/>"><i
+						class="ft-users"></i><span data-i18n="" class="menu-title"><spring:message code="label.status" /></span></a></li>
+				<li class=" nav-item"><a
+					href="<c:url value = "/TranDuc-QuanLyTaiLieu/Icon/"/>"><i
+						class="ft-folder"></i><span data-i18n="" class="menu-title"><spring:message code="label.filetype" /></span></a></li>
+				<li><hr></li>
 			</ul>
 		</div>
 	</div>

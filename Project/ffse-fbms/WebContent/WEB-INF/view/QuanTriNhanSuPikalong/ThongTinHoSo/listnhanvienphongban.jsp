@@ -40,7 +40,7 @@ div.stroke a button:hover:after {
 	<div class="content-wrapper">
 
 		<h3 class="content-header-title mb-0">
-		 Danh Sách Nhân viên ${listNhanVienByPhongBan.get(0).maPhongBan.tenPhongBan}
+		 Danh Sách Nhân viên <c:if test="${size > 0}">${listNhanVienByPhongBan.get(0).maPhongBan.tenPhongBan}</c:if>
 		</h3>
 		<!-- title -->
 		<br>
@@ -62,6 +62,7 @@ div.stroke a button:hover:after {
 					</tr>
 				</thead>
 				<tbody>
+				<c:if test="${size > 0}">
 					<c:forEach items="${listNhanVienByPhongBan}" var="x"
 						varStatus="stt">
 						<tr>
@@ -76,7 +77,7 @@ div.stroke a button:hover:after {
 								width="60" height="80"></td>
 							<td>
 								<div class="stroke">						
-									<a href="/ffse-fbms/quantrinhansu/hosonhanvien/view/${x.maNv}"><button
+									<a href="/ffse-fbms/quantrinhansu/hosonhanvien/hosochitiet/${x.maNv}"><button
 											style="background-color: #F5F7FA" class="btn btn-light">
 											<i class="fa fa-eye"></i>
 										</button></a>
@@ -84,6 +85,7 @@ div.stroke a button:hover:after {
 							</td>
 						</tr>
 					</c:forEach>
+					</c:if>
 				</tbody>
 			</table>
 		</div>

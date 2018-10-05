@@ -84,14 +84,18 @@ public class HoSoNhanVienPikalongController {
 	public static double totalRecord;
 	public static double perPage;
 	
-	@RequestMapping("/")
-	public String urlDefault() {
+	public UserAccount getMaNv() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String userTest = auth.getName();
 		System.out.println("user name: " + userTest);
 		UserAccount user = userAccountService.loadUserByUsername(auth.getName());
-		System.out.println("Mã Nhân Viên " + user.getNhanVien().getMaNhanVien());
 		
+		return user;
+	}
+	
+	@RequestMapping("/")
+	public String urlDefault() {
+		System.out.println("Mã Nhân Viên " + getMaNv().getNhanVien().getMaNhanVien());
 		return "redirect:1";
 	}
 	

@@ -11,8 +11,6 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,7 +26,6 @@ import org.springframework.web.servlet.ModelAndView;
 import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.HoSoNhanVienPikalong;
 import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.PhuongPikalong;
 import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.QuanHuyenPikalong;
-import fasttrackse.ffse1703.fbms.entity.security.UserAccount;
 import fasttrackse.ffse1703.fbms.service.quantrinhansupikalong.BangCapPikalongService;
 import fasttrackse.ffse1703.fbms.service.quantrinhansupikalong.GiaDinhPikalongService;
 import fasttrackse.ffse1703.fbms.service.quantrinhansupikalong.HoSoNhanVienPikalongService;
@@ -38,7 +35,6 @@ import fasttrackse.ffse1703.fbms.service.quantrinhansupikalong.QuocTichPikalongS
 import fasttrackse.ffse1703.fbms.service.quantrinhansupikalong.ThanhPhoPikalongService;
 import fasttrackse.ffse1703.fbms.service.security.ChucDanhService;
 import fasttrackse.ffse1703.fbms.service.security.PhongBanService;
-import fasttrackse.ffse1703.fbms.service.security.UserAccountService;
 import fasttrackse.ffse1703.fbms.excel.quantrinhansupikalong.HoSoNhanVienExcel;
 
 @SuppressWarnings("unused")
@@ -73,9 +69,6 @@ public class HoSoNhanVienPikalongController {
 	@Autowired
 	private BangCapPikalongService bangCapPikalongService;
 	
-	@Autowired
-	private UserAccountService userAccountService;
-	
 	private static final String UPLOAD_DIRECTORY ="/upload"; 
 	
 	
@@ -86,12 +79,6 @@ public class HoSoNhanVienPikalongController {
 	
 	@RequestMapping("/")
 	public String urlDefault() {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String userTest = auth.getName();
-		System.out.println("user name: " + userTest);
-		UserAccount user = userAccountService.loadUserByUsername(auth.getName());
-		System.out.println("Mã Nhân Viên " + user.getNhanVien().getMaNhanVien());
-		
 		return "redirect:1";
 	}
 	
@@ -157,34 +144,24 @@ public class HoSoNhanVienPikalongController {
 
 
 			String filename = file.getOriginalFilename();
-			if(!filename.isEmpty()) {
-				System.out.println(path + " " + filename);
-				byte[] bytes = file.getBytes();  
-			    BufferedOutputStream stream =new BufferedOutputStream(new FileOutputStream(  
-			         new File(path + File.separator + filename))); 
-			    hoSoNhanVien.setAvatar(filename);
-			    stream.write(bytes);  
-			    stream.flush();  
-			    stream.close();
-				
-				
-				hoSoNhanVienPikalongService.insert(hoSoNhanVien);
-				totalRecord = hoSoNhanVienPikalongService.countAll();
-				totalPage = Math.ceil(totalRecord/perPage);
-				if((int)totalPage > pageIndex) {
-					pageIndex = (int)totalPage;
-				}
-				
-				return "redirect:/quantrinhansu/hosonhanvien/" + pageIndex;
-			} else {
-				model.addAttribute("listQuocTich", quocTichPikalongService.listQuocTich());
-				model.addAttribute("listThanhPho",  thanhPhoPikalongService.listTinhThanh());
-				model.addAttribute("listPhongBan", phongBanService.findAll());
-				model.addAttribute("listChucDanh", chucDanhService.findAll());
-				model.addAttribute("messFileEmpty", "Vui lòng chọn ảnh đại diện");
-				return "QuanTriNhanSuPikalong/ThongTinHoSo/thongtinhosoaddform";
+			System.out.println(path + " " + filename);
+			byte[] bytes = file.getBytes();  
+		    BufferedOutputStream stream =new BufferedOutputStream(new FileOutputStream(  
+		         new File(path + File.separator + filename))); 
+		    hoSoNhanVien.setAvatar(filename);
+		    stream.write(bytes);  
+		    stream.flush();  
+		    stream.close();
+			
+			
+			hoSoNhanVienPikalongService.insert(hoSoNhanVien);
+			totalRecord = hoSoNhanVienPikalongService.countAll();
+			totalPage = Math.ceil(totalRecord/perPage);
+			if((int)totalPage > pageIndex) {
+				pageIndex = (int)totalPage;
 			}
 			
+			return "redirect:/quantrinhansu/hosonhanvien/" + pageIndex;
 		} else {
 			model.addAttribute("listQuocTich", quocTichPikalongService.listQuocTich());
 			model.addAttribute("listThanhPho",  thanhPhoPikalongService.listTinhThanh());
@@ -253,16 +230,8 @@ public class HoSoNhanVienPikalongController {
 	}
 	
 	@RequestMapping(value= "update", method= RequestMethod.POST)
-	public String editSave(Model model,@ModelAttribute("formHosopkl") @Valid HoSoNhanVienPikalong hoSoNhanVienPikalong, 
+	public String editSave(@ModelAttribute("formHosopkl") @Valid HoSoNhanVienPikalong hoSoNhanVienPikalong, 
 			BindingResult result, @RequestParam("file") MultipartFile file, HttpSession session) throws IOException {
-		if(result.hasErrors()) {
-			model.addAttribute("listQuocTich", quocTichPikalongService.listQuocTich());
-			model.addAttribute("listThanhPho",  thanhPhoPikalongService.listTinhThanh());
-			model.addAttribute("listPhongBan", phongBanService.findAll());
-			model.addAttribute("listChucDanh", chucDanhService.findAll());
-			model.addAttribute("pageIndex", pageIndex);
-			return"QuanTriNhanSuPikalong/ThongTinHoSo/thongtinhosoeditform";
-		}
 		ServletContext context = session.getServletContext();
 		String path = context.getRealPath(UPLOAD_DIRECTORY);
 		File fileUpload = new File(path);

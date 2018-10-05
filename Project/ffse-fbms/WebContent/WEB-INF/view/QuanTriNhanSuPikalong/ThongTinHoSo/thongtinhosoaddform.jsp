@@ -145,28 +145,27 @@
                           <label for="thanhPhoId">Thành Phố</label>
                           <form:select path="thanhPho.maTinhThanh" type="text" id="thanhPhoId" class="form-control"
                           				name="thanhPhoSelect" onchange="clickComboboxThanhPho()">
-                          		<option value="" selected="selected" disabled >Chọn thành phố</option>
+                          		<form:option value="" selected="selected" >Chọn thành phố</form:option>
     								<c:forEach items="${listThanhPho}" var="x">
-                              			<form:option value="${x.maTinhThanh}" >${x.tenTinhThanh}</form:option>
+                              			<option value="${x.maTinhThanh}" >${x.tenTinhThanh}</option>
                               		</c:forEach>						
                           </form:select>
-                          <form:errors path="thanhPho" cssStyle="color: red" /> <!-- validate error mess -->
                         </div>
                         <div class="form-group">
                           <label for="quanHuyenId">Quận huyện</label>
                           <form:select path="quanHuyen.maQuanHuyen" id="quanHuyenId"  name="quanHuyen" type="text" class="form-control"
                           			onchange="clickComboboxQuan()" >
-                          		 <option value="" selected="selected" disabled>Chọn quận huyện</option>
+                          		 <option value="noQuanHuyen" selected="selected" >Chọn quận huyện</option>
                           </form:select>
-                     	<form:errors path="quanHuyen" cssStyle="color: red" /> <!-- validate error mess -->
+                     
                         </div>
                         <div class="form-group">
                           <label for="phuongXaId">Phường xã</label>
                           <form:select path="phuongXa.maPhuong" type="text" id="phuongXaId" class="form-control"
                           name="phuongXaSelect">
-                          		<option value="" selected="selected" disabled>Chọn phường xã</option>
+                          		<option value="noPhuongXa" selected="selected">Chọn phường xã</option>
+                          	
                           </form:select>
-                          <form:errors path="phuongXa" cssStyle="color: red" /> <!-- validate error mess -->
                         </div>
                         
                       </div>
@@ -176,7 +175,7 @@
                           <label for="companyName">Phòng ban</label>
                           <form:select path="maPhongBan.maPhongBan" type="text" id="companyName" class="form-control"
                           name="phongBanSelect">
-                          		<option value="" selected="selected" disabled>Chọn Phòng ban</option>
+                          		<option value="" selected="selected" >Chọn Phòng ban</option>
                           	  <c:forEach items="${listPhongBan}" var="x">
                               	<option value="${x.maPhongBan}" >${x.tenPhongBan}</option>
                               </c:forEach>
@@ -188,19 +187,17 @@
                           <label for="companyName">Chức Danh</label>
                           <form:select path="maChucDanh.maChucDanh" type="text" id="companyName" class="form-control"
                           name="chucDanhSelect">
-                          		<option value="" selected="selected" disabled>Chọn chức danh</option>
+                          		<option value="" selected >Chọn chức danh</option>
                           	  <c:forEach items="${listChucDanh}" var="x">
                               	<option value="${x.maChucDanh}" >${x.tenChucDanh}</option>
                               </c:forEach>
                           </form:select>
-                          <form:errors path="maChucDanh" cssStyle="color: red" /> <!-- validate error mess -->
                         </div>
                         
                         <div class="form-group">
                           <label>Hình Ảnh:</label> <input id="imgUrl" class="form-control"
 						type="file" name="file" /> <br> <img id="img" src="#"
 						alt="your image" width="100" height="150" />
-						<p style="color: red">${messFileEmpty}</p> <!-- empty images mess -->
                         </div>
                         <div class="form-actions">
                         
@@ -233,7 +230,6 @@
                              		    value: 'noQuanHuyen',
                              		    text: 'Chọn Quận Huyện'
                              		}));
-                        		$('#quanHuyenId option[value=noQuanHuyen]').attr('disabled', true);
                         		
                         		for (var i = 0; i < data.length; i++) { // insert new data in quan huyen
                         			$('#quanHuyenId').append($('<option>', {
@@ -246,7 +242,6 @@
                          		    value: 'noPhuongXa',
                          		    text: 'Chọn phường xã'
                          		}));
-                        		$('#phuongXaId option[value=noPhuongXa]').attr('disabled', true);
                         		
                         	
                          }});
@@ -272,7 +267,6 @@
                              		    value: 'noPhuongXa',	
                              		    text: 'Chọn phường xã'
                              		}));
-                        		$('#phuongXaId option[value=noPhuongXa]').attr('disabled', true);
                         		
                         		for (var i = 0; i < data.length; i++) {// insert new data in phuong xa
                         			$('#phuongXaId').append($('<option>', {

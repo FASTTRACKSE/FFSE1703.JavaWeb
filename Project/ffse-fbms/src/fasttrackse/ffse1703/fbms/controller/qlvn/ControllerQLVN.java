@@ -173,11 +173,11 @@ public class ControllerQLVN {
 	public String listDonNhap( @ModelAttribute("taodonmoi") @Valid ThongKeDonXinPhep nv,
 			BindingResult result,Model model,final RedirectAttributes redirectAttributes) {
 		if (result.hasErrors()) {
-			redirectAttributes.addFlashAttribute("messageError", "Lỗi. Xin thử lại!");
+			redirectAttributes.addFlashAttribute("messageER", "Lỗi. Xin thử lại!");
 			return "Quanlyvangnghi1703004/soandonmoi";
 		} 
 		service.create(nv);
-		redirectAttributes.addFlashAttribute("messageSuccess", "Lưu nháp thành công...");
+		redirectAttributes.addFlashAttribute("messageSC", "Lưu nháp thành công...");
 		return "redirect:/home";
 	}
 	
@@ -185,10 +185,10 @@ public class ControllerQLVN {
 	public String listDonChoDuyet(@Valid @ModelAttribute("taodonmoi")  ThongKeDonXinPhep nv,BindingResult result,
 			Model model,final RedirectAttributes redirectAttributes) {
 		if(result.hasErrors()) {
-			redirectAttributes.addFlashAttribute("messageError", "Lỗi. Xin thử lại!");
+			redirectAttributes.addFlashAttribute("messageER", "Lỗi. Xin thử lại!");
 			return "Quanlyvangnghi1703004/soandonmoi";}
 		service.createWait(nv);
-		redirectAttributes.addFlashAttribute("messageSuccess", "Đã thêm vào danh sách chờ...");
+		redirectAttributes.addFlashAttribute("messageSC", "Đã thêm vào danh sách chờ...");
 		return "redirect:/home";
 	}
 	

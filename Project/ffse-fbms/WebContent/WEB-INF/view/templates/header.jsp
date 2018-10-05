@@ -143,20 +143,20 @@
 		<div class="continer">
 	
 		<!-- Show message -->
-			<c:if test="${messageSuccess ne null}">
+			<c:if test="${messageSC ne null}">
 				<div class="alert alert-success  btn-min-width mr-1 mb-1" role="alert">
 					<button type="button" class="close" data-dismiss="alert">
 						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 					</button>
-					${messageSuccess}
+					${messageSC}
 				</div>
 			</c:if>
-			<c:if test="${messageError ne null}">
+			<c:if test="${messageER ne null}">
 				<div class="alert alert-danger alert-dismissable" role="alert">
 					<button type="button" class="close" data-dismiss="alert">
 						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 					</button>
-					${messageError}
+					${messageER}
 				</div>
 			</c:if>
 			</div>
@@ -425,32 +425,7 @@
 							<li><a class="menu-item"
 								href="/ffse-fbms/quantrinhansu/hosonhanvien/">Danh Sách Nhân
 									Viên</a></li>
-						</ul>
-						<ul class="menu-content">
-							<li><a class="menu-item"
-								href="/ffse-fbms/quantrinhansu/nhanvienphongban/PNS">Phòng Nhân Sự</a></li>
-						</ul>
-						<ul class="menu-content">
-							<li><a class="menu-item"
-								href="/ffse-fbms/quantrinhansu/nhanvienphongban/PDA">Phòng Dự Án</a></li>
-						</ul>
-						<ul class="menu-content">
-							<li><a class="menu-item"
-								href="/ffse-fbms/quantrinhansu/nhanvienphongban/PDT">Phòng Đào Tạo</a></li>
-						</ul>
-						<ul class="menu-content">
-							<li><a class="menu-item"
-								href="/ffse-fbms/quantrinhansu/nhanvienphongban/PGD">Phòng Giám Đốc</a></li>
-						</ul>
-						<ul class="menu-content">
-							<li><a class="menu-item"
-								href="/ffse-fbms/quantrinhansu/nhanvienphongban/PIT">Phòng IT</a></li>
-						</ul>
-						<ul class="menu-content">
-							<li><a class="menu-item"
-								href="/ffse-fbms/quantrinhansu/nhanvienphongban/PKT">Phòng Kế Toán</a></li>
-						</ul>
-						</li>
+						</ul></li>
 						<li class=" nav-item"><a href="#"><i class="ft-layers"></i><span
 							class="menu-title" data-i18n="">Quản Lý Hợp Đồng</span></a>
 						<ul class="menu-content">
@@ -542,30 +517,5 @@
 							</span></a></li>
 				<li><hr /></li>
 			</ul>
-
-			<!-- Quản lí nhiệm vụ MinhHQ -->
-
-			<ul id="main-menu-navigation" data-menu="menu-navigation"
-				class="navigation navigation-main">
-
-				<li class=" navigation-header"><span><spring:message
-							code="label.minhhqmenu" /></span> <i data-toggle="tooltip"
-					data-placement="right" data-original-title="" class=" ft-minus"></i></li>
-
-				<li class=" nav-item"><a
-					href="<c:url value = "/QuanLyNhiemVuMinhHQ/"/>"> <i
-						class="ft-list"></i><span data-i18n="" class="menu-title"><spring:message
-								code="label.minhhqitemlist" /></span></a></li>
-
-				<li class=" nav-item"><a
-					href="<c:url value = "/QuanLyNhiemVuMinhHQ/Calendar"/>"> <i
-						class="fa fa-calendar-minus-o"></i><span data-i18n=""
-						class="menu-title"><spring:message
-								code="label.minhhqitemcalendar" /></span></a></li>
-
-				<li><hr /></li>
-
-			</ul>
-
 		</div>
 	</div>

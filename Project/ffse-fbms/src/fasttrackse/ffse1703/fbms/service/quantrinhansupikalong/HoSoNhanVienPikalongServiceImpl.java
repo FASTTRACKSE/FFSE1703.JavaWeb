@@ -99,12 +99,4 @@ public class HoSoNhanVienPikalongServiceImpl implements HoSoNhanVienPikalongServ
 		return hoSoNhanVienPikalongDao.checkIsActive(maNv);
 	}
 
-
-	@Override
-	@Transactional
-	public List<HoSoNhanVienPikalong> listNhanVienByPhongBan(String phongBan) {
-		
-		return hoSoNhanVienPikalongDao.listNhanVienByPhongBan(phongBan);
-	}
-
 }

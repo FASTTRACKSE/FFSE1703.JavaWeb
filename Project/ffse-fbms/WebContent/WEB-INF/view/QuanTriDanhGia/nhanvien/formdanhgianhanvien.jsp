@@ -26,7 +26,7 @@
 			<div class="content-body">
 				<!-- Basic form layout section start -->
 				<section id="basic-form-layouts">
-					<c:if test="${empty nhanVien}">
+					<c:if test="${empty danhGia}">
 						<div class="row">
 							<div class="col-md-12">
 								<div class="card">
@@ -39,7 +39,7 @@
 							</div>
 						</div>
 					</c:if>
-					<c:if test="${not empty nhanVien }">
+					<c:if test="${not empty danhGia }">
 						<div class="row">
 							<div class="col-md-12">
 								<div class="card">
@@ -52,15 +52,16 @@
 														<i class="ft-user"></i> Bản đánh giá
 													</h4>
 													<form:hidden path="id" />
-													<form:hidden path="kyDanhGia" />
-													<form:hidden path="phongBan" />
-													<form:hidden path="nhanVienDanhGia.maNhanVien" />
+													<form:hidden path="kyDanhGia.maKy" />
+													<form:hidden path="phongBan.maPhongBan" />
+													<form:hidden path="nhanVienDanhGia" />
 													<form:hidden path="nhanVien.maNhanVien" />
 													<div class="form-group row">
 														<label class="col-md-3 label-control">Tên nhân
 															viên</label>
 														<div class="col-md-9">
-															<h3>${danhGia.nhanVien.tenNhanVien }</h3>
+															<h3>${danhGia.nhanVien.hoDem}
+																${danhGia.nhanVien.ten}</h3>
 														</div>
 													</div>
 													<div class="form-group row">
@@ -77,7 +78,8 @@
 																	readonly="readonly">${danhGia.kyLuatCongViec_MT }</textarea>
 																<label></label>
 																<form:textarea rows="5" cssClass="form-control"
-																	path="kyLuatCongViec" />
+																	path="kyLuatCongViec"></form:textarea>
+																<form:errors cssStyle="color:red;" path="kyLuatCongViec"></form:errors>
 															</div>
 														</div>
 													</div>
@@ -95,7 +97,9 @@
 																	readonly="readonly">${danhGia.tinhThanLamViec_MT }</textarea>
 																<label></label>
 																<form:textarea rows="5" cssClass="form-control"
-																	path="tinhThanLamViec" />
+																	path="tinhThanLamViec"></form:textarea>
+																<form:errors cssStyle="color:red;"
+																	path="tinhThanLamViec"></form:errors>
 															</div>
 														</div>
 													</div>
@@ -114,7 +118,9 @@
 																	readonly="readonly">${danhGia.khoiLuongCongViec_MT }</textarea>
 																<label></label>
 																<form:textarea rows="5" cssClass="form-control"
-																	path="khoiLuongCongViec" />
+																	path="khoiLuongCongViec"></form:textarea>
+																<form:errors cssStyle="color:red;"
+																	path="khoiLuongCongViec"></form:errors>
 															</div>
 														</div>
 													</div>
@@ -133,7 +139,8 @@
 																	readonly="readonly">${danhGia.ketQuaCongViec_MT }</textarea>
 																<label></label>
 																<form:textarea rows="5" cssClass="form-control"
-																	path="ketQuaCongViec" />
+																	path="ketQuaCongViec"></form:textarea>
+																<form:errors cssStyle="color:red;" path="ketQuaCongViec"></form:errors>
 															</div>
 														</div>
 													</div>
@@ -152,7 +159,8 @@
 																	readonly="readonly">${danhGia.kyNangTichLuy_MT }</textarea>
 																<label></label>
 																<form:textarea readonly="readonly" rows="5"
-																	cssClass="form-control" path="kyLuatCongViec" />
+																	cssClass="form-control" path="kyLuatCongViec"></form:textarea>
+																<form:errors cssStyle="color:red;" path="kyLuatCongViec"></form:errors>
 															</div>
 														</div>
 													</div>
@@ -161,7 +169,8 @@
 														<label class="col-md-3 label-control">Định hướng</label>
 														<div class="col-md-9">
 															<form:textarea cssClass="form-control" rows="5"
-																path="dinhHuong" />
+																path="dinhHuong"></form:textarea>
+															<form:errors cssStyle="color:red;" path="dinhHuong"></form:errors>
 														</div>
 													</div>
 
@@ -176,9 +185,11 @@
 																<form:option value="4">4 Sao</form:option>
 																<form:option value="5">5 Sao</form:option>
 															</form:select>
+															<form:errors cssStyle="color:red;" path="xepLoai"></form:errors>
 														</div>
 													</div>
 												</div>
+												<form:hidden path="isDelete" />
 												<div class="form-actions">
 													<a
 														href="<c:url value="/quantridanhgia/nhanvien/danhgianhanvien"/>"

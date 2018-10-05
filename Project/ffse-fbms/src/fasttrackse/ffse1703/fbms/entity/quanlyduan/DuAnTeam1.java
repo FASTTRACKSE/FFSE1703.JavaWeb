@@ -30,16 +30,16 @@ public class DuAnTeam1 implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@NotEmpty
+	@NotEmpty(message="Không được để trống")
 	@Column(name="ma_du_an")
 	private String maDuAn;
 	
 	@Column(name="ten_du_an")
-	@NotEmpty
+	@NotEmpty(message="Không được để trống")
 	private String tenDuAn;
 	
 	@Column(name="mo_ta_du_an")
-	@NotEmpty
+	@NotEmpty(message="Không được để trống")
 	private String moTaDuAn;
 	
 
@@ -49,13 +49,13 @@ public class DuAnTeam1 implements Serializable {
 	@Column (name="start_date")
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
-	@NotNull
+	@NotNull(message="Không được để trống")
 	private Date startDate;
 	
 	@Column (name="end_date")
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	@NotNull
+	@NotNull(message="Không được để trống")
 	private Date endDate;
 	
 	@ManyToMany(targetEntity = DatabaseTeam1.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -92,7 +92,7 @@ public class DuAnTeam1 implements Serializable {
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="ma_khach_hang",referencedColumnName="ma_khach_hang", insertable=true, updatable=true)
-	@NotNull
+	@NotNull(message="Không được để trống")
 	private KhachHangTeam1 khachHang;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -102,17 +102,17 @@ public class DuAnTeam1 implements Serializable {
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="ma_nghiep_vu",referencedColumnName="ma_nghiep_vu", insertable=true, updatable=true)
-	@NotNull
+	@NotNull(message="Không được để trống")
 	private DomainTeam1 domain;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="ma_phong_ban",referencedColumnName="ma_phong_ban", insertable=true, updatable=true)
-	@NotNull
+	@NotNull(message="Không được để trống")
 	private PhongBan phongBan;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="ma_nhan_vien",referencedColumnName="ma_nhan_vien", insertable=true, updatable=true)
-	@NotNull
+	@NotNull(message="Không được để trống")
 	private HoSoNhanVienTeam1 pM;
 	
 	@ManyToMany(targetEntity = HoSoNhanVienTeam1.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)

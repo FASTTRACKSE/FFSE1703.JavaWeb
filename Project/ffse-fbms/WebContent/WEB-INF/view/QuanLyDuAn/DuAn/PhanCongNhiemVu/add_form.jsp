@@ -14,8 +14,8 @@
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="/ffse-fbms/home">Home</a></li>
 							<li class="breadcrumb-item"><a
-								href="/ffse-fbms/qlda/DuAn/PhanCongNhiemVu/List">Danh sách
-									nhiệm vụ</a></li>
+								href="/ffse-fbms/qlda/DuAn/PhanCongNhiemVu/list/${duAn.maDuAn}">Danh
+									sách nhiệm vụ</a></li>
 							<li class="breadcrumb-item active">Thêm Nhiệm Vụ</li>
 						</ol>
 					</div>
@@ -35,31 +35,33 @@
 		action="/ffse-fbms/qlda/DuAn/PhanCongNhiemVu/create"
 		modelAttribute="nhiemvu">
 		<div class="form-group col-sm-12">
-
-			<form:select path="maDuAn" cssClass="form-control">
+			<label>Tên dự án</label>
+			<form:select path="maDuAn" cssClass="form-control" >
 
 				<option value="${duAn.maDuAn}">${duAn.tenDuAn}</option>
 
 			</form:select>
-			
+
 			<form:errors path="maDuAn" cssStyle="color: red"></form:errors>
 		</div>
-		
+
 		<div class="form-group col-sm-6">
+			<label>Tên vai trò</label>
+
 			<form:select path="maVaiTro" cssClass="form-control"
 				items="${vaitro}" itemLabel="tenvt" itemValue="mavt">
 			</form:select>
 			<form:errors path="maVaiTro" cssStyle="color: red"></form:errors>
 		</div>
 		<div class="form-group col-sm-6">
+			<label>Tên nhân viên</label>
 
-				<form:select path="maNhanVien" cssClass="form-control">
-					<c:forEach items="${nhanvien}" var="nv">
-						<option value="${nv.maNhanVien}">${nv.hoDem }  ${nv.ten }
-						</option>
-					</c:forEach>
-				</form:select>
-				<form:errors path="maNhanVien" cssStyle="color: red"></form:errors>
+			<form:select path="maNhanVien" cssClass="form-control">
+				<c:forEach items="${nhanvien}" var="nv">
+					<option value="${nv.maNhanVien}">${nv.hoDem }${nv.ten }</option>
+				</c:forEach>
+			</form:select>
+			<form:errors path="maNhanVien" cssStyle="color: red"></form:errors>
 
 		</div>
 		<div class="col-sm-12 text-center">

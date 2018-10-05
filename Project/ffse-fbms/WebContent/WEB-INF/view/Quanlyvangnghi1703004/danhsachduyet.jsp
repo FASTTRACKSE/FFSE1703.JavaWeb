@@ -14,14 +14,6 @@
 		<div class="col-md-5"></div>
 			<h3 class="content-header-title mb-0"><spring:message code="label.danhsachduyet"/></h3>
 		</div>
-		<c:if test="${messageSuccess ne null}">
-				<div class="alert alert-success alert-dismissable" role="alert">
-					<button type="button" class="close" data-dismiss="alert">
-						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-					</button>
-					${messageSuccess}
-				</div>
-			</c:if>
 		<div class="container">
 			<div class="col-md-8"></div>
 			<div class="col-md-4">

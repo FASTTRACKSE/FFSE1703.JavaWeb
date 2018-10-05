@@ -5,6 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 <style type="text/css">
@@ -51,10 +52,12 @@ th, td {
 			<div class="content-header-right col-md-3 col-xs-12">
 				<div role="group" aria-label="Button group with nested dropdown"
 					class="btn-group float-md-right" id="add-new">
+					<sec:authorize access="hasRole('ROLE_PNSTPP')">
 					<a
 						href="<c:url value = "/quanlynhansutt/hop_dong/add_hopdong/${maNhanVien}"/>"
 						class="btn btn-primary"><span class="fa fa-plus"></span> <spring:message
 							code="label.themMoi" /></a>
+							</sec:authorize>
 				</div>
 			</div>
 		</div>
@@ -94,6 +97,7 @@ th, td {
 											</tr>
 										</thead>
 										<tbody>
+										<sec:authorize access="hasRole('ROLE_PNSTPP') or hasRole('ROLE_PGD')">
 											<c:forEach items="${viewOne}" var="hs">
 												<tr>
 													<td>${hs.loaiHopDong.tenHopDong}</td>
@@ -114,17 +118,19 @@ th, td {
 													<td
 														style="letter-spacing: 5px; min-width: 75px; text-align: center !important;">
 														<a href="<c:url value = "#"/>"><i class="fa fa-eye"></i></a>
+														<sec:authorize access="hasRole('ROLE_PNSTPP')">
 														<a
 														href="<c:url value = "/quanlynhansutt/hop_dong/edit_hopdong/${hs.maHopDong}"/>"><i
-															class="fa fa-pencil"></i></a> <%-- <a href="<c:url value = ""/>"><i class="fa fa-trash"></i></a> --%>
+															class="fa fa-pencil"></i></a> 
 														<a
 														href='<c:url value = "/quanlynhansutt/hop_dong/remove/${hs.maHopDong}"></c:url>'
 														class="fa fa-trash"
 														onclick="return confirm('Bạn có muốn xóa sinh viên này?');"></a>
-
+														</sec:authorize>
 													</td>
 												</tr>
 											</c:forEach>
+											</sec:authorize>
 										</tbody>
 									</table>
 								</div>

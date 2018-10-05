@@ -1,6 +1,7 @@
 package fasttrackse.ffse1703.fbms.controller.quanlyduan;
 
 import java.beans.PropertyEditorSupport;
+import java.util.Collection;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,6 +9,8 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -311,6 +314,7 @@ public class DuAnTeam1Controller {
 
 
 	}
+	
 	//////////////////////////////////////////////////////////////////
 
 	@InitBinder

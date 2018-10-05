@@ -25,8 +25,8 @@
 			<div class="card">
 				<div class="card-content">
 					<div class="card-body" style="margin: 1em">
-						<form:form cssClass="form" action="kydanhgia/save">
-						<form:hidden path="id" />
+						<form:form cssClass="form"
+							action="/ffse-fbms/quantridanhgia/phongnhansu/kydanhgia/save" modelAttribute="kyDanhGia">
 							<div class="form-body">
 								<h4 class="form-section">
 									<i class="fa fa-plus"></i>Tạo danh sách đánh giá
@@ -36,20 +36,22 @@
 										<div class="form-group">
 											<label for="projectinput1">Mã kỳ đánh giá</label>
 											<form:input cssClass="form-control" path="maKy" />
+											<form:errors cssStyle="color:red;" path="maKy" />
 										</div>
 									</div>
 									<div class="col-md-4">
 										<div class="form-group">
 											<label for="projectinput2">Tên kỳ đánh giá</label>
 											<form:input cssClass="form-control" path="tenKy" />
+											<form:errors cssStyle="color:red;" path="tenKy" />
 										</div>
 									</div>
 									<div class="col-md-4">
 										<div class="form-group" style="padding-top: 1.9rem">
-											<c:if test="${command.id == 0 }">
+											<c:if test="${command.maKy == null }">
 												<button class="btn btn-primary" type="submit">Tạo</button>
 											</c:if>
-											<c:if test="${command.id != 0 }">
+											<c:if test="${command.maKy != null }">
 												<button class="btn btn-primary" type="submit">Sửa</button>
 												<a class="btn btn-danger"
 													href="<c:url value = "/quantridanhgia/phongnhansu/kydanhgia"/>">Hủy</a>
@@ -83,13 +85,13 @@
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach items="${listKyDanhGia }" var="x" varStatus="stt" >
+										<c:forEach items="${listKyDanhGia }" var="x" varStatus="stt">
 											<tr>
 												<th scope="row">${stt.index + 1}</th>
 												<td>${x.maKy }</td>
 												<td>${x.tenKy }</td>
 												<td><a class="btn btn-info"
-													href="<c:url value = "/quantridanhgia/phongnhansu/kydanhgia/edit/${x.id }"/>">Sửa</a></td>
+													href="<c:url value = "/quantridanhgia/phongnhansu/kydanhgia/edit/${x.maKy }"/>">Sửa</a></td>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -97,19 +99,19 @@
 								<ul class="pagination firstLast1-links">
 									<c:if test="${pageKy > 1 }">
 										<li class="page-item first"><a
-											href="<c:url value="/quantridanhgia/phongnhansu/lichdanhgia/1" />"
+											href="<c:url value="/quantridanhgia/phongnhansu/kydanhgia/1" />"
 											class="page-link">First</a></li>
 										<li class="page-item prev"><a
-											href="<c:url value="/quantridanhgia/phongnhansu/lichdanhgia/${pageKy-1 }" />"
+											href="<c:url value="/quantridanhgia/phongnhansu/kydanhgia/${pageKy-1 }" />"
 											class="page-link">Prev</a></li>
 									</c:if>
 									<li class="page-item active"><a href="#" class="page-link">${pageKy}</a></li>
 									<c:if test="${pageKy < total }">
 										<li class="page-item next"><a
-											href="<c:url value="/quantridanhgia/phongnhansu/lichdanhgia/${pageKy+1 }" />"
+											href="<c:url value="/quantridanhgia/phongnhansu/kydanhgia/${pageKy+1 }" />"
 											class="page-link">Next</a></li>
 										<li class="page-item last"><a
-											href="<c:url value="/quantridanhgia/phongnhansu/lichdanhgia/${total}" />"
+											href="<c:url value="/quantridanhgia/phongnhansu/kydanhgia/${total}" />"
 											class="page-link">Last</a></li>
 									</c:if>
 								</ul>

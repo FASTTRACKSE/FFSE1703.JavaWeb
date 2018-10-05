@@ -1,5 +1,7 @@
 package fasttrackse.ffse1703.fbms.entity.quantridanhgia;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,15 +13,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
-
-import org.hibernate.annotations.NaturalId;
+import javax.validation.constraints.NotNull;
 
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 import fasttrackse.ffse1703.fbms.entity.security.PhongBan;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "danh_gia_ban_than")
-public class DanhGiaBanThan {
+public class DanhGiaBanThan implements Serializable {
 
 	@Id
 	@Column(name = "id")
@@ -27,21 +29,19 @@ public class DanhGiaBanThan {
 	private int id;
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-	@JoinColumn(name = "ma_ky_danh_gia", referencedColumnName = "ma_ky_danh_gia")
-	@NotEmpty
+	@JoinColumn(name = "ma_ky_danh_gia", referencedColumnName = "ma_ky_danh_gia", insertable = true, updatable = true)
 	private KyDanhGia kyDanhGia;
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-	@JoinColumn(name = "ma_phong_ban", referencedColumnName = "ma_phong_ban")
-	@NotEmpty
+	@JoinColumn(name = "ma_phong_ban", referencedColumnName = "ma_phong_ban", insertable = true, updatable = true)
 	private PhongBan phongBan;
 
-	@NaturalId
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-	@JoinColumn(name = "nhan_vien", referencedColumnName = "ma_nhan_vien")
+	@JoinColumn(name = "nhan_vien", referencedColumnName = "ma_nhan_vien", insertable = true, updatable = true)
 	private HoSoNhanVien nhanVien;
 
 	@Column(name = "ky_luat_cong_viec_danh_gia")
+	@NotNull
 	private int kyLuatCongViec_DG;
 
 	@Column(name = "ky_luat_cong_viec_mo_ta", nullable = false)
@@ -49,6 +49,7 @@ public class DanhGiaBanThan {
 	private String kyLuatCongViec_MT;
 
 	@Column(name = "tinh_than_lam_viec_danh_gia")
+	@NotNull
 	private int tinhThanLamViec_DG;
 
 	@Column(name = "tinh_than_lam_viec_mo_ta", nullable = false)
@@ -56,6 +57,7 @@ public class DanhGiaBanThan {
 	private String tinhThanLamViec_MT;
 
 	@Column(name = "khoi_luong_cong_viec_danh_gia")
+	@NotNull
 	private int khoiLuongCongViec_DG;
 
 	@Column(name = "khoi_luong_cong_viec_mo_ta", nullable = false)
@@ -63,6 +65,7 @@ public class DanhGiaBanThan {
 	private String khoiLuongCongViec_MT;
 
 	@Column(name = "ket_qua_cong_viec_danh_gia")
+	@NotNull
 	private int ketQuaCongViec_DG;
 
 	@Column(name = "ket_qua_cong_viec_mo_ta", nullable = false)
@@ -70,6 +73,7 @@ public class DanhGiaBanThan {
 	private String ketQuaCongViec_MT;
 
 	@Column(name = "ky_nang_tich_luy_danh_gia")
+	@NotNull
 	private int kyNangTichLuy_DG;
 
 	@Column(name = "ky_nang_tich_luy_mo_ta", nullable = false)
@@ -81,10 +85,11 @@ public class DanhGiaBanThan {
 	private String dinhHuong;
 
 	@Column(name = "danh_gia_tong_the")
+	@NotNull
 	private int danhGiaTongThe;
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-	@JoinColumn(name = "ma_trang_thai", referencedColumnName = "ma_trang_thai")
+	@JoinColumn(name = "ma_trang_thai", referencedColumnName = "ma_trang_thai", insertable = true, updatable = true)
 	private TrangThaiDanhGia trangThai;
 
 	@Column(name = "is_delete")

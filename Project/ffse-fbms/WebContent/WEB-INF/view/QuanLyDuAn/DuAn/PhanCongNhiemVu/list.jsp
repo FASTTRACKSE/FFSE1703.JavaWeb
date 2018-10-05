@@ -10,14 +10,15 @@
 <div class="app-content content container-fluid">
 	<div class="content-wrapper">
 		<div class="content-header-left col-md-9 col-xs-12 mb-2">
-			<h3 class="content-header-title mb-0">Danh sách Vai Trò</h3>
+			<h3 class="content-header-title mb-0"><spring:message code="label.listVaiTro" /></h3>
 			<div class="row breadcrumbs-top">
 				<div class="breadcrumb-wrapper col-xs-12">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item"><a href="/ffse-fbms/home">Home</a></li>
-						<li class="breadcrumb-item"><a href="/ffse-fbms/home">Home</a></li>
+						<li class="breadcrumb-item"><a href="/ffse-fbms/qlda/DuAn/"><spring:message code="label.listDA" /></a></li>
 
-						<li class="breadcrumb-item active">VAI TRÒ</li>
+
+						<li class="breadcrumb-item active"><spring:message code="label.vaiTroDuAn" /></li>
 					</ol>
 				</div>
 			</div>
@@ -27,8 +28,7 @@
 		<div role="group" aria-label="Button group with nested dropdown"
 			class="btn-group float-md-right" id="add-new">
 			<a href="/ffse-fbms/qlda/DuAn/PhanCongNhienVu/create/${duan.maDuAn}"
-				class="btn btn-primary"><span class="fa fa-plus"></span> Thêm
-				mới</a>
+				class="btn btn-primary"><span class="fa fa-plus"></span><spring:message code="label.addNew" /></a>
 		</div>
 	</div>
 	<div class="content-body">
@@ -42,7 +42,7 @@
 			<div class="col-xs-12">
 				<div class="card">
 					<div class="card-header">
-						<h4 class="card-title">Danh sách</h4>
+						<h4 class="card-title"><spring:message code="label.list" /></h4>
 						<a class="heading-elements-toggle"><i
 							class="fa fa-ellipsis-v font-medium-3"></i></a>
 						<div class="heading-elements">
@@ -62,10 +62,10 @@
 									<thead>
 										<tr>
 											<th>STT</th>
-											<th>Tên Dự Án</th>
-											<th>Tên Nhân Viên</th>
-											<th>Vai trò</th>
-											<th>Action</th>
+											<th><spring:message code="label.tenDuAn" /></th>
+											<th><spring:message code="label.nhanVien" /></th>
+											<th><spring:message code="label.vaiTroDuAn" /></th>
+											<th><spring:message code="label.AcVendor" /></th>
 										</tr>
 									</thead>
 									<tbody>
@@ -118,8 +118,9 @@
 	<div class="col-sm-4">
 
 		<c:if test="${message !=null }">
+		
 						 ${message }
-			</c:if>
+		</c:if>
 
 	</div>
 </div>

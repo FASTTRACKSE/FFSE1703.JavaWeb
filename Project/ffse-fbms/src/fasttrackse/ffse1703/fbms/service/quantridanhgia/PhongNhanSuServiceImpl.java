@@ -49,7 +49,7 @@ public class PhongNhanSuServiceImpl implements PhongNhanSuService {
 
 	@Transactional
 	@Override
-	public KyDanhGia getKyDanhGia(int maKy) {
+	public KyDanhGia getKyDanhGia(String maKy) {
 		return this.dao.getKyDanhGia(maKy);
 	}
 
@@ -148,6 +148,11 @@ public class PhongNhanSuServiceImpl implements PhongNhanSuService {
 	@Override
 	public void createDanhGiaBanThan(List<DanhGiaBanThan> danhGia) {
 		dao.createDanhGiaBanThan(danhGia);
+	}
+
+	@Override
+	public int checkKyDanhGia(String maKy) {
+		return dao.checkKyDanhGia(maKy);
 	}
 
 }

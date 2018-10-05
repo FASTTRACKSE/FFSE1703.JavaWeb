@@ -263,7 +263,7 @@
 												<button type="submit" class="btn btn-success" formaction="savechoduyet">
 													 <i class="fa fa-check-square-o"></i> Gửi đơn chờ phê duyệt
 												</button>
-												<a href="QuanLyVangNghi/danhsach">
+												<a href="">
 													<button type="button" class="btn btn-warning mr-1">
 														<i class="fa fa-arrow-circle-left"></i> Quay lại
 													</button>

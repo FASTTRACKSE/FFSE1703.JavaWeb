@@ -5,7 +5,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 <style type="text/css">
 .table td {
@@ -51,10 +52,12 @@ th, td {
 			<div class="content-header-right col-md-3 col-xs-12">
 				<div role="group" aria-label="Button group with nested dropdown"
 					class="btn-group float-md-right" id="add-new">
-					<a
-						href="<c:url value = "/quanlynhansutt/gia_dinh/add_giadinh/${maNhanVien}"/>"
-						class="btn btn-primary"><span class="fa fa-plus"></span>
-					<spring:message code="label.themMoi" /></a>
+					<sec:authorize access="hasRole('ROLE_PNSTPP')">
+						<a
+							href="<c:url value = "/quanlynhansutt/gia_dinh/add_giadinh/${maNhanVien}"/>"
+							class="btn btn-primary"><span class="fa fa-plus"></span> <spring:message
+								code="label.themMoi" /></a>
+					</sec:authorize>
 				</div>
 			</div>
 		</div>
@@ -93,31 +96,37 @@ th, td {
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach items="${viewOne}" var="ttgd">
-												<tr>
-													<td>${ttgd.hoTen}</td>
-													<td>${ttgd.queQuan}</td>
-													<td>${ttgd.namSinh}</td>
-													<td><c:if test="${ttgd.gioiTinh == 1}">
-															<spring:message code="label.nam" />
-														</c:if> <c:if test="${ttgd.gioiTinh == 2}">
-															<spring:message code="label.nu" />
-														</c:if></td>
-													<td>${ttgd.soDienThoai}</td>
-													<td>${ttgd.quanHe}</td>
-													<td
-														style="letter-spacing: 5px; min-width: 75px; text-align: center !important;">
-														<a href="<c:url value = "#"/>"><i class="fa fa-eye"></i></a>
-														<a
-														href="<c:url value = "/quanlynhansutt/gia_dinh/edit_giadinh/${ttgd.id}"/>"><i
-															class="fa fa-pencil"></i> </a> <a
-														href='<c:url value = "/quanlynhansutt/gia_dinh/remove/${ttgd.id}"></c:url>'
-														class="fa fa-trash"
-														onclick="return confirm('Bạn có muốn xóa sinh viên này?');">
-													</a>
-													</td>
-												</tr>
-											</c:forEach>
+											<sec:authorize
+												access="hasRole('ROLE_PNSTPP') or hasRole('ROLE_PGD')">
+												<c:forEach items="${viewOne}" var="ttgd">
+													<tr>
+														<td>${ttgd.hoTen}</td>
+														<td>${ttgd.queQuan}</td>
+														<td>${ttgd.namSinh}</td>
+														<td><c:if test="${ttgd.gioiTinh == 1}">
+																<spring:message code="label.nam" />
+															</c:if> <c:if test="${ttgd.gioiTinh == 2}">
+																<spring:message code="label.nu" />
+															</c:if></td>
+														<td>${ttgd.soDienThoai}</td>
+														<td>${ttgd.quanHe}</td>
+														<td
+															style="letter-spacing: 5px; min-width: 75px; text-align: center !important;">
+															<a href="<c:url value = "#"/>"><i class="fa fa-eye"></i></a>
+															<sec:authorize access="hasRole('ROLE_PNSTPP')">
+																<a
+																	href="<c:url value = "/quanlynhansutt/gia_dinh/edit_giadinh/${ttgd.id}"/>"><i
+																	class="fa fa-pencil"></i> </a>
+																<a
+																	href='<c:url value = "/quanlynhansutt/gia_dinh/remove/${ttgd.id}"></c:url>'
+																	class="fa fa-trash"
+																	onclick="return confirm('Bạn có muốn xóa sinh viên này?');">
+																</a>
+															</sec:authorize>
+														</td>
+													</tr>
+												</c:forEach>
+											</sec:authorize>
 										</tbody>
 									</table>
 								</div>

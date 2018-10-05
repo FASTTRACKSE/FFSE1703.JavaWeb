@@ -9,8 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -39,8 +38,7 @@ public class DonNghi implements Serializable{
 	@Column(name = "ly_do")
 	private String ly_do;
 
-	//@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	
 	@Column(name = "tg_bat_dau")
 	private Date tg_bat_dau;
 
@@ -49,6 +47,7 @@ public class DonNghi implements Serializable{
 	@Column(name = "tg_ket_thuc")
 	private Date tg_ket_thuc;
 
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "tinh_trang")
 	private int tinh_trang;
 	

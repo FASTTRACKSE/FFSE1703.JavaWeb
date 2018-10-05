@@ -16,13 +16,13 @@
 					<div class="row">
 						<div class="form-group col-sm-6">
 							<div>
-								<label>Mã đơn</label>
+								<label><spring:message code="label.madon"/></label>
 								<form:input class="form-control round" path="id" readonly="true" />
 								<form:hidden path="ngayNghi.soNgayDaNghi"/>
 								<form:hidden path="ngayNghi.soNgayConLai"/>
 							</div>
 							<div>
-								<label> Mã nhân viên</label>
+								<label><spring:message code="label.maNhanVien"/></label>
 								<form:select path="ngayNghi.maNhanVien" 
 									class="custom-select block round" id="customSelect">
 									<c:forEach items="${hoso}" var="ld">
@@ -31,7 +31,7 @@
 								</form:select>
 							</div>
 							<div>
-								<label>Ngày bắt đầu</label>
+								<label><spring:message code="label.ngaybatdau"/></label>
 								<fieldset class="form-group position-relative">
 									<form:input type="date" class="form-control round" id="from"
 										path="ngayBatDau" />
@@ -41,7 +41,7 @@
 								</fieldset>
 							</div>
 							<div>
-								<label>Ghi chú</label>
+								<label><spring:message code="label.ghichunhanvien"/></label>
 								<form:input class="form-control round" path="ghiChu" />
 							    <form:errors style="color:red" path="ghiChu"  /> 
 							</div>
@@ -60,11 +60,11 @@
 							</div>
 							<div>
 
-								<label>Số ngày nghỉ</label>
+								<label><spring:message code="label.songaynghi"/></label>
 								<form:input class="form-control round" path="soNgayNghi" />
 							</div>
 							<div>
-								<label>Ngày kết thúc</label>
+								<label><spring:message code="label.ngayketthuc"/></label>
 								<fieldset class="form-group position-relative">
 									<form:input type="date" class="form-control round" id="from"
 										path="ngayKetThuc" />
@@ -74,9 +74,8 @@
 								</fieldset>
 							</div>
 							<div>
-								<label>Ghi chú trưởng phòng</label>
+								<label><spring:message code="label.ghichutruongphong"/></label>
 								<form:input class="form-control round" path="ghiChuTruongPhong" />
-								 <form:errors style="color:red" path="ghiChuTruongPhong"  /> 
 								
 							</div>
 						</div>

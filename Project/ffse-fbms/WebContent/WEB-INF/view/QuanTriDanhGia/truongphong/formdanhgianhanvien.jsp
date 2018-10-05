@@ -35,8 +35,8 @@
 											method="POST"
 											action="/ffse-fbms/quantridanhgia/truongphong/danhgianhanvien/update">
 											<form:hidden path="id" />
-											<form:hidden path="kyDanhGia" />
-											<form:hidden path="phongBan" />
+											<form:hidden path="kyDanhGia.maKy" />
+											<form:hidden path="phongBan.maPhongBan" />
 											<form:hidden path="nhanVien.maNhanVien" />
 											<div class="form-body">
 												<h4 class="form-section">
@@ -45,8 +45,7 @@
 												<div class="form-group row">
 													<label class="col-md-3 label-control">Nhân viên </label>
 													<div class="col-md-9">
-														<form:label cssClass="form-control" readonly="true"
-															path="nhanVien.tenNhanVien" />
+														<h3>${command.nhanVien.hoDem} ${command.nhanVien.ten} </h3>
 													</div>
 												</div>
 												<div class="form-group row">

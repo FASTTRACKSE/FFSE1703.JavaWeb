@@ -13,6 +13,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -32,29 +36,38 @@ public class DonXinPhepEntity {
 	@ManyToOne
 	@JoinColumn(name = "ma_nhan_vien")
 	private SoNgayNghiEntity ngayNghi;
+	
 
 	@Column(name = "ngay_bat_dau")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
 	private Date ngayBatDau;
 
+    
 	@Column(name = "ngay_ket_thuc")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@NotNull(message = "Không thể để trống")
 	@Temporal(TemporalType.DATE)
 	private Date ngayKetThuc;
-
+	
+	
 	@Column(name = "so_ngay_nghi")
 	private int soNgayNghi;
+	
 
 	@ManyToOne
 	@JoinColumn(name = "ly_do")
 	private LyDoEntity lyDo;
 
+	@NotEmpty(message = "Không thể để trống")
 	@Column(name = "ghi_chu")
 	private String ghiChu;
+	
+
 
 	@Column(name = "ghi_chu_truong_phong")
 	private String ghiChuTruongPhong;
+
 
 	@ManyToOne
 	@JoinColumn(name = "ten_trang_thai")

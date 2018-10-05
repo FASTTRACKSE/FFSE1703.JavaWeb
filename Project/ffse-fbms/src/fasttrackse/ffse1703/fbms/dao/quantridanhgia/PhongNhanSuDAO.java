@@ -18,7 +18,7 @@ public interface PhongNhanSuDAO {
 
 	public void updateKyDanhGia(KyDanhGia kyDanhGia);
 
-	public KyDanhGia getKyDanhGia(int maKy);
+	public KyDanhGia getKyDanhGia(String maKy);
 
 	public void deleteKyDanhGia(KyDanhGia kyDanhGia);
 
@@ -51,5 +51,7 @@ public interface PhongNhanSuDAO {
 	public List<DanhGiaBanThan> getListDanhGiaBanThan(int start, int maxItems);
 
 	public List<LichDanhGia> getListLichDanhGia();
+	
+	public int checkKyDanhGia(String maKy);
 
 }

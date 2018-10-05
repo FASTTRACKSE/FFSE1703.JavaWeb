@@ -23,7 +23,7 @@
 				</div>
 			</c:if>
 			<div>
-			<div><a  class="btn btn-outline-success round btn-min-width mr-1 mb-1" href="soandonmoi"><h4><spring:message code="label.soandonmoi"/></h4></a></div>
+			<div><a  class="btn btn-outline-success round btn-min-width mr-1 mb-1" href="soandonmoi"> <h4> <spring:message code="label.soandonmoi"/> </h4> </a></div>
 			
 			<div class="container">
 			    <div class="table-responsive">

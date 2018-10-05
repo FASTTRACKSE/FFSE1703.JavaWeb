@@ -49,6 +49,7 @@ public class TruongPhongController {
 		this.accountService = accountService;
 	}
 
+	@RequestMapping(value = "")
 	public String getInfo(Model model, HttpSession session) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if (auth instanceof AnonymousAuthenticationToken) {
@@ -58,8 +59,8 @@ public class TruongPhongController {
 			HoSoNhanVien hoSo = user.getNhanVien();
 			ChucDanh chucDanh = hoSo.getChucDanh();
 			PhongBan phongBan = hoSo.getPhongBan();
-			session.setAttribute("chucDanh", chucDanh.getMaChucDanh());
-			session.setAttribute("phongBan", phongBan.getMaPhongBan());
+			session.setAttribute("chucDanh", chucDanh);
+			session.setAttribute("phongBan", phongBan);
 		}
 		return "redirect:/quantridanhgia/truongphong/duyetdanhgia";
 	}
@@ -70,16 +71,17 @@ public class TruongPhongController {
 		if (auth instanceof AnonymousAuthenticationToken) {
 			return "redirect:/login";
 		}
-		if (session.getAttribute("pageTPDG") != null) {
+		if (session.getAttribute("pageDDG") != null) {
 			currentPage = (int) session.getAttribute("pageDDG");
 		}
-		return "redirect:/quantridanhgia/truongphong/danhgianhanvien/" + currentPage;
+		return "redirect:/quantridanhgia/truongphong/duyetdanhgia/" + currentPage;
 	}
 
 	@RequestMapping(value = "/duyetdanhgia/{page}")
 	public String getListDanhGiaBanThan(Model model, @PathVariable int page, HttpSession session) {
-		String phongBan = session.getAttribute("phongBan").toString();
+		PhongBan phongBan = (PhongBan) session.getAttribute("phongBan");
 		int start = (page - 1) * maxItems;
+		model.addAttribute("start", start);
 		session.setAttribute("pageDDG", page);
 		model.addAttribute("total",
 				Math.ceil((double) service.getListDanhGiaBanThan(phongBan).size() / (double) maxItems));
@@ -87,15 +89,25 @@ public class TruongPhongController {
 		return "QuanTriDanhGia/truongphong/duyetdanhgia";
 	}
 
-	@RequestMapping(value = "/duyetdanhgia/duyet")
-	public String acceptDanhGiaNhanVien(Model model, @ModelAttribute("command") DanhGiaBanThan danhGia) {
+	@RequestMapping(value = "/duyetdanhgia/duyet/{id}")
+	public String acceptDanhGiaNhanVien(Model model, @PathVariable int id) {
+		DanhGiaBanThan danhGia = service.getNhanVienTuDanhGia(id);
+		danhGia.getTrangThai().setMaTrangThai(3);
+		service.updateNhanVienTuDanhGia(danhGia);
+		return "redirect:/quantridanhgia/truongphong/duyetdanhgia";
+	}
+
+	@RequestMapping(value = "/duyetdanhgia/huy/{id}")
+	public String ignoreDanhGiaNhanVien(Model model, @PathVariable int id) {
+		DanhGiaBanThan danhGia = service.getNhanVienTuDanhGia(id);
+		danhGia.getTrangThai().setMaTrangThai(4);
 		service.updateNhanVienTuDanhGia(danhGia);
 		return "redirect:/quantridanhgia/truongphong/duyetdanhgia";
 	}
 
 	@RequestMapping(value = "/duyetdanhgia/view/{id}")
 	public String showDanhGiaNhanVien(Model model, @PathVariable int id) {
-		model.addAttribute("danhGia", service.getNhanVienTuDanhGia(id));
+		model.addAttribute("command", service.getNhanVienTuDanhGia(id));
 		return "QuanTriDanhGia/truongphong/viewdanhgia";
 	}
 
@@ -110,19 +122,24 @@ public class TruongPhongController {
 	@RequestMapping(value = "/danhgianhanvien/{page}")
 	public String getListDanhGiaNhanVien(@PathVariable int page, Model model, HttpSession session) {
 		PhongBan phongBan = (PhongBan) session.getAttribute("phongBan");
-		LichDanhGia lich = service.getActiveLichDanhGia(phongBan.getMaPhongBan());
-		KyDanhGia kyDanhGia = lich.getKyDanhGia();
-		if (service.getListNhanVienPhongBan(phongBan.getMaPhongBan()).size() < 1) {
-			createListDanhGiaNhanVien(kyDanhGia, phongBan);
-			return "redirect:/quantridanhgia/truongphong/danhgianhanvien";
-		} else {
-			int start = (page - 1) * maxItems;
-			session.setAttribute("pageTPDG", page);
-			model.addAttribute("total", Math.ceil(
-					(double) service.getListNhanVienPhongBan(phongBan.getMaPhongBan()).size() / (double) maxItems));
-			model.addAttribute("listDanhGia",
-					service.getListNhanVienPhongBan(start, maxItems, phongBan.getMaPhongBan()));
+		List<LichDanhGia> lich = service.getActiveLichDanhGia(phongBan);
+		if (lich.size() > 0) {
+			for (LichDanhGia x : lich) {
+				if (x.getIsActive() == 1) {
+					KyDanhGia kyDanhGia = x.getKyDanhGia();
+					if (service.getListNhanVienPhongBan(phongBan).size() < 1) {
+						createListDanhGiaNhanVien(kyDanhGia, phongBan);
+						return "redirect:/quantridanhgia/truongphong/danhgianhanvien";
+					}
+				}
+			}
 		}
+		int start = (page - 1) * maxItems;
+		session.setAttribute("pageTPDG", page);
+		model.addAttribute("start", start);
+		model.addAttribute("total",
+				Math.ceil((double) service.getListNhanVienPhongBan(phongBan).size() / (double) maxItems));
+		model.addAttribute("listDanhGia", service.getListNhanVienPhongBan(start, maxItems, phongBan));
 		return "QuanTriDanhGia/truongphong/danhgianhanvien";
 	}
 
@@ -139,15 +156,17 @@ public class TruongPhongController {
 	}
 
 	public void createListDanhGiaNhanVien(KyDanhGia kyDanhGia, PhongBan phongBan) {
-		List<HoSoNhanVien> hoSo = service.getNhanVienPhongBan(phongBan.getMaPhongBan());
-		List<TruongPhongDanhGia> listDanhGia = new ArrayList<>();
-		for (HoSoNhanVien x : hoSo) {
-			TruongPhongDanhGia danhGia = new TruongPhongDanhGia();
-			danhGia.setKyDanhGia(kyDanhGia);
-			danhGia.setPhongBan(phongBan);
-			danhGia.setNhanVien(x);
-			listDanhGia.add(danhGia);
+		List<HoSoNhanVien> hoSo = service.getNhanVienPhongBan(phongBan);
+		if (hoSo.size() > 0) {
+			List<TruongPhongDanhGia> listDanhGia = new ArrayList<>();
+			for (HoSoNhanVien x : hoSo) {
+				TruongPhongDanhGia danhGia = new TruongPhongDanhGia();
+				danhGia.setKyDanhGia(kyDanhGia);
+				danhGia.setPhongBan(phongBan);
+				danhGia.setNhanVien(x);
+				listDanhGia.add(danhGia);
+			}
+			service.createListNhanVienPhongBan(listDanhGia);
 		}
-		service.createListNhanVienPhongBan(listDanhGia);
 	}
 }

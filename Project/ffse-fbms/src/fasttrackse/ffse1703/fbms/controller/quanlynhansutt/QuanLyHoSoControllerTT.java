@@ -154,8 +154,7 @@ public class QuanLyHoSoControllerTT {
 	public ModelAndView exportExcelFile(@PathVariable("maNhanVien") int maNhanVien) {
 		ModelAndView model = new ModelAndView("FileExcelHoSoNhanVien");
 		model.addObject("hoSoNhanVienTT", quanLyHoSoServiceTT.findByMaNhanVien(maNhanVien));
-		model.addObject("thongTinBangCap", thongTinBangCapServiceTT.viewOne(maNhanVien));
-		model.addObject("thongTinGiaDinh", thongTinGiaDinhServiceTT.viewOne(maNhanVien));
+		model.addObject("thongTinGiaDinhTT", thongTinGiaDinhServiceTT.viewOne(maNhanVien));
 		return model;
 	}
 

@@ -193,6 +193,13 @@ input:checked+.slider:before {
 											</c:forEach>
 										</tbody>
 									</table>
+									
+									<br>
+										<center><a href="donxinnghi">
+													<button type="button" class="btn btn-warning mr-1">
+														<i class="fa fa-arrow-circle-left"></i> Quay lại
+													</button>
+												</a></center>
 								</div>
 								<!-- END id="list" -->
 

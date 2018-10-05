@@ -2,6 +2,7 @@ package fasttrackse.ffse1703.fbms.entity.mvpquanliduan;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -13,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -24,6 +26,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.format.annotation.DateTimeFormat;
 import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.HoSoNhanVienPikalong;
 import fasttrackse.ffse1703.fbms.entity.security.PhongBan;
+import fasttrackse.ffse1703.fbms.entity.security.UsersRoles;
 
 @Entity
 @Table(name = "qlda_project")
@@ -123,11 +126,25 @@ public class Projects implements Serializable {
 	@JoinColumn(name = "id_project") })
 	private Set<Vendor> vendor;
 	
+	@OneToMany(mappedBy = "projects")
+	private Set<Nhiemvu> nhiemVu;
 	
 	@Column(name = "isdelete")
 	private int isDelete;
 	
 	
+
+	public Set<Nhiemvu> getNhiemVu() {
+		return nhiemVu;
+	}
+
+
+
+	public void setNhiemVu(Set<Nhiemvu> nhiemVu) {
+		this.nhiemVu = nhiemVu;
+	}
+
+
 
 	public String getIdProject() {
 		return idProject;

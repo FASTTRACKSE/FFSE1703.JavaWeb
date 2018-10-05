@@ -147,7 +147,7 @@
 								<th style="text-align: center">Phòng dự án</th>
 								<th style="text-align: center">Nghiệp vụ</th>
 								<th style="text-align: center">Trạng thái</th>
-								<th style="text-align: center">chức năng</th>
+								<th style="text-align: center">chức năng ${totalPage}</th>
 							</tr>
 						</thead>
 						<tbody>

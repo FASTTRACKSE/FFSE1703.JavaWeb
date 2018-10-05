@@ -28,7 +28,22 @@
 
 		<!-- Phân quyền module QLVN - HuongVTL :: END -->
 		
-		<!-- Phân quyền module QLDA - MVP :: START -->
+		<!-- Phân quyền module QLDA - Team Black ::  -->
+		<intercept-url pattern="/qlda/Database/**" access="hasAnyRole('ROLE_PITTPP')" />
+		<intercept-url pattern="/qlda/khachhang/**" access="hasAnyRole('ROLE_PITTPP')" />
+		<intercept-url pattern="/qlda/domain/**" access="hasAnyRole('ROLE_PITTPP')" />
+		<intercept-url pattern="/qlda/vendor/**" access="hasAnyRole('ROLE_PITTPP')" />
+		<intercept-url pattern="/qlda/Framework/**" access="hasAnyRole('ROLE_PITTPP')" />
+		<intercept-url pattern="/QuanLyDuAn/Language/**" access="hasAnyRole('ROLE_PITTPP')" />
+		<intercept-url pattern="/QuanLyDuAn/VaiTro/**"  access="hasAnyRole('ROLE_PITTPP')" />
+		<intercept-url pattern="/qlda/trangthai/**" access="hasAnyRole('ROLE_PITTPP')" />
+		<intercept-url pattern="/qlda/Technical/**" access="hasAnyRole('ROLE_PITTPP')" />
+		
+		
+		<intercept-url pattern="/qlda/DuAn/**" access="hasAnyRole('ROLE_PDANV','ROLE_PITNV','ROLE_PITTPP','ROLE_PDATPP')" />
+
+		
+		<!-- Phân quyền module QLDA -  Team Black :: START -->
 		
 		<!-- <intercept-url pattern="/mvpquanliduan/domain/**"  access="hasRole('ROLE_PIT')"/>
 		<intercept-url pattern="/mvpquanliduan/database/**"  access="hasRole('ROLE_PIT')"/>

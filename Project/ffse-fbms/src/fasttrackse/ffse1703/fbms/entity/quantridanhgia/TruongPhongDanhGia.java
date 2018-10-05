@@ -1,5 +1,7 @@
 package fasttrackse.ffse1703.fbms.entity.quantridanhgia;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,14 +13,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.NaturalId;
-
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 import fasttrackse.ffse1703.fbms.entity.security.PhongBan;
 
+@SuppressWarnings("serial")
 @Table(name = "truong_phong_danh_gia")
 @Entity
-public class TruongPhongDanhGia {
+public class TruongPhongDanhGia implements Serializable {
 
 	@Id
 	@Column(name = "id")
@@ -26,16 +27,15 @@ public class TruongPhongDanhGia {
 	private int id;
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-	@JoinColumn(name = "ma_ky_danh_gia",  referencedColumnName="ma_ky_danh_gia")
+	@JoinColumn(name = "ma_ky_danh_gia",  referencedColumnName="ma_ky_danh_gia", insertable = true, updatable = true)
 	private KyDanhGia kyDanhGia;
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-	@JoinColumn(name = "ma_phong_ban",  referencedColumnName="ma_phong_ban")
+	@JoinColumn(name = "ma_phong_ban",  referencedColumnName="ma_phong_ban", insertable = true, updatable = true)
 	private PhongBan phongBan;
-
-	@NaturalId
+	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-	@JoinColumn(name = "nhan_vien",  referencedColumnName="ma_nhan_vien")
+	@JoinColumn(name = "nhan_vien",  referencedColumnName="ma_nhan_vien", insertable = true, updatable = true)
 	private HoSoNhanVien nhanVien;
 
 	@Column(name = "ky_luat_cong_viec")

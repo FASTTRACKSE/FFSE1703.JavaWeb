@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+ <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <%@ page session="false"%>
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
@@ -152,28 +153,35 @@
 												<td>${entities.khachHang.tenkh}</td>
 												<td>${entities.phongBan.tenPhongBan}</td>
 												<td>${entities.trangThai.tenTrangThai}</td>
-
-												<td><a
+												<td>
+												
+												<a href="/ffse-fbms/qlda/DuAn/view/${entities.maDuAn}"
+													data-toggle="tooltip" title="view">
+														<button type="button"
+															class="btn btn-icon btn-outline-info">
+															<i class="fa fa-eye"></i>
+														</button>
+												</a>
+												<sec:authorize access="hasRole('ROLE_PDATPP') or hasRole('ROLE_PITTPP') or hasRole('ROLE_PITNV')">
+												
+												<a
 													href="/ffse-fbms/qlda/DuAn/edit/${entities.maDuAn}"
 													data-toggle="tooltip" title="edit">
 														<button type="button"
 															class="btn btn-icon btn-outline-warning">
 															<i class="fa fa-pencil"></i>
 														</button>
-												</a> <a href="/ffse-fbms/qlda/DuAn/view/${entities.maDuAn}"
-													data-toggle="tooltip" title="view">
-														<button type="button"
-															class="btn btn-icon btn-outline-info">
-															<i class="fa fa-eye"></i>
-														</button>
-												</a> <a href="/ffse-fbms/qlda/DuAn/delete/${entities.maDuAn}">
+												</a>  <a href="/ffse-fbms/qlda/DuAn/delete/${entities.maDuAn}">
 														<button type="button"
 															onclick="if (!confirm('Are you sure you want to delete this database?')) return false"
 															class="btn btn-outline-danger btn-icon checkid"
 															data-toggle="modal" title="delete" data-target="#danger">
 															<i class="fa fa-trash-o"></i>
 														</button>
-												</a></td>
+												</a>
+												</sec:authorize>
+												</td>
+										
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -232,3 +240,5 @@
 </div>
 
 <jsp:include page="/WEB-INF/view/templates/footer.jsp" />
+
+

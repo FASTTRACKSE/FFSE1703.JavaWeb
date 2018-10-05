@@ -17,8 +17,6 @@
 						<div class="form-group col-sm-6">
 							 <form:hidden path="ngayNghi.soNgayDaNghi"/>
 							<form:hidden path="ngayNghi.soNgayConLai"/> 
-							
-						
 								<form:hidden class="form-control round" path="id" readonly="true" />
 							
 							<div>

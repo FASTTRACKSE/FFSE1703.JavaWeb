@@ -1,8 +1,10 @@
 package fasttrackse.ffse1703.fbms.controller.quanlynhansutt;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +18,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.HopDongTT;
+import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.PhongBanTT;
 import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.UserAccountTT;
 import fasttrackse.ffse1703.fbms.service.quanlynhansutt.HopDongServiceTT;
 import fasttrackse.ffse1703.fbms.service.quanlynhansutt.LoaiHopDongServiceTT;
 import fasttrackse.ffse1703.fbms.service.quanlynhansutt.UserAccountServiceTT;
-
-
 
 @Controller
 @RequestMapping("/quanlynhansutt/hop_dong/")
@@ -32,7 +33,7 @@ public class QuanLyHopDongControllerTT {
 
 	@Autowired
 	private HopDongServiceTT hopDongServiceTT;
-	
+
 	@Autowired
 	private UserAccountServiceTT userAccountService;
 
@@ -54,8 +55,15 @@ public class QuanLyHopDongControllerTT {
 
 	// List all contracts
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String viewHopDong(Model model) {
-		model.addAttribute("listHopDong", hopDongServiceTT.getAllHopDong());
+	public String viewHopDong(Model model, HttpServletRequest request, HttpSession session) {
+		String maPhongBan = " and  phongBan.maPhongBan = '" + request.getParameter("maphongban") + "'";
+		if (request.getParameter("maphongban") == null || request.getParameter("maphongban").equals("0")) {
+			maPhongBan = "";
+		}
+		System.out.println(maPhongBan);
+		String search = maPhongBan;
+		model.addAttribute("listHopDong", hopDongServiceTT.getAllHopDong(search));
+		model.addAttribute("maPhongBans", request.getParameter("maphongban"));
 		return "QuanLyNhanSuTT/QuanLyHopDongTT/list";
 	}
 
@@ -86,6 +94,11 @@ public class QuanLyHopDongControllerTT {
 		return "redirect:/quanlynhansutt/hop_dong/";
 	}
 
+	@ModelAttribute("phongban")
+	public List<PhongBanTT> danhSachPhongBan() {
+		return this.hopDongServiceTT.getAllPhongBan();
+	}
+
 	// Processing additional information, correcting a degree for an employee
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String saveHopDong(@ModelAttribute("hopDongTT") @Valid HopDongTT hd, BindingResult result, Model model) {
@@ -98,11 +111,8 @@ public class QuanLyHopDongControllerTT {
 			// check trùng quan hệ
 			int checkloaiHopDong = hopDongServiceTT.checkloaiHopDong(hd.getLoaiHopDong().getTenHopDong(),
 					hd.getHoSoNhanVienTT().getMaNhanVien());
-			System.out.println("nnnnn" + checkloaiHopDong);
-			System.out.println("nnnnn" + hd.getHoSoNhanVienTT().getMaNhanVien());
-			System.out.println("nnnnn" + hd.getLoaiHopDong().getTenHopDong());
 			if (checkloaiHopDong >= 1) {
-				model.addAttribute("messageQuanHe",
+				model.addAttribute("messageName",
 						"<script>alert('Nhân Viên Đã Có " + hd.getLoaiHopDong().getTenHopDong() + "');</script>");
 				return "QuanLyNhanSuTT/QuanLyHopDongTT/add_form";
 			}
@@ -121,11 +131,11 @@ public class QuanLyHopDongControllerTT {
 
 	// Show the contract to an employee
 	@RequestMapping("/viewOneHopDong/{maNhanVien}")
-	public String viewOneHopDong( @PathVariable int maNhanVien, Model model) {
-//		UserAccountTT userAccount = this.userAccountService.loadUserByUsername(request.getUserPrincipal().getName());
-//    	userAccount.getNhanVien().getMaNhanVien();
-//		model.addAttribute("role_nv", "true");
-		
+	public String viewOneHopDong(@PathVariable int maNhanVien, Model model) {
+		// UserAccountTT userAccount =
+		// this.userAccountService.loadUserByUsername(request.getUserPrincipal().getName());
+		// userAccount.getNhanVien().getMaNhanVien();
+		// model.addAttribute("role_nv", "true");
 		model.addAttribute("viewOne", this.hopDongServiceTT.viewOne(maNhanVien));
 		model.addAttribute("maNhanVien", maNhanVien);
 		return "QuanLyNhanSuTT/QuanLyHopDongTT/viewOneHopDong";

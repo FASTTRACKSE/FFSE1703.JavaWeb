@@ -16,9 +16,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 import fasttrackse.ffse1703.fbms.entity.security.PhongBan;
 
@@ -34,12 +31,10 @@ public class DanhGiaNhanVien implements Serializable {
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "ma_ky_danh_gia", referencedColumnName = "ma_ky_danh_gia", insertable = true, updatable = true)
-	@Fetch(FetchMode.JOIN)
 	private KyDanhGia kyDanhGia;
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "ma_phong_ban", referencedColumnName = "ma_phong_ban", insertable = true, updatable = true)
-	@Fetch(FetchMode.JOIN)
 	private PhongBan phongBan;
 	
 	@Column(name = "nhan_vien_danh_gia")
@@ -47,30 +42,29 @@ public class DanhGiaNhanVien implements Serializable {
 
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "nhan_vien", referencedColumnName = "ma_nhan_vien", insertable = true, updatable = true)
-	@Fetch(FetchMode.JOIN)
 	private HoSoNhanVien nhanVien;
 
-	@Column(name = "ky_luat_cong_viec", nullable = false)
+	@Column(name = "ky_luat_cong_viec")
 	@NotEmpty
 	private String kyLuatCongViec;
 
-	@Column(name = "tinh_than_lam_viec", nullable = false)
+	@Column(name = "tinh_than_lam_viec")
 	@NotEmpty
 	private String tinhThanLamViec;
 
-	@Column(name = "khoi_luong_cong_viec", nullable = false)
+	@Column(name = "khoi_luong_cong_viec")
 	@NotEmpty
 	private String khoiLuongCongViec;
 
-	@Column(name = "ket_qua_cong_viec", nullable = false)
+	@Column(name = "ket_qua_cong_viec")
 	@NotEmpty
 	private String ketQuaCongViec;
 
-	@Column(name = "ky_nang_tich_luy", nullable = false)
+	@Column(name = "ky_nang_tich_luy")
 	@NotEmpty
 	private String kyNangTichLuy;
 
-	@Column(name = "dinh_huong", nullable = false)
+	@Column(name = "dinh_huong")
 	@NotEmpty
 	private String dinhHuong;
 

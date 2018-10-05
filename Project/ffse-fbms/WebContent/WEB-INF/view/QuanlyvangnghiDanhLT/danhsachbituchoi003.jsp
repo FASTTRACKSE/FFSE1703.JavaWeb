@@ -11,11 +11,12 @@
 		<!-- Path -->
 		<div class="content-header row">
 		<div>
+			<div><a  class="btn btn-success" href="donxinphep003"> <spring:message code="label.soandonmoi"/>  </a></div>
 		<div class="col-md-5"></div>
 			<h3 ><spring:message code="label.danhsachtuchoi"/></h3>
 		</div>
 			<div>
-			<div><a href="donxinphep003"><h4><spring:message code="label.soandonmoi"/></a></div>
+			
 			<div class="container">
 			    <div class="table-responsive">
 						<table class="table mb-0">
@@ -23,13 +24,15 @@
 				<tr>
 					<th ><spring:message code="label.madon"/></th>
 					<th ><spring:message code="label.maNhanVien"/></th>
+					<th >Ho Và Tên</th>
+					<th >Phòng Ban</th>
 					<th ><spring:message code="label.ngaybatdau"/></th>
 					<th ><spring:message code="label.ngayketthuc"/></th>
 					<th ><spring:message code="label.lydo"/></th>
 					<th ><spring:message code="label.ghichunhanvien"/></th>
 					<th ><spring:message code="label.ghichutruongphong"/></th>
 					<th ><spring:message code="label.trangThai"/></th>
-					<th><spring:message code="label.chucnang"/></th>
+					
 					
 				</tr>
 				</thead>
@@ -38,6 +41,8 @@
 					<tr>
 					<td>${nv.id -1}</td>
 					<td>${nv.ngayNghi.maNhanVien}</td>
+					<td>${nv.hoDem }</td>
+					<td>${nv.maPhongBan }</td>
 					<td>${nv.ngayBatDau}</td>
 					<td>${nv.ngayKetThuc}</td>
 					<td>${nv.lyDo.lyDo}</td>

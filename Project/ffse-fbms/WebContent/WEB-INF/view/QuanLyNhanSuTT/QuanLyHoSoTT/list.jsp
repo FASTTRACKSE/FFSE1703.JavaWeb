@@ -119,7 +119,7 @@ i.fa {
 												<th><spring:message code="label.anhDaiDien" /></th>
 												<th><spring:message code="label.phongBan" /></th>
 												<th><spring:message code="label.chucDanh" /></th>
-												<th>Tên Nhân Viên</th>
+												<th><spring:message code="label.tenNhanVien" /></th>
 												<th><spring:message code="label.ngaySinh" /></th>
 												<th><spring:message code="label.gioiTinh" /></th>
 												<th><spring:message code="label.sdt" /></th>

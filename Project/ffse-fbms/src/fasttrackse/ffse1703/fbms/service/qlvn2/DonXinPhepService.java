@@ -1,11 +1,13 @@
 package fasttrackse.ffse1703.fbms.service.qlvn2;
 
 import java.util.List;
+
 import fasttrackse.ffse1703.fbms.entity.qlvn2.DonXinPhepEntity;
 import fasttrackse.ffse1703.fbms.entity.qlvn2.LyDoEntity;
 import fasttrackse.ffse1703.fbms.entity.qlvn2.SoNgayNghiEntity;
 import fasttrackse.ffse1703.fbms.entity.qlvn2.TrangThaiEntity;
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
+import fasttrackse.ffse1703.fbms.entity.security.PhongBan;
 
 public interface DonXinPhepService {
 	public List<DonXinPhepEntity> danhsachnhap003();
@@ -34,6 +36,14 @@ public interface DonXinPhepService {
 	public List<TrangThaiEntity> danhSachTrangThai();
 
 	public List<HoSoNhanVien> danhSachHoSo();
+	  
+	
+	public  List<PhongBan> danhSachPhong();
+	
+	public List<DonXinPhepEntity> listbyPhongBan(String maPB);
+	public List<DonXinPhepEntity> listbyPhongBan1(String maPB);
+
+
 
 	public DonXinPhepEntity findById(int id);
 

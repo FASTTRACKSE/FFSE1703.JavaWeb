@@ -6,6 +6,7 @@ import fasttrackse.ffse1703.fbms.entity.qlvn2.LyDoEntity;
 import fasttrackse.ffse1703.fbms.entity.qlvn2.SoNgayNghiEntity;
 import fasttrackse.ffse1703.fbms.entity.qlvn2.TrangThaiEntity;
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
+import fasttrackse.ffse1703.fbms.entity.security.PhongBan;
 
 public interface DonXinPhepDao {
 	public List<DonXinPhepEntity> danhsachnhap003();
@@ -25,7 +26,9 @@ public interface DonXinPhepDao {
 	public List<TrangThaiEntity> danhSachTrangThai();
 
 	public List<HoSoNhanVien> danhSachHoSo();
-
+	
+	public  List<PhongBan> danhSachPhong();
+	
 	public void create(DonXinPhepEntity DonXinPhepEntity);
 
 	public void createcho(DonXinPhepEntity DonXinPhepEntity);
@@ -47,7 +50,9 @@ public interface DonXinPhepDao {
 	public List<SoNgayNghiEntity>  findAllForPagingngaynghi(int startPosition,int maxResult);
 	public List<TrangThaiEntity>  findAllForPagingTT(int startPosition,int maxResult);
 
-	
+	public List<DonXinPhepEntity> listbyPhongBan(String maPB);
+	public List<DonXinPhepEntity> listbyPhongBan1(String maPB);
+
 	
 
 }

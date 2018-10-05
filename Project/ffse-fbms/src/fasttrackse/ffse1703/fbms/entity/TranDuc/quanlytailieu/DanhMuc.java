@@ -14,6 +14,17 @@ public class DanhMuc {
 
 	@Column(name = "Ten_Danh_Muc")
 	String tenDM;
+	
+	public Integer getIsDelete() {
+		return isDelete;
+	}
+
+	public void setIsDelete(Integer isDelete) {
+		this.isDelete = isDelete;
+	}
+
+	@Column(name = "isDelete")
+	private Integer isDelete;
 
 	public DanhMuc() {
 

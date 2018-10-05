@@ -14,6 +14,7 @@
 
 				<form:form method="POST" modelAttribute="donxinphep003">
 					<div class="row">
+
 						<div class="form-group col-sm-6">
 							<div>
 								<label><spring:message code="label.madon"/></label>
@@ -31,6 +32,16 @@
 									</c:forEach>
 								</form:select>
 							</div>
+							<div>
+								<label>Họ Và Tên</label>
+								<form:select path="hoDem"
+									class="custom-select block round" id="customSelect">
+									<c:forEach items="${hoso}" var="ld">
+										<form:option value="${ld.hoDem} ${ld.ten }" label="${ld.hoDem} ${ld.ten } " />
+									</c:forEach>
+								</form:select>
+							</div>
+							
 							<div>
 								<label><spring:message code="label.ngaybatdau"/></label>
 								<fieldset class="form-group position-relative">
@@ -139,7 +150,7 @@
 							<div>
 								<label><spring:message code="label.ghichunhanvien"/></label>
 								<form:input class="form-control round"  placeholder="ghiChu" path="ghiChu" />
-							
+							 <form:errors path="ghiChu" cssStyle="color: red" ></form:errors> 
 							</div>
 						</div>
 
@@ -157,7 +168,15 @@
 								<label><spring:message code="label.songaynghi"/></label>
 								<form:input type="text" class="form-control round" id="total"  readonly="true" path="soNgayNghi" />
 							</div>
-							
+							<div>
+								<label>Phòng Ban</label>
+								<form:select path="maPhongBan"
+									class="custom-select block round" id="customSelect">
+									<c:forEach items="${phongban}" var="ld">
+										<form:option value="${ld.maPhongBan}" label="${ld.maPhongBan}  " />
+									</c:forEach>
+								</form:select>
+							</div>
 							<div>
 								<label><spring:message code="label.ngayketthuc"/></label>
 								<fieldset class="form-group position-relative">
@@ -166,6 +185,7 @@
 									<div class="form-control-position">
 										<i class="fa fa-calendar-o"></i>
 									</div>
+									<form:errors path="ngayKetThuc" cssStyle="color: red" ></form:errors> 
 								</fieldset>
 								<script>
 													var today = new Date();
@@ -236,7 +256,7 @@
 							</div>
 						</div>
 						
-						
+						<div>
 						<div class="col-md-2">
 							<button type="submit" class="btn btn-success"
 							formaction="<%=request.getContextPath()%>/QuanlyvangnghiDanhLT/donxinphep003/nhap"><spring:message code="label.luunhap"/></button>
@@ -251,10 +271,9 @@
 			</div>
 
 			</form:form>
+			
 		</div>
 	</div>
-</div>
-
-
-
-<jsp:include page="/WEB-INF/view/templates/footer.jsp" />
+	</div>
+	</div>
+	<jsp:include page="/WEB-INF/view/templates/footer.jsp" />

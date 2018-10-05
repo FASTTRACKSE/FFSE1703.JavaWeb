@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -33,6 +35,13 @@
 							Mới<span data-i18n="" class="ft-plus-square"></span>
 						</a>
 					</div>
+					<div role="group" aria-label="Button group with nested dropdown"
+						class="btn-group float-md-right" id="add-new">
+						<a class="btn btn-primary"
+							href='<c:url value = "/TranDuc-QuanLyTaiLieu/TrangThai/bin" />'>Trạng
+							Thái Đã Xóa<span data-i18n="" class="fa fa-trash red"></span>
+						</a>
+					</div>
 				</div>
 			</div>
 			<!-- End Path -->
@@ -57,7 +66,7 @@
 					<div class="col-xs-12">
 						<div class="card">
 							<div class="card-header">
-								<h4 class="card-title">Danh Sách Danh Mục</h4>
+								<h4 class="card-title">Danh Sách Trạng Thái</h4>
 								<a class="heading-elements-toggle"><i
 									class="fa fa-ellipsis-v font-medium-3"></i></a>
 								<div class="heading-elements">
@@ -98,7 +107,7 @@
 																title="Sửa"> <i class="fa fa-pencil-square-o blue"
 																	aria-hidden="true"></i>
 															</a> <a
-																href="<c:url value="/TranDuc-QuanLyTaiLieu/TrangThai/xoa/${item.maTT}" />"
+																href="<c:url value="/TranDuc-QuanLyTaiLieu/TrangThai/trashBin/${item.maTT}" />"
 																title="Xóa"
 																onclick="return confirm('Bạn có chắc muốn xóa ?')">
 																	<i class="fa fa-trash red" aria-hidden="true"></i>

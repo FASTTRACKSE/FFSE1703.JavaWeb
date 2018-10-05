@@ -404,11 +404,11 @@
 			<!-- List page cho nhân viên -->
 			<ul id="main-menu-navigation" data-menu="menu-navigation"
 				class="navigation navigation-main">
-				<!-- Quản trị đánh giá -->
+				<!-- Quản trị đánh giá :: START-->
 				<li class=" navigation-header"><span>Quản trị đánh giá</span><i
 					data-toggle="tooltip" data-placement="right"
 					data-original-title="Apps" class=" ft-minus"></i></li>
-				<c:if test="${chucDanh eq 'NV' }">
+				<sec:authorize access="hasAnyRole('ROLE_NV','ROLE_PNSNV')">
 					<li class=" nav-item"><a
 						href="<c:url value = "/quantridanhgia/nhanvien/danhgiabanthan"/>"><i
 							class="fa fa-user"></i><span data-i18n="" class="menu-title">Tự
@@ -421,24 +421,33 @@
 						href="<c:url value = "/quantridanhgia/nhanvien/danhgiacuatruongphong"/>"><i
 							class="fa fa-user-secret"></i><span data-i18n=""
 							class="menu-title">Đánh giá của trưởng phòng</span></a></li>
-				</c:if>
-				<c:if test="${chucDanh eq 'TP' }">
+				</sec:authorize>
+				<sec:authorize
+					access="hasAnyRole('ROLE_PNSNV','ROLE_PNSTPP')">
+					<li class=" nav-item"><a
+						href="<c:url value = "/quantridanhgia/phongnhansu/kydanhgia"/>"><i
+							class="fa fa-user"></i><span data-i18n="" class="menu-title">Kỳ
+								đánh giá</span></a></li>
+					<li class=" nav-item"><a
+						href="<c:url value = "/quantridanhgia/phongnhansu/lichdanhgia"/>"><i
+							class="fa fa-users"></i><span data-i18n="" class="menu-title">Lịch
+								đánh giá</span></a></li>
+					<li class=" nav-item"><a
+						href="<c:url value = "/quantridanhgia/phongnhansu/danhsachdanhgia"/>"><i
+							class="fa fa-user-secret"></i><span data-i18n=""
+							class="menu-title">Danh sách đánh giá bản thân</span></a></li>
+				</sec:authorize>
+				<sec:authorize access="hasAnyRole('ROLE_PGDTPP','ROLE_PNSTPP','ROLE_PDATPP','ROLE_PDTTPP','ROLE_PITTPP','ROLE_PKTTPP')">
 					<li class=" nav-item"><a
 						href="<c:url value = "/quantridanhgia/truongphong/duyetdanhgia"/>"><i
-							class="fa fa-users"></i><span data-i18n="" class="menu-title">Danh
-								sách nhân viên</span></a></li>
-				</c:if>
-				<c:if test="${chucDanh eq 'PNS' }">
+							class="fa fa-user"></i><span data-i18n="" class="menu-title">Duyệt
+								đánh giá</span></a></li>
 					<li class=" nav-item"><a
 						href="<c:url value = "/quantridanhgia/truongphong/danhgianhanvien"/>"><i
-							class="fa fa-users"></i><span data-i18n="" class="menu-title">Tạo kỳ đánh giá</span></a></li>
-							<li class=" nav-item"><a
-						href="<c:url value = "/quantridanhgia/truongphongdanhgia/home"/>"><i
-							class="fa fa-users"></i><span data-i18n="" class="menu-title">Lập danh sách đánh giá</span></a></li>
-							<li class=" nav-item"><a
-						href="<c:url value = "/quantridanhgia/truongphongdanhgia/home"/>"><i
-							class="fa fa-users"></i><span data-i18n="" class="menu-title">Danh sách đánh giá</span></a></li>
-				</c:if>
+							class="fa fa-users"></i><span data-i18n="" class="menu-title">Đánh
+								giá nhân viên</span></a></li>
+				</sec:authorize>
+				<!-- Quản trị đánh giá :: END-->
 			</ul>
 
 

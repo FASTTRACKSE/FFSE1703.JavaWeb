@@ -14,7 +14,7 @@ import javax.validation.constraints.NotEmpty;
 public class KyDanhGia implements Serializable {
 
 	@Id
-	@Column(name = "ma_ky_danh_gia", unique = true)
+	@Column(name = "ma_ky_danh_gia")
 	@NotEmpty
 	private String maKy;
 

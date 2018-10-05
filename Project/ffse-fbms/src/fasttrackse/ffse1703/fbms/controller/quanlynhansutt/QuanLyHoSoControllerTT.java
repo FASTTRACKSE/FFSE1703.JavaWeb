@@ -240,7 +240,6 @@ public class QuanLyHoSoControllerTT {
 	public String editSave(@ModelAttribute("formHoso") HoSoNhanVienTT hoSoNhanVienTT, BindingResult result,
 			@RequestParam("file") MultipartFile file, HttpSession session) throws IOException {
 		hoSoNhanVienTT.setAnhDaiDien(getNhanVien.getAnhDaiDien());
-
 		ServletContext context = session.getServletContext();
 		String path = context.getRealPath(UPLOAD_DIRECTORY);
 		File fileUpload = new File(path);

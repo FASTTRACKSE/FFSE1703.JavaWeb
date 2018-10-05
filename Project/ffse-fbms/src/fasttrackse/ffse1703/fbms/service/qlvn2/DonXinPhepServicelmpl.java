@@ -1,8 +1,6 @@
 package fasttrackse.ffse1703.fbms.service.qlvn2;
 
 import java.util.List;
-
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,6 +11,7 @@ import fasttrackse.ffse1703.fbms.entity.qlvn2.LyDoEntity;
 import fasttrackse.ffse1703.fbms.entity.qlvn2.SoNgayNghiEntity;
 import fasttrackse.ffse1703.fbms.entity.qlvn2.TrangThaiEntity;
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
+import fasttrackse.ffse1703.fbms.entity.security.PhongBan;
 
 @Service
 @Transactional
@@ -65,6 +64,14 @@ public class DonXinPhepServicelmpl implements DonXinPhepService {
 	public List<HoSoNhanVien> danhSachHoSo() {
 	return this.DonXinPhepDao.danhSachHoSo();
 	}
+
+	
+	public List<PhongBan> danhSachPhong() {
+		return this.DonXinPhepDao.danhSachPhong();
+		
+	}
+
+
 
 	
 	public void create(DonXinPhepEntity DonXinPhepEntity) {
@@ -120,15 +127,19 @@ public class DonXinPhepServicelmpl implements DonXinPhepService {
 	public List<SoNgayNghiEntity> findAllForPagingngaynghi(int startPosition, int maxResult) {
 		return this.DonXinPhepDao.findAllForPagingngaynghi(startPosition, maxResult);
 	}
-
-	@Override
 	public List<TrangThaiEntity> findAllForPagingTT(int startPosition, int maxResult) {
 		return this.DonXinPhepDao.findAllForPagingTT(startPosition, maxResult);
 	}
 
-	
+	@Override
+	public List<DonXinPhepEntity> listbyPhongBan(String maPB) {
+		return DonXinPhepDao.listbyPhongBan(maPB);
+	}
 
+	@Override
+	public List<DonXinPhepEntity> listbyPhongBan1(String maPB) {
+		return DonXinPhepDao.listbyPhongBan1(maPB);
+	}
 	
-
 
 }

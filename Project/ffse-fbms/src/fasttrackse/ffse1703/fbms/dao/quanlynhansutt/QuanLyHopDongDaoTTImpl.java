@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.HoSoNhanVienTT;
 import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.HopDongTT;
+import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.PhongBanTT;
 
 @Repository
 public class QuanLyHopDongDaoTTImpl implements QuanLyHopDongDaoTT {
@@ -19,9 +20,9 @@ public class QuanLyHopDongDaoTTImpl implements QuanLyHopDongDaoTT {
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<HopDongTT> getAllHopDong() {
+	public List<HopDongTT> getAllHopDong(String search) {
 		Session session = sessionFactory.getCurrentSession();
-		List<HopDongTT> listHopDong = session.createQuery("from HopDongTT where isdelete = 1").getResultList();
+		List<HopDongTT> listHopDong = session.createQuery("from HopDongTT where isdelete = 1 and trang_thai = 1" + search).getResultList();
 		return listHopDong;
 	}
 
@@ -30,6 +31,7 @@ public class QuanLyHopDongDaoTTImpl implements QuanLyHopDongDaoTT {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.save(tt);
 	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<HoSoNhanVienTT> getAllNhanVien() {
@@ -37,7 +39,6 @@ public class QuanLyHopDongDaoTTImpl implements QuanLyHopDongDaoTT {
 		List<HoSoNhanVienTT> listHopDong = session.createQuery("from HoSoNhanVienTT").getResultList();
 		return listHopDong;
 	}
-
 
 	@Override
 	public void updateHopDong(HopDongTT tt) {
@@ -68,22 +69,16 @@ public class QuanLyHopDongDaoTTImpl implements QuanLyHopDongDaoTT {
 		return null;
 	}
 
-	@Override
-	public String getRecordsFiltered(String sql) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String getAutoId() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
+	@SuppressWarnings({ "unused", "unchecked" })
 	@Override
 	public List<HopDongTT> getHopDongByPhongBan(String maPhongBan) {
 		// TODO Auto-generated method stub
-		return null;
+		Session session = this.sessionFactory.openSession();
+		@SuppressWarnings("rawtypes")
+		Query query = session.createQuery("from HopDongTT where ma_phong_ban = "+maPhongBan+" and trang_thai = 1 and isdelete = 1");
+		List<HopDongTT> listHopDong = query.list();
+		return listHopDong;
 	}
 
 	@Override
@@ -120,6 +115,15 @@ public class QuanLyHopDongDaoTTImpl implements QuanLyHopDongDaoTT {
 				"from HopDongTT where ma_loai_hop_dong = '" + loaiHopDong + "' and ma_nhan_vien = '" + maNhanVien + "'",
 				HopDongTT.class).list();
 		return dm.size();
+	}
+
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<PhongBanTT> getAllPhongBan(){
+		Session session = sessionFactory.getCurrentSession();
+		List<PhongBanTT> list = session.createQuery("from PhongBanTT").getResultList();
+		return list;
 	}
 
 

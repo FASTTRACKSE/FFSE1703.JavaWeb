@@ -12,7 +12,6 @@
 	<jsp:include page="/WEB-INF/view/templates/header.jsp" />
 	<div class="app-content content container-fluid">
 		<div class="content-wrapper">
-
 			<!-- Path -->
 			<div class="content-header row">
 				<div class="content-header-left col-md-6 col-xs-12 mb-2">
@@ -32,11 +31,10 @@
 				</div>
 			</div>
 			<!-- End Path -->
-
 			<div class="content-body">
 				<div class="main-content">
 					<div class="row">
-						<form:form method="POST" modelAttribute="TrangThai" action="">
+						<form:form method="POST" modelAttribute="TrangThai" action="add_formTT">
 							<div class="form-group col-sm-6">
 								<label>Mã Trạng Thái</label>
 								<form:input class="form-control" path="maTT"

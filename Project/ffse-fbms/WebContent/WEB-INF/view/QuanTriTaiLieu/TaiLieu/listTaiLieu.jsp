@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -78,7 +79,7 @@
 												<tr>
 													<th><spring:message code="label.id" /></th>
 													<th><spring:message code="label.nameDocument" /></th>
-													<th><spring:message code="label.maDocument" /></th>
+													<th><spring:message code="label.maDanhMuc" /></th>
 													<th><spring:message code="label.file" /></th>
 													<th><spring:message code="label.maStatus" /></th>
 													<th><spring:message code="label.moTa" /></th>
@@ -99,14 +100,7 @@
 															<td>${sv.mo_ta}</td>
 															<td>${sv.ghi_chu }</td>
 															<td>${sv.ma_phong_ban }</td>
-															<td><a
-																href="/ffse-fbms/QuanTriTaiLieu/TaiLieu/edit/${sv.id}"
-																data-toggle="tooltip" title="edit">
-																	<button type="button"
-																		class="btn btn-icon btn-outline-warning">
-																		<i class="fa fa-pencil"></i>
-																	</button>
-															</a>
+															<td>
 															<a
 																href="/ffse-fbms/QuanTriTaiLieu/TaiLieu/download/${sv.id}"
 																data-toggle="tooltip" title="download">
@@ -115,7 +109,16 @@
 																		<i class="ft-download"></i>
 																	</button>
 															</a>
-															 <a
+															<sec:authorize access="hasRole('ROLE_PDTTPP')">
+															<a
+																href="/ffse-fbms/QuanTriTaiLieu/TaiLieu/edit/${sv.id}"
+																data-toggle="tooltip" title="edit">
+																	<button type="button"
+																		class="btn btn-icon btn-outline-warning">
+																		<i class="fa fa-pencil"></i>
+																	</button>
+															</a>
+															<a
 																href="/ffse-fbms/QuanTriTaiLieu/TaiLieu/delete/${sv.id}">
 																	<button type="button"
 																		onclick="if (!confirm('Are you sure you want to delete this database?')) return false"
@@ -124,7 +127,9 @@
 																		data-target="#danger">
 																		<i class="fa fa-trash-o"></i>
 																	</button>
-															</a></td>
+															</a>
+									</sec:authorize>
+															</td>
 														</tr>
 													</c:forEach>
 												</c:if>

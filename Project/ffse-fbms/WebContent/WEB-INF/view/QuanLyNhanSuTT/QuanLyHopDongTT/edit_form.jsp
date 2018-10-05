@@ -72,7 +72,6 @@
 																	path="hoSoNhanVienTT.maNhanVien"
 																	placeholder="Mã Nhân Viên" />
 															</div>
-
 														</div>
 														<div class="row">
 															<div class="form-group col-sm-6">

@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<jsp:include page="/WEB-INF/view/QuanTriDanhGia/templates/header.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/view/templates/header.jsp"></jsp:include>
 <div class="app-content content container-fluid">
 	<div class="content-wrapper">
 		<div class="content-header row">

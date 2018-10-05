@@ -2,21 +2,20 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
-
 <div class="app-content content container-fluid" style="background-color: #CCCCCC">
 	<div class="content-wrapper">
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">Thêm Dự Án</h3>
+				<h3 class="content-header-title mb-0"><spring:message code="label.themNhiemVu" /></h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="/ffse-fbms/home">Home</a></li>
 							<li class="breadcrumb-item"><a
-								href="/ffse-fbms/qlda/DuAn/PhanCongNhiemVu/list/${duAn.maDuAn}">Danh
-									sách nhiệm vụ</a></li>
-							<li class="breadcrumb-item active">Thêm Nhiệm Vụ</li>
+								href="/ffse-fbms/qlda/DuAn/PhanCongNhiemVu/list/${duAn.maDuAn}"><spring:message code="label.listNhiemVu" /></a></li>
+							<li class="breadcrumb-item active"><spring:message code="label.themNhiemVu" /></li>
 						</ol>
 					</div>
 				</div>
@@ -27,7 +26,7 @@
 		<div class="col-sm-4"></div>
 		<div class="col-sm-4">
 			<h1>
-				<strong>PHÂN CÔNG NHIỆM VỤ</strong>
+				<strong><spring:message code="label.phanCongNhiemVu" /></strong>
 			</h1>
 		</div>
 	</div>
@@ -35,7 +34,7 @@
 		action="/ffse-fbms/qlda/DuAn/PhanCongNhiemVu/create"
 		modelAttribute="nhiemvu">
 		<div class="form-group col-sm-12">
-			<label>Tên dự án</label>
+			<label><spring:message code="label.tenDuAn" /></label>
 			<form:select path="maDuAn" cssClass="form-control" >
 
 				<option value="${duAn.maDuAn}">${duAn.tenDuAn}</option>
@@ -46,7 +45,7 @@
 		</div>
 
 		<div class="form-group col-sm-6">
-			<label>Tên vai trò</label>
+			<label><spring:message code="label.vaiTroDuAn" /></label>
 
 			<form:select path="maVaiTro" cssClass="form-control"
 				items="${vaitro}" itemLabel="tenvt" itemValue="mavt">
@@ -54,7 +53,7 @@
 			<form:errors path="maVaiTro" cssStyle="color: red"></form:errors>
 		</div>
 		<div class="form-group col-sm-6">
-			<label>Tên nhân viên</label>
+			<label><spring:message code="label.nhanVien" /></label>
 
 			<form:select path="maNhanVien" cssClass="form-control">
 				<c:forEach items="${nhanvien}" var="nv">
@@ -65,7 +64,7 @@
 
 		</div>
 		<div class="col-sm-12 text-center">
-			<button type="submit" class="btn btn-success">Lưu thông tin</button>
+			<button type="submit" class="btn btn-success"><spring:message code="label.luu" /></button>
 		</div>
 	</form:form>
 	<div class="col-sm-4">

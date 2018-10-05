@@ -52,7 +52,7 @@ th, td {
 					class="btn-group float-md-right" id="add-new">
 					<a
 						href="<c:url value = "/quanlynhansutt/hop_dong/add_hopdong/${maNhanVien}"/>"
-						class="btn btn-primary"><span class="fa fa-plus"></span><spring:message
+						class="btn btn-primary"><span class="fa fa-plus"></span> <spring:message
 							code="label.themMoi" /></a>
 				</div>
 			</div>
@@ -74,6 +74,44 @@ th, td {
 										<li><a data-action="expand"><i class="ft-maximize"></i></a></li>
 									</ul>
 								</div>
+								<p>
+								<div class="col-md-4">
+									<form method="GET" action="">
+										<div class="col-md-6">
+											<div class="form-group">
+												<spring:message code="label.maNhanVien" />
+												<select name="maphongban"
+													class="form-control form-control-sm" id="maphongban">
+													<option value="0" selected="selected">--
+														<spring:message code="label.tatCa" />--
+													</option>
+													<c:forEach items="${phongban}" var="nn">
+														<option value="${nn.maPhongBan}"
+															<c:if test="${maPhongBans == nn.maPhongBan }"> selected="selected"</c:if>>${nn.maPhongBan}</option>
+													</c:forEach>
+												</select>
+											</div>
+										</div>
+										<div class="col-md-6" style="margin-top: 20px">
+											<label></label>
+											<button type="submit"
+												class="btn mr-1 mb-1 btn-success btn-sm">
+												<i class="fa fa-search"></i>
+												<spring:message code="label.tim" />
+											</button>
+										</div>
+										<script type="text/javascript">
+											NhanVien =
+										<%=request.getParameter("maphongban")%>
+											;
+											if (maphongban != 0
+													&& maphongban != null) {
+												$("#maphongban")
+														.val(maphongban);
+											}
+										</script>
+									</form>
+								</div>
 							</div>
 							<div class="card-body collapse in">
 								<div class="card-block card-dashboard">
@@ -88,7 +126,7 @@ th, td {
 												<th><spring:message code="label.soNgayPhep" /></th>
 												<th><spring:message code="label.ngayKy" /></th>
 												<th><spring:message code="label.hopDongTuNgay" /></th>
-												<th><spring:message code="label.hopDongDenNgay" /></th> 
+												<th><spring:message code="label.hopDongDenNgay" /></th>
 												<th><spring:message code="label.trangThai" /></th>
 												<th><spring:message code="label.chucNang" /></th>
 											</tr>
@@ -101,11 +139,9 @@ th, td {
 													<td>${hshd.loaiHopDong.tenHopDong}</td>
 													<td><c:if test="${hshd.luongThang13 == 1}">
 															<spring:message code="label.co" />
-														</c:if> 
-														<c:if test="${hshd.luongThang13 == 2}">
+														</c:if> <c:if test="${hshd.luongThang13 == 2}">
 															<spring:message code="label.khong" />
-														</c:if>
-													</td>
+														</c:if></td>
 													<td>${hshd.soNgayPhep}</td>
 													<td>${hshd.ngayKy}</td>
 													<td>${hshd.hopDongTuNgay}</td>

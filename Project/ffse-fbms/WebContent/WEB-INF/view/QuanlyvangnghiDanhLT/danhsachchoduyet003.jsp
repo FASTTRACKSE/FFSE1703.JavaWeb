@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+ <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@ page session="false"%>
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 
@@ -11,24 +12,26 @@
 		<!-- Path -->
 		<div class="content-header row">
 		<div>
-		<div class="col-md-5"></div>
+			<div><a  class="btn btn-success" href="donxinphep003"> <spring:message code="label.soandonmoi"/>  </a></div>
+		
 			<h3 ><spring:message code="label.danhsachchoduyet"/></h3>
 		</div>
 			<div>
-			<div><a href="donxinphep003"><h4><spring:message code="label.soandonmoi"/></a></div>
 			<div class="container">
 			    <div class="table-responsive">
 						<table class="table mb-0">
 			<tr>
 					<th ><spring:message code="label.madon"/></th>
 					<th ><spring:message code="label.maNhanVien"/></th>
+					<th >Ho Và Tên</th>
+					<th >Phòng Ban</th>
 					<th ><spring:message code="label.ngaybatdau"/></th>
 					<th ><spring:message code="label.ngayketthuc"/></th>
 					<th ><spring:message code="label.lydo"/></th>
 					<th ><spring:message code="label.ghichunhanvien"/></th>
 					<th ><spring:message code="label.ghichutruongphong"/></th>
 					<th ><spring:message code="label.trangThai"/></th>
-					<th><spring:message code="label.chucnang"/></th>
+				
 					
 				</tr>
 				<tbody>
@@ -36,14 +39,29 @@
 					<tr>
 					<td>${nv.id -1 }</td>
 					<td>${nv.ngayNghi.maNhanVien}</td>
+					<td>${nv.hoDem }</td>
+					<td>${nv.maPhongBan }</td>
 					<td>${nv.ngayBatDau}</td>
 					<td>${nv.ngayKetThuc}</td>
 					<td>${nv.lyDo.lyDo}</td>
 					<td>${nv.ghiChu}</td>
 					<td>${nv.ghiChuTruongPhong}</td>
 					<td>${nv.trangThai.trangThai}</td>
-					<td><a  href="suadoncho/${nv.id  }"><button class="btn btn-success">
-									<th ><spring:message code="label.sua"/></button></a> 
+					
+					
+					<td>
+					<sec:authorize access=" hasRole('ROLE_PGD') or hasRole('ROLE_PNSTPP') or hasRole('ROLE_PDATPP') or hasRole('ROLE_PDTTPP') or hasRole('ROLE_PITTPP') or hasRole('ROLE_PKTTPP')">
+					<div>
+								<button type=submit  class="btn btn-danger"
+									formaction="<%=request.getContextPath()%>/QuanlyvangnghiDanhLT/updatechoduyet/tuchoi">Từ
+									chối</button>
+							</div>
+									<button type="submit" class="btn btn-success"
+										formaction="<%=request.getContextPath()%>/QuanlyvangnghiDanhLT/updatechoduyet/daduyet">Duyệt</button>
+								</div>
+							</div>
+						</div>
+									</sec:authorize>
 					</td>
 						</tr>
 				</c:forEach>
@@ -57,7 +75,7 @@
 													id="DataTables_Table_5_first"
 													${currentPage == 1 ? 'd-none' : ''}><a
 													href="<%=request.getContextPath()%>/QuanlyvangnghiDanhLT/danhsachchoduyet003?page=1"
-													aria-controls="DataTables_Table_5" class="page-link"><spring:message code="label.trangdau"/></th>
+													aria-controls="DataTables_Table_5" class="page-link"><spring:message code="label.trangdau"/>
 					</a></li>
 
 												<li class="paginate_button page-item previous"

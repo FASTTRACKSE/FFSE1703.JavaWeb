@@ -32,6 +32,9 @@ public class ThongKeDonXinPhep {
 	@JoinColumn(name ="ma_nhan_vien")
 	private NgayNghi ngayNghi;
 	
+	@Column(name="ten_phong_ban")
+	private String tenPhongBan;
+	
 	@Column(name="ten_nhan_vien")
 	private String tenNhanVien;
  
@@ -119,6 +122,14 @@ public class ThongKeDonXinPhep {
 
 	public String getGhiChu() {
 		return ghiChu;
+	}
+
+	public String getTenPhongBan() {
+		return tenPhongBan;
+	}
+
+	public void setTenPhongBan(String tenPhongBan) {
+		this.tenPhongBan = tenPhongBan;
 	}
 
 	public void setGhiChu(String ghiChu) {

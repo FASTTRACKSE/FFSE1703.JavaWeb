@@ -14,6 +14,7 @@ import fasttrackse.ffse1703.fbms.entity.qlvn.NgayNghi;
 import fasttrackse.ffse1703.fbms.entity.qlvn.ThongKeDonXinPhep;
 import fasttrackse.ffse1703.fbms.entity.qlvn.TrangThaiVN;
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
+import fasttrackse.ffse1703.fbms.entity.security.PhongBan;
 
 @Repository(value = "quanLyVangNghiDao")
 @Transactional(rollbackFor = Exception.class)
@@ -26,25 +27,28 @@ public class QuanLyVangNghiDaoIpml implements QuanLyVangNghiDao {
 		this.sessionFactory = sessionFactory;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<ThongKeDonXinPhep> danhSachXinNghiChoDuyet() {
 		Session session = sessionFactory.getCurrentSession();
 		List<ThongKeDonXinPhep> list = session.createQuery("from ThongKeDonXinPhep where trangThai = '2'").getResultList();
 		return list;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<ThongKeDonXinPhep> danhSachXinNghiDuyet() {
 		Session session = sessionFactory.getCurrentSession();
 		List<ThongKeDonXinPhep> list = session.createQuery("from ThongKeDonXinPhep where trangThai = '3'" ).getResultList();
 		return list;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<ThongKeDonXinPhep> danhSachXinNghiNhap() {
 		Session session = sessionFactory.getCurrentSession();
 		List<ThongKeDonXinPhep> list = session.createQuery("from ThongKeDonXinPhep where trangThai = '1'").getResultList();
 		return list;
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public List<ThongKeDonXinPhep> findAllForPaging(int startPosition, int maxResult) {
 		Session session = this.sessionFactory.getCurrentSession();
 		Query q = session.createQuery("from ThongKeDonXinPhep where trangThai = '1'");
@@ -61,6 +65,7 @@ public class QuanLyVangNghiDaoIpml implements QuanLyVangNghiDao {
 		return (Long) query.uniqueResult();
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<ThongKeDonXinPhep> danhSachXinNghiTuChoi() {
 		Session session = sessionFactory.getCurrentSession();
 		List<ThongKeDonXinPhep> list = session.createQuery("from ThongKeDonXinPhep where trangThai = '4'")
@@ -68,15 +73,25 @@ public class QuanLyVangNghiDaoIpml implements QuanLyVangNghiDao {
 		return list;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<LyDoXinNghi> loadAllLyDo() {
 		Session session = sessionFactory.getCurrentSession();
 		List<LyDoXinNghi> list = session.createQuery("from LyDoXinNghi").list();
 		return list;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<HoSoNhanVien> loadAllHoSo() {
 		Session session = sessionFactory.getCurrentSession();
 		List<HoSoNhanVien> list = session.createQuery("from HoSoNhanVien").list();
+		return list;
+
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<PhongBan> loadAllPhongBan() {
+		Session session = sessionFactory.getCurrentSession();
+		List<PhongBan> list = session.createQuery("from PhongBan").list();
 		return list;
 
 	}
@@ -169,6 +184,7 @@ public class QuanLyVangNghiDaoIpml implements QuanLyVangNghiDao {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<NgayNghi> danhSachNgayNghi() {
 		Session session = sessionFactory.getCurrentSession();
 		List<NgayNghi> list = session.createQuery("from NgayNghi").getResultList();
@@ -186,6 +202,7 @@ public class QuanLyVangNghiDaoIpml implements QuanLyVangNghiDao {
 		session.delete(findByIdDateOff(maNhanVien));
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<ThongKeDonXinPhep> findAllForPagingCD(int startPosition, int maxResult, String search) {
 		Session session = this.sessionFactory.getCurrentSession();
 		Query q = session.createQuery("from ThongKeDonXinPhep where trangThai = '2'" + search);
@@ -195,6 +212,8 @@ public class QuanLyVangNghiDaoIpml implements QuanLyVangNghiDao {
 		return q.list();
 	}
 
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<ThongKeDonXinPhep> findAllForPagingD(int startPosition, int maxResult, String search) {
 		Session session = this.sessionFactory.getCurrentSession();
 		Query q = session.createQuery("from ThongKeDonXinPhep where trangThai = '3'" + search);
@@ -204,6 +223,7 @@ public class QuanLyVangNghiDaoIpml implements QuanLyVangNghiDao {
 		return q.list();
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<ThongKeDonXinPhep> findAllForPagingTC(int startPosition, int maxResult) {
 		Session session = this.sessionFactory.getCurrentSession();
 		Query q = session.createQuery("from ThongKeDonXinPhep where trangThai = '4'");
@@ -213,6 +233,7 @@ public class QuanLyVangNghiDaoIpml implements QuanLyVangNghiDao {
 		return q.list();
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<NgayNghi> findAllForPagingNN(int startPosition, int maxResult,String search) {
 		Session session = this.sessionFactory.getCurrentSession();
 		Query q = session.createQuery("from NgayNghi " + search);
@@ -222,6 +243,7 @@ public class QuanLyVangNghiDaoIpml implements QuanLyVangNghiDao {
 		return q.list();
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<TrangThaiVN> findAllForPagingTrangThai(int startPosition, int maxResult) {
 		Session session = this.sessionFactory.getCurrentSession();
 		Query q = session.createQuery("from TrangThaiVN ");
@@ -231,6 +253,7 @@ public class QuanLyVangNghiDaoIpml implements QuanLyVangNghiDao {
 		return q.list();
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<TrangThaiVN> danhSachTrangThai() {
 		Session session = sessionFactory.getCurrentSession();
 		List<TrangThaiVN> list = session.createQuery("from TrangThaiVN").getResultList();

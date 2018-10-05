@@ -7,6 +7,7 @@ import fasttrackse.ffse1703.fbms.entity.qlvn.NgayNghi;
 import fasttrackse.ffse1703.fbms.entity.qlvn.ThongKeDonXinPhep;
 import fasttrackse.ffse1703.fbms.entity.qlvn.TrangThaiVN;
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
+import fasttrackse.ffse1703.fbms.entity.security.PhongBan;
 
 public interface QuanLyVangNghiService {
 	public List<ThongKeDonXinPhep> danhSachXinNghiChoDuyet();
@@ -40,6 +41,8 @@ public interface QuanLyVangNghiService {
 	public List<LyDoXinNghi> loadAllLyDo();
 	
 	public List<HoSoNhanVien> loadAllHoSo();
+	
+	public List<PhongBan> loadAllPhongBan();
 	
 	public ThongKeDonXinPhep findById(int id);
 	

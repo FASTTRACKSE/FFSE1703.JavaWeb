@@ -36,10 +36,13 @@
 			<!-- End Show message -->
 		
         <div class="container">
-			<div class="col-md-8"></div>
-			<div class="col-md-4">
+			<div class="col-md-4"></div>
+			<div class="col-md-8">
+			<div class="col-md-6">
 			<form method="GET" action="">
-						<div class="col-md-6">
+						
+							
+							 <div class="col-md-6">
 							<div class="form-group">
 								<spring:message code="label.maNhanVien"/><select name="manhanvien"
 									class="form-control form-control-sm" id="manhanvien">
@@ -51,7 +54,7 @@
 									</c:forEach>
 								</select>
 							</div>
-						</div>
+						</div> 
 						<div class="col-md-6" style="margin-top: 20px">
 							<label></label>
 							<button type="submit" class="btn mr-1 mb-1 btn-success btn-sm">
@@ -65,6 +68,37 @@
 								$("#manhanvien").val(manhanvien);
 							}
 							</script>
+							</form>
+							</div>
+						<div class="col-md-6">
+						<form method="GET" action="">
+							<div class="col-md-6">
+							<div class="form-group">
+								<spring:message code="label.phongBan"/><select name="tenphongban"
+									class="form-control form-control-sm" id="tenphongban">
+									<option value="0" selected="selected">--<spring:message code="label.tatCa" />--</option>
+									<c:forEach items="${phongban}" var="pb">
+										<option value="${pb.tenPhongBan}"
+										<c:if test="${tenPhongBans == pb.tenPhongBan }"> selected="selected"</c:if>
+										>${pb.tenPhongBan}</option>
+									</c:forEach>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-6" style="margin-top: 20px">
+							<label></label>
+							<button type="submit" class="btn mr-1 mb-1 btn-success btn-sm">
+								<i class="fa fa-search"></i><spring:message code="label.tim"/>
+							</button></div> 
+						<script type="text/javascript">
+							
+							PhongBan = 
+								<%=request.getParameter("tenphongban")%>
+							;
+							if (tenphongban != 0 && tenphongban != null) {
+								$("#tenphongban").val(tenphongban);
+							}
+							</script>
 								</form>
 								</div>
 								</div>
@@ -76,6 +110,7 @@
 					<th ><spring:message code="label.madon"/></th>
 					<th ><spring:message code="label.maNhanVien"/></th>
 					<th ><spring:message code="label.hoTen"/></th>
+					<th ><spring:message code="label.phongBan"/></th>
 					<th ><spring:message code="label.ngaybatdau"/></th>
 					<th ><spring:message code="label.ngayketthuc"/></th>
 					<th ><spring:message code="label.lydo"/></th>
@@ -91,6 +126,7 @@
 					<td>${nv.id -1}</td>
 					<td>${nv.ngayNghi.maNhanVien}</td>
 					<td>${nv.tenNhanVien}</td>
+					<td>${nv.tenPhongBan}</td>
 					<td>${nv.ngayBatDau}</td>
 					<td>${nv.ngayKetThuc}</td>
 					<td>${nv.lyDo.lyDo}</td>
@@ -152,6 +188,7 @@
 										</ul>
 									</div>
 								</div>
+		</div>
 		</div>
 		</div>
 		</div>

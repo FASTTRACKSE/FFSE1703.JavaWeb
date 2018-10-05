@@ -20,7 +20,7 @@
 		<intercept-url pattern="/Quanlyvangnghi1703004/taodonmoi/nhap**" access="permitAll" />
 		<intercept-url pattern="/Quanlyvangnghi1703004/taodonmoi/choduyet**" access="permitAll" />
 		<intercept-url pattern="/Quanlyvangnghi1703004/danhsachduyet" access=" hasRole('ROLE_PNSNV') or hasRole('ROLE_PNSTPP') or hasRole('ROLE_PGD')" />
-		<intercept-url pattern="/Quanlyvangnghi1703004/**" access="hasRole('ROLE_PNSTPP') or hasRole('ROLE_PGD')" />
+		<intercept-url pattern="/Quanlyvangnghi1703004/**" access="hasRole('ROLE_PNSTPP') or hasRole('ROLE_PGD') or hasRole('ROLE_PDATPP') or hasRole('ROLE_PDTTPP') or hasRole('ROLE_PITTPP') " />
 
 		
 		<!-- Phân quyền Quản trị nhân sự pikalong -->

@@ -7,6 +7,7 @@ import fasttrackse.ffse1703.fbms.entity.qlvn.NgayNghi;
 import fasttrackse.ffse1703.fbms.entity.qlvn.ThongKeDonXinPhep;
 import fasttrackse.ffse1703.fbms.entity.qlvn.TrangThaiVN;
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
+import fasttrackse.ffse1703.fbms.entity.security.PhongBan;
 
 public interface QuanLyVangNghiDao {
 	public List<ThongKeDonXinPhep> danhSachXinNghiChoDuyet();
@@ -44,6 +45,8 @@ public interface QuanLyVangNghiDao {
 	public List<ThongKeDonXinPhep> findAllForPagingTC(int startPosition, int maxResult);
 	
 	public List<NgayNghi> findAllForPagingNN(int startPosition, int maxResult, String search);
+	
+	public List<PhongBan> loadAllPhongBan();
 	
 	public long totalRecords();
 	

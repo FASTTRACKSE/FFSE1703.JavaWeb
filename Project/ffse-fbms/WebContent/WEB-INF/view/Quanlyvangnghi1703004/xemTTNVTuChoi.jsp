@@ -12,8 +12,12 @@
 		<div class="content-header row">
 		<div>
 		<div class="col-md-5">
-		<h1><a href='<c:url value="/Quanlyvangnghi1703004/danhsachbituchoi" />'><i class="icon-arrow-left"></i></a></h1>
-		</div>
+					<h1>
+						<a
+							href='<c:url value="/Quanlyvangnghi1703004/danhsachbituchoi" />'><i
+							class="icon-arrow-left"></i></a>
+					</h1>
+				</div>
 			<h3 class="content-header-title mb-0"><spring:message code="label.thongTinCaNhan"/></h3>	
 		</div>
 		
@@ -24,7 +28,9 @@
             <label><spring:message code="label.maNhanVien" /></label> 
             <input class="form-control" value="${list.ngayNghi.maNhanVien}" readonly />
             <label><spring:message code="label.hoTen" /></label> 
-            <input class="form-control" value="${list.tenNhanVien}" readonly />  
+            <input class="form-control" value="${list.tenNhanVien}" readonly /> 
+            <label><spring:message code="label.phongBan" /></label>
+			<input class="form-control" value="${list.tenPhongBan}" readonly />  
 			<label><spring:message code="label.ngaybatdau" /></label> 
             <input class="form-control" value="${list.ngayBatDau}" readonly />
             <label><spring:message code="label.ngayketthuc" /></label> 

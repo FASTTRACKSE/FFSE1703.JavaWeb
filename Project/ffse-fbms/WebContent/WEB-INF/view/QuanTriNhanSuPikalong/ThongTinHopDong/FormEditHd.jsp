@@ -37,7 +37,7 @@
 					<div class="col-md-6">
 						<div class="form-group">
 							<label>Trạng Thái</label>
-							<div class="form-control disabled">${hsnv.isActive}</div>
+							<div class="form-control disabled">${hsnv.isActive == 0 ? 'Còn làm việc' : 'Đã nghỉ việc'}</div>
 						</div>
 					</div>
 				</div>
@@ -69,13 +69,13 @@
 							<label>Tên hợp đồng</label>
 							<form:select path="loaiHopDongPikalong.maLoaiHopDong" id="tenHd"
 								name="tenHdSelect" class="form-control">
-								<option value="none" selected="true" disabled="true">
+								<option value="0" selected="true" disabled="true">
 									<--Chọn--></option>
 								<form:option value="1">Hợp đồng thử việc</form:option>
 								<form:option value="2">Hợp đồng ngắn hạn</form:option>
 								<form:option value="3">Hợp đồng chính thức</form:option>
-								<form:errors path="loaiHopDongPikalong.maLoaiHopDong" cssStyle="color: red" />
 							</form:select>
+							<form:errors path="loaiHopDongPikalong" cssStyle="color: red" />
 						</div>
 					</div>
 					<div class="col-md-6">
@@ -85,8 +85,8 @@
 								<form:option value="0" selected="true" disabled="true"> <--Chọn--> </form:option>
 								<form:option value="1">Hết hợp đồng</form:option>
 								<form:option value="2">Còn hợp đồng</form:option>
-								<form:errors path="trangThai" cssStyle="color: red" />
 							</form:select>
+							<form:errors path="trangThai" cssStyle="color: red" />
 						</div>
 					</div>
 				</div>
@@ -98,8 +98,8 @@
 								<form:option value="0" selected="true" disabled="true"> <--Chọn--> </form:option>
 								<form:option value="1">Có</form:option>
 								<form:option value="2">Không</form:option>
-								<form:errors path="luongThang13" cssStyle="color: red" />
 							</form:select>
+							<form:errors path="luongThang13" cssStyle="color: red" />
 						</div>
 					</div>
 					<div class="col-md-6">

@@ -8,6 +8,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.HoSoNhanVienPikalong;
 import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.HopDongPikalong;
 
 @Repository
@@ -108,5 +109,14 @@ public class HopDongPikalongDaoImpl implements HopDongPikalongDao {
 		List<HopDongPikalong> viewOneHD = query.list();
 		return viewOneHD;
 	}
-
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<HopDongPikalong> listHopDongByPhongBan(String phongBan) {
+		Session session = sessionFactory.getCurrentSession();
+		@SuppressWarnings("rawtypes")
+		Query query = session.createQuery("from HopDongPikalong where hoSoNhanVienPikalong.maPhongBan.maPhongBan = :maPhongBan");
+		query.setParameter("maPhongBan", phongBan);
+		List<HopDongPikalong> hopDongListByPhongBan = query.list();
+		return hopDongListByPhongBan;
+	}
 }

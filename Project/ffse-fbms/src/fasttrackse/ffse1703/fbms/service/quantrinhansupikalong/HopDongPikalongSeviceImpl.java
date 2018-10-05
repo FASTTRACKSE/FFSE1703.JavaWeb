@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fasttrackse.ffse1703.fbms.dao.quantrinhansupikalong.HopDongPikalongDao;
+import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.HoSoNhanVienPikalong;
 import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.HopDongPikalong;
 
 @Service
@@ -76,4 +77,12 @@ public class HopDongPikalongSeviceImpl implements HopDongPikalongSevice {
 	public List<HopDongPikalong> viewOne(String maNv) {
 		return this.hopDongPikalongDao.viewOne(maNv);
 	}
+
+	@Override
+	@Transactional
+	public List<HopDongPikalong> listHopDongByPhongBan(String phongBan) {
+		
+		return hopDongPikalongDao.listHopDongByPhongBan(phongBan);
+	}
+
 }

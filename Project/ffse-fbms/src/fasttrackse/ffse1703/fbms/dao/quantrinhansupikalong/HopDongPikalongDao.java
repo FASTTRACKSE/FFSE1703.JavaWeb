@@ -14,4 +14,5 @@ public interface HopDongPikalongDao {
 	public HopDongPikalong getHopDongById(int maHopDong);
 	public HopDongPikalong getMaHopDong(int maHopDong);
 	public List<HopDongPikalong> viewOne(String maNv);
+	List<HopDongPikalong> listHopDongByPhongBan(String phongBan);
 }

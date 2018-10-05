@@ -517,30 +517,6 @@
 							</span></a></li>
 				<li><hr /></li>
 			</ul>
-
-			<!-- Quản lí nhiệm vụ MinhHQ -->
-
-			<ul id="main-menu-navigation" data-menu="menu-navigation"
-				class="navigation navigation-main">
-
-				<li class=" navigation-header"><span><spring:message
-							code="label.minhhqmenu" /></span> <i data-toggle="tooltip"
-					data-placement="right" data-original-title="" class=" ft-minus"></i></li>
-
-				<li class=" nav-item"><a
-					href="<c:url value = "/QuanLyNhiemVuMinhHQ/"/>"> <i
-						class="ft-list"></i><span data-i18n="" class="menu-title"><spring:message
-								code="label.minhhqitemlist" /></span></a></li>
-
-				<li class=" nav-item"><a
-					href="<c:url value = "/QuanLyNhiemVuMinhHQ/Calendar"/>"> <i
-						class="fa fa-calendar-minus-o"></i><span data-i18n=""
-						class="menu-title"><spring:message
-								code="label.minhhqitemcalendar" /></span></a></li>
-
-				<li><hr /></li>
-
-			</ul>
-
+			
 		</div>
 	</div>

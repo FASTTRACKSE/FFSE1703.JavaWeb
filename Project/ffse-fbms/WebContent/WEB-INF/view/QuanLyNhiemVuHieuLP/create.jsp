@@ -87,7 +87,7 @@
 									<form:input type="date" class="form-control block" id="from"
 									onchange="myFunction()"  path="tgBatdau"  style="width:240px"  />
 									<div class="form-control-position">
-										<i class="fa fa-calendar-o" style="margin-left:20px"></i>
+										<i class="fa fa-calendar" style="margin-left:20px"></i>
 									</div>
 								</fieldset>
 											<script>

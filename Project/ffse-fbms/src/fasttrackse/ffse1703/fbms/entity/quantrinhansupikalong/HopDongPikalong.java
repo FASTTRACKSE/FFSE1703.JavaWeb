@@ -12,7 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -27,14 +27,13 @@ public class HopDongPikalong {
 	@Column(name="MaHopDong")
 	private int maHopDong;
 
-	// bi-directional many-to-one association to HoSoNhanVien
 	@ManyToOne
 	@JoinColumn(name="MaNv")
 	private HoSoNhanVienPikalong hoSoNhanVienPikalong;
 	
+	@NotNull(message = "Vui lòng chọn tên hợp đồng!!!")
 	@ManyToOne
 	@JoinColumn(name="MaLoaiHopDong")
-	@NotNull
 	private LoaiHopDongPikalong loaiHopDongPikalong;
 	
 	@NotNull(message = "Vui lòng chọn Ngày-Tháng-Năm!!!")
@@ -51,10 +50,9 @@ public class HopDongPikalong {
 	
 	@NotNull(message = "Vui lòng chọn ngày nghỉ!!!")
 	@Column(name = "SoNgayNghiTrongNam")
-	@NotNull
 	private int soNgayNghiTrongNam;
 	
-	
+	@NotEmpty(message = "Vui lòng chọn mức lương!!!")
 	@Column(name = "LuongThang13")
 	private String luongThang13;
 	

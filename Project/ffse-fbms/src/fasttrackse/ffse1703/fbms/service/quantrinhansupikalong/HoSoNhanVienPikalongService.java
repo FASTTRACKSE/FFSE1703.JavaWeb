@@ -20,5 +20,9 @@ public interface HoSoNhanVienPikalongService {
 	public Long countAll();
 	public boolean checkExistMaNv(String maNv);
 	public boolean checkIsActive(String maNv);
+	
+	// xem nhân viên theo phòng ban
+	
+	public List<HoSoNhanVienPikalong> listNhanVienByPhongBan(String phongBan);
 
 }

@@ -16,12 +16,6 @@
 		<intercept-url pattern="/QuanTriHeThong/tai-khoan/**" access="hasAnyRole('ROLE_SADM')" />
 		<intercept-url pattern="/QuanTriHeThong/phan-quyen/**" access="hasAnyRole('ROLE_SADM')" />
 		
-		<intercept-url pattern="/Quanlyvangnghi1703004/soandonmoi**" access="permitAll" />
-		<intercept-url pattern="/Quanlyvangnghi1703004/taodonmoi/nhap**" access="permitAll" />
-		<intercept-url pattern="/Quanlyvangnghi1703004/taodonmoi/choduyet**" access="permitAll" />
-		<intercept-url pattern="/Quanlyvangnghi1703004/danhsachduyet" access=" hasRole('ROLE_PNSNV') or hasRole('ROLE_PNSTPP') or hasRole('ROLE_PGD')" />
-		<intercept-url pattern="/Quanlyvangnghi1703004/**" access="hasRole('ROLE_PNSTPP') or hasRole('ROLE_PGD')" />
-
 		
 		<!-- Phân quyền Quản trị nhân sự pikalong -->
 		<intercept-url pattern="/quantrinhansu/hosonhanvien/**"  access="hasRole('ROLE_PNSTPP') or hasRole('ROLE_PGD')"/>
@@ -65,6 +59,19 @@
 		
 		<!-- Phân quyền module QLDA - MVP :: END -->
 		
+		
+		
+		<!-- Phân quyền module QTNS - PIKALONG :: START -->
+		
+		<intercept-url pattern="/quantrinhansu/hosonhanvien/**" access="hasAnyRole('ROLE_PNSTPP','ROLE_PGD')" />
+		
+		<!-- Phân quyền module QTNS - PIKALONG :: END -->
+		
+		<!-- Phân quyền quản lý nhiệm vụ :: START -->
+			<intercept-url pattern="/QuanLyNhiemVuMinhHQ/delete/**" access="hasRole('ROLE_PGD') or hasRole('ROLE_PNSTPP') or hasRole('ROLE_PDATPP') or hasRole('ROLE_PDTTPP') or hasRole('ROLE_PITTPP') or hasRole('ROLE_PKTTPP')" />
+			<intercept-url pattern="/HieuLP/delete/**" access="hasRole('ROLE_PGD') or hasRole('ROLE_PNSTPP') or hasRole('ROLE_PDATPP') or hasRole('ROLE_PDTTPP') or hasRole('ROLE_PITTPP') or hasRole('ROLE_PKTTPP')" />
+			<intercept-url pattern="/QuanLyNhiemVuNghiaBT/delete/**" access="hasRole('ROLE_PGD') or hasRole('ROLE_PNSTPP') or hasRole('ROLE_PDATPP') or hasRole('ROLE_PDTTPP') or hasRole('ROLE_PITTPP') or hasRole('ROLE_PKTTPP')" />
+		<!-- Phân quyền quản lý nhiệm vụ :: END -->
 		
 		<access-denied-handler error-page="/403"/>		
 		<logout logout-url="/j_spring_security_logout"

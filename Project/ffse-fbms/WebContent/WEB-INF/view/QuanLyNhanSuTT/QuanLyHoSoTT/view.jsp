@@ -22,7 +22,8 @@
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/quanlynhansutt/ho_so/" />'><spring:message
 										code="label.danhSachNhanVien" /></a></li>
-							<li class="breadcrumb-item active">xem thông tin nhân viên</li>
+							<li class="breadcrumb-item active"><spring:message
+									code="label.xemThongTinNhanVien" /></li>
 						</ol>
 					</div>
 				</div>
@@ -80,8 +81,9 @@ i.fa {
 						<div class="col-md-12">
 							<div class="card">
 								<div class="card-header">
-									<h4 class="card-title" id="horz-layout-basic">Thông Tin
-										Của nhân viên</h4>
+									<h4 class="card-title" id="horz-layout-basic">
+										<spring:message code="label.thongTinNhanVien" />
+									</h4>
 									<a class="heading-elements-toggle"><i
 										class="fa fa-ellipsis-v font-medium-3"></i></a>
 									<div class="heading-elements">
@@ -116,7 +118,8 @@ i.fa {
 																			placeholder="mã nhân viên" readonly="true" />
 																	</div>
 																	<div class="form-group col-sm-6">
-																		<label>Tên Nhân viên</label>
+																		<label><spring:message
+																				code="label.tenNhanVien" /></label>
 																		<form:input class="form-control" path="tenNhanVien"
 																			placeholder="tên nhân viên" readonly="true" />
 																	</div>
@@ -185,7 +188,7 @@ i.fa {
 																			<form:select path="danToc.maDanToc" type="text"
 																				id="projectinput4" class="form-control"
 																				readonly="true">
-																				<c:forEach  items="${listDanToc}" var="hsnv">
+																				<c:forEach items="${listDanToc}" var="hsnv">
 																					<form:option value="${hsnv.maDanToc}">${hsnv.tenDanToc}</form:option>
 																				</c:forEach>
 																			</form:select>
@@ -195,7 +198,8 @@ i.fa {
 
 																<div class="row">
 																	<div class="form-group col-sm-6">
-																		<label for="projectinput4">Quốc tịch</label>
+																		<label for="projectinput4"><spring:message
+																					code="label.quocTich" /></label>
 																		<form:select path="quocTich.maQuocTich" type="text"
 																			id="projectinput4" class="form-control"
 																			readonly="true">
@@ -260,14 +264,16 @@ i.fa {
 																		</form:select>
 																	</div>
 																	<div class="form-group col-sm-6">
-																		<label>địa chỉ</label>
+																		<label><spring:message
+																					code="label.diaChi" /></label>
 																		<form:input class="form-control" path="diaChi"
 																			placeholder="địa chỉ" readonly="true" />
 																	</div>
 																</div>
 																<div class="row">
 																	<div class="form-group col-sm-6">
-																		<label>phòng ban</label>
+																		<label><spring:message
+																					code="label.phongBan" /></label>
 																		<form:select path="phongBan.maPhongBan" type="text"
 																			id="companyName" class="form-control"
 																			name="phongBanSelect" readonly="true">
@@ -279,7 +285,8 @@ i.fa {
 																		</form:select>
 																	</div>
 																	<div class="form-group col-sm-6">
-																		<label>chức danh</label>
+																		<label><spring:message
+																					code="label.chucDanh" /></label>
 																		<form:select path="chucDanh.maChucDanh" type="text"
 																			id="companyName" class="form-control"
 																			placeholder="Company Name" name="chucDanhSelect"
@@ -296,7 +303,7 @@ i.fa {
 																<div class="row">
 																	<div class="form-group col-sm-6">
 																		<label for="location1"><spring:message
-																					code="label.trangThai" /></label>
+																				code="label.trangThai" /></label>
 																		<form:select class="custom-select form-control"
 																			path="trangThai" readonly="true">
 																			<form:option value="1">Còn

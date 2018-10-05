@@ -67,6 +67,10 @@
 		
 		<!-- Phân quyền module QTNS - PIKALONG :: END -->
 		
+		<!-- Phân quyền quản lý nhiệm vụ :: START -->
+			<intercept-url pattern="/QuanLyNhiemVuMinhHQ/delete/**" access="hasRole('ROLE_PGD') or hasRole('ROLE_PNSTPP') or hasRole('ROLE_PDATPP') or hasRole('ROLE_PDTTPP') or hasRole('ROLE_PITTPP') or hasRole('ROLE_PKTTPP')" />
+			<intercept-url pattern="/HieuLP/delete/**" access="hasRole('ROLE_PGD') or hasRole('ROLE_PNSTPP') or hasRole('ROLE_PDATPP') or hasRole('ROLE_PDTTPP') or hasRole('ROLE_PITTPP') or hasRole('ROLE_PKTTPP')" />
+		<!-- Phân quyền quản lý nhiệm vụ :: END -->
 		
 		<access-denied-handler error-page="/403"/>		
 		<logout logout-url="/j_spring_security_logout"

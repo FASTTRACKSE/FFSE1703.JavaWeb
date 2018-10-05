@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+ <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <%@ page session="false"%>
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
@@ -11,15 +12,12 @@
 	style="background-color: #CCCCCC">
 	<div class="content-wrapper">
 		<div class="content-header-left col-md-9 col-xs-12 mb-2">
-			<h3 class="content-header-title mb-0">
-				<spring:message code="label.listDA" />
-			</h3>
+			<h3 class="content-header-title mb-0"><spring:message code="label.listDA" /></h3>
 			<div class="row breadcrumbs-top">
 				<div class="breadcrumb-wrapper col-xs-12">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item"><a href="/ffse-fbms/home">Home</a></li>
-						<li class="breadcrumb-item active"><spring:message
-								code="label.DuAn" /></li>
+						<li class="breadcrumb-item active"><spring:message code="label.DuAn" /></li>
 					</ol>
 				</div>
 			</div>
@@ -28,8 +26,7 @@
 			<div role="group" aria-label="Button group with nested dropdown"
 				class="btn-group float-md-right" id="add-new">
 				<a href="/ffse-fbms/qlda/DuAn/add_form" class="btn btn-primary"><span
-					class="fa fa-plus"></span>
-				<spring:message code="label.newDuAn" /></a>
+					class="fa fa-plus"></span><spring:message code="label.newDuAn" /></a>
 			</div>
 		</div>
 		<div class="content-body">
@@ -43,9 +40,7 @@
 				<div class="col-xs-12">
 					<div class="card">
 						<div class="card-header">
-							<h4 class="card-title">
-								<spring:message code="label.listDA" />
-							</h4>
+							<h4 class="card-title"><spring:message code="label.listDA" /></h4>
 							<a class="heading-elements-toggle"><i
 								class="fa fa-ellipsis-v font-medium-3"></i></a>
 							<div class="heading-elements">
@@ -102,10 +97,7 @@
 												</c:forEach>
 											</select>
 										</div>
-									</form:form>
-
 								</div>
-
 								<script type="text/javascript">
 									maDuAn =
 								<%=request.getParameter("maDuAn")%>
@@ -136,10 +128,10 @@
 								<div class="form-group col-sm-4">
 
 									<button class="btn btn-success" style="margin-top: 25px">
-										<i class="ft-search"></i>
-										<spring:message code="label.timkiem" />
+										<i class="ft-search"></i> <spring:message code="label.timkiem" />
 									</button>
 								</div>
+								</form:form>
 								<table class="table"
 									style="border-collapse: collapse; border-collapse: separate;">
 									<thead style="background: graytext; color: white;">
@@ -161,28 +153,35 @@
 												<td>${entities.khachHang.tenkh}</td>
 												<td>${entities.phongBan.tenPhongBan}</td>
 												<td>${entities.trangThai.tenTrangThai}</td>
-
-												<td><a
+												<td>
+												
+												<a href="/ffse-fbms/qlda/DuAn/view/${entities.maDuAn}"
+													data-toggle="tooltip" title="view">
+														<button type="button"
+															class="btn btn-icon btn-outline-info">
+															<i class="fa fa-eye"></i>
+														</button>
+												</a>
+												<sec:authorize access="hasRole('ROLE_PDATPP') or hasRole('ROLE_PITTPP') or hasRole('ROLE_PITNV')">
+												
+												<a
 													href="/ffse-fbms/qlda/DuAn/edit/${entities.maDuAn}"
 													data-toggle="tooltip" title="edit">
 														<button type="button"
 															class="btn btn-icon btn-outline-warning">
 															<i class="fa fa-pencil"></i>
 														</button>
-												</a> <a href="/ffse-fbms/qlda/DuAn/view/${entities.maDuAn}"
-													data-toggle="tooltip" title="view">
-														<button type="button"
-															class="btn btn-icon btn-outline-info">
-															<i class="fa fa-eye"></i>
-														</button>
-												</a> <a href="/ffse-fbms/qlda/DuAn/delete/${entities.maDuAn}">
+												</a>  <a href="/ffse-fbms/qlda/DuAn/delete/${entities.maDuAn}">
 														<button type="button"
 															onclick="if (!confirm('Are you sure you want to delete this database?')) return false"
 															class="btn btn-outline-danger btn-icon checkid"
 															data-toggle="modal" title="delete" data-target="#danger">
 															<i class="fa fa-trash-o"></i>
 														</button>
-												</a></td>
+												</a>
+												</sec:authorize>
+												</td>
+										
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -204,8 +203,7 @@
 		<nav aria-label="Page navigation example">
 			<ul class="pagination">
 				<li class="page-item"><a class="page-link"
-					href="/ffse-fbms/qlda/DuAn/list/1" <%=query%>><spring:message
-							code="label.firtVendor" /></a></li>
+					href="/ffse-fbms/qlda/DuAn/list/1" <%=query%>><spring:message code="label.firtVendor" /></a></li>
 				<c:if test="${currentPage > 2}">
 					<li class="page-item"><a class="page-link"
 						href="/ffse-fbms/qlda/DuAn/list/<%=query %>${page-2}">${page-2}</a></li>
@@ -225,8 +223,7 @@
 						href="/ffse-fbms/qlda/DuAn/list/${page+2}">${page+2}</a></li>
 				</c:if>
 				<li class="page-item"><a class="page-link"
-					href="/ffse-fbms/qlda/DuAn/list/${total}"><spring:message
-							code="label.lastVendor" /></a></li>
+					href="/ffse-fbms/qlda/DuAn/list/${total}"><spring:message code="label.lastVendor" /></a></li>
 			</ul>
 		</nav>
 
@@ -240,5 +237,8 @@
 
 	</div>
 </div>
+</div>
 
 <jsp:include page="/WEB-INF/view/templates/footer.jsp" />
+
+

@@ -130,21 +130,21 @@ i.fa {
 											<c:forEach items="${listHoSo}" var="hsnv">
 												<tr>
 
-													<td>${hsnv.maNhanVien}</td>
-													<td><img
+													<td style='text-align: right;'>${hsnv.maNhanVien}</td>
+													<td style='text-align: center;'><img
 														src="<c:url value="/uploads/${hsnv.anhDaiDien}" />"
 														width="60" height="80"></td>
-													<td>${hsnv.phongBan.tenPhongBan}</td>
-													<td>${hsnv.chucDanh.tenChucDanh}</td>
-													<td>${hsnv.tenNhanVien}</td>
-													<td>${hsnv.namSinh}</td>
-													<td><c:if test="${hsnv.gioiTinh == 1}">
+													<td style='text-align: left;'>${hsnv.phongBan.tenPhongBan}</td>
+													<td style='text-align: left;'>${hsnv.chucDanh.tenChucDanh}</td>
+													<td style='text-align: left;'>${hsnv.tenNhanVien}</td>
+													<td style='text-align: right;'>${hsnv.namSinh}</td>
+													<td style='text-align: left;'><c:if test="${hsnv.gioiTinh == 1}">
 															<spring:message code="label.nam" />
 														</c:if> <c:if test="${hsnv.gioiTinh == 2}">
 															<spring:message code="label.nu" />
 														</c:if></td>
 
-													<td>${hsnv.soDienThoai}</td>
+													<td style='text-align: right;'>${hsnv.soDienThoai}</td>
 													<td
 														style="letter-spacing: 5px; min-width: 75px; text-align: center !important;">
 														<sec:authorize

@@ -23,10 +23,12 @@ public class NhanVienDAOImpl implements NhanVienDAO {
 		this.sessionFactory = sessionFactory;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public DanhGiaBanThan getDanhGiaBanThan(int maNhanVien) {
+	public List<DanhGiaBanThan> getDanhGiaBanThan(HoSoNhanVien nhanVien) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.byNaturalId(DanhGiaBanThan.class).using("nhanVien", maNhanVien).load();
+		return session.createQuery("from DanhGiaBanThan where nhanVien = :maNhanVien")
+				.setParameter("maNhanVien", nhanVien).list();
 	}
 
 	@Override
@@ -51,7 +53,7 @@ public class NhanVienDAOImpl implements NhanVienDAO {
 	@Override
 	public List<DanhGiaNhanVien> getListPhanCongDanhGia(int maNhanVien) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("from DanhGiaNhanVien where nhanVienDanhGia.maNhanVien = :nhanVien")
+		return session.createQuery("from DanhGiaNhanVien where nhanVienDanhGia = :nhanVien")
 				.setParameter("nhanVien", maNhanVien).list();
 	}
 
@@ -82,7 +84,9 @@ public class NhanVienDAOImpl implements NhanVienDAO {
 	@Override
 	public TruongPhongDanhGia getDanhGiaCuaTruongPhong(int maNhanVien) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.byNaturalId(TruongPhongDanhGia.class).using("nhanVien", maNhanVien).load();
+		return (TruongPhongDanhGia) session
+				.createQuery("from TruongPhongDanhGia where nhanVien.maNhanVien = :maNhanVien")
+				.setParameter("maNhanVien", maNhanVien).getSingleResult();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -109,8 +113,8 @@ public class NhanVienDAOImpl implements NhanVienDAO {
 	@Override
 	public List<HoSoNhanVien> getListNhanVienLimit(int id, String phongBan) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery(
-				"from HoSoNhanVien where phongBan.maPhongBan = :phongBan and chucDanh.maChucDanh = 'NV'")
+		return session
+				.createQuery("from HoSoNhanVien where phongBan.maPhongBan = :phongBan and chucDanh.maChucDanh = 'NV'")
 				.setParameter("phongBan", phongBan).setFirstResult(id).setMaxResults(5).list();
 	}
 
@@ -129,6 +133,12 @@ public class NhanVienDAOImpl implements NhanVienDAO {
 		return session
 				.createQuery("from HoSoNhanVien where phongBan.maPhongBan = :phongBan and chucDanh.maChucDanh = 'NV'")
 				.setParameter("phongBan", phongBan).list();
+	}
+
+	@Override
+	public HoSoNhanVien getHoSoNhanVien(int nhanVien) {
+		Session session = sessionFactory.getCurrentSession();
+		return session.get(HoSoNhanVien.class, nhanVien);
 	}
 
 }

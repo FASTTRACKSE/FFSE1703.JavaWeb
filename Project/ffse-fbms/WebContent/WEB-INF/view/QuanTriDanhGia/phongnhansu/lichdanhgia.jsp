@@ -35,25 +35,25 @@
 									<div class="col-md-4">
 										<div class="form-group">
 											<label for="projectinput1">Kỳ đánh giá</label>
-											<form:select path="kyDanhGia.maKy" cssClass="form-control">
+											<form:select path="kyDanhGia" cssClass="form-control">
 												<form:option value="">Chọn kỳ đánh giá</form:option>
 												<c:forEach items="${listKyDanhGia }" var="x">
-													<form:option value="${x.maKy }" label="${x.tenKy}"></form:option>
+													<form:option value="${x}" label="${x.tenKy}"></form:option>
 												</c:forEach>
 											</form:select>
+											<form:errors cssStyle="color:red;" path="kyDanhGia" />
 										</div>
 									</div>
 									<div class="col-md-4">
 										<div class="form-group">
 											<label for="projectinput2">Phòng ban</label>
-											<form:select path="phongBan.maPhongBan"
-												cssClass="form-control">
+											<form:select path="phongBan" cssClass="form-control">
 												<form:option value="">Chọn phòng ban</form:option>
 												<c:forEach items="${listPhongBan }" var="x">
-													<form:option value="${x.maPhongBan }"
-														label="${x.tenPhongBan}"></form:option>
+													<form:option value="${x}" label="${x.tenPhongBan}"></form:option>
 												</c:forEach>
 											</form:select>
+											<form:errors cssStyle="color:red;" path="phongBan" />
 										</div>
 									</div>
 									<div class="col-md-4">

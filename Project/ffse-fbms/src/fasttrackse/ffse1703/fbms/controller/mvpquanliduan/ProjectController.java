@@ -2,8 +2,8 @@ package fasttrackse.ffse1703.fbms.controller.mvpquanliduan;
 
 import java.beans.PropertyEditorSupport;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.Collection;
-
 
 import java.util.List;
 
@@ -34,12 +34,13 @@ import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Domain;
 import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Framework;
 import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.KhachHang;
 import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Language;
+import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Nhiemvu;
 import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Projects;
 import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.StatusProject;
 import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Technical;
 import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Vendor;
 import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.HoSoNhanVienPikalong;
-import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
+
 import fasttrackse.ffse1703.fbms.entity.security.PhongBan;
 import fasttrackse.ffse1703.fbms.entity.security.UserAccount;
 import fasttrackse.ffse1703.fbms.service.mvpquanliduan.DatabaseServices;
@@ -47,6 +48,7 @@ import fasttrackse.ffse1703.fbms.service.mvpquanliduan.DomainService;
 import fasttrackse.ffse1703.fbms.service.mvpquanliduan.FrameworkService;
 import fasttrackse.ffse1703.fbms.service.mvpquanliduan.KhachHangService;
 import fasttrackse.ffse1703.fbms.service.mvpquanliduan.LanguageService;
+import fasttrackse.ffse1703.fbms.service.mvpquanliduan.NhiemVuService;
 import fasttrackse.ffse1703.fbms.service.mvpquanliduan.ProjectService;
 import fasttrackse.ffse1703.fbms.service.mvpquanliduan.StatusService;
 import fasttrackse.ffse1703.fbms.service.mvpquanliduan.TechnicalService;
@@ -87,6 +89,9 @@ public class ProjectController {
 
 	@Autowired
 	private ProjectService projectService;
+	
+	@Autowired
+	private NhiemVuService nhiemVuService;
 
 	@RequestMapping("/list-project")
 	public String listDomain(HttpSession session) {
@@ -100,16 +105,12 @@ public class ProjectController {
 	}
 
 	@RequestMapping(value = "/list-project/{pageId}")
-	public String listproject(@PathVariable int pageId, Model model, HttpServletRequest request,HttpSession session,final Principal pr,ModelMap mm) {
-		//set chuoi tim kiem
-		//isPM();
+	public String listproject(@PathVariable int pageId, Model model, HttpServletRequest request, HttpSession session,
+			final Principal pr, ModelMap mm) {
+		List<Projects> list = new ArrayList<>();
 		Collection<? extends GrantedAuthority> granted1 = SecurityContextHolder.getContext().getAuthentication()
 				.getAuthorities();
-//		UserAccount acc= projectService.getAccount(userName);
-//		HoSoNhanVien maNvAcc=  acc.getNhanVien();
-		System.out.println("my account la"+ granted1);
-		
-		
+		System.out.println("chuc danh la" + granted1);
 		String khachHang = " and khachHang.idKhachHang = '" + request.getParameter("khachhang") + "'";
 		if (request.getParameter("khachhang") == null || request.getParameter("khachhang").equals("0")) {
 			khachHang = "";
@@ -128,34 +129,45 @@ public class ProjectController {
 		}
 		String isTpp = "";
 		String isPm = "";
-		
-		
-		if(!isTPP().isEmpty()) {
-			List<PhongBan> listPhongBan= phongBanService.findAll();
+		String isNv = "";
+		if (!isTPP().isEmpty()) {
+			System.out.println("da su dung tpp");
+			List<PhongBan> listPhongBan = phongBanService.findAll();
 			String granted = isTPP();
-			System.out.println("granted la:" +granted);
-			String pb= "";
-			if(granted.indexOf("PIT") > 0) {
-				isTpp="";
-			}else {
-			for(PhongBan x: listPhongBan) {
-				
-				if (granted.indexOf(x.getMaPhongBan()) > 0) {
-					pb = x.getMaPhongBan();
-					isTpp = " and roomProject.maPhongBan = '" + pb+ "'";
+			System.out.println("granted la:" + granted);
+			String pb = "";
+			if (granted.indexOf("PIT") > 0) {
+				isTpp = "";
+			} else {
+				for (PhongBan x : listPhongBan) {
+					if (granted.indexOf(x.getMaPhongBan()) > 0) {
+						pb = x.getMaPhongBan();
+						isTpp = " and roomProject.maPhongBan = '" + pb + "'";
+					}
 				}
 			}
-			}
-		}else if (!isNv().isEmpty()) {
+		} else if (!isPM().isEmpty()) {
+			System.out.println("da su dung PM");
+			String pm = isPM();
+			
+			System.out.println("thang nhan vien la" + pm);
+			isPm = " and pm.maNv = '" + pm + "'";
+		} else if (!isNv().isEmpty()) {
+			System.out.println("da su dung NV");
+			String nv = isNv();
+			list.addAll(listProjectNv(nv));
+			
+			isNv = " and pm.maNv = '99999'";
 			mm.addAttribute("disable", "disabled");
 		}
-		String search = khachHang + roomProject + domain + status + isTpp + isPm;
-		System.out.println("search la" +search);
-				
+		String search = khachHang + roomProject + domain + status + isTpp + isPm + isNv;
+		System.out.println("search la" + search);
+		
 		int maxRows = 5;
 		int start = (pageId - 1) * maxRows;
-		List<Projects> list = projectService.listProject(search, start, maxRows);
+		list.addAll(projectService.listProject(search, start, maxRows));	
 		int totalProject = list.size();
+		System.out.println("aaaaaaaaaaaaaaaaaa"+totalProject);
 		int totalPage = (int) Math.ceil(totalProject / (double) maxRows);
 		
 		model.addAttribute("listProject", list);
@@ -167,11 +179,27 @@ public class ProjectController {
 		model.addAttribute("statuss", request.getParameter("status"));
 		model.addAttribute("totalProject", totalProject);
 		session.setAttribute("pageIdPr", pageId);
-		
+
 		return "MvpQuanLiDuAn/project/listproject";
 	}
-
-
+	
+	public List<Projects> listProjectNv(String nv){
+		List<Projects> listDuAn = new ArrayList<>();
+		List<Projects> listPr= projectService.findAll();
+		System.out.println("size list project la" + listPr.size());
+		
+		List<Nhiemvu> listNv = nhiemVuService.getByMaNhanVien(nv);
+		System.out.println("size list NV la" + listNv.size() +"ma NV la" +nv);
+		for(Projects duan: listPr) {
+			for(Nhiemvu x:listNv) {
+				if (duan.getIdProject().equals(x.getProjects().getIdProject())) {
+					listDuAn.add(duan);
+				}
+			}
+		}
+		return listDuAn;
+	}
+	
 
 	@RequestMapping("/show-form-add")
 	public String showFormAdd(Model model) {
@@ -245,51 +273,53 @@ public class ProjectController {
 		redirectAttributes.addFlashAttribute("success", "<script>alert('Thêm thành công');</script>");
 		return "redirect: list-project";
 	}
-	//check có phải TPP
+
+	// check có phải TPP
 	public String isTPP() {
 		Collection<? extends GrantedAuthority> granted = SecurityContextHolder.getContext().getAuthentication()
 				.getAuthorities();
-		String role=null;
+		String role = null;
 
 		for (int i = 0; i < granted.size(); i++) {
 			role = granted.toArray()[i] + "";
-			if (role.indexOf("TPP")>0 || role.indexOf("PGD")>0 ||role.indexOf("PNS")>0 ) {
+			if (role.indexOf("TPP") > 0 || role.indexOf("PGD") > 0 || role.indexOf("PNS") > 0) {
 				return role;
-			};
+			}
+			;
 		}
 		return "";
 	}
-	//check có phải PM
+
+	// check có phải PM
 	public String isPM() {
-		String userName = SecurityContextHolder.getContext().getAuthentication()
-				.getName();
-		List<Projects> listPr= projectService.findAll();
-		UserAccount acc= projectService.getAccount(userName);
-		String maNvAcc=  String.valueOf(acc.getNhanVien().getMaNhanVien());
-		System.out.println("my account la"+ maNvAcc);
-		for(Projects x:listPr) {
-			if(maNvAcc.equals(x.getPm().getMaNv())) {
+		String userName = SecurityContextHolder.getContext().getAuthentication().getName();
+		List<Projects> listPr = projectService.findAll();
+		UserAccount acc = projectService.getAccount(userName);
+		String maNvAcc = String.valueOf(acc.getNhanVien().getMaNhanVien());
+		System.out.println("my account la " + maNvAcc);
+		for (Projects x : listPr) {
+			Integer.parseInt(x.getPm().getMaNv());
+			if (Integer.parseInt(maNvAcc) == Integer.parseInt(x.getPm().getMaNv())) {
 				return maNvAcc;
 			}
 		}
 		return "";
 	}
+
 	public String isNv() {
 		Collection<? extends GrantedAuthority> granted = SecurityContextHolder.getContext().getAuthentication()
 				.getAuthorities();
-		String userName = SecurityContextHolder.getContext().getAuthentication()
-				.getName();
-//		List<Projects> listPr= projectService.findAll();
-//		UserAccount acc= projectService.getAccount(userName);
-//		String maNvAcc=  String.valueOf(acc.getNhanVien().getMaNhanVien());
-//		System.out.println("my account la"+ maNvAcc);
-		 String role = "";
+		String userName = SecurityContextHolder.getContext().getAuthentication().getName();
+		UserAccount acc = projectService.getAccount(userName);
+		String maNvAcc = String.valueOf(acc.getNhanVien().getMaNhanVien());
+       String role;
 		for (int i = 0; i < granted.size(); i++) {
 			role = granted.toArray()[i] + "";
-			if (role.indexOf("NV")>0 ) {
-				return role;
-			};
-		}	
+			if (role.indexOf("NV") > 0) {
+				return maNvAcc;
+			}
+			;
+		}
 		return "";
 	}
 
@@ -358,10 +388,10 @@ public class ProjectController {
 
 			if (i == listPM.size() - 1) {
 				json += "{\"maNhanVien\":" + "\"" + listPM.get(i).getMaNv() + "\"" + ", \"tenNhanVien\" :" + "\""
-						+ listPM.get(i).getMaNv() +" - " + listPM.get(i).getHoTenNv() + "\"" + "}";
+						+ listPM.get(i).getMaNv() + " - " + listPM.get(i).getHoTenNv() + "\"" + "}";
 			} else {
 				json += "{\"maNhanVien\":" + "\"" + listPM.get(i).getMaNv() + "\"" + ", \"tenNhanVien\" :" + "\""
-						+ listPM.get(i).getMaNv()+" - " + listPM.get(i).getHoTenNv() + "\"" + "},";
+						+ listPM.get(i).getMaNv() + " - " + listPM.get(i).getHoTenNv() + "\"" + "},";
 			}
 		}
 		json += "]";
@@ -413,6 +443,7 @@ public class ProjectController {
 
 	@ModelAttribute("phongDuAn")
 	public List<PhongBan> itemPhongDuAn() {
+	
 		return phongBanService.findAll();
 	}
 

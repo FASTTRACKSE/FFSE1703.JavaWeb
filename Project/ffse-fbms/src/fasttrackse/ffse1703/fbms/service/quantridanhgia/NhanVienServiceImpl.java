@@ -25,7 +25,7 @@ public class NhanVienServiceImpl implements NhanVienService {
 
 	@Override
 	@Transactional
-	public DanhGiaBanThan getDanhGiaBanThan(int maNhanVien) {
+	public List<DanhGiaBanThan> getDanhGiaBanThan(HoSoNhanVien maNhanVien) {
 		return dao.getDanhGiaBanThan(maNhanVien);
 	}
 
@@ -118,6 +118,12 @@ public class NhanVienServiceImpl implements NhanVienService {
 	@Transactional
 	public List<HoSoNhanVien> getListNhanVienPhongBan(String phongBan) {
 		return dao.getListNhanVienPhongBan(phongBan);
+	}
+
+	@Override
+	@Transactional
+	public HoSoNhanVien getHoSoNhanVien(int nhanVien) {
+		return dao.getHoSoNhanVien(nhanVien);
 	}
 
 }

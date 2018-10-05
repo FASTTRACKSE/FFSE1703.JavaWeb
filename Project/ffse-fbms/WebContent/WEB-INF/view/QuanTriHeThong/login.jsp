@@ -99,14 +99,14 @@
                                       <div class="btn-group" role="group" aria-label="Basic example">
 			                            <button type="button" class="btn btn-outline-success btn-sm" data-user="giamdoc">Giám đốc</button>
 			                            <button type="button" class="btn btn-outline-success btn-sm" data-user="truongphongnhansu">TP Nhân sự</button>
-			                            <button type="button" class="btn btn-outline-success btn-sm" data-user="truongphongkythuat">TP Kỹ Thuật</button>
+			                            <button type="button" class="btn btn-outline-success btn-sm" data-user="truongphongit">TP Kỹ Thuật</button>
 			                            <button type="button" class="btn btn-outline-success btn-sm" data-user="truongphongdaotao">TP Đào Tạo</button>
 			                            <button type="button" class="btn btn-outline-success btn-sm" data-user="truongphongduan">TP Dự Án</button>
 			                          </div>
                                       <div class="btn-group" role="group" aria-label="Basic example">
 			                            <button type="button" class="btn btn-outline-warning btn-sm" data-user="thuky">Thư Ký</button>
 			                            <button type="button" class="btn btn-outline-warning btn-sm" data-user="nhanvienphongnhansu">NV Nhân sự</button>
-			                            <button type="button" class="btn btn-outline-warning btn-sm" data-user="nhanvienphongkythuat">NV Kỹ Thuật</button>
+			                            <button type="button" class="btn btn-outline-warning btn-sm" data-user="nhanvienphongit">NV Kỹ Thuật</button>
 			                            <button type="button" class="btn btn-outline-warning btn-sm" data-user="nhanvienphongdaotao">NV Đào Tạo</button>
 			                            <button type="button" class="btn btn-outline-warning btn-sm" data-user="nhanvienphongduan">NV Dự Án</button>
 			                          </div>

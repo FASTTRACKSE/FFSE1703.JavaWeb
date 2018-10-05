@@ -51,7 +51,7 @@ public class PhongNhanSuDAOImpl implements PhongNhanSuDAO {
 	}
 
 	@Override
-	public KyDanhGia getKyDanhGia(int maKy) {
+	public KyDanhGia getKyDanhGia(String maKy) {
 		Session session = sessionFactory.getCurrentSession();
 		return session.get(KyDanhGia.class, maKy);
 	}
@@ -168,5 +168,11 @@ public class PhongNhanSuDAOImpl implements PhongNhanSuDAO {
 		for (DanhGiaBanThan x : danhGia) {
 			session.persist(x);
 		}
+	}
+
+	@Override
+	public int checkKyDanhGia(String maKy) {
+		Session session = sessionFactory.getCurrentSession();
+		return session.createQuery("from KyDanhGia where maKy = :maKy").setParameter("maKy", maKy).list().size();
 	}
 }

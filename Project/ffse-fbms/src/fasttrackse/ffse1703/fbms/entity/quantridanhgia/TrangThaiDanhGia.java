@@ -1,21 +1,18 @@
 package fasttrackse.ffse1703.fbms.entity.quantridanhgia;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+@SuppressWarnings("serial")
 @Table(name="trang_thai_danh_gia")
 @Entity
-public class TrangThaiDanhGia {
+public class TrangThaiDanhGia implements Serializable {
 	
 	@Id
-	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	
 	@Column(name = "ma_trang_thai")
 	private int maTrangThai;
 	
@@ -27,14 +24,6 @@ public class TrangThaiDanhGia {
 
 	public TrangThaiDanhGia() {
 		super();
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public int getMaTrangThai() {

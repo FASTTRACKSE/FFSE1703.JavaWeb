@@ -456,20 +456,19 @@
 					<!-- Quản trị dự án -->
 				</sec:authorize>
 
-				<li class=" navigation-header"><span>Black - Quản Lý Dự
-						Án</span><i class=" ft-minus" data-toggle="tooltip"
+				<li class=" navigation-header"><span><spring:message code="label.quanLyDuAnTeam1" /></span><i class=" ft-minus" data-toggle="tooltip"
 					data-placement="right" data-original-title="Others"></i></li>
 				<li class=" nav-item"><a href="#"><i class="ft-layers"></i><span
-						class="menu-title" data-i18n="">DANH MỤC</span></a>
+						class="menu-title" data-i18n=""><spring:message code="label.Category" /></span></a>
 					<ul class="menu-content">
-						<li><a class="menu-item" href="<c:url value="/qlda/khachhang/list"/>">Khách hàng</a></li>
+						<li><a class="menu-item" href="<c:url value="/qlda/khachhang/list"/>"><spring:message code="label.khachHang" /></a></li>
 						<li><a class="menu-item" href="<c:url value="/qlda/domain/list"/>">Domain</a></li>
-						<li><a class="menu-item" href="<c:url value="/qlda/trangthai/list"/>">Trạng Thái</a></li>
+						<li><a class="menu-item" href="<c:url value="/qlda/trangthai/list"/>"><spring:message code="label.trangThai" /></a></li>
 						<li><a class="menu-item" href="<c:url value="/qlda/Framework/"/>">Framework</a></li>
 						<li><a class="menu-item" href="<c:url value="/qlda/Technical/"/>">Technical</a></li>
 						<li><a class="menu-item"href="<c:url value="/QuanLyDuAn/Language/list"/>">Programming Language</a></li>
 						<li><a class="menu-item"href="<c:url value="/QuanLyDuAn/vendor/list"/>">Vendor</a></li>
-						<li><a class="menu-item"href="<c:url value="/QuanLyDuAn/VaiTro/list"/>">Vai Trò Thành Viên</a></li>
+						<li><a class="menu-item"href="<c:url value="/QuanLyDuAn/VaiTro/list"/>"><spring:message code="label.vaiTroThanhVien" /></a></li>
 						<li><a class="menu-item"  href="<c:url value="/qlda/Database/"/>">Database</a></li>
 
 
@@ -477,34 +476,32 @@
 
 
 				<li class=" nav-item"><a href="#"><i class="ft-align-left"></i><span
-						class="menu-title" data-i18n="">THÔNG TIN DỰ ÁN</span></a>
+						class="menu-title" data-i18n=""><spring:message code="label.thongTinDuAn" /></span></a>
 					<ul class="menu-content">
-							<li><a class="menu-item"  href="<c:url value="/qlda/DuAn/"/>">Dự Án</a></li>
+							<li><a class="menu-item"  href="<c:url value="/qlda/DuAn/"/>"><spring:message code="label.duAn" /></a></li>
 					</ul></li>
 			</ul>
 
 			<ul id="main-menu-navigation" data-menu="menu-navigation"
 				class="navigation navigation-main">
 				<!-- Quản trị tài liệu của Đức -->
-				<li class=" navigation-header"><span>Đứcdz - Quản Lý Tài
-						Liệu</span><i data-toggle="tooltip" data-placement="right"
+				<li class=" navigation-header"><span>Trần Đức - Quản Lý Tài Liệu</span><i data-toggle="tooltip" data-placement="right"
 					data-original-title="Đức Đẹp Trai" class=" ft-minus"></i></li>
+				<li class=" nav-item"><a href="<c:url value = "/TranDuc-QuanLyTaiLieu/TaiLieu/"/>"><i
+					class="ft-file-text"></i><span data-i18n="" class="menu-title">Quản
+						Lý Tài Liệu</span></a></li>
 				<li class=" nav-item"><a
 					href="<c:url value = "/TranDuc-QuanLyTaiLieu/DanhMuc/"/>"><i
 						class="ft-bookmark"></i><span data-i18n="" class="menu-title">Quản
 							Lý Danh Mục</span></a></li>
-				<li class=" nav-item"><a
-					href="<c:url value = "/TranDuc-QuanLyTaiLieu/TaiLieu/"/>"><i
-						class="ft-file-text"></i><span data-i18n="" class="menu-title">Quản
-							Lý Tài Liệu</span></a></li>
 				<li class=" nav-item"><a
 					href="<c:url value = "/TranDuc-QuanLyTaiLieu/TrangThai/"/>"><i
 						class="ft-users"></i><span data-i18n="" class="menu-title">Trạng
 							Thái</span></a></li>
 				<li class=" nav-item"><a
 					href="<c:url value = "/TranDuc-QuanLyTaiLieu/Icon/"/>"><i
-						class="ft-octagon"></i><span data-i18n="" class="menu-title">Icon</span></a></li>
-				<li><hr /></li>
+						class="ft-folder"></i><span data-i18n="" class="menu-title">Loại File</span></a></li>
+				<li></li>
 			</ul>
 			<!-- Quản lý nhiệm vụ của HieuLP -->
 			<ul id="main-menu-navigation" data-menu="menu-navigation"
@@ -520,6 +517,30 @@
 							</span></a></li>
 				<li><hr /></li>
 			</ul>
-			
+
+			<!-- Quản lí nhiệm vụ MinhHQ -->
+
+			<ul id="main-menu-navigation" data-menu="menu-navigation"
+				class="navigation navigation-main">
+
+				<li class=" navigation-header"><span><spring:message
+							code="label.minhhqmenu" /></span> <i data-toggle="tooltip"
+					data-placement="right" data-original-title="" class=" ft-minus"></i></li>
+
+				<li class=" nav-item"><a
+					href="<c:url value = "/QuanLyNhiemVuMinhHQ/"/>"> <i
+						class="ft-list"></i><span data-i18n="" class="menu-title"><spring:message
+								code="label.minhhqitemlist" /></span></a></li>
+
+				<li class=" nav-item"><a
+					href="<c:url value = "/QuanLyNhiemVuMinhHQ/Calendar"/>"> <i
+						class="fa fa-calendar-minus-o"></i><span data-i18n=""
+						class="menu-title"><spring:message
+								code="label.minhhqitemcalendar" /></span></a></li>
+
+				<li><hr /></li>
+
+			</ul>
+
 		</div>
 	</div>

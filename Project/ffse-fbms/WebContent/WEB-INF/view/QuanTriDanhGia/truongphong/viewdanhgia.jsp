@@ -38,15 +38,15 @@
 													<i class="ft-user"></i> Bản đánh giá
 												</h4>
 												<form:hidden path="id" />
-												<form:hidden path="kyDanhGia.maKy" />
-												<form:hidden path="phongBan.maPhongBan" />
-												<form:hidden path="nhanVien.maNhanVien" />
+												<form:hidden path="kyDanhGia" />
+												<form:hidden path="phongBan" />
+												<form:hidden path="nhanVien" />
 												<div class="form-body">
 													<div class="form-group row">
 														<label class="col-md-3 label-control">Nhân viên</label>
 														<div class="col-md-9">
-															<input value="${command.nhanVien.tenNhanVien}"
-																class="form-control" readonly="readonly">
+															<h3>${command.nhanVien.hoDem}
+																${command.nhanVien.ten}</h3>
 														</div>
 													</div>
 													<div class="form-group row">
@@ -175,23 +175,16 @@
 															</form:select>
 														</div>
 													</div>
-													<div class="form-group last">
-														<label class="col-md-3 label-control">Trạng thái</label>
-														<div class="col-md-9">
-															<form:select path="trangThai.maTrangThai">
-																<form:option value="3">Duyệt</form:option>
-																<form:option value="4">Hủy</form:option>
-															</form:select>
-														</div>
-													</div>
 												</div>
 												<div class="form-actions">
 													<a
 														href="<c:url value="/quantridanhgia/truongphong/duyetdanhgia/"/>"
 														class="btn btn-danger btn-min-width mr-1 mb-1">Trở về</a>
-													<button type="submit"
-														formaction="<c:url value="/quantridanhgia/truongphong/duyetdanhgia/duyet"/>"
-														class="btn btn-info btn-min-width mr-1 mb-1">Duyệt</button>
+													<a
+														href="<c:url value="/quantridanhgia/truongphong/duyetdanhgia/duyet/${command.id }"/>"
+														class="btn btn-info btn-min-width mr-1 mb-1">Duyệt</a> <a
+														href="<c:url value="/quantridanhgia/truongphong/duyetdanhgia/huy/${command.id }"/>"
+														class="btn btn-info btn-min-width mr-1 mb-1">Hủy</a>
 												</div>
 											</div>
 										</form:form>

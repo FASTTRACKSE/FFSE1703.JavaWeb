@@ -85,7 +85,6 @@
 									path="tgKetThuc" value="${CongViec.tgKetThuc}"/>
 							</div>
 						</div>
-						
 						<div class="form-group col-sm-6">
 							<label><spring:message code="label.nguoiduocphancong"/></label>
 							<form:select class="custom-select block round"
@@ -117,5 +116,12 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+window.setTimeout(function() {
+	$(".alert").fadeTo(500, 0).slideUp(500, function() {
+		$(this).remove();
+	});	
+}, 2500);
+</script>
 
 <jsp:include page="/WEB-INF/view/templates/footer.jsp" />

@@ -87,7 +87,7 @@
 									<form:input type="date" class="form-control block" id="from"
 									onchange="myFunction()"  path="tgBatdau"  style="width:240px"  />
 									<div class="form-control-position">
-										<i class="fa fa-calendar-o" style="margin-left:20px"></i>
+										<i class="fa fa-calendar" style="margin-left:20px"></i>
 									</div>
 								</fieldset>
 											<script>
@@ -176,16 +176,78 @@
 												}
 											</script>
 										</div>
-									<div class="form-group col-sm-3">
-										<label><spring:message code="label.tgketthuc"/></label>
-										<form:input path="tgKetthuc" type="date" id="issueinput3"
-											class="form-control block " style="width:240px;" />
-										<form:errors path="tgKetthuc" cssClass="error" />
-										<div class="form-control-position">
-										<i class="fa fa-calendar-o" style="margin-top:37px"></i>
-									</div>
-									</div>
-									<div class="form-group col-sm-6">
+										
+										<div class="form-group col-sm-3">
+											<label><spring:message code="label.tgketthuc" /></label>
+											<fieldset class="form-group position-relative">
+												<form:input type="date" class="form-control block" id="to"
+													onchange="count()" path="tgKetthuc" style="width:240px;" />
+												<div class="form-control-position">
+													<i class="fa fa-calendar" style="margin-left: 20px"></i>
+												</div>
+											</fieldset>
+											<script>
+												var today = new Date();
+												var dd = today.getDate();
+												var mm = today.getMonth() + 1; // January is 0!
+												var yyyy = today.getFullYear();
+												if (dd < 10) {
+													dd = '0' + dd
+												}
+												if (mm < 10) {
+													mm = '0' + mm
+												}
+												today = yyyy + '-' + mm + '-'
+														+ dd;
+												document.getElementById("to")
+														.setAttribute("min",
+																today);
+												function count() {
+													var iWeeks, iDateDiff, iAdjust = 0;
+													var dDate1 = new Date(
+															document
+																	.getElementById("from").value);
+													var dDate2 = new Date(
+															document
+																	.getElementById("to").value);
+													if (dDate2 < dDate1)
+														return -1; // error code if dates transposed
+													var iWeekday1 = dDate1
+															.getDay(); // day of week
+													var iWeekday2 = dDate2
+															.getDay();
+													iWeekday1 = (iWeekday1 == 0) ? 7
+															: iWeekday1; // change Sunday from 0 to 7
+													iWeekday2 = (iWeekday2 == 0) ? 7
+															: iWeekday2;
+													if ((iWeekday1 > 5)
+															&& (iWeekday2 > 5))
+														iAdjust = 1; // adjustment if both days on weekend
+													iWeekday1 = (iWeekday1 > 5) ? 5
+															: iWeekday1; // only count weekdays
+													iWeekday2 = (iWeekday2 > 5) ? 5
+															: iWeekday2;
+													// calculate differnece in weeks (1000mS * 60sec * 60min * 24hrs * 7 days = 604800000)
+													iWeeks = Math
+															.floor((dDate2
+																	.getTime() - dDate1
+																	.getTime()) / 604800000)
+													if (iWeekday1 <= iWeekday2) {
+														iDateDiff = (iWeeks * 5)
+																+ (iWeekday2 - iWeekday1)
+																+ 1
+													} else {
+														iDateDiff = ((iWeeks + 1) * 5)
+																- (iWeekday1 - iWeekday2)
+																+ 1
+													}
+													iDateDiff -= iAdjust
+													document
+															.getElementById("total").value = iDateDiff;
+												}
+											</script>
+										</div>
+										<div class="form-group col-sm-6">
 										<label><spring:message code="label.nguoiduocphancong"/></label>
 
 										<form:select path="nhanVien.maNhanVien"

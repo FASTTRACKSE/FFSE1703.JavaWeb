@@ -89,7 +89,7 @@
 				<div class="col-xs-12">
 					<div class="card">
 						<div class="card-header">
-							<h4 class="content-header-title mb-0" style="margin-left: 400px"><b><spring:message code="label.danhsachnhiemvu"/></b></h4><hr>
+							<h4 class="content-header-title mb-0" style="margin-left: 400px" ><b><spring:message code="label.danhsachnhiemvu"/></b></h4><hr>
 							<a class="heading-elements-toggle"><i
 								class="fa fa-ellipsis-v font-medium-3"></i></a>
 							<div class="heading-elements">
@@ -107,7 +107,7 @@
 						  	<form:form method="GET" action="">
 						  	<div class="form-group col-sm-10"  >
 								<div class="form-group col-sm-4">
-								 	<label ><b><spring:message code="label.duannhiemvu"/></b></label>
+								 	<label ><b  style="color:#00B5B8"><spring:message code="label.duannhiemvu"/></b></label>
 								 	 <select class="custom-select block " name= "maDuan"
 										id="maDuan">
 										<option value="0" label="<spring:message code="label.tatcanhiemvu"/>" />
@@ -117,7 +117,7 @@
 									</select>
 								</div>
 								<div class="form-group col-sm-4">
-								 	<label><b><spring:message code="label.nguoiduocphancong"/></b></label>
+								 	<label><b  style="color:#00B5B8"><spring:message code="label.nguoiduocphancong"/></b></label>
 								 	 <select class="custom-select block " name= "maNhanVien"
 										id="maNhanVien">
 										<option value="0" label="<spring:message code="label.tatcanhiemvu"/>" />
@@ -127,7 +127,7 @@
 									</select>
 								</div>
 								<div class="form-group col-sm-4">
-								 	<label><b><spring:message code="label.trangthainhiemvu"/></b></label>
+								 	<label><b  style="color:#00B5B8"><spring:message code="label.trangthainhiemvu"/></b></label>
 								 	 <select class="custom-select block " name="IDtrangthai"
 										id="IDtrangthai">
 										<option value="0" label="<spring:message code="label.tatcanhiemvu"/>" />
@@ -165,7 +165,7 @@
 												<th scope="col"><spring:message code="label.loaicongviecnhiemvu"/></th>
 												<th scope="col"><spring:message code="label.trangthainhiemvu"/></th>
 												<th scope="col"><spring:message code="label.nguoiduocphancong"/></th>
-												<th scope="col"><spring:message code="label.tuychonnhiemvu"/></th>
+												<th scope="col" style="letter-spacing: 5px"><spring:message code="label.tuychonnhiemvu"/></th>
 											</tr>
 										</thead>
 										<tbody>
@@ -177,7 +177,7 @@
 											        <td>${nv.idLoaiCongviec.loaiCongviec}</td>
 											        <td>${nv.idLoaiTrangthai.loaiTrangthai}</td>
 											        <td>${nv.nhanVien.hoDem} ${nv.nhanVien.ten}</td>
-													<td style="letter-spacing: 10px">
+													<td style="letter-spacing: 5px">
 														<a href="/ffse-fbms/HieuLP/view/${nv.ID}"><i class='fa fa-eye'></i></a> 
 														<a href="/ffse-fbms/HieuLP/edit/${nv.ID}"><i class='ft-edit-3'></i></a>
 														<sec:authorize access=" hasRole('ROLE_PGD') or hasRole('ROLE_PNSTPP') or hasRole('ROLE_PDATPP') or hasRole('ROLE_PDTTPP') or hasRole('ROLE_PITTPP') or hasRole('ROLE_PKTTPP')">

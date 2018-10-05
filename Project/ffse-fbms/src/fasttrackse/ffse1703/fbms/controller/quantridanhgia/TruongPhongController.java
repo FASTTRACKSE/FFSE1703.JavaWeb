@@ -6,7 +6,6 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -49,28 +48,26 @@ public class TruongPhongController {
 		this.accountService = accountService;
 	}
 
-	@RequestMapping(value = "")
-	public String getInfo(Model model, HttpSession session) {
+	public void getInfo(HttpSession session) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		if (auth instanceof AnonymousAuthenticationToken) {
-			return "redirect:/login";
-		} else {
-			UserAccount user = accountService.loadUserByUsername(auth.getName());
-			HoSoNhanVien hoSo = user.getNhanVien();
-			ChucDanh chucDanh = hoSo.getChucDanh();
-			PhongBan phongBan = hoSo.getPhongBan();
-			session.setAttribute("chucDanh", chucDanh);
-			session.setAttribute("phongBan", phongBan);
-		}
+		UserAccount user = accountService.loadUserByUsername(auth.getName());
+		HoSoNhanVien hoSo = user.getNhanVien();
+		ChucDanh chucDanh = hoSo.getChucDanh();
+		PhongBan phongBan = hoSo.getPhongBan();
+		session.setAttribute("chucDanh", chucDanh);
+		session.setAttribute("nhanVien", hoSo);
+		session.setAttribute("phongBan", phongBan);
+	}
+
+	@RequestMapping(value = { "","/" })
+	public String redirectPage(Model model, HttpSession session) {
+		getInfo(session);
 		return "redirect:/quantridanhgia/truongphong/duyetdanhgia";
 	}
 
 	@RequestMapping(value = "/duyetdanhgia")
 	public String redirectDuyetDanhGia(Model model, HttpSession session) {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		if (auth instanceof AnonymousAuthenticationToken) {
-			return "redirect:/login";
-		}
+		getInfo(session);
 		if (session.getAttribute("pageDDG") != null) {
 			currentPage = (int) session.getAttribute("pageDDG");
 		}
@@ -113,6 +110,7 @@ public class TruongPhongController {
 
 	@RequestMapping(value = "/danhgianhanvien")
 	public String redirectDanhGiaNhanVien(Model model, HttpSession session) {
+		getInfo(session);
 		if (session.getAttribute("pageTPDG") != null) {
 			currentPage = (int) session.getAttribute("pageTPDG");
 		}

@@ -34,6 +34,7 @@ public class HopDongPikalongController {
 		List<HopDongPikalong> listHopDong = hopDongPikalongService.listHopDong();
 		System.out.println(listHopDong);
 		model.addAttribute("listHopDong", listHopDong);
+		
 		return "QuanTriNhanSuPikalong/ThongTinHopDong/ListHopDong";
 	}
 
@@ -44,6 +45,7 @@ public class HopDongPikalongController {
 		model.addAttribute("hsnv", hsnv);
 		HopDongPikalong hdById = this.hopDongPikalongService.getHopDongById(maHopDong);
 		model.addAttribute("hopDong", hdById);
+		
 		return "QuanTriNhanSuPikalong/ThongTinHopDong/view/ViewThongTinHopDong";
 	}
 
@@ -51,10 +53,10 @@ public class HopDongPikalongController {
 	public String addFormHd(@PathVariable String maNv, Model model) {
 		String lastMaHd = this.hopDongPikalongService.getLastMaHd();
 		System.out.println(lastMaHd);
-
 		model.addAttribute("hsnv", hoSoNhanVienPikalongService.getEdit(maNv));
 		model.addAttribute("hopDongPikalong", new HopDongPikalong());
 		model.addAttribute("lastMaHd", lastMaHd);
+		
 		return "QuanTriNhanSuPikalong/ThongTinHopDong/FormAddHd";
 	}
 
@@ -62,7 +64,8 @@ public class HopDongPikalongController {
 	public String addSaveHd(@ModelAttribute("hopDongPikalong") @Valid HopDongPikalong hd, BindingResult result,
 			Model model, HttpServletRequest request) {
 		if (result.hasErrors()) {
-			return "QuanTriNhanSuPikalong/quanlihopdong/FormAddHd";
+			model.addAttribute("hsnv", hoSoNhanVienPikalongService.getEdit(hd.getHoSoNhanVienPikalong().getMaNv()));
+			return "QuanTriNhanSuPikalong/ThongTinHopDong/FormAddHd";
 		}
 		String maNv = hd.getHoSoNhanVienPikalong().getMaNv();
 		HoSoNhanVienPikalong hsnv = this.hoSoNhanVienPikalongService.getEdit(maNv);
@@ -70,6 +73,7 @@ public class HopDongPikalongController {
 		hd.setMaHopDong(Integer.valueOf(this.hopDongPikalongService.getAutoId()));
 		this.hopDongPikalongService.insert(hd);
 		model.addAttribute("hoSoNhanVien", hsnv);
+		
 		return "redirect:/QuanTriNhanSu/quanlihopdong/viewOneHopDong/" + maNv;
 	}
 
@@ -93,9 +97,9 @@ public class HopDongPikalongController {
 		}
 		String maNv = hd.getHoSoNhanVienPikalong().getMaNv();
 		HoSoNhanVienPikalong hsnv = this.hoSoNhanVienPikalongService.getEdit(maNv);
-
 		this.hopDongPikalongService.update(hd);
 		model.addAttribute("hoSoNhanVien", hsnv);
+		
 		return "redirect:/QuanTriNhanSu/quanlihopdong/viewOneHopDong/" + maNv;
 	}
 

@@ -11,11 +11,12 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 		<!-- Path -->
 		<div class="content-header row">
 		<div>
+			<div><a  class="btn btn-success" href="donxinphep003">  <spring:message code="label.soandonmoi"/>  </a></div>
 		<div class="col-md-5"></div>
 			<h3 ><spring:message code="label.danhsachduyet"/></h3>
 		</div>
 			<div>
-			<div><a href=donxinphep003><h4><spring:message code="label.soandonmoi"/></a></div>
+		
 			<div class="container">
 			    <div class="table-responsive">
 						<table class="table mb-0">
@@ -23,6 +24,8 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 				<tr>
 					<th ><spring:message code="label.madon"/></th>
 					<th ><spring:message code="label.maNhanVien"/></th>
+					<th >Ho Và Tên</th>
+					<th >Phòng Ban</th>
 					<th ><spring:message code="label.ngaybatdau"/></th>
 					<th ><spring:message code="label.ngayketthuc"/></th>
 					<th ><spring:message code="label.lydo"/></th>
@@ -36,8 +39,10 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 				<tbody>
 			<c:forEach var="nv" items="${danhsachdaduyet003}">
 					<tr>
-					<td>${nv.id -1}</td>
+					<td>${nv.id -2}</td>
 					<td>${nv.ngayNghi.maNhanVien}</td>
+					<td>${nv.hoDem }</td>
+					<td>${nv.maPhongBan }</td>
 					<td>${nv.ngayBatDau}</td>
 					<td>${nv.ngayKetThuc}</td>
 					<td>${nv.lyDo.lyDo}</td>
@@ -100,6 +105,13 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 		</div>
 		</div>
 		</div>
+		<script type="text/javascript">
+window.setTimeout(function() {
+	$(".alert").fadeTo(500, 0).slideUp(500, function() {
+		$(this).remove();
+	});	
+}, 2500);
+</script>
 		
 
 <jsp:include page="/WEB-INF/view/templates/footer.jsp" />

@@ -33,6 +33,16 @@
 								</form:select>
 							</div>
 							<div>
+								<label>Họ Và Tên</label>
+								<form:select path="hoDem"
+									class="custom-select block round" id="customSelect">
+									<c:forEach items="${hoso}" var="ld">
+										<form:option value="${ld.hoDem} ${ld.ten }" label="${ld.hoDem} ${ld.ten } " />
+									</c:forEach>
+								</form:select>
+							</div>
+							
+							<div>
 								<label><spring:message code="label.ngaybatdau"/></label>
 								<fieldset class="form-group position-relative">
 									<form:input type="date" class="form-control round" id="from"
@@ -158,7 +168,15 @@
 								<label><spring:message code="label.songaynghi"/></label>
 								<form:input type="text" class="form-control round" id="total"  readonly="true" path="soNgayNghi" />
 							</div>
-							
+							<div>
+								<label>Phòng Ban</label>
+								<form:select path="maPhongBan"
+									class="custom-select block round" id="customSelect">
+									<c:forEach items="${phongban}" var="ld">
+										<form:option value="${ld.maPhongBan}" label="${ld.maPhongBan}  " />
+									</c:forEach>
+								</form:select>
+							</div>
 							<div>
 								<label><spring:message code="label.ngayketthuc"/></label>
 								<fieldset class="form-group position-relative">

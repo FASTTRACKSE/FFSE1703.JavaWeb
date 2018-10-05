@@ -59,7 +59,7 @@
 
 											<c:if test="${currentPage != 1}">
 												<li class="paginate_button page-item"><a
-													href="<%=request.getContextPath()%>/QuanlyvangnghiDanhLT/dngaynghiphep?page=${currentPage-1}"
+													href="<%=request.getContextPath()%>/QuanlyvangnghiDanhLT/ngaynghiphep?page=${currentPage-1}"
 													aria-controls="DataTables_Table_5" class="page-link">${currentPage-1}</a></li>
 											</c:if>
 

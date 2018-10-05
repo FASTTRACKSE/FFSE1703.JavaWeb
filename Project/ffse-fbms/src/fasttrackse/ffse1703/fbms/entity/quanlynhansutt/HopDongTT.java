@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -36,6 +38,18 @@ public class HopDongTT implements Serializable {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ma_nhan_vien")
 	private HoSoNhanVienTT hoSoNhanVienTT;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "ma_phong_ban")
+	private PhongBanTT phongBan;
+
+	public PhongBanTT getPhongBan() {
+		return phongBan;
+	}
+
+	public void setPhongBan(PhongBanTT phongBan) {
+		this.phongBan = phongBan;
+	}
 
 	// bi-directional many-to-one association to LoaiHopDong
 	@ManyToOne
@@ -67,6 +81,8 @@ public class HopDongTT implements Serializable {
 
 	@Column(name = "so_ngay_phep", nullable = false)
 	@NotNull
+	@Min(1)
+	@Max(12)
 	private Integer soNgayPhep;
 
 	@Column(name = "trang_thai", nullable = false)

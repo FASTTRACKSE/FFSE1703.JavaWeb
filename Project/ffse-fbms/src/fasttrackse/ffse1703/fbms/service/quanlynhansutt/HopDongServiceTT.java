@@ -6,10 +6,11 @@ import javax.servlet.http.HttpServletRequest;
 
 import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.HoSoNhanVienTT;
 import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.HopDongTT;
+import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.PhongBanTT;
 
 public interface HopDongServiceTT {
 	
-	public List<HopDongTT> getAllHopDong();
+	public List<HopDongTT> getAllHopDong(String search);
 
 	public List<HopDongTT> getHopDongByPhongBan(String maPhongBan);
 
@@ -38,6 +39,9 @@ public interface HopDongServiceTT {
 	public HopDongTT findByMaHopDong(int maHopDong);
 	
 	public List<HoSoNhanVienTT> getAllNhanVien();
+	
+	public List<PhongBanTT> getAllPhongBan();
+	
 	
 	public List<HopDongTT> viewOne(int maNhanVien);
 

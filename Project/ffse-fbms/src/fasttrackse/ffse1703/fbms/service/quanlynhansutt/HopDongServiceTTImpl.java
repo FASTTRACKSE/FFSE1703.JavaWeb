@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import fasttrackse.ffse1703.fbms.dao.quanlynhansutt.QuanLyHopDongDaoTT;
 import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.HoSoNhanVienTT;
 import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.HopDongTT;
+import fasttrackse.ffse1703.fbms.entity.quanlynhansutt.PhongBanTT;
 
 @Service
 public class HopDongServiceTTImpl implements HopDongServiceTT {
@@ -19,9 +20,9 @@ public class HopDongServiceTTImpl implements HopDongServiceTT {
 
 	@Override
 	@Transactional
-	public List<HopDongTT> getAllHopDong() {
+	public List<HopDongTT> getAllHopDong(String search) {
 		// TODO Auto-generated method stub
-		return this.quanLyHopDongDaoTT.getAllHopDong();
+		return this.quanLyHopDongDaoTT.getAllHopDong(search);
 	}
 
 	@Override
@@ -130,6 +131,12 @@ public class HopDongServiceTTImpl implements HopDongServiceTT {
 	public int checkloaiHopDong(String maHopDong, int maNhanVien) {
 		// TODO Auto-generated method stub
 		return this.quanLyHopDongDaoTT.checkloaiHopDong(maHopDong, maNhanVien);
+	}
+
+	@Override
+	@Transactional
+	public List<PhongBanTT> getAllPhongBan() {
+		return this.quanLyHopDongDaoTT.getAllPhongBan();
 	}
 
 

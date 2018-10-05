@@ -542,5 +542,19 @@
 							</span></a></li>
 				<li><hr /></li>
 			</ul>
+			<!-- Quản lý nhiệm vụ của NghiaBT -->
+			<ul id="main-menu-navigation" data-menu="menu-navigation"
+				class="navigation navigation-main">
+				<li class=" navigation-header"><span><spring:message code="label.nghiabtquanlinhiemvu"/></span><i data-toggle="tooltip" data-placement="right"
+					data-original-title="" ></i></li>
+				<li class=" nav-item"><a
+					href="<c:url value = "/QuanLyNhiemVuNghiaBT/"/>"><i
+						class= "ft-file-text"></i><span data-i18n="" class="menu-title"><spring:message code="label.danhsachnhiemvu"/></span></a></li>
+				<li class=" nav-item"><a
+					href="<c:url value = "/QuanLyNhiemVuNghiaBT/Calendar"/>"><i
+						class="fa fa-calendar-o"></i><span data-i18n="" class="menu-title"><spring:message code="label.lichnhiemvu"/>
+							</span></a></li>
+				<li><hr /></li>
+			</ul>
 		</div>
 	</div>

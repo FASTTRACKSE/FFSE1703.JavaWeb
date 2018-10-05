@@ -22,7 +22,6 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -66,6 +65,9 @@ public class TaiLieuController {
 		int start = (currentPage - 1) * perPage;
 		List<PhongBan> listpb = serviceTL.listPhongBan();
 		Authentication role=SecurityContextHolder.getContext().getAuthentication();
+		String rolePB=role.getAuthorities().toString();
+		System.out.println(rolePB.substring(1,rolePB.length()-1));
+//		model.addAttribute("role",);
 		if(role.getName().contains("phongduan")==true){
 			List<TaiLieu> tl = serviceTL.listbyPhongBan(start, perPage, "PDA");
 			int totalPage = totalPageDel0(perPage,tl);
@@ -127,8 +129,6 @@ public class TaiLieuController {
 			File file = new File(
 					request.getServletContext().getRealPath(UPLOAD_DIRECTORY + File.separator + tl.getTenTL()));
 			byte[] data = FileUtils.readFileToByteArray(file);
-			// Thiết lập thông tin trả về
-			// response.setContentType("application/octet-stream");
 			response.setHeader("Content-disposition", "attachment; filename=" + file.getName());
 			response.setContentLength(data.length);
 			InputStream inputStream = new BufferedInputStream(new ByteArrayInputStream(data));

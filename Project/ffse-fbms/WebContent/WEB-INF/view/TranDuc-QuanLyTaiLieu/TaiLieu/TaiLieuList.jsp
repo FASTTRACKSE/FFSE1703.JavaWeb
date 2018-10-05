@@ -44,7 +44,8 @@
 								class="ft-plus-square"></span> </a>
 						</div>
 					</sec:authorize>
-					<sec:authorize access="hasRole('ROLE_PDTTPP') or hasRole('ROLE_PGD')">
+					<sec:authorize
+						access="hasRole('ROLE_PDTTPP') or hasRole('ROLE_PGD')">
 						<div role="group" aria-label="Button group with nested dropdown"
 							class="btn-group float-md-right" id="add-new">
 							<a class="btn btn-primary"
@@ -85,8 +86,9 @@
 					<div class="col-xs-12">
 						<div class="card">
 							<div class="card-header">
-								<h4 class="card-title"><spring:message
-									code="label.danhsachtailieu" /></h4>
+								<h4 class="card-title">
+									<spring:message code="label.danhsachtailieu" />
+								</h4>
 								<a class="heading-elements-toggle"><i
 									class="fa fa-ellipsis-v font-medium-3"></i></a>
 								<div class="heading-elements">
@@ -106,24 +108,15 @@
 											<thead>
 												<tr>
 													<th>ID</th>
-													<th><spring:message
-									code="label.matailieu" /></th>
-													<th><spring:message
-									code="label.tendanhmuc" /></th>
-													<th><spring:message
-									code="label.icon" /></th>
-													<th><spring:message
-									code="label.tentailieu" /></th>
-													<th><spring:message
-									code="label.maphongban" /></th>
-													<th><spring:message
-									code="label.mota" /></th>
-													<th><spring:message
-									code="label.link" /></th>
-													<th><spring:message
-									code="label.status" /></th>
-													<th><spring:message
-									code="label.action" /></th>
+													<th><spring:message code="label.matailieu" /></th>
+													<th><spring:message code="label.tendanhmuc" /></th>
+													<th><spring:message code="label.icon" /></th>
+													<th><spring:message code="label.tentailieu" /></th>
+													<th><spring:message code="label.maphongban" /></th>
+													<th><spring:message code="label.mota" /></th>
+													<th><spring:message code="label.link" /></th>
+													<th><spring:message code="label.status" /></th>
+													<th><spring:message code="label.action" /></th>
 												</tr>
 											</thead>
 											<tbody>
@@ -145,20 +138,17 @@
 															<td>${item.trangThai.maTT}</td>
 															<td class="tbl_actions">
 																<div class="row">
-																	<a
-																		href="<c:url value="/TranDuc-QuanLyTaiLieu/TaiLieu/download/${item.idTL}" />"
+																	<a href="<c:url value="/TranDuc-QuanLyTaiLieu/TaiLieu/download/${item.idTL}" />"
 																		title="Xem"> <i class="ft-download"
 																		aria-hidden="true"></i></a> <a
 																		href="<c:url value="/TranDuc-QuanLyTaiLieu/TaiLieu/view/${item.idTL}" />"
 																		title="Xem"> <i class="fa fa-eye"
 																		aria-hidden="true"></i></a>
 																	<sec:authorize access="hasRole('ROLE_PDTTPP') or hasRole('ROLE_PGD')">
-																		<a
-																			href="<c:url value="/TranDuc-QuanLyTaiLieu/TaiLieu/editForm/${item.idTL}" />"
+																		<a href="<c:url value="/TranDuc-QuanLyTaiLieu/TaiLieu/editForm/${item.idTL}" />"
 																			title="Sửa"> <i
 																			class="fa fa-pencil-square-o blue" aria-hidden="true"></i></a>
-																		<a
-																			href="<c:url value="/TranDuc-QuanLyTaiLieu/TaiLieu/trashBin/${item.idTL}" />"
+																		<a href="<c:url value="/TranDuc-QuanLyTaiLieu/TaiLieu/trashBin/${item.idTL}" />"
 																			title="Xóa"
 																			onclick="return confirm('Bạn có chắc muốn xóa ?')">
 																			<i class="fa fa-trash red" aria-hidden="true"></i>

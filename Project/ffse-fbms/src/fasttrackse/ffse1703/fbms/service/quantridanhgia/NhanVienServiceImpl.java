@@ -25,8 +25,8 @@ public class NhanVienServiceImpl implements NhanVienService {
 
 	@Override
 	@Transactional
-	public List<DanhGiaBanThan> getDanhGiaBanThan(HoSoNhanVien maNhanVien) {
-		return dao.getDanhGiaBanThan(maNhanVien);
+	public DanhGiaBanThan getDanhGiaBanThan(HoSoNhanVien nhanVien) {
+		return dao.getDanhGiaBanThan(nhanVien);
 	}
 
 	@Override

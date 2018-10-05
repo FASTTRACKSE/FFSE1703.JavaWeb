@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<jsp:include page="/WEB-INF/view/QuanTriDanhGia/templates/header.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/view/templates/header.jsp"></jsp:include>
 <div class="app-content content container-fluid">
 	<div class="content-wrapper">
 		<div class="content-header row">
@@ -159,8 +159,8 @@
 																	readonly="readonly">${danhGia.kyNangTichLuy_MT }</textarea>
 																<label></label>
 																<form:textarea readonly="readonly" rows="5"
-																	cssClass="form-control" path="kyLuatCongViec"></form:textarea>
-																<form:errors cssStyle="color:red;" path="kyLuatCongViec"></form:errors>
+																	cssClass="form-control" path="kyNangTichLuy"></form:textarea>
+																<form:errors cssStyle="color:red;" path="kyNangTichLuy"></form:errors>
 															</div>
 														</div>
 													</div>

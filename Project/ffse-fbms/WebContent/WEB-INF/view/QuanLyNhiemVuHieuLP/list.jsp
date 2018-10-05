@@ -89,7 +89,7 @@
 				<div class="col-xs-12">
 					<div class="card">
 						<div class="card-header">
-							<h4 class="content-header-title mb-0" style="margin-left: 400px"><b><spring:message code="label.danhsachnhiemvu"/></b></h4><hr>
+							<h4 class="content-header-title mb-0" style="margin-left: 400px" ><b><spring:message code="label.danhsachnhiemvu"/></b></h4><hr>
 							<a class="heading-elements-toggle"><i
 								class="fa fa-ellipsis-v font-medium-3"></i></a>
 							<div class="heading-elements">
@@ -107,7 +107,7 @@
 						  	<form:form method="GET" action="">
 						  	<div class="form-group col-sm-10"  >
 								<div class="form-group col-sm-4">
-								 	<label ><b><spring:message code="label.duannhiemvu"/></b></label>
+								 	<label ><b  style="color:#00B5B8"><spring:message code="label.duannhiemvu"/></b></label>
 								 	 <select class="custom-select block " name= "maDuan"
 										id="maDuan">
 										<option value="0" label="<spring:message code="label.tatcanhiemvu"/>" />
@@ -117,7 +117,7 @@
 									</select>
 								</div>
 								<div class="form-group col-sm-4">
-								 	<label><b><spring:message code="label.nguoiduocphancong"/></b></label>
+								 	<label><b  style="color:#00B5B8"><spring:message code="label.nguoiduocphancong"/></b></label>
 								 	 <select class="custom-select block " name= "maNhanVien"
 										id="maNhanVien">
 										<option value="0" label="<spring:message code="label.tatcanhiemvu"/>" />
@@ -127,7 +127,7 @@
 									</select>
 								</div>
 								<div class="form-group col-sm-4">
-								 	<label><b><spring:message code="label.trangthainhiemvu"/></b></label>
+								 	<label><b  style="color:#00B5B8"><spring:message code="label.trangthainhiemvu"/></b></label>
 								 	 <select class="custom-select block " name="IDtrangthai"
 										id="IDtrangthai">
 										<option value="0" label="<spring:message code="label.tatcanhiemvu"/>" />

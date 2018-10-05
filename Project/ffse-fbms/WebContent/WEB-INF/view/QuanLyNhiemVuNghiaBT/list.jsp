@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
@@ -193,12 +194,16 @@
 													<td>${cv.maTrangThai.trangThai}</td>
 													<td style="letter-spacing: 5px"><a
 														href="/ffse-fbms/QuanLyNhiemVuNghiaBT/view/${cv.ID}"><i
-															class='fa fa-eye'></i></a> <a
+															class='fa fa-eye'></i></a> 
+															
+															<a
 														href="/ffse-fbms/QuanLyNhiemVuNghiaBT/edit/${cv.ID}"><i
-															class='fa fa-pencil'></i></a> <a
+															class='fa fa-pencil'></i></a>
+																<sec:authorize access="hasRole('ROLE_PGD') or hasRole('ROLE_PNSTPP') or hasRole('ROLE_PDATPP') or hasRole('ROLE_PDTTPP') or hasRole('ROLE_PITTPP') or hasRole('ROLE_PKTTPP')"> <a
 														href="/ffse-fbms/QuanLyNhiemVuNghiaBT/delete/${cv.ID}"><i
 															class='fa fa-trash'
 															onclick="return confirm('Bạn có muốn xóa sinh viên này?');"></i></a>
+															</sec:authorize>
 													</td>
 											</c:forEach>
 										</tbody>

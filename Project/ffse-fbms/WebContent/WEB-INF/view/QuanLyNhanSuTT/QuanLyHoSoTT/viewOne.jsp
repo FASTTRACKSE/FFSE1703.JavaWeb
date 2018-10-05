@@ -22,7 +22,9 @@ html, body, h1, h2, h3, h4, h5, h6 {
 		<!-- Path -->
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">xem thông tin nhân viên</h3>
+				<h3 class="content-header-title mb-0">
+					<spring:message code="label.xemThongTinNhanVien" />
+				</h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
@@ -33,14 +35,15 @@ html, body, h1, h2, h3, h4, h5, h6 {
 								href='<c:url value="/quanlynhansutt/ho_so/" />'><spring:message
 										code="label.danhSachNhanVien" /></a></li>
 							<li class="breadcrumb-item active"><a
-								href='<c:url value="/quanlynhansutt/ho_so/view/${maNhanVien}" />'>xem
-									thông tin nhân viên</a></li>
+								href='<c:url value="/quanlynhansutt/ho_so/view/${maNhanVien}" />'><spring:message
+										code="label.xemThongTinNhanVien" /></a></li>
 						</ol>
-						<a href="/ffse-fbms/quanlynhansutt/ho_so/excelfile/${maNhanVien}"><button class="btn btn-success">
-										<i class="fa fa-download"></i> Tải xuống
-										</button></a>
-										
-					<%-- 					<a
+						<a href="/ffse-fbms/quanlynhansutt/ho_so/excelfile/${maNhanVien}"><button
+								class="btn btn-success">
+								<i class="fa fa-download"></i> Tải xuống
+							</button></a>
+
+						<%-- 					<a
 						href="/ffse-fbms/quanlynhansutt/ho_so/excelfile/${hoSoNhanVienTT.maNhanVien}"
 						class="btn btn-primary"><span class="fa fa-plus"></span><spring:message
 							code="label.themMoi" /></a> --%>
@@ -155,29 +158,29 @@ html, body, h1, h2, h3, h4, h5, h6 {
 									<tr>
 										<td><h6>
 												<i
-													class="fa fa-eyedropper fa-fw w3-margin-right w3-text-teal"></i><spring:message
-										code="label.tenBangCap" />
+													class="fa fa-eyedropper fa-fw w3-margin-right w3-text-teal"></i>
+												<spring:message code="label.tenBangCap" />
 											</h6></td>
 										<td style="text-align: right">${x.tenBangCap}</td>
 									</tr>
 									<tr>
 										<td><h6>
-												<i class="ft-activity fa-fw w3-margin-right w3-text-teal"></i><spring:message
-										code="label.loaiBangCap" />
+												<i class="ft-activity fa-fw w3-margin-right w3-text-teal"></i>
+												<spring:message code="label.loaiBangCap" />
 											</h6></td>
 										<td style="text-align: right">${x.loaiBangCap}</td>
 									</tr>
 									<tr>
 										<td><h6>
-												<i class="fa fa-home fa-fw w3-margin-right w3-text-teal"></i><spring:message
-										code="label.noiCap" />
+												<i class="fa fa-home fa-fw w3-margin-right w3-text-teal"></i>
+												<spring:message code="label.noiCap" />
 											</h6></td>
 										<td style="text-align: right">${x.noiCap}</td>
 									</tr>
 									<tr>
 										<td><h6>
-												<i class="fa fa-calendar fa-fw w3-margin-right w3-text-teal"></i><spring:message
-										code="label.ngayCap" />
+												<i class="fa fa-calendar fa-fw w3-margin-right w3-text-teal"></i>
+												<spring:message code="label.ngayCap" />
 											</h6></td>
 										<td style="text-align: right">${x.ngayCap}</td>
 									</tr>
@@ -190,8 +193,8 @@ html, body, h1, h2, h3, h4, h5, h6 {
 			<!-- Phần Thông Tin Gia Đình -->
 			<div class="w3-container w3-card w3-white w3-margin-bottom">
 				<h2 class="w3-text-grey w3-padding-16">
-					<i
-						class="icon-home fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Family information
+					<i class="icon-home fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Family
+					information
 				</h2>
 				<div class="w3-container">
 					<section class="section projects-section">
@@ -202,53 +205,51 @@ html, body, h1, h2, h3, h4, h5, h6 {
 										<td><h6>
 												<i
 													class="fa fa-eyedropper fa-fw w3-margin-right w3-text-teal"></i>
-												<spring:message
-										code="label.hoTen" />
+												<spring:message code="label.hoTen" />
 											</h6></td>
 										<td style="text-align: right">${x.hoTen}</td>
 									</tr>
 									<tr>
 										<td><h6>
 												<i class="icon-globe fa-fw w3-margin-right w3-text-teal"></i>
-												Quê Quán:
+												<spring:message code="label.queQuan" />
 											</h6></td>
 										<td style="text-align: right">${x.queQuan}</td>
 									</tr>
 									<tr>
 										<td><h6>
 												<i class="fa fa-calendar fa-fw w3-margin-right w3-text-teal"></i>
-												<spring:message
-										code="label.ngaySinh" />
+												<spring:message code="label.ngaySinh" />
 											</h6></td>
 										<td style="text-align: right">${x.namSinh}</td>
 									</tr>
 									<tr>
 										<td><h6>
 												<i class="icon-users fa-fw w3-margin-right w3-text-teal"></i>
-												<spring:message
-										code="label.gioiTinh" />
+												<spring:message code="label.gioiTinh" />
 											</h6></td>
 										<c:if test="${x.gioiTinh == 1}">
 											<td style="text-align: right"><spring:message
-										code="label.nam" /></td>
+													code="label.nam" /></td>
 										</c:if>
 										<c:if test="${x.gioiTinh == 2}">
 											<td style="text-align: right"><spring:message
-										code="label.nu" /></td>
+													code="label.nu" /></td>
 										</c:if>
 									</tr>
 									<tr>
 										<td><h6>
-												<i class="icon-screen-smartphone fa-fw w3-margin-right w3-text-teal"></i>
-												<spring:message
-										code="label.sdt" />
+												<i
+													class="icon-screen-smartphone fa-fw w3-margin-right w3-text-teal"></i>
+												<spring:message code="label.sdt" />
 											</h6></td>
 										<td style="text-align: right">${x.soDienThoai}</td>
 									</tr>
-										<tr>
+									<tr>
 										<td><h6>
-												<i class="icon-user-follow fa-fw w3-margin-right w3-text-teal"></i>
-												Quan Hệ:
+												<i
+													class="icon-user-follow fa-fw w3-margin-right w3-text-teal"></i>
+												<spring:message code="label.quanHe" />
 											</h6></td>
 										<td style="text-align: right">${x.quanHe}</td>
 									</tr>

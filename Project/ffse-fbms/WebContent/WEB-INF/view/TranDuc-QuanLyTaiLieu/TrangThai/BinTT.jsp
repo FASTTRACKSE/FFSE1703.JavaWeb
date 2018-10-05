@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -16,13 +15,13 @@
 			<!-- Path -->
 			<div class="content-header row">
 				<div class="content-header-left col-md-9 col-xs-12 mb-2">
-					<h3 class="content-header-title mb-0">Danh Sách Trạng Thái</h3>
+					<h3 class="content-header-title mb-0">Danh Sách Trạng Thái Đã Xóa</h3>
 					<div class="row breadcrumbs-top">
 						<div class="breadcrumb-wrapper col-xs-12">
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item"><a
 									href='<c:url value="/home" />'>Home</a></li>
-								<li class="breadcrumb-item active">Danh Sách Trạng Thái</li>
+								<li class="breadcrumb-item active">Danh Sách Trạng Thái Đã Xóa</li>
 							</ol>
 						</div>
 					</div>
@@ -33,13 +32,6 @@
 						<a class="btn btn-primary"
 							href='<c:url value = "/TranDuc-QuanLyTaiLieu/TrangThai/add_formTT" />'>Thêm
 							Mới<span data-i18n="" class="ft-plus-square"></span>
-						</a>
-					</div>
-					<div role="group" aria-label="Button group with nested dropdown"
-						class="btn-group float-md-right" id="add-new">
-						<a class="btn btn-primary"
-							href='<c:url value = "/TranDuc-QuanLyTaiLieu/TrangThai/bin" />'>Trạng
-							Thái Đã Xóa<span data-i18n="" class="fa fa-trash red"></span>
 						</a>
 					</div>
 				</div>
@@ -66,7 +58,7 @@
 					<div class="col-xs-12">
 						<div class="card">
 							<div class="card-header">
-								<h4 class="card-title">Danh Sách Trạng Thái</h4>
+								<h4 class="card-title">Danh Sách Trạng Thái Đã Xóa</h4>
 								<a class="heading-elements-toggle"><i
 									class="fa fa-ellipsis-v font-medium-3"></i></a>
 								<div class="heading-elements">
@@ -100,16 +92,12 @@
 															<td>${item.maTT}</td>
 															<td>${item.tenTT}</td>
 															<td class="tbl_actions"><a
-																href="<c:url value="/TranDuc-QuanLyTaiLieu/TrangThai/view/${item.maTT}" />"
-																title="Xem"> <i class="fa fa-eye" aria-hidden="true"></i>
-															</a> <a
-																href="<c:url value="/TranDuc-QuanLyTaiLieu/TrangThai/sua/${item.maTT}" />"
+																href="<c:url value="/TranDuc-QuanLyTaiLieu/TrangThai/returnDel0/${item.maTT}" />"
 																title="Sửa"> <i class="fa fa-pencil-square-o blue"
-																	aria-hidden="true"></i>
-															</a> <a
-																href="<c:url value="/TranDuc-QuanLyTaiLieu/TrangThai/trashBin/${item.maTT}" />"
+																	aria-hidden="true"></i></a> <a
+																href="<c:url value="/TranDuc-QuanLyTaiLieu/TrangThai/xoa/${item.maTT}" />"
 																title="Xóa"
-																onclick="return confirm('Bạn có chắc muốn xóa ?')">
+																onclick="return confirm('Không thể khôi phục. Bạn có chắc muốn xóa ?')">
 																	<i class="fa fa-trash red" aria-hidden="true"></i>
 															</a></td>
 														</tr>

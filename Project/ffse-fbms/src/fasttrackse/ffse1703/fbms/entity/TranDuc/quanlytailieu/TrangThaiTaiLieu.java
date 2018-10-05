@@ -16,11 +16,22 @@ public class TrangThaiTaiLieu {
 	@Column(name = "ten_trang_thai")
 	private String tenTT;
 
+	@Column(name = "isDelete")
+	private Integer isDelete;
+
 	public TrangThaiTaiLieu() {
 
 	}
 
-	public TrangThaiTaiLieu( String maTT, String tenTT) {
+	public Integer getIsDelete() {
+		return isDelete;
+	}
+
+	public void setIsDelete(Integer isDelete) {
+		this.isDelete = isDelete;
+	}
+
+	public TrangThaiTaiLieu(String maTT, String tenTT) {
 		super();
 		this.maTT = maTT;
 		this.tenTT = tenTT;

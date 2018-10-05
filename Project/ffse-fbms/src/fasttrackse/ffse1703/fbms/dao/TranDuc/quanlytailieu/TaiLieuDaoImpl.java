@@ -23,10 +23,12 @@ public class TaiLieuDaoImpl implements TaiLieuDao {
 		this.sessionFactory = sessionFactory;
 	}
 
+	@Override
 	@SuppressWarnings("unchecked")
-	public List<TaiLieu> listAll() {
+	public List<TaiLieu> listAllDel0() {
 		Session session = this.sessionFactory.openSession();
-		List<TaiLieu> list = session.createQuery("from TaiLieu").list();
+		Query sql = session.createQuery("from TaiLieu where isDelete = 0");
+		List<TaiLieu> list = sql.getResultList();
 		session.close();
 		return list;
 	}
@@ -68,9 +70,9 @@ public class TaiLieuDaoImpl implements TaiLieuDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<TaiLieu> listAll(int start, int limit) {
+	public List<TaiLieu> listAllDel0(int start, int limit) {
 		Session session = this.sessionFactory.openSession();
-		Query sql = session.createQuery("from TaiLieu");
+		Query sql = session.createQuery("from TaiLieu where isDelete=0");
 		sql.setFirstResult((int) Math.ceil(start));
 		sql.setMaxResults((int) Math.ceil(limit));
 		List<TaiLieu> list = sql.getResultList();
@@ -87,35 +89,44 @@ public class TaiLieuDaoImpl implements TaiLieuDao {
 		return list;
 	}
 
-
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<DanhMuc> listDanhMuc() {
 		Session session = this.sessionFactory.openSession();
-		List<DanhMuc> list = session.createQuery("from DanhMuc").list();
+		List<DanhMuc> list = session.createQuery("from DanhMuc where isDelete = 0").list();
 		session.close();
 		return list;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public List<TaiLieu> listTaiLieu() {
-//		Session session = sessionFactory.getCurrentSession();
-//		CriteriaBuilder cb = session.getCriteriaBuilder();
-//		CriteriaQuery<TaiLieu> cq = cb.createQuery(TaiLieu.class);
-//		Root<TaiLieu> root = cq.from(TaiLieu.class);
-//		Join<TaiLieu, TrangThaiTaiLieu> MaTrangThaiJoin = root.join("ma_trang_thai");
-//		Join<TaiLieu, PhongBan> MaPhongBanJoin = root.join("ma_phong_ban");
-//		cq.select(root).where(cb.and(cb.equal(MaTrangThaiJoin.get("ma_trang_thai"), "da_phe_duyet"),
-//				cb.equal(MaPhongBanJoin.get("ma_phong_ban"), "all")));
-//		List<TaiLieu> listPublicDocument = session.createQuery(cq).getResultList();
-//		return listPublicDocument;
-//		Session session = sessionFactory.getCurrentSession();
-//		CriteriaBuilder cb = session.getCriteriaBuilder();
-//		CriteriaQuery<TaiLieu> cq = cb.createQuery(TaiLieu.class);
-//		Root<TaiLieu> root = cq.from(TaiLieu.class);
-//		Join<TaiLieu, DanhMuc> addressJoin = root.join("ma_danh_muc");
-//		cq.select(root);
-//		List<TaiLieu> listTL = session.createQuery(cq).getResultList();
-		return null;
+	public List<TaiLieu> listAllDel1() {
+		Session session = this.sessionFactory.openSession();
+		Query sql = session.createQuery("from TaiLieu where isDelete = 1");
+		List<TaiLieu> list = sql.getResultList();
+		session.close();
+		return list;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<TaiLieu> listAllDel1(int start, int limit) {
+		Session session = this.sessionFactory.openSession();
+		Query sql = session.createQuery("from TaiLieu where isDelete = 1");
+		sql.setFirstResult((int) Math.ceil(start));
+		sql.setMaxResults((int) Math.ceil(limit));
+		List<TaiLieu> list = sql.getResultList();
+		session.close();
+		return list;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<TaiLieu> listbyPhongBan(int start, int limit, String maPB) {
+		Session session = this.sessionFactory.openSession();
+		Query sql = session.createQuery("from TaiLieu where isDelete = 0 and ma_phong_ban = '"+maPB+"' ");
+		List<TaiLieu> list = sql.getResultList();
+		session.close();
+		return list;
 	}
 }

@@ -21,7 +21,7 @@ public class DanhMucImpl implements DanhMucDao {
 	@Override
 	public List<DanhMuc> listAllDanhMuc() {
 		Session session = this.sessionFac.openSession();
-		List<DanhMuc> list = session.createQuery("from DanhMuc").list();
+		List<DanhMuc> list = session.createQuery("from DanhMuc where isDelete = 0").list();
 		session.close();
 		return list;
 	}

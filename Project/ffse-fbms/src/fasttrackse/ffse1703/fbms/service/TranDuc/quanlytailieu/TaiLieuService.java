@@ -7,7 +7,9 @@ import fasttrackse.ffse1703.fbms.entity.TranDuc.quanlytailieu.TaiLieu;
 import fasttrackse.ffse1703.fbms.entity.security.PhongBan;
 
 public interface TaiLieuService {
-	public List<TaiLieu> listAll();
+	public List<TaiLieu> listAllDel0();
+
+	public List<TaiLieu> listAllDel1();
 
 	public void addTL(TaiLieu tl);
 
@@ -17,9 +19,13 @@ public interface TaiLieuService {
 
 	public TaiLieu getTLbyID(Integer idTL);
 
-	public List<TaiLieu> listAllPaging(int start, int limit);
-	
+	public List<TaiLieu> listAllPagingDel0(int start, int limit);
+
+	public List<TaiLieu> listAllPagingDel1(int start, int limit);
+
 	public List<DanhMuc> listDanhMuc();
 
 	public List<PhongBan> listPhongBan();
+
+	List<TaiLieu> listbyPhongBan(int start, int limit, String maPB);
 }

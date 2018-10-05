@@ -15,6 +15,28 @@ public class IconTaiLieu {
 	@Column(name = "link_file")
 	private String linkIcon;
 
+	@Column(name = "isDelete")
+	private Integer isDelete;
+
+	@Column(name = "ten_icon")
+	private String ten_icon;
+
+	public String getTen_icon() {
+		return ten_icon;
+	}
+
+	public void setTen_icon(String ten_icon) {
+		this.ten_icon = ten_icon;
+	}
+
+	public Integer getIsDelete() {
+		return isDelete;
+	}
+
+	public void setIsDelete(Integer isDelete) {
+		this.isDelete = isDelete;
+	}
+
 	public String getMaIcon() {
 		return maIcon;
 	}

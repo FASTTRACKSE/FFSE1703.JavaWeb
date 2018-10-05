@@ -62,8 +62,9 @@
 													readonly /></td>
 											</tr>
 											<tr>
-												<td><label>Icon</label>
-												<image src="<c:url value="${icon.linkIcon}"/>" alt="This is icon"></image></td>
+												<td><label>Icon</label> <img
+													src="<c:url value="/uploads/${TaiLieu.iconTaiLieu.ten_icon}" />"
+													alt="${item.iconTaiLieu.maIcon}" height="50px" width="50px" /></td>
 												<td><label>Tên Tài Liệu</label> <input
 													class="form-control" value="${TaiLieu.tenTL}" readonly /></td>
 												<td><label>Tên Danh Mục</label> <input

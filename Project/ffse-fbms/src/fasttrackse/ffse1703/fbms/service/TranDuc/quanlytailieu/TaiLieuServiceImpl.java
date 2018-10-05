@@ -9,13 +9,20 @@ import fasttrackse.ffse1703.fbms.dao.TranDuc.quanlytailieu.TaiLieuDao;
 import fasttrackse.ffse1703.fbms.entity.TranDuc.quanlytailieu.DanhMuc;
 import fasttrackse.ffse1703.fbms.entity.TranDuc.quanlytailieu.TaiLieu;
 import fasttrackse.ffse1703.fbms.entity.security.PhongBan;
+
 @Service
 public class TaiLieuServiceImpl implements TaiLieuService {
 	@Autowired
 	private TaiLieuDao daoTL;
+
 	@Override
-	public List<TaiLieu> listAll() {
-		return daoTL.listAll();
+	public List<TaiLieu> listAllDel0() {
+		return daoTL.listAllDel0();
+	}
+
+	@Override
+	public List<TaiLieu> listAllDel1() {
+		return daoTL.listAllDel1();
 	}
 
 	@Override
@@ -39,8 +46,9 @@ public class TaiLieuServiceImpl implements TaiLieuService {
 	}
 
 	@Override
-	public List<TaiLieu> listAllPaging(int start, int limit) {
-		return daoTL.listAll(start,limit);
+
+	public List<TaiLieu> listAllPagingDel0(int start, int limit) {
+		return daoTL.listAllDel0(start, limit);
 	}
 
 	@Override
@@ -51,6 +59,16 @@ public class TaiLieuServiceImpl implements TaiLieuService {
 	@Override
 	public List<DanhMuc> listDanhMuc() {
 		return daoTL.listDanhMuc();
+	}
+
+	@Override
+	public List<TaiLieu> listAllPagingDel1(int start, int limit) {
+		return daoTL.listAllDel1(start, limit);
+	}
+	
+	@Override
+	public List<TaiLieu> listbyPhongBan(int start, int limit, String maPB){
+		return daoTL.listbyPhongBan(start, limit, maPB);
 	}
 
 }

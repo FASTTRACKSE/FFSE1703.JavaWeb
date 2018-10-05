@@ -63,7 +63,7 @@
 		
 		<!-- Phân quyền module QTNS - PIKALONG :: START -->
 		
-		<intercept-url pattern="/quantrinhansu/hosonhanvien/**" access="hasAnyRole('ROLE_PNSTPP','ROLE_PGD')" />
+		<intercept-url pattern="/quantrinhansu/nhanvienphongban/PGD" access="hasAnyRole('ROLE_PNSTPP','ROLE_PGD')" />
 		
 		<!-- Phân quyền module QTNS - PIKALONG :: END -->
 		

@@ -450,6 +450,10 @@
 							<li><a class="menu-item"
 								href="/ffse-fbms/quantrinhansu/nhanvienphongban/PKT">Phòng Kế Toán</a></li>
 						</ul>
+						<ul class="menu-content">
+							<li><a class="menu-item"
+								href="/ffse-fbms/quantrinhansu/nhanvienphongban/TTCN">Thông Tin Cá Nhân</a></li>
+						</ul>
 						</li>
 						<li class=" nav-item"><a href="#"><i class="ft-layers"></i><span
 							class="menu-title" data-i18n="">Quản Lý Hợp Đồng</span></a>

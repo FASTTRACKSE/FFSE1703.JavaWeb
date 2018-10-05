@@ -8,7 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.HoSoNhanVienPikalong;
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
@@ -19,17 +18,18 @@ public class Nhiemvu {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@ManyToOne
+	 @ManyToOne
 	@JoinColumn(name = "id_project")
 	private Projects projects;
-	@ManyToOne
-	@JoinColumn(name = "id_employee")
-	@NotNull
-	private HoSoNhanVienPikalong hoSoNhanVien;
-	@ManyToOne
-	@JoinColumn(name = "id_role")
-	@NotNull
-	private Roles roles;
+	 @ManyToOne
+	 @JoinColumn(name="id_employee")
+	 private HoSoNhanVienPikalong hoSoNhanVien;
+	
+
+	
+	 @ManyToOne
+	 @JoinColumn(name = "id_role")
+	 private Roles roles;
 	private int status;
 
 	public int getId() {
@@ -39,6 +39,7 @@ public class Nhiemvu {
 	public void setId(int id) {
 		this.id = id;
 	}
+
 
 	public Projects getProjects() {
 		return projects;
@@ -72,4 +73,5 @@ public class Nhiemvu {
 		this.roles = roles;
 	}
 
+	
 }

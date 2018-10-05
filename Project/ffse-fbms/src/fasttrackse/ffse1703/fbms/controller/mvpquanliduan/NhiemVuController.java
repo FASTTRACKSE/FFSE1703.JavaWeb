@@ -91,17 +91,12 @@ public class NhiemVuController {
 		model.addAttribute("nhanVienList", nhanVienList);
 		List<Roles> list = rolesService.findAll();
 		model.addAttribute("listRoles", list);
-		model.addAttribute("idProjects",idProjects);
 		return "MvpQuanLiDuAn/phancongnhiemvu/add_form";
 	}
 	@RequestMapping(value = "/addnew", method = RequestMethod.POST)
 	public String addNew(@Valid @ModelAttribute("command") Nhiemvu nhiemVu, BindingResult result,
 			final RedirectAttributes redirectAttributes, Model model) {
 		if (result.hasErrors()) {
-			List<HoSoNhanVienPikalong> nhanVienList = hoSoNhanVienPikalongService.listNhanVien();
-			model.addAttribute("nhanVienList", nhanVienList);
-			List<Roles> list1 = rolesService.findAll();
-			model.addAttribute("listRoles", list1);
 			return "MvpQuanLiDuAn/phancongnhiemvu/add_form";
 		}
 		int checkRole=nhiemVuService.checkRole(nhiemVu.getHoSoNhanVien().getMaNv(),nhiemVu.getRoles().getIdRoles(), nhiemVu.getProjects().getIdProject());

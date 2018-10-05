@@ -5,6 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 <style type="text/css">
@@ -29,7 +30,7 @@ th, td {
 		<div class="content-header row">
 			<div class="content-header-left col-md-9 col-xs-12 mb-2">
 				<h3 class="content-header-title mb-0">
-					<spring:message code="label.danhSachHopDong" />
+					<spring:message code="label.hopDongLaoDong" />
 				</h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
@@ -39,10 +40,11 @@ th, td {
 							<li class="breadcrumb-item"><a
 								href="<c:url value = "/quanlynhansutt/ho_so/"/>"><spring:message
 										code="label.quanLyNhanSu" /></a></li>
-							<li class="breadcrumb-item"><a href="javascript:void(0)"><spring:message
-										code="label.quanLyHopDong" /></a></li>
+							<li class="breadcrumb-item"><a
+								href='<c:url value="/quanlynhansutt/hop_dong/" />'><spring:message
+										code="label.danhSachHopDong" /></a></li>
 							<li class="breadcrumb-item active"><spring:message
-									code="label.danhSachHopDong" /></li>
+									code="label.hopDongLaoDong" /></li>
 						</ol>
 					</div>
 				</div>
@@ -50,10 +52,12 @@ th, td {
 			<div class="content-header-right col-md-3 col-xs-12">
 				<div role="group" aria-label="Button group with nested dropdown"
 					class="btn-group float-md-right" id="add-new">
+					<sec:authorize access="hasRole('ROLE_PNSTPP')">
 					<a
 						href="<c:url value = "/quanlynhansutt/hop_dong/add_hopdong/${maNhanVien}"/>"
 						class="btn btn-primary"><span class="fa fa-plus"></span> <spring:message
 							code="label.themMoi" /></a>
+							</sec:authorize>
 				</div>
 			</div>
 		</div>
@@ -74,44 +78,6 @@ th, td {
 										<li><a data-action="expand"><i class="ft-maximize"></i></a></li>
 									</ul>
 								</div>
-								<p>
-								<div class="col-md-4">
-									<form method="GET" action="">
-										<div class="col-md-6">
-											<div class="form-group">
-												<spring:message code="label.maNhanVien" />
-												<select name="maphongban"
-													class="form-control form-control-sm" id="maphongban">
-													<option value="0" selected="selected">--
-														<spring:message code="label.tatCa" />--
-													</option>
-													<c:forEach items="${phongban}" var="nn">
-														<option value="${nn.maPhongBan}"
-															<c:if test="${maPhongBans == nn.maPhongBan }"> selected="selected"</c:if>>${nn.maPhongBan}</option>
-													</c:forEach>
-												</select>
-											</div>
-										</div>
-										<div class="col-md-6" style="margin-top: 20px">
-											<label></label>
-											<button type="submit"
-												class="btn mr-1 mb-1 btn-success btn-sm">
-												<i class="fa fa-search"></i>
-												<spring:message code="label.tim" />
-											</button>
-										</div>
-										<script type="text/javascript">
-											NhanVien =
-										<%=request.getParameter("maphongban")%>
-											;
-											if (maphongban != 0
-													&& maphongban != null) {
-												$("#maphongban")
-														.val(maphongban);
-											}
-										</script>
-									</form>
-								</div>
 							</div>
 							<div class="card-body collapse in">
 								<div class="card-block card-dashboard">
@@ -119,54 +85,52 @@ th, td {
 										class="table table-striped table-bordered zero-configuration">
 										<thead>
 											<tr>
-												<th><spring:message code="label.maHopDong" /></th>
-												<th><spring:message code="label.maNhanVien" /></th>
 												<th><spring:message code="label.tenHopDong" /></th>
 												<th><spring:message code="label.luongThang13" /></th>
 												<th><spring:message code="label.soNgayPhep" /></th>
 												<th><spring:message code="label.ngayKy" /></th>
 												<th><spring:message code="label.hopDongTuNgay" /></th>
-												<th><spring:message code="label.hopDongDenNgay" /></th>
+												<th><spring:message code="label.hopDongDenNgay" /></th> 
 												<th><spring:message code="label.trangThai" /></th>
 												<th><spring:message code="label.chucNang" /></th>
+
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach items="${listHopDong}" var="hshd">
+										<sec:authorize access="hasRole('ROLE_PNSTPP') or hasRole('ROLE_PGD')">
+											<c:forEach items="${list}" var="hs">
 												<tr>
-													<td>${hshd.maHopDong}</td>
-													<td>${hshd.hoSoNhanVienTT.maNhanVien}</td>
-													<td>${hshd.loaiHopDong.tenHopDong}</td>
-													<td><c:if test="${hshd.luongThang13 == 1}">
+													<td>${hs.loaiHopDong.tenHopDong}</td>
+													<td><c:if test="${hs.luongThang13 == 1}">
 															<spring:message code="label.co" />
-														</c:if> <c:if test="${hshd.luongThang13 == 2}">
+														</c:if> <c:if test="${hs.luongThang13 == 2}">
 															<spring:message code="label.khong" />
 														</c:if></td>
-													<td>${hshd.soNgayPhep}</td>
-													<td>${hshd.ngayKy}</td>
-													<td>${hshd.hopDongTuNgay}</td>
-													<td>${hshd.hopDongDenNgay}</td>
-													<td><c:if test="${hshd.trangThai == 1}">
+													<td>${hs.soNgayPhep}</td>
+													<td>${hs.ngayKy}</td>
+													<td>${hs.hopDongTuNgay}</td>
+													<td>${hs.hopDongDenNgay}</td>
+													<td><c:if test="${hs.trangThai == 1}">
 															<spring:message code="label.conHopDong" />
-														</c:if> <c:if test="${hshd.trangThai == 2}">
+														</c:if> <c:if test="${hs.trangThai == 2}">
 															<spring:message code="label.hetHopDong" />
 														</c:if></td>
 													<td
 														style="letter-spacing: 5px; min-width: 75px; text-align: center !important;">
+														<a href="<c:url value = "#"/>"><i class="fa fa-eye"></i></a>
+														<sec:authorize access="hasRole('ROLE_PNSTPP')">
 														<a
-														href="<c:url value = "/quanlynhansutt/hop_dong/viewOneHopDong/${hshd.hoSoNhanVienTT.maNhanVien}"/>"><i
-															class="fa fa-eye"></i></a> <a
-														href="<c:url value = "/quanlynhansutt/hop_dong/edit_hopdong/${hshd.maHopDong}"/>"><i
-															class="fa fa-pencil"></i></a> <%-- <a href="<c:url value = ""/>"><i class="fa fa-trash"></i></a> --%>
+														href="<c:url value = "/quanlynhansutt/hop_dong/edit_hopdong/${hs.maHopDong}"/>"><i
+															class="fa fa-pencil"></i></a> 
 														<a
-														href='<c:url value = "/quanlynhansutt/hop_dong/remove/${hshd.maHopDong}"></c:url>'
+														href='<c:url value = "/quanlynhansutt/hop_dong/remove/${hs.maHopDong}"></c:url>'
 														class="fa fa-trash"
 														onclick="return confirm('Bạn có muốn xóa sinh viên này?');"></a>
-
+														</sec:authorize>
 													</td>
 												</tr>
 											</c:forEach>
-
+											</sec:authorize>
 										</tbody>
 									</table>
 								</div>
@@ -175,11 +139,9 @@ th, td {
 					</div>
 				</div>
 			</section>
-
 			<!--/ Zero configuration table -->
 		</div>
 	</div>
 </div>
 <!-- ////////////////////////////////////////////////////////////////////////////-->
-
 <jsp:include page="/WEB-INF/view/templates/footer.jsp" />

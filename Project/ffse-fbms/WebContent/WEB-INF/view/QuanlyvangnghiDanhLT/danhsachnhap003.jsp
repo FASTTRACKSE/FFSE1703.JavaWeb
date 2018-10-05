@@ -14,9 +14,28 @@
 		<div class="col-md-5"></div>
 			<h3 class="content-header-title mb-0"><spring:message code="label.danhsachnhap"/></h3>
 		</div>
+		
 			<div>
-			<div><a href="donxinphep003"><h4><spring:message code="label.soandonmoi"/></h4></a></div>
+			<div><a href="donxinphep003"> <h4><spring:message code="label.soandonmoi"/></h4></a></div>
 			<div class="container">
+				<!-- Show message -->
+			<c:if test="${messageSuccess ne null}">
+				<div class="alert alert-success alert-dismissable" role="alert">
+					<button type="button" class="close" data-dismiss="alert">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					${messageSuccess}
+				</div>
+			</c:if>
+			<c:if test="${messageError ne null}">
+				<div class="alert alert-danger alert-dismissable" role="alert">
+					<button type="button" class="close" data-dismiss="alert">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					${messageError}
+				</div>
+			</c:if>
+			<!-- End Show message -->
 			    <div class="table-responsive">
 						<table class="table mb-0">
 							<thead>
@@ -106,4 +125,11 @@
 		</div>
 		</div>
 		</div>
+		<script type="text/javascript">
+window.setTimeout(function() {
+	$(".alert").fadeTo(500, 0).slideUp(500, function() {
+		$(this).remove();
+	});	
+}, 2500);
+</script>
 <jsp:include page="/WEB-INF/view/templates/footer.jsp" />

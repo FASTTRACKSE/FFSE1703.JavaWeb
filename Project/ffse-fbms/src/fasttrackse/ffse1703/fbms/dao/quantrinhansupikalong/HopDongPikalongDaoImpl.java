@@ -8,7 +8,6 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.BangCapPikalong;
 import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.HopDongPikalong;
 
 @Repository
@@ -87,6 +86,7 @@ public class HopDongPikalongDaoImpl implements HopDongPikalongDao {
 		Session session = this.sessionFactory.getCurrentSession();
 		return session.get(HopDongPikalong.class, maHopDong);
 	}
+	
 	
 	@SuppressWarnings("rawtypes")
 	@Override

@@ -51,7 +51,6 @@ public class QLyNhiemVuController {
 			IDtrangthaiSearch = "";
 		}
 		String search = maDuanSearch + maNhanVienSearch + IDtrangthaiSearch;
-
 		int perPage = 10;
 		int totalPage = totalPage(perPage);
 		int start = (page - 1) * perPage;
@@ -144,7 +143,6 @@ public class QLyNhiemVuController {
 		model.addAttribute("duan", qLyNhiemVuService.duAn());
 		model.addAttribute("nhanVienHLP", qLyNhiemVuService.nhanVienHLP());
 		return "QuanLyNhiemVuHieuLP/calender";
-
 	}
 //fa fa-calendar
 }

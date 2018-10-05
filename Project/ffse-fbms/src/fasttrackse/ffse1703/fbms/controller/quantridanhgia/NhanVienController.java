@@ -8,7 +8,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -49,33 +48,38 @@ public class NhanVienController {
 		this.nhanVienService = nhanVienService;
 	}
 
-	@RequestMapping(value = "/**")
-	public String redirectPage(Model model, HttpSession session) {
-		String page = "redirect:/quantridanhgia/nhanvien/danhgiabanthan";
+	public void getInfo(HttpSession session) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		if (auth instanceof AnonymousAuthenticationToken) {
-			page = "redirect:/login";
-		} else {
-			UserAccount user = accountService.loadUserByUsername(auth.getName());
-			HoSoNhanVien hoSo = user.getNhanVien();
-			ChucDanh chucDanh = hoSo.getChucDanh();
-			PhongBan phongBan = hoSo.getPhongBan();
-			session.setAttribute("chucDanh", chucDanh);
-			session.setAttribute("nhanVien", hoSo);
-			session.setAttribute("phongBan", phongBan);
-		}
-		return page;
+		UserAccount user = accountService.loadUserByUsername(auth.getName());
+		HoSoNhanVien hoSo = user.getNhanVien();
+		ChucDanh chucDanh = hoSo.getChucDanh();
+		PhongBan phongBan = hoSo.getPhongBan();
+		session.setAttribute("chucDanh", chucDanh);
+		session.setAttribute("nhanVien", hoSo);
+		session.setAttribute("phongBan", phongBan);
+	}
+
+	@RequestMapping(value = { "", "/" })
+	public String redirectPage(Model model, HttpSession session) {
+		getInfo(session);
+		return "redirect:/quantridanhgia/nhanvien/danhgianhanvien";
 	}
 
 	@RequestMapping(value = { "/danhgiabanthan" })
 	public String getDanhGiaBanThan(Model model, HttpSession session) {
+		getInfo(session);
 		HoSoNhanVien nhanVien = (HoSoNhanVien) session.getAttribute("nhanVien");
-		model.addAttribute("danhGia", nhanVienService.getDanhGiaBanThan(nhanVien).get(0));
+		if (nhanVienService.getDanhGiaBanThan(nhanVien).getId() != 0) {
+			model.addAttribute("danhGia", nhanVienService.getDanhGiaBanThan(nhanVien));
+		} else {
+			model.addAttribute("danhGia", "");
+		}
 		return "QuanTriDanhGia/nhanvien/danhgiabanthan";
 	}
 
 	@RequestMapping("/danhgiabanthan/add")
 	public String createDanhGiaBanThan(Model model, HttpSession session) {
+		getInfo(session);
 		HoSoNhanVien nhanVien = (HoSoNhanVien) session.getAttribute("nhanVien");
 		PhongBan phongBan = (PhongBan) session.getAttribute("phongBan");
 		LichDanhGia lich = nhanVienService.getLichDanhGiaActive(phongBan.getMaPhongBan());
@@ -89,19 +93,17 @@ public class NhanVienController {
 
 	@RequestMapping("/danhgiabanthan/edit")
 	public String editDanhGiaBanThan(Model model, HttpSession session) {
+		getInfo(session);
 		HoSoNhanVien nhanVien = (HoSoNhanVien) session.getAttribute("nhanVien");
 		DanhGiaBanThan danhGia = new DanhGiaBanThan();
-		if (nhanVienService.getDanhGiaBanThan(nhanVien).size() < 1) {
-			return "redirect:/quantridanhgia/nhanvien/add";
-		} else {
-			danhGia = nhanVienService.getDanhGiaBanThan(nhanVien).get(0);
-			model.addAttribute("command", danhGia);
-		}
+		danhGia = nhanVienService.getDanhGiaBanThan(nhanVien);
+		model.addAttribute("command", danhGia);
 		return "QuanTriDanhGia/nhanvien/formdanhgiabanthan";
 	}
 
 	@RequestMapping(value = "/danhgiabanthan/submit", method = RequestMethod.POST)
-	public String submitDanhGiaBanThan(Model model, @ModelAttribute("command") @Valid DanhGiaBanThan danhGia, BindingResult result) {
+	public String submitDanhGiaBanThan(Model model, @ModelAttribute("command") @Valid DanhGiaBanThan danhGia,
+			BindingResult result) {
 		if (result.hasErrors()) {
 			return "QuanTriDanhGia/nhanvien/formdanhgiabanthan";
 		}
@@ -115,6 +117,7 @@ public class NhanVienController {
 
 	@RequestMapping(value = { "/danhgianhanvien" })
 	public String getListDanhGiaNhanVien(Model model, HttpSession session) {
+		getInfo(session);
 		HoSoNhanVien nhanVien = (HoSoNhanVien) session.getAttribute("nhanVien");
 		List<DanhGiaNhanVien> list = nhanVienService.getListDanhGiaNhanVien(nhanVien.getMaNhanVien());
 		model.addAttribute("listDanhGiaNhanVien", list);
@@ -155,16 +158,21 @@ public class NhanVienController {
 	public String createDanhGiaNhanVien(Model model, @PathVariable("id") int id,
 			@PathVariable("nhanvien") int nhanVien) {
 		HoSoNhanVien hoSo = nhanVienService.getHoSoNhanVien(nhanVien);
-		model.addAttribute("danhGia", nhanVienService.getDanhGiaBanThan(hoSo).get(0));
+		if (nhanVienService.getDanhGiaBanThan(hoSo).getId() > 0) {
+			model.addAttribute("danhGia", nhanVienService.getDanhGiaBanThan(hoSo));
+		} else {
+			model.addAttribute("danhGia", "");
+		}
 		model.addAttribute("command", nhanVienService.getDanhGiaNhanVien(id));
 		return "QuanTriDanhGia/nhanvien/formdanhgianhanvien";
 	}
 
 	@RequestMapping(value = "/danhgianhanvien/submit", method = RequestMethod.POST)
-	public String submitDanhGiaNhanVien(Model model, @ModelAttribute("command") @Valid DanhGiaNhanVien danhGia, BindingResult result) {
+	public String submitDanhGiaNhanVien(Model model, @ModelAttribute("command") @Valid DanhGiaNhanVien danhGia,
+			BindingResult result) {
 		if (result.hasErrors()) {
 			HoSoNhanVien hoSo = danhGia.getNhanVien();
-			model.addAttribute("danhGia", nhanVienService.getDanhGiaBanThan(hoSo).get(0));
+			model.addAttribute("danhGia", nhanVienService.getDanhGiaBanThan(hoSo));
 			return "QuanTriDanhGia/nhanvien/formdanhgianhanvien";
 		}
 		nhanVienService.updateDanhGiaNhanVien(danhGia);
@@ -173,6 +181,7 @@ public class NhanVienController {
 
 	@RequestMapping("/nhanviendanhgia")
 	public String getListNhanVienDanhGia(Model model, HttpSession session) {
+		getInfo(session);
 		HoSoNhanVien nhanVien = (HoSoNhanVien) session.getAttribute("nhanVien");
 		model.addAttribute("listDanhGia", nhanVienService.getListNhanVienDanhGia(nhanVien.getMaNhanVien()));
 		return "QuanTriDanhGia/nhanvien/nhanviendanhgia";
@@ -186,6 +195,7 @@ public class NhanVienController {
 
 	@RequestMapping("/danhgiacuatruongphong")
 	public String viewDanhGiaCuaTruognPhong(Model model, HttpSession session) {
+		getInfo(session);
 		HoSoNhanVien nhanVien = (HoSoNhanVien) session.getAttribute("nhanVien");
 		model.addAttribute("danhGia", nhanVienService.getDanhGiaCuaTruongPhong(nhanVien.getMaNhanVien()));
 		return "QuanTriDanhGia/nhanvien/danhgiacuatruongphong";

@@ -5,6 +5,8 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,16 +18,20 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.DanhGiaNhanVien;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.KyDanhGia;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.LichDanhGia;
+import fasttrackse.ffse1703.fbms.entity.security.ChucDanh;
+import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 import fasttrackse.ffse1703.fbms.entity.security.PhongBan;
+import fasttrackse.ffse1703.fbms.entity.security.UserAccount;
 import fasttrackse.ffse1703.fbms.service.quantridanhgia.PhongNhanSuService;
 import fasttrackse.ffse1703.fbms.service.security.PhongBanService;
+import fasttrackse.ffse1703.fbms.service.security.UserAccountService;
 
 @Controller
 @RequestMapping("/quantridanhgia/phongnhansu")
 public class PhongNhanSuController {
 
 	private int start = 1;
-	
+
 	private int maxItems = 3;
 
 	private int currentPage = 1;
@@ -33,6 +39,14 @@ public class PhongNhanSuController {
 	private PhongBanService phongBanService;
 
 	private PhongNhanSuService service;
+
+	public UserAccountService accountService;
+
+	@Autowired
+	@Qualifier(value = "userAccountServiceImpl")
+	public void setAccountService(UserAccountService accountService) {
+		this.accountService = accountService;
+	}
 
 	@Autowired
 	public void setPhongBanService(PhongBanService phongBanService) {
@@ -45,8 +59,26 @@ public class PhongNhanSuController {
 		this.service = service;
 	}
 
+	public void getInfo(HttpSession session) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		UserAccount user = accountService.loadUserByUsername(auth.getName());
+		HoSoNhanVien hoSo = user.getNhanVien();
+		ChucDanh chucDanh = hoSo.getChucDanh();
+		PhongBan phongBan = hoSo.getPhongBan();
+		session.setAttribute("chucDanh", chucDanh);
+		session.setAttribute("nhanVien", hoSo);
+		session.setAttribute("phongBan", phongBan);
+	}
+
+	@RequestMapping(value = { "","/" })
+	public String redirectPage(Model model, HttpSession session) {
+		getInfo(session);
+		return "redirect:/quantridanhgia/phongnhansu/kydanhgia";
+	}
+
 	@RequestMapping("/kydanhgia")
 	private String redirectListKyDanhgia(HttpSession session) {
+		getInfo(session);
 		if (session.getAttribute("pageKy") != null) {
 			currentPage = (int) session.getAttribute("pageKy");
 		}
@@ -56,7 +88,7 @@ public class PhongNhanSuController {
 	@RequestMapping("/kydanhgia/{page}")
 	private String showListKyDanhgia(@PathVariable(required = false) int page, Model model, HttpSession session) {
 		start = (page - 1) * maxItems;
-		model.addAttribute("command", new KyDanhGia());
+		model.addAttribute("kyDanhGia", new KyDanhGia());
 		model.addAttribute("total", Math.ceil((double) service.getListKyDanhGia().size() / (double) maxItems));
 		session.setAttribute("pageKy", page);
 		model.addAttribute("listKyDanhGia", service.getListKyDanhGia(start, maxItems));
@@ -65,21 +97,21 @@ public class PhongNhanSuController {
 
 	@RequestMapping("/kydanhgia/edit/{maKy}")
 	private String showEdit(Model model, @PathVariable String maKy) {
-		model.addAttribute("kyDanhGia", service.getKyDanhGia(maKy));
+		model.addAttribute("command", service.getKyDanhGia(maKy));
 		model.addAttribute("listKyDanhGia", service.getListKyDanhGia());
 		model.addAttribute("listPhongBan", phongBanService.findAll());
 		return "QuanTriDanhGia/phongnhansu/kydanhgia";
 	}
 
 	@RequestMapping("/kydanhgia/save")
-	private String insertKyDanhgia(Model model, @Valid @ModelAttribute("kyDanhGia") KyDanhGia kyDanhGia, HttpSession session, BindingResult result) {
+	private String insertKyDanhgia(Model model,@ModelAttribute("command") @Valid KyDanhGia kyDanhGia,
+			HttpSession session, BindingResult result) {
 		if (result.hasErrors()) {
 			start = (int) session.getAttribute("pageKy");
 			model.addAttribute("listKyDanhGia", service.getListKyDanhGia(start, maxItems));
 			model.addAttribute("total", Math.ceil((double) service.getListKyDanhGia().size() / (double) maxItems));
 			return "QuanTriDanhGia/phongnhansu/kydanhgia";
 		}
-		
 		if (service.checkKyDanhGia(kyDanhGia.getMaKy()) < 1) {
 			this.service.insertKyDanhGia(kyDanhGia);
 		} else {
@@ -89,13 +121,16 @@ public class PhongNhanSuController {
 	}
 
 	@RequestMapping("/kydanhgia/delete/{maKy}")
-	private String deletegDanhgia(Model model) {
-		model.addAttribute("command", new KyDanhGia());
+	private String deletegDanhgia(Model model, @PathVariable String maKy) {
+		KyDanhGia kyDanhGia = service.getKyDanhGia(maKy);
+		kyDanhGia.setIsDelete(1);
+		service.deleteKyDanhGia(kyDanhGia);
 		return "redirect:/quantridanhgia/phongnhansu/kydanhgia";
 	}
 
 	@RequestMapping("/lichdanhgia")
 	private String redirectListLichDanhgia(HttpSession session) {
+		getInfo(session);
 		if (session.getAttribute("pageLich") != null) {
 			currentPage = (int) session.getAttribute("pageLich");
 		}
@@ -115,7 +150,8 @@ public class PhongNhanSuController {
 	}
 
 	@RequestMapping("/lichdanhgia/create")
-	private String createLichDanhgia(@ModelAttribute("command") @Valid LichDanhGia lichDanhGia, BindingResult result, Model model, HttpSession session) {
+	private String createLichDanhgia(@ModelAttribute("command") @Valid LichDanhGia lichDanhGia, BindingResult result,
+			Model model, HttpSession session) {
 		if (result.hasErrors()) {
 			start = (int) session.getAttribute("pageLich");
 			model.addAttribute("total", Math.ceil((double) service.getListLichDanhGia().size() / (double) maxItems));
@@ -157,6 +193,7 @@ public class PhongNhanSuController {
 
 	@RequestMapping("/danhsachdanhgia")
 	private String redirectListDanhgiaBanThan(HttpSession session) {
+		getInfo(session);
 		if (session.getAttribute("pageKy") != null) {
 			currentPage = (int) session.getAttribute("pageDanhGia");
 		}

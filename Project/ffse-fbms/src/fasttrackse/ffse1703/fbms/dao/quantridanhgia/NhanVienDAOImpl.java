@@ -23,12 +23,11 @@ public class NhanVienDAOImpl implements NhanVienDAO {
 		this.sessionFactory = sessionFactory;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
-	public List<DanhGiaBanThan> getDanhGiaBanThan(HoSoNhanVien nhanVien) {
+	public DanhGiaBanThan getDanhGiaBanThan(HoSoNhanVien nhanVien) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("from DanhGiaBanThan where nhanVien = :maNhanVien")
-				.setParameter("maNhanVien", nhanVien).list();
+		return (DanhGiaBanThan) session.createQuery("from DanhGiaBanThan where nhanVien = :maNhanVien")
+				.setParameter("maNhanVien", nhanVien).getSingleResult();
 	}
 
 	@Override

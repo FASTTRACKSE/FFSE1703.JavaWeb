@@ -151,6 +151,7 @@ public class PhongNhanSuServiceImpl implements PhongNhanSuService {
 	}
 
 	@Override
+	@Transactional
 	public int checkKyDanhGia(String maKy) {
 		return dao.checkKyDanhGia(maKy);
 	}

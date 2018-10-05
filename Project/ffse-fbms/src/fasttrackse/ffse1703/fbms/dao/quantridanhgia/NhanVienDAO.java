@@ -11,7 +11,7 @@ import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 public interface NhanVienDAO {
 	public HoSoNhanVien getHoSoNhanVien(int nhanVien);
 	
-	public  List<DanhGiaBanThan> getDanhGiaBanThan(HoSoNhanVien nhanVien);
+	public  DanhGiaBanThan getDanhGiaBanThan(HoSoNhanVien nhanVien);
 
 	public LichDanhGia getLichDanhGiaActive(String phongBan);
 	

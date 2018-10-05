@@ -165,7 +165,7 @@
 												<th scope="col"><spring:message code="label.loaicongviecnhiemvu"/></th>
 												<th scope="col"><spring:message code="label.trangthainhiemvu"/></th>
 												<th scope="col"><spring:message code="label.nguoiduocphancong"/></th>
-												<th scope="col"><spring:message code="label.tuychonnhiemvu"/></th>
+												<th scope="col" style="letter-spacing: 5px"><spring:message code="label.tuychonnhiemvu"/></th>
 											</tr>
 										</thead>
 										<tbody>
@@ -177,7 +177,7 @@
 											        <td>${nv.idLoaiCongviec.loaiCongviec}</td>
 											        <td>${nv.idLoaiTrangthai.loaiTrangthai}</td>
 											        <td>${nv.nhanVien.hoDem} ${nv.nhanVien.ten}</td>
-													<td style="letter-spacing: 10px">
+													<td style="letter-spacing: 5px">
 														<a href="/ffse-fbms/HieuLP/view/${nv.ID}"><i class='fa fa-eye'></i></a> 
 														<a href="/ffse-fbms/HieuLP/edit/${nv.ID}"><i class='ft-edit-3'></i></a>
 														<sec:authorize access=" hasRole('ROLE_PGD') or hasRole('ROLE_PNSTPP') or hasRole('ROLE_PDATPP') or hasRole('ROLE_PDTTPP') or hasRole('ROLE_PITTPP') or hasRole('ROLE_PKTTPP')">

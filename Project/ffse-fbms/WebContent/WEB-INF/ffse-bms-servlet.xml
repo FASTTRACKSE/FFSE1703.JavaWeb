@@ -90,7 +90,7 @@
 		</bean>
 	</mvc:interceptors>
 	
-	<!-- export excel file  -->
+	<!-- export excel file Pikalong -->
 	<bean class="org.springframework.web.servlet.view.XmlViewResolver">
 	   <property name="location">
 	       <value>/WEB-INF/spring-excel-views.xml</value>

@@ -17,4 +17,8 @@ public interface HoSoNhanVienPikalongDao {
 	public Long countAll(); 
 	public boolean checkExistMaNv(String maNv);
 	public boolean checkIsActive(String maNv);
+	
+	// xem theo phòng ban
+	
+	public List<HoSoNhanVienPikalong> listNhanVienByPhongBan (String phongBan);
 }

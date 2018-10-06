@@ -10,7 +10,6 @@
 	<div class="content-wrapper">
 		<!-- Path -->
 		<div class="content-header row">
-<<<<<<< HEAD
 			<div>
 				<div class="col-md-5"></div>
 				<h3 class="content-header-title mb-0">
@@ -18,13 +17,6 @@
 				</h3>
 			</div>
 			<c:if test="${messageSuccess ne null}">
-=======
-		<div>
-		<div class="col-md-5"></div>
-			<h3 ><spring:message code="label.danhsachtuchoi"/></h3>
-		</div>
-		<c:if test="${messageSuccess ne null}">
->>>>>>> ef5f5308c263ba2663aeeae65cf4ff406e7c6f77
 				<div class="alert alert-success alert-dismissable" role="alert">
 					<button type="button" class="close" data-dismiss="alert">
 						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>

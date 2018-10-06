@@ -82,7 +82,7 @@
 		<!-- Phân quyền quản trị dự án :: START -->
 			<intercept-url pattern="/quantridanhgia/truongphong/**" access="hasAnyRole('ROLE_PGDTPP','ROLE_PNSTPP','ROLE_PDATPP','ROLE_PDTTPP','ROLE_PITTPP','ROLE_PKTTPP')" />
 			<intercept-url pattern="/quantridanhgia/phongnhansu/**" access="hasAnyRole('ROLE_PNSNV','ROLE_PNSTPP')" />
-			<intercept-url pattern="/quantridanhgia/nhanvien/**" access="hasAnyRole('ROLE_NV','ROLE_PNSNV')" />
+			<intercept-url pattern="/quantridanhgia/nhanvien/**" access="hasAnyRole('ROLE_PDANV','ROLE_PNSNV','ROLE_PDTNV','ROLE_PITNV')" />
 		<!-- Phân quyền quản trị dự án :: END -->
 		
 		<access-denied-handler error-page="/403"/>		

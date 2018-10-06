@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import fasttrackse.ffse1703.fbms.dao.quantridanhgia.TruongPhongDAO;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.DanhGiaBanThan;
+import fasttrackse.ffse1703.fbms.entity.quantridanhgia.KyDanhGia;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.LichDanhGia;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.TrangThaiDanhGia;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.TruongPhongDanhGia;
@@ -32,8 +33,8 @@ public class TruongPhongServiceImpl implements TruongPhongService {
 
 	@Override
 	@Transactional
-	public List<TruongPhongDanhGia> getListNhanVienPhongBan(PhongBan phongBan) {
-		return dao.getListNhanVienPhongBan(phongBan);
+	public List<TruongPhongDanhGia> getListNhanVienPhongBan(PhongBan phongBan, KyDanhGia kyDanhGia) {
+		return dao.getListNhanVienPhongBan(phongBan, kyDanhGia);
 	}
 
 	@Override
@@ -62,8 +63,8 @@ public class TruongPhongServiceImpl implements TruongPhongService {
 
 	@Override
 	@Transactional
-	public List<DanhGiaBanThan> getListDanhGiaBanThan(PhongBan phongBan) {
-		return dao.getListDanhGiaBanThan(phongBan);
+	public List<DanhGiaBanThan> getListDanhGiaBanThan(PhongBan phongBan, KyDanhGia kyDanhGia) {
+		return dao.getListDanhGiaBanThan(phongBan, kyDanhGia);
 	}
 
 	@Override
@@ -80,20 +81,25 @@ public class TruongPhongServiceImpl implements TruongPhongService {
 
 	@Override
 	@Transactional
-	public List<DanhGiaBanThan> getListDanhGiaBanThan(int start, int maxItems, PhongBan phongBan) {
-		return dao.getListDanhGiaBanThan(start, maxItems, phongBan);
+	public List<DanhGiaBanThan> getListDanhGiaBanThan(int start, int maxItems, PhongBan phongBan, KyDanhGia kyDanhGia) {
+		return dao.getListDanhGiaBanThan(start, maxItems, phongBan,kyDanhGia);
 	}
 
 	@Override
 	@Transactional
-	public List<TruongPhongDanhGia> getListNhanVienPhongBan(int start, int maxItems, PhongBan phongBan) {
-		return dao.getListNhanVienPhongBan(start, maxItems, phongBan);
+	public List<TruongPhongDanhGia> getListNhanVienPhongBan(int start, int maxItems, PhongBan phongBan, KyDanhGia kyDanhGia) {
+		return dao.getListNhanVienPhongBan(phongBan, kyDanhGia);
 	}
 
 	@Override
 	@Transactional
 	public List<TrangThaiDanhGia> getTrangThaiDanhGia() {
 		return dao.getTrangThaiDanhGia();
+	}
+
+	@Override
+	public LichDanhGia checkActiveLichDanhGia(String phongBan) {
+		return dao.checkActiveLichDanhGia(phongBan);
 	}
 
 }

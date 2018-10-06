@@ -51,8 +51,7 @@
 												<td>${x.nhanVien.hoDem } ${x.nhanVien.ten }</td>
 												<td>${x.danhGiaTongThe }</td>
 												<td><a class="btn btn-primary"
-													href="<c:url value="/quantridanhgia/truongphong/duyetdanhgia/view/${x.id }" />">Đánh
-														giá</a></td>
+													href="<c:url value="/quantridanhgia/truongphong/duyetdanhgia/view/${x.id }" />">Xem</a></td>
 											</tr>
 										</c:forEach>
 									</tbody>

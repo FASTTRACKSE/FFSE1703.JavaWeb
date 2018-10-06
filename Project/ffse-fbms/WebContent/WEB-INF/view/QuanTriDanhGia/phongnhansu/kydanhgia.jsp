@@ -91,7 +91,10 @@
 												<td>${x.maKy }</td>
 												<td>${x.tenKy }</td>
 												<td><a class="btn btn-info"
-													href="<c:url value = "/quantridanhgia/phongnhansu/kydanhgia/edit/${x.maKy }"/>">Sửa</a></td>
+													href="<c:url value = "/quantridanhgia/phongnhansu/kydanhgia/edit/${x.maKy }"/>">Sửa</a>
+													<a class="btn btn-danger" onclick="confirm('Bạn thật sự muốn xóa kỳ đánh giá này')"
+													href="<c:url value = "/quantridanhgia/phongnhansu/kydanhgia/delete/${x.maKy }"/>">Xóa</a>
+												</td>
 											</tr>
 										</c:forEach>
 									</tbody>

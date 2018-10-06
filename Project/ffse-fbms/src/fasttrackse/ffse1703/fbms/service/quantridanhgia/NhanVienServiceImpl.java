@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import fasttrackse.ffse1703.fbms.dao.quantridanhgia.NhanVienDAO;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.DanhGiaBanThan;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.DanhGiaNhanVien;
+import fasttrackse.ffse1703.fbms.entity.quantridanhgia.KyDanhGia;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.LichDanhGia;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.TruongPhongDanhGia;
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
@@ -25,8 +26,8 @@ public class NhanVienServiceImpl implements NhanVienService {
 
 	@Override
 	@Transactional
-	public DanhGiaBanThan getDanhGiaBanThan(HoSoNhanVien nhanVien) {
-		return dao.getDanhGiaBanThan(nhanVien);
+	public DanhGiaBanThan getDanhGiaBanThan(HoSoNhanVien nhanVien, KyDanhGia kyDanhGia) {
+		return dao.getDanhGiaBanThan(nhanVien, kyDanhGia);
 	}
 
 	@Override
@@ -46,12 +47,6 @@ public class NhanVienServiceImpl implements NhanVienService {
 	@Transactional
 	public void deleteDanhGiaBanThan(DanhGiaBanThan danhgia) {
 		dao.deleteDanhGiaBanThan(danhgia);
-	}
-
-	@Override
-	@Transactional
-	public List<DanhGiaNhanVien> getListDanhGiaNhanVien(int maNhanVien) {
-		return dao.getListPhanCongDanhGia(maNhanVien);
 	}
 
 	@Override
@@ -80,14 +75,14 @@ public class NhanVienServiceImpl implements NhanVienService {
 
 	@Override
 	@Transactional
-	public TruongPhongDanhGia getDanhGiaCuaTruongPhong(int maNhanVien) {
-		return dao.getDanhGiaCuaTruongPhong(maNhanVien);
+	public TruongPhongDanhGia getDanhGiaCuaTruongPhong(int maNhanVien, KyDanhGia kyDanhGia) {
+		return dao.getDanhGiaCuaTruongPhong(maNhanVien, kyDanhGia);
 	}
 
 	@Transactional
 	@Override
-	public List<DanhGiaNhanVien> getListNhanVienDanhGia(int maNhanVien) {
-		return dao.getListNhanVienDanhGia(maNhanVien);
+	public List<DanhGiaNhanVien> getListNhanVienDanhGia(int maNhanVien, KyDanhGia kyDanhGia) {
+		return dao.getListNhanVienDanhGia(maNhanVien, kyDanhGia);
 	}
 
 	@Transactional
@@ -124,6 +119,12 @@ public class NhanVienServiceImpl implements NhanVienService {
 	@Transactional
 	public HoSoNhanVien getHoSoNhanVien(int nhanVien) {
 		return dao.getHoSoNhanVien(nhanVien);
+	}
+
+	@Override
+	@Transactional
+	public List<DanhGiaNhanVien> getListDanhGiaNhanVien(int id, KyDanhGia kyDanhGia) {
+		return dao.getListDanhGiaNhanVien(id, kyDanhGia);
 	}
 
 }

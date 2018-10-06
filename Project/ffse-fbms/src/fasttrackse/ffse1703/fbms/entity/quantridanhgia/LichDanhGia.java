@@ -14,8 +14,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.annotations.NaturalId;
-
 import fasttrackse.ffse1703.fbms.entity.security.PhongBan;
 
 @SuppressWarnings("serial")
@@ -37,7 +35,6 @@ public class LichDanhGia implements Serializable {
 	@NotNull
 	private PhongBan phongBan;
 
-	@NaturalId
 	@Column(name = "is_active")
 	private int isActive;
 

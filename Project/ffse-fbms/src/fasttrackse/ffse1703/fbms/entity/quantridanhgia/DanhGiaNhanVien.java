@@ -45,27 +45,21 @@ public class DanhGiaNhanVien implements Serializable {
 	private HoSoNhanVien nhanVien;
 
 	@Column(name = "ky_luat_cong_viec")
-	@NotEmpty
 	private String kyLuatCongViec;
 
 	@Column(name = "tinh_than_lam_viec")
-	@NotEmpty
 	private String tinhThanLamViec;
 
 	@Column(name = "khoi_luong_cong_viec")
-	@NotEmpty
 	private String khoiLuongCongViec;
 
 	@Column(name = "ket_qua_cong_viec")
-	@NotEmpty
 	private String ketQuaCongViec;
 
 	@Column(name = "ky_nang_tich_luy")
-	@NotEmpty
 	private String kyNangTichLuy;
 
 	@Column(name = "dinh_huong")
-	@NotEmpty
 	private String dinhHuong;
 
 	@Column(name = "xep_loai")

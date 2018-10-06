@@ -2,13 +2,17 @@ package fasttrackse.ffse1703.fbms.dao.quantridanhgia;
 
 import java.util.List;
 
+import javax.persistence.NoResultException;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.DanhGiaBanThan;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.DanhGiaNhanVien;
+import fasttrackse.ffse1703.fbms.entity.quantridanhgia.KyDanhGia;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.LichDanhGia;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.TruongPhongDanhGia;
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
@@ -23,11 +27,18 @@ public class NhanVienDAOImpl implements NhanVienDAO {
 		this.sessionFactory = sessionFactory;
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
-	public DanhGiaBanThan getDanhGiaBanThan(HoSoNhanVien nhanVien) {
+	public DanhGiaBanThan getDanhGiaBanThan(HoSoNhanVien nhanVien, KyDanhGia kyDanhGia) {
+		DanhGiaBanThan danhGia = null;
 		Session session = sessionFactory.getCurrentSession();
-		return (DanhGiaBanThan) session.createQuery("from DanhGiaBanThan where nhanVien = :maNhanVien")
-				.setParameter("maNhanVien", nhanVien).getSingleResult();
+		Query query = session.createQuery("from DanhGiaBanThan where nhanVien = :nhanVien and kyDanhGia = :kyDanhGia")
+				.setParameter("nhanVien", nhanVien).setParameter("kyDanhGia", kyDanhGia);
+		try {
+			danhGia = (DanhGiaBanThan) query.getSingleResult();
+		} catch (NoResultException e) {
+		}
+		return danhGia;
 	}
 
 	@Override
@@ -50,10 +61,10 @@ public class NhanVienDAOImpl implements NhanVienDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<DanhGiaNhanVien> getListPhanCongDanhGia(int maNhanVien) {
+	public List<DanhGiaNhanVien> getListDanhGiaNhanVien(int maNhanVien, KyDanhGia kyDanhGia) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("from DanhGiaNhanVien where nhanVienDanhGia = :nhanVien")
-				.setParameter("nhanVien", maNhanVien).list();
+		return session.createQuery("from DanhGiaNhanVien where nhanVienDanhGia = :nhanVien and kyDanhGia = :kyDanhGia")
+				.setParameter("nhanVien", maNhanVien).setParameter("kyDanhGia", kyDanhGia).list();
 	}
 
 	@Override
@@ -80,20 +91,27 @@ public class NhanVienDAOImpl implements NhanVienDAO {
 		session.update(danhGia);
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
-	public TruongPhongDanhGia getDanhGiaCuaTruongPhong(int maNhanVien) {
+	public TruongPhongDanhGia getDanhGiaCuaTruongPhong(int maNhanVien, KyDanhGia kyDanhGia) throws NoResultException {
 		Session session = sessionFactory.getCurrentSession();
-		return (TruongPhongDanhGia) session
-				.createQuery("from TruongPhongDanhGia where nhanVien.maNhanVien = :maNhanVien")
-				.setParameter("maNhanVien", maNhanVien).getSingleResult();
+		Query query = session
+				.createQuery(
+						"from TruongPhongDanhGia where nhanVien.maNhanVien = :maNhanVien and kyDanhGia = :kyDanhGia")
+				.setParameter("maNhanVien", maNhanVien).setParameter("kyDanhGia", kyDanhGia);
+		if (query.list().size() > 0) {
+			return (TruongPhongDanhGia) query.getSingleResult();
+		}
+		return null;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<DanhGiaNhanVien> getListNhanVienDanhGia(int maNhanVien) {
+	public List<DanhGiaNhanVien> getListNhanVienDanhGia(int maNhanVien, KyDanhGia kyDanhGia) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("from DanhGiaNhanVien where nhanVien.maNhanVien = :nhanVien")
-				.setParameter("nhanVien", maNhanVien).list();
+		return session
+				.createQuery("from DanhGiaNhanVien where nhanVien.maNhanVien = :nhanVien and kyDanhGia = :kyDanhGia")
+				.setParameter("nhanVien", maNhanVien).setParameter("kyDanhGia", kyDanhGia).list();
 	}
 
 	@Override
@@ -102,10 +120,17 @@ public class NhanVienDAOImpl implements NhanVienDAO {
 		return session.get(DanhGiaNhanVien.class, id);
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
-	public LichDanhGia getLichDanhGiaActive(String phongBan) {
+	public LichDanhGia getLichDanhGiaActive(String phongBan) throws NoResultException {
 		Session session = sessionFactory.getCurrentSession();
-		return session.byNaturalId(LichDanhGia.class).using("phongBan", phongBan).using("isActive", 1).load();
+		Query query = session
+				.createQuery("from LichDanhGia where phongBan.maPhongBan = :phongBan and isActive = 1")
+				.setParameter("phongBan", phongBan);
+		if (query.list().size() > 0) {
+			return (LichDanhGia) query.getSingleResult();
+		}
+		return null;
 	}
 
 	@SuppressWarnings("unchecked")

@@ -46,11 +46,13 @@
 										<c:forEach items="${listDanhGia}" var="x" varStatus="stt">
 											<tr>
 												<th scope="row">${stt.index+start+1}</th>
-												<td>${x.nhanVien.hoDem }${x.nhanVien.ten }</td>
+												<td>${x.nhanVien.hoDem } ${x.nhanVien.ten }</td>
 												<td>${x.xepLoai }</td>
-												<td><a class="btn btn-success"
-													href="<c:url value="/quantridanhgia/truongphong/danhgianhanvien/danhgia/${x.id }"/>">Đánh
-														giá</a></td>
+												<td><c:if test="${command.xepLoai < 1 }">
+														<a class="btn btn-success"
+															href="<c:url value="/quantridanhgia/truongphong/danhgianhanvien/danhgia/${x.id }"/>">Đánh
+															giá</a>
+													</c:if></td>
 											</tr>
 										</c:forEach>
 									</tbody>

@@ -38,7 +38,6 @@ public class BangCapPikalongController {
 		hsnv.setMaNV(maNV);
 		model.addAttribute("command", hsnv);
 		session.setAttribute("maNv", maNV);
-		//model.addAttribute("maNv", maNV);
 		return "QuanTriNhanSuPikalong/QuanLiBangCap/formAddBangCapPikalong";
 	}
 
@@ -67,7 +66,6 @@ public class BangCapPikalongController {
 	//
 	@RequestMapping("/saveOneBangCap")
 	public String saveOneBangCap(@ModelAttribute("command") @Valid BangCapPikalong p, BindingResult result) {
-		//System.out.println("ma nv " + p.getMaNV());
 		if (result.hasErrors()) {
 			return "QuanTriNhanSuPikalong/QuanLiBangCap/formAddBangCapPikalong";
 		}
@@ -76,7 +74,6 @@ public class BangCapPikalongController {
 	}
 	@RequestMapping("/editOneBangCap")
 	public String updateOneBangCap(@ModelAttribute("command") @Valid BangCapPikalong p, BindingResult result) {
-		//System.out.println("ma nv " + p.getMaNV());
 		if (result.hasErrors()) {
 			return "QuanTriNhanSuPikalong/QuanLiBangCap/formUpdateBangCapPikalong";
 		}

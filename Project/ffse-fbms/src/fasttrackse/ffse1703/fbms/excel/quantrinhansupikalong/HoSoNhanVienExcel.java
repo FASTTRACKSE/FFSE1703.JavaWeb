@@ -5,7 +5,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.border.Border;
 
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
@@ -18,6 +17,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.springframework.web.servlet.view.document.AbstractXlsView;
 
+import fasttrackse.ffse1703.fbms.entity.mvpquanliduan.Nhiemvu;
 import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.BangCapPikalong;
 import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.GiaDinhPikalong;
 import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.HoSoNhanVienPikalong;
@@ -40,7 +40,7 @@ public class HoSoNhanVienExcel extends AbstractXlsView {
 		
 		// create font
 		Font font = workBook.createFont();
-		font.setFontHeightInPoints((short) 24);
+		font.setFontHeightInPoints((short) 20);
 		font.setBold(true);
 		
 		Font fontTh = workBook.createFont();
@@ -232,6 +232,50 @@ public class HoSoNhanVienExcel extends AbstractXlsView {
 				}
 				
 				/* sheet thong tin bang cap end */
+				
+				/* sheet kinh nghiệm dự án begin */
+				
+				@SuppressWarnings("unchecked")
+				List<Nhiemvu> kinhNghiem = (List<Nhiemvu>) model.get("kinhNghiem");
+				
+				Sheet sheetKinhNghiem = workBook.createSheet("Kinh Nghiệm Dự Án");
+				
+				sheetKinhNghiem.addMergedRegion(new CellRangeAddress(1,1,0,1));
+				
+				
+				Row headerKinhNghiem = sheetKinhNghiem.createRow(1);
+				Cell cellHeaderKinhNghiem = headerKinhNghiem.createCell(0);
+				cellHeaderKinhNghiem.setCellValue("Kinh Nghiệm Dự Án");
+				cellHeaderKinhNghiem.setCellStyle(style);
+				
+				Row rowKinhNghiemTh = sheetKinhNghiem.createRow(3);
+				rowKinhNghiemTh.createCell(0).setCellValue("Tên Dự Án");
+				rowKinhNghiemTh.createCell(1).setCellValue("Vai Trò");
+				
+				Row rowKinhNghiemTd = sheetKinhNghiem.createRow(4);
+				
+				int rowk = 4; 
+				for(int i = 0; i < kinhNghiem.size(); i++) {
+					rowKinhNghiemTd = sheetKinhNghiem.createRow(rowk);
+					
+					rowKinhNghiemTd.createCell(0).setCellValue(kinhNghiem.get(i).getProjects().getNameProject());
+					rowKinhNghiemTd.createCell(1).setCellValue(kinhNghiem.get(i).getRoles().getNameRoles());
+					
+					for(int j = 0; j < rowKinhNghiemTd.getLastCellNum(); j++ ) {
+						 Cell cellTd = rowKinhNghiemTd.getCell(j);
+						 cellTd.setCellStyle(styleTd);
+					}
+					rowk++;
+					
+				}
+				for(int colNumber = 0; colNumber < rowKinhNghiemTd.getLastCellNum(); colNumber++) {
+					sheetKinhNghiem.autoSizeColumn(colNumber);
+					
+					 Cell cellTh = rowKinhNghiemTh.getCell(colNumber);
+					 cellTh.setCellStyle(styleTh);
+					 
+				}
+				/* sheet kinh nghiệm dự án end */
 	}
 
 }

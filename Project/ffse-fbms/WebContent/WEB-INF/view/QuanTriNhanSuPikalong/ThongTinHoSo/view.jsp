@@ -3,6 +3,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 <style>
 div.stroke a button, div.stroke a button:after, div.stroke a button:before
@@ -62,7 +63,9 @@ div.stroke a button:hover:after {
 						</button>
 					</a>
 				</div>
-			</div>
+			</div> 
+			<!-- Phân Quyền phòng nhân sự -->
+			<sec:authorize access="hasRole('ROLE_PNSTPP')or hasRole('ROLE_PNSNV')">
 			<div class="col-xl-6 col-lg-6 col-12">
 				<div class="stroke">
 					<a href="/ffse-fbms/QuanTriNhanSu/quanlihopdong/viewOneHopDong/${maNv}">
@@ -83,6 +86,10 @@ div.stroke a button:hover:after {
 					</a>
 				</div>
 			</div>
+			</sec:authorize>
+			
+			<!-- Phân Quyền phòng nhân sự -->
+			<sec:authorize access="hasRole('ROLE_PNSTPP')or hasRole('ROLE_PNSNV')">
 			<div class="col-xl-6 col-lg-6 col-12">
 				<div class="stroke">
 					<a href="/ffse-fbms/QuanTriNhanSuPikalong/QuanLiGiaDinh/viewOneGiaDinh/${maNv}">
@@ -103,6 +110,10 @@ div.stroke a button:hover:after {
 					</a>
 				</div>
 			</div>
+			</sec:authorize>
+			
+			<!-- Phân Quyền phòng nhân sự -->
+			<sec:authorize access="hasRole('ROLE_PNSTPP')or hasRole('ROLE_PNSNV')">
 			<div class="col-xl-6 col-lg-6 col-12">
 				<div class="stroke">
 					<a href="/ffse-fbms/QuanTriNhanSuPikalong/QuanLiBangCap/viewOneBangCap/${maNv}">
@@ -123,6 +134,7 @@ div.stroke a button:hover:after {
 					</a>
 				</div>
 			</div>
+			</sec:authorize>
 			<div class="col-xl-12 col-lg-6 col-12">
 				<div class="stroke">
 					<a href="/ffse-fbms/QuanTriNhanSuPikalong/KinhNghiemDuAn/viewOneKinhNghiemDuAn/${maNv}">

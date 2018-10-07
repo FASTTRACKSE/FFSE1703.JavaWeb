@@ -1,6 +1,6 @@
 package fasttrackse.ffse1703.fbms.entity.qlvn2;
 
-import java.io.Serializable;
+
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -37,6 +37,11 @@ public class DonXinPhepEntity {
 	@JoinColumn(name = "ma_nhan_vien")
 	private SoNgayNghiEntity ngayNghi;
 	
+    @Column(name ="ho_dem")
+    private String hoDem;
+    
+    @Column(name ="ma_phong_ban")
+    private String maPhongBan;
 
 	@Column(name = "ngay_bat_dau")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -50,9 +55,12 @@ public class DonXinPhepEntity {
 	@Temporal(TemporalType.DATE)
 	private Date ngayKetThuc;
 	
-	
+	@NotNull
+	@Min(1)
+	@Max(12)
 	@Column(name = "so_ngay_nghi")
 	private int soNgayNghi;
+	
 	
 
 	@ManyToOne
@@ -64,6 +72,22 @@ public class DonXinPhepEntity {
 	private String ghiChu;
 	
 
+
+	public String getHoDem() {
+		return hoDem;
+	}
+
+	public void setHoDem(String hoDem) {
+		this.hoDem = hoDem;
+	}
+
+	public String getMaPhongBan() {
+		return maPhongBan;
+	}
+
+	public void setMaPhongBan(String maPhongBan) {
+		this.maPhongBan = maPhongBan;
+	}
 
 	@Column(name = "ghi_chu_truong_phong")
 	private String ghiChuTruongPhong;

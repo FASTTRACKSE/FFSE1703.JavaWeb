@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fasttrackse.ffse1703.fbms.dao.TranDuc.quanlytailieu.TrangThaiDao;
+import fasttrackse.ffse1703.fbms.entity.TranDuc.quanlytailieu.TaiLieu;
 import fasttrackse.ffse1703.fbms.entity.TranDuc.quanlytailieu.TrangThaiTaiLieu;
+
 @Service
 public class TrangThaiServiceImpl implements TrangThaiService {
 
@@ -14,8 +16,13 @@ public class TrangThaiServiceImpl implements TrangThaiService {
 	private TrangThaiDao daoTT;
 
 	@Override
-	public List<TrangThaiTaiLieu> listAllTrangThai() {
-		return daoTT.listAllTrangThai();
+	public List<TrangThaiTaiLieu> listAllTrangThaiDel0() {
+		return daoTT.listAllTrangThaiDel0();
+	}
+
+	@Override
+	public List<TrangThaiTaiLieu> listAllTrangThaiDel1() {
+		return daoTT.listAllTrangThaiDel1();
 	}
 
 	@Override
@@ -36,6 +43,10 @@ public class TrangThaiServiceImpl implements TrangThaiService {
 	@Override
 	public TrangThaiTaiLieu getTTbyID(String id) {
 		return daoTT.getTTbyID(id);
+	}
+	@Override
+	public List<TaiLieu> listAllbyMaTT(String maTT){
+		return daoTT.listAllbyMaTT(maTT);
 	}
 
 }

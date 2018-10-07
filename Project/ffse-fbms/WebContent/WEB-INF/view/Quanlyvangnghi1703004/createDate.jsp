@@ -11,38 +11,48 @@
 
 		<div class="content-body">
 			<div class="main-content">
-
-				<form:form method="POST"  modelAttribute="createDate">
+				<h1>
+					<a href='<c:url value="/Quanlyvangnghi1703004/danhsachngaynghi" />'><i
+						class="icon-arrow-left"></i></a>
+				</h1>
+				<form:form method="POST" modelAttribute="createDate">
 					<div class="row">
-							<div>
-								<label> <spring:message code="label.maNhanVien"/></label>
-								<form:select multiple="single" path="maNhanVien" class="custom-select block round">
-									<form:options items="${hoso}" itemValue="maNhanVien" itemLabel="maNhanVien" />
-								</form:select>
-								 <form:errors path="maNhanVien" cssStyle="color: red" ></form:errors> 
-							</div>
-							<div>
-								<label><spring:message code="label.hoTen"/></label>
-								<form:select multiple="single" path="tenNhanVien" class="custom-select block round">
-									<form:options items="${hoso}" itemValue="hoDem" itemLabel="hoDem" />
-								</form:select>
-								 <form:errors path="tenNhanVien" cssStyle="color: red" ></form:errors> 
-							</div>
+						<div>
+							<label> <spring:message code="label.maNhanVien" /></label>
+							<form:select multiple="single" path="maNhanVien"
+								class="custom-select block round">
+								<form:options items="${hoso}" itemValue="maNhanVien"
+									itemLabel="maNhanVien" />
+							</form:select>
+							<form:errors path="maNhanVien" cssStyle="color: red"></form:errors>
+						</div>
+						<div>
+							<label><spring:message code="label.hoTen" /></label>
+							<form:select multiple="single" path="tenNhanVien"
+								class="custom-select block round">
+								<form:options items="${hoso}" itemValue="hoDem"
+									itemLabel="hoDem" />
+							</form:select>
+							<form:errors path="tenNhanVien" cssStyle="color: red"></form:errors>
+						</div>
 
-							<div>
-								<label><spring:message code="label.songaydanghi"/></label>
-								<form:input class="form-control round" path="soNgayDaNghi" />
-							</div>
-								
-							<div>
-								<label><spring:message code="label.songayconlai"/></label>
-								<form:input class="form-control round" path="soNgayConLai"  />
-							</div>
+						<div>
+							<label><spring:message code="label.songaydanghi" /></label>
+							<form:input class="form-control round" path="soNgayDaNghi" />
+						</div>
+
+						<div>
+							<label><spring:message code="label.songayconlai" /></label>
+							<form:input class="form-control round" path="soNgayConLai" />
+						</div>
 						<br>
-						<div >
-								<button type="submit"  class="btn btn-outline-danger round  mr-1 mb-1"
-									formaction="<%=request.getContextPath()%>/Quanlyvangnghi1703004/createDate/submit"><spring:message code="label.gui"/></button>
-							</div>
+						<div>
+							<button type="submit"
+								class="btn btn-outline-danger round  mr-1 mb-1"
+								formaction="<%=request.getContextPath()%>/Quanlyvangnghi1703004/createDate/submit">
+								<spring:message code="label.gui" />
+							</button>
+						</div>
 					</div>
 
 				</form:form>

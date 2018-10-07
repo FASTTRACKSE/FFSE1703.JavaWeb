@@ -38,8 +38,7 @@
 					<form:form method="POST" modelAttribute="DanhMuc" action="">
 						<div class="form-group col-sm-6">
 							<label>Mã Danh Mục</label>
-							<form:input class="form-control" path="maDM"
-								value="${DanhMuc.maDM}" />
+							<input  class="form-control" value="${DanhMuc.maDM}" readonly />
 						</div>
 						<div class="form-group col-sm-6">
 							<label>Tên Danh Mục</label>

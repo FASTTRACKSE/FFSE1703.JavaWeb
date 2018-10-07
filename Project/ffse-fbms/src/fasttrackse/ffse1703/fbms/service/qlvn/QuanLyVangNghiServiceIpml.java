@@ -11,6 +11,7 @@ import fasttrackse.ffse1703.fbms.entity.qlvn.NgayNghi;
 import fasttrackse.ffse1703.fbms.entity.qlvn.ThongKeDonXinPhep;
 import fasttrackse.ffse1703.fbms.entity.qlvn.TrangThaiVN;
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
+import fasttrackse.ffse1703.fbms.entity.security.PhongBan;
 @Service
 @Transactional
 public class QuanLyVangNghiServiceIpml implements QuanLyVangNghiService {
@@ -47,6 +48,9 @@ public class QuanLyVangNghiServiceIpml implements QuanLyVangNghiService {
 		return this.quanLyVangNghiDao.loadAllHoSo();
 	}
 
+	public List<PhongBan> loadAllPhongBan() {
+		return this.quanLyVangNghiDao.loadAllPhongBan();
+	}
 	
 	public List<ThongKeDonXinPhep> danhSachXinNghiTuChoi() {
 		return this.quanLyVangNghiDao.danhSachXinNghiTuChoi();
@@ -146,11 +150,12 @@ public class QuanLyVangNghiServiceIpml implements QuanLyVangNghiService {
 		quanLyVangNghiDao.createNgayNghi(ngayNghi);
 	}
 
-	@Override
 	public void updateNgayNghi(NgayNghi ngayNghi) {
 		quanLyVangNghiDao.updateNgayNghi(ngayNghi);
 		
 	}
+
+
 	
 	
 }

@@ -36,9 +36,8 @@
 					<div class="row">
 						<form:form method="POST" modelAttribute="TrangThai" action="">
 							<div class="form-group col-sm-6">
-								<label>Mã Trạng Thái</label>
-								<form:input class="form-control" path="maTT"
-									value="${TrangThai.maTT}" placeholder="Mã Trạng Thái" />
+								<label>Mã Trạng Thái</label> <input class="form-control"
+									value="${TrangThai.maTT}" readonly />
 							</div>
 							<div class="form-group col-sm-6">
 								<label>Tên chức danh</label>
@@ -46,7 +45,8 @@
 									value="${TrangThai.tenTT}" placeholder="Tên Trạng Thái" />
 							</div>
 							<div class="col-sm-12 text-center">
-								<button type="submit" class="btn btn-success">Lưu thông tin</button>
+								<button type="submit" class="btn btn-success">Lưu thông
+									tin</button>
 							</div>
 						</form:form>
 					</div>

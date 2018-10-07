@@ -1,14 +1,8 @@
 package fasttrackse.ffse1703.fbms.entity.qlvn2;
-
-
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
 @Entity
 @Table(name = "so_ngay_nghi")
 public class SoNgayNghiEntity {

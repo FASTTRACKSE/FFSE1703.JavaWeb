@@ -28,14 +28,14 @@ public class PhongNhanSuDAOImpl implements PhongNhanSuDAO {
 	@Override
 	public List<KyDanhGia> getListKyDanhGia() {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("from KyDanhGia").list();
+		return session.createQuery("from KyDanhGia where isDelete = 0").list();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<KyDanhGia> getListKyDanhGia(int start, int maxItems) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("from KyDanhGia").setFirstResult(start).setMaxResults(maxItems).list();
+		return session.createQuery("from KyDanhGia where isDelete = 0").setFirstResult(start).setMaxResults(maxItems).list();
 	}
 
 	@Override
@@ -118,7 +118,7 @@ public class PhongNhanSuDAOImpl implements PhongNhanSuDAO {
 	@Override
 	public int checkLichDanhGia(LichDanhGia lichDanhGia) {
 		Session session = sessionFactory.getCurrentSession();
-		return session.createQuery("from LichDanhGia where kyDanhGia.maKy = :kyDG and phongBan.maPhongBan = :phongBan")
+		return session.createQuery("from LichDanhGia where kyDanhGia = :kyDG and phongBan = :phongBan")
 				.setParameter("kyDG", lichDanhGia.getKyDanhGia()).setParameter("phongBan", lichDanhGia.getPhongBan())
 				.list().size();
 	}

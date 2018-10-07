@@ -586,31 +586,6 @@
 									code="label.duAn" /></a></li>
 					</ul></li>
 			</ul>
-
-			<ul id="main-menu-navigation" data-menu="menu-navigation"
-				class="navigation navigation-main">
-				<!-- Quản trị tài liệu của Đức -->
-				<li class=" navigation-header"><span>Trần Đức - Quản Lý
-						Tài Liệu</span><i data-toggle="tooltip" data-placement="right"
-					data-original-title="Đức Đẹp Trai" class=" ft-minus"></i></li>
-				<li class=" nav-item"><a
-					href="<c:url value = "/TranDuc-QuanLyTaiLieu/TaiLieu/"/>"><i
-						class="ft-file-text"></i><span data-i18n="" class="menu-title">Quản
-							Lý Tài Liệu</span></a></li>
-				<li class=" nav-item"><a
-					href="<c:url value = "/TranDuc-QuanLyTaiLieu/DanhMuc/"/>"><i
-						class="ft-bookmark"></i><span data-i18n="" class="menu-title">Quản
-							Lý Danh Mục</span></a></li>
-				<li class=" nav-item"><a
-					href="<c:url value = "/TranDuc-QuanLyTaiLieu/TrangThai/"/>"><i
-						class="ft-users"></i><span data-i18n="" class="menu-title">Trạng
-							Thái</span></a></li>
-				<li class=" nav-item"><a
-					href="<c:url value = "/TranDuc-QuanLyTaiLieu/Icon/"/>"><i
-						class="ft-folder"></i><span data-i18n="" class="menu-title">Loại
-							File</span></a></li>
-				<li></li>
-			</ul>
 			<!-- Quản lý nhiệm vụ của HieuLP -->
 			<ul id="main-menu-navigation" data-menu="menu-navigation"
 				class="navigation navigation-main">
@@ -679,7 +654,7 @@
 				<li class=" navigation-header"><span>Quản trị đánh giá</span><i
 					data-toggle="tooltip" data-placement="right"
 					data-original-title="Apps" class=" ft-minus"></i></li>
-				<sec:authorize access="hasAnyRole('ROLE_NV','ROLE_PNSNV')">
+				<sec:authorize access="hasAnyRole('ROLE_PDANV','ROLE_PNSNV','ROLE_PDTNV','ROLE_PITNV')">
 					<li class=" nav-item"><a
 						href="<c:url value = "/quantridanhgia/nhanvien/danhgiabanthan"/>"><i
 							class="fa fa-user"></i><span data-i18n="" class="menu-title">Tự
@@ -689,6 +664,10 @@
 							class="fa fa-users"></i><span data-i18n="" class="menu-title">Đánh
 								giá nhân viên khác</span></a></li>
 					<li class=" nav-item"><a
+						href="<c:url value = "/quantridanhgia/nhanvien/nhanviendanhgia"/>"><i
+							class="fa fa-users"></i><span data-i18n=""
+							class="menu-title">Đánh giá từ nhân viên phòng ban</span></a></li>
+					<li class=" nav-item"><a
 						href="<c:url value = "/quantridanhgia/nhanvien/danhgiacuatruongphong"/>"><i
 							class="fa fa-user-secret"></i><span data-i18n=""
 							class="menu-title">Đánh giá của trưởng phòng</span></a></li>
@@ -696,26 +675,26 @@
 				<sec:authorize access="hasAnyRole('ROLE_PNSNV','ROLE_PNSTPP')">
 					<li class=" nav-item"><a
 						href="<c:url value = "/quantridanhgia/phongnhansu/kydanhgia"/>"><i
-							class="fa-calendar"></i><span data-i18n="" class="menu-title">Kỳ
+							class="fa fa-calendar"></i><span data-i18n="" class="menu-title">Kỳ
 								đánh giá</span></a></li>
 					<li class=" nav-item"><a
 						href="<c:url value = "/quantridanhgia/phongnhansu/lichdanhgia"/>"><i
-							class="fa-calendar"></i><span data-i18n="" class="menu-title">Lịch
+							class="fa fa-calendar"></i><span data-i18n="" class="menu-title">Lịch
 								đánh giá</span></a></li>
 					<li class=" nav-item"><a
 						href="<c:url value = "/quantridanhgia/phongnhansu/danhsachdanhgia"/>"><i
-							class="fa-table"></i><span data-i18n=""
-							class="menu-title">Danh sách đánh giá bản thân</span></a></li>
+							class="fa fa-table"></i><span data-i18n=""
+							class="">Danh sách đánh giá bản thân</span></a></li>
 				</sec:authorize>
 				<sec:authorize
 					access="hasAnyRole('ROLE_PGDTPP','ROLE_PNSTPP','ROLE_PDATPP','ROLE_PDTTPP','ROLE_PITTPP','ROLE_PKTTPP')">
 					<li class=" nav-item"><a
 						href="<c:url value = "/quantridanhgia/truongphong/duyetdanhgia"/>"><i
-							class="fa-table"></i><span data-i18n="" class="menu-title">Duyệt
+							class="fa fa-table"></i><span data-i18n="" class="menu-title">Duyệt
 								đánh giá</span></a></li>
 					<li class=" nav-item"><a
 						href="<c:url value = "/quantridanhgia/truongphong/danhgianhanvien"/>"><i
-							class="fa-table"></i><span data-i18n="" class="menu-title">Đánh
+							class="fa fa-table"></i><span data-i18n="" class="menu-title">Đánh
 								giá nhân viên</span></a></li>
 				</sec:authorize>
 				<!-- Quản trị đánh giá :: END-->
@@ -737,6 +716,26 @@
 								code="label.minhhqitemcalendar" /></span></a></li>
 				<li><hr /></li>
 
+			</ul>
+			<ul id="main-menu-navigation" data-menu="menu-navigation"
+				class="navigation navigation-main">
+				<!-- Quản trị tài liệu của Đức -->
+				<li class=" navigation-header"><span><spring:message code="label.quanlytailieu" /></span>
+					<i data-toggle="tooltip" data-placement="right"
+					data-original-title="Đức Đẹp Trai" class=" ft-minus"></i></li>
+				<li class=" nav-item"><a href="<c:url value = "/TranDuc-QuanLyTaiLieu/TaiLieu/"/>"><i
+					class="ft-file-text"></i><span data-i18n="" class="menu-title"><spring:message code="label.quanlytailieu" />
+					</span></a></li>
+				<li class=" nav-item"><a
+					href="<c:url value = "/TranDuc-QuanLyTaiLieu/DanhMuc/"/>"><i
+						class="ft-bookmark"></i><span data-i18n="" class="menu-title"><spring:message code="label.quanlydanhmuc" /></span></a></li>
+				<li class=" nav-item"><a
+					href="<c:url value = "/TranDuc-QuanLyTaiLieu/TrangThai/"/>"><i
+						class="ft-users"></i><span data-i18n="" class="menu-title"><spring:message code="label.status" /></span></a></li>
+				<li class=" nav-item"><a
+					href="<c:url value = "/TranDuc-QuanLyTaiLieu/Icon/"/>"><i
+						class="ft-folder"></i><span data-i18n="" class="menu-title"><spring:message code="label.filetype" /></span></a></li>
+				<li><hr></li>
 			</ul>
 		</div>
 	</div>

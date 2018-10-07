@@ -13,7 +13,6 @@
 	<jsp:include page="/WEB-INF/view/templates/header.jsp" />
 	<div class="app-content content container-fluid">
 		<div class="content-wrapper">
-
 			<!-- Path -->
 			<div class="content-header row">
 				<div class="content-header-left col-md-6 col-xs-12 mb-2">
@@ -39,7 +38,7 @@
 					<div class="row">
 						<form:form method="POST" modelAttribute="TaiLieu" action=""
 							enctype="multipart/form-data">
-							<form:input type="hidden" path="idTL"/>
+							<form:input type="hidden" path="idTL" />
 							<div class="form-group col-sm-6">
 								<label>Mã Tài Liệu</label>
 								<form:input class="form-control" path="maTL"
@@ -50,8 +49,7 @@
 									<label for="basicSelect">Danh Mục</label>
 									<form:select cssClass="form-control" path="danhMuc.maDM">
 										<option title="DanhMuc"></option>
-										<c:forEach var="item" items="${listDanhMuc}" begin="0"
-											varStatus="counter">
+										<c:forEach var="item" items="${listDanhMuc}" begin="0" >
 											<form:option value="${item.maDM}" label="${item.tenDM}"></form:option>
 										</c:forEach>
 									</form:select>
@@ -62,8 +60,7 @@
 									<label for="basicSelect">Phòng Ban</label>
 									<form:select cssClass="form-control" path="phongBan.maPhongBan">
 										<option></option>
-										<c:forEach var="item" items="${listPhongBan}" begin="0"
-											varStatus="counter">
+										<c:forEach var="item" items="${listPhongBan}" begin="0">
 											<form:option value="${item.maPhongBan }"
 												label="${item.tenPhongBan }"></form:option>
 										</c:forEach>
@@ -88,17 +85,17 @@
 								</fieldset>
 							</div>
 							<center>
-							<div class="col-sm-12 text-center">
-								<button type="submit" class="btn btn-success"
-									formaction="<%=request.getContextPath()%>/TranDuc-QuanLyTaiLieu/TaiLieu/submit">
-									Submit Document</button>
-								<button type="submit" class="btn btn-primary"
-									formaction="<%=request.getContextPath()%>/TranDuc-QuanLyTaiLieu/TaiLieu/draft">
-									Save Draft</button>
-								<button type="submit" class="btn btn-danger"
-									formaction="<%=request.getContextPath()%>/TranDuc-QuanLyTaiLieu/TaiLieu/cancel">
-									Cancel</button>
-							</div>
+								<div class="col-sm-12 text-center">
+									<button type="submit" class="btn btn-success"
+										formaction="<%=request.getContextPath()%>/TranDuc-QuanLyTaiLieu/TaiLieu/submit">
+										Submit Document</button>
+									<button type="submit" class="btn btn-primary"
+										formaction="<%=request.getContextPath()%>/TranDuc-QuanLyTaiLieu/TaiLieu/draft">
+										Save Draft</button>
+									<button type="submit" class="btn btn-danger"
+										formaction="<%=request.getContextPath()%>/TranDuc-QuanLyTaiLieu/TaiLieu/cancel">
+										Cancel</button>
+								</div>
 							</center>
 						</form:form>
 					</div>

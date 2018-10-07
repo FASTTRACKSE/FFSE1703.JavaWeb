@@ -24,7 +24,7 @@ public class DanhMucController {
 		return "TranDuc-QuanLyTaiLieu/DanhMuc/DanhMucList";
 	}
 
-	@RequestMapping(value = "/add", method = RequestMethod.GET)
+	@RequestMapping(value = "/add", method = RequestMethod.GET) 
 	public String addFormDM(Model model) {
 		model.addAttribute("DanhMuc", new DanhMuc());
 		return "TranDuc-QuanLyTaiLieu/DanhMuc/add_formDM";
@@ -63,7 +63,9 @@ public class DanhMucController {
 	@RequestMapping(value = "/xoa/{maDM}", method = RequestMethod.GET)
 	public String delete(@PathVariable("maDM") String maDM, final RedirectAttributes redirectAttributes) {
 		try {
-			serviceDM.deleteDM(maDM);
+			DanhMuc dm=serviceDM.getDMbyID(maDM);
+			dm.setIsDelete(1);
+			serviceDM.updateDM(dm);
 			redirectAttributes.addFlashAttribute("messageSuccess", "Xóa Thành Công !");
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("messageError", "Có lỗi, xin thử lại !");

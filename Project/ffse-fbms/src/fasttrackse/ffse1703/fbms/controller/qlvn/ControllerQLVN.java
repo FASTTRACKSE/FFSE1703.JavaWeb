@@ -22,6 +22,7 @@ import fasttrackse.ffse1703.fbms.entity.qlvn.NgayNghi;
 import fasttrackse.ffse1703.fbms.entity.qlvn.ThongKeDonXinPhep;
 import fasttrackse.ffse1703.fbms.entity.qlvn.TrangThaiVN;
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
+import fasttrackse.ffse1703.fbms.entity.security.PhongBan;
 import fasttrackse.ffse1703.fbms.service.qlvn.QuanLyVangNghiService;
 
 @Controller
@@ -43,12 +44,17 @@ public class ControllerQLVN {
 		if (request.getParameter("manhanvien") == null || request.getParameter("manhanvien").equals("0")) {
 			maNhanVien = "";
 		}
-		String search = maNhanVien;
+		String tenPhongBan = " and tenPhongBan = '"+ request.getParameter("tenphongban") +"'";
+		if (request.getParameter("tenphongban") == null || request.getParameter("tenphongban").equals("0")  ) {
+			tenPhongBan = "";
+		}
+		String search = maNhanVien + tenPhongBan;
 		int totalRecords = service.danhSachXinNghiChoDuyet().size();
 		int recordsPerPage = 4;
 		int totalPages = (int)Math.ceil((double)totalRecords/recordsPerPage);
 		int startPosition = recordsPerPage * (currentPage - 1);
 		model.addAttribute("danhsachcho", service.findAllForPagingCD(startPosition, recordsPerPage,search));
+		model.addAttribute("tenPhongBans", request.getParameter("tenphongban"));
 		model.addAttribute("maNhaViens", request.getParameter("manhanvien"));
 		model.addAttribute("lastPage", totalPages);
 		model.addAttribute("currentPage", currentPage);
@@ -60,15 +66,20 @@ public class ControllerQLVN {
 	public String danhSachDuyet(Model model,HttpServletRequest request,HttpSession session,
 			@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage) {
 		String maNhanVien = " and  ngayNghi = " + request.getParameter("manhanvien") + "";
-		if (request.getParameter("manhanvien") == null || request.getParameter("manhanvien").equals("0")) {
+		if (request.getParameter("manhanvien") == null || request.getParameter("manhanvien").equals("0")  ) {
 			maNhanVien = "";
 		}
-		String search = maNhanVien;
+		String tenPhongBan = " and tenPhongBan = '"+ request.getParameter("tenphongban") +"'";
+		if (request.getParameter("tenphongban") == null || request.getParameter("tenphongban").equals("0")  ) {
+			tenPhongBan = "";
+		}
+		String search = maNhanVien + tenPhongBan;
 		int totalRecords = service.danhSachXinNghiDuyet().size();
 		int recordsPerPage = 4;
 		int totalPages = (int)Math.ceil((double)totalRecords/recordsPerPage);
 		int startPosition = recordsPerPage * (currentPage - 1);
 		model.addAttribute("danhsachduyet", service.findAllForPagingD(startPosition, recordsPerPage, search));
+		model.addAttribute("tenPhongBans", request.getParameter("tenphongban"));
 		model.addAttribute("maNhaViens", request.getParameter("manhanvien"));
 		model.addAttribute("lastPage", totalPages);
 		model.addAttribute("currentPage", currentPage);
@@ -206,6 +217,11 @@ public class ControllerQLVN {
 	@ModelAttribute("ngaynghi")
 	public List<NgayNghi> danhSachNgayNghi(){
 		return this.service.danhSachNgayNghi();
+	}
+	
+	@ModelAttribute("phongban")
+	public List<PhongBan> danhSachPhongBan(){
+		return this.service.loadAllPhongBan();
 	}
 	
 	@RequestMapping(value = {"/delete/{id}","/taodonmoi/choduyet"})

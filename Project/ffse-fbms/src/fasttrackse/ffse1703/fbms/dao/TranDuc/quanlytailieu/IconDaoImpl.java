@@ -19,7 +19,7 @@ public class IconDaoImpl implements IconDao {
 	@Override
 	public List<IconTaiLieu> listAllIconTaiLieu() {
 		Session session = this.sessionFac.openSession();
-		List<IconTaiLieu> list = session.createQuery("from IconTaiLieu").list();
+		List<IconTaiLieu> list = session.createQuery("from IconTaiLieu where isDelete = 0").list();
 		session.close();
 		return list;
 	}
@@ -45,9 +45,9 @@ public class IconDaoImpl implements IconDao {
 	@Override
 	public void deleteIC(String maIcon) {
 		Session session = this.sessionFac.openSession();
-		Transaction pb = session.beginTransaction();
+		Transaction ts = session.beginTransaction();
 		session.delete(session.get(IconTaiLieu.class, maIcon));
-		pb.commit();
+		ts.commit();
 		session.close();
 	}
 
@@ -58,5 +58,5 @@ public class IconDaoImpl implements IconDao {
 		session.close();
 		return ic;
 	}
-
+	
 }

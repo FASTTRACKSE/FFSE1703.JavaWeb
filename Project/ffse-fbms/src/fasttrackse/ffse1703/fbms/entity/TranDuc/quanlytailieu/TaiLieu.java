@@ -1,7 +1,16 @@
 package fasttrackse.ffse1703.fbms.entity.TranDuc.quanlytailieu;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
 import fasttrackse.ffse1703.fbms.entity.security.PhongBan;
 
 @Entity
@@ -27,11 +36,13 @@ public class TaiLieu {
 	@NotNull
 	PhongBan phongBan;
 
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "ma_icon", nullable = false)
+	@NotNull
+	IconTaiLieu iconTaiLieu;
+
 	@Column(name = "ma_tai_lieu")
 	String maTL;
-	
-	@Column(name = "Hinh_Bieu_Tuong")
-	String iconTL;
 
 	@Column(name = "Ten_Tai_Lieu")
 	String tenTL;
@@ -41,6 +52,17 @@ public class TaiLieu {
 
 	@Column(name = "Link")
 	String link;
+	
+	@Column(name = "isDelete")
+	Integer isDelete;
+
+	public Integer getIsDelete() {
+		return isDelete;
+	}
+
+	public void setIsDelete(Integer isDelete) {
+		this.isDelete = isDelete;
+	}
 
 	public DanhMuc getDanhMuc() {
 		return danhMuc;
@@ -66,6 +88,14 @@ public class TaiLieu {
 		this.phongBan = phongBan;
 	}
 
+	public IconTaiLieu getIconTaiLieu() {
+		return iconTaiLieu;
+	}
+
+	public void setIconTaiLieu(IconTaiLieu iconTaiLieu) {
+		this.iconTaiLieu = iconTaiLieu;
+	}
+
 	public TaiLieu() {
 
 	}
@@ -84,14 +114,6 @@ public class TaiLieu {
 
 	public void setMaTL(String maTL) {
 		this.maTL = maTL;
-	}
-
-	public String getIconTL() {
-		return iconTL;
-	}
-
-	public void setIconTL(String iconTL) {
-		this.iconTL = iconTL;
 	}
 
 	public String getTenTL() {

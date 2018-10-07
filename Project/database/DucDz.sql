@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 17, 2018 at 09:18 AM
+-- Generation Time: Oct 05, 2018 at 10:04 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -49,11 +49,18 @@ INSERT INTO `chuc_danh` (`ma_chuc_danh`, `ten_chuc_danh`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `danh_muc` (
-  `ID` int(10) NOT NULL,
-  `Ma_Danh_Muc` varchar(10) CHARACTER SET latin1 NOT NULL,
-  `Ten_Danh_Muc` varchar(200) CHARACTER SET latin1 NOT NULL,
-  `Ma_Phong_Ban` varchar(10) CHARACTER SET latin1 NOT NULL
+  `Ma_Danh_Muc` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `Ten_Danh_Muc` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `isDelete` tinyint(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `danh_muc`
+--
+
+INSERT INTO `danh_muc` (`Ma_Danh_Muc`, `Ten_Danh_Muc`, `isDelete`) VALUES
+('EN', 'English', 0),
+('IT', 'Information Technology', 0);
 
 -- --------------------------------------------------------
 
@@ -294,6 +301,39 @@ INSERT INTO `ho_so_nhan_vien` (`ma_nhan_vien`, `ma_phong_ban`, `ma_chuc_danh`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `icon`
+--
+
+CREATE TABLE IF NOT EXISTS `icon` (
+  `ma_icon` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `link_File` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `ten_icon` varchar(300) COLLATE utf8_unicode_ci NOT NULL,
+  `isDelete` tinyint(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `icon`
+--
+
+INSERT INTO `icon` (`ma_icon`, `link_File`, `ten_icon`, `isDelete`) VALUES
+('docx', 'D:\\Github\\FFSE1703.JavaWeb\\Project\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ffse-fbms\\upload\\DOCX.png', 'DOCX.png', 1),
+('exe', 'D:\\Github\\FFSE1703.JavaWeb\\Project\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ffse-fbms\\upload\\EXE.png', 'EXE.png', 0),
+('html', 'D:\\Github\\FFSE1703.JavaWeb\\Project\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ffse-fbms\\upload\\HTML.png', 'HTML.png', 0),
+('img', 'D:\\Github\\FFSE1703.JavaWeb\\Project\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ffse-fbms\\upload\\IMG.png', 'IMG.png', 0),
+('jpg', 'D:\\Github\\FFSE1703.JavaWeb\\Project\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ffse-fbms\\upload\\JPG.png', 'JPG.png', 0),
+('mp3', 'D:\\Github\\FFSE1703.JavaWeb\\Project\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ffse-fbms\\upload\\MP3.png', 'MP3.png', 0),
+('mp4', 'D:\\Github\\FFSE1703.JavaWeb\\Project\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ffse-fbms\\upload\\MP4.png', 'MP4.png', 0),
+('pdf', 'D:\\Github\\FFSE1703.JavaWeb\\Project\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ffse-fbms\\upload\\PDF.png', 'PDF.png', 0),
+('png', 'D:\\Github\\FFSE1703.JavaWeb\\Project\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ffse-fbms\\upload\\PNG.png', 'PNG.png', 0),
+('txt', 'D:\\Github\\FFSE1703.JavaWeb\\Project\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ffse-fbms\\upload\\TXT.png', 'TXT.png', 0),
+('xls', 'D:\\Github\\FFSE1703.JavaWeb\\Project\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ffse-fbms\\upload\\XLS.png', 'XLS.png', 0),
+('xlsx', 'D:\\Github\\FFSE1703.JavaWeb\\Project\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ffse-fbms\\upload\\XLSX.png', 'XLSX.png', 0),
+('xml', 'D:\\Github\\FFSE1703.JavaWeb\\Project\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ffse-fbms\\upload\\Xml.png', 'Xml.png', 0),
+('zip', 'D:\\Github\\FFSE1703.JavaWeb\\Project\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ffse-fbms\\upload\\ZIP.png', 'ZIP.png', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `phong_ban`
 --
 
@@ -346,15 +386,35 @@ INSERT INTO `role` (`ma_role`, `name`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `tai_lieu` (
-  `ID` int(10) NOT NULL,
-  `ma_tai_lieu` varchar(30) NOT NULL,
-  `Ten_Danh_Muc` varchar(100) NOT NULL,
-  `Hinh_Bieu_Tuong` varchar(100) NOT NULL,
-  `Ten_Tai_Lieu` varchar(300) NOT NULL,
-  `Ma_Phong_Ban` varchar(20) NOT NULL,
-  `Link` varchar(300) NOT NULL,
-  `Trang_Thai` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+`id_tai_lieu` int(11) NOT NULL,
+  `ma_tai_lieu` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `ma_danh_muc` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `ma_icon` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `ten_tai_lieu` varchar(300) COLLATE utf8_unicode_ci NOT NULL,
+  `ma_phong_ban` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `mo_taTL` varchar(300) COLLATE utf8_unicode_ci NOT NULL,
+  `Link` varchar(300) COLLATE utf8_unicode_ci NOT NULL,
+  `ma_trang_Thai` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `isDelete` tinyint(2) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `tai_lieu`
+--
+
+INSERT INTO `tai_lieu` (`id_tai_lieu`, `ma_tai_lieu`, `ma_danh_muc`, `ma_icon`, `ten_tai_lieu`, `ma_phong_ban`, `mo_taTL`, `Link`, `ma_trang_Thai`, `isDelete`) VALUES
+(69, 'DayLaTaiLieu', 'IT', 'jpg', '12132534_1510034795984189_9032794836854226309_o (1).jpg', 'PDT', 'DayCungLaTailieu', '\\upload\\12132534_1510034795984189_9032794836854226309_o (1).jpg', 'Wait', 0),
+(70, '12341234', 'EN', 'docx', 'BÀI-TẬP-TRẮC-NGHIỆM-VỀ-CÁC-THÌ-TRONG-TIẾNG-ANH.docx', 'PDT', 'Tai Lieu', '\\upload\\BÀI-TẬP-TRẮC-NGHIỆM-VỀ-CÁC-THÌ-TRONG-TIẾNG-ANH.docx', 'Wait', 0),
+(71, 'qwerqwer', 'IT', 'docx', 'BÀI-TẬP-TRẮC-NGHIỆM-VỀ-CÁC-THÌ-TRONG-TIẾNG-ANH.docx', 'PDT', '123123', '\\upload\\BÀI-TẬP-TRẮC-NGHIỆM-VỀ-CÁC-THÌ-TRONG-TIẾNG-ANH.docx', 'Wait', 0),
+(72, 'qwerqwer', 'IT', 'docx', 'BÀI-TẬP-TRẮC-NGHIỆM-VỀ-CÁC-THÌ-TRONG-TIẾNG-ANH.docx', 'PDT', '123123', '\\upload\\BÀI-TẬP-TRẮC-NGHIỆM-VỀ-CÁC-THÌ-TRONG-TIẾNG-ANH.docx', 'Wait', 0),
+(74, 'Tài Liệu Phòng IT', 'IT', 'docx', 'BÀI-TẬP-TRẮC-NGHIỆM-VỀ-CÁC-THÌ-TRONG-TIẾNG-ANH.docx', 'PIT', '123123', '\\upload\\BÀI-TẬP-TRẮC-NGHIỆM-VỀ-CÁC-THÌ-TRONG-TIẾNG-ANH.docx', 'Wait', 0),
+(75, 'Mã Tài Liệu', 'EN', 'pdf', 'Spring Hibernate.pdf', 'PDA', 'Đây là tài liệu', '\\upload\\Spring Hibernate.pdf', 'Wait', 0),
+(76, 'Mã Tài Liệu Nữa', 'EN', 'xlsx', 'database.xlsx', 'PNS', 'Đây là tài liệu của phòng nhân sự', '\\upload\\database.xlsx', 'Wait', 0),
+(77, '12341234', 'IT', 'xlsx', 'database.xlsx', 'PGD', '123123', '\\upload\\database.xlsx', 'Wait', 0),
+(78, '12341234', 'EN', 'xlsx', 'Product Backlog sample.xlsx', 'PGD', '123123', '\\upload\\Product Backlog sample.xlsx', 'Wait', 0),
+(79, '12341234', 'EN', 'xlsx', 'Product Backlog sample.xlsx', 'PGD', '123123', '\\upload\\Product Backlog sample.xlsx', 'Wait', 0),
+(80, '12341234', 'EN', 'xlsx', 'Product Backlog sample.xlsx', 'PGD', '123123', '\\upload\\Product Backlog sample.xlsx', 'Wait', 0),
+(81, '12341234', 'EN', 'xlsx', 'Product Backlog sample.xlsx', 'PGD', '123123', '\\upload\\Product Backlog sample.xlsx', 'Wait', 0);
 
 -- --------------------------------------------------------
 
@@ -363,10 +423,23 @@ CREATE TABLE IF NOT EXISTS `tai_lieu` (
 --
 
 CREATE TABLE IF NOT EXISTS `trang_thai` (
-  `ID` int(11) NOT NULL,
-  `Ma_Trang_Thai` int(11) NOT NULL,
-  `Ten_Trang_Thai` int(11) NOT NULL
+  `Ma_Trang_Thai` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `Ten_Trang_Thai` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `isDelete` tinyint(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `trang_thai`
+--
+
+INSERT INTO `trang_thai` (`Ma_Trang_Thai`, `Ten_Trang_Thai`, `isDelete`) VALUES
+('123123', '123123', 1),
+('Approved', 'Approved', 0),
+('Denied', 'Denied', 0),
+('Draft', 'Draft', 0),
+('qưerqwreqwer', 'qưerqwer', 1),
+('unknow', 'unknow', 1),
+('Wait', 'Waiting Approve', 0);
 
 -- --------------------------------------------------------
 
@@ -456,7 +529,7 @@ ALTER TABLE `chuc_danh`
 -- Indexes for table `danh_muc`
 --
 ALTER TABLE `danh_muc`
- ADD PRIMARY KEY (`ID`);
+ ADD PRIMARY KEY (`Ma_Danh_Muc`);
 
 --
 -- Indexes for table `ho_so_nhan_vien`
@@ -465,10 +538,22 @@ ALTER TABLE `ho_so_nhan_vien`
  ADD PRIMARY KEY (`ma_nhan_vien`);
 
 --
+-- Indexes for table `icon`
+--
+ALTER TABLE `icon`
+ ADD PRIMARY KEY (`ma_icon`);
+
+--
 -- Indexes for table `tai_lieu`
 --
 ALTER TABLE `tai_lieu`
- ADD PRIMARY KEY (`ID`);
+ ADD PRIMARY KEY (`id_tai_lieu`);
+
+--
+-- Indexes for table `trang_thai`
+--
+ALTER TABLE `trang_thai`
+ ADD PRIMARY KEY (`Ma_Trang_Thai`);
 
 --
 -- Indexes for table `users`
@@ -485,6 +570,11 @@ ALTER TABLE `users`
 --
 ALTER TABLE `ho_so_nhan_vien`
 MODIFY `ma_nhan_vien` int(5) unsigned zerofill NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=202;
+--
+-- AUTO_INCREMENT for table `tai_lieu`
+--
+ALTER TABLE `tai_lieu`
+MODIFY `id_tai_lieu` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=82;
 --
 -- AUTO_INCREMENT for table `users`
 --

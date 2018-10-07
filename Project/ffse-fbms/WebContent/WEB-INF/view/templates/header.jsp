@@ -477,7 +477,7 @@
 						</ul>
 						<ul class="menu-content">
 							<li><a class="menu-item"
-								href="/ffse-fbms/quantrinhansu/nhanvienphongban/TTCN">Thông Tin Cá Nhân</a></li>
+								href="/ffse-fbms/quantrinhansu/thongtincanhan/">Thông Tin Cá Nhân</a></li>
 						</ul>
 						</li>
 						<li class=" nav-item"><a href="#"><i class="ft-layers"></i><span
@@ -637,7 +637,6 @@
 					href="<c:url value = "/QuanLyNhiemVuNghiaBT/Calendar"/>"><i
 						class="fa fa-calendar-o"></i><span data-i18n="" class="menu-title"><spring:message code="label.lichnhiemvu"/>
 							</span></a></li>
-=======
 				<li class=" nav-item"><a
 					href="<c:url value = "/HieuLP/calender"/>"><i
 						class="fa fa-calendar"></i><span data-i18n="" class="menu-title"><spring:message
@@ -675,7 +674,6 @@
 						class="fa fa-calendar-minus-o"></i><span data-i18n=""
 						class="menu-title"><spring:message
 								code="label.minhhqitemcalendar" /></span></a></li>
->>>>>>> 2d0ee5beaf5f32b3422ea39d9d719e6aa18b1b67
 				<li><hr /></li>
 				<!-- Quản trị đánh giá :: START-->
 				<li class=" navigation-header"><span>Quản trị đánh giá</span><i

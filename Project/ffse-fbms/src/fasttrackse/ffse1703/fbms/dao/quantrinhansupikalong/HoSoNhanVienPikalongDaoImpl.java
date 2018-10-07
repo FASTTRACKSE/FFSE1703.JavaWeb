@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 //import com.sun.org.apache.regexp.internal.recompile;
 
 import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.HoSoNhanVienPikalong;
-import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 
 @Repository
 public class HoSoNhanVienPikalongDaoImpl implements HoSoNhanVienPikalongDao {

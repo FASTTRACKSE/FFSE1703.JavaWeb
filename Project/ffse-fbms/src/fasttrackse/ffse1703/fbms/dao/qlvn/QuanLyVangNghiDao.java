@@ -74,5 +74,6 @@ public interface QuanLyVangNghiDao {
 	
 	public void updateNgayNghi(NgayNghi ngayNghi);
 	
+	public List<ThongKeDonXinPhep> listbyPhongBan(String maPB );
 
 }

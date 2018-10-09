@@ -30,7 +30,7 @@
             <label><spring:message code="label.hoTen" /></label> 
             <input class="form-control" value="${list.tenNhanVien}" readonly /> 
             <label><spring:message code="label.phongBan" /></label>
-			<input class="form-control" value="${list.tenPhongBan}" readonly />  
+			<input class="form-control" value="${list.maPhongBan}" readonly />  
 			<label><spring:message code="label.ngaybatdau" /></label> 
             <input class="form-control" value="${list.ngayBatDau}" readonly />
             <label><spring:message code="label.ngayketthuc" /></label> 

@@ -154,8 +154,9 @@ public class QuanLyVangNghiServiceIpml implements QuanLyVangNghiService {
 		quanLyVangNghiDao.updateNgayNghi(ngayNghi);
 		
 	}
-
-
+	public List<ThongKeDonXinPhep> listbyPhongBan(String maPB){
+		return quanLyVangNghiDao.listbyPhongBan(maPB);
+	}
 	
 	
 }

@@ -44,11 +44,11 @@
 						<br>
 						<div>
 							<label> <spring:message code="label.phongBan" /></label>
-							<form:select multiple="single" path="tenPhongBan"
+							<form:select multiple="single" path="maPhongBan"
 								class="custom-select block round">
 								<c:forEach items="${phongban}" var="ld">
-									<form:option value="${ld.tenPhongBan}"
-										label="${ld.tenPhongBan}" />
+									<form:option value="${ld.maPhongBan}"
+										label="${ld.maPhongBan}" />
 								</c:forEach>
 							</form:select>
 						</div>

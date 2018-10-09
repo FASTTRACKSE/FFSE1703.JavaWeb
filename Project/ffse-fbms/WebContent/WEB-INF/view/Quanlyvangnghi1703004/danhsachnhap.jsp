@@ -71,7 +71,7 @@
 										<td>${nv.id}</td>
 										<td>${nv.ngayNghi.maNhanVien}</td>
 										<td>${nv.tenNhanVien}</td>
-										<td>${nv.tenPhongBan}</td>
+										<td>${nv.maPhongBan}</td>
 										<td>${nv.ngayBatDau}</td>
 										<td>${nv.ngayKetThuc}</td>
 										<td>${nv.lyDo.lyDo}</td>

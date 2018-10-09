@@ -40,26 +40,28 @@
 			<div class="col-md-8">
 			<div class="col-md-6">
 			<form method="GET" action="">
-						
-							
-							 <div class="col-md-6">
+						<div class="col-md-6">
 							<div class="form-group">
-								<spring:message code="label.maNhanVien"/><select name="manhanvien"
-									class="form-control form-control-sm" id="manhanvien">
-									<option value="0" selected="selected">--<spring:message code="label.tatCa" />--</option>
+								<spring:message code="label.maNhanVien" />
+								<select name="manhanvien" class="form-control form-control-sm"
+									id="manhanvien">
+									<option value="0" selected="selected">--
+										<spring:message code="label.tatCa" />--
+									</option>
 									<c:forEach items="${ngaynghi}" var="nn">
 										<option value="${nn.maNhanVien}"
-										<c:if test="${maNhaViens == nn.maNhanVien }"> selected="selected"</c:if>
-										>${nn.maNhanVien}</option>
+											<c:if test="${maNhaViens == nn.maNhanVien }"> selected="selected"</c:if>>${nn.maNhanVien}</option>
 									</c:forEach>
 								</select>
 							</div>
-						</div> 
-						<div class="col-md-6" style="margin-top: 20px">
+						</div>
+						<div class="col-md-3">
 							<label></label>
 							<button type="submit" class="btn mr-1 mb-1 btn-success btn-sm">
-								<i class="fa fa-search"></i><spring:message code="label.tim"/>
-							</button></div> 
+								<i class="fa fa-search"></i>
+								<spring:message code="label.tim" />
+							</button>
+						</div>
 						<script type="text/javascript">
 							NhanVien =
 						<%=request.getParameter("manhanvien")%>
@@ -67,20 +69,20 @@
 							if (manhanvien != 0 && manhanvien != null) {
 								$("#manhanvien").val(manhanvien);
 							}
-							</script>
-							</form>
+						</script>
+					</form>
 							</div>
 						<div class="col-md-6">
 						<form method="GET" action="">
 							<div class="col-md-6">
 							<div class="form-group">
-								<spring:message code="label.phongBan"/><select name="tenphongban"
-									class="form-control form-control-sm" id="tenphongban">
+								<spring:message code="label.phongBan"/><select name="maphongban"
+									class="form-control form-control-sm" id="maphongban">
 									<option value="0" selected="selected">--<spring:message code="label.tatCa" />--</option>
 									<c:forEach items="${phongban}" var="pb">
-										<option value="${pb.tenPhongBan}"
-										<c:if test="${tenPhongBans == pb.tenPhongBan }"> selected="selected"</c:if>
-										>${pb.tenPhongBan}</option>
+										<option value="${pb.maPhongBan}"
+										<c:if test="${maphongbans == pb.maPhongBan }"> selected="selected"</c:if>
+										>${pb.maPhongBan}</option>
 									</c:forEach>
 								</select>
 							</div>
@@ -93,10 +95,10 @@
 						<script type="text/javascript">
 							
 							PhongBan = 
-								<%=request.getParameter("tenphongban")%>
+								<%=request.getParameter("maphongban")%>
 							;
-							if (tenphongban != 0 && tenphongban != null) {
-								$("#tenphongban").val(tenphongban);
+							if (maphongban != 0 && maphongban != null) {
+								$("#maphongban").val(maphongban);
 							}
 							</script>
 								</form>
@@ -126,7 +128,7 @@
 					<td>${nv.id -1}</td>
 					<td>${nv.ngayNghi.maNhanVien}</td>
 					<td>${nv.tenNhanVien}</td>
-					<td>${nv.tenPhongBan}</td>
+					<td>${nv.maPhongBan}</td>
 					<td>${nv.ngayBatDau}</td>
 					<td>${nv.ngayKetThuc}</td>
 					<td>${nv.lyDo.lyDo}</td>
@@ -135,6 +137,7 @@
 					<td>${nv.trangThai.trangThai}</td>
 					<td><h2><a  href="viewChoDuyet/${nv.id }"><i class="icon-eye"></i></a></h2> 
 						<h2><a  href="suachoduyet/${nv.id}"> <i class='fa fa-pencil'></i> </a></h2>
+						
 					</td>
 						</tr>
 				</c:forEach>

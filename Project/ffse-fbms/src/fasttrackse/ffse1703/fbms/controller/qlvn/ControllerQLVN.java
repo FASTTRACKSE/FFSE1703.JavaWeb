@@ -1,11 +1,9 @@
 package fasttrackse.ffse1703.fbms.controller.qlvn;
 import java.sql.SQLException;
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import fasttrackse.ffse1703.fbms.entity.qlvn.LyDoXinNghi;
 import fasttrackse.ffse1703.fbms.entity.qlvn.NgayNghi;
 import fasttrackse.ffse1703.fbms.entity.qlvn.ThongKeDonXinPhep;
@@ -40,26 +37,29 @@ public class ControllerQLVN {
 	@RequestMapping(value = {"/danhsachcho" }, method = RequestMethod.GET)
 	public String danhSachChoDuyet(Model model,HttpServletRequest request,HttpSession session,
 			@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage) {
-		String maNhanVien = " and  ngayNghi = " + request.getParameter("manhanvien") + "";
-		if (request.getParameter("manhanvien") == null || request.getParameter("manhanvien").equals("0")) {
-			maNhanVien = "";
-		}
-		String tenPhongBan = " and tenPhongBan = '"+ request.getParameter("tenphongban") +"'";
-		if (request.getParameter("tenphongban") == null || request.getParameter("tenphongban").equals("0")  ) {
-			tenPhongBan = "";
-		}
-		String search = maNhanVien + tenPhongBan;
-		int totalRecords = service.danhSachXinNghiChoDuyet().size();
-		int recordsPerPage = 4;
-		int totalPages = (int)Math.ceil((double)totalRecords/recordsPerPage);
-		int startPosition = recordsPerPage * (currentPage - 1);
-		model.addAttribute("danhsachcho", service.findAllForPagingCD(startPosition, recordsPerPage,search));
-		model.addAttribute("tenPhongBans", request.getParameter("tenphongban"));
-		model.addAttribute("maNhaViens", request.getParameter("manhanvien"));
-		model.addAttribute("lastPage", totalPages);
-		model.addAttribute("currentPage", currentPage);
+	
+			String maNhanVien = " and  ngayNghi = " + request.getParameter("manhanvien") + "";
+			if (request.getParameter("manhanvien") == null || request.getParameter("manhanvien").equals("0")) {
+				maNhanVien = "";
+			}
+			String maPhongBan = " and maPhongBan = '"+ request.getParameter("maphongban") +"'";
+			if (request.getParameter("maphongban") == null || request.getParameter("maphongban").equals("0")  ) {
+				maPhongBan = "";
+			}
+			String search = maNhanVien + maPhongBan;
+			int totalRecords = service.danhSachXinNghiChoDuyet().size();
+			int recordsPerPage = 4;
+			int totalPages = (int)Math.ceil((double)totalRecords/recordsPerPage);
+			int startPosition = recordsPerPage * (currentPage - 1);
+			model.addAttribute("danhsachcho", service.findAllForPagingCD(startPosition, recordsPerPage,search));
+			model.addAttribute("maphongbans", request.getParameter("maphongban"));
+			model.addAttribute("maNhaViens", request.getParameter("manhanvien"));
+			model.addAttribute("lastPage", totalPages);
+			model.addAttribute("currentPage", currentPage);
+			
 		
 		return "Quanlyvangnghi1703004/danhsachcho";
+		
 	}
 	
 	@RequestMapping(value = {"/danhsachduyet" }, method = RequestMethod.GET)
@@ -69,17 +69,17 @@ public class ControllerQLVN {
 		if (request.getParameter("manhanvien") == null || request.getParameter("manhanvien").equals("0")  ) {
 			maNhanVien = "";
 		}
-		String tenPhongBan = " and tenPhongBan = '"+ request.getParameter("tenphongban") +"'";
-		if (request.getParameter("tenphongban") == null || request.getParameter("tenphongban").equals("0")  ) {
-			tenPhongBan = "";
+		String maPhongBan = " and maPhongBan = '"+ request.getParameter("maphongban") +"'";
+		if (request.getParameter("maphongban") == null || request.getParameter("maphongban").equals("0")  ) {
+			maPhongBan = "";
 		}
-		String search = maNhanVien + tenPhongBan;
+		String search = maNhanVien + maPhongBan;
 		int totalRecords = service.danhSachXinNghiDuyet().size();
 		int recordsPerPage = 4;
 		int totalPages = (int)Math.ceil((double)totalRecords/recordsPerPage);
 		int startPosition = recordsPerPage * (currentPage - 1);
 		model.addAttribute("danhsachduyet", service.findAllForPagingD(startPosition, recordsPerPage, search));
-		model.addAttribute("tenPhongBans", request.getParameter("tenphongban"));
+		model.addAttribute("maphongbans", request.getParameter("maphongban"));
 		model.addAttribute("maNhaViens", request.getParameter("manhanvien"));
 		model.addAttribute("lastPage", totalPages);
 		model.addAttribute("currentPage", currentPage);

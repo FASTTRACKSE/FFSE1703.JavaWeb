@@ -13,6 +13,7 @@ import fasttrackse.ffse1703.fbms.entity.qlvn.LyDoXinNghi;
 import fasttrackse.ffse1703.fbms.entity.qlvn.NgayNghi;
 import fasttrackse.ffse1703.fbms.entity.qlvn.ThongKeDonXinPhep;
 import fasttrackse.ffse1703.fbms.entity.qlvn.TrangThaiVN;
+import fasttrackse.ffse1703.fbms.entity.qlvn2.DonXinPhepEntity;
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 import fasttrackse.ffse1703.fbms.entity.security.PhongBan;
 
@@ -289,6 +290,15 @@ public class QuanLyVangNghiDaoIpml implements QuanLyVangNghiDao {
 	public void updateNgayNghi(NgayNghi ngayNghi) {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.update(ngayNghi);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<ThongKeDonXinPhep> listbyPhongBan(String maPB) {
+		Session session = sessionFactory.getCurrentSession();
+		List<ThongKeDonXinPhep> list = session
+				.createQuery("from ThongKeDonXinPhep  where trangThai = '2' and maPhongBan ='" + maPB + "'  ")
+				.getResultList();
+		return list;
 	}
 
 }

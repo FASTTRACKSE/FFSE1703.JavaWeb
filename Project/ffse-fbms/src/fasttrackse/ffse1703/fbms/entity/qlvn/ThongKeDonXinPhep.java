@@ -32,8 +32,8 @@ public class ThongKeDonXinPhep {
 	@JoinColumn(name ="ma_nhan_vien")
 	private NgayNghi ngayNghi;
 	
-	@Column(name="ten_phong_ban")
-	private String tenPhongBan;
+	@Column(name="ma_phong_ban")
+	private String maPhongBan;
 	
 	@Column(name="ten_nhan_vien")
 	private String tenNhanVien;
@@ -71,6 +71,7 @@ public class ThongKeDonXinPhep {
 	@ManyToOne
 	@JoinColumn(name = "trang_thai")
 	private TrangThaiVN trangThai;
+
 
 	public int getId() {
 		return id;
@@ -124,12 +125,14 @@ public class ThongKeDonXinPhep {
 		return ghiChu;
 	}
 
-	public String getTenPhongBan() {
-		return tenPhongBan;
+	
+
+	public String getMaPhongBan() {
+		return maPhongBan;
 	}
 
-	public void setTenPhongBan(String tenPhongBan) {
-		this.tenPhongBan = tenPhongBan;
+	public void setMaPhongBan(String maPhongBan) {
+		this.maPhongBan = maPhongBan;
 	}
 
 	public void setGhiChu(String ghiChu) {

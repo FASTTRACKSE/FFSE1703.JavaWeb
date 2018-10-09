@@ -50,11 +50,12 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach var="nn" items="${danhsachtrangthai}">
+								<c:forEach var="nn" items="${danhsachtrangthai}" >
 									<tr>
 										<th scope="row">${nn.id}</th>
 										<td>${nn.maTrangThai}</td>
 										<td>${nn.trangThai}</td>
+									
 										<td><h2>
 												<a href="deleteStatus/${nn.id}"> <i class='fa fa-trash'
 													onclick="return confirm('Bạn có muốn xóa sinh viên này?');"></i></a>

@@ -78,14 +78,14 @@
 						<div class="col-md-9">
 							<div class="form-group">
 								<spring:message code="label.phongBan" />
-								<select name="tenphongban" class="form-control form-control-sm"
-									id="tenphongban">
+								<select name="maphongban" class="form-control form-control-sm"
+									id="maphongban">
 									<option value="0" selected="selected">--
 										<spring:message code="label.tatCa" />--
 									</option>
 									<c:forEach items="${phongban}" var="pb">
-										<option value="${pb.tenPhongBan}"
-											<c:if test="${tenPhongBans == pb.tenPhongBan }"> selected="selected"</c:if>>${pb.tenPhongBan}</option>
+										<option value="${pb.maPhongBan}"
+											<c:if test="${maphongbans == pb.maPhongBan }"> selected="selected"</c:if>>${pb.maPhongBan}</option>
 									</c:forEach>
 								</select>
 							</div>
@@ -99,10 +99,10 @@
 						</div>
 						<script type="text/javascript">
 							PhongBan =
-						<%=request.getParameter("tenphongban")%>
+						<%=request.getParameter("maphongban")%>
 							;
-							if (tenphongban != 0 && tenphongban != null) {
-								$("#tenphongban").val(tenphongban);
+							if (maphongban != 0 && maphongban != null) {
+								$("#maphongban").val(maphongban);
 							}
 						</script>
 					</form>
@@ -134,7 +134,7 @@
 							<td>${nv.id -1}</td>
 							<td>${nv.ngayNghi.maNhanVien}</td>
 							<td>${nv.tenNhanVien}</td>
-							<td>${nv.tenPhongBan}</td>
+							<td>${nv.maPhongBan}</td>
 							<td>${nv.ngayBatDau}</td>
 							<td>${nv.ngayKetThuc}</td>
 							<td>${nv.soNgayNghi}</td>

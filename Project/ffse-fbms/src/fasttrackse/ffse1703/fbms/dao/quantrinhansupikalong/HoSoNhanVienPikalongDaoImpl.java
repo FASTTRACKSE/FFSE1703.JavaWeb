@@ -1,16 +1,16 @@
 package fasttrackse.ffse1703.fbms.dao.quantrinhansupikalong;
 
 import java.util.List;
-import org.hibernate.query.Query;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 //import com.sun.org.apache.regexp.internal.recompile;
 
 import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.HoSoNhanVienPikalong;
-import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
 
 @Repository
 public class HoSoNhanVienPikalongDaoImpl implements HoSoNhanVienPikalongDao {

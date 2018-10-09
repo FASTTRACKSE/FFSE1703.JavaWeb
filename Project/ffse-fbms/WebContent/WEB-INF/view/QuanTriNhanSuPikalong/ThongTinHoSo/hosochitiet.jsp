@@ -193,6 +193,24 @@
 					</div>
                 </c:forEach>
             </section><!--//section-->
+            
+            <section class="section projects-section">
+                <h2 class="section-title"><span class="icon-holder"><i class="fa fa-align-left"></i></span>Kinh Nghiệm Dự Án</h2>
+                            	<c:forEach items="${kinhNghiem}" var="x" varStatus="stt">
+                	<div class="table-responsive">
+						<table class="table mb-0">
+							<tr>
+								<td><h6>Tên dự án:</h6></td>
+								<td style="text-align: right">${x.projects.nameProject}</td>
+							</tr>
+							<tr>
+								<td><h6>Vai trò:</h6></td>
+								<td style="text-align: right">${x.roles.nameRoles}</td>
+							</tr>
+						</table>
+					</div>
+                </c:forEach>
+            </section><!--//section-->
             		 <a href="/ffse-fbms/quantrinhansu/hosonhanvien/exportexcel/${hoSoNhanVien.maNv}"><button class="btn btn-success">
 										<i class="fa fa-download"></i> Tải xuống
 										</button></a> <!-- export file excel button -->

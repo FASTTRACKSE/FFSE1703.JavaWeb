@@ -3,6 +3,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <jsp:include page="/WEB-INF/view/templates/header.jsp" />
 <style>
 div.stroke a button, div.stroke a button:after, div.stroke a button:before
@@ -82,6 +83,8 @@ div.stroke a button:hover:after {
 								width="60" height="80"></td>
 							<td>
 								<div class="stroke">
+								<!-- Phân Quyền phòng nhân sự -->
+								<sec:authorize access="hasRole('ROLE_PNSTPP') or hasRole('ROLE_PNSNV')">
 									<a href="delete/${x.maNv}"><button
 											style="background-color: #F5F7FA" class="btn btn-light"
 											onclick="if (!confirm('Bạn có muốn xóa sinh viên này không?')) return false">
@@ -93,6 +96,8 @@ div.stroke a button:hover:after {
 											<i class="fa fa-pencil"></i>
 										</button></a>
 									<!-- edit button -->
+								</sec:authorize>
+									
 									<a href="view/${x.maNv}"><button
 											style="background-color: #F5F7FA" class="btn btn-light">
 											<i class="fa fa-eye"></i>

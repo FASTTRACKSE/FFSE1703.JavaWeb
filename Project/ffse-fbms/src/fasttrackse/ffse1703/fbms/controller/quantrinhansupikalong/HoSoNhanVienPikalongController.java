@@ -29,6 +29,7 @@ import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.HoSoNhanVienPikalo
 import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.PhuongPikalong;
 import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.QuanHuyenPikalong;
 import fasttrackse.ffse1703.fbms.entity.security.UserAccount;
+import fasttrackse.ffse1703.fbms.service.mvpquanliduan.NhiemVuService;
 import fasttrackse.ffse1703.fbms.service.quantrinhansupikalong.BangCapPikalongService;
 import fasttrackse.ffse1703.fbms.service.quantrinhansupikalong.GiaDinhPikalongService;
 import fasttrackse.ffse1703.fbms.service.quantrinhansupikalong.HoSoNhanVienPikalongService;
@@ -74,7 +75,9 @@ public class HoSoNhanVienPikalongController {
 	private BangCapPikalongService bangCapPikalongService;
 	
 	@Autowired
-	private UserAccountService userAccountService;
+	private NhiemVuService nhiemVuService;
+	
+	
 	
 	private static final String UPLOAD_DIRECTORY ="/upload"; 
 	
@@ -84,18 +87,9 @@ public class HoSoNhanVienPikalongController {
 	public static double totalRecord;
 	public static double perPage;
 	
-	public UserAccount getMaNv() {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String userTest = auth.getName();
-		System.out.println("user name: " + userTest);
-		UserAccount user = userAccountService.loadUserByUsername(auth.getName());
-		
-		return user;
-	}
 	
 	@RequestMapping("/")
 	public String urlDefault() {
-		System.out.println("Mã Nhân Viên " + getMaNv().getNhanVien().getMaNhanVien());
 		return "redirect:1";
 	}
 	
@@ -306,6 +300,7 @@ public class HoSoNhanVienPikalongController {
 			model.addAttribute("hoSoNhanVien", hoSoNhanVienPikalongService.getEdit(maNv));
 			model.addAttribute("thongTinGiaDinh", giaDinhPikalongService.viewOne(maNv));
 			model.addAttribute("thongTinBangCap", bangCapPikalongService.viewOne(maNv));
+			model.addAttribute("kinhNghiem", nhiemVuService.getByMaNhanVien(maNv));
 			return "QuanTriNhanSuPikalong/ThongTinHoSo/hosochitiet";
 		} else { // nếu đã xóa
 			return "QuanTriHeThong/error-404";
@@ -321,6 +316,7 @@ public class HoSoNhanVienPikalongController {
 			model.addObject("hoSoNhanVien", hoSoNhanVienPikalongService.getEdit(maNv));
 			model.addObject("thongTinGiaDinh", giaDinhPikalongService.viewOne(maNv));
 			model.addObject("thongTinBangCap", bangCapPikalongService.viewOne(maNv));
+			model.addObject("kinhNghiem", nhiemVuService.getByMaNhanVien(maNv));
 			return model;
 		}
 }

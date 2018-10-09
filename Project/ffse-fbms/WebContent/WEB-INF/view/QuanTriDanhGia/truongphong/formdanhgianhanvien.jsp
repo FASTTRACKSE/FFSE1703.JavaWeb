@@ -45,7 +45,8 @@
 												<div class="form-group row">
 													<label class="col-md-3 label-control">Nhân viên </label>
 													<div class="col-md-9">
-														<h3>${command.nhanVien.hoDem} ${command.nhanVien.ten} </h3>
+														<h3>${command.nhanVien.hoDem}${command.nhanVien.ten}
+														</h3>
 													</div>
 												</div>
 												<div class="form-group row">
@@ -65,7 +66,8 @@
 													<label class="col-md-3 label-control">Tinh thần làm
 														việc</label>
 													<div class="col-md-9">
-														<form:select cssClass="form-control" path="tinhThanLamViec">
+														<form:select cssClass="form-control"
+															path="tinhThanLamViec">
 															<form:option value="1">1 Sao</form:option>
 															<form:option value="2">2 Sao</form:option>
 															<form:option value="3">3 Sao</form:option>
@@ -143,9 +145,11 @@
 												<a
 													href="<c:url value="/quantridanhgia/truongphong/danhgianhanvien"/>"
 													class="btn btn-danger btn-min-width mr-1 mb-1">Trở về</a>
-												<button type="submit"
-													class="btn btn-success btn-min-width mr-1 mb-1">Đánh
-													giá</button>
+												<c:if test="${command.xepLoai < 1 }">
+													<button type="submit"
+														class="btn btn-success btn-min-width mr-1 mb-1">Đánh
+														giá</button>
+												</c:if>
 											</div>
 										</form:form>
 									</div>

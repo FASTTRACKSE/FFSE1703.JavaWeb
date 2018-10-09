@@ -8,7 +8,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.HoSoNhanVienPikalong;
+
 import fasttrackse.ffse1703.fbms.entity.quantrinhansupikalong.HopDongPikalong;
 
 @Repository

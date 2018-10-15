@@ -28,7 +28,9 @@
 						<div class="card-content">
 							<div class="card-body" style="margin: 1em">
 								<h2>Chưa có danh sách đánh giá</h2>
-								<a class="btn btn-primary" href="<c:url value = "/quantridanhgia/nhanvien/danhgianhanvien/create"/>">Tạo ngay</a>
+								<a class="btn btn-primary"
+									href="<c:url value = "/quantridanhgia/nhanvien/danhgianhanvien/create"/>">Tạo
+									ngay</a>
 							</div>
 						</div>
 					</div>
@@ -58,11 +60,13 @@
 											varStatus="stt">
 											<tr>
 												<th scope="row">${stt.index + 1 }</th>
-												<td>${x.nhanVien.hoDem} ${x.nhanVien.ten}</td>
+												<td>${x.nhanVien.hoDem}${x.nhanVien.ten}</td>
 												<td>${x.xepLoai }</td>
 												<td><c:if test="${x.xepLoai !=0 }">
 														<a class="btn btn-info"
 															href="<c:url value = "/quantridanhgia/nhanvien/danhgianhanvien/view/${x.id }" />">Xem</a>
+														<a class="btn btn-info"
+															href="<c:url value = "/quantridanhgia/nhanvien/danhgianhanvien/edit/${x.nhanVien.maNhanVien }/${x.id }" />">Sửa</a>
 													</c:if> <c:if test="${x.xepLoai == 0 }">
 														<a class="btn btn-info"
 															href="<c:url value = "/quantridanhgia/nhanvien/danhgianhanvien/add/${x.nhanVien.maNhanVien }/${x.id }" />">Tạo</a>
@@ -77,6 +81,21 @@
 				</div>
 			</div>
 		</c:if>
+		<div class="row">
+			<div class="col-md-4">
+				<a class="btn btn-primary"
+					href="<c:url value = "/quantridanhgia/nhanvien/danhgianhanvien/exportcheckpoint"/>">Tải
+					xuống đánh giá</a>
+			</div>
+			<form method="POST" class="col-md-8" enctype="multipart/form-data"
+				action="/ffse-fbms/quantridanhgia/nhanvien/danhgianhanvien/uploadcheckpoint">
+				<div class="form-group">
+					<label>Upload đánh giá</label><input name="file" type="file"
+						class="form-control">
+				</div>
+				<button class="btn btn-success" type="submit">Upload</button>
+			</form>
+		</div>
 	</div>
 </div>
 <jsp:include page="/WEB-INF/view/templates/footer.jsp"></jsp:include>

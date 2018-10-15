@@ -26,7 +26,7 @@
 				<div class="card-content">
 					<div class="card-body" style="margin: 1em">
 						<form:form cssClass="form"
-							action="/ffse-fbms/quantridanhgia/phongnhansu/kydanhgia/save" modelAttribute="kyDanhGia">
+							action="/ffse-fbms/quantridanhgia/phongnhansu/kydanhgia/save">
 							<div class="form-body">
 								<h4 class="form-section">
 									<i class="fa fa-plus"></i>Tạo danh sách đánh giá

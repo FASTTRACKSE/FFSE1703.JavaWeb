@@ -37,7 +37,9 @@ public class UploadController {
 
 		String uploadPath = context.getRealPath(UPLOAD_DIRECTORY);
 		System.out.println(uploadPath);
-
+		if (!new File(uploadPath).exists()) {
+			new File(uploadPath).mkdirs();
+		}
 		byte[] bytes = file.getBytes();
 		BufferedOutputStream stream = new BufferedOutputStream(
 				new FileOutputStream(new File(uploadPath + File.separator + file.getOriginalFilename())));

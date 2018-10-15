@@ -56,7 +56,7 @@ public class PhongNhanSuController {
 	@RequestMapping("/kydanhgia/{page}")
 	private String showListKyDanhgia(@PathVariable(required = false) int page, Model model, HttpSession session) {
 		start = (page - 1) * maxItems;
-		model.addAttribute("kyDanhGia", new KyDanhGia());
+		model.addAttribute("command", new KyDanhGia());
 		model.addAttribute("total", (int) Math.ceil((double) service.getListKyDanhGia().size() / (double) maxItems));
 		session.setAttribute("pageKy", page);
 		model.addAttribute("listKyDanhGia", service.getListKyDanhGia(start, maxItems));

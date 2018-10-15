@@ -13,6 +13,7 @@ import fasttrackse.ffse1703.fbms.entity.quantridanhgia.KyDanhGia;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.LichDanhGia;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.TruongPhongDanhGia;
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
+import fasttrackse.ffse1703.fbms.entity.security.PhongBan;
 
 @Service
 public class NhanVienServiceImpl implements NhanVienService {
@@ -75,14 +76,14 @@ public class NhanVienServiceImpl implements NhanVienService {
 
 	@Override
 	@Transactional
-	public TruongPhongDanhGia getDanhGiaCuaTruongPhong(int maNhanVien, KyDanhGia kyDanhGia) {
-		return dao.getDanhGiaCuaTruongPhong(maNhanVien, kyDanhGia);
+	public TruongPhongDanhGia getDanhGiaCuaTruongPhong(HoSoNhanVien nhanVien , KyDanhGia kyDanhGia) {
+		return dao.getDanhGiaCuaTruongPhong(nhanVien, kyDanhGia);
 	}
 
 	@Transactional
 	@Override
-	public List<DanhGiaNhanVien> getListNhanVienDanhGia(int maNhanVien, KyDanhGia kyDanhGia) {
-		return dao.getListNhanVienDanhGia(maNhanVien, kyDanhGia);
+	public List<DanhGiaNhanVien> getListNhanVienDanhGia(HoSoNhanVien nhanVien , KyDanhGia kyDanhGia) {
+		return dao.getListNhanVienDanhGia(nhanVien, kyDanhGia);
 	}
 
 	@Transactional
@@ -99,8 +100,8 @@ public class NhanVienServiceImpl implements NhanVienService {
 
 	@Override
 	@Transactional
-	public List<HoSoNhanVien> getListNhanVienLimit(int id, String phongBan) {
-		return dao.getListNhanVienLimit(id, phongBan);
+	public List<HoSoNhanVien> getListNhanVienLimit(HoSoNhanVien nhanVien ,PhongBan phongBan) {
+		return dao.getListNhanVienLimit(nhanVien, phongBan);
 	}
 
 	@Override
@@ -123,8 +124,14 @@ public class NhanVienServiceImpl implements NhanVienService {
 
 	@Override
 	@Transactional
-	public List<DanhGiaNhanVien> getListDanhGiaNhanVien(int id, KyDanhGia kyDanhGia) {
-		return dao.getListDanhGiaNhanVien(id, kyDanhGia);
+	public List<DanhGiaNhanVien> getListDanhGiaNhanVien(HoSoNhanVien nhanVien , KyDanhGia kyDanhGia) {
+		return dao.getListDanhGiaNhanVien(nhanVien, kyDanhGia);
+	}
+
+	@Override
+	@Transactional
+	public void updateListDanhGiaNhanVien(List<DanhGiaNhanVien> danhGia) {
+		dao.updateListDanhGiaNhanVien(danhGia);
 	}
 
 }

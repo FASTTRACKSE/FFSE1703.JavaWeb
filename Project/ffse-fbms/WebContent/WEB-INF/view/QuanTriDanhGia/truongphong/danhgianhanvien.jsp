@@ -48,7 +48,10 @@
 												<th scope="row">${stt.index+start+1}</th>
 												<td>${x.nhanVien.hoDem } ${x.nhanVien.ten }</td>
 												<td>${x.xepLoai }</td>
-												<td><c:if test="${command.xepLoai < 1 }">
+												<td>
+												<a class="btn btn-success"
+															href="<c:url value="/quantridanhgia/truongphong/danhgianhanvien/danhgia/view/${x.id }"/>">Xem</a>
+												<c:if test="${command.xepLoai < 1 }">
 														<a class="btn btn-success"
 															href="<c:url value="/quantridanhgia/truongphong/danhgianhanvien/danhgia/${x.id }"/>">Đánh
 															giá</a>

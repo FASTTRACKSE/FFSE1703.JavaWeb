@@ -1,11 +1,22 @@
 package fasttrackse.ffse1703.fbms.controller.quantridanhgia;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.Authentication;
@@ -17,6 +28,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.DanhGiaBanThan;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.DanhGiaNhanVien;
@@ -30,6 +44,10 @@ import fasttrackse.ffse1703.fbms.service.security.UserAccountService;
 @Controller
 @RequestMapping("/quantridanhgia/nhanvien")
 public class NhanVienController {
+
+	private static final String UPLOAD_DIRECTORY = "/upload";
+
+	private static final int THRESHOLD_SIZE = 1024 * 1024 * 3; // 3MB
 
 	public NhanVienService nhanVienService;
 
@@ -56,11 +74,11 @@ public class NhanVienController {
 	@RequestMapping(value = { "", "/" })
 	public String redirectPage(Model model, HttpSession session) {
 
-		return "redirect:/quantridanhgia/nhanvien/danhgianhanvien";
+		return "redirect:/quantridanhgia/nhanvien/danhgiabanthan";
 	}
 
 	@RequestMapping(value = { "/danhgiabanthan" })
-	public String getDanhGiaBanThan(Model model, HttpSession session){
+	public String getDanhGiaBanThan(Model model, HttpSession session) {
 		HoSoNhanVien nhanVien = getInfo();
 		LichDanhGia lich = nhanVienService.getLichDanhGiaActive(nhanVien.getPhongBan().getMaPhongBan());
 		if (lich != null) {
@@ -114,25 +132,22 @@ public class NhanVienController {
 		HoSoNhanVien nhanVien = getInfo();
 		PhongBan phongBan = nhanVien.getPhongBan();
 		LichDanhGia lich = nhanVienService.getLichDanhGiaActive(phongBan.getMaPhongBan());
-		List<DanhGiaNhanVien> list = nhanVienService.getListDanhGiaNhanVien(nhanVien.getMaNhanVien(),
-				lich.getKyDanhGia());
+		List<DanhGiaNhanVien> list = nhanVienService.getListDanhGiaNhanVien(nhanVien, lich.getKyDanhGia());
 		model.addAttribute("listDanhGiaNhanVien", list);
 		return "QuanTriDanhGia/nhanvien/danhgianhanvien";
 	}
 
 	@RequestMapping(value = { "/danhgianhanvien/create" })
-	public String createListDanhGiaNhanVien(Model model, HttpSession session) {
+	public String createListDanhGiaNhanVien(Model model, HttpSession session) throws IOException {
 		HoSoNhanVien nhanVien = getInfo();
 		PhongBan phongBan = nhanVien.getPhongBan();
 		LichDanhGia lich = nhanVienService.getLichDanhGiaActive(phongBan.getMaPhongBan());
 		List<HoSoNhanVien> listNhanVien = nhanVienService.getListNhanVienPhongBan(phongBan.getMaPhongBan());
 		List<DanhGiaNhanVien> list = new ArrayList<>();
 		for (int i = 0; i < listNhanVien.size(); i++) {
-			int start = 0;
 			if (listNhanVien.get(i).getMaNhanVien() == nhanVien.getMaNhanVien()) {
-				start = i + 1;
-				List<HoSoNhanVien> listNhanVienLimit = nhanVienService.getListNhanVienLimit(start,
-						phongBan.getMaPhongBan());
+				List<HoSoNhanVien> listNhanVienLimit = nhanVienService.getListNhanVienLimit(listNhanVien.get(i),
+						phongBan);
 				for (HoSoNhanVien x : listNhanVienLimit) {
 					DanhGiaNhanVien danhGia = new DanhGiaNhanVien();
 					danhGia.setKyDanhGia(lich.getKyDanhGia());
@@ -156,8 +171,19 @@ public class NhanVienController {
 		LichDanhGia lich = nhanVienService.getLichDanhGiaActive(phongBan.getMaPhongBan());
 		if (nhanVienService.getDanhGiaBanThan(hoSo, lich.getKyDanhGia()) != null) {
 			model.addAttribute("danhGia", nhanVienService.getDanhGiaBanThan(hoSo, lich.getKyDanhGia()));
-		} else {
-			model.addAttribute("danhGia", "");
+		}
+		model.addAttribute("command", nhanVienService.getDanhGiaNhanVien(id));
+		return "QuanTriDanhGia/nhanvien/formdanhgianhanvien";
+	}
+
+	@RequestMapping("/danhgianhanvien/edit/{nhanvien}/{id}")
+	public String updateDanhGiaNhanVien(Model model, @PathVariable("id") int id,
+			@PathVariable("nhanvien") int nhanVien) {
+		HoSoNhanVien hoSo = nhanVienService.getHoSoNhanVien(nhanVien);
+		PhongBan phongBan = hoSo.getPhongBan();
+		LichDanhGia lich = nhanVienService.getLichDanhGiaActive(phongBan.getMaPhongBan());
+		if (nhanVienService.getDanhGiaBanThan(hoSo, lich.getKyDanhGia()) != null) {
+			model.addAttribute("danhGia", nhanVienService.getDanhGiaBanThan(hoSo, lich.getKyDanhGia()));
 		}
 		model.addAttribute("command", nhanVienService.getDanhGiaNhanVien(id));
 		return "QuanTriDanhGia/nhanvien/formdanhgianhanvien";
@@ -182,21 +208,20 @@ public class NhanVienController {
 		HoSoNhanVien nhanVien = getInfo();
 		PhongBan phongBan = nhanVien.getPhongBan();
 		LichDanhGia lich = nhanVienService.getLichDanhGiaActive(phongBan.getMaPhongBan());
-		model.addAttribute("listDanhGia",
-				nhanVienService.getListNhanVienDanhGia(nhanVien.getMaNhanVien(), lich.getKyDanhGia()));
+		model.addAttribute("listDanhGia", nhanVienService.getListNhanVienDanhGia(nhanVien, lich.getKyDanhGia()));
 		return "QuanTriDanhGia/nhanvien/nhanviendanhgia";
 	}
 
 	@RequestMapping("/danhgianhanvien/view/{id}")
 	public String viewDanhGiaNhanVien(Model model, @PathVariable int id) {
 		model.addAttribute("danhGia", nhanVienService.getNhanVienDanhGia(id));
-		return "QuanTriDanhGia/nhanvien/viewnhanviendanhgia";
+		return "QuanTriDanhGia/nhanvien/viewdanhgia";
 	}
 
 	@RequestMapping("/nhanviendanhgia/view/{id}")
 	public String viewNhanVienDanhGia(Model model, @PathVariable int id) {
 		model.addAttribute("danhGia", nhanVienService.getNhanVienDanhGia(id));
-		return "QuanTriDanhGia/nhanvien/viewnhanviendanhgia";
+		return "QuanTriDanhGia/nhanvien/viewdanhgianhanvien";
 	}
 
 	@RequestMapping("/danhgiacuatruongphong")
@@ -205,9 +230,76 @@ public class NhanVienController {
 		PhongBan phongBan = nhanVien.getPhongBan();
 		LichDanhGia lich = nhanVienService.getLichDanhGiaActive(phongBan.getMaPhongBan());
 		if (lich != null) {
-			model.addAttribute("command",
-					nhanVienService.getDanhGiaCuaTruongPhong(nhanVien.getMaNhanVien(), lich.getKyDanhGia()));
+			model.addAttribute("danhGia", nhanVienService.getDanhGiaCuaTruongPhong(nhanVien, lich.getKyDanhGia()));
 		}
 		return "QuanTriDanhGia/nhanvien/danhgiacuatruongphong";
+	}
+
+	@RequestMapping("/danhgianhanvien/exportcheckpoint")
+	public ModelAndView exportExcelFile() {
+		ModelAndView model = new ModelAndView("excelHandler");
+		HoSoNhanVien nhanVien = getInfo();
+		PhongBan phongBan = nhanVien.getPhongBan();
+		LichDanhGia lich = nhanVienService.getLichDanhGiaActive(phongBan.getMaPhongBan());
+		List<DanhGiaNhanVien> list = nhanVienService.getListDanhGiaNhanVien(nhanVien, lich.getKyDanhGia());
+		model.addObject("listDanhGia", list);
+		return model;
+	}
+
+	@SuppressWarnings("unused")
+	@RequestMapping(value = "/uploadcheckpoint", method = RequestMethod.POST)
+	public String exportExcelFile(@RequestParam MultipartFile file, HttpSession session) throws IOException {
+//		HoSoNhanVien nhanVien = getInfo();
+//		PhongBan phongBan = nhanVien.getPhongBan();
+//		LichDanhGia lich = nhanVienService.getLichDanhGiaActive(phongBan.getMaPhongBan());
+//		List<DanhGiaNhanVien> list = nhanVienService.getListDanhGiaNhanVien(nhanVien.getMaNhanVien(),
+//				lich.getKyDanhGia());
+//		
+
+		DiskFileItemFactory factory = new DiskFileItemFactory();
+		factory.setSizeThreshold(THRESHOLD_SIZE);
+		factory.setRepository(new File(System.getProperty("java.io.tmpdir")));
+
+		ServletFileUpload upload = new ServletFileUpload(factory);
+		ServletContext context = session.getServletContext();
+
+		String uploadPath = context.getRealPath(UPLOAD_DIRECTORY);
+		System.out.println(uploadPath);
+
+		File path = new File(uploadPath);
+		if (!path.exists()) {
+			path.mkdirs();
+		}
+		File filePath = new File(uploadPath + File.separator + file.getOriginalFilename());
+		byte[] bytes = file.getBytes();
+		BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(filePath));
+		stream.write(bytes);
+		stream.flush();
+		stream.close();
+//		list = readExcelFile(filePath.getPath(), list);
+
+		return "redirect:/quantridanhgia/nhanvien/danhgianhanvien";
+	}
+
+	@SuppressWarnings("resource")
+	public List<DanhGiaNhanVien> readExcelFile(String file, List<DanhGiaNhanVien> danhGia) throws IOException {
+		Workbook workbook = new HSSFWorkbook();
+		Sheet sheet = workbook.getSheetAt(0);
+		int rowNum = 3;
+		for (DanhGiaNhanVien x : danhGia) {
+			for (int i = 0; i < sheet.getRow(0).getLastCellNum(); i++) {
+				Row row = sheet.getRow(rowNum++);
+				if ((int) row.getCell(0).getNumericCellValue() == x.getNhanVien().getMaNhanVien()) {
+					x.setKyLuatCongViec(row.getCell(3).getStringCellValue());
+					x.setTinhThanLamViec(row.getCell(4).getStringCellValue());
+					x.setKhoiLuongCongViec(row.getCell(5).getStringCellValue());
+					x.setKetQuaCongViec(row.getCell(6).getStringCellValue());
+					x.setKyNangTichLuy(row.getCell(7).getStringCellValue());
+					x.setDinhHuong(row.getCell(8).getStringCellValue());
+					x.setXepLoai((int) row.getCell(9).getNumericCellValue());
+				}
+			}
+		}
+		return danhGia;
 	}
 }

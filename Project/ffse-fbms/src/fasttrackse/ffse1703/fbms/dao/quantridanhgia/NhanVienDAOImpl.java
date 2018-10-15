@@ -16,6 +16,7 @@ import fasttrackse.ffse1703.fbms.entity.quantridanhgia.KyDanhGia;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.LichDanhGia;
 import fasttrackse.ffse1703.fbms.entity.quantridanhgia.TruongPhongDanhGia;
 import fasttrackse.ffse1703.fbms.entity.security.HoSoNhanVien;
+import fasttrackse.ffse1703.fbms.entity.security.PhongBan;
 
 @Repository
 public class NhanVienDAOImpl implements NhanVienDAO {
@@ -61,10 +62,10 @@ public class NhanVienDAOImpl implements NhanVienDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<DanhGiaNhanVien> getListDanhGiaNhanVien(int maNhanVien, KyDanhGia kyDanhGia) {
+	public List<DanhGiaNhanVien> getListDanhGiaNhanVien(HoSoNhanVien nhanVien, KyDanhGia kyDanhGia) {
 		Session session = sessionFactory.getCurrentSession();
 		return session.createQuery("from DanhGiaNhanVien where nhanVienDanhGia = :nhanVien and kyDanhGia = :kyDanhGia")
-				.setParameter("nhanVien", maNhanVien).setParameter("kyDanhGia", kyDanhGia).list();
+				.setParameter("nhanVien", nhanVien).setParameter("kyDanhGia", kyDanhGia).list();
 	}
 
 	@Override
@@ -93,12 +94,12 @@ public class NhanVienDAOImpl implements NhanVienDAO {
 
 	@SuppressWarnings("rawtypes")
 	@Override
-	public TruongPhongDanhGia getDanhGiaCuaTruongPhong(int maNhanVien, KyDanhGia kyDanhGia) throws NoResultException {
+	public TruongPhongDanhGia getDanhGiaCuaTruongPhong(HoSoNhanVien nhanVien, KyDanhGia kyDanhGia) throws NoResultException {
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session
 				.createQuery(
-						"from TruongPhongDanhGia where nhanVien.maNhanVien = :maNhanVien and kyDanhGia = :kyDanhGia")
-				.setParameter("maNhanVien", maNhanVien).setParameter("kyDanhGia", kyDanhGia);
+						"from TruongPhongDanhGia where nhanVien = :nhanVien and kyDanhGia = :kyDanhGia")
+				.setParameter("nhanVien", nhanVien).setParameter("kyDanhGia", kyDanhGia);
 		if (query.list().size() > 0) {
 			return (TruongPhongDanhGia) query.getSingleResult();
 		}
@@ -107,11 +108,11 @@ public class NhanVienDAOImpl implements NhanVienDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<DanhGiaNhanVien> getListNhanVienDanhGia(int maNhanVien, KyDanhGia kyDanhGia) {
+	public List<DanhGiaNhanVien> getListNhanVienDanhGia(HoSoNhanVien nhanVien, KyDanhGia kyDanhGia) {
 		Session session = sessionFactory.getCurrentSession();
 		return session
-				.createQuery("from DanhGiaNhanVien where nhanVien.maNhanVien = :nhanVien and kyDanhGia = :kyDanhGia")
-				.setParameter("nhanVien", maNhanVien).setParameter("kyDanhGia", kyDanhGia).list();
+				.createQuery("from DanhGiaNhanVien where nhanVien = :nhanVien and kyDanhGia = :kyDanhGia")
+				.setParameter("nhanVien", nhanVien).setParameter("kyDanhGia", kyDanhGia).list();
 	}
 
 	@Override
@@ -135,11 +136,11 @@ public class NhanVienDAOImpl implements NhanVienDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<HoSoNhanVien> getListNhanVienLimit(int id, String phongBan) {
+	public List<HoSoNhanVien> getListNhanVienLimit(HoSoNhanVien nhanVien,PhongBan phongBan) {
 		Session session = sessionFactory.getCurrentSession();
 		return session
-				.createQuery("from HoSoNhanVien where phongBan.maPhongBan = :phongBan and chucDanh.maChucDanh = 'NV'")
-				.setParameter("phongBan", phongBan).setFirstResult(id).setMaxResults(5).list();
+				.createQuery("from HoSoNhanVien where phongBan = :phongBan and chucDanh.maChucDanh = 'NV'")
+				.setParameter("phongBan", phongBan).setFirstResult(nhanVien.getMaNhanVien()).setMaxResults(5).list();
 	}
 
 	@Override
@@ -163,6 +164,12 @@ public class NhanVienDAOImpl implements NhanVienDAO {
 	public HoSoNhanVien getHoSoNhanVien(int nhanVien) {
 		Session session = sessionFactory.getCurrentSession();
 		return session.get(HoSoNhanVien.class, nhanVien);
+	}
+
+	@Override
+	public void updateListDanhGiaNhanVien(List<DanhGiaNhanVien> danhGia) {
+		Session session = sessionFactory.getCurrentSession();
+		session.update(danhGia);
 	}
 
 }

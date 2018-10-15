@@ -137,6 +137,12 @@ public class TruongPhongController {
 		model.addAttribute("command", service.getDanhGiaNhanVien(id));
 		return "QuanTriDanhGia/truongphong/formdanhgianhanvien";
 	}
+	
+	@RequestMapping(value = "/danhgianhanvien/danhgia/view/{id}")
+	public String showTruongPhongDanhGia(Model model, @PathVariable int id) {
+		model.addAttribute("command", service.getDanhGiaNhanVien(id));
+		return "QuanTriDanhGia/truongphong/viewtruongphongdanhgia";
+	}
 
 	@RequestMapping(value = "/danhgianhanvien/update", method = RequestMethod.POST)
 	public String updateDanhGiaNhanVien(Model model, @ModelAttribute("command") TruongPhongDanhGia danhGia) {

@@ -98,6 +98,7 @@ public class TruongPhongServiceImpl implements TruongPhongService {
 	}
 
 	@Override
+	@Transactional
 	public LichDanhGia checkActiveLichDanhGia(String phongBan) {
 		return dao.checkActiveLichDanhGia(phongBan);
 	}

@@ -56,16 +56,14 @@
 														<label class="col-md-3 label-control">Kỷ luật công
 															việc</label>
 														<div class="col-md-9">
-															<div class="row">
-																<form:label path="kyLuatCongViec"></form:label>
-															</div>
+															<p>${danhGia.kyLuatCongViec }</p>
 														</div>
 													</div>
 													<div class="form-group row">
 														<label class="col-md-3 label-control">Tinh thần
 															làm việc</label>
 														<div class="col-md-9">
-															<form:label path="tinhThanLamViec"></form:label>
+															<p>${danhGia.tinhThanLamViec }</p>
 														</div>
 													</div>
 
@@ -73,7 +71,7 @@
 														<label class="col-md-3 label-control">Khối lượng
 															công việc đạt được</label>
 														<div class="col-md-9">
-															<form:label path="khoiLuongCongViec"></form:label>
+															<p>${danhGia.khoiLuongCongViec }</p>
 														</div>
 													</div>
 
@@ -81,7 +79,7 @@
 														<label class="col-md-3 label-control">Kết quả công
 															việc đạt được</label>
 														<div class="col-md-9">
-															<form:label path="ketQuaCongViec"></form:label>
+															<p>${danhGia.ketQuaCongViec }</p>
 														</div>
 													</div>
 
@@ -89,22 +87,21 @@
 														<label class="col-md-3 label-control">Kỹ năng tích
 															lũy</label>
 														<div class="col-md-9">
-															<form:label path="kyNangTichLuy"></form:label>
+															<p>${danhGia.kyNangTichLuy }</p>
 														</div>
 													</div>
 
 													<div class="form-group row">
 														<label class="col-md-3 label-control">Định hướng</label>
 														<div class="col-md-9">
-															<form:label path="nhanXet"></form:label>
+															<p>${danhGia.nhanXet }</p>
 														</div>
 													</div>
 
 													<div class="form-group last">
-														<label class="col-md-3 label-control">Đánh giá
-															tổng thể</label>
+														<label class="col-md-3 label-control">Xếp loại</label>
 														<div class="col-md-9">
-															<form:label path="xepLoai"></form:label>
+															<p>${danhGia.xepLoai }</p>
 														</div>
 													</div>
 												</div>

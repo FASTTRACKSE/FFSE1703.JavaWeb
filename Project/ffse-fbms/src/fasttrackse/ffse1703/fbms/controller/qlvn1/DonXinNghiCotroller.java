@@ -113,11 +113,18 @@ public class DonXinNghiCotroller {
 	}
 	
 	@RequestMapping(value = "/duyetvong1", method = RequestMethod.GET)
-	public String viewDuyetVong1(Model model) {
+	public String viewDuyetVong1(Model model, Authentication auth) {
 		List<DonNghi> dn = new ArrayList<DonNghi>();
-		dn = service.listDonNghiPheDuyet1();
+		UserAccount user = service.getThongTinUser(auth.getName());
+		HoSoNhanVien nhanVien = user.getNhanVien();
+		dn = service.listDonNghiPheDuyet1(nhanVien.getPhongBan().getTenPhongBan());
 		model.addAttribute("list", dn);
-		return "QuanLyVangNghi/duyetvong1";
+		if(nhanVien.getChucDanh().getMaChucDanh().equals("TP")) {
+			return "QuanLyVangNghi/duyetvong1";
+		}else {
+			return "QuanLyVangNghi/ghichutp";
+		}
+		
 	}
 	
 	@RequestMapping(value = "/pheduyetvong1/{id_don}", method = RequestMethod.GET)
@@ -151,7 +158,7 @@ public class DonXinNghiCotroller {
 		return "redirect:/QuanLyVangNghi/luunhap";
 	}
 
-	@RequestMapping(value = "/savechoduyetnhap/{id_don}", method = RequestMethod.POST)
+	@RequestMapping(value = "/savechoduyetnhap/{id_don}", method = RequestMethod.GET)
 	public String saveChoDuyetNhap(@PathVariable("id_don") int id_don, Model model, DonNghi donNghi) {
 		donNghi = service.getDonNghiNv(id_don);
 		TinhTrangNghi tinhTrang = service.getTinhTrang(donNghi.getId_nv());
@@ -186,14 +193,27 @@ public class DonXinNghiCotroller {
 		return "redirect:/QuanLyVangNghi/duyetvong1";
 	}
 	
-	@RequestMapping(value = "/tuchoi", method = RequestMethod.GET)
-	public String viewTuChoi(Model model, Authentication auth) {
+	@RequestMapping(value = "/tuchoi/{pageId}", method = RequestMethod.GET)
+	public String viewTuChoi(Model model, Authentication auth,@PathVariable int pageId) {
 		UserAccount user = service.getThongTinUser(auth.getName());
 		HoSoNhanVien nhanVien = user.getNhanVien();
+		Long tongSo = service.countListTuChoi(nhanVien.getMaNhanVien());
+		int total=2;
+		int soTrang = (int)Math.ceil(tongSo/(total*1.0));
+		int pageTrang = pageId;
+		
 		List<DonNghi> dn = new ArrayList<DonNghi>();
-		dn = service.listDonNghiTuChoi(nhanVien.getMaNhanVien());
+		dn = service.listDonNghiTuChoi(nhanVien.getMaNhanVien(),((pageTrang-1)*total), total);
+		model.addAttribute("page",pageTrang);
+		model.addAttribute("soTrang",soTrang);
 		model.addAttribute("list", dn);
 		return "QuanLyVangNghi/dontuchoi";
+	}
+	
+	@RequestMapping(value = "/tuchoi")
+	public String viewTuChoiPage0(Model model) {
+		
+		return "redirect:/QuanLyVangNghi/tuchoi/1";
 	}
 	
 	@RequestMapping(value = "/dondaduyet/{id_don}", method = RequestMethod.GET)
@@ -204,12 +224,26 @@ public class DonXinNghiCotroller {
 		return "redirect:/QuanLyVangNghi/duyetvong2";
 	}
 
-	@RequestMapping(value = "/daduyet", method = RequestMethod.GET)
-	public String viewDaDuyet(Model model, Authentication auth) {
+	@RequestMapping(value = "/daduyet")
+	public String viewDaDuyetPage0(Model model) {
+		
+		return "redirect:/QuanLyVangNghi/daduyet/1";
+	}
+	
+	@RequestMapping(value = "/daduyet/{pageId}", method = RequestMethod.GET)
+	public String viewDaDuyet(Model model, Authentication auth,@PathVariable int pageId) {
+		
 		UserAccount user = service.getThongTinUser(auth.getName());
 		HoSoNhanVien nhanVien = user.getNhanVien();
+		Long tongSo = service.countListDaDuyet(nhanVien.getMaNhanVien());
+		int total=2;
+		int soTrang = (int)Math.ceil(tongSo/(total*1.0));
+		int pageTrang = pageId;
+		
 		List<DonNghi> dn = new ArrayList<DonNghi>();
-		dn = service.listDanhSachPheDuyet(nhanVien.getMaNhanVien());
+		dn = service.listDanhSachPheDuyet(nhanVien.getMaNhanVien(),((pageTrang-1)*total), total);
+		model.addAttribute("page",pageTrang);
+		model.addAttribute("soTrang",soTrang);
 		model.addAttribute("list", dn);
 		return "QuanLyVangNghi/daduyet";
 	}
@@ -221,14 +255,25 @@ public class DonXinNghiCotroller {
 		service.updateDon(donNghi);
 		return "redirect:/QuanLyVangNghi/duyetvong2";
 	}
-	
-	@RequestMapping(value = "/tuchoi2", method = RequestMethod.GET)
-	public String viewTuChoi2(Model model, Authentication auth) {
+
+	@RequestMapping(value = "/xemdanhsachdaduyet")
+	public String viewXemPheDuyet(Model model, Authentication auth) {
 		UserAccount user = service.getThongTinUser(auth.getName());
 		HoSoNhanVien nhanVien = user.getNhanVien();
-		List<DonNghi> dn = new ArrayList<DonNghi>();
-		dn = service.listDonNghiTuChoi2(nhanVien.getMaNhanVien());
+		List<DonNghi> dn = service.listdanhsachpheduyetcty();
 		model.addAttribute("list", dn);
-		return "QuanLyVangNghi/dontuchoi";
+		if(nhanVien.getPhongBan().getMaPhongBan().equals("PNS")) {
+			return "QuanLyVangNghi/xemdanhsachpheduyet";
+		}else {
+			return "QuanLyVangNghi/ghichu";
+		}
+		
 	}
+	
+	@RequestMapping(value ="/delete/{id_don}")
+    public String deleteNhap(@PathVariable("id_don") int id_don){
+		service.deleteDon(id_don);
+        return "redirect:/QuanLyVangNghi/luunhap";
+    }
+
 }

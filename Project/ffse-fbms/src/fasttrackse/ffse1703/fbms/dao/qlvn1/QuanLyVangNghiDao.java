@@ -16,11 +16,13 @@ public interface QuanLyVangNghiDao {
 	public DonNghi getDonNghiNv(int id_don);
 	public void updateDon(DonNghi dn); 
 	public void deleteDon(int id_don );
-	public void removeDonNhap(int id_don);
-	public List<DonNghi> listDonNghiPheDuyet1();
+	public List<DonNghi> listDonNghiPheDuyet1(String tenPhongBan);
 	public List<DonNghi> listDonNghiPheDuyet2();
-	public List<DonNghi> listDanhSachPheDuyet(int id_nv);
-	public List<DonNghi> listDonNghiBiTuChoi(int id_nv);
-	public List<DonNghi> listDonNghiBiTuChoi2(int id_nv);
+	public List<DonNghi> listDanhSachPheDuyet(int id_nv,int start,int end);
+	public List<DonNghi> listDonNghiBiTuChoi(int id_nv,int start,int end);
 	public void updateTinhTrang(TinhTrangNghi tt);
+	public Long countListDaDuyet(int id_nv);
+	public Long countListTuChoi(int id_nv);
+	public List<DonNghi> listdanhsachpheduyetcty();
 }
+

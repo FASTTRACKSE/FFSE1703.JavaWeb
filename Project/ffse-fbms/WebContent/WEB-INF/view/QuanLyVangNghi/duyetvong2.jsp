@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ page session="false"%>
@@ -184,8 +185,8 @@ input:checked+.slider:before {
 												<td>${dn.getTen_nv()}</td>
 												<td>${dn.getLy_do()}</td>
 												<td>${dn.getPhong_ban()}</td>
-												<td>${dn.getTg_bat_dau()}</td>
-												<td>${dn.getTg_ket_thuc()}</td>
+												<td><fmt:formatDate pattern="yyyy-MM-dd" value="${dn.getTg_bat_dau()}" /></td>
+												<td><fmt:formatDate pattern="yyyy-MM-dd" value="${dn.getTg_ket_thuc()}" /></td>
 												<td>${dn.getGhi_chu()}</td>
 												<td><c:if test="${dn.getTinh_trang() == 2 }">
 														<label class="switch"> <input type="checkbox"

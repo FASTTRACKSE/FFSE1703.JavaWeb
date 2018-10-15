@@ -81,17 +81,10 @@ public class QuanLyVangNghiServiceImpl implements QuanLyVangNghiService {
 		
 	}
 
-	
 	@Transactional
 	@Override
-	public void removeDonNhap(int id_don) {
-		this.qlvnDao.removeDonNhap(id_don);
-		
-	}
-	@Transactional
-	@Override
-	public List<DonNghi> listDonNghiPheDuyet1() {
-		return this.qlvnDao.listDonNghiPheDuyet1();
+	public List<DonNghi> listDonNghiPheDuyet1(String tenPhongBan) {
+		return this.qlvnDao.listDonNghiPheDuyet1(tenPhongBan);
 	}
 
 	@Transactional
@@ -111,19 +104,32 @@ public class QuanLyVangNghiServiceImpl implements QuanLyVangNghiService {
 	}
 	@Transactional
 	@Override
-	public List<DonNghi> listDonNghiTuChoi(int id_nv) {
-		return this.qlvnDao.listDonNghiBiTuChoi(id_nv);
+	public List<DonNghi> listDonNghiTuChoi(int id_nv,int start,int end) {
+		return this.qlvnDao.listDonNghiBiTuChoi(id_nv, start, end);
 	}
 	@Transactional
 	@Override
-	public List<DonNghi> listDanhSachPheDuyet(int id_nv) {
-		return this.qlvnDao.listDanhSachPheDuyet(id_nv);
+	public List<DonNghi> listDanhSachPheDuyet(int id_nv,int start,int end) {
+		return this.qlvnDao.listDanhSachPheDuyet(id_nv, start, end);
+	}
+
+	@Transactional
+	@Override
+	public Long countListDaDuyet(int id_nv) {
+		return this.qlvnDao.countListDaDuyet(id_nv);
 	}
 	@Transactional
 	@Override
-	public List<DonNghi> listDonNghiTuChoi2(int id_nv) {
-		return this.qlvnDao.listDonNghiBiTuChoi2(id_nv);
+	public Long countListTuChoi(int id_nv) {
+		return this.qlvnDao.countListTuChoi(id_nv);
 	}
+
+	@Override
+	public List<DonNghi> listdanhsachpheduyetcty() {
+		return this.qlvnDao.listdanhsachpheduyetcty();
+	}
+
+	
 
 	
 }

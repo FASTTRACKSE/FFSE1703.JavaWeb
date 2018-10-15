@@ -1,3 +1,4 @@
+
 package fasttrackse.ffse1703.fbms.dao.qlvn1;
 
 import java.util.List;
@@ -16,7 +17,7 @@ import fasttrackse.ffse1703.fbms.entity.security.UserAccount;
 public class QuanLyVangNghiDaoImpl implements QuanLyVangNghiDao {
 	@Autowired
 	private SessionFactory sessionFactory;
-
+	
 	public void setSessionFactory(SessionFactory sf) {
 		this.sessionFactory = sf;
 	}
@@ -31,7 +32,6 @@ public class QuanLyVangNghiDaoImpl implements QuanLyVangNghiDao {
 
 	@Override
 	public UserAccount getThongTinUser(String username) {
-		// TODO Auto-generated method stub
 		Session session = this.sessionFactory.openSession();
 		UserAccount user = session.createQuery("from UserAccount where username='" + username + "'", UserAccount.class)
 				.getSingleResult();
@@ -41,7 +41,6 @@ public class QuanLyVangNghiDaoImpl implements QuanLyVangNghiDao {
 
 	@Override
 	public TinhTrangNghi getTinhTrang(int id_nv) {
-		// TODO Auto-generated method stub
 		TinhTrangNghi tinhTrang = null;
 		Session session = null;
 		try {
@@ -58,7 +57,6 @@ public class QuanLyVangNghiDaoImpl implements QuanLyVangNghiDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<LyDo> listLyDo() {
-		// TODO Auto-generated method stub
 		Session session = this.sessionFactory.openSession();
 		List<LyDo> list = session.createQuery("from LyDo").list();
 		session.close();
@@ -76,7 +74,6 @@ public class QuanLyVangNghiDaoImpl implements QuanLyVangNghiDao {
 
 	@Override
 	public void insertTinhTrang(int id_nv, TinhTrangNghi tt) {
-		// TODO Auto-generated method stub
 		TinhTrangNghi tinhTrang = new TinhTrangNghi();
 		Session session = null;
 		tinhTrang = getTinhTrang(id_nv);
@@ -96,7 +93,6 @@ public class QuanLyVangNghiDaoImpl implements QuanLyVangNghiDao {
 
 	@Override
 	public List<DonNghi> listDonNghiChoDuyet(int id_nv) {
-		// TODO Auto-generated method stub
 		Session session = this.sessionFactory.openSession();
 		@SuppressWarnings("unchecked")
 		List<DonNghi> listDn = session.createQuery("from DonNghi where id_nv ='"+id_nv+"' and ( tinh_trang = "+1+" or tinh_trang = "+2+")").list();
@@ -106,7 +102,6 @@ public class QuanLyVangNghiDaoImpl implements QuanLyVangNghiDao {
 
 	@Override
 	public DonNghi getDonNghiNv(int id_don) {
-		// TODO Auto-generated method stub
 		Session session = this.sessionFactory.openSession();
 		DonNghi donNghi = new DonNghi();
 		donNghi = session.createQuery("from DonNghi where id_don=" + id_don + "", DonNghi.class).getSingleResult();
@@ -126,22 +121,14 @@ public class QuanLyVangNghiDaoImpl implements QuanLyVangNghiDao {
 		if(null != donNghi){
 			session.delete(donNghi);
 		}
+		
 	}
 
 	@Override
-	public void removeDonNhap(int id_don) {
-		Session session = this.sessionFactory.getCurrentSession();
-		DonNghi donNghi = (DonNghi) session.load(DonNghi.class, new Integer(id_don));
-		if(null != donNghi){
-			session.delete(donNghi);
-		}
-	}
-
-	@Override
-	public List<DonNghi> listDonNghiPheDuyet1() {
+	public List<DonNghi> listDonNghiPheDuyet1(String tenPhongBan) {
 		Session session = this.sessionFactory.openSession();
 		@SuppressWarnings("unchecked")
-		List<DonNghi> listDn = session.createQuery("from DonNghi where tinh_trang = "+1+" ").list();
+		List<DonNghi> listDn = session.createQuery("from DonNghi where tinh_trang = "+1+" and phong_ban ='"+tenPhongBan+"' ").list();
 		session.close();
 		return listDn;
 	}
@@ -156,31 +143,49 @@ public class QuanLyVangNghiDaoImpl implements QuanLyVangNghiDao {
 	}
 
 	@Override
-	public List<DonNghi> listDonNghiBiTuChoi(int id_nv) {
+	public List<DonNghi> listDonNghiBiTuChoi(int id_nv, int start, int end) {
 		Session session = this.sessionFactory.openSession();
 		@SuppressWarnings("unchecked")
-		List<DonNghi> listDn = session.createQuery("from DonNghi where id_nv ='"+id_nv+"' and  tinh_trang = "+4+" ").list();
+		List<DonNghi> listDn = session.createQuery("from DonNghi where id_nv ='"+id_nv+"' and  tinh_trang = "+4+" ").setFirstResult(start).setMaxResults(end).list();
 		session.close();
 		return listDn;
 	}
 
 	@Override
-	public List<DonNghi> listDanhSachPheDuyet(int id_nv) {
+	public List<DonNghi> listDanhSachPheDuyet(int id_nv,int start,int end) {
 		Session session = this.sessionFactory.openSession();
 		@SuppressWarnings("unchecked")
-		List<DonNghi> listDn = session.createQuery("from DonNghi where id_nv ='"+id_nv+"' and  tinh_trang = "+3+" ").list();
+		List<DonNghi> listDn = session.createQuery("from DonNghi where id_nv ='"+id_nv+"' and  tinh_trang = "+3+" ").setFirstResult(start).setMaxResults(end).list();
 		session.close();
 		return listDn;
 	}
 
+
 	@Override
-	public List<DonNghi> listDonNghiBiTuChoi2(int id_nv) {
+	public Long countListDaDuyet(int id_nv) {
+		Session session = this.sessionFactory.getCurrentSession();
+		Long count = session.createQuery("select count(*) from  DonNghi where id_nv ='"+id_nv+"' and  tinh_trang = "+3+" " ,Long.class).getSingleResult();
+		return count;
+	}
+
+
+	@Override
+	public Long countListTuChoi(int id_nv) {
+		Session session = this.sessionFactory.getCurrentSession();
+		Long count = session.createQuery("select count(*) from  DonNghi where id_nv ='"+id_nv+"' and  tinh_trang = "+4+" " ,Long.class).getSingleResult();
+		return count;	}
+
+	@Override
+	public List<DonNghi> listdanhsachpheduyetcty() {
 		Session session = this.sessionFactory.openSession();
 		@SuppressWarnings("unchecked")
-		List<DonNghi> listDn = session.createQuery("from DonNghi where id_nv ='"+id_nv+"' and  tinh_trang = "+4+" ").list();
+		List<DonNghi> listDn = session.createQuery("from DonNghi where tinh_trang = "+3+" ").list();
 		session.close();
 		return listDn;
 	}
+
+	
+	
 
 	
 	

@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ page session="false"%>
@@ -184,8 +185,8 @@ input:checked+.slider:before {
 													<td>${dn.getLy_do()}</td>
 													<td>${dn.getGhi_chu()}</td>
 													<td>${dn.getPhong_ban()}</td>
-													<td>${dn.getTg_bat_dau()}</td>
-													<td>${dn.getTg_ket_thuc()}</td>
+													<td><fmt:formatDate pattern="yyyy-MM-dd" value="${dn.getTg_bat_dau()}" /></td>
+													<td><fmt:formatDate pattern="yyyy-MM-dd" value="${dn.getTg_ket_thuc()}" /></td>
 													<td>Đã Được Duyệt</td>
 												</tr>
 											</c:forEach>
@@ -201,10 +202,31 @@ input:checked+.slider:before {
 						</div>
 					</div>
 					<!--END panel-table-->
+					<center>
+						
+
+							<c:if test="${page gt 1}">
+									<a href="/ffse-fbms/QuanLyVangNghi/daduyet/1"><button type="button"
+											class="btn btn-warning btn-circle">first</button></a>
+									<a href="/ffse-fbms/QuanLyVangNghi/daduyet/${page-1}"><button type="button"
+											class="btn btn-warning btn-circle">${page -1}</button></a>
+								</c:if>
+							<a><button type="button"
+										class="btn btn-sucess btn-circle">${page}</button></a>
+							<c:if test="${page lt soTrang}">
+
+									<a href="/ffse-fbms/QuanLyVangNghi/daduyet/${page+1}"><button type="button"
+											class="btn btn-warning btn-circle">${page +1}</button></a>
+									<a href="/ffse-fbms/QuanLyVangNghi/daduyet/${soTrang}"><button type="button"
+											class="btn btn-warning btn-circle">last</button></a>
+								</c:if>
+						
+					</center>
 				</div>
 			</div>
 		</div>
 	</div>
+	
 	<jsp:include page="/WEB-INF/view/templates/footer.jsp" />
 
 

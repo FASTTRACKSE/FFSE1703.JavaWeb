@@ -204,8 +204,9 @@
 											<div class="row">
 												<div class="form-group col-md-4 mb-2 has-icon-left">
 													<p>Ngày bắt đầu*</p>
+													
 													<input name="tg_bat_dau" type="date"
-															class="form-control round" id="from" />
+															class="form-control round" id="from" min="2018-10-07" />
 													
 												</div>
 												<div class="form-group col-md-4 mb-2 has-icon-left">
@@ -214,7 +215,7 @@
 													<fieldset class="form-group position-relative">
 														<input id="to" name="tg_ket_thuc" type="date"
 															class="form-control round" onchange="count()" value=""
-															min="2018-09-20">
+															min="2018-10-08">
 														<div class="form-control-position">
 															<i class="fa fa-calendar"></i>
 														</div>

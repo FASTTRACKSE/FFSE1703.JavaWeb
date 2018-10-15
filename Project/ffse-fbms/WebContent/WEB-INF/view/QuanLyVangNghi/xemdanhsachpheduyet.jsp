@@ -155,7 +155,7 @@ input:checked+.slider:before {
 								<div class="row">
 									<center>
 										<h3 class="panel-title">
-											<b>Danh Sách Đơn Bị Từ Chối</b>
+											<b>Danh Sách Đơn Phê Duyệt Toàn Công Ty</b>
 										</h3>
 									</center>
 								</div>
@@ -174,7 +174,6 @@ input:checked+.slider:before {
 												<th>Phòng Ban</th>
 												<th>Thời gian Từ</th>
 												<th>Đến Thời gian</th>
-												<th>Đến Thời gian</th>
 												<th>Tình Trạng</th>
 											</tr>
 										</thead>
@@ -186,21 +185,13 @@ input:checked+.slider:before {
 													<td>${dn.getLy_do()}</td>
 													<td>${dn.getGhi_chu()}</td>
 													<td>${dn.getPhong_ban()}</td>
-													<td>${dn.getTg_bat_dau()}</td>
-													<td>${dn.getTg_ket_thuc()}</td>
-													<td>${dn.getGhi_chu()}</td>
-													<td>Bị Từ Chối</td>
+													<td><fmt:formatDate pattern="yyyy-MM-dd" value="${dn.getTg_bat_dau()}" /></td>
+													;           0                                                                                                                                                                  <td><fmt:formatDate pattern="yyyy-MM-dd" value="${dn.getTg_ket_thuc()}" /></td>
+													<td>Đã Được Duyệt</td>
 												</tr>
 											</c:forEach>
 										</tbody>
 									</table>
-									
-									<br>
-										<center><a href="donxinnghi">
-													<button type="button" class="btn btn-warning mr-1">
-														<i class="fa fa-arrow-circle-left"></i> Quay lại
-													</button>
-												</a></center>
 								</div>
 								<!-- END id="list" -->
 
@@ -208,36 +199,34 @@ input:checked+.slider:before {
 
 							</div>
 							<!-- END tab-content -->
-							<br>
-							 <center>
+						</div>
+					</div>
+					<!--END panel-table-->
+					<center>
 						
 
 							<c:if test="${page gt 1}">
-									<a href="/ffse-fbms/QuanLyVangNghi/tuchoi/1"><button type="button"
+									<a href="/ffse-fbms/QuanLyVangNghi/daduyet/1"><button type="button"
 											class="btn btn-warning btn-circle">first</button></a>
-									<a href="/ffse-fbms/QuanLyVangNghi/tuchoi/${page-1}"><button type="button"
+									<a href="/ffse-fbms/QuanLyVangNghi/daduyet/${page-1}"><button type="button"
 											class="btn btn-warning btn-circle">${page -1}</button></a>
 								</c:if>
 							<a><button type="button"
 										class="btn btn-sucess btn-circle">${page}</button></a>
-							<c:if test="${page lt soTrang}">
+							<c:if test="${page lt soTrang}">      000000000000000             0 00  0----
 
-									<a href="/ffse-fbms/QuanLyVangNghi/tuchoi/${page+1}"><button type="button"
+									<a href="/ffse-fbms/QuanLyVangNghi/daduyet/${page+1}"><button type="button"
 											class="btn btn-warning btn-circle">${page +1}</button></a>
-									<a href="/ffse-fbms/QuanLyVangNghi/tuchoi/${soTrang}"><button type="button"
+									<a href="/ffse-fbms/QuanLyVangNghi/daduyet/${soTrang}"><button type="button"
 											class="btn btn-warning btn-circle">last</button></a>
 								</c:if>
 						
-					</center> 
-							
-						</div>
-					</div>
-					<!--END panel-table-->
+					</center>
 				</div>
 			</div>
 		</div>
 	</div>
-	</div>
+	
 	<jsp:include page="/WEB-INF/view/templates/footer.jsp" />
 
 

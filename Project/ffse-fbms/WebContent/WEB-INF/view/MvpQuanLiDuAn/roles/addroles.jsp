@@ -16,15 +16,15 @@
 		<!-- Path -->
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0"><spring:message code="label.addR"/></h3>
+				<h3 class="content-header-title mb-0">Thêm vai trò</h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/home" />'>Home</a></li>
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/mvpquanliduan/roles/list-roles" />'><spring:message code="label.listR"/></a></li>
-							<li class="breadcrumb-item active"><spring:message code="label.addR"/></li>
+								href='<c:url value="/mvpquanliduan/roles/list-roles" />'>Danh sách vai trò</a></li>
+							<li class="breadcrumb-item active">Thêm vai trò</li>
 						</ol>
 					</div>
 				</div>
@@ -40,7 +40,7 @@
 					<form:form method="POST" action="addnew">
 						
 						<div class="form-group col-sm-6">
-							<label><spring:message code="label.nameR"/></label><br>
+							<label>Vai trò</label><br>
 							<p Class="error" >${messageName}</p>
 							<form:errors path="nameRoles" cssClass="error" />
 							<form:input path="nameRoles" class="form-control round"

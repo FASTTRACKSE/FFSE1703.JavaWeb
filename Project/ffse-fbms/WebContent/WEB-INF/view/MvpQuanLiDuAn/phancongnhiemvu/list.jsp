@@ -23,8 +23,9 @@
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/mvpquanliduan/project/list-project" />'>Danh
 									sách dự án</a></li>
-										<li class="breadcrumb-item"><a
-								href='<c:url value="/mvpquanliduan/project/detail-project/${idProjects}" />'>Chi tiết dự án</a></li>
+							<li class="breadcrumb-item"><a
+								href='<c:url value="/mvpquanliduan/project/detail-project/${idProjects}" />'>Chi
+									tiết dự án</a></li>
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/mvpquanliduan/nhiemvu/list-nhiemvu/${idProjects}" />'>Phân
 									công nhiệm vụ</a></li>
@@ -41,11 +42,11 @@
 			<div class="x_panel">
 
 				<div class="x_title">
-					<a class="btn btn-outline-success round btn-min-width mr-1 mb-1"
-						href="<c:url value="/mvpquanliduan/nhiemvu/show-form-add/${idProjects}" />" ${disable}>
-						<h5class="ft-plus-circle">Thêm phân công nhiệm vụ
-						</h5>
-					</a>
+
+					<input ${disable }
+						class="btn btn-outline-success round btn-min-width mr-1 mb-1"
+						value=" Thêm phân công nhiệm vụ"
+						onclick="location.href='<c:url value="/mvpquanliduan/nhiemvu/show-form-add/${idProjects}" />'">
 				</div>
 				<hr>
 				<div class="row">
@@ -92,8 +93,7 @@ window.onload = function () {
 	if (maNV != 0 && maNV != "null") {
 		$("#maNV").val(maNV);
 	}
-	vaiTro= "<%=request.getParameter("vaiTro")%>
-					"
+	vaiTro= "<%=request.getParameter("vaiTro")%>"
 						if (vaiTro != 0 && vaiTro != "null") {
 							$("#vaiTro").val(vaiTro);
 						}
@@ -101,8 +101,8 @@ window.onload = function () {
 				</script>
 				<div class="x_content">
 
-					<table class="table table-striped" style="text-align: center">
-						<thead>
+					<table class="table table-striped" style="text-align: center;background: white">
+						<thead style="background: #AEEEEE">
 							<tr>
 
 
@@ -123,12 +123,13 @@ window.onload = function () {
 									<td style="text-align: left">${nhiemVu.hoSoNhanVien.hoTenNv}</td>
 									<td style="text-align: left">${nhiemVu.roles.nameRoles}</td>
 
-									<td><a ${disable} 
+									<td>
+										 <input ${disable }
+										class="btn btn-outline-info ft-edit"
 										style="width: 50px; high: 50px; border-color: #00E5EE; border-radius: 100%;"
-										class="btn btn-outline-info "
-										href="<c:url value="/mvpquanliduan/nhiemvu/show-form-edit/${nhiemVu.id }" />"
-										title=""><i class="ft-edit"></i></a>
-										<button
+										value="Edit"
+										onclick="location.href='<c:url value="/mvpquanliduan/nhiemvu/show-form-edit/${nhiemVu.id }" />'">
+										<button ${disable }
 											style="width: 50px; high: 50px; border-color: #FF6A6A; border-radius: 100%;"
 											data-href="<c:url value="/mvpquanliduan/nhiemvu/delete/${nhiemVu.id  }" />"
 											class="btn btn-outline-danger" data-toggle="modal"

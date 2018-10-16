@@ -14,14 +14,14 @@
 		<!-- Path -->
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0"><spring:message code="label.listS"/></h3>
+				<h3 class="content-header-title mb-0">Danh sách trạng thái</h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/home" />'>Home</a></li>
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/mvpquanliduan/status/list-status" />'><spring:message code="label.listS"/></a></li>
+								href='<c:url value="/mvpquanliduan/status/list-status" />'>Danh sách trạng thái</a></li>
 
 						</ol>
 					</div>
@@ -36,7 +36,7 @@
 				<div class="x_title">
 					<a class="btn btn-outline-success round btn-min-width mr-1 mb-1"
 						href="<c:url value="/mvpquanliduan/status/show-form-add" />">
-						<h5class="ft-plus-circle"><spring:message code="label.addS"/>
+						<h5class="ft-plus-circle">Thêm trạng Thái
 						</h5>
 					</a>
 				</div>
@@ -46,8 +46,8 @@
 						style="text-align: center; background: white">
 						<thead style="background: #AEEEEE">
 							<tr>
-								<th style="text-align: center"><spring:message code="label.idS"/></th>
-								<th style="width: 40%; text-align: center"><spring:message code="label.nameS"/></th>
+								<th style="text-align: center">Mã trạng thái</th>
+								<th style="width: 40%; text-align: center">Trạng thái</th>
 								<th style="text-align: center"><spring:message code="label.vaitro"/></th>
 							</tr>
 						</thead>

@@ -14,14 +14,14 @@
 		<!-- Path -->
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0"><spring:message code="label.listD"/></h3>
+				<h3 class="content-header-title mb-0">Danh sách Database</h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/home" />'>Home</a></li>
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/mvpquanliduan/database/list-database" />'><spring:message code="label.listD"/></a></li>
+								href='<c:url value="/mvpquanliduan/database/list-database" />'>Danh sách Database</a></li>
 
 						</ol>
 					</div>
@@ -36,7 +36,7 @@
 				<div class="x_title">
 					<a class="btn btn-outline-success round btn-min-width mr-1 mb-1"
 						href="<c:url value="/mvpquanliduan/database/show-form-add" />">
-						<h5class="ft-plus-circle"><spring:message code="label.addD"/>
+						<h5class="ft-plus-circle">Thêm Database
 						</h5>
 					</a>
 				</div>
@@ -46,9 +46,9 @@
 						<thead style="background: #AEEEEE">
 							<tr>
 								<th style="text-align: center">Stt</th>
-								<th style="text-align: center"><spring:message code="label.idD"/></th>
-								<th style="width: 60%; text-align: center"><spring:message code="label.nameD"/></th>
-								<th style="text-align: center"><spring:message code="label.vaitro"/></th>
+								<th style="text-align: center">Mã database</th>
+								<th style="width: 60%; text-align: center">Database</th>
+								<th style="text-align: center">Chức năng</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -58,7 +58,7 @@
 
 									<th scope="row">${count.count}</th>
 									<td style="text-align: left">${database.idDatabase}</td>
-									<td style="text-align: left">${database.nameDatabase}</td>
+									<td style="text-align: center;">${database.nameDatabase}</td>
 									<td><a
 										style="width: 50px; high: 50px; border-color: #00E5EE; border-radius: 100%;"
 										class="btn btn-outline-info "

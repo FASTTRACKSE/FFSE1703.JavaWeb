@@ -31,8 +31,9 @@
 			<div class="main-content">
 				<div class="row">
 					<form:form method="POST" action="addnew">
+					<div class="row">
 						<div class="form-group col-sm-6">
-							<label>ID</label>
+							<label>Mã khách hàng</label>
 							<p Class="error">${messageMa}</p>
 							<form:input class="form-control" path="idKhachHang" placeholder="Mã khách hàng" />
 							<form:errors path="email" cssStyle="color: red"></form:errors>
@@ -40,10 +41,13 @@
 						</div>
 						<div class="form-group col-sm-6">
 							<label> <spring:message code="label.nameKH" /></label>
+							<p Class="error"></p>
 							<form:input class="form-control" path="fullname"
 								placeholder="Tên khách hàng" />
 							<form:errors path="fullname" cssStyle="color: red"></form:errors>
 						</div>
+						</div>
+						<div class="row">
 						<div class="form-group col-sm-6">
 							<label>Email</label>
 							<form:input class="form-control" path="email" placeholder="Email" />
@@ -56,7 +60,8 @@
 							<form:errors path="phone" cssStyle="color: red"></form:errors>
 
 						</div>
-						
+						</div>
+						<div class="row">
 						<div class="form-group col-sm-6">
 							<label><spring:message code="label.diachiKH" /></label>
 							<form:input class="form-control" path="address"
@@ -72,7 +77,7 @@
 							<spring:message code="label.nuKH" />
 							<form:errors path="gender" cssStyle="color: red"></form:errors>
 						</div>
-
+						</div>
 						<div class="col-sm-12 text-center">
 							<button type="submit" class="btn btn-success"><spring:message code="label.submit" /></button>
 						</div>

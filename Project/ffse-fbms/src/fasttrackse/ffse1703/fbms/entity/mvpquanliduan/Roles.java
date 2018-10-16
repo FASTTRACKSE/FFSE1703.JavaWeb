@@ -17,7 +17,7 @@ public class Roles {
 	@Column(name="id_role")
 	private int idRoles;
 	
-	@NotEmpty(message="Nhập tên trạng thái")
+	@NotEmpty(message="Nhập tên vai trò")
 	@Column(name="role")
 	private String nameRoles;
 	

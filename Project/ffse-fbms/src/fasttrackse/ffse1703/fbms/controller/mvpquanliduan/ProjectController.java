@@ -89,7 +89,7 @@ public class ProjectController {
 
 	@Autowired
 	private ProjectService projectService;
-	
+
 	@Autowired
 	private NhiemVuService nhiemVuService;
 
@@ -107,10 +107,10 @@ public class ProjectController {
 	@RequestMapping(value = "/list-project/{pageId}")
 	public String listproject(@PathVariable int pageId, Model model, HttpServletRequest request, HttpSession session,
 			final Principal pr, ModelMap mm) {
+		try {
 		List<Projects> list = new ArrayList<>();
-		Collection<? extends GrantedAuthority> granted1 = SecurityContextHolder.getContext().getAuthentication()
+		Collection<? extends GrantedAuthority> vaiTro = SecurityContextHolder.getContext().getAuthentication()
 				.getAuthorities();
-		System.out.println("chuc danh la" + granted1);
 		String khachHang = " and khachHang.idKhachHang = '" + request.getParameter("khachhang") + "'";
 		if (request.getParameter("khachhang") == null || request.getParameter("khachhang").equals("0")) {
 			khachHang = "";
@@ -127,49 +127,41 @@ public class ProjectController {
 		if (request.getParameter("status") == null || request.getParameter("status").equals("0")) {
 			status = "";
 		}
+		String isPIT = "";
 		String isTpp = "";
 		String isPm = "";
 		String isNv = "";
-		if (!isTPP().isEmpty()) {
-			System.out.println("da su dung tpp");
+		String vaiTros = "";
+		for (int i = 0; i < vaiTro.size(); i++) {
+			vaiTros = vaiTro.toArray()[i] + "";
+		}
+		if (vaiTros.indexOf("PIT") > 0) {
+			isPIT = "";
+		} else if (!isTPP().isEmpty()) {
 			List<PhongBan> listPhongBan = phongBanService.findAll();
 			String granted = isTPP();
-			System.out.println("granted la:" + granted);
-			String pb = "";
-			if (granted.indexOf("PIT") > 0) {
-				isTpp = "";
-			} else {
-				for (PhongBan x : listPhongBan) {
-					if (granted.indexOf(x.getMaPhongBan()) > 0) {
-						pb = x.getMaPhongBan();
-						isTpp = " and roomProject.maPhongBan = '" + pb + "'";
-					}
+
+			for (PhongBan x : listPhongBan) {
+				if (granted.indexOf(x.getMaPhongBan()) > 0) {
+					isTpp = " and roomProject.maPhongBan = '" + x.getMaPhongBan() + "'";
 				}
 			}
-		} else if (!isPM().isEmpty()) {
-			System.out.println("da su dung PM");
-			String pm = isPM();
-			
-			System.out.println("thang nhan vien la" + pm);
-			isPm = " and pm.maNv = '" + pm + "'";
+		} else if (!isPM().isEmpty()) {			
+			isPm = " and pm.maNv = '" + isPM() + "'";
 		} else if (!isNv().isEmpty()) {
-			System.out.println("da su dung NV");
 			String nv = isNv();
 			list.addAll(listProjectNv(nv));
-			
-			isNv = " and pm.maNv = '99999'";
+			isNv = " and pm.maNv = '999999999'";
 			mm.addAttribute("disable", "disabled");
 		}
-		String search = khachHang + roomProject + domain + status + isTpp + isPm + isNv;
-		System.out.println("search la" + search);
-		
+		String search = khachHang + roomProject + domain + status + isTpp + isPm + isNv + isPIT;
+
 		int maxRows = 5;
 		int start = (pageId - 1) * maxRows;
-		list.addAll(projectService.listProject(search, start, maxRows));	
+		list.addAll(projectService.listProject(search, start, maxRows));
 		int totalProject = list.size();
-		System.out.println("aaaaaaaaaaaaaaaaaa"+totalProject);
 		int totalPage = (int) Math.ceil(totalProject / (double) maxRows);
-		
+
 		model.addAttribute("listProject", list);
 		model.addAttribute("pageId", pageId);
 		model.addAttribute("totalPage", totalPage);
@@ -181,17 +173,17 @@ public class ProjectController {
 		session.setAttribute("pageIdPr", pageId);
 
 		return "MvpQuanLiDuAn/project/listproject";
+		}catch(Exception e) {
+			return "QuanTriHeThong/error-404";
+		}
 	}
-	
-	public List<Projects> listProjectNv(String nv){
+
+	public List<Projects> listProjectNv(String nv) {
 		List<Projects> listDuAn = new ArrayList<>();
-		List<Projects> listPr= projectService.findAll();
-		System.out.println("size list project la" + listPr.size());
-		
+		List<Projects> listPr = projectService.findAll();
 		List<Nhiemvu> listNv = nhiemVuService.getByMaNhanVien(nv);
-		System.out.println("size list NV la" + listNv.size() +"ma NV la" +nv);
-		for(Projects duan: listPr) {
-			for(Nhiemvu x:listNv) {
+		for (Projects duan : listPr) {
+			for (Nhiemvu x : listNv) {
 				if (duan.getIdProject().equals(x.getProjects().getIdProject())) {
 					listDuAn.add(duan);
 				}
@@ -199,38 +191,59 @@ public class ProjectController {
 		}
 		return listDuAn;
 	}
-	
 
 	@RequestMapping("/show-form-add")
 	public String showFormAdd(Model model) {
+		try {
 		model.addAttribute("command", new Projects());
-		// model.addAttribute("khachHang", khachHangService.getAll());
 		return "MvpQuanLiDuAn/project/addproject";
+		}catch(Exception e) {
+			return "QuanTriHeThong/error-404";
+		}
 	}
 
 	@RequestMapping(value = "detail-project/{id}")
 	public String detailProject(Model model, @PathVariable String id) {
-		if (!isNv().isEmpty()) {
+		try {
+		Collection<? extends GrantedAuthority> vaiTro = SecurityContextHolder.getContext().getAuthentication()
+				.getAuthorities();
+		String vaiTros= "";
+		for (int i = 0; i < vaiTro.size(); i++) {
+			vaiTros = vaiTro.toArray()[i] + "";
+		}
+		if (vaiTros.indexOf("PIT") > 0) {	
+		} else if (!isTPP().isEmpty()) {
+		} else if (!isPM().isEmpty()) {
+		} else if (!isNv().isEmpty()) {
+			System.out.println("Đâng la nhân viên");
 			model.addAttribute("disable", "disabled");
 		}
 		Projects pr = projectService.findById(id);
 		model.addAttribute("project", pr);
 		return "MvpQuanLiDuAn/project/detailproject";
+		}catch(Exception e) {
+			return "QuanTriHeThong/error-404";
+		}
 	}
+
 
 	@RequestMapping(value = "/show-form-edit/{id}")
 	public String showFormEdit(Model model, @PathVariable String id) {
-
+		try {
 		Projects pr = projectService.findById(id);
 		String maPB = pr.getRoomProject().getMaPhongBan();
 		model.addAttribute("pm", projectService.getPm(maPB));
 		model.addAttribute("projects", pr);
 		return "MvpQuanLiDuAn/project/updateproject";
+		}catch(Exception e) {
+			return "QuanTriHeThong/error-404";
+		}
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String update(@Valid @ModelAttribute("projects") Projects project, BindingResult result,
 			final RedirectAttributes redirectAttributes, Model model) {
+		try {
 		if (result.hasErrors()) {
 			model.addAttribute("projects", project);
 			return "MvpQuanLiDuAn/project/updateproject";
@@ -238,21 +251,28 @@ public class ProjectController {
 		project.setIsDelete(1);
 		projectService.update(project);
 		return "redirect: detail-project/" + project.getIdProject();
+		}catch(Exception e) {
+			return "QuanTriHeThong/error-404";
+		}
 	}
 
 	@RequestMapping(value = "/delete/{id}")
 	public String delete(@PathVariable String id, final RedirectAttributes redirectAttributes) {
+		try {
 		Projects pr = projectService.findById(id);
 		pr.setIsDelete(0);
 		projectService.update(pr);
 		redirectAttributes.addFlashAttribute("messageSuccess", "Thành công..");
 		return "redirect: /ffse-fbms/mvpquanliduan/project/list-project";
+		}catch(Exception e) {
+			return "QuanTriHeThong/error-404";
+		}
 	}
 
 	@RequestMapping(value = "/addnew", method = RequestMethod.POST)
 	public String addNew(@Valid @ModelAttribute("command") Projects project, BindingResult result,
 			final RedirectAttributes redirectAttributes, Model model) {
-
+		try {
 		// validation form
 		if (result.hasErrors()) {
 			return "MvpQuanLiDuAn/project/addproject";
@@ -272,6 +292,9 @@ public class ProjectController {
 		projectService.addNew(project);
 		redirectAttributes.addFlashAttribute("success", "<script>alert('Thêm thành công');</script>");
 		return "redirect: list-project";
+		}catch(Exception e) {
+			return "QuanTriHeThong/error-404";
+		}
 	}
 
 	// check có phải TPP
@@ -296,7 +319,6 @@ public class ProjectController {
 		List<Projects> listPr = projectService.findAll();
 		UserAccount acc = projectService.getAccount(userName);
 		String maNvAcc = String.valueOf(acc.getNhanVien().getMaNhanVien());
-		System.out.println("my account la " + maNvAcc);
 		for (Projects x : listPr) {
 			Integer.parseInt(x.getPm().getMaNv());
 			if (Integer.parseInt(maNvAcc) == Integer.parseInt(x.getPm().getMaNv())) {
@@ -305,14 +327,14 @@ public class ProjectController {
 		}
 		return "";
 	}
-
+//check có phải Nhân viên
 	public String isNv() {
 		Collection<? extends GrantedAuthority> granted = SecurityContextHolder.getContext().getAuthentication()
 				.getAuthorities();
 		String userName = SecurityContextHolder.getContext().getAuthentication().getName();
 		UserAccount acc = projectService.getAccount(userName);
 		String maNvAcc = String.valueOf(acc.getNhanVien().getMaNhanVien());
-       String role;
+		String role;
 		for (int i = 0; i < granted.size(); i++) {
 			role = granted.toArray()[i] + "";
 			if (role.indexOf("NV") > 0) {
@@ -443,7 +465,7 @@ public class ProjectController {
 
 	@ModelAttribute("phongDuAn")
 	public List<PhongBan> itemPhongDuAn() {
-	
+
 		return phongBanService.findAll();
 	}
 

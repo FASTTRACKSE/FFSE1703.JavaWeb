@@ -16,15 +16,15 @@
 		<!-- Path -->
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0"><spring:message code="label.addD"/></h3>
+				<h3 class="content-header-title mb-0">Thêm Database</h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/home" />'>Home</a></li>
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/mvpquanliduan/database/list-database" />'><spring:message code="label.listD"/></a></li>
-							<li class="breadcrumb-item active"><spring:message code="label.addD"/></li>
+								href='<c:url value="/mvpquanliduan/database/list-database" />'>Danh dách database</a></li>
+							<li class="breadcrumb-item active">Thêm database</li>
 						</ol>
 					</div>
 				</div>
@@ -39,7 +39,7 @@
 				<div class="row">
 					<form:form method="POST" action="addnew">
 						<div class="form-group col-sm-6">
-							<label><spring:message code="label.idD"/></label><br>
+							<label>Mã database</label><br>
 							<p Class="error" >${messageMa}</p>
 							<form:errors path="idDatabase" cssClass="error" />
 							<form:input path="idDatabase" class="form-control round"
@@ -47,7 +47,7 @@
 							
 						</div>
 						<div class="form-group col-sm-6">
-							<label><spring:message code="label.nameD"/></label><br>
+							<label>Database</label><br>
 							<p Class="error" >${messageName}</p>
 							<form:errors path="nameDatabase" cssClass="error" />
 							<form:input path="nameDatabase" class="form-control round"

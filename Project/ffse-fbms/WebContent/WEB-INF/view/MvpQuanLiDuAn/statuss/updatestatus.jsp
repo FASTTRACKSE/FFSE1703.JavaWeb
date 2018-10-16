@@ -16,15 +16,15 @@
 		<!-- Path -->
 		<div class="content-header row">
 			<div class="content-header-left col-md-6 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0"><spring:message code="label.editS"/></h3>
+				<h3 class="content-header-title mb-0">Chỉnh sửa Trạng thái</h3>
 				<div class="row breadcrumbs-top">
 					<div class="breadcrumb-wrapper col-xs-12">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/home" />'>Home</a></li>
 							<li class="breadcrumb-item"><a
-								href='<c:url value="/mvpquanliduan/status/list-status" />'><spring:message code="label.listS"/></a></li>
-							<li class="breadcrumb-item active"><spring:message code="label.editS"/></li>
+								href='<c:url value="/mvpquanliduan/status/list-status" />'>Danh sách trạng thái</a></li>
+							<li class="breadcrumb-item active">Chỉnh sửa trạng thái</li>
 						</ol>
 					</div>
 				</div>
@@ -42,14 +42,14 @@
 						<div class="form-group col-sm-6">
 							<form:hidden path="idStatus" />
 							<form:hidden path="status" />
-							<label><spring:message code="label.nameS"/></label><br>
+							<label>Trạng thái</label><br>
 							<form:errors path="nameStatus" cssClass="error" />
 							<form:input path="nameStatus" class="form-control round"
 								placeholder="Tên Trạng thái" />
 						</div>
 							<div class="form-group col-sm-6">
 							
-							<label><spring:message code="label.colorS"/></label><br>
+							<label>Màu trạng thái</label><br>
 							<form:input path="color" type="color" id="color" value="${status.color }"/>
 						</div>
 						<div class="col-sm-12 text-center">

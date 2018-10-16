@@ -22,8 +22,8 @@
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a
 								href='<c:url value="/home" />'>Home</a></li>
-							<li class="breadcrumb-item"><a
-								href='<c:url value="/mvpquanliduan/technical/list-technical" />'><spring:message code="label.listKT" /></li>
+							<li class="breadcrumb-item">
+							<a href='<c:url value="/mvpquanliduan/technical/list-technical" />'><spring:message code="label.listKT" /></a></li>
 							<li class="breadcrumb-item active"><spring:message code="label.addKT" /></li>
 						</ol>
 					</div>
@@ -38,6 +38,7 @@
 			<div class="main-content">
 				<div class="row">
 					<form:form method="POST" action="addnew">
+					<div class="row">
 						<div class="form-group col-sm-6">
 							<label><spring:message code="label.idKT" /></label><br>
 							<p class="error">${messageMa}</p>
@@ -52,11 +53,14 @@
 							<form:input path="nameTechnical" class="form-control round"
 								placeholder="Tên kĩ thuật" />
 						</div>
+						</div>
+						<div class="row">
 						<div class="col-sm-12 text-center">
 							<button type="submit"
 								class="btn btn-outline-success round btn-min-width mr-1 mb-1">
 								<i class="fa fa-check-square-o"></i> <spring:message code="label.submit" />
 							</button>
+						</div>
 						</div>
 					</form:form>
 				</div>

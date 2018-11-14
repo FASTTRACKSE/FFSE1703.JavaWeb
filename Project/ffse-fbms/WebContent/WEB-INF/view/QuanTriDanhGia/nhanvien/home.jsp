@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<jsp:include page="/WEB-INF/view/QuanTriDanhGia/templates/header.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/view/templates/header.jsp"></jsp:include>
 <div class="app-content content container-fluid">
 	<div class="content-wrapper">
 		<div class="row">

@@ -7,22 +7,6 @@
 <div class="app-content content container-fluid">
 	<div class="content-wrapper">
 		<div class="content-header row">
-			<div class="content-header-left col-md-9 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">Đánh giá nhân viên</h3>
-				<div class="row breadcrumbs-top">
-					<div class="breadcrumb-wrapper col-xs-12">
-						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a
-								href="<c:url value = "/quantridanhgia/home/"/>">Quản trị
-									đánh giá</a></li>
-							<li class="breadcrumb-item"><a
-								href="<c:url value = "/quantridanhgia/danhgianhanvien/"/>">Đánh
-									giá nhân viên</a></li>
-							<li class="breadcrumb-item active">View đánh giá</li>
-						</ol>
-					</div>
-				</div>
-			</div>
 			<div class="content-body">
 				<!-- Basic form layout section start -->
 				<section id="basic-form-layouts">
@@ -37,6 +21,12 @@
 												<h4 class="form-section">
 													<i class="ft-user"></i> Nội dung bản đánh giá
 												</h4>
+												<div class="form-group row">
+													<label class="col-md-3 label-control">Nhân viên</label>
+													<div class="col-md-9">
+														<h3>${danhGia.nhanVien.hoDem } ${danhGia.nhanVien.ten }</h3>
+													</div>
+												</div>
 												<div class="form-group row">
 													<label class="col-md-3 label-control"> Kỷ luật công
 														việc </label>
@@ -91,7 +81,7 @@
 											</div>
 											<div class="form-actions">
 												<a
-													href="<c:url value="/quantridanhgia/nhanvien/nhanviendanhgia"/>"
+													href="<c:url value="/quantridanhgia/danhgianhanvien"/>"
 													class="btn btn-danger btn-min-width mr-1 mb-1">Trở về</a>
 											</div>
 										</form:form>

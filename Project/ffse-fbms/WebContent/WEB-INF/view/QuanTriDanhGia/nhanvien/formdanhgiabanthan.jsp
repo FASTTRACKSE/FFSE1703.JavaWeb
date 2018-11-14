@@ -7,22 +7,6 @@
 <div class="app-content content container-fluid">
 	<div class="content-wrapper">
 		<div class="content-header row">
-			<div class="content-header-left col-md-9 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">Đánh giá bản thân</h3>
-				<div class="row breadcrumbs-top">
-					<div class="breadcrumb-wrapper col-xs-12">
-						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a
-								href="<c:url value = "/quantridanhgia/home/"/>">Quản trị
-									đánh giá</a></li>
-							<li class="breadcrumb-item"><a
-								href="<c:url value = "/quantridanhgia/danhgiabanthan/"/>">Đánh
-									giá bản thân</a></li>
-							<li class="breadcrumb-item active">Form đánh giá</li>
-						</ol>
-					</div>
-				</div>
-			</div>
 			<div class="content-body">
 				<!-- Basic form layout section start -->
 				<section id="basic-form-layouts">
@@ -207,11 +191,10 @@
 												</div>
 											</div>
 											<div class="form-actions">
-												<a
-													href="<c:url value="/quantridanhgia/nhanvien/danhgiabanthan/"/>"
+												<a href="<c:url value="/quantridanhgia/danhgiabanthan/"/>"
 													class="btn btn-danger btn-min-width mr-1 mb-1">Trở về</a>
 												<button type="submit"
-													formaction="<c:url value="/quantridanhgia/nhanvien/danhgiabanthan/submit"/>"
+													formaction="<c:url value="/quantridanhgia/danhgiabanthan/submit"/>"
 													class="btn btn-success btn-min-width mr-1 mb-1">Tạo</button>
 											</div>
 											<form:hidden path="isDelete" />

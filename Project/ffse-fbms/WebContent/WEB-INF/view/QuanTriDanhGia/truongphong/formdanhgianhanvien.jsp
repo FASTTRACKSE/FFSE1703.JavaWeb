@@ -7,22 +7,6 @@
 <div class="app-content content container-fluid">
 	<div class="content-wrapper">
 		<div class="content-header row">
-			<div class="content-header-left col-md-9 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">Đánh giá nhân viên</h3>
-				<div class="row breadcrumbs-top">
-					<div class="breadcrumb-wrapper col-xs-12">
-						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a
-								href="<c:url value = "/quantridanhgia/home/"/>">Quản trị
-									đánh giá</a></li>
-							<li class="breadcrumb-item"><a
-								href="<c:url value = "/quantridanhgia/danhgianhanvien/"/>">Đánh
-									giá nhân viên</a></li>
-							<li class="breadcrumb-item active">Form đánh giá</li>
-						</ol>
-					</div>
-				</div>
-			</div>
 			<div class="content-body">
 				<!-- Basic form layout section start -->
 				<section id="basic-form-layouts">
@@ -33,7 +17,7 @@
 									<div class="card-body" style="margin: 1em">
 										<form:form cssClass="form form-horizontal form-bordered"
 											method="POST"
-											action="/ffse-fbms/quantridanhgia/truongphong/danhgianhanvien/update">
+											action="/ffse-fbms/quantridanhgia/truongphongdanhgia/update">
 											<form:hidden path="id" />
 											<form:hidden path="kyDanhGia.maKy" />
 											<form:hidden path="phongBan.maPhongBan" />
@@ -143,12 +127,16 @@
 											</div>
 											<div class="form-actions">
 												<a
-													href="<c:url value="/quantridanhgia/truongphong/danhgianhanvien"/>"
+													href="<c:url value="/quantridanhgia/truongphongdanhgia"/>"
 													class="btn btn-danger btn-min-width mr-1 mb-1">Trở về</a>
 												<c:if test="${command.xepLoai < 1 }">
 													<button type="submit"
 														class="btn btn-success btn-min-width mr-1 mb-1">Đánh
 														giá</button>
+												</c:if>
+												<c:if test="${command.xepLoai > 1 }">
+													<button type="submit"
+														class="btn btn-success btn-min-width mr-1 mb-1">Cập nhật</button>
 												</c:if>
 											</div>
 										</form:form>

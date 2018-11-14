@@ -22,6 +22,9 @@ public class KyDanhGia implements Serializable {
 	@NotEmpty
 	private String tenKy;
 
+	@Column(name = "isActive")
+	private int isActive;
+
 	@Column(name = "is_delete")
 	private int isDelete;
 
@@ -43,6 +46,14 @@ public class KyDanhGia implements Serializable {
 
 	public void setTenKy(String tenKy) {
 		this.tenKy = tenKy;
+	}
+
+	public int getIsActive() {
+		return isActive;
+	}
+
+	public void setIsActive(int isActive) {
+		this.isActive = isActive;
 	}
 
 	public int getIsDelete() {

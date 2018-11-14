@@ -6,21 +6,6 @@
 <jsp:include page="/WEB-INF/view/templates/header.jsp"></jsp:include>
 <div class="app-content content container-fluid">
 	<div class="content-wrapper">
-		<div class="content-header row">
-			<div class="content-header-left col-md-9 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">Đánh giá nhân viên</h3>
-				<div class="row breadcrumbs-top">
-					<div class="breadcrumb-wrapper col-xs-12">
-						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a
-								href="<c:url value = "/quantridanhgia/home/"/>">Quản trị
-									đánh giá</a></li>
-							<li class="breadcrumb-item active">Đánh giá nhân viên</li>
-						</ol>
-					</div>
-				</div>
-			</div>
-		</div>
 		<c:if test="${empty listDanhGiaNhanVien}">
 			<div class="row">
 				<div class="col-md-12">
@@ -29,7 +14,7 @@
 							<div class="card-body" style="margin: 1em">
 								<h2>Chưa có danh sách đánh giá</h2>
 								<a class="btn btn-primary"
-									href="<c:url value = "/quantridanhgia/nhanvien/danhgianhanvien/create"/>">Tạo
+									href="<c:url value = "/quantridanhgia/danhgianhanvien/create"/>">Tạo
 									ngay</a>
 							</div>
 						</div>
@@ -64,12 +49,12 @@
 												<td>${x.xepLoai }</td>
 												<td><c:if test="${x.xepLoai !=0 }">
 														<a class="btn btn-info"
-															href="<c:url value = "/quantridanhgia/nhanvien/danhgianhanvien/view/${x.id }" />">Xem</a>
+															href="<c:url value = "/quantridanhgia/danhgianhanvien/view/${x.id }" />">Xem</a>
 														<a class="btn btn-info"
-															href="<c:url value = "/quantridanhgia/nhanvien/danhgianhanvien/edit/${x.nhanVien.maNhanVien }/${x.id }" />">Sửa</a>
+															href="<c:url value = "/quantridanhgia/danhgianhanvien/edit/${x.id }" />">Sửa</a>
 													</c:if> <c:if test="${x.xepLoai == 0 }">
 														<a class="btn btn-info"
-															href="<c:url value = "/quantridanhgia/nhanvien/danhgianhanvien/add/${x.nhanVien.maNhanVien }/${x.id }" />">Tạo</a>
+															href="<c:url value = "/quantridanhgia/danhgianhanvien/add/${x.id }" />">Tạo</a>
 													</c:if></td>
 											</tr>
 										</c:forEach>
@@ -81,21 +66,6 @@
 				</div>
 			</div>
 		</c:if>
-		<div class="row">
-			<div class="col-md-4">
-				<a class="btn btn-primary"
-					href="<c:url value = "/quantridanhgia/nhanvien/danhgianhanvien/exportcheckpoint"/>">Tải
-					xuống đánh giá</a>
-			</div>
-			<form method="POST" class="col-md-8" enctype="multipart/form-data"
-				action="/ffse-fbms/quantridanhgia/nhanvien/danhgianhanvien/uploadcheckpoint">
-				<div class="form-group">
-					<label>Upload đánh giá</label><input name="file" type="file"
-						class="form-control">
-				</div>
-				<button class="btn btn-success" type="submit">Upload</button>
-			</form>
-		</div>
 	</div>
 </div>
 <jsp:include page="/WEB-INF/view/templates/footer.jsp"></jsp:include>

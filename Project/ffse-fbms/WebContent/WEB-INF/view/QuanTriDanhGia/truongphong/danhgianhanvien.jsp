@@ -7,21 +7,6 @@
 <div class="app-content content container-fluid">
 	<div class="content-wrapper">
 		<div class="content-header row">
-			<div class="content-header-left col-md-9 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">Đánh giá nhân viên</h3>
-				<div class="row breadcrumbs-top">
-					<div class="breadcrumb-wrapper col-xs-12">
-						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a
-								href="<c:url value = "/quantridanhgia/home/"/>">Quản trị
-									đánh giá</a></li>
-							<li class="breadcrumb-item active">Đánh giá nhân viên</li>
-						</ol>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row">
 			<div class="card">
 				<div class="card-header">
 					<h4 class="card-title">Danh sách nhân viên cần đánh giá</h4>
@@ -29,7 +14,7 @@
 				<div class="card-content">
 					<div class="card-body" style="margin: 1em">
 						<c:if test="${empty listDanhGia }">
-							<h3>Phòng này chưa có nhân viên nào</h3>
+							<h3>Phòng này không có nhân viên nào</h3>
 						</c:if>
 						<c:if test="${not empty listDanhGia }">
 							<div class="table-responsive">
@@ -46,15 +31,18 @@
 										<c:forEach items="${listDanhGia}" var="x" varStatus="stt">
 											<tr>
 												<th scope="row">${stt.index+start+1}</th>
-												<td>${x.nhanVien.hoDem } ${x.nhanVien.ten }</td>
+												<td>${x.nhanVien.hoDem }${x.nhanVien.ten }</td>
 												<td>${x.xepLoai }</td>
-												<td>
-												<a class="btn btn-success"
-															href="<c:url value="/quantridanhgia/truongphong/danhgianhanvien/danhgia/view/${x.id }"/>">Xem</a>
-												<c:if test="${command.xepLoai < 1 }">
+												<td><a class="btn btn-info"
+													href="<c:url value="/quantridanhgia/truongphongdanhgia/view/${x.id }"/>">Xem</a>
+													<c:if test="${x.xepLoai < 1 }">
 														<a class="btn btn-success"
-															href="<c:url value="/quantridanhgia/truongphong/danhgianhanvien/danhgia/${x.id }"/>">Đánh
+															href="<c:url value="/quantridanhgia/truongphongdanhgia/add/${x.id }"/>">Đánh
 															giá</a>
+													</c:if>
+													<c:if test="${x.xepLoai > 1 }">
+														<a class="btn btn-success"
+															href="<c:url value="/quantridanhgia/truongphongdanhgia/edit/${x.id }"/>">Sửa</a>
 													</c:if></td>
 											</tr>
 										</c:forEach>
@@ -63,25 +51,25 @@
 								<ul class="pagination firstLast1-links">
 									<c:if test="${pageTPDG > 1 }">
 										<li class="page-item first"><a
-											href="<c:url value="/quantridanhgia/truongphong/danhgianhanvien/1" />"
+											href="<c:url value="/quantridanhgia/truongphongdanhgia/1" />"
 											class="page-link">First</a></li>
 										<li class="page-item prev"><a
-											href="<c:url value="/quantridanhgia/truongphong/danhgianhanvien/${pageTPDG-1 }" />"
+											href="<c:url value="/quantridanhgia/truongphongdanhgia/${pageTPDG-1 }" />"
 											class="page-link">Prev</a></li>
 										<li class="page-item prev"><a
-											href="<c:url value="/quantridanhgia/truongphong/danhgianhanvien/${pageTPDG-1 }" />"
+											href="<c:url value="/quantridanhgia/truongphongdanhgia/${pageTPDG-1 }" />"
 											class="page-link">${pageTPDG-1 }</a></li>
 									</c:if>
 									<li class="page-item active"><a href="#" class="page-link">${pageTPDG}</a></li>
 									<c:if test="${pageTPDG < total }">
 										<li class="page-item next"><a
-											href="<c:url value="/quantridanhgia/truongphong/danhgianhanvien/${pageTPDG+1 }" />"
+											href="<c:url value="/quantridanhgia/truongphongdanhgia/${pageTPDG+1 }" />"
 											class="page-link">${pageTPDG + 1 }</a></li>
 										<li class="page-item next"><a
-											href="<c:url value="/quantridanhgia/truongphong/danhgianhanvien/${pageTPDG+1 }" />"
+											href="<c:url value="/quantridanhgia/truongphongdanhgia/${pageTPDG+1 }" />"
 											class="page-link">Next</a></li>
 										<li class="page-item last"><a
-											href="<c:url value="/quantridanhgia/truongphong/danhgianhanvien/${total}" />"
+											href="<c:url value="/quantridanhgia/truongphongdanhgia/${total}" />"
 											class="page-link">Last</a></li>
 									</c:if>
 								</ul>

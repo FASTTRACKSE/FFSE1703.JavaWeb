@@ -6,28 +6,13 @@
 <jsp:include page="/WEB-INF/view/templates/header.jsp"></jsp:include>
 <div class="app-content content container-fluid">
 	<div class="content-wrapper">
-		<div class="content-header row">
-			<div class="content-header-left col-md-9 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">Danh sách đánh giá</h3>
-				<div class="row breadcrumbs-top">
-					<div class="breadcrumb-wrapper col-xs-12">
-						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a
-								href="<c:url value = "/quantridanhgia/home/"/>">Quản trị
-									đánh giá</a></li>
-							<li class="breadcrumb-item active">Danh sách đánh giá</li>
-						</ol>
-					</div>
-				</div>
-			</div>
-		</div>
 		<div class="row">
 			<div class="card">
-				<c:if test="${empty listDanhGia }">
+				<c:if test="${empty listNhanVienDanhGia }">
 					<h3>Bạn chưa được ai đánh giá</h3>
 				</c:if>
 
-				<c:if test="${not empty listDanhGia }">
+				<c:if test="${not empty listNhanVienDanhGia }">
 					<div class="card-header">
 						<h4 class="card-title">Danh sách nhân viên đánh giá</h4>
 					</div>
@@ -44,13 +29,14 @@
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach items="${listDanhGia }" var="x" varStatus="stt">
+										<c:forEach items="${listNhanVienDanhGia }" var="x"
+											varStatus="stt">
 											<tr>
 												<th scope="row">${stt.index+1 }</th>
 												<td>Nhân viên ${stt.index+1 }</td>
 												<td>${x.xepLoai }</td>
 												<td><a class="btn btn-info"
-													href="<c:url value="/quantridanhgia/nhanvien/nhanviendanhgia/view/${x.id}" />">Xem</a></td>
+													href="<c:url value="/quantridanhgia/nhanviendanhgia/${x.id}" />">Xem</a></td>
 											</tr>
 										</c:forEach>
 									</tbody>

@@ -7,19 +7,6 @@
 <div class="app-content content container-fluid">
 	<div class="content-wrapper">
 		<div class="content-header row">
-			<div class="content-header-left col-md-9 col-xs-12 mb-2">
-				<h3 class="content-header-title mb-0">Đánh giá từ trưởng phòng</h3>
-				<div class="row breadcrumbs-top">
-					<div class="breadcrumb-wrapper col-xs-12">
-						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a
-								href="<c:url value = "/quantridanhgia/home/"/>">Quản trị
-									đánh giá</a></li>
-							<li class="breadcrumb-item active">Đánh giá từ trưởng phòng</li>
-						</ol>
-					</div>
-				</div>
-			</div>
 			<c:if test="${empty danhGia}">
 				<div class="content-body">
 					<!-- Basic form layout section start -->
